@@ -1,0 +1,33 @@
+// Assurez-vous que le fichier est chargé avant d'exécuter ce code
+window.addEventListener('DOMContentLoaded', function() {
+    // Récupérer la balise select
+    var select = document.getElementById('localisation-select');
+    
+    // Charger le fichier cities1500.txt
+    fetch(base_url + 'assets/js/cities500.txt')
+        .then(response => response.text())
+        .then(data => {
+            // Séparer le contenu du fichier en lignes
+            var lines = data.split('\n');
+            
+            // Parcourir les lignes et créer une option pour chaque ville
+            lines.forEach(function(line) {
+                // Diviser la ligne en colonnes
+                var columns = line.split('\t');
+                
+                // Récupérer le nom de la ville à partir de la colonne appropriée (par exemple, la colonne 1)
+                var cityName = columns[1];
+                
+                // Créer une option pour chaque ville
+                var option = document.createElement('option');
+                option.value = cityName;
+                option.textContent = cityName;
+                
+                // Ajouter l'option à la balise select
+                select.appendChild(option);
+            });
+        })
+        .catch(error => {
+            console.error('Erreur lors du chargement du fichier cities1500.txt:', error);
+        });
+});

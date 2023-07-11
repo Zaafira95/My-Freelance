@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Inscription</title>
+    <title>Inscription | Café Crème Community - Rejoignez la plus grande communauté de freelances</title>
     <link href="<?php echo base_url('assets/css/app.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
     <style>

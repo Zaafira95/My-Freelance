@@ -78,6 +78,7 @@ $db['default'] = array(
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => 'root',
+	'port' => '8889',
 	'database' => 'cafecreme',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

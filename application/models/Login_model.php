@@ -23,5 +23,11 @@ class Login_model extends CI_Model {
         $this->db->where('userId', $userId);
         $this->db->update('users');
     }
+
+    public function getUserData($userId) {
+        $this->db->where('userId', $userId);
+        $query = $this->db->get('users');
+        return $query->row();
+    }
 }
 ?>

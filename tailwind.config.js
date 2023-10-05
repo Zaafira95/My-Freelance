@@ -130,17 +130,37 @@ module.exports = {
           900: 'rgba(6, 214, 160, 0.9)',
           'DEFAULT': '#06D6A0',
         },
+        red : {
+          100: 'rgba(239, 68, 68, 0.1)',
+          200: 'rgba(239, 68, 68, 0.2)',
+          300: 'rgba(239, 68, 68, 0.3)',
+          400: 'rgba(239, 68, 68, 0.4)',
+          500: 'rgba(239, 68, 68, 0.5)',
+          600: 'rgba(239, 68, 68, 0.6)',
+          700: 'rgba(239, 68, 68, 0.7)',
+          800: 'rgba(239, 68, 68, 0.8)',
+          900: 'rgba(239, 68, 68, 0.9)',
+          'DEFAULT': '#EF4444',
+        },
+        bluesky : {
+          100: 'rgba(0, 184, 255, 0.1)',
+          200: 'rgba(0, 184, 255, 0.2)',
+          300: 'rgba(0, 184, 255, 0.3)',
+          400: 'rgba(0, 184, 255, 0.4)',
+          500: 'rgba(0, 184, 255, 0.5)',
+          600: 'rgba(0, 184, 255, 0.6)',
+          700: 'rgba(0, 184, 255, 0.7)',
+          800: 'rgba(0, 184, 255, 0.8)',
+          900: 'rgba(0, 184, 255, 0.9)',
+          'DEFAULT': '#EBF1FF',
+        },
+        customize : {
+          'Default': '#273549',
+        },
     },
     backgroundColor: {
       'body': '#F5FBFF',
     },
-    // fontFamily: {
-    //   'sans': ['Cabinet Grotesk', 'sans-serif'],
-    //   'serif': ['Cabinet Grotesk', 'serif'],
-    //   'mono': ['Cabinet Grotesk', 'monospace'],
-    //   'display': ['Cabinet Grotesk', 'sans-serif'],
-    //   'body': ['Cabinet Grotesk', 'sans-serif'],
-    // },
     fontWeight: {
       'light': 300,
       'normal': 400,
@@ -153,7 +173,15 @@ module.exports = {
         textColor: ['hover'],
       },
     },
-    
+    fontSize: {
+      sm: '0.8rem',
+      base: '1rem',
+      xl: '1.25rem',
+      '2xl': '1.563rem',
+      '3xl': '2rem',
+      '4xl': '2.441rem',
+      '5xl': '3.052rem',
+    },
   },
 
   plugins: [

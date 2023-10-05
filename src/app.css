@@ -7,7 +7,8 @@
 
 html {
     font-family: 'Cabinet Grotesk', sans-serif;
-}
+    @apply scroll-smooth;
+    }
 
 body {
     background-color: #F5FBFF;
@@ -24,8 +25,14 @@ body.dark {
     width: 300px;
     z-index: 9999;
     opacity: 1;
-    transition: opacity 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
+
+@keyframes slideOutRight {
+    0% { opacity: 1; transform: translateX(0); }
+    100% { opacity: 0; transform: translateX(100%); }
+}
+
 
 .error {
     @apply bg-red-900;
@@ -91,6 +98,25 @@ body.dark {
     animation: loaderAnimation 2s linear infinite;
 }
 
+.2xl {
+    font-size: 1.563rem;
+}
+
+.3xl {
+    font-size: 2rem;
+}
+
+.4xl {
+    font-size: 2.441rem;
+}
+
+.5xl {
+    font-size: 3.052rem;
+}
+
+
+
+
 @keyframes loaderAnimation {
     0% { width: 0%; }
     100% { width: 100%; }
@@ -109,5 +135,53 @@ body.dark {
           scrollbar-width: none;  /* Firefox */
       }
     }
+
+    .snap {
+        scroll-snap-type: var(--scroll-snap-direction) var(--scroll-snap-constraint);
+    }
+    .snap-y {
+        --scroll-snap-direction: y;
+    }
+    .snap-mandatory {
+        --scroll-snap-constraint: mandatory;
+    }
+    .snap-start {
+        scroll-snap-align: start;
+    }
+    }
+
+
+
+.border-1 {
+    border: 1px solid;
 }
 
+/* Styles pour les compétences sur des lignes séparées */
+.skills-container {
+    display: flex;
+    gap: 1rem; /* Espace entre chaque compétence */
+    flex-wrap: wrap; /* Permettre le retour à la ligne pour les compétences */
+  }
+  
+  .skill-item {
+    position: relative;
+  }
+  
+  .skill-level {
+    display: none;
+    position: absolute;
+    bottom: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    z-index: 4;
+  }
+  
+  .skill-item:hover .skill-level {
+    display: block;
+  }
+  
+  

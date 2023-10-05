@@ -1,20 +1,22 @@
 // src/app.js
-window.addEventListener('load', function() {
-    // Cacher le loader une fois le chargement de la page terminé
-    document.getElementById('loaderOverlay').style.display = 'none';
-});
+// window.addEventListener('load', function() {
+//     // Cacher le loader une fois le chargement de la page terminé
+//     document.getElementById('loaderOverlay').style.display = 'none';
+// });
 
-document.getElementById('heart').addEventListener('click', function() {
-    if (this.getAttribute('fill') === 'none') {
-        this.setAttribute('fill', 'currentColor');
-    } else {
-        this.setAttribute('fill', 'none');
-    }
-});
+// document.getElementById('heart').addEventListener('click', function() {
+//     if (this.getAttribute('fill') === 'none') {
+//         this.setAttribute('fill', 'currentColor');
+//     } else {
+//         this.setAttribute('fill', 'none');
+//     }
+// });
+
+
 
 
 // Dark mode
-
+var base_urlpreprod = "http://localhost:8888/CC-WebApp/";
 var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
 var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
 var themeToggleBtn = document.getElementById('theme-toggle');
@@ -38,10 +40,10 @@ function updateBodyTheme() {
 function updateLogoTheme() {
   if (localStorage.getItem('color-theme') === 'dark' || (!localStorage.getItem('color-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
     // Chemin vers le logo sombre
-    logoImg.src = 'assets/img/logo-light.svg';
+    logoImg.src = base_urlpreprod + 'assets/img/logo-light.svg';
   } else {
     // Chemin vers le logo clair
-    logoImg.src = 'assets/img/logo.svg';
+    logoImg.src = base_urlpreprod + 'assets/img/logo.svg';
   }
 }
 
@@ -85,3 +87,5 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', fun
   updateBodyTheme();
   updateLogoTheme();
 });
+
+

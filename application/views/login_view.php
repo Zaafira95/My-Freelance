@@ -15,11 +15,20 @@
     </style>
 </head>
 <body>
-    <?php if ($this->session->flashdata('message')) : ?>
-        <div class="flashdata <?php echo $this->session->flashdata('status') === 'error' ? 'error' : 'success'; ?>">
-            <?php echo $this->session->flashdata('message'); ?>
-        </div>
-    <?php endif; ?>
+<?php if ($this->session->flashdata('message')) : ?>
+    <div class="flashdata <?php echo $this->session->flashdata('status') === 'error' ? 'error' : 'success'; ?>">
+        <?php echo $this->session->flashdata('message'); ?>
+    </div>
+    <script>
+        setTimeout(function() {
+            var flashdata = document.querySelector('.flashdata');
+            flashdata.style.animation = 'slideOutRight 1s';
+            setTimeout(function() {
+                flashdata.style.display = 'none';
+            }, 1000);
+        }, 3000);
+    </script>
+<?php endif; ?>
     <section class="h-screen">
   <div class="container h-full px-6 mx-auto max-w-screen-xl">
     <div class="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between">
@@ -48,24 +57,24 @@
                   </p>
       <form class="space-y-4 md:space-y-6" method="post" action="<?php echo base_url('login/login'); ?>" onsubmit="showLoader();">
             <div>
-                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Votre email</label>
-                <input type="email" name="userEmail" id="userEmail" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 " placeholder="name@company.com" required="">
+                <label for="email" class="block mb-2 font-medium text-gray-900 dark:text-white">Votre email</label>
+                <input type="email" name="userEmail" id="userEmail" class="bg-gray-50 border border-gray-300 text-gray-900 sm:  rounded-lg block w-full p-2.5 " placeholder="name@company.com" required="">
             </div>
             <div class="relative">
-                <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Votre mot de passe</label>
+                <label for="password" class="block mb-2   font-medium text-gray-900 dark:text-white">Votre mot de passe</label>
                 <div class="flex flex-col">
-                    <input type="password" name="userPassword" id="userPassword" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5" required="">
+                    <input type="password" name="userPassword" id="userPassword" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:  rounded-lg block w-full p-2.5" required="">
                     <div class="mt-4">
                     <input type="checkbox" id="togglePasswordCheckbox" class="form-checkbox text-primary rounded">
-                    <label for="togglePasswordCheckbox" class="text-sm font-medium text-gray-900 dark:text-white">Afficher le mot de passe</label>
+                    <label for="togglePasswordCheckbox" class=" text-sm font-medium text-gray-900 dark:text-white">Afficher le mot de passe</label>
                     </div>
                 </div>
             </div>
             <div class="flex items-center justify-between">
-                <a href="<?php echo base_url('login/forgot_password'); ?>" class="text-sm font-medium text-primary hover:underline">Mot de passe oublié ?</a>
+                <a href="<?php echo base_url('login/forgot_password'); ?>" class="  font-medium text-primary hover:underline">Mot de passe oublié ?</a>
             </div>
-            <button type="submit" class="w-full text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Se connecter</button>
-            <p class="text-sm font-light text-gray-500 dark:text-white">
+            <button type="submit" class="w-full text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg   px-5 py-2.5 text-center">Se connecter</button>
+            <p class="  font-light text-gray-500 dark:text-white">
                 Vous n'avez pas de compte ? <a href="<?=base_url('register')?>" class="font-medium text-primary hover:underline">Inscrivez-vous</a>
             </p>
         </form>

@@ -15,7 +15,7 @@
   </style>
 </head>
 <body>
-  <?php include(APPPATH . 'views/layouts/header.php'); ?>
+  <?php include(APPPATH . 'views/layouts/user/header.php'); ?>
 
   <div class="px-4 lg:px-6 py-6 h-full">
     <div class="sticky-container">

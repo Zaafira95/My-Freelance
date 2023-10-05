@@ -94,14 +94,14 @@
                                     </p>
                                     <form class="space-y-4 md:space-y-6" method="post" action="<?php echo base_url('register/registerUser'); ?>" onsubmit="showLoader();" enctype="multipart/form-data">
                                         <div>
-                                            <input type="email" name="userEmail" id="userEmail" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre email" oninput="checkEmailAvailability(this.value)" required>
+                                            <input type="email" name="userEmail" id="userEmail" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre email *" oninput="checkEmailAvailability(this.value)" required>
                                             <p id="emailError" class="text-red-500"></p>
                                         </div>
                                         <div>
-                                            <input type="password" name="userPassword" id="userPassword" placeholder="Saisissez votre mot de passe" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5" required oninput="checkPasswordStrength(this.value)">
+                                            <input type="password" name="userPassword" id="userPassword" placeholder="Saisissez votre mot de passe *" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5" required oninput="checkPasswordStrength(this.value)">
                                         </div>
                                         <div>
-                                            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirmez votre mot de passe" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5" required oninput="checkPasswordMatch()">
+                                            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirmez votre mot de passe *" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5" required oninput="checkPasswordMatch()">
                                             <p id="confirmPasswordError" class="text-red-500"></p>
                                         </div>
                                         <div class="password-strength-meter">
@@ -114,6 +114,8 @@
                                         </div>
                                         <!-- button for next step -->
                                         <button type="button" class="w-full text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" id="nextButton" onclick="goToStep2()">Suivant</button>
+                                        <!-- error message -->
+                                        <p id="errorMessage1" class="text-red-500" style="display:none;">Un ou plusieurs champs non pas été remplies</p>
                                         <p class="text-sm font-light text-gray-500 dark:text-white">
                                             Vous avez déjà un compte ? <a href="<?=base_url('login')?>" class="font-medium text-primary hover:underline">Connectez-vous</a>
                                         </p>
@@ -169,6 +171,7 @@
                                         <!-- button for next step -->
                                         <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" id="nextButton" onclick="goToStep3()">Suivant</button>
                                     </div>
+                                    <p id="errorUserType" class="text-red-500" style="display:none;">Veuillez choisir votre type de profil</p>
                                 </div>
                             </div>
                         </div>
@@ -188,38 +191,38 @@
                                     </div>
                                 </div>
                                 <div class="flex flex-col items-center">
-                                <div class="relative w-32 h-32">
-                                    <div class="bg-primary rounded-full ring ring-primary w-full h-full flex items-center justify-center">
-                                        <div class="w-full h-full rounded-full flex items-center justify-center">
-                                        <img id="avatar-image" src="<?php echo base_url('assets/img/default-avatar.png'); ?>" class="rounded-full object-cover w-full h-full" alt="Avatar">
-                                        </div>
-                                        <div class="absolute bottom-0 right-0 bg-white rounded-full">
-                                        <label for="avatar-upload">
-                                            <div class="rounded-full p-2 ring ring-primary">
-                                            <i class="fas fa-plus text-primary cursor-pointer"></i>
+                                    <div class="relative w-32 h-32">
+                                        <div class="rounded-full ring ring-primary w-full h-full flex items-center justify-center">
+                                            <div class="w-full h-full rounded-full flex items-center justify-center">
+                                            <img id="avatar-image" src="<?php echo base_url('assets/img/default-avatar.png'); ?>" class="rounded-full object-cover w-full h-full" alt="Avatar">
                                             </div>
-                                        </label>
-                                        <input type="file" id="avatar-upload" name="avatar-upload" class="hidden" onchange="showFileName(this)">
+                                            <div class="absolute w-10 h-10 text-center bottom-0 right-0 bg-white rounded-full">
+                                            <label for="avatar-upload">
+                                                <div class="rounded-full p-2 ring ring-primary">
+                                                <i class="fas fa-plus text-primary cursor-pointer"></i>
+                                                </div>
+                                            </label>
+                                            <input type="file" id="avatar-upload" name="avatar-upload" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this)">
+                                            </div>
                                         </div>
                                     </div>
-                                    <span id="file-name" class="hidden text-sm text-gray-500 mb-4 dark:text-white"></span>
-                                </div>
+                                    <span id="file-name" class="hidden text-sm text-gray-500 mt-4 dark:text-white"></span>
                                 </div>
 
                                 <div>
-                                    <input type="text" name="userFirstName" id="userFirstName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre prénom" required>
+                                    <input type="text" name="userFirstName" id="userFirstName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre prénom *" required>
                                 </div>
                                 <div>
-                                    <input type="text" name="userLastName" id="userLastName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre nom" required>
+                                    <input type="text" name="userLastName" id="userLastName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre nom *" required>
                                 </div>
                                 <div>
-                                    <input type="text" name="userVille" id="userVille" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation" required>
+                                    <input type="text" name="userVille" id="userVille" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" required>
                                 </div>
                                 <div>
-                                    <input type="text" name="userJobName" id="userJobName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre métier" required>
+                                    <input type="text" name="userJobName" id="userJobName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre métier *" required>
                                 </div>
                                 <div>
-                                    <input type="number" name="userTJM" id="userTJM" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre TJM" required>
+                                    <input type="number" name="userTJM" id="userTJM" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre TJM *" min="100" required>
                                 </div>
                                 <div class="flex justify-between">
                                     <!-- button for previous step -->
@@ -227,6 +230,10 @@
                                     <!-- button for next step -->
                                     <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" id="nextButton" onclick="goToStep4()">Suivant</button>
                                 </div>
+                                <p id="errorMessage2" class="text-red-500 text-sm mt-2 hidden">Veuillez remplir tous les champs correctement</p>
+                                <p id="tjmErrorMessage" class="text-red-500 text-sm mt-2 hidden">Le TJM doit être supérieur à 100</p>
+
+
                             </div>
                         </div>
                         </div>
@@ -246,7 +253,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <input type="text" name="userSkill" id="userSkill" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre compétences" required>
+                                    <input type="text" name="userSkill" id="userSkill" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre compétences *" required>
                                 </div>
                                 <div class="flex items-center">
                                 <p class="text-sm text-gray-500 mr-3 dark:text-gray-400">Êtes-vous disponible à travailler dès maintenant ?</p>
@@ -403,7 +410,7 @@ function handleClick(element) {
             updateLogoTheme();
         });
 
-        function checkEmailAvailability(email) {
+        function checkEmailAvailability(email, callback) {
             var emailInput = document.getElementById('userEmail');
             var emailError = document.getElementById('emailError');
 
@@ -411,6 +418,7 @@ function handleClick(element) {
             if (email.trim() === '') {
                 emailInput.classList.remove('border-red-500');
                 emailError.textContent = '';
+                callback(false);
                 return;
             }
 
@@ -425,15 +433,18 @@ function handleClick(element) {
                         if (response.status === 'error') {
                             emailInput.classList.add('border-red-500');
                             emailError.textContent = response.message;
+                            callback(true); // L'e-mail existe déjà
                         } else {
                             emailInput.classList.remove('border-red-500');
                             emailError.textContent = '';
+                            callback(false); // L'e-mail n'existe pas
                         }
                     }
                 }
             };
             xhr.send('userEmail=' + email);
         }
+
 
         function checkPasswordStrength(userPassword) {
             var strength = 0;
@@ -490,6 +501,12 @@ function handleClick(element) {
                 passwordError.classList.remove('password-strength-weak-text', 'password-strength-medium-text');
                 passwordError.classList.add('password-strength-strong-text');
             }
+
+            if (strength >=3){
+                return true;
+            } else {
+                return false;
+            }
         }
 
         function checkPasswordMatch() {
@@ -503,79 +520,81 @@ function handleClick(element) {
             if (password === confirmPassword) {
                 confirmPasswordInput.classList.remove('border-red-500');
                 confirmPasswordError.textContent = '';
+                return true;
             } else {
                 confirmPasswordInput.classList.add('border-red-500');
                 confirmPasswordError.textContent = "Les mots de passe ne correspondent pas";
+                return false;
             }
         }
 
-        function validateForm() {
-            var emailInput = document.getElementById('userEmail');
-            var emailError = document.getElementById('emailError');
-            var passwordInput = document.getElementById('userPassword');
-            var confirmPasswordInput = document.getElementById('confirmPassword');
-            var confirmPasswordError = document.getElementById('confirmPasswordError');
-            var nextButton = document.getElementById('nextButton');
+        // function validateForm() {
+        //     var emailInput = document.getElementById('userEmail');
+        //     var emailError = document.getElementById('emailError');
+        //     var passwordInput = document.getElementById('userPassword');
+        //     var confirmPasswordInput = document.getElementById('confirmPassword');
+        //     var confirmPasswordError = document.getElementById('confirmPasswordError');
+        //     var nextButton = document.getElementById('nextButton');
 
-            // Vérification de l'e-mail
-            if (emailInput.value.trim() === '') {
-                emailInput.classList.add('border-red-500');
-                emailError.textContent = 'Veuillez saisir votre e-mail';
-                nextButton.disabled = true;
-                return false;
-            }
+        //     // Vérification de l'e-mail
+        //     if (emailInput.value.trim() === '') {
+        //         emailInput.classList.add('border-red-500');
+        //         emailError.textContent = 'Veuillez saisir votre e-mail';
+        //         nextButton.disabled = true;
+        //         return false;
+        //     }
 
-            // Vérification du mot de passe
-            if (passwordInput.value.trim() === '') {
-                passwordInput.classList.add('border-red-500');
-                nextButton.disabled = true;
-                return false;
-            }
+        //     // Vérification du mot de passe
+        //     if (passwordInput.value.trim() === '') {
+        //         passwordInput.classList.add('border-red-500');
+        //         nextButton.disabled = true;
+        //         return false;
+        //     }
 
-            // Vérification de la confirmation du mot de passe
-            if (confirmPasswordInput.value.trim() === '') {
-                confirmPasswordInput.classList.add('border-red-500');
-                confirmPasswordError.textContent = 'Veuillez confirmer votre mot de passe';
-                nextButton.disabled = true;
-                return false;
-            }
+        //     // Vérification de la confirmation du mot de passe
+        //     if (confirmPasswordInput.value.trim() === '') {
+        //         confirmPasswordInput.classList.add('border-red-500');
+        //         confirmPasswordError.textContent = 'Veuillez confirmer votre mot de passe';
+        //         nextButton.disabled = true;
+        //         return false;
+        //     }
 
-            // Vérification de la correspondance des mots de passe
-            if (passwordInput.value !== confirmPasswordInput.value) {
-                confirmPasswordInput.classList.add('border-red-500');
-                confirmPasswordError.textContent = 'Les mots de passe ne correspondent pas';
-                nextButton.disabled = true;
-                return false;
-            }
+        //     // Vérification de la correspondance des mots de passe
+        //     if (passwordInput.value !== confirmPasswordInput.value) {
+        //         confirmPasswordInput.classList.add('border-red-500');
+        //         confirmPasswordError.textContent = 'Les mots de passe ne correspondent pas';
+        //         nextButton.disabled = true;
+        //         return false;
+        //     }
 
-            // Vérification de l'existence de l'e-mail
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', '<?php echo base_url('register/checkEmailExists'); ?>', false);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        var response = JSON.parse(xhr.responseText);
-                        if (response.status === 'error') {
-                            emailInput.classList.add('border-red-500');
-                            emailError.textContent = response.message;
-                            nextButton.disabled = true;
-                        } else {
-                            emailInput.classList.remove('border-red-500');
-                            emailError.textContent = '';
-                            nextButton.disabled = false;
-                        }
-                    }
-                }
-            };
-            xhr.send('userEmail=' + emailInput.value);
+        //     // Vérification de l'existence de l'e-mail
+        //     var xhr = new XMLHttpRequest();
+        //     xhr.open('POST', '<?php echo base_url('register/checkEmailExists'); ?>', false);
+        //     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        //     xhr.onreadystatechange = function() {
+        //         if (xhr.readyState === XMLHttpRequest.DONE) {
+        //             if (xhr.status === 200) {
+        //                 var response = JSON.parse(xhr.responseText);
+        //                 if (response.status === 'error') {
+        //                     emailInput.classList.add('border-red-500');
+        //                     emailError.textContent = response.message;
+        //                     nextButton.disabled = true;
+        //                 } else {
+        //                     emailInput.classList.remove('border-red-500');
+        //                     emailError.textContent = '';
+        //                     nextButton.disabled = false;
+        //                 }
+        //             }
+        //         }
+        //     };
+        //     xhr.send('userEmail=' + emailInput.value);
 
-            if (!nextButton.disabled) {
-                goToStep2();
-            }
+        //     if (!nextButton.disabled) {
+        //         goToStep2();
+        //     }
 
-            return !nextButton.disabled;
-        }
+        //     return !nextButton.disabled;
+        // }
 
         function goToStep1(){
             var step1 = document.getElementById('step1');
@@ -590,41 +609,103 @@ function handleClick(element) {
         }
 
         function goToStep2() {
+            var userEmail = document.getElementById('userEmail').value;
+            var password = document.getElementById('userPassword').value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
+            var errorMessage1 = document.getElementById('errorMessage1');
+
+            // Expression régulière pour valider le format de l'e-mail
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (userEmail.trim() === '' || password.trim() === '' || confirmPassword.trim() === '') {
+                errorMessage1.style.display = 'block';
+            } else if (!emailPattern.test(userEmail)) {
+                // Vérifier si l'e-mail est dans le format valide
+                errorMessage1.textContent = "Veuillez saisir une adresse e-mail valide";
+                errorMessage1.style.display = 'block';
+            } else {
+                checkEmailAvailability(userEmail, function(exists) {
+                    if (!exists && checkPasswordMatch() && checkPasswordStrength(password)) {
+                        errorMessage1.style.display = 'none';
+                        var step1 = document.getElementById('step1');
+                        var step2 = document.getElementById('step2');
+                        var step3 = document.getElementById('step3');
+                        var step4 = document.getElementById('step4');
+                        step1.style.display = 'none';
+                        step3.style.display = 'none';
+                        step4.style.display = 'none';
+                        step2.style.display = 'block';
+                    } else {
+                        // L'e-mail existe déjà ou les mots de passe ne correspondent pas
+                    }
+                });
+            }
+        }
+
+
+
+        function goToStep3() {
+            var userTypeFreelance = document.getElementById('userTypeFreelance');
+            var userTypeESN = document.getElementById('userTypeESN');
+            var errorUserType = document.getElementById('errorUserType');
             var step1 = document.getElementById('step1');
             var step2 = document.getElementById('step2');
             var step3 = document.getElementById('step3');
             var step4 = document.getElementById('step4');
 
-            step1.style.display = 'none';
-            step3.style.display = 'none';
-            step4.style.display = 'none';
-            step2.style.display = 'block';
-
+            if (userTypeFreelance.checked || userTypeESN.checked) {
+                errorUserType.style.display = 'none';
+                step1.style.display = 'none';
+                step2.style.display = 'none';
+                step4.style.display = 'none';
+                step3.style.display = 'block';
+            } else {
+                errorUserType.style.display = 'block';
+                // L'utilisateur n'a pas choisi Freelance ou ESN, affichez un message d'erreur ou effectuez des actions supplémentaires ici
+            }
         }
 
-        function goToStep3(){
-            var step1 = document.getElementById('step1');
-            var step2 = document.getElementById('step2');
-            var step3 = document.getElementById('step3');
-            var step4 = document.getElementById('step4');
 
-            step1.style.display = 'none';
-            step2.style.display = 'none';
-            step4.style.display = 'none';
-            step3.style.display = 'block';
+        function goToStep4() {
+            var userFirstName = document.getElementById('userFirstName').value;
+            var userLastName = document.getElementById('userLastName').value;
+            var userVille = document.getElementById('userVille').value;
+            var userJobName = document.getElementById('userJobName').value;
+            var userTJM = document.getElementById('userTJM').value;
+            var errorMessage2 = document.getElementById('errorMessage2');
+            var tjmErrorMessage = document.getElementById('tjmErrorMessage');
+
+            if (
+                userFirstName.trim() === '' ||
+                userLastName.trim() === '' ||
+                userVille.trim() === '' ||
+                userJobName.trim() === '' ||
+                userTJM.trim() === ''
+            ) {
+                errorMessage2.style.display = 'block';
+                tjmErrorMessage.style.display = 'none';
+            } else if (parseInt(userTJM) <= 100) {
+                errorMessage2.style.display = 'none';
+                tjmErrorMessage.style.display = 'block';
+            } else {
+                errorMessage2.style.display = 'none';
+                tjmErrorMessage.style.display = 'none';
+                var step1 = document.getElementById('step1');
+                var step2 = document.getElementById('step2');
+                var step3 = document.getElementById('step3');
+                var step4 = document.getElementById('step4');
+                step1.style.display = 'none';
+                step2.style.display = 'none';
+                step3.style.display = 'none';
+                step4.style.display = 'block';
+            }
         }
 
-        function goToStep4(){
-            var step1 = document.getElementById('step1');
-            var step2 = document.getElementById('step2');
-            var step3 = document.getElementById('step3');
-            var step4 = document.getElementById('step4');
 
-            step1.style.display = 'none';
-            step2.style.display = 'none';
-            step3.style.display = 'none';
-            step4.style.display = 'block';
-        }
+
+
+
+        
     </script>
 </body>
 </html>

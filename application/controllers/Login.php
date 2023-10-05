@@ -17,17 +17,25 @@ class Login extends CI_Controller {
     public function login() {
         $userEmail = $this->input->post('userEmail');
         $userPassword = $this->input->post('userPassword');
-
-
-
         $user = $this->Login_model->login($userEmail, $userPassword);
-
+    
         if ($user) {
             $this->session->set_userdata('userId', $user->userId);
+            
             // incrémenter le nombre de connexion
             $this->Login_model->incrementLogin($user->userId);
-            // $this->session->set_flashdata('message', 'Vous êtes connecté avec succès.');
-            // $this->session->set_flashdata('status', 'success');
+    
+            // Récupérer toutes les informations de l'utilisateur
+            $userData = $this->Login_model->getUserData($user->userId);
+    
+            // Vérifier si userCompanyId est différent de 0
+            if ($userData->userCompanyId != 0) {
+                redirect('company');
+            } else {
+                // $this->session->set_flashdata('message', 'Vous êtes connecté avec succès.');
+                // $this->session->set_flashdata('status', 'success');
+            }
+            
             redirect('user'); 
         } else {
             $this->session->set_flashdata('message', 'Identifiant invalide ou mot de passe incorrect. Veuillez réessayer');
@@ -35,7 +43,7 @@ class Login extends CI_Controller {
             $this->load->view('login_view');   
         }
     }
-
+    
 
     public function send_email()
 {

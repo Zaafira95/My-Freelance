@@ -316,6 +316,61 @@ class Company extends CI_Controller {
 
         $this->load->view('company/my_company', $data);
     }
+
+
+    public function missionView($missionId){
+        $userId = $this->session->userdata('userId');
+        $this->load->model('Company_model');
+        $user = $this->Company_model->get_UserData($userId);
+        $data['user'] = $user;
+       
+
+        $mission = $this->Company_model->getMissionById($missionId);
+        $data['mission'] = $mission;
+
+        $company = $this->Company_model->getCompanyForMission($missionId);
+        $data['company'] = $company;
+
+        $companyMissions = $this->Company_model->getMissionOfCompany($company->idCompany);
+        $data['companyMissions'] = $companyMissions;
+
+        $missionSkills = array();
+        foreach ($companyMissions as $mission) {
+            $idMission = $mission->idMission;
+            $missionSkills[$idMission] = $this->Company_model->getMissionSkills($idMission);
+        }
+        $data['missionSkills'] = $missionSkills;
+
+        // Récupérer les infos de l'entreprise par mission
+        $missionCompany = array();
+        $missionCompany[$missionId] = $this->Company_model->getCompanyMission($missionId);
+        $data['missionCompany'] = $missionCompany;
+
+        $companyUser = $this->Company_model->getCompanyUser($company->idCompany);
+        $data['companyUser'] = $companyUser;
+
+        $messageExamples = $this->Company_model->getMessageExamples();
+        $data['messageExamples'] = $messageExamples;
+
+
+        // get the companyUser phone number
+        $companyUserPhone = $this->Company_model->getCompanyUserPhone($company->idCompany);
+
+        $data['companyUserPhone'] = $companyUserPhone;
+
+        $favoriteMissions = $this->Company_model->getFavoriteMissions($userId); // Remplacez cette ligne avec votre logique pour récupérer les missions favorites de l'utilisateur
+       
+        $data['favoriteMissions'] = $favoriteMissions;
+
+
+        $isMissionFavorite = false;
+
+        $data['isMissionFavorite'] = $isMissionFavorite;
+
+
+        $this->load->view('missions/view', $data);
+
+    }
     
 }
 ?>

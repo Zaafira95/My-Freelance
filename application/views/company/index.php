@@ -249,6 +249,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                                 foreach ($job_for_company as $job) {
                                     if ($job_for_companyCount < 3) {
                                 ?>
+                                    <a href="<?= base_url('company/missionView/' . $job->idMission) ?>" class="flex items-center mt-2 mb-2">
                                         <div class="flex items-center mt-2 mb-2">
                                             <div class="mr-2 mt-2">
                                                 <p class="w-10 h-10 rounded-full bg-secondary text-white text-center flex items-center justify-center mr-4" style="font-size:1rem;">💼</p>
@@ -259,6 +260,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                                             </p>
                                             </div>
                                         </div>
+                                    </a>
                                 <?php
                                         $job_for_companyCount++;
                                     } else {

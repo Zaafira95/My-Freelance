@@ -226,6 +226,21 @@ include(APPPATH . 'views/layouts/company/header.php' );
 
 <script>
     var base_url = '<?php echo base_url(); ?>';
+
+    // Fonction pour détruire l'instance Choices.js existante
+    function destroyChoicesInstance(element) {
+        if (element.choices) {
+            element.choices.destroy();
+        }
+    }
+
+    // Fonction pour créer une nouvelle instance Choices.js
+    function createChoicesInstance(element) {
+        new Choices(element, {
+            /* options spécifiques à Choices */
+        });
+    }
+
     $(document).ready(function() {
         $('#citySearch').on('keyup', function() {
             let term = $(this).val();
@@ -300,7 +315,6 @@ include(APPPATH . 'views/layouts/company/header.php' );
             }
         });
 
-         
         const currentDate = new Date().toISOString().split('T')[0];
         document.getElementById('missionDateDebut').value = currentDate;
 
@@ -310,12 +324,14 @@ include(APPPATH . 'views/layouts/company/header.php' );
 
         document.getElementById('missionDateFin').value = endDateString;
 
+        // Gestion des compétences avec Choices.js
         const skillsChoices = new Choices('#skillsAll', {
             searchEnabled: true,
             removeItemButton: true,
             itemSelectText: '',
             placeholder: true,
             placeholderValue: 'Sélectionnez des compétences',
+            allowHTML: true,
         });
 
         $('#search-input-skill').on('keyup', function(){
@@ -348,11 +364,13 @@ include(APPPATH . 'views/layouts/company/header.php' );
                 $('#skills-list').empty();
             }
         });
+
+        // Gestion de l'ajout dynamique de compétences
         $('#add-skill-btn').on('click', function() {
             const newSkillRow = `
                 <div class="flex flex-1 mb-4 skill-row">
                     <div class="w-3/4 mr-2">
-                        <select class="p-2 border rounded-lg w-full new-skill-select" name="skillsAll[]" id="skillsAll" required>
+                        <select class="p-2 border rounded-lg w-full new-skill-select" name="skillsAll[]" required>
                             <option value="">Sélectionnez une compétence</option>
                             <?php foreach ($skillsAll as $skill): ?>
                                 <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
@@ -368,21 +386,15 @@ include(APPPATH . 'views/layouts/company/header.php' );
                     </div>
                 </div>
             `;
+
             $('#skills-container').append(newSkillRow);
-            // Désinitialiser les instances Choices existantes
+
+            // Désinitialisez et réinitialisez les instances Choices.js sur les éléments nouvellement ajoutés
             $('.new-skill-select').each(function() {
-                const choicesInstance = this.choices;
-                if (choicesInstance) {
-                    choicesInstance.destroy();
-                }
-            });
-            // Réinitialiser les instances Choices
-            $('.new-skill-select').each(function() {
-                new Choices(this, {
-                    /* options spécifiques à Choices */
-                });
+                destroyChoicesInstance(this);
+                createChoicesInstance(this);
             });
         });
     });
-
 </script>
+

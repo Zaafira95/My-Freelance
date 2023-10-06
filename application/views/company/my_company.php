@@ -15,7 +15,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                 <h1 class="text-2xl font-bold mb-4">Mes missions</h1>
                 <?php foreach($missions as $mission): ?>
                     <div class="flex flex-wrap">
-                        <a href="<?=base_url('user/missionView/'.$mission->idMission)?>">
+                        <a href="<?=base_url('company/missionView/'.$mission->idMission)?>">
                             <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative mission-item" data-mission-name="<?=strtolower($mission->missionName)?>">
                                 <div class="flex items-center">
                                     <div class="mr-4">

@@ -224,6 +224,83 @@ class Company_model extends CI_Model {
     }
 
 
+    public function getMissionById($missionId){
+        $this->db->select('*');
+        $this->db->from('mission');
+        $this->db->where('idMission', $missionId);
+        $query = $this->db->get();
+        return $query->row();
+    }
+
+    public function getCompanyForMission($missionId){
+        $this->db->select('*');
+        $this->db->from('company');
+        $this->db->join('mission', 'mission.missionCompanyId = company.idCompany');
+        $this->db->where('mission.idMission', $missionId);
+        $query = $this->db->get();
+        return $query->row();
+    }
+
+    public function getMissionOfCompany($companyId){
+        $this->db->select('*');
+        $this->db->from('mission');
+        $this->db->where('missionCompanyId', $companyId);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getMissionSkills($idMissions) {
+        $this->db->select('skills.skillName, missionSkills.missionSkillsExperience');
+        $this->db->from('missionSkills');
+        $this->db->join('skills', 'missionSkills.missionSkills_skillId = skills.skillId');
+        $this->db->where('missionSkills.missionSkills_missionId', $idMissions);
+        $this->db->order_by('missionSkills.missionSkillsExperience', 'DESC'); // Tri par ordre décroissant
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getCompanyMission($idMissions)
+    {
+        $this->db->select('company.companyName');
+        $this->db->from('mission');
+        $this->db->join('company', 'mission.missionCompanyId = company.idCompany');
+        $this->db->where('mission.idMission', $idMissions);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function getCompanyUser($companyId){
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->where('userCompanyId', $companyId);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getMessageExamples(){
+        $this->db->select('*');
+        $this->db->from('messageExamples');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    
+
+    public function getCompanyUserPhone($companyId){
+        $this->db->select('userTelephone');
+        $this->db->from('users');
+        $this->db->where('userCompanyId', $companyId);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getFavoriteMissions($userId){
+        $this->db->select('*');
+        $this->db->from('savedMission');
+        $this->db->where('idUsersavedMission', $userId);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+
 
     
     

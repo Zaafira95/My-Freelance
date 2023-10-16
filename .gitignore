@@ -1,1 +1,3 @@
-/sessions
+application/sessions
+application/config/database.php
+node_modules

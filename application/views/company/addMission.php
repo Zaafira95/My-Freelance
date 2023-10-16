@@ -8,7 +8,6 @@ include(APPPATH . 'views/layouts/company/header.php' );
     <title> Poster une mission  </title>
     <link href="<?php echo base_url('assets/css/app.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('/node_modules/choices.js/public/assets/styles/choices.min.css');?>" rel="stylesheet" type="text/css">
-
 </head>
 <div class="px-4 lg:px-6 py-6 h-full overflow-y-auto no-scrollbar">
     <div class="flex flex-wrap justify-between mx-auto max-w-screen-xl h-full">
@@ -179,10 +178,8 @@ include(APPPATH . 'views/layouts/company/header.php' );
                         <!-- missions favorites -->
                             <a href="<?php echo base_url('Company/missionAdd');?>" class="text-primary mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">Ajouter une offre</a>
                             <a href="<?php echo base_url('Company/logout');?>" class="text-red-600 mt-2 hover:text-red-900">Déconnexion</a>
-
                         </div>
                     </div>
-
                     <div class="bg-white rounded-lg mt-4 p-4 text-left dark:bg-gray-800 dark:text-white">
                         <h3 class="text-xl font-medium mt-2">Vos Offres de mission</h3>
                         <?php if (is_array($job_for_company) && !empty($job_for_company)) {

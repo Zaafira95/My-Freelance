@@ -5,7 +5,9 @@ $currentPage = 'dashboard';
 // Header Call
 include(APPPATH . 'views/layouts/company/header.php');
 ?>
-<link rel="stylesheet" href="<?php echo base_url('assets/css/nouislider.min.css');?>">
+    <title> Café Crème Community </title>
+
+<link href="stylesheet" href="<?php echo base_url('assets/css/nouislider.min.css');?>">
 <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
 <link href="<?php echo base_url('/node_modules/choices.js/public/assets/styles/choices.min.css');?>" rel="stylesheet" type="text/css">
 
@@ -21,26 +23,21 @@ include(APPPATH . 'views/layouts/company/header.php');
                             <i class="fa fa-map-marker-alt mr-3"></i>    
                             <div class="relative city-search-container w-full">
                                 <input type="text" id="citySearch" placeholder="Cherchez votre ville" class="border p-2 rounded-lg w-full text-black">
-                                    <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
+                                    <div id="cities-list" class="absolute z-10 mt-2 w-full rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                             </div>
                         </div>
                     <h4 class="text-lg font-medium mt-4">Type de poste</h4>
                     <div class="mt-2">
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="temps-plein" <?= ($user->userJobTimePartielOrFullTime == 'Temps Plein') ? 'checked' : '' ?>>
+                            <input type="checkbox" class="form-checkbox mr-2" id="temps-plein">
                             <span class="ml-2">Temps plein</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="temps-partiel" <?= ($user->userJobTimePartielOrFullTime == 'Temps Partiel') ? 'checked' : '' ?>>
+                            <input type="checkbox" class="form-checkbox mr-2" id="temps-partiel">
                             <span class="ml-2">Temps partiel</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="remote" <?php
-                                    $jobTypeArray = explode(',', $user->userJobType);
-                                    if (in_array('Remote', $jobTypeArray)) {
-                                        echo 'checked="checked"';
-                                    }
-                                    ?>>
+                            <input type="checkbox" class="form-checkbox mr-2" id="remote">
                             <span class="ml-2">Remote</span>
                         </label>
                     </div>

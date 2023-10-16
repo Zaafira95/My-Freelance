@@ -38,12 +38,11 @@ include(APPPATH . 'views/layouts/company/header.php');
                                                 elseif ($mission->missionType == "remote"){
                                                     $mission->missionType = "Remote";
                                                 }                                            
-                                                ?>
-                                                <?=$mission->missionType?>
+                                            ?>
+                                            <?=$mission->missionType?>
                                             </span>
                                             <span class="mr-2"> • 
                                             <?php
-                                        
                                                 if ($mission->missionExpertise == "junior"){
                                                     $mission->missionExpertise = "Junior";
                                                 }
@@ -53,9 +52,8 @@ include(APPPATH . 'views/layouts/company/header.php');
                                                 elseif ($mission->missionExpertise == "expert"){
                                                     $mission->missionExpertise = "Expert";
                                                 }
-                                                                                
-                                                ?>
-                                                <?=$mission->missionExpertise?>
+                                            ?>
+                                            <?=$mission->missionExpertise?>
                                             </span>
                                         </p>
                                     </div>
@@ -69,7 +67,6 @@ include(APPPATH . 'views/layouts/company/header.php');
                                             ?>
                                             <?=$mission->missionDescription?>
                                         </p>
-                                        
                                     </div>
                                 </div>
                                 <div class="absolute top-0 right-4 mt-4 mb-4 z-9">

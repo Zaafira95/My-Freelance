@@ -1,1 +1,4 @@
 /sessions
+application/sessions
+node_modules/
+application/sessions/*

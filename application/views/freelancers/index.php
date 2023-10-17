@@ -1,11 +1,11 @@
 <?php
-$currentPage = 'dashboard';
+$currentPage = 'freelancers';
 
 
 // Header Call
 include(APPPATH . 'views/layouts/company/header.php');
 ?>
-    <title> Café Crème Community </title>
+    <title> Nos Freelances | Café Crème Community </title>
 
 <link href="stylesheet" href="<?php echo base_url('assets/css/nouislider.min.css');?>">
 <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
@@ -75,17 +75,11 @@ include(APPPATH . 'views/layouts/company/header.php');
                         </select>
                     </div>
 
-                    
 
-                
-                    <!-- <div class="flex justify-between mt-10">
-                        <button class="px-4 py-2 rounded-full border border-primary text-primary">Effacer</button>
-                        <button class="px-4 py-2 rounded-full bg-primary text-white">Appliquer</button>
-                    </div> -->
                 </div>
                 
             </div>
-            <div class="w-1/2 overflow-y-auto no-scrollbar">
+            <div class="w-full overflow-y-auto no-scrollbar">
                 <div class="bg-primary rounded-lg h-20vh p-4 text-white">
                     <p class="font-bold">Hello, <?=$user->userFirstName?></p>
                     <p class="font-normal mt-2 mb-2">Découvrez la manière la plus rapide et efficace de décrocher une mission.</p>
@@ -96,24 +90,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                 </div>
                 <h3 class="text-2xl font-medium mt-4" id="result-section">Pour vous :</h3>
                 <div class="flex flex-wrap" id="missions-section">
-                    <?php
-                        function isFavorite($missionId, $favoriteMissions) {
-                            foreach ($favoriteMissions as $favoriteMission) {
-                                if ($favoriteMission->idMissionSavedMission == $missionId) {
-                                    return true;
-                                }
-                            }
-                            return false;
-                        }
-                    ?>
                     <?php foreach($freelancers as $freelancer): ?>
-                        <?php
-                        // $dataMissionSkills = [];
-                        // foreach ($missionSkills[$mission->idMission] as $skill):
-                        //     $dataMissionSkills[] = $skill->skillName;
-                        // endforeach;
-                        // $dataMissionSkillsString = implode(',', $dataMissionSkills);
-                        ?>
                         <a href="<?=base_url('company/freelancerView/'.$freelancer->userId)?>" class="mission-item">                            
                             <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative mission-item">
                                 <div class="flex items-center">
@@ -212,64 +189,6 @@ include(APPPATH . 'views/layouts/company/header.php');
                     <?php endforeach; ?>
                     </div>
                     <p class="text-xl mt-10 hidden text-left" id="no-freelancer-found">Aucun freelance n'a été trouvée.</p>
-                    </div>
-                    <div class="w-1/4 sticky top-0">
-                        <div class="bg-white rounded-lg h-22vh p-4 dark:bg-gray-800 dark:text-white">
-                            <div class="flex flex-col items-center mb-4">
-                            <a class="flex flex-col items-center" href="<?=base_url('user/profil')?>">
-                                <div class="w-20 h-20 rounded-full border-10 ring-2 ring-primary overflow-hidden">
-                                    <?php 
-                                    if($user->userAvatarPath == null){
-                                        $user->userAvatarPath = 'assets/img/default-avatar.png';
-                                    }
-                                    ?>
-                                    <img src="<?php echo base_url($user->userAvatarPath); ?>" alt="Avatar" class="w-20 h-20 p-0.5 rounded-full ring-2 ring-primary">
-                                </div>
-
-                                    <h3 class="text-lg font-medium mt-2"><?=$user->userFirstName .' '. $user->userLastName?></h3>
-                            </a>
-                                <div class="flex items-center mt-1">
-                                    <p class="font-light"><?=$company->companyName?></p>
-                                </div>
-                                <a href="<?php echo base_url('User/profil');?>" class="text-primary mt-2 border border-primary px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">Modifier mon profil</a>
-                            <!-- missions favorites -->
-                                <a href="<?php echo base_url('Company/missionAdd');?>" class="text-primary mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">Ajouter une offre</a>
-                                <a href="<?php echo base_url('Company/logout');?>" class="text-red-600 mt-2 hover:text-red-900">Déconnexion</a>
-    
-                            </div>
-                        </div>
-
-                        <div class="bg-white rounded-lg mt-4 p-4 text-left dark:bg-gray-800 dark:text-white">
-                            <h3 class="text-xl font-medium mt-2">Vos Offres de mission</h3>
-                            <?php if (is_array($job_for_company) && !empty($job_for_company)) {
-                                $job_for_companyCount = 0;
-                                foreach ($job_for_company as $job) {
-                                    if ($job_for_companyCount < 3) {
-                                ?>
-                                    <a href="<?= base_url('company/missionView/' . $job->idMission) ?>" class="flex items-center mt-2 mb-2">
-                                        <div class="flex items-center mt-2 mb-2">
-                                            <div class="mr-2 mt-2">
-                                                <p class="w-10 h-10 rounded-full bg-secondary text-white text-center flex items-center justify-center mr-4" style="font-size:1rem;">💼</p>
-                                            </div>
-                                            <div>
-                                                <h3 class="text-lg font-medium"><?= $job->missionName ?></h3>
-                                                <p class="text-sm text-gray-500"><?= strlen($job->missionDescription) > 100 ? substr($job->missionDescription, 0, 100)."..." : $job->missionDescription ?></p>
-                                            </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                <?php
-                                        $job_for_companyCount++;
-                                    } else {
-                                        break;
-                                    }
-                                }
-                                ?>
-                            <?php } else { ?>
-                                <p class="mt-2 mb-2"> Aucune offre disponible. </p>
-                                <button class="bg-primary text-white px-4 py-2 mt-2 rounded-full">Ajouter une offre</button>
-                            <?php } ?>
-                        </div>
                     </div>
                 </div>
             </div>

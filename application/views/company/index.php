@@ -107,15 +107,9 @@ include(APPPATH . 'views/layouts/company/header.php');
                         }
                     ?>
                     <?php foreach($freelancers as $freelancer): ?>
-                        <?php
-                        // $dataMissionSkills = [];
-                        // foreach ($missionSkills[$mission->idMission] as $skill):
-                        //     $dataMissionSkills[] = $skill->skillName;
-                        // endforeach;
-                        // $dataMissionSkillsString = implode(',', $dataMissionSkills);
-                        ?>
-                        <a href="<?=base_url('company/freelancerView/'.$freelancer->userId)?>" class="mission-item">                            
-                            <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative mission-item">
+                        <a href="<?=base_url('company/freelancerView/'.$freelancer->userId)?>" 
+                            class=" ">                            
+                            <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative freelancer-item" data-freelancer-first-name="<?=strtolower($freelancer->userFirstName)?>"data-freelancer-last-name="<?=strtolower($freelancer->userLastName)?>">
                                 <div class="flex items-center">
                                     <div class="mr-4">
                                     <?php 
@@ -350,5 +344,45 @@ include(APPPATH . 'views/layouts/company/header.php');
             }
         });
     });
+
+    $(document).ready(function() {
+        // Écouteur d'événement pour détecter les changements dans la barre de recherche
+        $('#search-input').on('input', function() {
+            // Masquer la section "Pour vous" par défaut
+            $('#result-section').hide();
+
+            var searchText = removeAccents($(this).val().trim().toLowerCase());
+
+            // Parcours de chaque mission pour filtrer celles qui correspondent à la recherche
+            var anyFreelancerFound = false;
+            $('.freelancer-item').each(function() {
+                var freelancerFirstName = removeAccents($(this).data('freelancer-first-name').toLowerCase());
+                var freelancerLastName = removeAccents($(this).data('freelancer-last-name').toLowerCase());
+                var freelancerFullName = freelancerFirstName + ' ' + freelancerLastName;
+                if (freelancerFullName.includes(searchText)) {
+                    $(this).show(); // Affiche la mission si elle correspond à la recherche
+                    anyFreelancerFound = true;
+                } else {
+                    $(this).hide(); // Masque la mission si elle ne correspond pas à la recherche
+                }
+            });
+
+            // Afficher ou masquer la section "Aucune mission n'a été trouvée" en fonction des résultats de la recherche
+            if (anyFreelancerFound) {
+                $('#no-mission-found').hide();
+                $('#result-section').show();
+            } else {
+                $('#no-mission-found').show();
+                $('#result-section').hide();
+            }
+        });
+
+    });
+
+    // Fonction pour supprimer les accents d'une chaîne de caractères
+    function removeAccents(str) {
+        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+
 </script>
 

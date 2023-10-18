@@ -23,16 +23,16 @@ class Company_model extends CI_Model {
         $this->db->select('job.jobId, job.jobName, userJob.userJob_jobId, userJob.userJob_userId');
         $this->db->from('userJob');
         $this->db->join('job', 'userJob.userJob_userId = users.userId');
-        $this->db->where('userSkills.userSkills_userId', $userId);
+        $this->db->where('userSkills.userSkills_userId', $freelancerUserId);
         $query = $this->db->get();
         return $query->result();
     }
 
 
-    public function getJobNameByUserId($freelancerUserId) {
-        $this->db->select('Job.jobName');
+    public function getJobByUserId($freelancerUserId) {
+        $this->db->select('Job.jobName, Job.jobId');
         $this->db->from('Users');
-        $this->db->join('UserJob', 'Users.userId = UserJob.userJob_userId'); // Correction ici
+        $this->db->join('UserJob', 'Users.userId = UserJob.userJob_userId'); 
         $this->db->join('Job', 'UserJob.userJob_jobId = Job.jobId');
         $this->db->where('Users.userId', $freelancerUserId);
         $query = $this->db->get();

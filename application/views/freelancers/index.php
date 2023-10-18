@@ -89,7 +89,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                     </div>
                 </div>
                 <h3 class="text-2xl font-medium mt-4" id="result-section">Pour vous :</h3>
-                <div class="flex flex-wrap" id="missions-section">
+                <div class="flex flex-wrap" id="freelancers-section">
                     <?php foreach($freelancers as $freelancer): ?>
                         <a href="<?=base_url('company/freelancerView/'.$freelancer->userId)?>" class=" ">                            
                             <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative freelancer-item" data-freelancer-first-name="<?=strtolower($freelancer->userFirstName)?>"data-freelancer-last-name="<?=strtolower($freelancer->userLastName)?>">
@@ -188,7 +188,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                         </a>
                     <?php endforeach; ?>
                     </div>
-                    <p class="text-xl mt-10 hidden text-left" id="no-freelancer-found">Aucun freelance n'a été trouvée.</p>
+                    <p class="text-xl mt-10 hidden text-left" id="no-freelancer-found">Aucun freelance n'a été trouvé.</p>
                     </div>
                 </div>
             </div>
@@ -294,10 +294,10 @@ include(APPPATH . 'views/layouts/company/header.php');
 
             // Afficher ou masquer la section "Aucune mission n'a été trouvée" en fonction des résultats de la recherche
             if (anyFreelancerFound) {
-                $('#no-mission-found').hide();
+                $('#no-freelancer-found').hide();
                 $('#result-section').show();
             } else {
-                $('#no-mission-found').show();
+                $('#no-freelancer-found').show();
                 $('#result-section').hide();
             }
         });

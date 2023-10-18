@@ -16,7 +16,7 @@ include(APPPATH . 'views/layouts/company/header.php');
     <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl h-full">
         <div class="w-full flex gap-6 h-full mb-3">
             <div class="w-1/4 sticky top-0">
-                <div class="bg-white rounded-lg h-full mb-4 p-4 dark:bg-gray-800 dark:text-white">
+                <div class="bg-white rounded-lg h-22vh mb-4 p-4 dark:bg-gray-800 dark:text-white">
                     <h3 class="text-xl font-medium mt-2">Filtre</h3>
                     <h4 class="text-lg font-medium mt-4">Localisation</h4>
                         <div class="flex items-center mt-2">
@@ -29,7 +29,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                     <h4 class="text-lg font-medium mt-4">Type de poste</h4>
                     <div class="mt-2">
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="temps-plein">
+                            <input type="checkbox" class="form-checkbox mr-2" id="temps-plein" checked>
                             <span class="ml-2">Temps plein</span>
                         </label>
                         <label class="flex items-center">
@@ -44,16 +44,23 @@ include(APPPATH . 'views/layouts/company/header.php');
                     <h4 class="text-lg font-medium mt-4">Niveau d'expérience</h4>
                     <div class="mt-2">
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="junior" <?= ($user->userExperienceYear === 'Junior') ? 'checked' : '' ?>>
+                            <input type="checkbox" class="form-checkbox mr-2" id="junior">
                             <span class="ml-2">Junior (1 à 2 ans)</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="intermediaire" <?= ($user->userExperienceYear === 'Intermédiaire') ? 'checked' : '' ?>>
+                            <input type="checkbox" class="form-checkbox mr-2" id="intermediaire">
                             <span class="ml-2">Intermédiaire (3 à 5 ans)</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="expert" <?= ($user->userExperienceYear === 'Expert') ? 'checked' : '' ?>>
+                            <input type="checkbox" class="form-checkbox mr-2" id="expert">
                             <span class="ml-2">Expert (+ 5 ans)</span>
+                        </label>
+                    </div>
+                    <h4 class="text-lg font-medium mt-4">Disponibilité</h4>
+                    <div class="mt-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" id="available" class="form-checkbox relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-green-200">
+                            <span class="ml-2">Disponible</span>
                         </label>
                     </div>
                     <h4 class="text-lg font-medium mt-4">TJM</h4>
@@ -74,14 +81,17 @@ include(APPPATH . 'views/layouts/company/header.php');
                             <?php endforeach; ?>
                         </select>
                     </div>
+                    <h4 class="text-lg font-medium mt-4">Métiers</h4>
+                    <div class="w-full max-w-xs mx-auto mt-5 text-black">
+                        <!-- <label for="skillsAll" class="block text-sm font-medium text-gray-700">Sélectionnez vos compétences</label> -->
+                        <select id="jobsAll" name="jobsAll[]" multiple class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <?php foreach ($jobsAll as $job): ?>
+                                <option class="text-black" value="<?= $job['jobId'] ?>"><?= $job['jobName'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
 
-                    
 
-                
-                    <!-- <div class="flex justify-between mt-10">
-                        <button class="px-4 py-2 rounded-full border border-primary text-primary">Effacer</button>
-                        <button class="px-4 py-2 rounded-full bg-primary text-white">Appliquer</button>
-                    </div> -->
                 </div>
                 
             </div>
@@ -95,21 +105,25 @@ include(APPPATH . 'views/layouts/company/header.php');
                     </div>
                 </div>
                 <h3 class="text-2xl font-medium mt-4" id="result-section">Pour vous :</h3>
-                <div class="flex flex-wrap" id="missions-section">
-                    <?php
-                        function isFavorite($missionId, $favoriteMissions) {
-                            foreach ($favoriteMissions as $favoriteMission) {
-                                if ($favoriteMission->idMissionSavedMission == $missionId) {
-                                    return true;
-                                }
-                            }
-                            return false;
-                        }
-                    ?>
+                <div class="flex flex-wrap" id="freelancers-section">
+
                     <?php foreach($freelancers as $freelancer): ?>
+                        <?php $freelancerSkillsArray = array(); ?>
+                        <?php foreach ($freelancer_skills[$freelancer->userId] as $skill): ?>
+                            <?php $freelancerSkillsArray[] = $skill->skillId; ?>
+                        <?php endforeach; ?>
                         <a href="<?=base_url('company/freelancerView/'.$freelancer->userId)?>" 
                             class=" ">                            
-                            <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative freelancer-item" data-freelancer-first-name="<?=strtolower($freelancer->userFirstName)?>"data-freelancer-last-name="<?=strtolower($freelancer->userLastName)?>">
+                            <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative freelancer-item" 
+                            data-freelancer-firstname="<?=strtolower($freelancer->userFirstName)?>" 
+                            data-freelancer-lastname="<?=strtolower($freelancer->userLastName)?>" 
+                            data-freelancer-city="<?=strtolower($freelancer->userVille)?>" 
+                            data-freelancer-time="<?=strtolower($freelancer->userJobTimePartielOrFullTime)?>" 
+                            data-freelancer-remote="<?=strtolower($freelancer->userRemote)?>" 
+                            data-freelancer-expertise="<?=strtolower($freelancer->userExperienceYear)?>" 
+                            data-freelancer-isavailable="<?=$freelancer->userIsAvailable?>" 
+                            data-freelancer-job="<?php foreach ($freelancer_job[$freelancer->userId] as $job): ?><?=$job->jobId?><?php endforeach; ?>"
+                            data-freelancer-skills="<?= implode(',', $freelancerSkillsArray) ?>">
                                 <div class="flex items-center">
                                     <div class="mr-4">
                                     <?php 
@@ -143,7 +157,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                                         </div>
                                         
                                         <p>
-                                        <?php foreach ($freelancer_job as $job): ?>
+                                        <?php foreach ($freelancer_job[$freelancer->userId] as $job): ?>
                                             <span class="mr-2"><?=$job->jobName?></span>
                                         <?php endforeach; ?>
                                             <span class="mr-2"> • TJM : <?=$freelancer->userTJM?> €</span>
@@ -183,7 +197,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                                                     $freelancer->userSeniorite = "Expert";
                                                 }
                                             ?>
-                                            <?=$freelancer->userSeniorite?>
+                                            <?=$freelancer->userExperienceYear?>
                                         </span>
 
                                         </p>
@@ -200,6 +214,48 @@ include(APPPATH . 'views/layouts/company/header.php');
                                         </p>
                                         
                                     </div>
+                                </div>
+                                
+                                <div class="skills-container mb-4">
+                                    <?php
+                                    if (is_array($freelancer_skills[$freelancer->userId]) && !empty($freelancer_skills[$freelancer->userId])) {
+                                    foreach ($freelancer_skills[$freelancer->userId] as $skill) {
+                                        $level = '';
+                                        $color = '';
+                                        switch ($skill->userSkillsExperience) {
+                                            case 1:
+                                                $level = 'Junior';
+                                                $color = '#BEE3F8'; // Couleur pour le niveau junior
+                                                $text = "text-black";
+                                                $textdark = "text-black";
+                                                break;
+                                            case 2:
+                                                $level = 'Intermédiaire';
+                                                $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
+                                                $text = "text-black";
+                                                $textdark = "text-white";
+                                                break;
+                                            case 3:
+                                                $level = 'Expert';
+                                                $color = '#2C5282'; // Couleur pour le niveau confirmé
+                                                $text = "text-white";
+                                                $textdark = "text-white";
+                                                break;
+
+                                            default:
+                                                $level = 'N/A'; // Si la valeur de userSkillsExperience n'est pas valide, afficher "N/A"
+                                                break;
+                                        }
+                                    ?>
+                                        <div class="skill-item" data-level="<?=$level?>">
+                                            <span class="dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                                            <div class="skill-level"><?=$level?></div>
+                                        </div>
+                                    <?php
+                                    }
+                                    ?>
+                                    <?php } ?>
+                                    
                                 </div>
                             </div>
                         </a>
@@ -275,6 +331,62 @@ include(APPPATH . 'views/layouts/company/header.php');
 <script src="<?php echo base_url('/node_modules/choices.js/public/assets/scripts/choices.min.js'); ?>"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+
+    $(document).ready(function() {
+        
+        $('#citySearch').on('keyup', function() {
+            let term = $(this).val();
+            if(term.length > 2) { // Recherche après 2 caractères
+                $.post('company/search_cities', { term: term }, function(data) {
+                    let cities = JSON.parse(data);
+                    if(cities.length > 0) {
+                        // Ajoutez la classe .has-border si des résultats sont retournés
+                        $('#cities-list').addClass('has-border');
+                    } else {
+                        // Supprimez la classe .has-border si aucun résultat n'est retourné
+                        $('#cities-list').removeClass('has-border');
+                    }
+                    $('#cities-list').empty();
+                    cities.forEach(function(city) {
+                        $('#cities-list').append(`<div class="city-item p-2 hover:bg-gray-200 cursor-pointer" data-id="${city.geoname_id}">${city.name}</div>`);
+                    });
+                });
+            }
+            else {
+                // Supprimez la classe .has-border si l'input est trop court
+                $('#cities-list').removeClass('has-border').empty();
+            }
+        });
+
+        $(document).on('click', '.city-item', function() {
+            let cityName = $(this).text();
+            $('#citySearch').val(cityName);  // Mettez à jour le champ de saisie avec le nom de la ville sélectionnée
+            $('#cities-list').empty(); // Videz la liste
+            $('#cities-list').removeClass('has-border').empty();
+        });
+
+        // Pour fermer la liste lorsque vous cliquez en dehors
+        $(document).on('click', function(event) {
+            // Si le clic n'est pas sur le champ de saisie (#citySearch)
+            // et n'est pas sur un élément à l'intérieur de la liste (#cities-list)...
+            if (!$(event.target).closest('#citySearch, #cities-list').length) {
+                // ... alors videz et fermez la liste.
+                $('#cities-list').empty().removeClass('has-border');
+            }
+        });
+
+    });
+
+        //Script selection des métiers
+        const jobsChoices = new Choices('#jobsAll', {
+        searchEnabled: true,
+        removeItemButton: true,
+        itemSelectText: '',
+        placeholder: true, // Ajoutez cette ligne pour activer le placeholder
+        placeholderValue: 'Sélectionnez des compétences', // Texte du placeholder
+
+    });
+
     //Script selection des compétences
     const skillsChoices = new Choices('#skillsAll', {
         searchEnabled: true,
@@ -356,8 +468,8 @@ include(APPPATH . 'views/layouts/company/header.php');
             // Parcours de chaque mission pour filtrer celles qui correspondent à la recherche
             var anyFreelancerFound = false;
             $('.freelancer-item').each(function() {
-                var freelancerFirstName = removeAccents($(this).data('freelancer-first-name').toLowerCase());
-                var freelancerLastName = removeAccents($(this).data('freelancer-last-name').toLowerCase());
+                var freelancerFirstName = removeAccents($(this).data('freelancer-firstname').toLowerCase());
+                var freelancerLastName = removeAccents($(this).data('freelancer-lastname').toLowerCase());
                 var freelancerFullName = freelancerFirstName + ' ' + freelancerLastName;
                 if (freelancerFullName.includes(searchText)) {
                     $(this).show(); // Affiche la mission si elle correspond à la recherche
@@ -369,10 +481,10 @@ include(APPPATH . 'views/layouts/company/header.php');
 
             // Afficher ou masquer la section "Aucune mission n'a été trouvée" en fonction des résultats de la recherche
             if (anyFreelancerFound) {
-                $('#no-mission-found').hide();
+                $('#no-freelancer-found').hide();
                 $('#result-section').show();
             } else {
-                $('#no-mission-found').show();
+                $('#no-freelancer-found').show();
                 $('#result-section').hide();
             }
         });
@@ -382,6 +494,110 @@ include(APPPATH . 'views/layouts/company/header.php');
     // Fonction pour supprimer les accents d'une chaîne de caractères
     function removeAccents(str) {
         return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+
+
+    //Filtres freelancers
+    const checkboxes = document.querySelectorAll(".form-checkbox");
+
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener("change", filterFreelancers);
+    });
+
+    $('#skillsAll').on('change', function() {
+        filterFreelancers();
+    });
+
+    $('#jobsAll').on('change', function() {
+        filterFreelancers();
+    });
+
+    document.getElementById("citySearch").addEventListener("keyup", filterFreelancers);
+
+    function filterFreelancers() {
+        const freelancers = document.querySelectorAll(".freelancer-item");
+        const activeFilters = [];
+        const cityInput = document.getElementById("citySearch");
+        const cityFilter = cityInput.value.toLowerCase();
+        //const tjmValues = slider.noUiSlider.get();
+        //const tjmMin = parseInt(tjmValues[0]);
+        //const tjmMax = parseInt(tjmValues[1]);
+        const selectedSkills = $('#skillsAll').val();
+        const selectedJobs = $('#jobsAll').val();
+    
+
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                activeFilters.push(checkbox.id);
+            }
+        });
+
+        let visibleFreelancersCount = 0;
+
+        freelancers.forEach(function(freelancer) {
+            //const missionName = mission.getAttribute("data-mission-name");
+            const freelancerTime = freelancer.getAttribute("data-freelancer-time");
+            const freelancerRemote = freelancer.getAttribute("data-freelancer-remote");
+            const freelanceExpertise = freelancer.getAttribute("data-freelancer-expertise");
+            const freelancerCity = freelancer.getAttribute("data-freelancer-city").toLowerCase();
+            const freelancerIsAvailable = freelancer.getAttribute("data-freelancer-isavailable");
+            const freelancerJobAttr = freelancer.getAttribute("data-freelancer-job");
+            const freelancerJob = freelancerJobAttr.split(',');
+            const freelancerSkillsAttr = freelancer.getAttribute("data-freelancer-skills");
+            console.log(freelanceExpertise);     
+            //const missionTJM = parseInt(mission.getAttribute("data-mission-tjm"));
+
+            let showFreelancer = activeFilters.every(function(filter) {
+                if (filter === "temps-plein" && freelancerTime !== "temps-plein") return false;
+                if (filter === "remote" && freelancerRemote !== "1") return false;
+                if (filter === "temps-partiel" && freelancerTime !== "temps-partiel") return false;
+                if (filter === "available" && freelancerIsAvailable !== "1") return false;
+                if (filter === "junior" && freelanceExpertise !== "junior") return false;
+                if (filter === "intermediaire" && freelanceExpertise !== "intermédiaire") return false;
+                if (filter === "expert" && freelanceExpertise !== "expert") return false;
+                return true;
+            });
+
+            // Filtre par ville
+            if (cityFilter && !freelancerCity.includes(cityFilter)) {
+                showFreelancer = false;
+            }
+                    
+            // Filtre par métier
+            if (selectedJobs.length > 0) {
+                const matchesJob = selectedJobs.some(function(selectedJob) {
+                    return freelancerJob.includes(selectedJob);
+                });
+                if (!matchesJob) {
+                    showFreelancer = false;
+                }
+            }
+
+            // Filtre par compétences
+            if (selectedSkills.length > 0) {
+                const freelancerSkills = freelancerSkillsAttr.split(','); // Divise la chaîne en un tableau d'IDs de compétences
+                const matchesSkills = selectedSkills.some(function(selectedSkill) {
+                    return freelancerSkills.includes(selectedSkill);
+                });
+                if (!matchesSkills) {
+                    showFreelancer = false;
+                }
+            }
+
+/*
+            if (missionTJM < tjmMin || missionTJM > tjmMax) {
+                showMission = false;
+            }
+*/
+            freelancer.style.display = showFreelancer ? "block" : "none";
+
+            if (showFreelancer) {
+                visibleFreelancersCount++;
+            }
+        });
+
+        const noFreelancerFound = document.getElementById("no-freelancer-found");
+        noFreelancerFound.style.display = visibleFreelancersCount === 0 ? "block" : "none";
     }
 
 </script>

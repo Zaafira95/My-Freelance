@@ -152,11 +152,12 @@ class User_model extends CI_Model {
             return $query->result();
         }
 
-        public function updateUserData($userId, $userFirstName, $userLastName, $userTelephone, $jobId, $userTJM){
+        public function updateUserData($userId, $userFirstName, $userLastName, $userTelephone, $jobId, $userExperienceYear, $userTJM){
             $this->db->set('userFirstName', $userFirstName);
             $this->db->set('userLastName', $userLastName);
             $this->db->set('userTelephone', $userTelephone);
             $this->db->set('userJobId', $jobId);
+            $this->db->set('userExperienceYear', $userExperienceYear);
             $this->db->set('userTJM', $userTJM);
             $this->db->where('userId', $userId);
             $this->db->update('users');

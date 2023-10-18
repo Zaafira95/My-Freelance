@@ -187,14 +187,14 @@ include(APPPATH . 'views/layouts/company/header.php');
                                             <span class="mr-2"> • <?=$freelancer->userVille?></span>
                                             <span class="mr-2"> •
                                             <?php
-                                                if ($freelancer->userSeniorite == "junior"){
-                                                    $freelancer->userSeniorite = "Junior";
+                                                if ($freelancer->userExperienceYear == "junior"){
+                                                    $freelancer->userExperienceYear = "Junior";
                                                 }
-                                                elseif ($freelancer->userSeniorite == "intermediaire"){
-                                                    $freelancer->userSeniorite = "Intermédiaire";
+                                                elseif ($freelancer->userExperienceYear == "intermediaire"){
+                                                    $freelancer->userExperienceYear = "Intermédiaire";
                                                 }
-                                                elseif ($freelancer->userSeniorite == "expert"){
-                                                    $freelancer->userSeniorite = "Expert";
+                                                elseif ($freelancer->userExperienceYear == "expert"){
+                                                    $freelancer->userExperienceYear = "Expert";
                                                 }
                                             ?>
                                             <?=$freelancer->userExperienceYear?>
@@ -553,7 +553,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                 if (filter === "temps-partiel" && freelancerTime !== "temps-partiel") return false;
                 if (filter === "available" && freelancerIsAvailable !== "1") return false;
                 if (filter === "junior" && freelanceExpertise !== "junior") return false;
-                if (filter === "intermediaire" && freelanceExpertise !== "intermédiaire") return false;
+                if (filter === "intermediaire" && freelanceExpertise !== "intermediaire") return false;
                 if (filter === "expert" && freelanceExpertise !== "expert") return false;
                 return true;
             });

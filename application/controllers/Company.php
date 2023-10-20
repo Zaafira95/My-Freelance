@@ -384,7 +384,8 @@ class Company extends CI_Controller {
         
         foreach ($freelancers as $freelancer) {
             $freelancerUserId = $freelancer->userId; // Supposons que vous avez récupéré le userId d'un freelance
-            $freelancer_job = $this->Company_model->getJobByUserId($freelancerUserId);
+            $freelancer_job[$freelancerUserId] = $this->Company_model->getJobByUserId($freelancerUserId);
+            $freelancer_skills[$freelancerUserId] = $this->Company_model->getUserSkillsAll($freelancerUserId);
 
             $isAvailable = $freelancer->userIsAvailable ;
         
@@ -398,13 +399,16 @@ class Company extends CI_Controller {
         }
     
         $data['freelancer_job'] = $freelancer_job;
-
+        $data['freelancer_skills'] = $freelancer_skills;
 
         $company = $this->Company_model->getCompanyData($userId);
         $data['company'] = $company;
         $companyId = $company->idCompany;
         $job_for_company = $this->Company_model->getCompanyJobs($companyId);
         $data['job_for_company'] = $job_for_company;
+
+        $data['skillsAll'] = $this->Company_model->get_all_skills();
+        $data['jobsAll'] = $this->Company_model->get_all_jobs();
         $data['user'] = $user;
 
         $this->load->view('freelancers/index', $data);

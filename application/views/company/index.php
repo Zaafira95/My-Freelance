@@ -7,7 +7,7 @@ include(APPPATH . 'views/layouts/company/header.php');
 ?>
     <title> Café Crème Community </title>
 
-<link href="stylesheet" href="<?php echo base_url('assets/css/nouislider.min.css');?>">
+<link rel="stylesheet" href="<?php echo base_url('assets/css/nouislider.min.css');?>">
 <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
 <link href="<?php echo base_url('/node_modules/choices.js/public/assets/styles/choices.min.css');?>" rel="stylesheet" type="text/css">
 
@@ -16,7 +16,7 @@ include(APPPATH . 'views/layouts/company/header.php');
     <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl h-full">
         <div class="w-full flex gap-6 h-full mb-3">
             <div class="w-1/4 sticky top-0">
-                <div class="bg-white rounded-lg h-22vh mb-4 p-4 dark:bg-gray-800 dark:text-white">
+                <div class="bg-white rounded-lg h-full overflow-y-auto no-scrollbar mb-4 p-4 dark:bg-gray-800 dark:text-white">
                     <h3 class="text-xl font-medium mt-2">Filtre</h3>
                     <h4 class="text-lg font-medium mt-4">Localisation</h4>
                         <div class="flex items-center mt-2">
@@ -29,7 +29,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                     <h4 class="text-lg font-medium mt-4">Type de poste</h4>
                     <div class="mt-2">
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="temps-plein" checked>
+                            <input type="checkbox" class="form-checkbox mr-2" id="temps-plein">
                             <span class="ml-2">Temps plein</span>
                         </label>
                         <label class="flex items-center">
@@ -59,8 +59,12 @@ include(APPPATH . 'views/layouts/company/header.php');
                     <h4 class="text-lg font-medium mt-4">Disponibilité</h4>
                     <div class="mt-2">
                         <label class="flex items-center">
-                            <input type="checkbox" id="available" class="form-checkbox relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-green-200">
+                        <input type="checkbox" class="form-checkbox mr-2" id="available">
                             <span class="ml-2">Disponible</span>
+                        </label>
+                        <label class="flex items-center">
+                        <input type="checkbox" class="form-checkbox mr-2" id="unavailable">
+                            <span class="ml-2">Non disponible</span>
                         </label>
                     </div>
                     <h4 class="text-lg font-medium mt-4">TJM</h4>
@@ -121,7 +125,8 @@ include(APPPATH . 'views/layouts/company/header.php');
                             data-freelancer-time="<?=strtolower($freelancer->userJobTimePartielOrFullTime)?>" 
                             data-freelancer-remote="<?=strtolower($freelancer->userRemote)?>" 
                             data-freelancer-expertise="<?=strtolower($freelancer->userExperienceYear)?>" 
-                            data-freelancer-isavailable="<?=$freelancer->userIsAvailable?>" 
+                            data-freelancer-isavailable="<?=$freelancer->userIsAvailable?>"
+                            data-freelancer-tjm="<?=$freelancer->userTJM?>" 
                             data-freelancer-job="<?php foreach ($freelancer_job[$freelancer->userId] as $job): ?><?=$job->jobId?><?php endforeach; ?>"
                             data-freelancer-skills="<?= implode(',', $freelancerSkillsArray) ?>">
                                 <div class="flex items-center">
@@ -174,16 +179,15 @@ include(APPPATH . 'views/layouts/company/header.php');
                                             }                                            
                                             ?>
                                             <?=$freelancer->userJobTimePartielOrFullTime?> 
-                                            <?php
+                                            </span>
 
+                                            <?php
                                             if($freelancer->userRemote == 1){
                                             ?>
-                                                • Remote
+                                            <span class="mr-2"> • Remote </span>
                                             <?php
                                             }
                                             ?>
-                                        
-                                            </span>
                                             <span class="mr-2"> • <?=$freelancer->userVille?></span>
                                             <span class="mr-2"> •
                                             <?php
@@ -212,7 +216,6 @@ include(APPPATH . 'views/layouts/company/header.php');
                                             ?>
                                             <?=$freelancer->userBio?>
                                         </p>
-                                        
                                     </div>
                                 </div>
                                 
@@ -419,9 +422,9 @@ include(APPPATH . 'views/layouts/company/header.php');
         });
     });
 
+
+
     
-
-
     var base_url = '<?php echo base_url(); ?>';
 
 
@@ -429,9 +432,8 @@ include(APPPATH . 'views/layouts/company/header.php');
         var slider = document.getElementById('tjm-slider');
         var min = document.getElementById('tjm-min');
         var max = document.getElementById('tjm-max');
-        var userTJM = <?=$user->userTJM?>;
         noUiSlider.create(slider, {
-            start: [userTJM, userTJM + 400],
+            start: [500, 950],
             connect: true,
             range: {
             'min': 300,
@@ -497,7 +499,8 @@ include(APPPATH . 'views/layouts/company/header.php');
     }
 
 
-    //Filtres freelancers
+    document.addEventListener("DOMContentLoaded", function() {
+    var slider = document.getElementById('tjm-slider');
     const checkboxes = document.querySelectorAll(".form-checkbox");
 
     checkboxes.forEach(function(checkbox) {
@@ -512,6 +515,8 @@ include(APPPATH . 'views/layouts/company/header.php');
         filterFreelancers();
     });
 
+    slider.noUiSlider.on("change", filterFreelancers);
+
     document.getElementById("citySearch").addEventListener("keyup", filterFreelancers);
 
     function filterFreelancers() {
@@ -519,9 +524,9 @@ include(APPPATH . 'views/layouts/company/header.php');
         const activeFilters = [];
         const cityInput = document.getElementById("citySearch");
         const cityFilter = cityInput.value.toLowerCase();
-        //const tjmValues = slider.noUiSlider.get();
-        //const tjmMin = parseInt(tjmValues[0]);
-        //const tjmMax = parseInt(tjmValues[1]);
+        const tjmValues = slider.noUiSlider.get();
+        const tjmMin = parseInt(tjmValues[0]);
+        const tjmMax = parseInt(tjmValues[1]);
         const selectedSkills = $('#skillsAll').val();
         const selectedJobs = $('#jobsAll').val();
     
@@ -532,31 +537,51 @@ include(APPPATH . 'views/layouts/company/header.php');
             }
         });
 
+        const expertiseFilters = []; // Tableau pour stocker les filtres d'expertise sélectionnés
+
+        // Remplissez expertiseFilters avec les filtres d'expertise sélectionnés
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked && (checkbox.id === "junior" || checkbox.id === "intermediaire" || checkbox.id === "expert")) {
+                expertiseFilters.push(checkbox.id);
+            }
+        });
+
         let visibleFreelancersCount = 0;
 
         freelancers.forEach(function(freelancer) {
             //const missionName = mission.getAttribute("data-mission-name");
             const freelancerTime = freelancer.getAttribute("data-freelancer-time");
             const freelancerRemote = freelancer.getAttribute("data-freelancer-remote");
-            const freelanceExpertise = freelancer.getAttribute("data-freelancer-expertise");
+            const freelancerExpertise = freelancer.getAttribute("data-freelancer-expertise");
             const freelancerCity = freelancer.getAttribute("data-freelancer-city").toLowerCase();
             const freelancerIsAvailable = freelancer.getAttribute("data-freelancer-isavailable");
             const freelancerJobAttr = freelancer.getAttribute("data-freelancer-job");
             const freelancerJob = freelancerJobAttr.split(',');
             const freelancerSkillsAttr = freelancer.getAttribute("data-freelancer-skills");
-            console.log(freelanceExpertise);     
-            //const missionTJM = parseInt(mission.getAttribute("data-mission-tjm"));
+            const freelancerTJM = parseInt(freelancer.getAttribute("data-freelancer-tjm"));
 
-            let showFreelancer = activeFilters.every(function(filter) {
-                if (filter === "temps-plein" && freelancerTime !== "temps-plein") return false;
-                if (filter === "remote" && freelancerRemote !== "1") return false;
-                if (filter === "temps-partiel" && freelancerTime !== "temps-partiel") return false;
-                if (filter === "available" && freelancerIsAvailable !== "1") return false;
-                if (filter === "junior" && freelanceExpertise !== "junior") return false;
-                if (filter === "intermediaire" && freelanceExpertise !== "intermediaire") return false;
-                if (filter === "expert" && freelanceExpertise !== "expert") return false;
+            let showFreelancer = true;  
+            activeFilters.every(function(filter) {
+                if (filter === "temps-plein" && freelancerTime !== "temps-plein") showFreelancer = false;
+                if (filter === "remote" && freelancerRemote !== "1") showFreelancer = false;
+                if (filter === "temps-partiel" && freelancerTime !== "temps-partiel") showFreelancer = false;
+                if (filter === "available" && freelancerIsAvailable !== "1") showFreelancer = false;
+                if (filter === "unavailable" && freelancerIsAvailable !== "0") showFreelancer = false;
                 return true;
             });
+
+            // Filtre par expertise
+            let matchesExpertise = true;
+            if (expertiseFilters.length > 0) {
+                matchesExpertise = expertiseFilters.some(function(filter) {
+                    return (
+                        (filter === "junior" && freelancerExpertise === "junior") ||
+                        (filter === "intermediaire" && freelancerExpertise === "intermediaire") ||
+                        (filter === "expert" && freelancerExpertise === "expert")
+                    );
+                });
+            }
+            showFreelancer = showFreelancer && matchesExpertise;
 
             // Filtre par ville
             if (cityFilter && !freelancerCity.includes(cityFilter)) {
@@ -584,11 +609,11 @@ include(APPPATH . 'views/layouts/company/header.php');
                 }
             }
 
-/*
-            if (missionTJM < tjmMin || missionTJM > tjmMax) {
-                showMission = false;
+
+            if (freelancerTJM < tjmMin || freelancerTJM > tjmMax) {
+                showFreelancer = false;
             }
-*/
+
             freelancer.style.display = showFreelancer ? "block" : "none";
 
             if (showFreelancer) {
@@ -599,6 +624,7 @@ include(APPPATH . 'views/layouts/company/header.php');
         const noFreelancerFound = document.getElementById("no-freelancer-found");
         noFreelancerFound.style.display = visibleFreelancersCount === 0 ? "block" : "none";
     }
+});
 
 </script>
 

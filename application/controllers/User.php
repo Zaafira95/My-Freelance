@@ -644,6 +644,8 @@ class User extends CI_Controller {
         $data['missionCompany'] = $missionCompany;
         $favoriteMissions = $this->User_model->getFavoriteMissions($userId); // Remplacez cette ligne avec votre logique pour récupérer les missions favorites de l'utilisateur
         $data['favoriteMissions'] = $favoriteMissions;
+        $data['skillsAll'] = $this->User_model->get_all_skills();
+
 
 
         $this->load->view('missions/index', $data);

@@ -66,7 +66,7 @@ class User_model extends CI_Model {
     }
 
     public function getMissionSkills($idMissions) {
-        $this->db->select('skills.skillName, missionSkills.missionSkillsExperience');
+        $this->db->select('skills.skillName, skills.skillId, missionSkills.missionSkillsExperience');
         $this->db->from('missionSkills');
         $this->db->join('skills', 'missionSkills.missionSkills_skillId = skills.skillId');
         $this->db->where('missionSkills.missionSkills_missionId', $idMissions);

@@ -85,7 +85,7 @@ include(APPPATH . 'views/layouts/user/header.php');
     <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl h-full">
         <div class="w-full flex gap-6 h-full mb-3">
             <div class="w-1/4 sticky top-0">
-                <div class="bg-white rounded-lg h-full mb-4 p-4 dark:bg-gray-800 dark:text-white">
+                <div class="bg-white rounded-lg h-full overflow-y-auto no-scrollbar mb-4 p-4 dark:bg-gray-800 dark:text-white">
                     <h3 class="text-xl font-medium mt-2">Filtre</h3>
                     <h4 class="text-lg font-medium mt-4">Localisation</h4>
                         <div class="flex items-center mt-2">
@@ -107,11 +107,11 @@ include(APPPATH . 'views/layouts/user/header.php');
                         </label>
                         <label class="flex items-center">
                             <input type="checkbox" class="form-checkbox mr-2" id="remote" <?php
-                                    $jobTypeArray = explode(',', $user->userJobType);
-                                    if (in_array('Remote', $jobTypeArray)) {
-                                        echo 'checked="checked"';
-                                    }
-                                    ?>>
+                                $jobTypeArray = explode(',', $user->userJobType);
+                                if (in_array('Remote', $jobTypeArray)) {
+                                    echo 'checked="checked"';
+                                }
+                                ?>>
                             <span class="ml-2">Remote</span>
                         </label>
                     </div>
@@ -147,6 +147,9 @@ include(APPPATH . 'views/layouts/user/header.php');
                                 <option class="text-black" value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
                             <?php endforeach; ?>
                         </select>
+                    </div>
+                    <div class="flex justify-between mt-10">
+                        <button id="resetFiltersButton" class="px-4 py-2 rounded-full border border-primary text-primary">Effacer</button>
                     </div>
 
                     
@@ -185,19 +188,20 @@ include(APPPATH . 'views/layouts/user/header.php');
                         <?php
                         $dataMissionSkills = [];
                         foreach ($missionSkills[$mission->idMission] as $skill):
-                            $dataMissionSkills[] = $skill->skillName;
+                            $dataMissionSkills[] = $skill->skillId;
                         endforeach;
                         $dataMissionSkillsString = implode(',', $dataMissionSkills);
                         ?>
                         <a href="<?=base_url('user/missionView/'.$mission->idMission)?>" 
                             class="mission-item " 
                             data-mission-name="<?=strtolower($mission->missionName)?>" 
-                            data-mission-type="<?=strtolower($mission->missionType)?>" 
+                            data-mission-type="<?=strtolower($mission->missionType)?>"
+                            data-mission-remote="<?=strtolower($mission->missionRemote)?>" 
                             data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" 
                             data-mission-tjm="<?=$mission->missionTJM?>" 
                             data-mission-localisation="<?=strtolower($mission->missionLocalisation)?>"
                             data-mission-skills="<?=$dataMissionSkillsString?>"> <!-- Utilisez implode pour combiner les compétences en une chaîne -->
-                            <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative mission-item" data-mission-name="<?=strtolower($mission->missionName)?>" data-mission-type="<?=strtolower($mission->missionType)?>" data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" data-mission-tjm="<?=$mission->missionTJM?>" data-mission-localisation="<?=$mission->missionLocalisation?>">
+                            <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative mission-item" data-mission-name="<?=strtolower($mission->missionName)?>" data-mission-type="<?=strtolower($mission->missionType)?>" data-mission-remote="<?=strtolower($mission->missionRemote)?>" data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" data-mission-tjm="<?=$mission->missionTJM?>" data-mission-localisation="<?=$mission->missionLocalisation?>" data-mission-skills="<?=$dataMissionSkillsString?>">
                                 <div class="flex items-center">
                                     <div class="mr-4">
                                         <img src="<?=base_url('assets/img/airbnb.png')?>" alt="Logo de l'entreprise" class="w-10 h-10 rounded-full">
@@ -226,16 +230,15 @@ include(APPPATH . 'views/layouts/user/header.php');
                                             }                                            
                                             ?>
                                             <?=$mission->missionType?> 
+                                            </span>
                                             <?php
 
                                             if($mission->missionRemote == 1){
                                             ?>
-                                                • Remote
+                                                <span class="mr-2"> • Remote </span>
                                             <?php
                                             }
                                             ?>
-                                        
-                                            </span>
                                             <span class="mr-2"> • <?=$mission->missionLocalisation?></span>
                                             <span class="mr-2"> •
                                             
@@ -620,6 +623,26 @@ include(APPPATH . 'views/layouts/user/header.php');
 
     document.getElementById("citySearch").addEventListener("keyup", filterMissions);
 
+
+    $(document).ready(function() {
+        $('#resetFiltersButton').on('click', function() {
+            // Réinitialisez les filtres en décochant toutes les cases à cocher
+            $('.form-checkbox').prop('checked', false);
+
+            $('#citySearch').val('');
+
+            // Réinitialisez les valeurs des sélecteurs de compétences et de métiers
+            //skillsChoices.clearStore();
+            //skillsChoices.setChoices([], 'value', 'label', false); // Effacez toutes les options sélectionnées
+
+            var slider = document.getElementById('tjm-slider');
+            var defaultTJMValues = [300, 1200]; // Valeurs par défaut
+            slider.noUiSlider.set(defaultTJMValues);
+
+            filterMissions();
+        });
+    });
+
     function filterMissions() {
         const missions = document.querySelectorAll(".mission-item");
         const activeFilters = [];
@@ -630,21 +653,18 @@ include(APPPATH . 'views/layouts/user/header.php');
         const tjmMax = parseInt(tjmValues[1]);
         const selectedSkills = $('#skillsAll').val();
         
-        missions.forEach(function(mission) {
-            const missionSkillsAttr = mission.getAttribute("data-mission-skills");
-            if (missionSkillsAttr) {
-                const missionSkills = missionSkillsAttr.split(',');
-                const showMissionSkills = selectedSkills.every(function(selectedSkill) {
-                    return missionSkills.includes(selectedSkill);
-                });
-
-                mission.style.display = showMissionSkills ? "block" : "none";
-            }
-        });
 
         checkboxes.forEach(function(checkbox) {
             if (checkbox.checked) {
                 activeFilters.push(checkbox.id);
+            }
+        });
+
+        const expertiseFilters = []; // Tableau pour stocker les filtres d'expertise sélectionnés
+
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked && (checkbox.id === "junior" || checkbox.id === "intermediaire" || checkbox.id === "expert")) {
+                expertiseFilters.push(checkbox.id);
             }
         });
 
@@ -653,23 +673,51 @@ include(APPPATH . 'views/layouts/user/header.php');
         missions.forEach(function(mission) {
             const missionName = mission.getAttribute("data-mission-name");
             const missionType = mission.getAttribute("data-mission-type");
+            const missionRemote = mission.getAttribute("data-mission-remote");
             const missionExpertise = mission.getAttribute("data-mission-expertise");
             const missionLocalisation = mission.getAttribute("data-mission-localisation").toLowerCase();
+            const missionSkillsAttr = mission.getAttribute("data-mission-skills");
             const missionTJM = parseInt(mission.getAttribute("data-mission-tjm"));
 
             let showMission = activeFilters.every(function(filter) {
                 if (filter === "temps-plein" && missionType !== "temps-plein") return false;
-                if (filter === "remote" && missionType !== "remote") return false;
+                if (filter === "remote" && missionRemote !== "1") return false;
                 if (filter === "temps-partiel" && missionType !== "temps-partiel") return false;
-                if (filter === "junior" && missionExpertise !== "junior") return false;
-                if (filter === "intermediaire" && missionExpertise !== "intermediaire") return false;
-                if (filter === "expert" && missionExpertise !== "expert") return false;
+                //if (filter === "junior" && missionExpertise !== "junior") return false;
+                //if (filter === "intermediaire" && missionExpertise !== "intermediaire") return false;
+                //if (filter === "expert" && missionExpertise !== "expert") return false;
                 return true;
             });
+
+            // Filtre par expertise
+            let matchesExpertise = true;
+            if (expertiseFilters.length > 0) {
+                matchesExpertise = expertiseFilters.some(function(filter) {
+                    return (
+                        (filter === "junior" && missionExpertise === "junior") ||
+                        (filter === "intermediaire" && missionExpertise === "intermediaire") ||
+                        (filter === "expert" && missionExpertise === "expert")
+                    );
+                });
+            }
+            showMission = showMission && matchesExpertise;
 
             // Filtre par ville
             if (cityFilter && !missionLocalisation.includes(cityFilter)) {
                 showMission = false;
+            }
+
+            // Filtre par compétences
+            if (selectedSkills.length > 0) {
+                const missionSkills = missionSkillsAttr.split(','); // Divise la chaîne en un tableau d'IDs de compétences
+                console.log("1 :",missionSkills);
+                console.log("2 :",selectedSkills);
+                const matchesSkills = selectedSkills.some(function(selectedSkill) {
+                    return missionSkills.includes(selectedSkill);
+                });
+                if (!matchesSkills) {
+                    showMission = false;
+                }
             }
 
             if (missionTJM < tjmMin || missionTJM > tjmMax) {

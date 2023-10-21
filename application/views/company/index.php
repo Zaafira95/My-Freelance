@@ -78,7 +78,6 @@ include(APPPATH . 'views/layouts/company/header.php');
                 
                     <h4 class="text-lg font-medium mt-4">Compétences</h4>
                     <div class="w-full max-w-xs mx-auto mt-5 text-black">
-                        <!-- <label for="skillsAll" class="block text-sm font-medium text-gray-700">Sélectionnez vos compétences</label> -->
                         <select id="skillsAll" name="skillsAll[]" multiple class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             <?php foreach ($skillsAll as $skill): ?>
                                 <option class="text-black" value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
@@ -87,15 +86,15 @@ include(APPPATH . 'views/layouts/company/header.php');
                     </div>
                     <h4 class="text-lg font-medium mt-4">Métiers</h4>
                     <div class="w-full max-w-xs mx-auto mt-5 text-black">
-                        <!-- <label for="skillsAll" class="block text-sm font-medium text-gray-700">Sélectionnez vos compétences</label> -->
                         <select id="jobsAll" name="jobsAll[]" multiple class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             <?php foreach ($jobsAll as $job): ?>
                                 <option class="text-black" value="<?= $job['jobId'] ?>"><?= $job['jobName'] ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
-
-
+                    <!--<div class="flex justify-between mt-10">
+                        <button id="resetFiltersButton" class="px-4 py-2 rounded-full border border-primary text-primary">Effacer</button>
+                    </div>-->
                 </div>
                 
             </div>
@@ -380,8 +379,8 @@ include(APPPATH . 'views/layouts/company/header.php');
 
     });
 
-        //Script selection des métiers
-        const jobsChoices = new Choices('#jobsAll', {
+    //Script selection des métiers
+    const jobsChoices = new Choices('#jobsAll', {
         searchEnabled: true,
         removeItemButton: true,
         itemSelectText: '',
@@ -391,7 +390,7 @@ include(APPPATH . 'views/layouts/company/header.php');
     });
 
     //Script selection des compétences
-    const skillsChoices = new Choices('#skillsAll', {
+    let skillsChoices = new Choices('#skillsAll', {
         searchEnabled: true,
         removeItemButton: true,
         itemSelectText: '',
@@ -519,6 +518,38 @@ include(APPPATH . 'views/layouts/company/header.php');
 
     document.getElementById("citySearch").addEventListener("keyup", filterFreelancers);
 
+/*
+    $(document).ready(function() {
+        $('#resetFiltersButton').on('click', function() {
+            // Réinitialisez les filtres en décochant toutes les cases à cocher
+            $('.form-checkbox').prop('checked', false);
+
+            $('#citySearch').val('');
+
+            // Réinitialisez les valeurs des sélecteurs de compétences et de métiers
+            //skillsChoices.setValue([]);
+            //skillsChoices.clearInput(true); // Effacez le champ d'entrée
+            //$('#skillsAll').val([]);
+            //$('#skillsAll').empty();
+            var select = $('#skillsAll');
+
+            // Parcourir toutes les options
+            select.find('option:selected').each(function() {
+                // Supprimer chaque option sélectionnée
+                $(this).remove();
+            });
+
+            $('#jobsAll').val(null);
+
+
+            var slider = document.getElementById('tjm-slider');
+            var defaultTJMValues = [300, 1200]; // Valeurs par défaut
+            slider.noUiSlider.set(defaultTJMValues);
+
+            filterFreelancers();
+        });
+    });
+*/
     function filterFreelancers() {
         const freelancers = document.querySelectorAll(".freelancer-item");
         const activeFilters = [];
@@ -539,7 +570,6 @@ include(APPPATH . 'views/layouts/company/header.php');
 
         const expertiseFilters = []; // Tableau pour stocker les filtres d'expertise sélectionnés
 
-        // Remplissez expertiseFilters avec les filtres d'expertise sélectionnés
         checkboxes.forEach(function(checkbox) {
             if (checkbox.checked && (checkbox.id === "junior" || checkbox.id === "intermediaire" || checkbox.id === "expert")) {
                 expertiseFilters.push(checkbox.id);
@@ -625,6 +655,8 @@ include(APPPATH . 'views/layouts/company/header.php');
         noFreelancerFound.style.display = visibleFreelancersCount === 0 ? "block" : "none";
     }
 });
+
+
 
 </script>
 

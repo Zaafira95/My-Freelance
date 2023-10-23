@@ -5,25 +5,28 @@ $currentPage = 'my_company';
 // Header Call
 include(APPPATH . 'views/layouts/company/header.php');
 ?>
-<link rel="stylesheet" href="<?php echo base_url('assets/css/nouislider.min.css');?>">
-<link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
-<link href="<?php echo base_url('/node_modules/choices.js/public/assets/styles/choices.min.css');?>" rel="stylesheet" type="text/css">
+<head>
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/nouislider.min.css');?>">
+    <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url('/node_modules/choices.js/public/assets/styles/choices.min.css');?>" rel="stylesheet" type="text/css">
+    <title><?=$company->companyName?> - Café Crème Community </title>
+</head>
 
 <div class="px-4 lg:px-6 py-6 h-full overflow-y-auto no-scrollbar">
-    <div class="flex flex-wrap justify-between items-center mx-auto h-full w-screen-90">
-        <div class="w-full flex flex-wrap gap-4 h-full mb-3">
-            <div class="relative w-full bg-white rounded-lg mb-4 px-4 pt-4 dark:bg-gray-800 dark:text-white">
-                <div class="relative rounded-lg w-full h-auto mb-8">
-                    <div class="rounded-lg w-full h-40 flex items-center justify-center">
-                        <div class="w-full h-full flex items-center justify-center">
-                            <img id="company-image" src="<?=base_url('assets/img/airbnb-couverture.png')?>" class=" object-cover w-full h-full rounded-lg" alt="Image de l'entreprise">
+    <div class="justify-between mx-auto max-w-screen-xl h-full">
+        <div class="h-full w-full mb-3">
+            <div class="bg-white rounded-lg w-full mb-4 dark:text-white dark:bg-gray-800">
+                <div class="bg-white dark:bg-gray-800 relative rounded-lg w-full h-auto mb-8">
+                    <div class="bg-white dark:bg-gray-800 rounded-lg w-full h-50 flex items-center justify-center">
+                        <div class="bg-white dark:bg-gray-800 w-full h-full flex items-center justify-center">
+                            <img id="company-image" src="<?=base_url('assets/img/airbnb-couverture.png')?>" class="object-cover w-full h-full rounded-lg dark:bg-gray-800" alt="Image de l'entreprise">
                         </div>
                     </div>
-                    <div class="absolute-logo rounded-full border-10 border-primary w-20 h-20 flex items-center justify-center">
-                        <img id="company-image" src="<?=base_url('assets/img/airbnb.png')?>" class=" object-cover w-full h-full rounded-full ring-2 ring-white" alt="Image de l'entreprise">
+                    <div class="rounded-full border-10 w-40 h-40 flex items-center justify-center" style="margin-top:-50px;">
+                        <img id="company-image" src="<?=base_url('assets/img/airbnb.png')?>" class="ml-4 object-cover w-full h-full rounded-full ring-8 ring-white dark:ring-gray-800" alt="Image de l'entreprise">
                     </div>
                 </div>
-                <div class="flex flex-wrap justify-between mt-4">
+                <div class="px-4 flex flex-wrap justify-between mt-4">
                     <div>
                         <h2 class="text-xl font-bold flex items-center"><?= $company->companyName ?></h2>
                         <h3 class=" font-medium">Slogan de l'entreprise</h3>
@@ -43,7 +46,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                         </a>
                     </div>
                 </div>
-                <ul class="flex flex-wrap mt-10 -mb-px text-primary text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
+                <ul class="flex flex-wrap mt-10 -mb-px px-4 pb-4 text-primary text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
                     <li class="mr-4" role="presentation">
                         <button class="inline-block border-b-2 font-normal text-black hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="myCompanyProfile-tab" data-tabs-target="#myCompanyProfile" type="button" role="tab" aria-controls="myCompanyProfile" aria-selected="false">À propos</button>
                     </li>
@@ -64,6 +67,16 @@ include(APPPATH . 'views/layouts/company/header.php');
                             </p>
                         </div>
                     </div>
+                    <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
+                        <h2 class="text-xl font-bold mb-4 flex items-center">
+                            Les avantages de l'entreprise
+                        </h2>
+                        <div class="flex items-center justify-between">
+                            <p class="font-normal mb-4">
+                                <?=$company->companyDescription?>
+                            </p>
+                        </div>
+                    </div>
 
 
                     <div class="relative bg-white rounded-lg mt-4 mb-4 py-4 dark:bg-gray-800 dark:text-white">
@@ -71,25 +84,25 @@ include(APPPATH . 'views/layouts/company/header.php');
                             Photos de l'entreprise
                         </h2>
                         
-                        <div class="w-screen-90 overflow-x-auto flex pb-4 px-4 gap-4 no-scrollbar">
-                            <div class="rounded-lg w-100 h-60 flex flex-shrink-0 items-center justify-center">
-                                <div class="w-full h-full flex items-center justify-center">
-                                    <img id="company-image" src="<?=base_url('assets/img/airbnb-couverture.png')?>" class=" object-cover w-full h-full rounded-lg" alt="Image de l'entreprise">
+                        <div class="overflow-x-auto flex pb-4 px-4 gap-4 no-scrollbar">
+                            <div class="rounded-lg flex items-center justify-center">
+                                <div class="w-full h-full flex items-center justify-center" style="width:500px;">
+                                    <img id="company-image" src="<?=base_url('assets/img/airbnb1.png')?>" class="w-full h-full rounded-lg" alt="Image de l'entreprise" style="width:100%;">
                                 </div>
                             </div>
-                            <div class="rounded-lg w-100 h-60 flex flex-shrink-0 items-center justify-center">
-                                <div class="w-full h-full flex items-center justify-center">
-                                    <img id="company-image" src="<?=base_url('assets/img/airbnb-couverture.png')?>" class=" object-cover w-full h-full rounded-lg" alt="Image de l'entreprise">
+                            <div class="rounded-lg flex items-center justify-center">
+                            <div class="w-full h-full flex items-center justify-center" style="width:500px;">
+                                <img id="company-image" src="<?=base_url('assets/img/airbnb2.png')?>" class="w-full h-full rounded-lg" alt="Image de l'entreprise" style="width:100%;">
                                 </div>
                             </div>
-                            <div class="rounded-lg w-100 h-60 flex flex-shrink-0 items-center justify-center">
-                                <div class="w-full h-full flex items-center justify-center">
-                                    <img id="company-image" src="<?=base_url('assets/img/airbnb-couverture.png')?>" class=" object-cover w-full h-full rounded-lg" alt="Image de l'entreprise">
+                            <div class="rounded-lg flex items-center justify-center">
+                            <div class="w-full h-full flex items-center justify-center" style="width:500px;">
+                                <img id="company-image" src="<?=base_url('assets/img/airbnb1.png')?>" class="w-full h-full rounded-lg" alt="Image de l'entreprise" style="width:100%;">
                                 </div>
                             </div>
-                            <div class="rounded-lg w-100 h-60 flex flex-shrink-0 items-center justify-center">
-                                <div class="w-full h-full flex items-center justify-center">
-                                    <img id="company-image" src="<?=base_url('assets/img/airbnb-couverture.png')?>" class=" object-cover w-full h-full rounded-lg" alt="Image de l'entreprise">
+                            <div class="rounded-lg flex items-center justify-center">
+                            <div class="w-full h-full flex items-center justify-center" style="width:500px;">
+                                <img id="company-image" src="<?=base_url('assets/img/airbnb2.png')?>" class=" w-full h-full rounded-lg" alt="Image de l'entreprise" style="width:100%;">
                                 </div>
                             </div>
 
@@ -98,13 +111,7 @@ include(APPPATH . 'views/layouts/company/header.php');
 
                 </div>
                 <div class="hidden" id="myCompanyMissions" role="tabpanel" aria-labelledby="myCompanyMissions-tab">
-                    <div class="bg-primary w-screen-90 rounded-lg h-20vh p-4 text-white">
-                        <p class="font-bold">Découvrez la manière la plus rapide et efficace de décrochez une mission chez <?=$company->companyName?>.</p>
-                        <div class="flex w-full">
-                            <input type="text" id="search-mission-input" class="w-full bg-white bg-opacity-20 rounded-lg p-2 placeholder-white mr-2 text-center" placeholder="Recherchez..." />
-                            <!--<button class="w-1/5 bg-white text-primary rounded-lg px-4 py-2">Rechercher</button>-->
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
             <div class="flex flex-wrap w-full pb-4 mb-12" id="missions-section">
@@ -184,3 +191,4 @@ include(APPPATH . 'views/layouts/company/header.php');
         </div>
     </div>
 </div>
+<script src="<?php echo base_url('assets/js/app.js'); ?>"></script>

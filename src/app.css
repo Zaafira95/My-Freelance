@@ -184,30 +184,4 @@ body.dark {
     display: block;
   }
   
-  .h-60 {
-    height: 15rem;
-  }
-
-  .w-100 {
-    width: 25rem;
-  }
-
-  .w-screen {
-    width: 100vw;
-  }
-  .w-screen-42 {
-    width: 42vw;
-  }
-  .w-screen-90 {
-    width: 90vw;
-  }
-
-  .pt-4 {
-    padding-top: 1rem;
-  }
-
-  .absolute-logo{
-    position: absolute;
-    bottom: -1.5rem;
-    left: 0.75rem;
-  }
+  

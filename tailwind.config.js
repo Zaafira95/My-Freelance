@@ -182,6 +182,14 @@ module.exports = {
       '4xl': '2.441rem',
       '5xl': '3.052rem',
     },
+    ringWidth: {
+      DEFAULT: '1px',
+      '0': '0px',
+      '1': '1px',
+      '2': '2px',
+      '4': '4px',
+      '8': '8px',
+    },
   },
 
   plugins: [

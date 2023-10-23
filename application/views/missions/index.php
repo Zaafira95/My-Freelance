@@ -130,8 +130,8 @@ include(APPPATH . 'views/layouts/user/header.php' );
                         </select>
                     </div>
                     <div class="flex justify-between mt-10">
-                        <button class="px-4 py-2 rounded-full border border-primary text-primary">Effacer</button>
-                        <button class="px-4 py-2 rounded-full bg-primary text-white">Appliquer</button>
+                        <button id="resetFiltersButton" class="px-4 py-2 rounded-full border border-primary text-primary">Effacer</button>
+                        <!--<button class="px-4 py-2 rounded-full bg-primary text-white">Appliquer</button>-->
                     </div>
                 </div>
             </div>
@@ -491,9 +491,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
 
             $('#citySearch').val('');
 
-            // Réinitialisez les valeurs des sélecteurs de compétences et de métiers
-            //skillsChoices.clearStore();
-            //skillsChoices.setChoices([], 'value', 'label', false); // Effacez toutes les options sélectionnées
+            skillsChoices.removeActiveItems();
 
             var slider = document.getElementById('tjm-slider');
             var defaultTJMValues = [300, 1200]; // Valeurs par défaut

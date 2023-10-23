@@ -631,10 +631,8 @@ include(APPPATH . 'views/layouts/user/header.php');
 
             $('#citySearch').val('');
 
-            // Réinitialisez les valeurs des sélecteurs de compétences et de métiers
-            //skillsChoices.clearStore();
-            //skillsChoices.setChoices([], 'value', 'label', false); // Effacez toutes les options sélectionnées
-
+            skillsChoices.removeActiveItems();
+            
             var slider = document.getElementById('tjm-slider');
             var defaultTJMValues = [300, 1200]; // Valeurs par défaut
             slider.noUiSlider.set(defaultTJMValues);

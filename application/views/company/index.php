@@ -92,9 +92,9 @@ include(APPPATH . 'views/layouts/company/header.php');
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <!--<div class="flex justify-between mt-10">
+                    <div class="flex justify-between mt-10">
                         <button id="resetFiltersButton" class="px-4 py-2 rounded-full border border-primary text-primary">Effacer</button>
-                    </div>-->
+                    </div>
                 </div>
                 
             </div>
@@ -390,7 +390,7 @@ include(APPPATH . 'views/layouts/company/header.php');
     });
 
     //Script selection des compétences
-    let skillsChoices = new Choices('#skillsAll', {
+    const skillsChoices = new Choices('#skillsAll', {
         searchEnabled: true,
         removeItemButton: true,
         itemSelectText: '',
@@ -518,7 +518,7 @@ include(APPPATH . 'views/layouts/company/header.php');
 
     document.getElementById("citySearch").addEventListener("keyup", filterFreelancers);
 
-/*
+
     $(document).ready(function() {
         $('#resetFiltersButton').on('click', function() {
             // Réinitialisez les filtres en décochant toutes les cases à cocher
@@ -526,18 +526,8 @@ include(APPPATH . 'views/layouts/company/header.php');
 
             $('#citySearch').val('');
 
-            // Réinitialisez les valeurs des sélecteurs de compétences et de métiers
-            //skillsChoices.setValue([]);
-            //skillsChoices.clearInput(true); // Effacez le champ d'entrée
-            //$('#skillsAll').val([]);
-            //$('#skillsAll').empty();
-            var select = $('#skillsAll');
-
-            // Parcourir toutes les options
-            select.find('option:selected').each(function() {
-                // Supprimer chaque option sélectionnée
-                $(this).remove();
-            });
+            skillsChoices.removeActiveItems();
+            jobsChoices.removeActiveItems();
 
             $('#jobsAll').val(null);
 
@@ -549,7 +539,7 @@ include(APPPATH . 'views/layouts/company/header.php');
             filterFreelancers();
         });
     });
-*/
+
     function filterFreelancers() {
         const freelancers = document.querySelectorAll(".freelancer-item");
         const activeFilters = [];

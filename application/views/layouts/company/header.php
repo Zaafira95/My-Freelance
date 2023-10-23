@@ -105,13 +105,13 @@
                     </li>
                     <li>
                         <?php 
-                            if ($currentPage == 'freelancer'){
+                            if ($currentPage == 'freelancers'){
                         ?>
-                            <a href="<?php echo base_url('user/freelancers');?>" class="block py-2 pr-4 pl-3 text-primary bg-primary lg:bg-transparent lg:text-primary lg:p-0 border-b-2 border-primary dark:text-white">Freelances</a>
+                            <a href="<?php echo base_url('company/freelancer');?>" class="block py-2 pr-4 pl-3 text-primary bg-primary lg:bg-transparent lg:text-primary lg:p-0 border-b-2 border-primary dark:text-white">Freelances</a>
                         <?php
                             } else {
                         ?>
-                            <a href="<?php echo base_url('user/freelancers');?>" class="block py-2 pr-4 pl-3 text-black border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-400 lg:p-0 dark:text-white">Freelances</a>
+                            <a href="<?php echo base_url('company/freelancer');?>" class="block py-2 pr-4 pl-3 text-black border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-400 lg:p-0 dark:text-white">Freelances</a>
                         <?php
                             }
                         ?>

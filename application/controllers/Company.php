@@ -24,7 +24,8 @@ class Company extends CI_Controller {
     
         foreach ($freelancers as $freelancer) {
             $freelancerUserId = $freelancer->userId; // Supposons que vous avez récupéré le userId d'un freelance
-            $freelancer_job = $this->Company_model->getJobNameByUserId($freelancerUserId);
+            $freelancer_job[$freelancerUserId] = $this->Company_model->getJobByUserId($freelancerUserId);
+            $freelancer_skills[$freelancerUserId] = $this->Company_model->getUserSkillsAll($freelancerUserId);
 
             $isAvailable = $freelancer->userIsAvailable ;
         
@@ -38,7 +39,7 @@ class Company extends CI_Controller {
         }
 
         $data['freelancer_job'] = $freelancer_job;
-
+        $data['freelancer_skills'] = $freelancer_skills;
 
         $company = $this->Company_model->getCompanyData($userId);
         $data['company'] = $company;
@@ -46,9 +47,9 @@ class Company extends CI_Controller {
         $job_for_company = $this->Company_model->getCompanyJobs($companyId);
         $data['job_for_company'] = $job_for_company;
 
-
-     
-        
+        $data['skillsAll'] = $this->Company_model->get_all_skills();
+        $data['jobsAll'] = $this->Company_model->get_all_jobs();
+               
 
         if ($user) {
             $data['user'] = $user;
@@ -68,7 +69,7 @@ class Company extends CI_Controller {
    
 
 
-    public function freelancer($id){
+    public function freelancerView($id){
 
         $userId = $this->session->userdata('userId');
         $this->load->model('Company_model');
@@ -124,7 +125,7 @@ class Company extends CI_Controller {
         $job_for_company = $this->Company_model->getCompanyJobs($companyId);
         $data['job_for_company'] = $job_for_company;
 
-        $this->load->view('company/freelancer', $data);
+        $this->load->view('freelancers/view', $data);
     }
 
 
@@ -371,6 +372,46 @@ class Company extends CI_Controller {
         $this->load->view('missions/view', $data);
 
     }
+
+    public function freelancer(){
+        $userId = $this->session->userdata('userId');
+        $this->load->model('User_model');
+        $this->load->model('Company_model');
+        $user = $this->User_model->get_UserData($userId);
+
+        $freelancers = $this->Company_model->get_freelancers();
+        $data['freelancers'] = $freelancers;
+        
+        foreach ($freelancers as $freelancer) {
+            $freelancerUserId = $freelancer->userId; // Supposons que vous avez récupéré le userId d'un freelance
+            $freelancer_job[$freelancerUserId] = $this->Company_model->getJobByUserId($freelancerUserId);
+            $freelancer_skills[$freelancerUserId] = $this->Company_model->getUserSkillsAll($freelancerUserId);
+
+            $isAvailable = $freelancer->userIsAvailable ;
+        
+            if ($isAvailable == 1) {
+                $checkboxChecked = 'checked';
+            } else {
+                $checkboxChecked = '';
+            }
+            
+            $data['checkboxChecked'] = $checkboxChecked;
+        }
     
+        $data['freelancer_job'] = $freelancer_job;
+        $data['freelancer_skills'] = $freelancer_skills;
+
+        $company = $this->Company_model->getCompanyData($userId);
+        $data['company'] = $company;
+        $companyId = $company->idCompany;
+        $job_for_company = $this->Company_model->getCompanyJobs($companyId);
+        $data['job_for_company'] = $job_for_company;
+
+        $data['skillsAll'] = $this->Company_model->get_all_skills();
+        $data['jobsAll'] = $this->Company_model->get_all_jobs();
+        $data['user'] = $user;
+
+        $this->load->view('freelancers/index', $data);
+    }
 }
 ?>

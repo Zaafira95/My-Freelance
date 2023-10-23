@@ -1,5 +1,5 @@
 <?php
-$currentPage = 'dashboard';
+$currentPage = 'freelancers';
 
 
 // Header Call
@@ -78,6 +78,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                 
                     <h4 class="text-lg font-medium mt-4">Compétences</h4>
                     <div class="w-full max-w-xs mx-auto mt-5 text-black">
+                        <!-- <label for="skillsAll" class="block text-sm font-medium text-gray-700">Sélectionnez vos compétences</label> -->
                         <select id="skillsAll" name="skillsAll[]" multiple class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             <?php foreach ($skillsAll as $skill): ?>
                                 <option class="text-black" value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
@@ -86,6 +87,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                     </div>
                     <h4 class="text-lg font-medium mt-4">Métiers</h4>
                     <div class="w-full max-w-xs mx-auto mt-5 text-black">
+                        <!-- <label for="skillsAll" class="block text-sm font-medium text-gray-700">Sélectionnez vos compétences</label> -->
                         <select id="jobsAll" name="jobsAll[]" multiple class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             <?php foreach ($jobsAll as $job): ?>
                                 <option class="text-black" value="<?= $job['jobId'] ?>"><?= $job['jobName'] ?></option>
@@ -98,7 +100,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                 </div>
                 
             </div>
-            <div class="w-1/2 overflow-y-auto no-scrollbar">
+            <div class="w-full overflow-y-auto no-scrollbar">
                 <div class="bg-primary rounded-lg h-20vh p-4 text-white">
                     <p class="font-bold">Hello, <?=$user->userFirstName?></p>
                     <p class="font-normal mt-2 mb-2">Découvrez la manière la plus rapide et efficace de décrocher une mission.</p>
@@ -265,64 +267,6 @@ include(APPPATH . 'views/layouts/company/header.php');
                     </div>
                     <p class="text-xl mt-10 hidden text-left" id="no-freelancer-found">Aucun freelance n'a été trouvée.</p>
                     </div>
-                    <div class="w-1/4 sticky top-0">
-                        <div class="bg-white rounded-lg h-22vh p-4 dark:bg-gray-800 dark:text-white">
-                            <div class="flex flex-col items-center mb-4">
-                            <a class="flex flex-col items-center" href="<?=base_url('user/profil')?>">
-                                <div class="w-20 h-20 rounded-full border-10 ring-2 ring-primary overflow-hidden">
-                                    <?php 
-                                    if($user->userAvatarPath == null){
-                                        $user->userAvatarPath = 'assets/img/default-avatar.png';
-                                    }
-                                    ?>
-                                    <img src="<?php echo base_url($user->userAvatarPath); ?>" alt="Avatar" class="w-20 h-20 p-0.5 rounded-full ring-2 ring-primary">
-                                </div>
-
-                                    <h3 class="text-lg font-medium mt-2"><?=$user->userFirstName .' '. $user->userLastName?></h3>
-                            </a>
-                                <div class="flex items-center mt-1">
-                                    <p class="font-light"><?=$company->companyName?></p>
-                                </div>
-                                <a href="<?php echo base_url('User/profil');?>" class="text-primary mt-2 border border-primary px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">Modifier mon profil</a>
-                            <!-- missions favorites -->
-                                <a href="<?php echo base_url('Company/missionAdd');?>" class="text-primary mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">Ajouter une offre</a>
-                                <a href="<?php echo base_url('Company/logout');?>" class="text-red-600 mt-2 hover:text-red-900">Déconnexion</a>
-    
-                            </div>
-                        </div>
-
-                        <div class="bg-white rounded-lg mt-4 p-4 text-left dark:bg-gray-800 dark:text-white">
-                            <h3 class="text-xl font-medium mt-2">Vos Offres de mission</h3>
-                            <?php if (is_array($job_for_company) && !empty($job_for_company)) {
-                                $job_for_companyCount = 0;
-                                foreach ($job_for_company as $job) {
-                                    if ($job_for_companyCount < 3) {
-                                ?>
-                                    <a href="<?= base_url('company/missionView/' . $job->idMission) ?>" class="flex items-center mt-2 mb-2">
-                                        <div class="flex items-center mt-2 mb-2">
-                                            <div class="mr-2 mt-2">
-                                                <p class="w-10 h-10 rounded-full bg-secondary text-white text-center flex items-center justify-center mr-4" style="font-size:1rem;">💼</p>
-                                            </div>
-                                            <div>
-                                                <h3 class="text-lg font-medium"><?= $job->missionName ?></h3>
-                                                <p class="text-sm text-gray-500"><?= strlen($job->missionDescription) > 100 ? substr($job->missionDescription, 0, 100)."..." : $job->missionDescription ?></p>
-                                            </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                <?php
-                                        $job_for_companyCount++;
-                                    } else {
-                                        break;
-                                    }
-                                }
-                                ?>
-                            <?php } else { ?>
-                                <p class="mt-2 mb-2"> Aucune offre disponible. </p>
-                                <button class="bg-primary text-white px-4 py-2 mt-2 rounded-full">Ajouter une offre</button>
-                            <?php } ?>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -379,8 +323,8 @@ include(APPPATH . 'views/layouts/company/header.php');
 
     });
 
-    //Script selection des métiers
-    const jobsChoices = new Choices('#jobsAll', {
+        //Script selection des métiers
+        const jobsChoices = new Choices('#jobsAll', {
         searchEnabled: true,
         removeItemButton: true,
         itemSelectText: '',
@@ -518,7 +462,6 @@ include(APPPATH . 'views/layouts/company/header.php');
 
     document.getElementById("citySearch").addEventListener("keyup", filterFreelancers);
 
-
     $(document).ready(function() {
         $('#resetFiltersButton').on('click', function() {
             // Réinitialisez les filtres en décochant toutes les cases à cocher
@@ -539,7 +482,6 @@ include(APPPATH . 'views/layouts/company/header.php');
             filterFreelancers();
         });
     });
-
     function filterFreelancers() {
         const freelancers = document.querySelectorAll(".freelancer-item");
         const activeFilters = [];
@@ -560,6 +502,7 @@ include(APPPATH . 'views/layouts/company/header.php');
 
         const expertiseFilters = []; // Tableau pour stocker les filtres d'expertise sélectionnés
 
+        // Remplissez expertiseFilters avec les filtres d'expertise sélectionnés
         checkboxes.forEach(function(checkbox) {
             if (checkbox.checked && (checkbox.id === "junior" || checkbox.id === "intermediaire" || checkbox.id === "expert")) {
                 expertiseFilters.push(checkbox.id);
@@ -645,8 +588,6 @@ include(APPPATH . 'views/layouts/company/header.php');
         noFreelancerFound.style.display = visibleFreelancersCount === 0 ? "block" : "none";
     }
 });
-
-
 
 </script>
 

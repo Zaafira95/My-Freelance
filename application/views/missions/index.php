@@ -7,8 +7,11 @@ include(APPPATH . 'views/layouts/user/header.php' );
 <head>
     <title>Nos Missions | Café Crème Community </title>
 
+<link rel="stylesheet" href="<?php echo base_url('assets/css/nouislider.min.css');?>">
 <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
+<link href="<?php echo base_url('/node_modules/choices.js/public/assets/styles/choices.min.css');?>" rel="stylesheet" type="text/css">
 <link href="<?php echo base_url('assets/css/app.css');?>" rel="stylesheet">
+
 
 </head>
 
@@ -74,37 +77,38 @@ include(APPPATH . 'views/layouts/user/header.php' );
                     <h4 class="text-lg font-medium mt-4">Localisation</h4>
                     <div class="flex items-center mt-2">
                         <i class="fa fa-map-marker-alt mr-3"></i>
-                        <select id="localisation-select" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5">
-                            <option value="">Sélectionnez une localisation</option>
-                        </select>
+                        <div class="relative city-search-container w-full">
+                            <input type="text" id="citySearch" placeholder="Cherchez votre ville" class="border p-2 rounded-lg w-full text-black">
+                                <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
+                        </div>
                     </div>
                     <h4 class="text-lg font-medium mt-4">Type de poste</h4>
                     <div class="mt-2">
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2">
+                            <input type="checkbox" class="form-checkbox mr-2" id="temps-plein">
                             <span class="ml-2">Temps plein</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2">
+                            <input type="checkbox" class="form-checkbox mr-2" id="temps-partiel">
                             <span class="ml-2">Temps partiel</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2">
+                            <input type="checkbox" class="form-checkbox mr-2" id="remote">
                             <span class="ml-2">Full remote</span>
                         </label>
                     </div>
                     <h4 class="text-lg font-medium mt-4">Niveau d'expérience</h4>
                     <div class="mt-2">
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2">
+                            <input type="checkbox" class="form-checkbox mr-2" id="junior">
                             <span class="ml-2">Junior (1 à 2 ans)</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2">
+                            <input type="checkbox" class="form-checkbox mr-2" id="intermediaire">
                             <span class="ml-2">Intermédiaire (3 à 5 ans)</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2">
+                            <input type="checkbox" class="form-checkbox mr-2" id="expert">
                             <span class="ml-2">Expert (+ 5 ans)</span>
                         </label>
                     </div>
@@ -117,13 +121,17 @@ include(APPPATH . 'views/layouts/user/header.php' );
                         </div>
                     </div>
                     <h4 class="text-lg font-medium mt-4">Compétences</h4>
-                    <div class="flex items-center mt-2">
-                        <i class="fa fa-laptop mr-3"></i>
-                        <input type="text" placeholder="Javascript, PHP, CSS ..." class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5">
+                    <div class="w-full max-w-xs mx-auto mt-5 text-black">
+                        <!-- <label for="skillsAll" class="block text-sm font-medium text-gray-700">Sélectionnez vos compétences</label> -->
+                        <select id="skillsAll" name="skillsAll[]" multiple class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <?php foreach ($skillsAll as $skill): ?>
+                                <option class="text-black" value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     <div class="flex justify-between mt-10">
-                        <button class="px-4 py-2 rounded-full border border-primary text-primary">Effacer</button>
-                        <button class="px-4 py-2 rounded-full bg-primary text-white">Appliquer</button>
+                        <button id="resetFiltersButton" class="px-4 py-2 rounded-full border border-primary text-primary">Effacer</button>
+                        <!--<button class="px-4 py-2 rounded-full bg-primary text-white">Appliquer</button>-->
                     </div>
                 </div>
             </div>
@@ -139,9 +147,24 @@ include(APPPATH . 'views/layouts/user/header.php' );
                 <h3 class="text-2xl font-medium mt-4" id="result-section">Pour vous :</h3>
                 <div class="flex flex-wrap" id="missions-section">
                     <?php foreach($missions as $mission): ?>
+                        <?php
+                        $dataMissionSkills = [];
+                        foreach ($missionSkills[$mission->idMission] as $skill):
+                            $dataMissionSkills[] = $skill->skillId;
+                        endforeach;
+                        $dataMissionSkillsString = implode(',', $dataMissionSkills);
+                        ?>
                         <div class="flex flex-wrap">
-                            <a href="<?=base_url('user/missionView/'.$mission->idMission)?>">
-                                <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative mission-item" data-mission-name="<?=strtolower($mission->missionName)?>">
+                            <a href="<?=base_url('user/missionView/'.$mission->idMission)?>"
+                            class="mission-item " 
+                            data-mission-name="<?=strtolower($mission->missionName)?>" 
+                            data-mission-type="<?=strtolower($mission->missionType)?>"
+                            data-mission-remote="<?=strtolower($mission->missionRemote)?>" 
+                            data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" 
+                            data-mission-tjm="<?=$mission->missionTJM?>" 
+                            data-mission-localisation="<?=strtolower($mission->missionLocalisation)?>"
+                            data-mission-skills="<?=$dataMissionSkillsString?>">
+                            <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative mission-item" data-mission-name="<?=strtolower($mission->missionName)?>" data-mission-type="<?=strtolower($mission->missionType)?>" data-mission-remote="<?=strtolower($mission->missionRemote)?>" data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" data-mission-tjm="<?=$mission->missionTJM?>" data-mission-localisation="<?=$mission->missionLocalisation?>" data-mission-skills="<?=$dataMissionSkillsString?>">
                                     <div class="flex items-center">
                                         <div class="mr-4">
                                             <img src="<?=base_url('assets/img/airbnb.png')?>" alt="Logo de l'entreprise" class="w-10 h-10 rounded-full">
@@ -169,6 +192,15 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                                     ?>
                                                     <?=$mission->missionType?>
                                                 </span>
+                                                <?php
+
+                                                if($mission->missionRemote == 1){
+                                                ?>
+                                                    <span class="mr-2"> • Remote </span>
+                                                <?php
+                                                }
+                                                ?>
+                                                <span class="mr-2"> • <?=$mission->missionLocalisation?></span>
                                                 <span class="mr-2"> • 
                                                 <?php
                                             
@@ -271,9 +303,131 @@ include(APPPATH . 'views/layouts/user/header.php' );
 <!-- Script JS -->
 
 <script src="<?php echo base_url('assets/js/app.js'); ?>"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.4/nouislider.min.js"></script>
+<script src="<?php echo base_url('/node_modules/choices.js/public/assets/scripts/choices.min.js'); ?>"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
+    $(document).ready(function() {
+    
+        $('#citySearch').on('keyup', function() {
+            let term = $(this).val();
+            if(term.length > 2) { // Recherche après 2 caractères
+                $.post('user/search_cities', { term: term }, function(data) {
+                    let cities = JSON.parse(data);
+                    if(cities.length > 0) {
+                        // Ajoutez la classe .has-border si des résultats sont retournés
+                        $('#cities-list').addClass('has-border');
+                    } else {
+                        // Supprimez la classe .has-border si aucun résultat n'est retourné
+                        $('#cities-list').removeClass('has-border');
+                    }
+                    $('#cities-list').empty();
+                    cities.forEach(function(city) {
+                        $('#cities-list').append(`<div class="city-item p-2 hover:bg-gray-200 cursor-pointer" data-id="${city.geoname_id}">${city.name}</div>`);
+                    });
+                });
+            }
+            else {
+                // Supprimez la classe .has-border si l'input est trop court
+                $('#cities-list').removeClass('has-border').empty();
+            }
+        });
+
+        $(document).on('click', '.city-item', function() {
+            let cityName = $(this).text();
+            $('#citySearch').val(cityName);  // Mettez à jour le champ de saisie avec le nom de la ville sélectionnée
+            $('#cities-list').empty(); // Videz la liste
+            $('#cities-list').removeClass('has-border').empty();
+        });
+
+        // Pour fermer la liste lorsque vous cliquez en dehors
+        $(document).on('click', function(event) {
+            // Si le clic n'est pas sur le champ de saisie (#citySearch)
+            // et n'est pas sur un élément à l'intérieur de la liste (#cities-list)...
+            if (!$(event.target).closest('#citySearch, #cities-list').length) {
+                // ... alors videz et fermez la liste.
+                $('#cities-list').empty().removeClass('has-border');
+            }
+        });
+
+    });
+
+
+
+    //Script selection des compétences
+    const skillsChoices = new Choices('#skillsAll', {
+        searchEnabled: true,
+        removeItemButton: true,
+        itemSelectText: '',
+        placeholder: true, // Ajoutez cette ligne pour activer le placeholder
+        placeholderValue: 'Sélectionnez des compétences', // Texte du placeholder
+
+    });
+    
+    $(document).ready(function(){
+        $('#search-input-skill').on('keyup', function(){
+            let term = $(this).val();
+            $.post('user/search_skills', { term: term }, function(data){
+                let skills = JSON.parse(data);
+                $('#skills-list').empty();
+                skills.forEach(function(skill){
+                    $('#skills-list').append(`<div class="skill-item" data-id="${skill.skillId}">${skill.skillName}</div>`);
+                });
+            });
+        });
+
+        $(document).on('click', '.skill-item', function(){
+            let skillId = $(this).data('id');
+            let skillName = $(this).text();
+            // Vérifiez si la compétence est déjà sélectionnée
+            if (!$(`#selected-skills .selected-skill[data-id="${skillId}"]`).length) {
+                $('#selected-skills').append(`<div class="selected-skill" data-id="${skillId}">${skillName}</div>`);
+            }
+        });
+    });
+
+    
+
+
+    var base_url = '<?php echo base_url(); ?>';
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+    var slider = document.getElementById('tjm-slider');
+    var min = document.getElementById('tjm-min');
+    var max = document.getElementById('tjm-max');
+    var userTJM = <?=$user->userTJM?>;
+    noUiSlider.create(slider, {
+        start: [userTJM, userTJM + 400],
+        connect: true,
+        range: {
+        'min': 300,
+        'max': 1200
+        },
+        step: 10, // Ajout de la propriété step pour les tranches de 10
+        format: {
+        to: function(value) {
+            return parseInt(value) + '€';
+        },
+        from: function(value) {
+            return value.replace('€', '');
+        }
+        }
+    });
+
+    slider.noUiSlider.on('update', function(values, handle) {
+        if (handle === 0) {
+        min.textContent = values[handle];
+        } else {
+        max.textContent = values[handle];
+        }
+    });
+    });
+
+    document.addEventListener("DOMContentLoaded", function(event) {
+        document.getElementById('updateProductButton').click();
+    });
     $(document).ready(function() {
         // Écouteur d'événement pour détecter les changements dans la barre de recherche
         $('#search-input').on('input', function() {
@@ -303,10 +457,141 @@ include(APPPATH . 'views/layouts/user/header.php' );
                 $('#result-section').hide();
             }
         });
+
+        
     });
 
     // Fonction pour supprimer les accents d'une chaîne de caractères
     function removeAccents(str) {
         return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     }
+
+    // JavaScript code for handling active filters
+    document.addEventListener("DOMContentLoaded", function() {
+    var slider = document.getElementById('tjm-slider');
+    const checkboxes = document.querySelectorAll(".form-checkbox");
+
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener("change", filterMissions);
+    });
+
+    $('#skillsAll').on('change', function() {
+        filterMissions();
+    });
+
+    slider.noUiSlider.on("change", filterMissions);
+
+    document.getElementById("citySearch").addEventListener("keyup", filterMissions);
+
+
+    $(document).ready(function() {
+        $('#resetFiltersButton').on('click', function() {
+            // Réinitialisez les filtres en décochant toutes les cases à cocher
+            $('.form-checkbox').prop('checked', false);
+
+            $('#citySearch').val('');
+
+            skillsChoices.removeActiveItems();
+
+            var slider = document.getElementById('tjm-slider');
+            var defaultTJMValues = [300, 1200]; // Valeurs par défaut
+            slider.noUiSlider.set(defaultTJMValues);
+
+            filterMissions();
+        });
+    });
+
+    function filterMissions() {
+        const missions = document.querySelectorAll(".mission-item");
+        const activeFilters = [];
+        const cityInput = document.getElementById("citySearch");
+        const cityFilter = cityInput.value.toLowerCase();
+        const tjmValues = slider.noUiSlider.get();
+        const tjmMin = parseInt(tjmValues[0]);
+        const tjmMax = parseInt(tjmValues[1]);
+        const selectedSkills = $('#skillsAll').val();
+        
+
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                activeFilters.push(checkbox.id);
+            }
+        });
+
+        const expertiseFilters = []; // Tableau pour stocker les filtres d'expertise sélectionnés
+
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked && (checkbox.id === "junior" || checkbox.id === "intermediaire" || checkbox.id === "expert")) {
+                expertiseFilters.push(checkbox.id);
+            }
+        });
+
+        let visibleMissionsCount = 0;
+
+        missions.forEach(function(mission) {
+            const missionName = mission.getAttribute("data-mission-name");
+            const missionType = mission.getAttribute("data-mission-type");
+            const missionRemote = mission.getAttribute("data-mission-remote");
+            const missionExpertise = mission.getAttribute("data-mission-expertise");
+            const missionLocalisation = mission.getAttribute("data-mission-localisation").toLowerCase();
+            const missionSkillsAttr = mission.getAttribute("data-mission-skills");
+            const missionTJM = parseInt(mission.getAttribute("data-mission-tjm"));
+
+            let showMission = activeFilters.every(function(filter) {
+                if (filter === "temps-plein" && missionType !== "temps-plein") return false;
+                if (filter === "remote" && missionRemote !== "1") return false;
+                if (filter === "temps-partiel" && missionType !== "temps-partiel") return false;
+                //if (filter === "junior" && missionExpertise !== "junior") return false;
+                //if (filter === "intermediaire" && missionExpertise !== "intermediaire") return false;
+                //if (filter === "expert" && missionExpertise !== "expert") return false;
+                return true;
+            });
+
+            // Filtre par expertise
+            let matchesExpertise = true;
+            if (expertiseFilters.length > 0) {
+                matchesExpertise = expertiseFilters.some(function(filter) {
+                    return (
+                        (filter === "junior" && missionExpertise === "junior") ||
+                        (filter === "intermediaire" && missionExpertise === "intermediaire") ||
+                        (filter === "expert" && missionExpertise === "expert")
+                    );
+                });
+            }
+            showMission = showMission && matchesExpertise;
+
+            // Filtre par ville
+            if (cityFilter && !missionLocalisation.includes(cityFilter)) {
+                showMission = false;
+            }
+
+            // Filtre par compétences
+            if (selectedSkills.length > 0) {
+                const missionSkills = missionSkillsAttr.split(','); // Divise la chaîne en un tableau d'IDs de compétences
+                console.log("1 :",missionSkills);
+                console.log("2 :",selectedSkills);
+                const matchesSkills = selectedSkills.some(function(selectedSkill) {
+                    return missionSkills.includes(selectedSkill);
+                });
+                if (!matchesSkills) {
+                    showMission = false;
+                }
+            }
+
+            if (missionTJM < tjmMin || missionTJM > tjmMax) {
+                showMission = false;
+            }
+
+            mission.style.display = showMission ? "block" : "none";
+
+            if (showMission) {
+                visibleMissionsCount++;
+            }
+        });
+
+        const noMissionFound = document.getElementById("no-mission-found");
+        noMissionFound.style.display = visibleMissionsCount === 0 ? "block" : "none";
+    }
+});
+
 </script>

@@ -92,7 +92,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
                             </select>   
                         </div>      
                         
-                        <div>
+                        <div id="skills-container">
                             <p class="text-lg font-bold mt-4"> Compétences requises </p>
                             <div class="flex flex-1 mb-4 skill-row">
                                 <div class="w-3/4 mr-2">
@@ -111,8 +111,8 @@ include(APPPATH . 'views/layouts/company/header.php' );
                                     </select>
                                 </div>
                             </div>                       
-                         </div>
-                         <button id="add-skill-btn" type="button" class="py-2 px-4 bg-primary text-white rounded-lg">Ajouter une compétence</button>
+                        </div>
+                        <button id="add-skill-btn" type="button" class="py-2 px-4 bg-primary text-white rounded-lg">Ajouter une compétence</button>
 
 
                         <div class="flex flex-1 mt-4">
@@ -383,7 +383,6 @@ include(APPPATH . 'views/layouts/company/header.php' );
                     </div>
                 </div>
             `;
-
             $('#skills-container').append(newSkillRow);
 
             // Désinitialisez et réinitialisez les instances Choices.js sur les éléments nouvellement ajoutés

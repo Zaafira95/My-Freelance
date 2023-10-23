@@ -247,12 +247,12 @@ class User extends CI_Controller {
         $userLastName = $this->input->post('userLastName');
         $userTelephone = $this->input->post('userTelephone');
         $userJobName = $this->input->post('jobsAll');
+        $userExpertise = $this->input->post('userExpertise');
         $userTJM = $this->input->post('userTJM');
-
-
 
         // $userJobName is an array convert it to string 
         $userJobName = implode(',', $userJobName);
+        //$userExpertise = implode(',', $userExpertise);
 
         $jobId = $this->User_model->getJobId($userJobName);
 
@@ -297,7 +297,7 @@ class User extends CI_Controller {
        
     
         // Mettre à jour les autres données de l'utilisateur dans la base de données
-        $this->User_model->updateUserData($userId, $userFirstName, $userLastName, $userTelephone, $jobId, $userTJM);
+        $this->User_model->updateUserData($userId, $userFirstName, $userLastName, $userTelephone, $jobId, $userExpertise, $userTJM);
     
         $this->session->set_flashdata('message', 'Vos informations ont bien été mises à jour !');
         $this->session->set_flashdata('status', 'success');
@@ -644,6 +644,8 @@ class User extends CI_Controller {
         $data['missionCompany'] = $missionCompany;
         $favoriteMissions = $this->User_model->getFavoriteMissions($userId); // Remplacez cette ligne avec votre logique pour récupérer les missions favorites de l'utilisateur
         $data['favoriteMissions'] = $favoriteMissions;
+        $data['skillsAll'] = $this->User_model->get_all_skills();
+
 
 
         $this->load->view('missions/index', $data);

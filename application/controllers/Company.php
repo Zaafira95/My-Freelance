@@ -44,7 +44,7 @@ class Company extends CI_Controller {
         $company = $this->Company_model->getCompanyData($userId);
         $data['company'] = $company;
         $companyId = $company->idCompany;
-        $job_for_company = $this->Company_model->getCompanyJobs($companyId);
+        $job_for_company = $this->Company_model->getCompanyMissions($companyId);
         $data['job_for_company'] = $job_for_company;
 
         $data['skillsAll'] = $this->Company_model->get_all_skills();
@@ -122,7 +122,7 @@ class Company extends CI_Controller {
         $company = $this->Company_model->getCompanyData($userId);
         $data['company'] = $company;
         $companyId = $company->idCompany;
-        $job_for_company = $this->Company_model->getCompanyJobs($companyId);
+        $job_for_company = $this->Company_model->getCompanyMissions($companyId);
         $data['job_for_company'] = $job_for_company;
 
         $this->load->view('freelancers/view', $data);
@@ -197,7 +197,7 @@ class Company extends CI_Controller {
         $company = $this->Company_model->getCompanyData($userId);
         $data['company'] = $company;
         $companyId = $company->idCompany;
-        $job_for_company = $this->Company_model->getCompanyJobs($companyId);
+        $job_for_company = $this->Company_model->getCompanyMissions($companyId);
         $data['job_for_company'] = $job_for_company;
 
         $data['jobsAll'] = $this->Company_model->get_all_jobs();
@@ -259,32 +259,23 @@ class Company extends CI_Controller {
         $company = $this->Company_model->getCompanyData($userId);
         $data['company'] = $company;
         $companyId = $company->idCompany;
-        $job_for_company = $this->Company_model->getCompanyJobs($companyId);
+        $job_for_company = $this->Company_model->getCompanyMissions($companyId);
         $data['job_for_company'] = $job_for_company;
         $missionName = $this->input->post('missionName');
         $missionTJM = $this->input->post('missionTJM');
         $missionJobId = $this->input->post('jobsAll');
         $missionExperience = $this->input->post('missionExperience');
         $missionSkills = $this->input->post('missionSkills');
+        $missionType = $this->input->post('missionType');
+        $missionDeroulement = $this->input->post('missionDeroulement');
         $missionDuration = $this->input->post('missionDuration');
         $missionLocation = $this->input->post('missionLocation');
         $missionDescription = $this->input->post('missionDescription');
         $missionDateDebut = $this->input->post('missionDateDebut');
         $missionDateFin = $this->input->post('missionDateFin');
-
-        $missionCompanyId = $companyId;
-
-        $missionType = $this->input->post('missionType');
-
         $missionAvantages = $this->input->post('missionAvantages');
 
-        if (is_array($missionType) && in_array('Courte Durée', $missionType)) {
-        }
-        if (is_array($missionType) && in_array('Longue Durée', $missionType)) {
-        }
-        if (is_array($missionType) && in_array('Durée indéfinie', $missionType)) {
-        }
-        $missionTypeString = implode(',', $missionType);
+        $missionCompanyId = $companyId;
         if (!empty($missionJobId)) {
             $missionJobId = $missionJobId[0]; // Prendre le premier élément du tableau
         } else {
@@ -294,12 +285,25 @@ class Company extends CI_Controller {
         $skills = $this->input->post("skillsAll");
         $levels = $this->input->post("skillsLevel");
 
-        $this->Company_model->addMission($missionName, $missionTJM, $missionJobId, $missionExperience, $missionSkills, $missionLocation, $missionDescription, $missionAvantages, $missionTypeString, $missionDateDebut, $missionDateFin, $missionCompanyId);
+        $missionId = $this->Company_model->addMission($missionName, $missionTJM, $missionJobId, $missionExperience, $missionSkills, $missionLocation, $missionDescription, $missionAvantages, $missionType, $missionDeroulement, $missionDuration, $missionDateDebut, $missionDateFin, $missionCompanyId);
+
+        // Vérifiez si la mission a été ajoutée avec succès et qu'un ID a été généré
+        if ($missionId) {
+            if (!empty($skills)) {
+            // Bouclez à travers les compétences et les niveaux associés
+                for ($i = 0; $i < count($skills); $i++) {
+                    $skillId = $skills[$i];
+                    $level = $levels[$i];
+
+                    // Ajoutez les compétences de mission à la table missionSkills
+                    $this->Company_model->addMissionSkills($missionId, $skillId, $level);
+                }
+            }
+        }
 
         $this->session->set_flashdata('message', 'Votre mission a bien été ajoutée !');
         $this->session->set_flashdata('status', 'success');
         redirect('company');
-
     }
 
     public function my_company(){
@@ -308,9 +312,16 @@ class Company extends CI_Controller {
         $company = $this->Company_model->getCompanyData($userId);
         $data['company'] = $company;
         $companyId = $company->idCompany;
-        $missions = $this->Company_model->getCompanyJobs($companyId);
+        $missions = $this->Company_model->getCompanyMissions($companyId);
         $data['missions'] = $missions;
 
+        // Récupérer les skills de chaque mission
+        $missionSkills = array();
+        foreach ($missions as $mission) {
+            $idMission = $mission->idMission;
+            $missionSkills[$idMission] = $this->Company_model->getMissionSkills($idMission);
+        }
+        $data['missionSkills'] = $missionSkills;
 
         $user = $this->Company_model->get_UserData($userId);
         $data['user'] = $user;
@@ -404,7 +415,7 @@ class Company extends CI_Controller {
         $company = $this->Company_model->getCompanyData($userId);
         $data['company'] = $company;
         $companyId = $company->idCompany;
-        $job_for_company = $this->Company_model->getCompanyJobs($companyId);
+        $job_for_company = $this->Company_model->getCompanyMissions($companyId);
         $data['job_for_company'] = $job_for_company;
 
         $data['skillsAll'] = $this->Company_model->get_all_skills();

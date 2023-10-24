@@ -760,8 +760,6 @@ if ($totalCount > 0) {
                             <i class="fas fa-pen fa-fw"></i>
                         </button>
                     </div>
-
-
                 </div>
                 <div class="flex gap-6 mb-3 mt-6">
                     <div class="w-1/4 sticky top-0">

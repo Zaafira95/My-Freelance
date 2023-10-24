@@ -6,8 +6,10 @@ include(APPPATH . 'views/layouts/company/header.php' );
 ?>
 <head>
     <title> Poster une mission  </title>
+    <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url('assets/css/app.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('/node_modules/choices.js/public/assets/styles/choices.min.css');?>" rel="stylesheet" type="text/css">
+
 </head>
 <div class="px-4 lg:px-6 py-6 h-full overflow-y-auto no-scrollbar">
     <div class="flex flex-wrap justify-between mx-auto max-w-screen-xl h-full">
@@ -16,7 +18,6 @@ include(APPPATH . 'views/layouts/company/header.php' );
                 <div class="w-3/4 relative grid-cols-2 bg-white rounded-lg mb-4 dark:bg-gray-800 py-4 px-4 overflow-y-auto no-scrollbaroverflow-y-auto no-scrollbar">
                     <h1 class="text-2xl font-bold "> Poster une offre de mission </h1>
                     <form action="<?=base_url("company/addMission")?>" method="post" enctype="multipart/form-data">
-
                         <div class="flex flex-1 mt-4">
                             <input type="text" name="missionName" placeholder= "Titre de la mission" class="mr-3 w-full block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
                             <input type="number" name="missionTJM" placeholder="TJM €" class="block mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
@@ -50,6 +51,22 @@ include(APPPATH . 'views/layouts/company/header.php' );
                                 // }
                                 ?>
                             </select> -->
+
+                            <div class="flex flex-1 mt-4">
+                                <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700 w-full mr-4">
+                                    <input type="radio" id="courte" value="courte" name="missionDuration" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" required>
+                                    <label for="courte" class="py-4 ml-2  font-medium text-gray-900 dark:text-white">Courte Durée</label>
+                                </div>
+                                <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700 w-full mr-4">
+                                    <input type="radio" id="longue" value="longue" name="missionDuration" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="longue" class="py-4 ml-2  font-medium text-gray-900 dark:text-white">Longue Durée</label>
+                                </div>
+                                <div class="flex items-center pl-4 border  border-gray-200 rounded dark:border-gray-700 w-full mr-4">
+                                    <input type="radio" id="indefinie" value="indefinie" name="missionDuration" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="indefinie" class="py-4 ml-2  font-medium text-gray-900 dark:text-white">Durée indéfinie</label>
+                                </div>
+                            </div>
+                                
                             <div class="flex mb-4">
                                 <div class="flex flex-col w-full mr-4">
                                     <label for="missionDateDebut" class="block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Date de début</label>
@@ -61,23 +78,22 @@ include(APPPATH . 'views/layouts/company/header.php' );
                                     <input type="date" id="missionDateFin" name="missionDateFin" class="w-full bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                                 </div>
                             </div>
+                        </div>
 
-
+                        <div class="flex flex-1 mt-4">
+                            <p class="text-lg font-bold"> Type de la mission </p>
+                        </div>
+                        <div class="mt-4">
                             <div class="flex flex-1">
                                 <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700 w-full mr-4">
-                                    <input id="bordered-checkbox-2" type="checkbox" value="Courte Durée" name="missionType[]" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="bordered-checkbox-2" class="py-4 ml-2  font-medium text-gray-900 dark:text-white">Courte Durée</label>
+                                    <input id="temps-plein" type="radio" value="temps-plein" name="missionType" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" required>
+                                    <label for="temps-plein" class="py-4 ml-2  font-medium text-gray-900 dark:text-white">Temps plein</label>
                                 </div>
                                 <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700 w-full mr-4">
-                                    <input id="bordered-checkbox-2" type="checkbox" value="Longue Durée" name="missionType[]" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="bordered-checkbox-2" class="py-4 ml-2  font-medium text-gray-900 dark:text-white">Longue Durée</label>
+                                    <input id="temps-partiel" type="radio" value="temps-partiel" name="missionType" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="temps-partiel" class="py-4 ml-2  font-medium text-gray-900 dark:text-white">Temps partiel</label>
                                 </div>
-                                <div class="flex items-center pl-4 border  border-gray-200 rounded dark:border-gray-700 w-full mr-4">
-                                    <input id="bordered-checkbox-2" type="checkbox" value="Durée Indéfinie" name="missionType[]" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="bordered-checkbox-2" class="py-4 ml-2  font-medium text-gray-900 dark:text-white">Durée indéfinie</label>
-                                </div>
-                            </div> 
-
+                            </div>
                         </div>
 
                         <div>
@@ -85,18 +101,21 @@ include(APPPATH . 'views/layouts/company/header.php' );
                             <select id="missionExperience" name="missionExperience" class="w-full block mr-3 mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                                 <?php
                                 $missionExperienceOptions = ['Junior (1 à 2 ans) ', 'Intermédiaire (3 à 5 ans)', 'Expert (+ 5 ans)'];
-                                foreach ($missionExperienceOptions as $missionExperience) {
-                                   echo '<option value="'.$missionExperience.'">'.$missionExperience.'</option>';
+                                $missionExperienceOptionsValues = ['junior', 'intermediaire', 'expert'];
+                                for ($i = 0; $i < count($missionExperienceOptions); $i++) {
+                                    $missionExperience = $missionExperienceOptions[$i];
+                                    $missionExperienceValue = $missionExperienceOptionsValues[$i];
+                                    echo '<option value="' . $missionExperienceValue . '">' . $missionExperience . '</option>';
                                 }
                                 ?>
-                            </select>   
+                            </select>
                         </div>      
                         
                         <div id="skills-container">
-                            <p class="text-lg font-bold mt-4"> Compétences requises </p>
-                            <div class="flex flex-1 mb-4 skill-row">
+                            <p class="text-lg font-bold mt-4 mb-4"> Compétences requises </p>
+                            <div class="flex flex-1 mb-4 skill-row delete-skill-row">
                                 <div class="w-3/4 mr-2">
-                                    <select id="skillsAll" name="skillsAll[]"  class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    <select id="skillsAll" name="skillsAll[]"  class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
                                         <option value="">Sélectionnez une compétence</option>
                                         <?php foreach ($skillsAll as $skill): ?>
                                             <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
@@ -110,10 +129,12 @@ include(APPPATH . 'views/layouts/company/header.php' );
                                         <option value="3">Expert</option>
                                     </select>
                                 </div>
+                                <button type="button" class="text-red-600 hover:text-red-900 focus:outline-none ml-4">
+                                    <i class="fas fa-trash"></i>
+                                </button>
                             </div>                       
                         </div>
                         <button id="add-skill-btn" type="button" class="py-2 px-4 bg-primary text-white rounded-lg">Ajouter une compétence</button>
-
 
                         <div class="flex flex-1 mt-4">
                             <p class="text-lg font-bold"> Où se déroule la mission ? </p>
@@ -121,18 +142,18 @@ include(APPPATH . 'views/layouts/company/header.php' );
                         <div class="mt-4">
                             <div class="flex flex-1">
                                 <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700 w-full mr-4">
-                                    <input id="bordered-checkbox-2" type="checkbox" value="remote" name="userJobType[]" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="bordered-checkbox-2" class="py-4 ml-2  font-medium text-gray-900 dark:text-white">Télétravail</label>
+                                    <input id="teletravail" type="radio" value="teletravail" name="missionDeroulement" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" required>
+                                    <label for="teletravail" class="py-4 ml-2  font-medium text-gray-900 dark:text-white">Télétravail</label>
                                 </div>
                                 <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700 w-full mr-4">
-                                    <input id="bordered-checkbox-2" type="checkbox" value="hybride" name="userJobType[]" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="bordered-checkbox-2" class="py-4 ml-2  font-medium text-gray-900 dark:text-white">Hybride</label>
+                                    <input id="hybride" type="radio" value="hybride" name="missionDeroulement" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="hybride" class="py-4 ml-2  font-medium text-gray-900 dark:text-white">Hybride</label>
                                 </div>
                                 <div class="flex items-center pl-4 border  border-gray-200 rounded dark:border-gray-700 w-full mr-4">
-                                    <input id="bordered-checkbox-2" type="checkbox" value="sur-site" name="userJobType[]" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="bordered-checkbox-2" class="py-4 ml-2  font-medium text-gray-900 dark:text-white">Sur site</label>
+                                    <input id="sur-site" type="radio" value="site" name="missionDeroulement" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="sur-site" class="py-4 ml-2  font-medium text-gray-900 dark:text-white">Sur site</label>
                                 </div>
-                            </div> 
+                            </div>
                         </div>
 
                         <div class="flex flex-1 mt-4">
@@ -312,14 +333,44 @@ include(APPPATH . 'views/layouts/company/header.php' );
             }
         });
 
-        const currentDate = new Date().toISOString().split('T')[0];
-        document.getElementById('missionDateDebut').value = currentDate;
+        // Gestion de la sélection de la durée de la mission
+        $(document).on('change', 'input[name="missionDuration"]', function() {
+            const selectedDuration = $(this).val();
+            const dateDebutInput = document.getElementById('missionDateDebut');
+            const dateFinInput = document.getElementById('missionDateFin');
 
-        const endDate = new Date();
-        endDate.setMonth(endDate.getMonth() + 1);
-        const endDateString = endDate.toISOString().split('T')[0];
+            const currentDate = new Date().toISOString().split('T')[0];
 
-        document.getElementById('missionDateFin').value = endDateString;
+            if (selectedDuration === 'courte') {
+                // Courte durée : Date de début = aujourd'hui, Date de fin = une semaine après aujourd'hui
+                dateDebutInput.value = currentDate;
+
+                const endDate = new Date();
+                endDate.setDate(endDate.getDate() + 7);
+                const endDateString = endDate.toISOString().split('T')[0];
+                dateFinInput.value = endDateString;
+                dateFinInput.disabled = false; // Activer le champ Date de fin
+            } else if (selectedDuration === 'longue') {
+                // Longue durée : Date de début = aujourd'hui, Date de fin = un mois après aujourd'hui
+                dateDebutInput.value = currentDate;
+
+                const endDate = new Date();
+                endDate.setMonth(endDate.getMonth() + 1);
+                const endDateString = endDate.toISOString().split('T')[0];
+                dateFinInput.value = endDateString;
+                dateFinInput.disabled = false; // Activer le champ Date de fin
+            } else if (selectedDuration === 'indefinie') {
+                // Durée indéfinie : Date de début = aujourd'hui, Date de fin désactivée
+                dateDebutInput.value = currentDate;
+                dateFinInput.value = '';
+                dateFinInput.disabled = true; // Désactiver le champ Date de fin
+            } else {
+                // Autre durée : Réinitialiser les dates et activer le champ Date de fin
+                dateDebutInput.value = currentDate;
+                dateFinInput.value = '';
+                dateFinInput.disabled = false; // Activer le champ Date de fin
+            }
+        });
 
         // Gestion des compétences avec Choices.js
         const skillsChoices = new Choices('#skillsAll', {
@@ -381,6 +432,9 @@ include(APPPATH . 'views/layouts/company/header.php' );
                             <option value="3">Expert</option>
                         </select>
                     </div>
+                    <button type="button" class="text-red-600 hover:text-red-900 focus:outline-none ml-4 delete-skill-row">
+                        <i class="fas fa-trash"></i>
+                    </button>
                 </div>
             `;
             $('#skills-container').append(newSkillRow);
@@ -391,6 +445,12 @@ include(APPPATH . 'views/layouts/company/header.php' );
                 createChoicesInstance(this);
             });
         });
+
+        $(document).on('click', '.delete-skill-row', function() {
+            // Supprimez le parent .skill-row
+            $(this).closest('.skill-row').remove();
+        });
+
     });
 </script>
 

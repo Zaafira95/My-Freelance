@@ -163,6 +163,20 @@ if ($totalCount > 0) {
                                 ?> 
                             </div>
                             <p class="text-lg text-black-500 font-bold"><?= $freelancer_job[0]->jobName ?></p>
+                            <p class="text-lg text-black-500 font-medium">
+                                <?php
+                                    if ($user->userExperienceYear == "junior"){
+                                        $user->userExperienceYear = "Junior";
+                                    }
+                                    elseif ($user->userExperienceYear == "intermediaire"){
+                                        $user->userExperienceYear = "Intermédiaire";
+                                    }
+                                    elseif ($user->userExperienceYear == "expert"){
+                                        $user->userExperienceYear = "Expert";
+                                    }
+                                ?>
+                                <?=$user->userExperienceYear?>
+                            </p>
                             <div class="flex items-center mb-4">
                                 <?php for ($i = 1; $i <= 5; $i++) { ?>
                                 <?php if ($i <= $averageStars) { ?>

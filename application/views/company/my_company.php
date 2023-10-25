@@ -113,7 +113,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                         <div class="grid grid-cols-2 gap-4">
                             <?php foreach($missions as $mission): ?>
                                 <div class="flex flex-wrap">
-                                    <a href="<?=base_url('user/missionView/'.$mission->idMission)?>">
+                                    <a href="<?=base_url('company/missionView/'.$mission->idMission)?>">
                                         <div class="bg-white rounded-lg h-20vh w-full mt-4 p-4 dark:bg-gray-800 dark:text-white relative mission-item" data-mission-name="<?=strtolower($mission->missionName)?>">
                                             <div class="flex items-center">
                                                 <div class="mr-4">
@@ -244,11 +244,13 @@ include(APPPATH . 'views/layouts/company/header.php');
                                                 </div>
                                             </div>
                                             <div class="absolute top-0 right-4 mt-4 mb-4 z-9">
-                                                <a href="<?php echo base_url('user/addToFavorite/'.$mission->idMission);?>">
+                                                <!--<a href="<?php echo base_url('user/addToFavorite/'.$mission->idMission);?>">
                                                     <i class="far fa-heart text-xl text-red-800"></i>
+                                                </a>-->
+                                                <a href="<?php echo base_url('company/missionEdit/'.$mission->idMission);?>">
+                                                <i class="fas fa-pen fa-fw"></i>
                                                 </a>
-                                                <?php
-                                                ?>
+                                                
                                             </div>
                                         </div>
                                     </a>

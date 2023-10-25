@@ -65,10 +65,6 @@ class Company extends CI_Controller {
         redirect('login');
     }
 
-
-   
-
-
     public function freelancerView($id){
 
         $userId = $this->session->userdata('userId');
@@ -204,15 +200,35 @@ class Company extends CI_Controller {
 
         $data['citiesAll'] = $this->Company_model->get_all_cities();
 
+        $data['skillsAll'] = $this->Company_model->get_all_skills();
+
+        $this->load->view('company/addMission', $data);
+    }
+
+    public function missionEdit(){
+        $userId = $this->session->userdata('userId');
+        $this->load->model('Company_model');
+        $user = $this->Company_model->get_UserData($userId);
+
+        $data['user'] = $user;
+
+        if ($user->userCompanyId == 0) {
+            redirect('login'); 
+        }
+
+        $company = $this->Company_model->getCompanyData($userId);
+        $data['company'] = $company;
+        $companyId = $company->idCompany;
+        $job_for_company = $this->Company_model->getCompanyMissions($companyId);
+        $data['job_for_company'] = $job_for_company;
+
+        $data['jobsAll'] = $this->Company_model->get_all_jobs();
+
+        $data['citiesAll'] = $this->Company_model->get_all_cities();
 
         $data['skillsAll'] = $this->Company_model->get_all_skills();
 
-
-
-
-
-
-        $this->load->view('company/addMission', $data);
+        $this->load->view('company/editMission', $data);
     }
 
     public function search_jobs() {
@@ -238,23 +254,19 @@ class Company extends CI_Controller {
 
 
     public function addMission(){
-
         $userId = $this->session->userdata('userId');
         $this->load->model('Company_model');
         $user = $this->Company_model->get_UserData($userId);
 
         $data['user'] = $user;
 
-
         if ($user->userCompanyId == 0) {
             redirect('login'); 
         }
 
-
         $company = $this->Company_model->getCompanyData($userId);
         $data['company'] = $company;
         $companyId = $company->idCompany;
-
 
         $company = $this->Company_model->getCompanyData($userId);
         $data['company'] = $company;
@@ -304,6 +316,71 @@ class Company extends CI_Controller {
         $this->session->set_flashdata('message', 'Votre mission a bien été ajoutée !');
         $this->session->set_flashdata('status', 'success');
         redirect('company');
+    }
+    
+    public function editMission(){
+        $userId = $this->session->userdata('userId');
+        $this->load->model('Company_model');
+        $user = $this->Company_model->get_UserData($userId);
+
+        $data['user'] = $user;
+
+        if ($user->userCompanyId == 0) {
+            redirect('login'); 
+        }
+
+        $company = $this->Company_model->getCompanyData($userId);
+        $data['company'] = $company;
+        $companyId = $company->idCompany;
+
+        $company = $this->Company_model->getCompanyData($userId);
+        $data['company'] = $company;
+        $companyId = $company->idCompany;
+        $job_for_company = $this->Company_model->getCompanyMissions($companyId);
+        $data['job_for_company'] = $job_for_company;
+        $missionName = $this->input->post('missionName');
+        $missionTJM = $this->input->post('missionTJM');
+        $missionJobId = $this->input->post('jobsAll');
+        $missionExperience = $this->input->post('missionExperience');
+        $missionSkills = $this->input->post('missionSkills');
+        $missionType = $this->input->post('missionType');
+        $missionDeroulement = $this->input->post('missionDeroulement');
+        $missionDuration = $this->input->post('missionDuration');
+        $missionLocation = $this->input->post('missionLocation');
+        $missionDescription = $this->input->post('missionDescription');
+        $missionDateDebut = $this->input->post('missionDateDebut');
+        $missionDateFin = $this->input->post('missionDateFin');
+        $missionAvantages = $this->input->post('missionAvantages');
+
+        $missionCompanyId = $companyId;
+        if (!empty($missionJobId)) {
+            $missionJobId = $missionJobId[0]; // Prendre le premier élément du tableau
+        } else {
+            $missionJobId = 0;
+        }
+
+        $skills = $this->input->post("skillsAll");
+        $levels = $this->input->post("skillsLevel");
+
+        $missionId = $this->Company_model->addMission($missionName, $missionTJM, $missionJobId, $missionExperience, $missionSkills, $missionLocation, $missionDescription, $missionAvantages, $missionType, $missionDeroulement, $missionDuration, $missionDateDebut, $missionDateFin, $missionCompanyId);
+
+        // Vérifiez si la mission a été ajoutée avec succès et qu'un ID a été généré
+        if ($missionId) {
+            if (!empty($skills)) {
+            // Bouclez à travers les compétences et les niveaux associés
+                for ($i = 0; $i < count($skills); $i++) {
+                    $skillId = $skills[$i];
+                    $level = $levels[$i];
+
+                    // Ajoutez les compétences de mission à la table missionSkills
+                    $this->Company_model->addMissionSkills($missionId, $skillId, $level);
+                }
+            }
+        }
+
+        $this->session->set_flashdata('message', 'Votre mission a bien été ajoutée !');
+        $this->session->set_flashdata('status', 'success');
+        redirect('company/my_company');
     }
 
     public function my_company(){

@@ -5,7 +5,7 @@ $currentPage = 'my_company';
 include(APPPATH . 'views/layouts/company/header.php' );
 ?>
 <head>
-    <title> Poster une mission  </title>
+    <title> Modifier une mission  </title>
     <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url('assets/css/app.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('/node_modules/choices.js/public/assets/styles/choices.min.css');?>" rel="stylesheet" type="text/css">
@@ -16,8 +16,8 @@ include(APPPATH . 'views/layouts/company/header.php' );
         <div class="flex h-full w-full mb-3">
             <div class="w-full flex gap-6 h-full mb-3">
                 <div class="w-3/4 relative grid-cols-2 bg-white rounded-lg mb-4 dark:bg-gray-800 py-4 px-4 overflow-y-auto no-scrollbaroverflow-y-auto no-scrollbar">
-                    <h1 class="text-2xl font-bold "> Poster une offre de mission </h1>
-                    <form action="<?=base_url("company/addMission")?>" method="post" enctype="multipart/form-data">
+                    <h1 class="text-2xl font-bold "> Modifiez votre offre de mission </h1>
+                    <form action="<?=base_url("company/editMission")?>" method="post" enctype="multipart/form-data">
                         <div class="flex flex-1 mt-4">
                             <input type="text" name="missionName" placeholder= "Titre de la mission" class="mr-3 w-full block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
                             <input type="number" name="missionTJM" placeholder="TJM €" class="block mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>

@@ -435,6 +435,7 @@ public function editMission($missionId) {
        
         $data['favoriteMissions'] = $favoriteMissions;
 
+        $data['jobsAll'] = $this->Company_model->get_all_jobs();
 
         $isMissionFavorite = false;
 

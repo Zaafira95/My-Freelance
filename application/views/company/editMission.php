@@ -332,7 +332,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
                 });
             });
         });
-//test
+
         // Gestion de la sélection des métiers
         $(document).on('click', '.job-item', function() {
             let jobId = $(this).data('id');
@@ -426,26 +426,26 @@ include(APPPATH . 'views/layouts/company/header.php' );
         // Gestion de l'ajout dynamique de compétences
         $('#add-skill-btn').on('click', function() {
             const newSkillRow = `
-                <div class="flex flex-1 mb-4 skill-row">
-                    <div class="w-3/4 mr-2">
-                        <select class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" name="skillsAll[]" required>
-                            <option value="">Sélectionnez une compétence</option>
-                            <?php foreach ($skillsAll as $skill): ?>
-                                <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="w-1/4">
-                        <select class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="skillsLevel[]" required>
-                            <option value="1">Junior</option>
-                            <option value="2">Intermédiaire</option>
-                            <option value="3">Expert</option>
-                        </select>
-                    </div>
-                    <button type="button" class="text-red-600 hover:text-red-900 focus:outline-none ml-4 delete-skill-row">
-                        <i class="fas fa-trash"></i>
-                    </button>
+            <div class="flex flex-1 mb-4 skill-row">
+                <div class="w-3/4 mr-2">
+                    <select id="skillsAll" name="skillsAll[]"  class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                        <option value="">Sélectionnez une compétence</option>
+                        <?php foreach ($skillsAll as $skill): ?>
+                            <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
+                <div class="w-1/4">
+                    <select name="skillsLevel[]" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                        <option value="1">Junior</option>
+                        <option value="2">Intermédiaire</option>
+                        <option value="3">Expert</option>
+                    </select>
+                </div>
+                <button type="button" class="text-red-600 hover:text-red-900 focus:outline-none ml-4 delete-skill-row">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
             `;
             $('#skills-container').append(newSkillRow);
 

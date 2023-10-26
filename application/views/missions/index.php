@@ -15,7 +15,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
 
 
 </head>   
-    <div id="updateProductModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
+<div id="updateProductModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
         <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
             <!-- Modal content -->
             <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
@@ -78,33 +78,33 @@ include(APPPATH . 'views/layouts/user/header.php' );
                         <div class="flex items-center mt-2">
                             <i class="fa fa-map-marker-alt mr-3"></i>    
                             <div class="relative city-search-container w-full">
-                                <input type="text" id="citySearch" placeholder="Cherchez votre ville" class="border p-2 rounded-lg w-full text-black">
+                                <input type="text" id="citySearch" value="<?=$user->userVille?>" placeholder="Cherchez votre ville" class="border p-2 rounded-lg w-full text-black">
                                     <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                             </div>
                         </div>
                     <h4 class="text-lg font-medium mt-4">Type de poste</h4>
                     <div class="mt-2">
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="temps-plein" <?= ($user->userJobTimePartielOrFullTime == 'Temps Plein') ? 'checked' : '' ?>>
+                            <input type="checkbox" class="form-checkbox mr-2" id="temps-plein" <?= ($user->userJobTimePartielOrFullTime == 'temps-plein') ? 'checked' : '' ?>>
                             <span class="ml-2">Temps plein</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="temps-partiel" <?= ($user->userJobTimePartielOrFullTime == 'Temps Partiel') ? 'checked' : '' ?>>
+                            <input type="checkbox" class="form-checkbox mr-2" id="temps-partiel" <?= ($user->userJobTimePartielOrFullTime == 'temps-partiel') ? 'checked' : '' ?>>
                             <span class="ml-2">Temps partiel</span>
                         </label>
                     </div>
                     <h4 class="text-lg font-medium mt-4">Durée de la mission</h4>
                     <div class="mt-2">
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="courte">
+                            <input type="checkbox" class="form-checkbox mr-2" id="courte" <?= ($user->userJobTime == 'courte') ? 'checked' : '' ?>>
                             <span class="ml-2">Courte durée</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="longue">
+                            <input type="checkbox" class="form-checkbox mr-2" id="longue" <?= ($user->userJobTime == 'longue') ? 'checked' : '' ?>>
                             <span class="ml-2">Longue durée</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="indefinie">
+                            <input type="checkbox" class="form-checkbox mr-2" id="indefinie" <?= ($user->userJobTime == 'indefinie') ? 'checked' : '' ?>>
                             <span class="ml-2">Durée indéfinie</span>
                         </label>
                     </div>
@@ -131,15 +131,15 @@ include(APPPATH . 'views/layouts/user/header.php' );
                     <h4 class="text-lg font-medium mt-4">Niveau d'expérience</h4>
                     <div class="mt-2">
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="junior" <?= ($user->userExperienceYear === 'Junior') ? 'checked' : '' ?>>
+                            <input type="checkbox" class="form-checkbox mr-2" id="junior" <?= ($user->userExperienceYear === 'junior') ? 'checked' : '' ?>>
                             <span class="ml-2">Junior (1 à 2 ans)</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="intermediaire" <?= ($user->userExperienceYear === 'Intermédiaire') ? 'checked' : '' ?>>
+                            <input type="checkbox" class="form-checkbox mr-2" id="intermediaire" <?= ($user->userExperienceYear === 'intermediaire') ? 'checked' : '' ?>>
                             <span class="ml-2">Intermédiaire (3 à 5 ans)</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="expert" <?= ($user->userExperienceYear === 'Expert') ? 'checked' : '' ?>>
+                            <input type="checkbox" class="form-checkbox mr-2" id="expert" <?= ($user->userExperienceYear === 'expert') ? 'checked' : '' ?>>
                             <span class="ml-2">Expert (+ 5 ans)</span>
                         </label>
                     </div>
@@ -157,7 +157,13 @@ include(APPPATH . 'views/layouts/user/header.php' );
                         <!-- <label for="skillsAll" class="block text-sm font-medium text-gray-700">Sélectionnez vos compétences</label> -->
                         <select id="skillsAll" name="skillsAll[]" multiple class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             <?php foreach ($skillsAll as $skill): ?>
-                                <option class="text-black" value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
+                                <option class="text-black" value="<?= $skill['skillId'] ?>" 
+                                    <?php if (!empty($skills)): ?>
+                                        <?php foreach ($skills as $userSkill): ?>
+                                            <?= ($userSkill->skillId == $skill['skillId']) ? 'selected' : '' ?>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>>
+                                    <?= $skill['skillName'] ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -346,7 +352,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                                 <div class="skill-level"><?=$level?></div>
                                             </div>
                                         <?php endforeach; ?>
-                                    </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="absolute top-0 right-4 mt-4 mb-4 z-9">
@@ -373,7 +379,6 @@ include(APPPATH . 'views/layouts/user/header.php' );
                     </div>
                     <p class="text-xl mt-10 hidden text-left" id="no-mission-found">Aucune mission n'a été trouvée.</p>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -546,7 +551,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
     }
 
     // JavaScript code for handling active filters
-    document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
     var slider = document.getElementById('tjm-slider');
     const checkboxes = document.querySelectorAll(".form-checkbox");
 
@@ -597,6 +602,14 @@ include(APPPATH . 'views/layouts/user/header.php' );
             }
         });
 
+        const typeFilters = []; // Tableau pour stocker les filtres d'expertise sélectionnés
+
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked && (checkbox.id === "temps-plein" || checkbox.id === "temps-partiel")) {
+                typeFilters.push(checkbox.id);
+            }
+        });
+
         const expertiseFilters = []; // Tableau pour stocker les filtres d'expertise sélectionnés
 
         checkboxes.forEach(function(checkbox) {
@@ -632,7 +645,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
             const missionLocalisation = mission.getAttribute("data-mission-localisation").toLowerCase();
             const missionSkillsAttr = mission.getAttribute("data-mission-skills");
             const missionTJM = parseInt(mission.getAttribute("data-mission-tjm"));
-
+/*
             let showMission = activeFilters.every(function(filter) {
                 if (filter === "temps-plein" && missionType !== "temps-plein") return false;
                 //if (filter === "remote" && missionDeroulement !== "1") return false;
@@ -642,6 +655,21 @@ include(APPPATH . 'views/layouts/user/header.php' );
                 //if (filter === "expert" && missionExpertise !== "expert") return false;
                 return true;
             });
+*/
+
+            let showMission = true;
+
+             // Filtre par type
+            let matchesType = true;
+            if (typeFilters.length > 0) {
+                matchesType = typeFilters.some(function(filter) {
+                    return (
+                        (filter === "temps-plein" && missionType === "temps-plein") ||
+                        (filter === "temps-partiel" && missionType === "temps-partiel")
+                    );
+                });
+            }
+            showMission = showMission && matchesType;           
 
             // Filtre par expertise
             let matchesExpertise = true;
@@ -717,6 +745,8 @@ include(APPPATH . 'views/layouts/user/header.php' );
         const noMissionFound = document.getElementById("no-mission-found");
         noMissionFound.style.display = visibleMissionsCount === 0 ? "block" : "none";
     }
+
+    filterMissions();
 });
 
 </script>

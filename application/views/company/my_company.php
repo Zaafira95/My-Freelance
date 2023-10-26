@@ -122,7 +122,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                                                 <div class="w-3/4 mr-4">
                                                     <h2 class="font-bold text-lg"><?=$mission->missionName?></h2>
                                                     <p>
-                                                        <span class="mr-2"> • TJM : <?=$mission->missionTJM?> €</span>
+                                                        <span class="mr-2 font-medium"> • TJM : <?=$mission->missionTJM?> €</span>
                                                         
                                                         <span class="mr-2"> •
                                                         <?php

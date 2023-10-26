@@ -342,7 +342,6 @@ include(APPPATH . 'views/layouts/company/header.php' );
                 selectedJobs.append(`<div class="selected-job" data-id="${jobId}">${jobName}</div>`);
             }
         });
-
         // Gestion de la sélection de la durée de la mission
         $(document).on('change', 'input[name="missionDuration"]', function() {
             const selectedDuration = $(this).val();

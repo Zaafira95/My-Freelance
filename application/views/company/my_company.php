@@ -248,7 +248,9 @@ include(APPPATH . 'views/layouts/company/header.php');
                                                     <i class="far fa-heart text-xl text-red-800"></i>
                                                 </a>-->
                                                 <a href="<?php echo base_url('company/missionEdit/'.$mission->idMission);?>">
-                                                <i class="fas fa-pen fa-fw"></i>
+                                                    <button class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                                                        <i class="fas fa-pen fa-fw"></i>
+                                                    </button>
                                                 </a>
                                                 
                                             </div>

@@ -113,7 +113,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
                         
                         <div id="skills-container">
                             <p class="text-lg font-bold mt-4 mb-4"> Compétences requises </p>
-                            <div class="flex flex-1 mb-4 skill-row delete-skill-row">
+                            <div class="flex flex-1 mb-4 skill-row">
                                 <div class="w-3/4 mr-2">
                                     <select id="skillsAll" name="skillsAll[]"  class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
                                         <option value="">Sélectionnez une compétence</option>
@@ -129,7 +129,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
                                         <option value="3">Expert</option>
                                     </select>
                                 </div>
-                                <button type="button" class="text-red-600 hover:text-red-900 focus:outline-none ml-4">
+                                <button type="button" class="text-red-600 hover:text-red-900 focus:outline-none ml-4 delete-skill-row">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </div>                       

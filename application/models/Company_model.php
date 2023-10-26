@@ -262,7 +262,7 @@ class Company_model extends CI_Model {
     }
 
     public function getMissionSkills($idMissions) {
-        $this->db->select('skills.skillName, missionSkills.missionSkillsExperience');
+        $this->db->select('skills.skillName, missionSkills.missionSkills_skillId, missionSkills.missionSkillsExperience');
         $this->db->from('missionSkills');
         $this->db->join('skills', 'missionSkills.missionSkills_skillId = skills.skillId');
         $this->db->where('missionSkills.missionSkills_missionId', $idMissions);
@@ -313,6 +313,31 @@ class Company_model extends CI_Model {
     }
 
 
+    public function editMission($missionId, $missionName, $missionTJM, $missionJobId, $missionExperience, $missionSkills, $missionLocation, $missionDescription, $missionAvantages, $missionType, $missionDeroulement, $missionDuration, $missionDateDebut, $missionDateFin) {
+        // Mettez à jour les données de mission
+        $data = array(
+            'missionName' => $missionName,
+            'missionTJM' => $missionTJM,
+            'missionJobId' => $missionJobId,
+            'missionExpertise' => $missionExperience,
+            'missionSkills' => $missionSkills,
+            'missionLocalisation' => $missionLocation,
+            'missionDescription' => $missionDescription,
+            'missionAvantage' => $missionAvantages,
+            'missionType' => $missionType,
+            'missionDuration' => $missionDuration,
+            'missionDeroulement' => $missionDeroulement,
+            'missionDateDebut' => $missionDateDebut,
+            'missionDateFin' => $missionDateFin
+        );
+
+        $this->db->where('idMission', $missionId);
+        $this->db->update('mission', $data);
+
+        // Supprimez d'abord les compétences existantes liées à cette mission
+        $this->db->where('missionSkills_missionId', $missionId);
+        $this->db->delete('missionSkills');
+    }
 
     
     

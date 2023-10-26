@@ -128,40 +128,11 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                     </p>
                                     <p class="font-bold text-xl"><?=$mission->missionTJM.'€/Jour'?> -  <span class=" text-md"><?=ucfirst($mission->missionExpertise)?></span>
                                     <p class="font-medium text-xl">
-                                    <?php
-                                        if ($mission->missionDuration == "courte"){
-                                            $mission->missionDuration = "Courte durée";
-                                        }
-                                        elseif ($mission->missionDuration == "longue"){
-                                            $mission->missionDuration = "Longue durée";
-                                        }
-                                        elseif ($mission->missionDuration == "indefinie"){
-                                            $mission->missionDuration = "Durée indéfinie";
-                                        }                                            
-                                    ?>
-                                        <span class="mr-2">• <?=$mission->missionDuration?></span>
-                                    <?php
-                                        if ($mission->missionType == "temps-plein"){
-                                            $mission->missionType = "Temps Plein";
-                                        }
-                                        elseif ($mission->missionType == "temps-partiel"){
-                                            $mission->missionType = "Temps Partiel";
-                                        }                                   
-                                    ?>
-                                        <span class="mr-2">• <?=$mission->missionType?></span>
-                                    <?php
-
-                                        if ($mission->missionDeroulement == "teletravail"){
-                                            $mission->missionDeroulement = "Télétravail";
-                                        }
-                                        elseif ($mission->missionDeroulement == "site"){
-                                            $mission->missionDeroulement = "Sur site";
-                                        }
-                                        elseif ($mission->missionDeroulement == "hybride"){
-                                            $mission->missionDeroulement = "Hybride";
-                                        }                                            
-                                    ?>
-                                        <span class="mr-2">• <?=$mission->missionDeroulement?></span>
+                                    <?php foreach ($jobsAll as $joba): ?>
+                                        <?php if ($mission->missionJobId == $joba['jobId']): ?>
+                                            <?= $joba['jobName'] ?>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
                                     </p>
                                 </div>
                             </div>
@@ -219,6 +190,59 @@ include(APPPATH . 'views/layouts/user/header.php' );
                             <p class="text-gray-500 mt-2 dark:text-white">
                                 <?=$mission->missionDescription?>
                             </p>
+                        </div>
+                        <div class="w-full p-2 flex">
+                            <div class="w-full">                                
+                                <p class="text-gray-500 dark:text-white">Date de début : 
+                                    <span class="text-gray-600 dark:text-white"> <?=$mission->missionDateDebut = date('d/m/Y', strtotime($mission->missionDateDebut))?> </span>
+                                </p>
+                                <p class="text-gray-500 dark:text-white">Date de fin : 
+                                    <span class="text-gray-600 dark:text-white"> <?=$mission->missionDateFin = date('d/m/Y', strtotime($mission->missionDateFin))?> </span>
+                                </p>
+                            </div>
+                            <div class="w-full">
+                                <p class="text-gray-500 dark:text-white">Durée de la mission : 
+                                    <?php
+                                        if ($mission->missionDuration == "courte"){
+                                            $mission->missionDuration = "Courte durée";
+                                        }
+                                        elseif ($mission->missionDuration == "longue"){
+                                            $mission->missionDuration = "Longue durée";
+                                        }
+                                        elseif ($mission->missionDuration == "indefinie"){
+                                            $mission->missionDuration = "Durée indéfinie";
+                                        }                                            
+                                    ?>
+                                    <span class="text-gray-600 dark:text-white"> <?=$mission->missionDuration?> </span>
+                                </p>
+                                <p class="text-gray-500 dark:text-white">Type de poste : 
+                                    <?php
+                                        if ($mission->missionType == "temps-plein"){
+                                            $mission->missionType = "Temps Plein";
+                                        }
+                                        elseif ($mission->missionType == "temps-partiel"){
+                                            $mission->missionType = "Temps Partiel";
+                                        }                                   
+                                    ?>
+                                    <span class="text-gray-600 dark:text-white"> <?=$mission->missionType?> </span>
+                                </p>
+                            </div>
+                            <div class="w-full">
+                                <p class="text-gray-500 dark:text-white">Mode de déroulement : 
+                                <?php
+                                    if ($mission->missionDeroulement == "teletravail"){
+                                        $mission->missionDeroulement = "Télétravail";
+                                    }
+                                    elseif ($mission->missionDeroulement == "site"){
+                                        $mission->missionDeroulement = "Sur site";
+                                    }
+                                    elseif ($mission->missionDeroulement == "hybride"){
+                                        $mission->missionDeroulement = "Hybride";
+                                    }                                            
+                                ?>
+                                    <span class="text-gray-600 dark:text-white"> <?=$mission->missionDeroulement?> </span>
+                                </p>
+                            </div>
                         </div>
                     </div>
 

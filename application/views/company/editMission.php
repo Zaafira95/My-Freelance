@@ -332,7 +332,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
                 });
             });
         });
-
+//test
         // Gestion de la sélection des métiers
         $(document).on('click', '.job-item', function() {
             let jobId = $(this).data('id');

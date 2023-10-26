@@ -105,14 +105,40 @@ include(APPPATH . 'views/layouts/user/header.php');
                             <input type="checkbox" class="form-checkbox mr-2" id="temps-partiel" <?= ($user->userJobTimePartielOrFullTime == 'Temps Partiel') ? 'checked' : '' ?>>
                             <span class="ml-2">Temps partiel</span>
                         </label>
+                    </div>
+                    <h4 class="text-lg font-medium mt-4">Durée de la mission</h4>
+                    <div class="mt-2">
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="remote" <?php
+                            <input type="checkbox" class="form-checkbox mr-2" id="courte">
+                            <span class="ml-2">Courte durée</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="form-checkbox mr-2" id="longue">
+                            <span class="ml-2">Longue durée</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="form-checkbox mr-2" id="indefinie">
+                            <span class="ml-2">Durée indéfinie</span>
+                        </label>
+                    </div>
+                    <h4 class="text-lg font-medium mt-4">Mode de déroulement</h4>
+                    <div class="mt-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="form-checkbox mr-2" id="site">
+                            <span class="ml-2">Sur site</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="form-checkbox mr-2" id="teletravail" <?php
                                 $jobTypeArray = explode(',', $user->userJobType);
                                 if (in_array('Remote', $jobTypeArray)) {
                                     echo 'checked="checked"';
                                 }
                                 ?>>
-                            <span class="ml-2">Remote</span>
+                            <span class="ml-2">Télétravail</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="form-checkbox mr-2" id="hybride">
+                            <span class="ml-2">Hybride</span>
                         </label>
                     </div>
                     <h4 class="text-lg font-medium mt-4">Niveau d'expérience</h4>
@@ -196,12 +222,13 @@ include(APPPATH . 'views/layouts/user/header.php');
                             class="mission-item " 
                             data-mission-name="<?=strtolower($mission->missionName)?>" 
                             data-mission-type="<?=strtolower($mission->missionType)?>"
-                            data-mission-remote="<?=strtolower($mission->missionRemote)?>" 
+                            data-mission-deroulement="<?=strtolower($mission->missionDeroulement)?>"
+                            data-mission-duree="<?=strtolower($mission->missionDuration)?>" 
                             data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" 
                             data-mission-tjm="<?=$mission->missionTJM?>" 
                             data-mission-localisation="<?=strtolower($mission->missionLocalisation)?>"
                             data-mission-skills="<?=$dataMissionSkillsString?>"> <!-- Utilisez implode pour combiner les compétences en une chaîne -->
-                            <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative mission-item" data-mission-name="<?=strtolower($mission->missionName)?>" data-mission-type="<?=strtolower($mission->missionType)?>" data-mission-remote="<?=strtolower($mission->missionRemote)?>" data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" data-mission-tjm="<?=$mission->missionTJM?>" data-mission-localisation="<?=$mission->missionLocalisation?>" data-mission-skills="<?=$dataMissionSkillsString?>">
+                            <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative mission-item" data-mission-name="<?=strtolower($mission->missionName)?>" data-mission-type="<?=strtolower($mission->missionType)?>" data-mission-deroulement="<?=strtolower($mission->missionDeroulement)?>" data-mission-duree="<?=strtolower($mission->missionDuration)?>" data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" data-mission-tjm="<?=$mission->missionTJM?>" data-mission-localisation="<?=$mission->missionLocalisation?>" data-mission-skills="<?=$dataMissionSkillsString?>">
                                 <div class="flex items-center">
                                     <div class="mr-4">
                                         <img src="<?=base_url('assets/img/airbnb.png')?>" alt="Logo de l'entreprise" class="w-10 h-10 rounded-full">
@@ -215,10 +242,24 @@ include(APPPATH . 'views/layouts/user/header.php');
                                             <?php endif; ?>
                                         <?php endforeach; ?>
                                             <span class="mr-2"> • TJM : <?=$mission->missionTJM?> €</span>
+                                            
                                             <span class="mr-2"> •
-
                                             <?php
-
+                                            if ($mission->missionDuration == "courte"){
+                                                $mission->missionDuration = "Courte durée";
+                                            }
+                                            elseif ($mission->missionDuration == "longue"){
+                                                $mission->missionDuration = "Longue durée";
+                                            }
+                                            elseif ($mission->missionDuration == "indefinie"){
+                                                $mission->missionDuration = "Durée indéfinie";
+                                            }                                            
+                                            ?>
+                                            <?=$mission->missionDuration?> 
+                                            </span>
+                                            
+                                            <span class="mr-2"> •
+                                            <?php
                                             if ($mission->missionType == "temps-plein"){
                                                 $mission->missionType = "Temps Plein";
                                             }
@@ -231,19 +272,27 @@ include(APPPATH . 'views/layouts/user/header.php');
                                             ?>
                                             <?=$mission->missionType?> 
                                             </span>
+
+                                            <span class="mr-2"> • 
                                             <?php
 
-                                            if($mission->missionRemote == 1){
-                                            ?>
-                                                <span class="mr-2"> • Remote </span>
-                                            <?php
+                                            if ($mission->missionDeroulement == "teletravail"){
+                                                $mission->missionDeroulement = "Télétravail";
                                             }
+                                            elseif ($mission->missionDeroulement == "site"){
+                                                $mission->missionDeroulement = "Sur site";
+                                            }
+                                            elseif ($mission->missionDeroulement == "hybride"){
+                                                $mission->missionDeroulement = "Hybride";
+                                            }                                            
                                             ?>
+                                            <?=$mission->missionDeroulement?>
+                                            </span>
+
                                             <span class="mr-2"> • <?=$mission->missionLocalisation?></span>
+
                                             <span class="mr-2"> •
-                                            
                                             <?php
-                                            
                                             if ($mission->missionExpertise == "junior"){
                                                 $mission->missionExpertise = "Junior";
                                             }
@@ -256,7 +305,7 @@ include(APPPATH . 'views/layouts/user/header.php');
                                                                                 
                                             ?>
                                             <?=$mission->missionExpertise?>
-                                        </span>
+                                            </span>
 
                                         </p>
                                     </div>
@@ -310,7 +359,7 @@ include(APPPATH . 'views/layouts/user/header.php');
                                                 <div class="skill-level"><?=$level?></div>
                                             </div>
                                         <?php endforeach; ?>
-                                    </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="absolute top-0 right-4 mt-4 mb-4 z-9">
@@ -666,12 +715,29 @@ include(APPPATH . 'views/layouts/user/header.php');
             }
         });
 
+        const durationFilters = []; // Tableau pour stocker les filtres d'expertise sélectionnés
+
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked && (checkbox.id === "courte" || checkbox.id === "longue" || checkbox.id === "indefinie")) {
+                durationFilters.push(checkbox.id);
+            }
+        });
+
+        const deroulementFilters = []; // Tableau pour stocker les filtres d'expertise sélectionnés
+
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked && (checkbox.id === "teletravail" || checkbox.id === "site" || checkbox.id === "hybride")) {
+                deroulementFilters.push(checkbox.id);
+            }
+        });
+
         let visibleMissionsCount = 0;
 
         missions.forEach(function(mission) {
             const missionName = mission.getAttribute("data-mission-name");
             const missionType = mission.getAttribute("data-mission-type");
-            const missionRemote = mission.getAttribute("data-mission-remote");
+            const missionDeroulement = mission.getAttribute("data-mission-deroulement");
+            const missionDuration = mission.getAttribute("data-mission-duree");
             const missionExpertise = mission.getAttribute("data-mission-expertise");
             const missionLocalisation = mission.getAttribute("data-mission-localisation").toLowerCase();
             const missionSkillsAttr = mission.getAttribute("data-mission-skills");
@@ -679,7 +745,7 @@ include(APPPATH . 'views/layouts/user/header.php');
 
             let showMission = activeFilters.every(function(filter) {
                 if (filter === "temps-plein" && missionType !== "temps-plein") return false;
-                if (filter === "remote" && missionRemote !== "1") return false;
+                //if (filter === "remote" && missionDeroulement !== "1") return false;
                 if (filter === "temps-partiel" && missionType !== "temps-partiel") return false;
                 //if (filter === "junior" && missionExpertise !== "junior") return false;
                 //if (filter === "intermediaire" && missionExpertise !== "intermediaire") return false;
@@ -700,6 +766,39 @@ include(APPPATH . 'views/layouts/user/header.php');
             }
             showMission = showMission && matchesExpertise;
 
+            // Filtre par duree
+            let matchesDuration = true;
+            if (durationFilters.length > 0) {
+                matchesDuration = durationFilters.some(function(filter) {
+                    return (
+                        (filter === "courte" && missionDuration === "courte") ||
+                        (filter === "longue" && missionDuration === "longue") ||
+                        (filter === "indefinie" && missionDuration === "indefinie")
+                    );
+                });
+            }
+            showMission = showMission && matchesDuration;
+
+            // Filtre par mode de deroulement
+            let matchesDeroulement = true;
+            console.log("1", deroulementFilters);
+            console.log("1", deroulementFilters);
+            if (deroulementFilters.length > 0) {
+                matchesDeroulement = deroulementFilters.some(function(filter) {
+                    return (
+                        (filter === "teletravail" && missionDeroulement === "teletravail") ||
+                        (filter === "site" && missionDeroulement === "site") ||
+                        (filter === "hybride" && missionDeroulement === "hybride")
+                    );
+                });
+            }
+            showMission = showMission && matchesDeroulement;
+
+            
+            if (missionTJM < tjmMin || missionTJM > tjmMax) {
+                    showMission = false;
+            }
+
             // Filtre par ville
             if (cityFilter && !missionLocalisation.includes(cityFilter)) {
                 showMission = false;
@@ -716,10 +815,6 @@ include(APPPATH . 'views/layouts/user/header.php');
                 if (!matchesSkills) {
                     showMission = false;
                 }
-            }
-
-            if (missionTJM < tjmMin || missionTJM > tjmMax) {
-                showMission = false;
             }
 
             mission.style.display = showMission ? "block" : "none";

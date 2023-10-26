@@ -48,7 +48,7 @@ class Company_model extends CI_Model {
         return $query->row();
     }
 
-    public function getCompanyJobs($companyId) {
+    public function getCompanyMissions($companyId) {
         $this->db->select('*');
         $this->db->from('Mission');
         $this->db->where('missionCompanyId', $companyId);
@@ -174,7 +174,7 @@ class Company_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
-    public function addMission($missionName, $missionTJM, $missionJobId, $missionExperience, $missionSkills, $missionLocation, $missionDescription, $missionAvantages, $missionTypeString, $missionDateDebut, $missionDateFin, $missionCompanyId) {
+    public function addMission($missionName, $missionTJM, $missionJobId, $missionExperience, $missionSkills, $missionLocation, $missionDescription, $missionAvantages, $missionType, $missionDeroulement, $missionDuration, $missionDateDebut, $missionDateFin, $missionCompanyId) {
         $data = array(
             'missionName' => $missionName,
             'missionTJM' => $missionTJM,
@@ -184,15 +184,27 @@ class Company_model extends CI_Model {
             'missionLocalisation' => $missionLocation,
             'missionDescription' => $missionDescription,
             'missionAvantage' => $missionAvantages,
-            'missionType' => $missionTypeString,
+            'missionType' => $missionType,
+            'missionDuration' => $missionDuration,
+            'missionDeroulement' => $missionDeroulement,
             'missionDateDebut' => $missionDateDebut,
             'missionDateFin' => $missionDateFin,
             'missionCompanyId' => $missionCompanyId
         );
     
         $this->db->insert('mission', $data);
+        // Obtenez l'ID de la mission nouvellement créée
+        $missionId = $this->db->insert_id();
+
+        return $missionId; // Retournez l'ID de la mission
     }
     
+    public function addMissionSkills($missionId, $skillId, $level){
+        $this->db->set('missionSkills_missionId', $missionId);
+        $this->db->set('missionSkills_skillId', $skillId);
+        $this->db->set('missionSkillsExperience', $level);
+        $this->db->insert('missionSkills');
+    }
 
     public function get_all_jobs() {
         $query = $this->db->get('job'); // Remplacez 'skills' par le nom exact de votre table de compétences si ce n'est pas le cas.
@@ -250,7 +262,7 @@ class Company_model extends CI_Model {
     }
 
     public function getMissionSkills($idMissions) {
-        $this->db->select('skills.skillName, missionSkills.missionSkillsExperience');
+        $this->db->select('skills.skillName, missionSkills.missionSkills_skillId, missionSkills.missionSkillsExperience');
         $this->db->from('missionSkills');
         $this->db->join('skills', 'missionSkills.missionSkills_skillId = skills.skillId');
         $this->db->where('missionSkills.missionSkills_missionId', $idMissions);
@@ -301,6 +313,31 @@ class Company_model extends CI_Model {
     }
 
 
+    public function editMission($missionId, $missionName, $missionTJM, $missionJobId, $missionExperience, $missionSkills, $missionLocation, $missionDescription, $missionAvantages, $missionType, $missionDeroulement, $missionDuration, $missionDateDebut, $missionDateFin) {
+        // Mettez à jour les données de mission
+        $data = array(
+            'missionName' => $missionName,
+            'missionTJM' => $missionTJM,
+            'missionJobId' => $missionJobId,
+            'missionExpertise' => $missionExperience,
+            'missionSkills' => $missionSkills,
+            'missionLocalisation' => $missionLocation,
+            'missionDescription' => $missionDescription,
+            'missionAvantage' => $missionAvantages,
+            'missionType' => $missionType,
+            'missionDuration' => $missionDuration,
+            'missionDeroulement' => $missionDeroulement,
+            'missionDateDebut' => $missionDateDebut,
+            'missionDateFin' => $missionDateFin
+        );
+
+        $this->db->where('idMission', $missionId);
+        $this->db->update('mission', $data);
+
+        // Supprimez d'abord les compétences existantes liées à cette mission
+        $this->db->where('missionSkills_missionId', $missionId);
+        $this->db->delete('missionSkills');
+    }
 
     
     

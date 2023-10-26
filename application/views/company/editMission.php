@@ -429,7 +429,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
             const newSkillRow = `
                 <div class="flex flex-1 mb-4 skill-row">
                     <div class="w-3/4 mr-2">
-                        <select class="p-2 border rounded-lg w-full new-skill-select" name="skillsAll[]" required>
+                        <select class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" name="skillsAll[]" required>
                             <option value="">Sélectionnez une compétence</option>
                             <?php foreach ($skillsAll as $skill): ?>
                                 <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>

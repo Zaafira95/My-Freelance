@@ -603,6 +603,8 @@ class User extends CI_Controller {
 
         $data['isMissionFavorite'] = $isMissionFavorite;
 
+        $data['jobsAll'] = $this->User_model->get_all_jobs();
+
 
         $this->load->view('missions/view', $data);
 

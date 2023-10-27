@@ -12,10 +12,124 @@ include(APPPATH . 'views/layouts/company/header.php');
     <title><?=$company->companyName?> - Café Crème Community </title>
 </head>
 
+<!--Company Data modal -->
+<div id="updateCompanyData" tabindex="-1" aria-hidden="true" class=" hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
+    <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+        <!-- Modal content -->
+        <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+            <!-- Modal header -->
+            <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                    Vos coordonnées
+                </h3>
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateCompanyData">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <span class="sr-only">Fermer</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <form action="<?=base_url("company/updateCompanyData")?>" method="post" enctype="multipart/form-data">
+                <div>
+                    <label for="companyName" class="block mb-1  font-medium text-gray-900 dark:text-white">Nom *</label>
+                        <input type="text" name="companyName" id="companyName" value="<?=$company->companyName?>" class="mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                    
+                    <label for="companySlogan" class="block mb-1  font-medium text-gray-900 dark:text-white">Slogan *</label>
+                        <input type="text" name="companySlogan" id="companySlogan" value="<?=$company->companySlogan?>" class="mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                    
+                    <label for="companySecteur" class="block mb-1  font-medium text-gray-900 dark:text-white">Secteur d'activité *</label>
+                        <input type="text" name="companySecteur" id="companySecteur" value="<?=$company->companySecteur?>" class="mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                    
+                </div>
+                <div class="flex items-center space-x-4 mt-4">
+                    <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                        Valider
+                    </button>
+                    <button type="button" data-modal-toggle="updateCompanyData" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                        Annuler
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--Company Description modal -->
+<div id="updateCompanyDescription" tabindex="-1" aria-hidden="true" class=" hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
+    <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+        <!-- Modal content -->
+        <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+            <!-- Modal header -->
+            <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                    Votre entreprise
+                </h3>
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateCompanyDescription">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <span class="sr-only">Fermer</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <form action="<?=base_url("company/updateCompanyDescription")?>" method="post" enctype="multipart/form-data">
+                <div>
+
+                    <!--<label for="companyDescription" class="block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Description</label>-->
+                    <textarea id="companyDescription" name="companyDescription" rows="6" class="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><?=$company->companyDescription?></textarea>
+
+                </div>
+                <div class="flex items-center space-x-4 mt-4">
+                    <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                        Valider
+                    </button>
+                    <button type="button" data-modal-toggle="updateCompanyDescription" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                        Annuler
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--Company Advantages modal -->
+<div id="updateCompanyAdvantages" tabindex="-1" aria-hidden="true" class=" hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
+    <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+        <!-- Modal content -->
+        <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+            <!-- Modal header -->
+            <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                    Vos avantages
+                </h3>
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateCompanyAdvantages">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <span class="sr-only">Fermer</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <form action="<?=base_url("company/updateCompanyAdvantages")?>" method="post" enctype="multipart/form-data">
+                <div>
+
+                    <!--<label for="companyDescription" class="block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Description</label>-->
+                    <textarea id="companyAvantages" name="companyAvantages" rows="6" class="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><?=$company->companyAdvantages?></textarea>
+
+                </div>
+                <div class="flex items-center space-x-4 mt-4">
+                    <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                        Valider
+                    </button>
+                    <button type="button" data-modal-toggle="updateCompanyAdvantages" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                        Annuler
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 <div class="px-4 lg:px-6 py-6 h-full overflow-y-auto no-scrollbar">
     <div class="justify-between mx-auto max-w-screen-xl h-full">
         <div class="h-full w-full mb-3">
-            <div class="bg-white rounded-lg w-full mb-4 dark:text-white dark:bg-gray-800">
+            <div class="bg-white rounded-lg w-full mb-4 dark:text-white dark:bg-gray-800 relative">
                 <div class="bg-white dark:bg-gray-800 relative rounded-lg w-full h-auto mb-8">
                     <div class="bg-white dark:bg-gray-800 rounded-lg w-full h-50 flex items-center justify-center">
                         <div class="bg-white dark:bg-gray-800 w-full h-full flex items-center justify-center">
@@ -28,9 +142,9 @@ include(APPPATH . 'views/layouts/company/header.php');
                 </div>
                 <div class="px-4 flex flex-wrap justify-between mt-4">
                     <div>
-                        <h2 class="text-xl font-bold flex items-center"><?= $company->companyName ?></h2>
-                        <h3 class=" font-medium">Slogan de l'entreprise</h3>
-                        <h3 class=" font-normal">Secteur d'activité</h3>
+                        <h2 class="text-3xl font-bold flex items-center"><?= $company->companyName ?></h2>
+                        <h3 class="text-2xl font-medium"><?=$company->companySlogan?></h3>
+                        <h3 class="text-xl font-medium text-gray-400">Secteur d'activité: <?=$company->companySecteur?></h3>
                     </div>
                     <div class="flex flex-wrap">
                         <p class="text mr-2">Contact</p>
@@ -54,6 +168,11 @@ include(APPPATH . 'views/layouts/company/header.php');
                         <button class="inline-block border-b-2 font-normal hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="myCompanyMissions-tab" data-tabs-target="#myCompanyMissions" type="button" role="tab" aria-controls="myCompanyMissions" aria-selected="false">Missions</button>
                     </li>
                 </ul>
+                <div class="absolute bottom-0 right-0 mb-4 mr-4 flex">
+                    <button id="updateCompanyData" data-modal-toggle="updateCompanyData" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                        <i class="fas fa-pen fa-fw"></i>
+                    </button>
+                </div>
             </div>  
             <div id="relative myTabContent w-full">
                 <div class="hidden" id="myCompanyProfile" role="tabpanel" aria-labelledby="myCompanyProfile-tab">
@@ -66,6 +185,11 @@ include(APPPATH . 'views/layouts/company/header.php');
                                 <?=$company->companyDescription?>
                             </p>
                         </div>
+                        <div class="absolute top-0 right-0 mt-4 mr-4 flex">
+                            <button id="updateCompanyDescription" data-modal-toggle="updateCompanyDescription" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                                <i class="fas fa-pen fa-fw"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                         <h2 class="text-xl font-bold mb-4 flex items-center">
@@ -73,8 +197,13 @@ include(APPPATH . 'views/layouts/company/header.php');
                         </h2>
                         <div class="flex items-center justify-between">
                             <p class="font-normal mb-4">
-                                <?=$company->companyDescription?>
+                                <?=$company->companyAdvantages?>
                             </p>
+                        </div>
+                        <div class="absolute top-0 right-0 mt-4 mr-4 flex">
+                            <button id="updateCompanyAdvantages" data-modal-toggle="updateCompanyAdvantages" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                                <i class="fas fa-pen fa-fw"></i>
+                            </button>
                         </div>
                     </div>
 
@@ -187,7 +316,6 @@ include(APPPATH . 'views/layouts/company/header.php');
                                                         ?>
                                                         <?=$mission->missionExpertise?>
                                                         </span>
-
                                                     </p>
                                                 </div>
                                             </div>

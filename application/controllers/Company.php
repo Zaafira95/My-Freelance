@@ -486,5 +486,49 @@ public function editMission($missionId) {
 
         $this->load->view('freelancers/index', $data);
     }
+    
+    public function updateCompanyDescription(){
+        $this->load->model('Company_model');
+        $userId = $this->session->userdata('userId');
+        $companyDescription = $this->input->post('companyDescription');
+        $company = $this->Company_model->getCompanyData($userId);
+        $companyId = $company->idCompany;
+
+        $this->Company_model->updateCompanyDescription($companyId, $companyDescription);
+        $this->session->set_flashdata('message', 'Votre description a bien été mise à jour !');
+        $this->session->set_flashdata('status', 'success');
+        redirect($_SERVER['HTTP_REFERER']);
+       
+    }
+    
+    public function updateCompanyAdvantages(){
+        $this->load->model('Company_model');
+        $userId = $this->session->userdata('userId');
+        $companyAvantages = $this->input->post('companyAvantages');
+        $company = $this->Company_model->getCompanyData($userId);
+        $companyId = $company->idCompany;
+
+        $this->Company_model->updateCompanyAdvantages($companyId, $companyAvantages);
+        $this->session->set_flashdata('message', 'Vos avantages ont bien été mis à jour !');
+        $this->session->set_flashdata('status', 'success');
+        redirect($_SERVER['HTTP_REFERER']);
+       
+    }
+
+    public function updateCompanyData(){
+        $this->load->model('Company_model');
+        $userId = $this->session->userdata('userId');
+        $companyName = $this->input->post('companyName');
+        $companySlogan = $this->input->post('companySlogan');
+        $companySecteur = $this->input->post('companySecteur');
+        $company = $this->Company_model->getCompanyData($userId);
+        $companyId = $company->idCompany;
+
+        $this->Company_model->updateCompanyData($companyId, $companyName, $companySlogan, $companySecteur);
+        $this->session->set_flashdata('message', 'Vos informations ont bien été mises à jour !');
+        $this->session->set_flashdata('status', 'success');
+        redirect($_SERVER['HTTP_REFERER']);
+       
+    }
 }
 ?>

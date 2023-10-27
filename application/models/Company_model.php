@@ -340,7 +340,25 @@ class Company_model extends CI_Model {
     }
 
     
+    public function updateCompanyDescription($companyId, $companyDescription){
+        $this->db->set('companyDescription', $companyDescription);
+        $this->db->where('idCompany', $companyId);
+        $this->db->update('company');
+    }
     
+    public function updateCompanyAdvantages($companyId, $companyAdvantages){
+        $this->db->set('companyAdvantages', $companyAdvantages);
+        $this->db->where('idCompany', $companyId);
+        $this->db->update('company');
+    }    
+
+    public function updateCompanyData($companyId, $companyName, $companySlogan, $companySecteur){
+        $this->db->set('companyName', $companyName);
+        $this->db->set('companySlogan', $companySlogan);
+        $this->db->set('companySecteur', $companySecteur);
+        $this->db->where('idCompany', $companyId);
+        $this->db->update('company');
+    }
     
 }
 ?>

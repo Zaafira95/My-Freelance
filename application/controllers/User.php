@@ -107,7 +107,7 @@ class User extends CI_Controller {
     }
 
     public function uploadAvatar() {
-        $config['upload_path'] = 'assets/img/';
+        $config['upload_path'] = 'assets/img/user/';
         $config['allowed_types'] = 'jpg|jpeg|png';
         $config['max_size'] = 2048; // Taille maximale du fichier en kilo-octets
         $userId = $this->session->userdata('userId');
@@ -116,7 +116,7 @@ class User extends CI_Controller {
         $file_extension = pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
         $file_name = $datetime . '_' . $file_extension;
         $file_name = $userId . '_' . $file_name;
-        $relative_path = 'assets/img/' . $file_name;
+        $relative_path = 'assets/img/user/' . $file_name;
     
         $this->load->library('upload', $config);
     
@@ -266,7 +266,7 @@ class User extends CI_Controller {
         // Vérifier si un fichier a été téléchargé
         if ($_FILES['avatar-upload']['name']) {
             // Créer un dossier pour chaque utilisateur avec son ID
-            $userAvatarPath = 'assets/img/' . $userId . '/';
+            $userAvatarPath = 'assets/img/user/' . $userId . '/';
             if (!is_dir($userAvatarPath)) {
                 mkdir($userAvatarPath, 0777, true);
             }

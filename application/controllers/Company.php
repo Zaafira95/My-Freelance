@@ -523,6 +523,89 @@ public function editMission($missionId) {
         $companySecteur = $this->input->post('companySecteur');
         $company = $this->Company_model->getCompanyData($userId);
         $companyId = $company->idCompany;
+    
+        // Vérifier si un fichier a été téléchargé
+        if ($_FILES['banner-upload']['name']) {
+            // Créer un dossier pour chaque utilisateur avec son ID
+            $companyBannerPath = 'assets/img/company/' . $companyId . '/banner/';
+            if (!is_dir($companyBannerPath)) {
+                mkdir($companyBannerPath, 0777, true);
+            }
+    
+            // Supprimer l'image existante du logo
+            $existingBannerPath = $this->Company_model->getBannerPath($companyId);
+            if ($existingBannerPath) {
+                // Supprimer le fichier existant
+                if (file_exists($existingBannerPath)) {
+                    unlink($existingBannerPath);
+                }
+            }
+    
+            $config['upload_path'] = $companyBannerPath;
+            $config['allowed_types'] = 'jpg|jpeg|png';
+            $config['max_size'] = 2048; // Taille maximale du fichier en kilo-octets
+            $this->load->library('upload', $config);
+    
+            if (!$this->upload->do_upload('banner-upload')) {
+                // Erreur lors du téléchargement du fichier
+                $error = $this->upload->display_errors();
+                echo "Erreur lors du téléchargement de l'image";
+                // Gérez l'erreur en conséquence
+            } else {
+                // Téléchargement du fichier réussi
+                // Récupérer les informations sur le fichier téléchargé
+                $uploadData = $this->upload->data();
+                
+                $companyBannerPath .= $uploadData['file_name'];
+                //$companyBannerPath="test";
+
+                // Mettre à jour le chemin de l'avatar de l'utilisateur dans la base de données
+                $this->Company_model->updateBannerPath($companyId, $companyBannerPath);
+    
+                echo "Image téléchargée avec succès";
+            }
+        }
+    
+        // Vérifier si un fichier a été téléchargé
+        if ($_FILES['logo-upload']['name']) {
+            // Créer un dossier pour chaque utilisateur avec son ID
+            $companyLogoPath = 'assets/img/company/' . $companyId . '/logo/';
+            if (!is_dir($companyLogoPath)) {
+                mkdir($companyLogoPath, 0777, true);
+            }
+    
+            // Supprimer l'image existante du logo
+            $existingLogoPath = $this->Company_model->getLogoPath($companyId);
+            if ($existingLogoPath) {
+                // Supprimer le fichier existant
+                if (file_exists($existingLogoPath)) {
+                    unlink($existingLogoPath);
+                }
+            }
+            
+            $config['upload_path'] = $companyLogoPath;
+            $config['allowed_types'] = 'jpg|jpeg|png';
+            $config['max_size'] = 2048; // Taille maximale du fichier en kilo-octets
+            $this->load->library('upload', $config);
+    
+            if (!$this->upload->do_upload('logo-upload')) {
+                // Erreur lors du téléchargement du fichier
+                $error = $this->upload->display_errors();
+                echo "Erreur lors du téléchargement de l'image";
+                // Gérez l'erreur en conséquence
+            } else {
+                // Téléchargement du fichier réussi
+                // Récupérer les informations sur le fichier téléchargé
+                $uploadData = $this->upload->data();
+                
+                $companyLogoPath .= $uploadData['file_name'];
+
+                // Mettre à jour le chemin de l'avatar de l'utilisateur dans la base de données
+                $this->Company_model->updateLogoPath($companyId, $companyLogoPath);
+    
+                echo "Image téléchargée avec succès";
+            }
+        }
 
         $this->Company_model->updateCompanyData($companyId, $companyName, $companySlogan, $companySecteur);
         $this->session->set_flashdata('message', 'Vos informations ont bien été mises à jour !');

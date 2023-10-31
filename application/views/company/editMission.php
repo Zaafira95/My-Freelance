@@ -117,7 +117,8 @@ include(APPPATH . 'views/layouts/company/header.php' );
                                 <?php foreach ($missionSkills as $missionSkill): ?>
                                     <div class="flex flex-1 mb-4 skill-row">
                                         <div class="w-3/4 mr-2">
-                                            <select id="skillsAll" name="skillsAll[]"  class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                                            <!--<select id="skillsAll" name="skillsAll[]"  class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>-->
+                                            <select id="skillsAll" name="skillsAll[]"  class="new-skill-select bg-white border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                                                 <option value="">Sélectionnez une compétence</option>
                                                 <?php foreach ($skillsAll as $skill): ?>
                                                     <option value="<?= $skill['skillId'] ?>" <?= ($missionSkill->missionSkills_skillId == $skill['skillId']) ? 'selected' : '' ?>><?= $skill['skillName'] ?></option>
@@ -265,6 +266,12 @@ include(APPPATH . 'views/layouts/company/header.php' );
     // Fonction pour créer une nouvelle instance Choices.js
     function createChoicesInstance(element) {
         new Choices(element, {
+            searchEnabled: true,
+            removeItemButton: true,
+            itemSelectText: '',
+            placeholder: true,
+            placeholderValue: 'Sélectionnez des compétences',
+            allowHTML: true,
             /* options spécifiques à Choices */
         });
     }
@@ -392,6 +399,22 @@ include(APPPATH . 'views/layouts/company/header.php' );
             allowHTML: true,
         });
 */
+
+        // Sélectionnez tous les éléments avec la classe "new-skill-select"
+        const skillSelects = document.querySelectorAll('.new-skill-select');
+
+        // Bouclez à travers chaque élément et initialisez une instance Choices.js
+        skillSelects.forEach(function(skillSelect) {
+            new Choices(skillSelect, {
+                searchEnabled: true,
+                removeItemButton: true,
+                itemSelectText: '',
+                placeholder: true,
+                placeholderValue: 'Sélectionnez des compétences',
+                allowHTML: true,
+            });
+        });
+
         $('#search-input-skill').on('keyup', function(){
             let term = $(this).val();
             if (term.length > 2) {

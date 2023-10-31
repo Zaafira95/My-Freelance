@@ -359,6 +359,33 @@ class Company_model extends CI_Model {
         $this->db->where('idCompany', $companyId);
         $this->db->update('company');
     }
+        
+    public function updateBannerPath($companyId, $file_path){
+        $this->db->set('companyBannerPath', $file_path);
+        $this->db->where('idcompany', $companyId);
+        $this->db->update('company');
+    }
+            
+    public function updateLogoPath($companyId, $file_path){
+        $this->db->set('companyLogoPath', $file_path);
+        $this->db->where('idcompany', $companyId);
+        $this->db->update('company');
+    }
     
+    public function getLogoPath($companyId) {
+        $this->db->select('companyLogoPath');
+        $this->db->where('idCompany', $companyId);
+        $query = $this->db->get('company');
+        return $query->row()->companyLogoPath;
+    }
+    
+    public function getBannerPath($companyId) {
+        $this->db->select('companyBannerPath');
+        $this->db->where('idCompany', $companyId);
+        $query = $this->db->get('company');
+        return $query->row()->companyBannerPath;
+    }
+    
+
 }
 ?>

@@ -324,49 +324,55 @@ class Company extends CI_Controller {
         redirect('company');
     }
     
-public function editMission($missionId) {
-    $this->load->model('Company_model');
-    $mission = $this->Company_model->getMissionById($missionId);
-    $data['mission'] = $mission;
+    public function editMission($missionId) {
+        $this->load->model('Company_model');
+        $mission = $this->Company_model->getMissionById($missionId);
+        $data['mission'] = $mission;
 
-    if ($this->input->post()) {
-        $missionName = $this->input->post('missionName');
-        $missionTJM = $this->input->post('missionTJM');
-        $missionJobId = implode(',', $this->input->post('jobsAll'));
-        $missionExperience = $this->input->post('missionExperience');
-        $missionSkills = $this->input->post('missionSkills');
-        $missionType = $this->input->post('missionType');
-        $missionDeroulement = $this->input->post('missionDeroulement');
-        $missionDuration = $this->input->post('missionDuration');
-        $missionLocation = $this->input->post('missionLocation');
-        $missionDescription = $this->input->post('missionDescription');
-        $missionDateDebut = $this->input->post('missionDateDebut');
-        $missionDateFin = $this->input->post('missionDateFin');
-        $missionAvantages = $this->input->post('missionAvantages');
+        if ($this->input->post()) {
+            $missionName = $this->input->post('missionName');
+            $missionTJM = $this->input->post('missionTJM');
+            $missionJobId = implode(',', $this->input->post('jobsAll'));
+            $missionExperience = $this->input->post('missionExperience');
+            $missionSkills = $this->input->post('missionSkills');
+            $missionType = $this->input->post('missionType');
+            $missionDeroulement = $this->input->post('missionDeroulement');
+            $missionDuration = $this->input->post('missionDuration');
+            $missionLocation = $this->input->post('missionLocation');
+            $missionDescription = $this->input->post('missionDescription');
+            $missionDateDebut = $this->input->post('missionDateDebut');
+            $missionDateFin = $this->input->post('missionDateFin');
+            $missionAvantages = $this->input->post('missionAvantages');
 
-        $skills = $this->input->post("skillsAll");
-        $levels = $this->input->post("skillsLevel");
+            $skills = $this->input->post("skillsAll");
+            $levels = $this->input->post("skillsLevel");
 
-        // Appelez la fonction du modèle pour mettre à jour la mission
-        $this->Company_model->editMission($missionId, $missionName, $missionTJM, $missionJobId, $missionExperience, $missionSkills, $missionLocation, $missionDescription, $missionAvantages, $missionType, $missionDeroulement, $missionDuration, $missionDateDebut, $missionDateFin);
-        // Dans la fonction editMission du contrôleur
-        if (!empty($skills)) {
-        // Bouclez à travers les compétences et les niveaux associés
-            for ($i = 0; $i < count($skills); $i++) {
-                $skillId = $skills[$i];
-                $level = $levels[$i];
+            $this->Company_model->editMission($missionId, $missionName, $missionTJM, $missionJobId, $missionExperience, $missionSkills, $missionLocation, $missionDescription, $missionAvantages, $missionType, $missionDeroulement, $missionDuration, $missionDateDebut, $missionDateFin);
+            if (!empty($skills)) {
+            // Bouclez à travers les compétences et les niveaux associés
+                for ($i = 0; $i < count($skills); $i++) {
+                    $skillId = $skills[$i];
+                    $level = $levels[$i];
 
-                // Ajoutez les compétences de mission à la table missionSkills
-                $this->Company_model->addMissionSkills($missionId, $skillId, $level);
+                    // Ajoutez les compétences de mission à la table missionSkills
+                    $this->Company_model->addMissionSkills($missionId, $skillId, $level);
+                }
             }
+
+            redirect('company/my_company'); 
+        } else {
+            $this->load->view('company/editMission', $data);
         }
-
-        redirect('company/my_company'); 
-    } else {
-        $this->load->view('company/editMission', $data);
     }
-}
 
+    public function deleteMission($missionId){
+        $this->load->model('Company_model');
+
+        $this->Company_model->deleteMission($missionId);
+        $this->session->set_flashdata('message', 'Votre mission a bien été supprimée !');
+        $this->session->set_flashdata('status', 'success');
+        redirect('company/my_company');
+    }
 
     public function my_company(){
         $userId = $this->session->userdata('userId');
@@ -384,6 +390,9 @@ public function editMission($missionId) {
             $missionSkills[$idMission] = $this->Company_model->getMissionSkills($idMission);
         }
         $data['missionSkills'] = $missionSkills;
+
+        $companyPhotos = $this->Company_model->getAllPhotos($companyId);
+        $data['companyPhotos'] = $companyPhotos;
 
         $user = $this->Company_model->get_UserData($userId);
         $data['user'] = $user;
@@ -582,7 +591,7 @@ public function editMission($missionId) {
                     unlink($existingLogoPath);
                 }
             }
-            
+
             $config['upload_path'] = $companyLogoPath;
             $config['allowed_types'] = 'jpg|jpeg|png';
             $config['max_size'] = 2048; // Taille maximale du fichier en kilo-octets
@@ -611,7 +620,130 @@ public function editMission($missionId) {
         $this->session->set_flashdata('message', 'Vos informations ont bien été mises à jour !');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
-       
     }
+
+    public function updateCompanyPhotos(){
+        $this->load->model('Company_model');
+        $userId = $this->session->userdata('userId');
+        $company = $this->Company_model->getCompanyData($userId);
+        $companyId = $company->idCompany;
+    
+        // Récupérer les photos actuellement enregistrées en base de données
+        $currentPhotos = $this->Company_model->getAllPhotos($companyId);
+    
+        // Parcourir les photos actuelles
+        foreach ($currentPhotos as $photo) {
+            $photoId = $photo->idCompanyPhotos;
+            $photoNameInput = 'photo-upload-' . $photoId;
+    
+            // Vérifier si une nouvelle image a été téléchargée pour cette photo
+            if (isset($_FILES[$photoNameInput]) && $_FILES[$photoNameInput]['name']) {
+                $companyPhotoPath = 'assets/img/company/' . $companyId . '/photos/';
+    
+                // Supprimer l'ancienne image
+                if (file_exists($photo->companyPhotosPath)) {
+                    unlink($photo->companyPhotosPath);
+                }
+    
+                $config['upload_path'] = $companyPhotoPath;
+                $config['allowed_types'] = 'jpg|jpeg|png';
+                $config['max_size'] = 2048; // Taille maximale du fichier en kilo-octets
+                $this->load->library('upload', $config);
+    
+                if (!$this->upload->do_upload($photoNameInput)) {
+                    // Erreur lors du téléchargement du fichier
+                    $error = $this->upload->display_errors();
+                    echo "Erreur lors du téléchargement de l'image";
+                    // Gérez l'erreur en conséquence
+                } else {
+                    // Téléchargement du fichier réussi
+                    // Récupérer les informations sur le fichier téléchargé
+                    $uploadData = $this->upload->data();
+                    $companyPhotoPath = $companyPhotoPath . $uploadData['file_name'];
+    
+                    // Mettre à jour le chemin de l'image dans la base de données
+                    $this->Company_model->updatePhotoPath($photoId, $companyPhotoPath);
+                }
+            }
+        }
+    
+        $this->session->set_flashdata('message', 'Vos photos ont bien été mises à jour !');
+        $this->session->set_flashdata('status', 'success');
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+    
+    
+    public function deleteCompanyPhoto($id){
+        $this->load->model('Company_model');
+        $userId = $this->session->userdata('userId');
+        $company = $this->Company_model->getCompanyData($userId);
+        $companyId = $company->idCompany;
+            
+        // Supprimer les images existantes dans le dossier 'photos' de l'entreprise
+        $companyPhotoPath = $this->Company_model->getPhotoPath($id);
+
+        if (file_exists($companyPhotoPath)) {
+            unlink($companyPhotoPath);
+        }        
+
+        $this->Company_model->deletePhotoPath($id);
+    /*
+        $config['upload_path'] = $companyPhotoPath;
+        $config['allowed_types'] = 'jpg|jpeg|png';
+        $config['max_size'] = 2048; // Taille maximale du fichier en kilo-octets
+        $this->load->library('upload', $config);
+*/
+        $this->session->set_flashdata('message', 'Votre photo a bien été supprimée !');
+        $this->session->set_flashdata('status', 'success');
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    public function addCompanyPhotos(){
+        $this->load->model('Company_model');
+        $userId = $this->session->userdata('userId');
+        $company = $this->Company_model->getCompanyData($userId);
+        $companyId = $company->idCompany;
+    
+        // Récupérer le chemin du dossier pour les photos de l'entreprise
+        $companyPhotoPath = 'assets/img/company/' . $companyId . '/photos/';
+    
+        // Vérifier si un fichier a été téléchargé
+        if ($_FILES['photo-upload']['name']) {
+            // Créer le dossier s'il n'existe pas encore
+            if (!is_dir($companyPhotoPath)) {
+                mkdir($companyPhotoPath, 0777, true);
+            }
+    
+            // Configuration pour le téléchargement du fichier
+            $config['upload_path'] = $companyPhotoPath;
+            $config['allowed_types'] = 'jpg|jpeg|png';
+            $config['max_size'] = 2048; // Taille maximale du fichier en kilo-octets
+            $this->load->library('upload', $config);
+    
+            if (!$this->upload->do_upload('photo-upload')) {
+                // Erreur lors du téléchargement du fichier
+                $error = $this->upload->display_errors();
+                echo "Erreur lors du téléchargement de l'image";
+                // Gérez l'erreur en conséquence
+            } else {
+                // Téléchargement du fichier réussi
+                // Récupérer les informations sur le fichier téléchargé
+                $uploadData = $this->upload->data();
+                $companyPhotoName = $uploadData['file_name'];
+                $companyPhotoPath = $companyPhotoPath . $companyPhotoName;
+    
+                // Insérer le nouveau chemin de l'image dans la table 'companyphotos'
+                $this->Company_model->insertPhotoPath($companyId, $companyPhotoPath);
+    
+                echo "Image téléchargée avec succès";
+            }
+        }
+    
+        $this->session->set_flashdata('message', 'Votre photo a bien été ajoutée !');
+        $this->session->set_flashdata('status', 'success');
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+    
+
 }
 ?>

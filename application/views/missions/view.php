@@ -137,27 +137,31 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                 </div>
                             </div>
                             <div id="contactBlock" class="flex items-center">
-                                <?php foreach ($companyUser as $companyContact) : ?>
+                                <div>
+                                    <?php if($user->userType == 'freelance') { ?>
+                                        <?php foreach ($companyUser as $companyContact) : ?>
+                                            <div class="mb-2 flex items-center justify-end">
+                                                <span class="text-md mr-2">Contact </span>
+                                                
+                                                <div class="mr-2 flex p-1 text-primary border-primary border-1 rounded-full hover:bg-primary hover:text-white">
+                                                <a href="https://wa.me/<?=$companyContact->userTelephone?>?text=Bonjour%20<?=$companyContact->userFirstName?>%20!%20Je%20suis%20intéressé%20par%20votre%20mission%20sur%20Café%20Crème%20Community%20!%20" target="_blank">
+                                                        <i class="fab fa-whatsapp"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="mr-2 flex p-1 text-red-800 border-red-800 border-1 rounded-full hover:bg-red-900 hover:text-white">
+                                                    <a href="mailto:<?=$companyContact->userEmail?>" target="_blank">
+                                                    <i class="fas fa-envelope"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    <?php } ?>
+                                    <div class="mb-2 flex items-center justify-end">
+                                    
+                                    </div>
                                     <div>
-                                        <div class="mb-2 flex items-center justify-end">
-                                            <span class="text-md mr-2">Contact </span>
-                                            
-                                            <div class="mr-2 flex p-1 text-primary border-primary border-1 rounded-full hover:bg-primary hover:text-white">
-                                            <a href="https://wa.me/<?=$companyContact->userTelephone?>?text=Bonjour%20<?=$companyContact->userFirstName?>%20!%20Je%20suis%20intéressé%20par%20votre%20mission%20sur%20Café%20Crème%20Community%20!%20" target="_blank">
-                                                    <i class="fab fa-whatsapp"></i>
-                                                </a>
-                                            </div>
-                                            <div class="mr-2 flex p-1 text-red-800 border-red-800 border-1 rounded-full hover:bg-red-900 hover:text-white">
-                                                <a href="mailto:<?=$companyContact->userEmail?>" target="_blank">
-                                                <i class="fas fa-envelope"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="mb-2 flex items-center justify-end">
-                                       
-                                        </div>
-                                        <div>
-                                        <?php
+                                        <?php if($user->userType == 'freelance') { ?>
+                                            <?php
                                             if(isFavorite($mission->idMission, $favoriteMissions)){
                                             ?>
                                                 <a href="<?php echo base_url('user/removeFromFavorite/'.$mission->idMission);?>">
@@ -174,12 +178,12 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                                 }
                                             ?>
                                             <button class="px-4 py-2 rounded-full bg-primary text-white mr-2 hover:bg-blue-700" id="sendMessage" data-modal-toggle="sendMessage">Postuler maintenant</button>
-                                            <button id="generate-pdf-btn" class="bg-primary mb-4  hover:bg-blue-700 text-white py-2 px-4 rounded-full">
-                                                PDF
-                                            </button>
-                                        </div>
+                                        <?php } ?>
+                                        <button id="generate-pdf-btn" class="bg-primary mb-4  hover:bg-blue-700 text-white py-2 px-4 rounded-full">
+                                            PDF
+                                        </button>
                                     </div>
-                                <?php endforeach; ?>
+                                </div>
                             </div>
 
                         </div>
@@ -464,21 +468,31 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                 </div>
                             </div>
                             <div class="absolute top-0 right-4 mt-4 mb-4 z-9">
-                                <?php
-                                if(isFavorite($mission->idMission, $favoriteMissions)){
-                                    ?>
-                                    <a href="<?php echo base_url('user/removeFromFavorite/'.$mission->idMission);?>">
-                                        <i class="fas fa-heart text-xl text-red-800"></i>
-                                    </a>
+                                <?php if($user->userType == 'freelance') { ?>
                                     <?php
-                                } else {
+                                    if(isFavorite($mission->idMission, $favoriteMissions)){
+                                        ?>
+                                        <a href="<?php echo base_url('user/removeFromFavorite/'.$mission->idMission);?>">
+                                            <i class="fas fa-heart text-xl text-red-800"></i>
+                                        </a>
+                                        <?php
+                                    } else {
+                                        ?>
+                                        <a href="<?php echo base_url('user/addToFavorite/'.$mission->idMission);?>">
+                                            <i class="far fa-heart text-xl text-red-800"></i>
+                                        </a>
+                                        <?php
+                                    }
                                     ?>
-                                    <a href="<?php echo base_url('user/addToFavorite/'.$mission->idMission);?>">
-                                        <i class="far fa-heart text-xl text-red-800"></i>
-                                    </a>
-                                    <?php
-                                }
-                                ?>
+                                <?php } ?>
+
+                                <?php if($user->userType == 'sales') { ?>
+                                <a href="<?php echo base_url('company/missionEdit/'.$mission->idMission);?>">
+                                    <button class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                                        <i class="fas fa-pen fa-fw"></i>
+                                    </button>
+                                </a>
+                                <?php } ?>
                             </div>
                         </div>
                         </div>

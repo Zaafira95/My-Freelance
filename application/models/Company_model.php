@@ -339,6 +339,13 @@ class Company_model extends CI_Model {
         $this->db->delete('missionSkills');
     }
 
+    public function deleteMission($missionId) {
+        $this->db->where('missionSkills_missionId', $missionId);
+        $this->db->delete('missionSkills');
+        
+        $this->db->where('idMission', $missionId);
+        $this->db->delete('mission');
+    }
     
     public function updateCompanyDescription($companyId, $companyDescription){
         $this->db->set('companyDescription', $companyDescription);
@@ -386,6 +393,37 @@ class Company_model extends CI_Model {
         return $query->row()->companyBannerPath;
     }
     
+    public function deletePhotoPath($id) {
+        $this->db->where('idCompanyPhotos', $id);
+        $this->db->delete('companyPhotos');
+    }
+    public function insertPhotoPath($companyId, $companyPhotoPath) {
+        $data = array(
+            'companyPhotosPath' => $companyPhotoPath,
+            'companyPhotos_companyId' => $companyId
+        );
+        $this->db->insert('companyphotos', $data);
+    }
+    
+    public function getAllPhotos($companyId){
+        $this->db->select('*');
+        $this->db->from('companyPhotos');
+        $this->db->where('companyPhotos_companyId', $companyId);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    
+    public function getPhotoPath($id){
+        $this->db->select('companyPhotosPath');
+        $this->db->where('idCompanyPhotos', $id);
+        $query = $this->db->get('companyPhotos');
+        return $query->row()->companyPhotosPath;
+    }
 
+    public function updatePhotoPath($id, $companyPhotoPath){
+        $this->db->set('companyPhotosPath', $companyPhotoPath);
+        $this->db->where('idCompanyPhotos', $id);
+        $this->db->update('companyPhotos');
+    }
 }
 ?>

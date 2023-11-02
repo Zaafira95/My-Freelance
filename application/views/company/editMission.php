@@ -11,6 +11,36 @@ include(APPPATH . 'views/layouts/company/header.php' );
     <link href="<?php echo base_url('/node_modules/choices.js/public/assets/styles/choices.min.css');?>" rel="stylesheet" type="text/css">
 
 </head>
+
+<!--Delete Mission Confirmation modal -->
+<div id="deleteMission" tabindex="-1" aria-hidden="true" class=" hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
+    <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+        <!-- Modal content -->
+        <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+            <!-- Modal header -->
+            <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                    Confirmation de suppression
+                </h3>
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="deleteMission">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <span class="sr-only">Fermer</span>
+                </button>
+            </div>
+
+            <p class="text-gray-700 dark:text-white mb-6">Êtes-vous sûr de vouloir supprimer cette mission ?</p>
+            <div class="flex justify-end">
+                <button type="button" data-modal-toggle="deleteMission" class="text-gray-600 inline-flex items-center hover:text-white hover:bg-gray-800 border-gray-600  focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500  dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">
+                    Annuler
+                </button>
+                <a href="<?=base_url('company/deleteMission/'.$mission->idMission)?>" class="text-red-800 inline-flex items-center hover:text-white hover:bg-red-900 border-red-900  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500  dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Supprimer</a>
+            </div>
+            <div class="flex items-center space-x-4 mt-4">
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="px-4 lg:px-6 py-6 h-full overflow-y-auto no-scrollbar">
     <div class="flex flex-wrap justify-between mx-auto max-w-screen-xl h-full">
         <div class="flex h-full w-full mb-3">
@@ -39,7 +69,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
                         <div class="flex flex-1 mt-4">
                             <input type="text" name="missionLocation" id="citySearch" value="<?= $mission->missionLocalisation ?>" placeholder="Cherchez votre ville" class="border p-2 rounded-lg w-full text-black">
                                 <div id="cities-list" class="absolute z-10 mt-2 w-full rounded bg-white max-h-64 overflow-y-auto text-black"></div>
-                            </div>
+                                </div>
                         
                             <p class="text-lg font-bold mt-4"> Durée de la mission </p>
 
@@ -117,7 +147,8 @@ include(APPPATH . 'views/layouts/company/header.php' );
                                 <?php foreach ($missionSkills as $missionSkill): ?>
                                     <div class="flex flex-1 mb-4 skill-row">
                                         <div class="w-3/4 mr-2">
-                                            <select id="skillsAll" name="skillsAll[]"  class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                                            <!--<select id="skillsAll" name="skillsAll[]"  class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>-->
+                                            <select id="skillsAll" name="skillsAll[]"  class="new-skill-select bg-white border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                                                 <option value="">Sélectionnez une compétence</option>
                                                 <?php foreach ($skillsAll as $skill): ?>
                                                     <option value="<?= $skill['skillId'] ?>" <?= ($missionSkill->missionSkills_skillId == $skill['skillId']) ? 'selected' : '' ?>><?= $skill['skillName'] ?></option>
@@ -174,15 +205,20 @@ include(APPPATH . 'views/layouts/company/header.php' );
                             <textarea name="missionAvantages" placeholder="Avantages de la mission" cols="20" rows="5" class="block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required><?= $mission->missionAvantage ?></textarea>
                         </div>
 
-                        <div class="flex items-center space-x-4 mt-4">
-                            <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                                Valider
-                            </button>
-                            <a href="<?=base_url('company/my_company')?>">
-                                <button type="button" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
-                                    Annuler
+                        <div class="flex items-center justify-between space-x-4 mt-4">
+                            <div class="flex items-center space-x-4">
+                                <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                    Valider
                                 </button>
-                            </a>
+                                <a href="<?=base_url('company/my_company')?>">
+                                    <button type="button" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                                        Annuler
+                                    </button>
+                                </a>
+                            </div>
+                            <button id="deleteMission" data-modal-toggle="deleteMission" class="text-red-600 inline-flex items-center hover:text-white hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900" type="button">
+                                <i class="fa fa-trash mr-2"></i> Supprimer
+                            </button>
                         </div>
 
                     </form> 
@@ -265,6 +301,12 @@ include(APPPATH . 'views/layouts/company/header.php' );
     // Fonction pour créer une nouvelle instance Choices.js
     function createChoicesInstance(element) {
         new Choices(element, {
+            searchEnabled: true,
+            removeItemButton: true,
+            itemSelectText: '',
+            placeholder: true,
+            placeholderValue: 'Sélectionnez des compétences',
+            allowHTML: true,
             /* options spécifiques à Choices */
         });
     }
@@ -392,6 +434,22 @@ include(APPPATH . 'views/layouts/company/header.php' );
             allowHTML: true,
         });
 */
+
+        // Sélectionnez tous les éléments avec la classe "new-skill-select"
+        const skillSelects = document.querySelectorAll('.new-skill-select');
+
+        // Bouclez à travers chaque élément et initialisez une instance Choices.js
+        skillSelects.forEach(function(skillSelect) {
+            new Choices(skillSelect, {
+                searchEnabled: true,
+                removeItemButton: true,
+                itemSelectText: '',
+                placeholder: true,
+                placeholderValue: 'Sélectionnez des compétences',
+                allowHTML: true,
+            });
+        });
+
         $('#search-input-skill').on('keyup', function(){
             let term = $(this).val();
             if (term.length > 2) {

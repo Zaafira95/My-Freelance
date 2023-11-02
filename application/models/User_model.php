@@ -41,10 +41,6 @@ class User_model extends CI_Model {
     }
     
     
-
-   
-
-
     public function updateAvatarPath($userId, $file_path){
         $this->db->set('userAvatarPath', $file_path);
         $this->db->where('userId', $userId);

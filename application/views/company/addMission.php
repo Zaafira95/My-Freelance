@@ -255,6 +255,12 @@ include(APPPATH . 'views/layouts/company/header.php' );
     // Fonction pour créer une nouvelle instance Choices.js
     function createChoicesInstance(element) {
         new Choices(element, {
+            searchEnabled: true,
+            removeItemButton: true,
+            itemSelectText: '',
+            placeholder: true,
+            placeholderValue: 'Sélectionnez des compétences',
+            allowHTML: true,
             /* options spécifiques à Choices */
         });
     }
@@ -373,13 +379,18 @@ include(APPPATH . 'views/layouts/company/header.php' );
         });
 
         // Gestion des compétences avec Choices.js
-        const skillsChoices = new Choices('#skillsAll', {
-            searchEnabled: true,
-            removeItemButton: true,
-            itemSelectText: '',
-            placeholder: true,
-            placeholderValue: 'Sélectionnez des compétences',
-            allowHTML: true,
+        const skillSelects = document.querySelectorAll('.new-skill-select');
+
+        // Bouclez à travers chaque élément et initialisez une instance Choices.js
+        skillSelects.forEach(function(skillSelect) {
+            new Choices(skillSelect, {
+                searchEnabled: true,
+                removeItemButton: true,
+                itemSelectText: '',
+                placeholder: true,
+                placeholderValue: 'Sélectionnez des compétences',
+                allowHTML: true,
+            });
         });
 
         $('#search-input-skill').on('keyup', function(){

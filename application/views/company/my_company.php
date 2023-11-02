@@ -12,25 +12,269 @@ include(APPPATH . 'views/layouts/company/header.php');
     <title><?=$company->companyName?> - Café Crème Community </title>
 </head>
 
+<!--Company Data modal -->
+<div id="updateCompanyData" tabindex="-1" aria-hidden="true" class=" hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
+    <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+        <!-- Modal content -->
+        <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+            <!-- Modal header -->
+            <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                    Votre entreprise
+                </h3>
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateCompanyData">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <span class="sr-only">Fermer</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <form action="<?=base_url("company/updateCompanyData")?>" method="post" enctype="multipart/form-data">
+                <div class="bg-white dark:bg-gray-800 relative rounded-lg w-full h-auto mb-8">
+                    <div class="bg-white dark:bg-gray-800 rounded-lg w-full h-32 flex items-center justify-center">
+                        <div class="bg-white dark:bg-gray-800 w-full h-full flex items-center justify-center">
+                            <img id="banner-image" src="<?=base_url($company->companyBannerPath)?>" class="object-cover w-full h-full rounded-lg dark:bg-gray-800" alt="Image de l'entreprise">
+                        </div>
+                        <div class="absolute bottom-0 right-0 bg-white rounded-full">
+                            <label for="banner-upload">
+                                <div class="rounded-full p-2 ring ring-primary">
+                                    <i class="fas fa-pen text-primary cursor-pointer"></i>
+                                </div>
+                            </label>
+                            <input type="file" id="banner-upload" name="banner-upload" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'banner-image')">
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="relative rounded-full border-10 w-20 h-20 flex items-center justify-center" style="margin-top:-50px;">
+                            <img id="logo-image" src="<?=base_url($company->companyLogoPath)?>" class="object-cover w-full h-full rounded-full ring-8 ring-white dark:ring-gray-800" alt="Image de l'entreprise">
+                            <div class="absolute bottom-0 right-0 bg-white rounded-full">
+                                <label for="logo-upload">
+                                    <div class="rounded-full p-2 ring ring-primary">
+                                        <i class="fas fa-pen text-primary cursor-pointer"></i>
+                                    </div>
+                                </label>
+                                <input type="file" id="logo-upload" name="logo-upload" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'logo-image')">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label for="companyName" class="block mb-1  font-medium text-gray-900 dark:text-white">Nom *</label>
+                        <input type="text" name="companyName" id="companyName" value="<?=$company->companyName?>" class="mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                    
+                    <label for="companySlogan" class="block mb-1  font-medium text-gray-900 dark:text-white">Slogan *</label>
+                        <input type="text" name="companySlogan" id="companySlogan" value="<?=$company->companySlogan?>" class="mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                    
+                    <label for="companySecteur" class="block mb-1  font-medium text-gray-900 dark:text-white">Secteur d'activité *</label>
+                        <input type="text" name="companySecteur" id="companySecteur" value="<?=$company->companySecteur?>" class="mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                    
+                </div>
+                <div class="flex items-center space-x-4 mt-4">
+                    <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                        Valider
+                    </button>
+                    <button type="button" data-modal-toggle="updateCompanyData" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                        Annuler
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--Company Description modal -->
+<div id="updateCompanyDescription" tabindex="-1" aria-hidden="true" class=" hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
+    <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+        <!-- Modal content -->
+        <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+            <!-- Modal header -->
+            <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                    Description de votre entreprise
+                </h3>
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateCompanyDescription">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <span class="sr-only">Fermer</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <form action="<?=base_url("company/updateCompanyDescription")?>" method="post" enctype="multipart/form-data">
+                <div>
+
+                    <!--<label for="companyDescription" class="block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Description</label>-->
+                    <textarea id="companyDescription" name="companyDescription" rows="6" class="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><?=$company->companyDescription?></textarea>
+
+                </div>
+                <div class="flex items-center space-x-4 mt-4">
+                    <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                        Valider
+                    </button>
+                    <button type="button" data-modal-toggle="updateCompanyDescription" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                        Annuler
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--Company Advantages modal -->
+<div id="updateCompanyAdvantages" tabindex="-1" aria-hidden="true" class=" hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
+    <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+        <!-- Modal content -->
+        <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+            <!-- Modal header -->
+            <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                    Vos avantages
+                </h3>
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateCompanyAdvantages">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <span class="sr-only">Fermer</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <form action="<?=base_url("company/updateCompanyAdvantages")?>" method="post" enctype="multipart/form-data">
+                <div>
+
+                    <!--<label for="companyDescription" class="block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Description</label>-->
+                    <textarea id="companyAvantages" name="companyAvantages" rows="6" class="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><?=$company->companyAdvantages?></textarea>
+
+                </div>
+                <div class="flex items-center space-x-4 mt-4">
+                    <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                        Valider
+                    </button>
+                    <button type="button" data-modal-toggle="updateCompanyAdvantages" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                        Annuler
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--Company Pictures modal -->
+<div id="updateCompanyPhotos" tabindex="-1" aria-hidden="true" class=" hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
+    <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+        <!-- Modal content -->
+        <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+            <!-- Modal header -->
+            <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                    Photos de votre entreprise
+                </h3>
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateCompanyPhotos">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <span class="sr-only">Fermer</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <form action="<?= base_url("company/updateCompanyPhotos") ?>" method="post" enctype="multipart/form-data">
+                <div class="image-container grid grid-cols-2 gap-4">
+                <?php foreach ($companyPhotos as $companyPhoto): ?>
+                        <div class="rounded-lg flex items-center justify-center mb-2">
+                            <div class="relative w-full h-full flex items-center justify-center">
+                                <img id="company-image-<?= $companyPhoto->idCompanyPhotos ?>" src="<?= base_url($companyPhoto->companyPhotosPath) ?>" class="w-full h-full rounded-lg" alt="Image de l'entreprise" style="width:100%;">
+                                <div class="absolute right-0 top-0 rounded-lg pt-4 pr-4">
+                                    <label for="photo-upload-<?= $companyPhoto->idCompanyPhotos ?>" class="py-2.5 px-2.5 text-gray-400 hover:text-gray-900 bg-transparent rounded-lg ml-auto inline-flex items-center">
+                                        <div class="cursor-pointer">
+                                            <i class="fas fa-pen"></i>
+                                        </div>
+                                    </label>
+                                    <input type="file" id="photo-upload-<?= $companyPhoto->idCompanyPhotos ?>" name="photo-upload-<?= $companyPhoto->idCompanyPhotos ?>" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'company-image-<?= $companyPhoto->idCompanyPhotos ?>')">
+                                    <a href="#" onclick="showModal('deleteImageConfirmationModal-<?= $companyPhoto->idCompanyPhotos ?>');">
+                                        <button type="button" class="text-red-600 hover:text-red-900 focus:outline-none ml-2">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </a>
+                                    <div id="deleteImageConfirmationModal-<?= $companyPhoto->idCompanyPhotos ?>" class="hidden fixed inset-0 flex items-center justify-center z-50">
+                                        <div class="fixed inset-0 bg-black opacity-50"></div>
+                                        <div class="relative bg-gray-50 rounded-lg shadow p-6 border border-gray-800 dark:bg-gray-800 sm:p-5">
+                                            <h3 class="text-lg font-semibold mb-4">Confirmation de suppression</h3>
+                                            <p class="text-gray-700 dark:text-white mb-6">Êtes-vous sûr de vouloir supprimer cette image ?</p>
+                                            <div class="flex justify-end">
+                                                <button type="button" onclick="hideModal('deleteImageConfirmationModal-<?= $companyPhoto->idCompanyPhotos ?>');" class="text-gray-600 inline-flex items-center hover:text-white hover:bg-gray-800 border-gray-600  focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500  dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">Annuler</button>
+                                                <a href="<?=base_url('company/deleteCompanyPhoto/'.$companyPhoto->idCompanyPhotos)?>" class="text-red-800 inline-flex items-center hover:text-white hover:bg-red-900 border-red-900  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500  dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Supprimer</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <div class="flex items-center space-x-4 mt-6">
+                    <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                        Valider
+                    </button>
+                    <button type="button" data-modal-toggle="updateCompanyPhotos" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                        Annuler
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<!--Company Pictures modal -->
+<div id="addCompanyPhotos" tabindex="-1" aria-hidden="true" class=" hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
+    <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+        <!-- Modal content -->
+        <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+            <!-- Modal header -->
+            <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                    Photos de votre entreprise
+                </h3>
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="addCompanyPhotos">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <span class="sr-only">Fermer</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <form action="<?= base_url("company/addCompanyPhotos") ?>" method="post" enctype="multipart/form-data">
+                <div class="rounded-lg flex flex-wrap items-center justify-center mb-4">
+                    <div class="w-full h-full flex items-center justify-center">
+                        <img id="company-image" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class=" max-h-64 max-w-xs rounded-lg" alt="Image de l'entreprise" style="width:100%;">
+                    </div>
+                    <label for="photo-upload" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 mt-4 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 cursor-pointer">
+                        <span class="filename">Choisir une image</span>
+                    </label>
+                    <input type="file" id="photo-upload" name="photo-upload" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'company-image')">
+                </div>
+                <div class="flex items-center space-x-4 mt-10">
+                    <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                        Valider
+                    </button>
+                    <button type="button" data-modal-toggle="addCompanyPhotos" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                        Annuler
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="px-4 lg:px-6 py-6 h-full overflow-y-auto no-scrollbar">
     <div class="justify-between mx-auto max-w-screen-xl h-full">
         <div class="h-full w-full mb-3">
-            <div class="bg-white rounded-lg w-full mb-4 dark:text-white dark:bg-gray-800">
+            <div class="bg-white rounded-lg w-full mb-4 dark:text-white dark:bg-gray-800 relative">
                 <div class="bg-white dark:bg-gray-800 relative rounded-lg w-full h-auto mb-8">
-                    <div class="bg-white dark:bg-gray-800 rounded-lg w-full h-50 flex items-center justify-center">
+                    <div class="bg-white dark:bg-gray-800 rounded-lg w-full h-48 flex items-center justify-center">
                         <div class="bg-white dark:bg-gray-800 w-full h-full flex items-center justify-center">
-                            <img id="company-image" src="<?=base_url('assets/img/airbnb-couverture.png')?>" class="object-cover w-full h-full rounded-lg dark:bg-gray-800" alt="Image de l'entreprise">
+                            <img src="<?=base_url($company->companyBannerPath)?>" class="object-cover w-full h-full rounded-lg dark:bg-gray-800" alt="Image de l'entreprise">
                         </div>
                     </div>
                     <div class="rounded-full border-10 w-40 h-40 flex items-center justify-center" style="margin-top:-50px;">
-                        <img id="company-image" src="<?=base_url('assets/img/airbnb.png')?>" class="ml-4 object-cover w-full h-full rounded-full ring-8 ring-white dark:ring-gray-800" alt="Image de l'entreprise">
+                        <img src="<?=base_url($company->companyLogoPath)?>" class="ml-4 object-cover w-full h-full rounded-full ring-8 ring-white dark:ring-gray-800" alt="Image de l'entreprise">
                     </div>
                 </div>
                 <div class="px-4 flex flex-wrap justify-between mt-4">
                     <div>
-                        <h2 class="text-xl font-bold flex items-center"><?= $company->companyName ?></h2>
-                        <h3 class=" font-medium">Slogan de l'entreprise</h3>
-                        <h3 class=" font-normal">Secteur d'activité</h3>
+                        <h2 class="text-3xl font-bold flex items-center"><?= $company->companyName ?></h2>
+                        <h3 class="text-2xl font-medium"><?=$company->companySlogan?></h3>
+                        <h3 class="text-xl font-medium text-gray-400">Secteur d'activité: <?=$company->companySecteur?></h3>
                     </div>
                     <div class="flex flex-wrap">
                         <p class="text mr-2">Contact</p>
@@ -54,6 +298,13 @@ include(APPPATH . 'views/layouts/company/header.php');
                         <button class="inline-block border-b-2 font-normal hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="myCompanyMissions-tab" data-tabs-target="#myCompanyMissions" type="button" role="tab" aria-controls="myCompanyMissions" aria-selected="false">Missions</button>
                     </li>
                 </ul>
+                <?php if($user->userType == 'sales') { ?>
+                <div class="absolute bottom-0 right-0 mb-4 mr-4 flex">
+                    <button id="updateCompanyData" data-modal-toggle="updateCompanyData" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                        <i class="fas fa-pen fa-fw"></i>
+                    </button>
+                </div>
+                <?php } ?>
             </div>  
             <div id="relative myTabContent w-full">
                 <div class="hidden" id="myCompanyProfile" role="tabpanel" aria-labelledby="myCompanyProfile-tab">
@@ -66,6 +317,13 @@ include(APPPATH . 'views/layouts/company/header.php');
                                 <?=$company->companyDescription?>
                             </p>
                         </div>
+                        <?php if($user->userType == 'sales') { ?>
+                        <div class="absolute top-0 right-0 mt-4 mr-4 flex">
+                            <button id="updateCompanyDescription" data-modal-toggle="updateCompanyDescription" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                                <i class="fas fa-pen fa-fw"></i>
+                            </button>
+                        </div>
+                        <?php } ?>
                     </div>
                     <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                         <h2 class="text-xl font-bold mb-4 flex items-center">
@@ -73,43 +331,53 @@ include(APPPATH . 'views/layouts/company/header.php');
                         </h2>
                         <div class="flex items-center justify-between">
                             <p class="font-normal mb-4">
-                                <?=$company->companyDescription?>
+                                <?=$company->companyAdvantages?>
                             </p>
                         </div>
+                        <?php if($user->userType == 'sales') { ?>
+                        <div class="absolute top-0 right-0 mt-4 mr-4 flex">
+                            <button id="updateCompanyAdvantages" data-modal-toggle="updateCompanyAdvantages" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                                <i class="fas fa-pen fa-fw"></i>
+                            </button>
+                        </div>
+                        <?php } ?>
                     </div>
 
                     <div class="relative bg-white rounded-lg mt-4 mb-4 py-4 dark:bg-gray-800 dark:text-white">
                         <h2 class="text-xl font-bold mb-4 pl-4 flex items-center">
                             Photos de l'entreprise
                         </h2>
-                        
                         <div class="overflow-x-auto flex pb-4 px-4 gap-4 no-scrollbar">
-                            <div class="rounded-lg flex items-center justify-center">
-                                <div class="w-full h-full flex items-center justify-center" style="width:500px;">
-                                    <img id="company-image" src="<?=base_url('assets/img/airbnb1.png')?>" class="w-full h-full rounded-lg" alt="Image de l'entreprise" style="width:100%;">
+                            <?php $imageCount = 0; ?>
+                            <?php foreach($companyPhotos as $companyPhoto): 
+                                $imageCount++; ?>
+                                <div class="rounded-lg flex items-center justify-center">
+                                    <div class="w-full h-full flex items-center justify-center" style="width:500px;">
+                                        <img src="<?=base_url($companyPhoto->companyPhotosPath)?>" class="w-full h-full rounded-lg" alt="Image de l'entreprise" style="width:100%;">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="rounded-lg flex items-center justify-center">
-                            <div class="w-full h-full flex items-center justify-center" style="width:500px;">
-                                <img id="company-image" src="<?=base_url('assets/img/airbnb2.png')?>" class="w-full h-full rounded-lg" alt="Image de l'entreprise" style="width:100%;">
-                                </div>
-                            </div>
-                            <div class="rounded-lg flex items-center justify-center">
-                            <div class="w-full h-full flex items-center justify-center" style="width:500px;">
-                                <img id="company-image" src="<?=base_url('assets/img/airbnb1.png')?>" class="w-full h-full rounded-lg" alt="Image de l'entreprise" style="width:100%;">
-                                </div>
-                            </div>
-                            <div class="rounded-lg flex items-center justify-center">
-                            <div class="w-full h-full flex items-center justify-center" style="width:500px;">
-                                <img id="company-image" src="<?=base_url('assets/img/airbnb2.png')?>" class=" w-full h-full rounded-lg" alt="Image de l'entreprise" style="width:100%;">
-                                </div>
-                            </div>
+                            <?php endforeach; ?>
                         </div>
+                        <?php if($user->userType == 'sales') { ?>
+                        <div class="absolute top-0 right-0 mt-4 mr-4 flex">
+                            <?php if($imageCount < 4) { ?>
+                                <button id="addCompanyPhotos" data-modal-toggle="addCompanyPhotos" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                                    <i class="fas fa-plus fa-fw"></i>
+                                </button>
+                            <?php }   ?> 
+                            <button id="updateCompanyPhotos" data-modal-toggle="updateCompanyPhotos" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                                <i class="fas fa-pen fa-fw"></i>
+                            </button>
+                        </div>
+                        <?php } ?>
                     </div>
                 </div>
                 <div class="hidden" id="myCompanyMissions" role="tabpanel" aria-labelledby="myCompanyMissions-tab">  
-                    <div class="flex flex-wrap w-full pb-4 mb-12" id="missions-section">
-                        <h1 class="text-2xl font-bold mb-4">Mes missions</h1>
+                    <div class="flex flex-wrap w-full pb-4 mb-12 mt-4" id="missions-section">
+                        <div class="w-full flex flex-wrap justify-between items-center">
+                            <h1 class="text-2xl font-bold mb-4 mt-4">Nos missions</h1>
+                            <a href="<?php echo base_url('Company/missionAdd');?>" class="text-primary mt-2 border border-primary px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">Ajouter une offre</a>
+                        </div>
                         <div class="grid grid-cols-2 gap-4">
                             <?php foreach($missions as $mission): ?>
                                 <div class="flex flex-wrap">
@@ -187,7 +455,6 @@ include(APPPATH . 'views/layouts/company/header.php');
                                                         ?>
                                                         <?=$mission->missionExpertise?>
                                                         </span>
-
                                                     </p>
                                                 </div>
                                             </div>
@@ -244,14 +511,31 @@ include(APPPATH . 'views/layouts/company/header.php');
                                                 </div>
                                             </div>
                                             <div class="absolute top-0 right-4 mt-4 mb-4 z-9">
-                                                <!--<a href="<?php echo base_url('user/addToFavorite/'.$mission->idMission);?>">
-                                                    <i class="far fa-heart text-xl text-red-800"></i>
-                                                </a>-->
+                                                <?php if($user->userType == 'freelance') { ?>
+                                                    <?php
+                                                    if(isFavorite($mission->idMission, $favoriteMissions)){
+                                                        ?>
+                                                        <a href="<?php echo base_url('user/removeFromFavorite/'.$mission->idMission);?>">
+                                                            <i class="fas fa-heart text-xl text-red-800"></i>
+                                                        </a>
+                                                        <?php
+                                                    } else {
+                                                        ?>
+                                                        <a href="<?php echo base_url('user/addToFavorite/'.$mission->idMission);?>">
+                                                            <i class="far fa-heart text-xl text-red-800"></i>
+                                                        </a>
+                                                        <?php
+                                                    }
+                                                    ?>
+                                                <?php } ?>
+
+                                                <?php if($user->userType == 'sales') { ?>
                                                 <a href="<?php echo base_url('company/missionEdit/'.$mission->idMission);?>">
                                                     <button class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
                                                         <i class="fas fa-pen fa-fw"></i>
                                                     </button>
                                                 </a>
+                                                <?php } ?>
                                                 
                                             </div>
                                         </div>
@@ -266,3 +550,29 @@ include(APPPATH . 'views/layouts/company/header.php');
     </div>
 </div>
 <script src="<?php echo base_url('assets/js/app.js'); ?>"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    
+    function showFileName(input, elementId) {
+        let imageElement = document.getElementById(elementId);
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                imageElement.src = e.target.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function showModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.classList.remove('hidden');
+    }
+
+    function hideModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.classList.add('hidden');
+    }
+    
+</script>

@@ -205,8 +205,8 @@ if ($banner->bannerStatus == "active"){ ?>
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <div class="flex justify-between mt-10">
-                        <button id="resetFiltersButton" class="px-4 py-2 rounded-full border border-primary text-primary">Effacer</button>
+                    <div class="flex justify-between mt-6">
+                        <button id="resetFiltersButton" class="text-primary border border-primary px-4 py-1 rounded-lg 2 hover:bg-primary-900 hover:text-white">Effacer</button>
                     </div>
 
                     

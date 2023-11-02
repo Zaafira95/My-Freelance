@@ -1,0 +1,1 @@
+CREATE TABLE `cafecreme`.`Banner` (`idBanner` INT NOT NULL AUTO_INCREMENT , `bannerMessage` TEXT NOT NULL , `bannerLink` VARCHAR(255) NOT NULL , `bannerStatus` VARCHAR(255) NOT NULL , `bannerTitle` VARCHAR(255) NOT NULL , PRIMARY KEY (`idBanner`)) ENGINE = InnoDB;

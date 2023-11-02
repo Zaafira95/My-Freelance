@@ -495,5 +495,12 @@ class User_model extends CI_Model {
             $query = $this->db->get('users');
             return $query->row();
         }
+
+        public function getBanner(){
+            $this->db->select('*');
+            $this->db->from('banner');
+            $query = $this->db->get();
+            return $query->row();
+        }
         
 }

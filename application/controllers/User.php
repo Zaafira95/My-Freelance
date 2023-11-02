@@ -78,16 +78,19 @@ class User extends CI_Controller {
         // $data['citiesAll'] = "paris";
         $userData = $this->User_model->getUserData($user->userId);
 
+        $banner = $this->User_model->getBanner();
+		$data['banner'] = $banner;
+
+
 
         if ($user) {
 
             if ($userData->userCompanyId != 0) {
                 redirect('company');
-                $this->session->set_flashdata('message', 'Vous êtes connecté avec succès. Vous avez une entreprise associée.');
-                $this->session->set_flashdata('status', 'success');
+                // $this->session->set_flashdata('message', 'Vous êtes connecté avec succès. Vous avez une entreprise associée.');
+                // $this->session->set_flashdata('status', 'success');
             } else {
-                $this->session->set_flashdata('message', 'Vous êtes connecté avec succès.');
-                $this->session->set_flashdata('status', 'success');
+                
             }
 
             $data['user'] = $user;

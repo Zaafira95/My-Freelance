@@ -27,17 +27,27 @@ class Login extends CI_Controller {
     
             // Récupérer toutes les informations de l'utilisateur
             $userData = $this->Login_model->getUserData($user->userId);
-    
-            // Vérifier si userCompanyId est différent de 0
-            if ($userData->userCompanyId != 0) {
-                redirect('company');
-            } else {
-                // $this->session->set_flashdata('message', 'Vous êtes connecté avec succès.');
-                // $this->session->set_flashdata('status', 'success');
+
+            // Redirection administateur
+
+            if ($userData->userType == 'admin') {
+                $this->session->set_flashdata('message', 'Vous êtes connecté avec succès.');
+                $this->session->set_flashdata('status', 'success');
+                redirect('admin');
             }
-            
-            redirect('user'); 
-        } else {
+
+            elseif ($userData->userCompanyId != 0) {
+                $this->session->set_flashdata('message', 'Vous êtes connecté avec succès.');
+                $this->session->set_flashdata('status', 'success');
+                redirect('company');
+            } 
+            else {  
+                $this->session->set_flashdata('message', 'Vous êtes connecté avec succès.');
+                $this->session->set_flashdata('status', 'success');
+                redirect('user'); 
+            }
+        } 
+        else {
             $this->session->set_flashdata('message', 'Identifiant invalide ou mot de passe incorrect. Veuillez réessayer');
             $this->session->set_flashdata('status', 'error');
             $this->load->view('login_view');   

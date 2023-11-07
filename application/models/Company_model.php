@@ -425,5 +425,21 @@ class Company_model extends CI_Model {
         $this->db->where('idCompanyPhotos', $id);
         $this->db->update('companyPhotos');
     }
+
+    public function updateUserData($userId, $userFirstName, $userLastName, $userTelephone, $userEmail){
+        $this->db->set('userFirstName', $userFirstName);
+        $this->db->set('userLastName', $userLastName);
+        $this->db->set('userTelephone', $userTelephone);
+        $this->db->set('userEmail', $userEmail);
+        $this->db->where('userId', $userId);
+        $this->db->update('users');
+    }
+
+    public function updateUserPassword($userId, $userPassword){
+        $this->db->set('userPassword', $userPassword);
+        $this->db->where('userId', $userId);
+        $this->db->update('users');
+    }
+
 }
 ?>

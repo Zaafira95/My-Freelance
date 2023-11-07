@@ -146,18 +146,17 @@
                         <?php 
                             if ($currentPage == 'settings'){
                         ?>
-                            <a href="<?php echo base_url('user/settings');?>" class="block py-2 pr-4 pl-3 text-primary bg-primary lg:bg-transparent lg:text-primary lg:p-0 border-b-2 border-primary dark:text-white">Paramètres</a>
+                            <a href="<?php echo base_url('company/settings');?>" class="block py-2 pr-4 pl-3 text-primary bg-primary lg:bg-transparent lg:text-primary lg:p-0 border-b-2 border-primary dark:text-white">Paramètres</a>
                         <?php
                             } else {
                         ?>
-                            <a href="<?php echo base_url('user/settings');?>" class="block py-2 pr-4 pl-3 text-black border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-400 lg:p-0 dark:text-white">Paramètres</a>
+                            <a href="<?php echo base_url('company/settings');?>" class="block py-2 pr-4 pl-3 text-black border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-400 lg:p-0 dark:text-white">Paramètres</a>
                         <?php
                             }
                         ?>
                     </li>
                 </ul>
             </div>
-
 
         </div>
     </nav>

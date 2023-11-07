@@ -11,9 +11,6 @@ include(APPPATH . 'views/layouts/company/header.php' );
 <link href="<?php echo base_url('assets/css/app.css');?>" rel="stylesheet">
 
 <style>
-        body {
-            background-color: #ffffff;
-        }
         /* Barre de progression */
         .password-strength-meter {
             height: 10px;
@@ -129,15 +126,15 @@ if ($totalCount > 0) {
             </div>
             <div class="flex flex-1">
                 <div class="rounded-lg h-full w-1/3 mb-4 mr-4 dark:text-white">
-                    <div class="relative flex grid-cols-2 items-center overflow-hidden bg-white h-full rounded-lg mb-4 dark:bg-gray-800 py-8 px-4">
-                        <ul>
-                            <li class="tab-item mb-3"> <a href="#user-data" class="tab-link px-6 text-lg w-full">Informations personnelles</a></li>
+                    <div class="relative flex grid-cols-2 items-center overflow-hidden bg-white h-full w-full rounded-lg mb-4 dark:bg-gray-800 py-8 px-4">
+                        <ul class=" w-full">
+                            <li class="tab-item mb-3 w-full"> <a href="#user-data" class="tab-link px-6 text-lg w-full"><i class="fas fa-user mr-4"></i>Informations personnelles</a></li>
 
-                            <li class="tab-item mb-3"> <a href="#company-data" class="tab-link px-6 text-lg text-gray-400 w-full">Informations professionnelles</a></li>
+                            <li class="tab-item mb-3"> <a href="#company-data" class="tab-link px-6 text-lg text-gray-400 w-full"><i class="fas fa-building mr-4"></i>Informations professionnelles</a></li>
 
-                            <li class="tab-item mb-3"> <a href="#user-password" class="tab-link px-6 text-lg text-gray-400 w-full">Mot de passe</a></li>
+                            <li class="tab-item mb-3"> <a href="#user-password" class="tab-link px-6 text-lg text-gray-400 w-full"><i class="fas fa-key mr-4"></i>Mot de passe</a></li>
                             
-                            <li class="tab-item"> <a href="#rating" class="tab-link px-6 text-lg text-gray-400 w-full">Avis</a></li>
+                            <li class="tab-item"> <a href="#rating" class="tab-link px-6 text-lg text-gray-400 w-full"><i class="fas fa-star mr-4"></i>Avis</a></li>
                         </ul>
                     </div>
                 </div>
@@ -154,7 +151,7 @@ if ($totalCount > 0) {
 
                                 <label for="userTelephone" class="block font-medium text-gray-900 dark:text-white">Votre numéro de téléphone *</label>
                                 <input type="text" name="userTelephone" id="userTelephone" value="<?=$user->userTelephone?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>    
-                                
+
                                 <label for="userEmail" class="block font-medium text-gray-900 dark:text-white">Votre email *</label>
                                 <input type="email" name="userEmail" id="userEmail" value="<?=$user->userEmail?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>    
 
@@ -164,7 +161,7 @@ if ($totalCount > 0) {
                             </form>
                         </div>
                         <div id="company-data" class="px-6 space-y-4 md:space-y-6 w-2/3 hidden">
-                        <form method="post" action="<?php echo base_url('company/updateUserPassword'); ?>" enctype="multipart/form-data">
+                        <form method="post" action="<?php echo base_url('company/updateCompanyData'); ?>" enctype="multipart/form-data">
                                 <label for="companyName" class="block font-medium text-gray-900 dark:text-white">Nom *</label>
                                 <input type="text" name="companyName" id="companyName" value="<?=$company->companyName?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>    
                                 <label for="companySlogan" class="block font-medium text-gray-900 dark:text-white">Slogan *</label>

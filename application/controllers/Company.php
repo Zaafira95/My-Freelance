@@ -687,12 +687,7 @@ class Company extends CI_Controller {
         }        
 
         $this->Company_model->deletePhotoPath($id);
-    /*
-        $config['upload_path'] = $companyPhotoPath;
-        $config['allowed_types'] = 'jpg|jpeg|png';
-        $config['max_size'] = 2048; // Taille maximale du fichier en kilo-octets
-        $this->load->library('upload', $config);
-*/
+
         $this->session->set_flashdata('message', 'Votre photo a bien été supprimée !');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
@@ -744,6 +739,74 @@ class Company extends CI_Controller {
         redirect($_SERVER['HTTP_REFERER']);
     }
     
+    public function settings(){
+        $userId = $this->session->userdata('userId');
+        $this->load->model('Company_model');
+        $user = $this->Company_model->get_UserData($userId);
+        $data['user'] = $user;
+
+        // Récupérer l'expérience de l'utilisateur connecté avec l'expérience id
+        $experiences = $this->Company_model->getUserExperience($userId);
+        $data['experiences'] = $experiences;
+
+       // $ratings = $this->Company_model->getRatingsByUser($userId);
+       // $data['ratings'] = $ratings;
+       $ratingCount = $this->Company_model->getRatingCountByUser($userId);
+       $data['ratingCount'] = $ratingCount;
+
+       // $raterUser = $this->Company_model->getRaterUser($userId);
+       // $data['raterUser'] = $raterUser;
+       
+       $company = $this->Company_model->getCompanyData($userId);
+       $data['company'] = $company;
+
+       $raterUser = $this->Company_model->getRaterUser($userId);
+       $ratings = $this->Company_model->getRatingsByUser($userId);
+       $data['raterUser'] = $raterUser;
+       $data['ratings'] = $ratings;
+
+        $isAvailable = $user->userIsAvailable ;
+        
+        // Cocher la case appropriée en fonction de la valeur récupérée
+        if ($isAvailable == 1) {
+            $checkboxChecked = 'checked';
+        } else {
+            $checkboxChecked = '';
+        }
+
+        $data['checkboxChecked'] = $checkboxChecked;
+
+
+
+        $this->load->view('company/settings', $data);
+    }
+
+    public function updateUserData(){
+        $this->load->model('Company_model');
+        $userId = $this->session->userdata('userId');
+        $userFirstName = $this->input->post('userFirstName');
+        $userLastName = $this->input->post('userLastName');
+        $userTelephone = $this->input->post('userTelephone');
+        $userEmail = $this->input->post('userEmail');
+
+        $this->Company_model->updateUserData($userId, $userFirstName, $userLastName, $userTelephone, $userEmail);
+        $this->session->set_flashdata('message', 'Vos informations personnelles ont bien été mises à jour !');
+        $this->session->set_flashdata('status', 'success');
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+    
+    public function updateUserPassword(){
+        $this->load->model('Company_model');
+        $userId = $this->session->userdata('userId');
+        $userPassword = $this->input->post('userPassword');
+        // hash password
+        $userPassword = password_hash($userPassword, PASSWORD_DEFAULT);
+
+        $this->Company_model->updateUserPassword($userId, $userPassword);
+        $this->session->set_flashdata('message', 'Votre mot de passe a bien été mis à jour !');
+        $this->session->set_flashdata('status', 'success');
+        redirect($_SERVER['HTTP_REFERER']);
+    }
 
 }
 ?>

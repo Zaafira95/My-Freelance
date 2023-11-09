@@ -107,6 +107,22 @@ class Company_model extends CI_Model {
         return $query->result();
     }
 
+    public function addRating($userId, $ratedUserId, $ratingComment, $ratingStars){
+        $this->db->set('idUser', $userId);
+        $this->db->set('idRatedUser', $ratedUserId);
+        $this->db->set('ratingComment', $ratingComment);
+        $this->db->set('ratingStars', $ratingStars);
+        $this->db->insert('rating');
+    }
+
+    public function getAllRatingsForACompany($id){
+        $this->db->select('*');
+            $this->db->from('rating');
+            $this->db->join('users', 'users.userId = rating.idRatedUser');
+            $this->db->where('idUser', $id);
+            $query = $this->db->get();
+            return $query->result();
+    }
     public function getJobNameForAUser($id){
         $this->db->select('jobName');
         $this->db->from('job');

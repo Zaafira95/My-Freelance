@@ -63,20 +63,6 @@ include(APPPATH . 'views/layouts/company/header.php' );
     </style>
 </head>
 
-<?php
-// Rating
-$totalStars = 0;
-$totalCount = 0;
-foreach ($ratings as $rating) {
-  $totalStars += $rating->ratingStars;
-  $totalCount += 1;
-}
-if ($totalCount > 0) {
-  $averageStars = $totalStars / $totalCount;
-} else {
-  $averageStars = 0;
-}
-?>
 
 <div class="px-4 lg:px-6 py-6 h-full overflow-y-auto no-scrollbar">
     <div class="flex flex-wrap justify-between mx-auto max-w-screen-xl h-full">
@@ -93,18 +79,7 @@ if ($totalCount > 0) {
                             </div>
                             <p class="text-2xl text-black-500 font-bold"><?=$company->companySlogan?></p>
                             <h3 class="text-xl font-medium text-gray-400">Secteur d'activité: <?=$company->companySecteur?></h3>
-                            <!--<div class="flex items-center mb-4">
-                                <?php for ($i = 1; $i <= 5; $i++) { ?>
-                                <?php if ($i <= $averageStars) { ?>
-                                    <img src="<?php echo base_url('assets/img/fill-star.svg'); ?>" class="w-6 h-6">
-                                <?php } else { ?>
-                                    <img src="<?php echo base_url('assets/img/light-star.svg'); ?>" class="w-6 h-6">
-                                <?php } ?>
-                                <?php } ?>
-                                <a href="#rating">
-                                    <p class="ml-2"><?=round($averageStars, 1).' ( '.$ratingCount.' avis )'?></p>
-                                </a>
-                            </div>-->
+
                         <!-- Whatsapp -->
                         <div class="flex flex-wrap items-center">
                                 <!-- Whatsapp -->
@@ -199,6 +174,42 @@ if ($totalCount > 0) {
                                     Valider
                                 </button>
                             </form>
+                        </div>
+                        <div id="rating" class="px-6 space-y-4 md:space-y-6 w-full hidden">
+                        <?php
+                            if (is_array($ratedUsers) && !empty($ratedUsers)) {
+                                foreach ($ratedUsers as $rating) {
+                                    ?>
+                                    <a href="<?= base_url('company/freelancerView/'.$rating->userId) ?>" title="Visiter le portfolio" class="flex-shrink-0 mr-2 w-full" target="_blank">
+                                        <div class="flex grid-cols-2 items-center mb-4">
+                                            <div>
+                                                <img src="<?php echo base_url($rating->userAvatarPath); ?>" alt="User Photo" class="rounded-full w-20 h-20 transition-transform transform hover:scale-110">
+                                            </div>
+                                            <div>
+                                                <p class="text-lg ml-4 "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
+                                                <p class="text mt-2 ml-4"><?= '"'.$rating->ratingComment.'"'?></p>
+                                                <div class="flex items-center ml-4">
+                                                    <?php for ($i = 1; $i <= 5; $i++) { ?>
+                                                        <?php if ($i <= $rating->ratingStars) { ?>
+                                                            <img src="<?php echo base_url('assets/img/fill-star.svg'); ?>" class="w-4 h-4">
+                                                        <?php } else { ?>
+                                                            <img src="<?php echo base_url('assets/img/light-star.svg'); ?>" class="w-4 h-4">
+                                                        <?php } ?>
+                                                    <?php } ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <?php
+                                }
+                                
+                            }
+                            else {
+                                ?>
+                                    <p class="mt-2 mb-2"> Vous n'avez donné aucun avis pour le moment. </p>
+                                    <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>

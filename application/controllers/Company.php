@@ -760,12 +760,10 @@ class Company extends CI_Controller {
        $company = $this->Company_model->getCompanyData($userId);
        $data['company'] = $company;
 
-       $raterUser = $this->Company_model->getRaterUser($userId);
-       $ratings = $this->Company_model->getRatingsByUser($userId);
-       $data['raterUser'] = $raterUser;
-       $data['ratings'] = $ratings;
+       $ratedUsers = $this->Company_model->getAllRatingsForACompany($userId);
+       $data['ratedUsers'] = $ratedUsers;
 
-        $isAvailable = $user->userIsAvailable ;
+        $isAvailable = $user->userIsAvailable;
         
         // Cocher la case appropriée en fonction de la valeur récupérée
         if ($isAvailable == 1) {
@@ -804,6 +802,18 @@ class Company extends CI_Controller {
 
         $this->Company_model->updateUserPassword($userId, $userPassword);
         $this->session->set_flashdata('message', 'Votre mot de passe a bien été mis à jour !');
+        $this->session->set_flashdata('status', 'success');
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    public function addRating($ratedUserId){
+        $this->load->model('Company_model');
+        $userId = $this->session->userdata('userId');
+        $ratingComment = $this->input->post('ratingComment');
+        $ratingStars = $this->input->post('ratingStars');
+
+        $this->Company_model->addRating($userId, $ratedUserId, $ratingComment, $ratingStars);
+        $this->session->set_flashdata('message', 'Votre avis ....');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
     }

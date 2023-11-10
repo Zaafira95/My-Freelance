@@ -132,6 +132,7 @@ class User_model extends CI_Model {
             $this->db->from('rating');
             $this->db->join('users', 'users.userId = rating.idUser');
             $this->db->where('idRatedUser', $userId);
+            $this->db->where('ratingStatus', 1);
             $query = $this->db->get();
             return $query->result();
         }

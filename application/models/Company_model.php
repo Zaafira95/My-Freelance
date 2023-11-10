@@ -92,6 +92,7 @@ class Company_model extends CI_Model {
             $this->db->from('rating');
             $this->db->join('users', 'users.userId = rating.idUser');
             $this->db->where('idRatedUser', $id);
+            $this->db->where('ratingStatus', 1);
             $query = $this->db->get();
             return $query->result();
     }
@@ -120,6 +121,7 @@ class Company_model extends CI_Model {
             $this->db->from('rating');
             $this->db->join('users', 'users.userId = rating.idRatedUser');
             $this->db->where('idUser', $id);
+            $this->db->order_by('rating.ratingDate', 'DESC');
             $query = $this->db->get();
             return $query->result();
     }
@@ -455,6 +457,11 @@ class Company_model extends CI_Model {
         $this->db->set('userPassword', $userPassword);
         $this->db->where('userId', $userId);
         $this->db->update('users');
+    }
+
+    public function deleteRating($ratingId) {
+        $this->db->where('idRating', $ratingId);
+        $this->db->delete('rating');
     }
 
 }

@@ -818,5 +818,13 @@ class Company extends CI_Controller {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
+    public function deleteRating($ratingId){
+        $this->load->model('Company_model');
+
+        $this->Company_model->deleteRating($ratingId);
+        $this->session->set_flashdata('message', 'Votre avis a bien été supprimé !');
+        $this->session->set_flashdata('status', 'success');
+        redirect($_SERVER['HTTP_REFERER']);
+    }
 }
 ?>

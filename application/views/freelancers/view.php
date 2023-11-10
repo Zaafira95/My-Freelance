@@ -239,7 +239,7 @@ if ($totalCount > 0) {
                                 <a href="#rating">
                                     <p class="ml-2"><?=round($averageStars, 1).' ( '.$ratingCount.' avis )'?></p>
                                 </a>
-                                <button id="addRating" data-modal-toggle="addRating" class="ml-4 underline text-gray-400 bg-transparent hover:text-gray-900 rounded-lg inline-flex items-center dark:hover:text-white" style="text-underline-offset: 0.2rem" type="button">
+                                <button id="addRating" data-modal-toggle="addRating" class="ml-4 text-primary hover:underline" type="button">
                                     <p>Donner un avis</p>
                                 </button>
                             </div>
@@ -473,39 +473,67 @@ if ($totalCount > 0) {
                                     <?php
                                         if (is_array($raterUser) && !empty($raterUser)) {
                                             $ratingsCount = 0;
-                                                foreach ($raterUser as $rating) {
-                                                    if ($ratingsCount < 3) {
-                                                    ?>
-                                                    <a href="<?= base_url('company/freelancer/'.$rating->idUser) ?>" title="Visiter le portfolio" class="flex-shrink-0 mr-2" target="_blank">
-                                                        <div class="flex grid-cols-2 items-center mb-4">
-                                                            <div>
-                                                                <img src="<?php echo base_url($rating->userAvatarPath); ?>" alt="User Photo" class="rounded-full w-10 h-10 transition-transform transform hover:scale-110">
-                                                            </div>
-                                                            <div>
-                                                                <p class="text ml-4"><?= '"'.$rating->ratingComment.'"'?></p>
-                                                                <div class="flex items-center ml-4">
-                                                                    <?php for ($i = 1; $i <= 5; $i++) { ?>
-                                                                        <?php if ($i <= $rating->ratingStars) { ?>
-                                                                            <img src="<?php echo base_url('assets/img/fill-star.svg'); ?>" class="w-4 h-4">
-                                                                        <?php } else { ?>
-                                                                            <img src="<?php echo base_url('assets/img/light-star.svg'); ?>" class="w-4 h-4">
-                                                                        <?php } ?>
-                                                                    <?php } ?>
-                                                                </div>
-                                                                <p class="text ml-4 mt-2 "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
-                                                            </div>
+                                            foreach ($raterUser as $rating) {
+                                                if ($ratingsCount < 3) {
+                                                ?>
+                                                <a href="<?= base_url('company/freelancer/'.$rating->idUser) ?>" title="Visiter le portfolio" class="flex-shrink-0 mr-2" target="_blank">
+                                                    <div class="flex grid-cols-2 items-center mb-4">
+                                                        <div>
+                                                            <img src="<?php echo base_url($rating->userAvatarPath); ?>" alt="User Photo" class="rounded-full w-10 h-10 transition-transform transform hover:scale-110">
                                                         </div>
-                                                    </a>
-                                                    <?php
-                                                    $ratingsCount++;
-                                                    } else {
-                                                        break; // Arrêter la boucle si le nombre d'avis atteint 3
-                                                        echo $ratingsCount;
-                                                    }
-                                                    
+                                                        <div>
+                                                            <p class="text ml-4"><?= '"'.$rating->ratingComment.'"'?></p>
+                                                            <div class="flex items-center ml-4">
+                                                                <?php for ($i = 1; $i <= 5; $i++) { ?>
+                                                                    <?php if ($i <= $rating->ratingStars) { ?>
+                                                                        <img src="<?php echo base_url('assets/img/fill-star.svg'); ?>" class="w-4 h-4">
+                                                                    <?php } else { ?>
+                                                                        <img src="<?php echo base_url('assets/img/light-star.svg'); ?>" class="w-4 h-4">
+                                                                    <?php } ?>
+                                                                <?php } ?>
+                                                            </div>
+                                                            <p class="text ml-4 mt-2 "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                <?php
+                                                $ratingsCount++;
+                                                } else {
+                                                    //break; // Arrêter la boucle si le nombre d'avis atteint 3
+                                                    //echo $ratingsCount;
+                                                    ?>
+                                                    <div id="more-avis" class="hidden">
+                                                        <a href="<?= base_url('company/freelancer/'.$rating->idUser) ?>" title="Visiter le portfolio" class="flex-shrink-0 mr-2" target="_blank">
+                                                            <div class="flex grid-cols-2 items-center mb-4">
+                                                                <div>
+                                                                    <img src="<?php echo base_url($rating->userAvatarPath); ?>" alt="User Photo" class="rounded-full w-10 h-10 transition-transform transform hover:scale-110">
+                                                                </div>
+                                                                <div>
+                                                                    <p class="text ml-4"><?= '"'.$rating->ratingComment.'"'?></p>
+                                                                    <div class="flex items-center ml-4">
+                                                                        <?php for ($i = 1; $i <= 5; $i++) { ?>
+                                                                            <?php if ($i <= $rating->ratingStars) { ?>
+                                                                                <img src="<?php echo base_url('assets/img/fill-star.svg'); ?>" class="w-4 h-4">
+                                                                            <?php } else { ?>
+                                                                                <img src="<?php echo base_url('assets/img/light-star.svg'); ?>" class="w-4 h-4">
+                                                                            <?php } ?>
+                                                                        <?php } ?>
+                                                                    </div>
+                                                                    <p class="text ml-4 mt-2 "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                        <button id="extra-avis-button" class="text-primary mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">
+                                                            Voir plus
+                                                        </button>
+                                                        <button id="less-avis-button" class="hidden text-primary mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">
+                                                            Voir moins
+                                                        </button>
+                                                <?php    
                                                 }
-                                            
-                                            
+                                                
+                                            }
                                         }
                                         else {
                                             ?>
@@ -693,13 +721,30 @@ if ($totalCount > 0) {
                     console.error('Une erreur s\'est produite :', error);
                 });
         });
+
+        
+        const moreAvis = document.getElementById("more-avis");
+        const extraAvisButton = document.getElementById("extra-avis-button");
+        const lessAvisButton = document.getElementById("less-avis-button");
+
+        // Ajout d'un gestionnaire d'événement pour le bouton "Voir plus"
+        extraAvisButton.addEventListener("click", function() {
+            moreAvis.classList.remove("hidden"); // Afficher le contenu
+            lessAvisButton.classList.remove("hidden"); // Afficher le bouton "Voir moins"
+            extraAvisButton.classList.add("hidden"); // Masquer le bouton "Voir plus"
+        });
+
+        // Ajout d'un gestionnaire d'événement pour le bouton "Voir moins"
+        lessAvisButton.addEventListener("click", function() {
+            moreAvis.classList.add("hidden"); // Masquer le contenu
+            lessAvisButton.classList.add("hidden"); // Masquer le bouton "Voir moins"
+            extraAvisButton.classList.remove("hidden"); // Afficher le bouton "Voir plus"
+        });
     });
 
     document.addEventListener('DOMContentLoaded', function() {
         var base_url = '<?php echo base_url(); ?>';
 
-
-        
         const arrow = document.getElementById('skillsArrow');
         const skillsContainer = document.querySelector('.skills-container');
         const skillItems = [...skillsContainer.querySelectorAll('.skill-item')];
@@ -774,18 +819,12 @@ if ($totalCount > 0) {
         // });
 
     });
-
-    
 </script>
-
 
 <!-- Inclure PDF.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
 <!-- Inclure le PDF.js Worker -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js"></script>
-
-
-
 
 <script>
     // Fonction pour charger la miniature PDF dans un conteneur donné
@@ -872,19 +911,20 @@ if ($totalCount > 0) {
     });
 
     function setRating(rating) {
-    // Mettre à jour la valeur du champ "ratingStars"
-    document.getElementById("ratingStars").value = rating;
+        // Mettre à jour la valeur du champ "ratingStars"
+        document.getElementById("ratingStars").value = rating;
 
-    // Mettre à jour les sources des images "light-star" jusqu'à celle cliquée
-    const stars = document.querySelectorAll(".star");
-    for (let i = 0; i < stars.length; i++) {
-        if (i < rating) {
-        stars[i].src = "<?php echo base_url('assets/img/fill-star.svg'); ?>";
-        } else {
-        stars[i].src = "<?php echo base_url('assets/img/light-star.svg'); ?>";
+        // Mettre à jour les sources des images "light-star" jusqu'à celle cliquée
+        const stars = document.querySelectorAll(".star");
+        for (let i = 0; i < stars.length; i++) {
+            if (i < rating) {
+            stars[i].src = "<?php echo base_url('assets/img/fill-star.svg'); ?>";
+            } else {
+            stars[i].src = "<?php echo base_url('assets/img/light-star.svg'); ?>";
+            }
         }
     }
-    }
+
 
 
     

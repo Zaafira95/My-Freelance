@@ -108,11 +108,12 @@ class Company_model extends CI_Model {
         return $query->result();
     }
 
-    public function addRating($userId, $ratedUserId, $ratingComment, $ratingStars){
+    public function addRating($userId, $ratedUserId, $ratingComment, $ratingStars, $ratingDate){
         $this->db->set('idUser', $userId);
         $this->db->set('idRatedUser', $ratedUserId);
         $this->db->set('ratingComment', $ratingComment);
         $this->db->set('ratingStars', $ratingStars);
+        $this->db->set('ratingDate', $ratingDate);
         $this->db->insert('rating');
     }
 

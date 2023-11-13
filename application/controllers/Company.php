@@ -811,8 +811,9 @@ class Company extends CI_Controller {
         $userId = $this->session->userdata('userId');
         $ratingComment = $this->input->post('ratingComment');
         $ratingStars = $this->input->post('ratingStars');
+        $ratingDate = date('Y-m-d H:i:s');
 
-        $this->Company_model->addRating($userId, $ratedUserId, $ratingComment, $ratingStars);
+        $this->Company_model->addRating($userId, $ratedUserId, $ratingComment, $ratingStars, $ratingDate);
         $this->session->set_flashdata('message', "Votre avis est en cours d'approbation");
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);

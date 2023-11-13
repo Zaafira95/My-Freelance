@@ -121,6 +121,7 @@ class User_model extends CI_Model {
       public function getRatingCountByUser($userId) {
         $this->db->select('COUNT(*) as total');
         $this->db->where('idRatedUser', $userId);
+        $this->db->where('ratingStatus', 1);
         $query = $this->db->get('rating');
         return $query->row()->total;
       }

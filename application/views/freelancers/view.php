@@ -237,11 +237,15 @@ if ($totalCount > 0) {
                                 <?php } ?>
                                 <?php } ?>
                                 <a href="#rating">
-                                    <p class="ml-2"><?=round($averageStars, 1).' ( '.$ratingCount.' avis )'?></p>
+                                    <p class="ml-2"><?=round($averageStars, 1).' ( '.$ratingCount.' avis )'?> </p>
                                 </a>
-                                <button id="addRating" data-modal-toggle="addRating" class="ml-4 text-primary hover:underline" type="button">
-                                    <p>Donner un avis</p>
-                                </button>
+                                <?php
+                                if($ratingCountForAUser == 0){
+                                ?>
+                                    <button id="addRating" data-modal-toggle="addRating" class="ml-4 text-primary hover:underline" type="button">
+                                        <p>Donner un avis</p>
+                                    </button>
+                                <?php } ?>
                             </div>
                         <!-- Whatsapp -->
                         <div class="flex flex-wrap items-center">

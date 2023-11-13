@@ -83,6 +83,15 @@ class Company_model extends CI_Model {
     public function getRatingCountByUser($id){
         $this->db->select('COUNT(*) as total');
         $this->db->where('idRatedUser', $id);
+        $this->db->where('ratingStatus', 1);
+        $query = $this->db->get('rating');
+        return $query->row()->total;
+    }
+    
+    public function getRatingCountByCompanyForAUser($idRatedUser, $idUser){
+        $this->db->select('COUNT(*) as total');
+        $this->db->where('idRatedUser', $idRatedUser);
+        $this->db->where('idUser', $idUser);
         $query = $this->db->get('rating');
         return $query->row()->total;
     }
@@ -108,6 +117,11 @@ class Company_model extends CI_Model {
         return $query->result();
     }
 
+    public function deleteRating($ratingId) {
+        $this->db->where('idRating', $ratingId);
+        $this->db->delete('rating');
+    }
+
     public function addRating($userId, $ratedUserId, $ratingComment, $ratingStars, $ratingDate, $ratingStatus){
         $this->db->set('idUser', $userId);
         $this->db->set('idRatedUser', $ratedUserId);
@@ -118,7 +132,7 @@ class Company_model extends CI_Model {
         $this->db->insert('rating');
     }
 
-    public function getAllRatingsForACompany($id){
+    public function getAllRatingsByCompany($id){
         $this->db->select('*');
             $this->db->from('rating');
             $this->db->join('users', 'users.userId = rating.idRatedUser');
@@ -463,11 +477,6 @@ class Company_model extends CI_Model {
         $this->db->set('userPassword', $userPassword);
         $this->db->where('userId', $userId);
         $this->db->update('users');
-    }
-
-    public function deleteRating($ratingId) {
-        $this->db->where('idRating', $ratingId);
-        $this->db->delete('rating');
     }
 
     public function getWhatsAppGroups(){

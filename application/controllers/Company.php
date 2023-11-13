@@ -121,6 +121,9 @@ class Company extends CI_Controller {
         $job_for_company = $this->Company_model->getCompanyMissions($companyId);
         $data['job_for_company'] = $job_for_company;
 
+        $ratingCountForAUser = $this->Company_model->getRatingCountByCompanyForAUser($id, $userId);
+        $data['ratingCountForAUser'] = $ratingCountForAUser;
+
         $this->load->view('freelancers/view', $data);
     }
 
@@ -761,7 +764,7 @@ class Company extends CI_Controller {
        $company = $this->Company_model->getCompanyData($userId);
        $data['company'] = $company;
 
-       $ratedUsers = $this->Company_model->getAllRatingsForACompany($userId);
+       $ratedUsers = $this->Company_model->getAllRatingsByCompany($userId);
        $data['ratedUsers'] = $ratedUsers;
 
         $isAvailable = $user->userIsAvailable;

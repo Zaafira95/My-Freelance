@@ -117,11 +117,11 @@ foreach ($ratedUsers as $rating) {
                 <div class="rounded-lg h-full w-1/3 mb-4 mr-4 dark:text-white">
                     <div class="relative flex grid-cols-2 items-center overflow-hidden bg-white h-full w-full rounded-lg mb-4 dark:bg-gray-800 py-8 px-4">
                         <ul class=" w-full">
-                            <li class="tab-item mb-3 w-full"> <a href="#user-data" class="tab-link px-6 text-lg font-bold w-full"><i class="fas fa-user mr-4"></i>Informations personnelles</a></li>
+                            <li class="tab-item mb-8 w-full"> <a href="#user-data" class="tab-link px-6 text-lg font-bold w-full"><i class="fas fa-user mr-4"></i>Informations personnelles</a></li>
 
-                            <li class="tab-item mb-3"> <a href="#company-data" class="tab-link px-6 text-lg w-full"><i class="fas fa-building mr-4"></i>Informations professionnelles</a></li>
+                            <li class="tab-item mb-8"> <a href="#company-data" class="tab-link px-6 text-lg w-full"><i class="fas fa-building mr-4"></i>Informations professionnelles</a></li>
 
-                            <li class="tab-item mb-3"> <a href="#user-password" class="tab-link px-6 text-lg w-full"><i class="fas fa-key mr-4"></i>Mot de passe</a></li>
+                            <li class="tab-item mb-8"> <a href="#user-password" class="tab-link px-6 text-lg w-full"><i class="fas fa-key mr-4"></i>Mot de passe</a></li>
                             
                             <li class="tab-item"> <a href="#rating" class="tab-link px-6 text-lg w-full"><i class="fas fa-star mr-4"></i>Avis</a></li>
                         </ul>
@@ -142,7 +142,7 @@ foreach ($ratedUsers as $rating) {
                                 <input type="text" name="userTelephone" id="userTelephone" value="<?=$user->userTelephone?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>    
 
                                 <label for="userEmail" class="block font-medium text-gray-900 dark:text-white">Votre email *</label>
-                                <input type="email" name="userEmail" id="userEmail" value="<?=$user->userEmail?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>    
+                                <input type="email" name="userEmail" id="userEmail" value="<?=$user->userEmail?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" disabled>    
 
                                 <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 mt-4 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                     Valider
@@ -156,7 +156,10 @@ foreach ($ratedUsers as $rating) {
                                 <label for="companySlogan" class="block font-medium text-gray-900 dark:text-white">Slogan *</label>
                                 <input type="text" name="companySlogan" id="companySlogan" value="<?=$company->companySlogan?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>    
                                 <label for="companySecteur" class="block font-medium text-gray-900 dark:text-white">Secteur *</label>
-                                <input type="text" name="companySecteur" id="companySecteur" value="<?=$company->companySecteur?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>                                
+                                <input type="text" name="companySecteur" id="companySecteur" value="<?=$company->companySecteur?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>  
+
+                                <input type="text" name="userLinkedinLink" id="userLinkedinLink" value="<?=$user->userLinkedinLink?>" class="hidden mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                              
                                 <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 mt-4 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                     Valider
                                 </button>
@@ -195,7 +198,7 @@ foreach ($ratedUsers as $rating) {
                                 foreach ($ratedUsersApproved as $rating) {
                                 ?>
                                     <div class="relative">
-                                        <a href="<?= base_url('company/freelancerView/'.$rating->userId) ?>" title="Visiter le portfolio" class="flex-shrink-0 w-full " target="_blank">
+                                        <a href="<?= base_url('company/freelancerView/'.$rating->userId) ?>" title="Voir le profil" class="flex-shrink-0 w-full ">
                                             <div class="flex grid-cols-2 items-center mt-4 mb-4">
                                                 <div>
                                                     <img src="<?php echo base_url($rating->userAvatarPath); ?>" alt="User Photo" class="rounded-full w-20 h-20 transition-transform transform hover:scale-110">

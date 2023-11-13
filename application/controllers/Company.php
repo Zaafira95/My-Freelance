@@ -530,6 +530,7 @@ class Company extends CI_Controller {
         $companyName = $this->input->post('companyName');
         $companySlogan = $this->input->post('companySlogan');
         $companySecteur = $this->input->post('companySecteur');
+        $userLinkedinLink = $this->input->post('userLinkedinLink');
         $company = $this->Company_model->getCompanyData($userId);
         $companyId = $company->idCompany;
     
@@ -616,7 +617,7 @@ class Company extends CI_Controller {
             }
         }
 
-        $this->Company_model->updateCompanyData($companyId, $companyName, $companySlogan, $companySecteur);
+        $this->Company_model->updateCompanyData($companyId, $companyName, $companySlogan, $companySecteur, $userId, $userLinkedinLink);
         $this->session->set_flashdata('message', 'Vos informations ont bien été mises à jour !');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
@@ -785,9 +786,8 @@ class Company extends CI_Controller {
         $userFirstName = $this->input->post('userFirstName');
         $userLastName = $this->input->post('userLastName');
         $userTelephone = $this->input->post('userTelephone');
-        $userEmail = $this->input->post('userEmail');
 
-        $this->Company_model->updateUserData($userId, $userFirstName, $userLastName, $userTelephone, $userEmail);
+        $this->Company_model->updateUserData($userId, $userFirstName, $userLastName, $userTelephone);
         $this->session->set_flashdata('message', 'Vos informations personnelles ont bien été mises à jour !');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
@@ -813,7 +813,7 @@ class Company extends CI_Controller {
         $ratingStars = $this->input->post('ratingStars');
 
         $this->Company_model->addRating($userId, $ratedUserId, $ratingComment, $ratingStars);
-        $this->session->set_flashdata('message', 'Votre avis ....');
+        $this->session->set_flashdata('message', "Votre avis est en cours d'approbation");
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
     }
@@ -825,6 +825,19 @@ class Company extends CI_Controller {
         $this->session->set_flashdata('message', 'Votre avis a bien été supprimé !');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
+    }
+    
+    public function whatsapp() {
+        $userId = $this->session->userdata('userId');
+        $this->load->model('Company_model');
+        $user = $this->Company_model->get_UserData($userId);
+        $data['user'] = $user;
+
+        $groups = $this->Company_model->getWhatsAppGroups();
+    
+        $data['groups'] = $groups;
+    
+        $this->load->view('company/whatsapp', $data);
     }
 }
 ?>

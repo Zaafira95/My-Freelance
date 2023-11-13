@@ -377,12 +377,17 @@ class Company_model extends CI_Model {
         $this->db->update('company');
     }    
 
-    public function updateCompanyData($companyId, $companyName, $companySlogan, $companySecteur){
+    public function updateCompanyData($companyId, $companyName, $companySlogan, $companySecteur, $userId, $userLinkedinLink){
         $this->db->set('companyName', $companyName);
         $this->db->set('companySlogan', $companySlogan);
         $this->db->set('companySecteur', $companySecteur);
         $this->db->where('idCompany', $companyId);
         $this->db->update('company');
+        
+        $this->db->set('userLinkedinLink', $userLinkedinLink);
+        $this->db->where('userId', $userId);
+        $this->db->update('users');
+
     }
         
     public function updateBannerPath($companyId, $file_path){
@@ -444,11 +449,10 @@ class Company_model extends CI_Model {
         $this->db->update('companyPhotos');
     }
 
-    public function updateUserData($userId, $userFirstName, $userLastName, $userTelephone, $userEmail){
+    public function updateUserData($userId, $userFirstName, $userLastName, $userTelephone){
         $this->db->set('userFirstName', $userFirstName);
         $this->db->set('userLastName', $userLastName);
         $this->db->set('userTelephone', $userTelephone);
-        $this->db->set('userEmail', $userEmail);
         $this->db->where('userId', $userId);
         $this->db->update('users');
     }
@@ -464,5 +468,11 @@ class Company_model extends CI_Model {
         $this->db->delete('rating');
     }
 
+    public function getWhatsAppGroups(){
+        $this->db->select('*');
+        $this->db->from('whatsAppGroups');
+        $query = $this->db->get();
+        return $query->result();
+    }
 }
 ?>

@@ -66,15 +66,12 @@ class Company extends CI_Controller {
     }
 
     public function freelancerView($id){
-
         $userId = $this->session->userdata('userId');
         $this->load->model('Company_model');
         $user = $this->Company_model->get_UserData($userId);
-
         if ($user->userCompanyId == 0) {
             redirect('login'); 
         }
-
         $data['user'] = $user;
 
         $this->load->model('Company_model');
@@ -120,6 +117,9 @@ class Company extends CI_Controller {
         $companyId = $company->idCompany;
         $job_for_company = $this->Company_model->getCompanyMissions($companyId);
         $data['job_for_company'] = $job_for_company;
+
+        $ratingCountForAUser = $this->Company_model->getRatingCountByCompanyForAUser($id, $userId);
+        $data['ratingCountForAUser'] = $ratingCountForAUser;
 
         $this->load->view('freelancers/view', $data);
     }
@@ -377,11 +377,17 @@ class Company extends CI_Controller {
     public function my_company(){
         $userId = $this->session->userdata('userId');
         $this->load->model('Company_model');
+        $this->load->model('User_model');
         $company = $this->Company_model->getCompanyData($userId);
         $data['company'] = $company;
         $companyId = $company->idCompany;
         $missions = $this->Company_model->getCompanyMissions($companyId);
         $data['missions'] = $missions;
+
+        $user = $this->User_model->get_UserData($userId);
+        if ($user->userCompanyId == 0) {
+            redirect('login'); 
+        }
 
         // Récupérer les skills de chaque mission
         $missionSkills = array();
@@ -397,6 +403,8 @@ class Company extends CI_Controller {
         $user = $this->Company_model->get_UserData($userId);
         $data['user'] = $user;
 
+        $data['secteursAll'] = $this->Company_model->get_all_secteurs();
+        
         $this->load->view('company/my_company', $data);
     }
 
@@ -460,7 +468,9 @@ class Company extends CI_Controller {
         $this->load->model('User_model');
         $this->load->model('Company_model');
         $user = $this->User_model->get_UserData($userId);
-
+        if ($user->userCompanyId == 0) {
+            redirect('login'); 
+        }
         $freelancers = $this->Company_model->get_freelancers();
         $data['freelancers'] = $freelancers;
         
@@ -529,9 +539,11 @@ class Company extends CI_Controller {
         $userId = $this->session->userdata('userId');
         $companyName = $this->input->post('companyName');
         $companySlogan = $this->input->post('companySlogan');
-        $companySecteur = $this->input->post('companySecteur');
+        $companySecteur = $this->input->post('secteursAll');
+        $userLinkedinLink = $this->input->post('userLinkedinLink');
         $company = $this->Company_model->getCompanyData($userId);
         $companyId = $company->idCompany;
+        $companySecteur = implode(',', $companySecteur);
     
         // Vérifier si un fichier a été téléchargé
         if ($_FILES['banner-upload']['name']) {
@@ -616,7 +628,7 @@ class Company extends CI_Controller {
             }
         }
 
-        $this->Company_model->updateCompanyData($companyId, $companyName, $companySlogan, $companySecteur);
+        $this->Company_model->updateCompanyData($companyId, $companyName, $companySlogan, $companySecteur, $userId, $userLinkedinLink);
         $this->session->set_flashdata('message', 'Vos informations ont bien été mises à jour !');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
@@ -744,28 +756,28 @@ class Company extends CI_Controller {
         $this->load->model('Company_model');
         $user = $this->Company_model->get_UserData($userId);
         $data['user'] = $user;
-
+        if ($user->userCompanyId == 0) {
+            redirect('login'); 
+        }
         // Récupérer l'expérience de l'utilisateur connecté avec l'expérience id
         $experiences = $this->Company_model->getUserExperience($userId);
         $data['experiences'] = $experiences;
 
-       // $ratings = $this->Company_model->getRatingsByUser($userId);
-       // $data['ratings'] = $ratings;
-       $ratingCount = $this->Company_model->getRatingCountByUser($userId);
-       $data['ratingCount'] = $ratingCount;
+        // $ratings = $this->Company_model->getRatingsByUser($userId);
+        // $data['ratings'] = $ratings;
+        $ratingCount = $this->Company_model->getRatingCountByUser($userId);
+        $data['ratingCount'] = $ratingCount;
 
-       // $raterUser = $this->Company_model->getRaterUser($userId);
-       // $data['raterUser'] = $raterUser;
-       
-       $company = $this->Company_model->getCompanyData($userId);
-       $data['company'] = $company;
+        // $raterUser = $this->Company_model->getRaterUser($userId);
+        // $data['raterUser'] = $raterUser;
+        
+        $company = $this->Company_model->getCompanyData($userId);
+        $data['company'] = $company;
 
-       $raterUser = $this->Company_model->getRaterUser($userId);
-       $ratings = $this->Company_model->getRatingsByUser($userId);
-       $data['raterUser'] = $raterUser;
-       $data['ratings'] = $ratings;
+        $ratedUsers = $this->Company_model->getAllRatingsByCompany($userId);
+        $data['ratedUsers'] = $ratedUsers;
 
-        $isAvailable = $user->userIsAvailable ;
+        $isAvailable = $user->userIsAvailable;
         
         // Cocher la case appropriée en fonction de la valeur récupérée
         if ($isAvailable == 1) {
@@ -776,6 +788,7 @@ class Company extends CI_Controller {
 
         $data['checkboxChecked'] = $checkboxChecked;
 
+        $data['secteursAll'] = $this->Company_model->get_all_secteurs();
 
 
         $this->load->view('company/settings', $data);
@@ -787,9 +800,8 @@ class Company extends CI_Controller {
         $userFirstName = $this->input->post('userFirstName');
         $userLastName = $this->input->post('userLastName');
         $userTelephone = $this->input->post('userTelephone');
-        $userEmail = $this->input->post('userEmail');
 
-        $this->Company_model->updateUserData($userId, $userFirstName, $userLastName, $userTelephone, $userEmail);
+        $this->Company_model->updateUserData($userId, $userFirstName, $userLastName, $userTelephone);
         $this->session->set_flashdata('message', 'Vos informations personnelles ont bien été mises à jour !');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
@@ -808,5 +820,45 @@ class Company extends CI_Controller {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
+    public function addRating($ratedUserId){
+        $this->load->model('Company_model');
+        $userId = $this->session->userdata('userId');
+        $ratingComment = $this->input->post('ratingComment');
+        $ratingStars = $this->input->post('ratingStars');
+        $ratingDate = date('Y-m-d H:i:s');
+        
+        // 0 = en attente d'approbation
+        $ratingStatus = 0;
+
+        $this->Company_model->addRating($userId, $ratedUserId, $ratingComment, $ratingStars, $ratingDate, $ratingStatus);
+        $this->session->set_flashdata('message', "Votre avis est en cours d'approbation");
+        $this->session->set_flashdata('status', 'success');
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    public function deleteRating($ratingId){
+        $this->load->model('Company_model');
+
+        $this->Company_model->deleteRating($ratingId);
+        $this->session->set_flashdata('message', 'Votre avis a bien été supprimé !');
+        $this->session->set_flashdata('status', 'success');
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+    
+    public function whatsapp() {
+        $userId = $this->session->userdata('userId');
+        $this->load->model('Company_model');
+        $user = $this->Company_model->get_UserData($userId);
+        if ($user->userCompanyId == 0) {
+            redirect('login'); 
+        }
+        $data['user'] = $user;
+
+        $groups = $this->Company_model->getWhatsAppGroups();
+    
+        $data['groups'] = $groups;
+    
+        $this->load->view('company/whatsapp', $data);
+    }
 }
 ?>

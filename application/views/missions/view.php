@@ -2,7 +2,12 @@
 // Header Call
 $currentPage = 'missions';
 
-include(APPPATH . 'views/layouts/user/header.php' );
+if($user->userType == "freelance"){
+    include(APPPATH . 'views/layouts/user/header.php' );
+}
+else if ($user->userType == "sales"){
+    include(APPPATH . 'views/layouts/company/header.php' );
+}
 ?>
 <head>
     <title><?=$mission->missionName?> | <?=$company->companyName?> | Café Crème Community </title>
@@ -123,16 +128,16 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                 <div>
                                     <p class="font-bold text-3xl"><?=$mission->missionName?></p>
                                     <p>
-                                        <span class="font-bold text-2xl"><?=$company->companyName?> - </span>
-                                        <span class="font-bold text-xl text-gray-400"><?=$mission->missionLocalisation?> </span>
+                                        <span class="font-bold text-2xl"><?=$company->companyName?></span>
                                     </p>
-                                    <p class="font-bold text-xl"><?=$mission->missionTJM.'€/Jour'?> -  <span class=" text-md"><?=ucfirst($mission->missionExpertise)?></span>
+                                    <p class="font-bold text-xl"><?=$mission->missionTJM.'€/Jour'?>
                                     <p class="font-medium text-xl">
                                     <?php foreach ($jobsAll as $joba): ?>
                                         <?php if ($mission->missionJobId == $joba['jobId']): ?>
                                             <?= $joba['jobName'] ?>
                                         <?php endif; ?>
                                     <?php endforeach; ?>
+                                     - <?=ucfirst($mission->missionExpertise)?>
                                     </p>
                                 </div>
                             </div>
@@ -188,145 +193,215 @@ include(APPPATH . 'views/layouts/user/header.php' );
 
                         </div>
                     </div>
-                    <div class="items-center overflow-hidden bg-white rounded-lg mb-4 dark:bg-gray-800 py-2 px-4 dark:text-white">
-                        <div class="justify-between p-2"> 
-                            <h2 class="font-bold text-2xl">La mission</h2>
-                            <p class="text-gray-500 mt-2 dark:text-white">
-                                <?=$mission->missionDescription?>
-                            </p>
-                        </div>
-                        <div class="w-full p-2 flex">
-                            <div class="w-full">                                
-                                <p class="text-gray-500 dark:text-white">Date de début : 
-                                    <span class="text-gray-600 dark:text-white"> <?=$mission->missionDateDebut = date('d/m/Y', strtotime($mission->missionDateDebut))?> </span>
-                                </p>
-                                <p class="text-gray-500 dark:text-white">Date de fin : 
-                                    <span class="text-gray-600 dark:text-white"> <?=$mission->missionDateFin = date('d/m/Y', strtotime($mission->missionDateFin))?> </span>
-                                </p>
-                            </div>
+                    <div class="flex gap-6 mb-3 mt-6">
+                        <div class="w-1/4 sticky top-0">
                             <div class="w-full">
-                                <p class="text-gray-500 dark:text-white">Durée de la mission : 
-                                    <?php
-                                        if ($mission->missionDuration == "courte"){
-                                            $mission->missionDuration = "Courte durée";
-                                        }
-                                        elseif ($mission->missionDuration == "longue"){
-                                            $mission->missionDuration = "Longue durée";
-                                        }
-                                        elseif ($mission->missionDuration == "indefinie"){
-                                            $mission->missionDuration = "Durée indéfinie";
-                                        }                                            
-                                    ?>
-                                    <span class="text-gray-600 dark:text-white"> <?=$mission->missionDuration?> </span>
-                                </p>
-                                <p class="text-gray-500 dark:text-white">Type de poste : 
-                                    <?php
-                                        if ($mission->missionType == "temps-plein"){
-                                            $mission->missionType = "Temps Plein";
-                                        }
-                                        elseif ($mission->missionType == "temps-partiel"){
-                                            $mission->missionType = "Temps Partiel";
-                                        }                                   
-                                    ?>
-                                    <span class="text-gray-600 dark:text-white"> <?=$mission->missionType?> </span>
-                                </p>
-                            </div>
-                            <div class="w-full">
-                                <p class="text-gray-500 dark:text-white">Mode de déroulement : 
-                                <?php
-                                    if ($mission->missionDeroulement == "teletravail"){
-                                        $mission->missionDeroulement = "Télétravail";
-                                    }
-                                    elseif ($mission->missionDeroulement == "site"){
-                                        $mission->missionDeroulement = "Sur site";
-                                    }
-                                    elseif ($mission->missionDeroulement == "hybride"){
-                                        $mission->missionDeroulement = "Hybride";
-                                    }                                            
-                                ?>
-                                    <span class="text-gray-600 dark:text-white"> <?=$mission->missionDeroulement?> </span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                                <div class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
+                                    <h2 class="text-xl font-bold mb-4">Informations clés</h2> 
 
-                    <div class="items-center overflow-hidden bg-white rounded-lg mb-4 dark:bg-gray-800 py-2 px-4 dark:text-white">
-                    <div class="justify-between p-2">
-                        <h2 class="font-bold text-2xl">Les compétences requises</h2>
-                        <div class="skills-container mb-4">
-                            <?php foreach ($missionSkills[$mission->idMission] as $skill) : ?>
-                                <?php
-                                    // Déterminer le niveau en fonction de la valeur de missionSkillsExperience
-                                    $level = '';
-                                    $color = '';
-                                    switch ($skill->missionSkillsExperience) {
-                                        case 1:
-                                            $level = 'Junior';
-                                            $color = '#BEE3F8'; // Couleur pour le niveau junior
-                                            $textdark = "text-black";
-                                            $text = "text-black";
-                                            break;
-                                        case 2:
-                                            $level = 'Intermédiaire';
-                                            $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
-                                            $textdark = "text-white";
-                                            $text = "text-black";
-                                            break;
-                                        case 3:
-                                            $level = 'Expert';
-                                            $color = '#2C5282'; // Couleur pour le niveau expert
-                                            $textdark = "text-white";
-                                            $text = "text-white";
-                                            break;
-                                        default:
-                                            $level = 'N/A'; // Si la valeur de missionSkillsExperience n'est pas valide, afficher "N/A"
-                                            break;
-                                    }
-                                ?>
-                                <div class="skill-item" data-level="<?=$level?>">
-                                    <span class="dark:<?=$textdark?> inline-block px-4 py-1 mt-2 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
-                                    <div class="skill-level"><?=$level?></div>
+                                        <div class="flex grid-cols-2 items-center mb-4">
+                                            <?php
+                                            // user is available or not
+                                            if($mission->missionDeroulement == "hybride"){
+                                            ?>
+                                                <div>
+                                                    <p class="w-10 h-10 rounded-full bg-pink-300 text-white text-center text-xl flex items-center justify-center mr-4 pt-2">✈️</p>
+                                                </div>
+                                            <?php
+                                            }else
+                                            {
+                                                if ($mission->missionDeroulement == "teletravail"){
+                                            ?>
+                                            <div>
+                                                <p class="w-10 h-10 rounded-full bg-pink-300 text-white text-center text-xl flex items-center justify-center mr-4 pt-2">✈️</p>
+                                            </div>
+                                            <?php
+                                                }else{
+                                            ?>
+                                            <div>
+                                                <p class="w-10 h-10 rounded-full bg-pink-300 text-white text-center text-xl flex items-center justify-center mr-4 pt-2">👨🏻‍💻</p>
+                                            </div>
+                                            <?php
+                                            } }
+                                            ?>
+                                            <div>
+                                                <p class="text">Mode de déroulement</p>
+                                                <?php
+                                                    if($mission->missionDeroulement == "hybride"){
+                                                    ?>
+                                                        <p class="font-bold text-lg">Hybride</p>
+                                                    <?php
+                                                        }else if($mission->missionDeroulement == "teletravail"){
+                                                    ?>
+                                                        <p class="font-bold text-lg">Télétravail</p>
+                                                    <?php
+                                                        }else if($mission->missionDeroulement == "site"){
+                                                    ?>
+                                                        <p class="font-bold text-lg">Sur site</p>
+                                                    <?php
+                                                        }
+                                                    ?>
+                                            </div>
+                                        </div>
+                                        <div class="flex grid-cols-2 items-center mb-4">
+                                            <div>
+                                                <p class="w-10 h-10 rounded-full bg-green-400 text-white text-center text-xl flex items-center justify-center mr-4 pt-2">🕐</p>
+                                            </div>
+                                            
+                                            <div>
+                                                <p class="text">Type de poste</p>
+                                                <?php
+                                                    if ($mission->missionType == "temps-plein"){
+                                                        $mission->missionType = "Temps Plein";
+                                                    }
+                                                    elseif ($mission->missionType == "temps-partiel"){
+                                                        $mission->missionType = "Temps Partiel";
+                                                    }                                   
+                                                ?>
+                                                <p class="font-bold text-lg"><?=$mission->missionType?></p>
+
+                                            </div>
+                                        </div>
+                                        <div class="flex grid-cols-2 items-center mb-4">
+                                            <div>
+                                                <p class="w-10 h-10 rounded-full bg-orange-400 text-white text-center text-xl flex items-center justify-center mr-4 pt-2">📍</p>
+                                            </div>
+                                            
+                                            <div>
+                                                <p class="text">Localisation</p>
+                                                <p class="font-bold text-lg"><?=$mission->missionLocalisation?></p>
+
+                                            </div>
+                                        </div>
+                                        <div class="flex grid-cols-2 items-center mb-4">
+                                            <div>
+                                                <p class="w-10 h-10 rounded-full bg-indigo-300 text-white text-center text-xl flex items-center justify-center mr-4 pt-2">⏳</p>
+                                            </div>
+                                            
+                                            <div>
+                                                <p class="text">Durée de la mission</p>
+                                                <?php
+                                                    if ($mission->missionDuration == "courte"){
+                                                        $mission->missionDuration = "Courte durée";
+                                                    }
+                                                    elseif ($mission->missionDuration == "longue"){
+                                                        $mission->missionDuration = "Longue durée";
+                                                    }
+                                                    elseif ($mission->missionDuration == "indefinie"){
+                                                        $mission->missionDuration = "Durée indéfinie";
+                                                    }                                            
+                                                ?>
+                                                <p class="font-bold text-lg"><?=$mission->missionDuration?></p>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="flex grid-cols-2 items-center mb-4">
+                                            <div>
+                                                <p class="w-10 h-10 rounded-full bg-red-400 text-white text-center text-xl flex items-center justify-center mr-4">📅</p>
+                                            </div>
+                                            
+                                            <div>
+                                                <p class="text">Dates</p>
+                                                <p class="font-semibold text-lg"><?=$mission->missionDateDebut = date('d/m/Y', strtotime($mission->missionDateDebut))?> - 
+                                                <?php
+                                                if($mission->missionDateFin == NULL){
+                                                    echo "Date de fin indéfinie";
+                                                }
+                                                else {
+                                                    echo $mission->missionDateFin = date('d/m/Y', strtotime($mission->missionDateFin));
+                                                }
+                                                
+                                                ?>
+                                            </p>
+                                                
+                                            </div>
+                                        </div>
                                 </div>
-                            <?php endforeach; ?>
-                        </div>
-                        <div class="flex justify-end gap-4" id="legendeskills">
-                            <div class="flex items-center gap-2">
-                                <div class="w-3 h-3 mr-1 rounded-full" style="background-color: #BEE3F8;"></div>
-                                <span class="text-gray-600 mr-2 text-sm dark:text-white">Junior</span>
+                                <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
+                                    <h2 class="text-xl font-bold mb-4"> Compétences requises </h2> 
+                                    <div class="skills-container mb-4">
+                                        <?php foreach ($missionSkills[$mission->idMission] as $skill) : ?>
+                                            <?php
+                                                // Déterminer le niveau en fonction de la valeur de missionSkillsExperience
+                                                $level = '';
+                                                $color = '';
+                                                switch ($skill->missionSkillsExperience) {
+                                                    case 1:
+                                                        $level = 'Junior';
+                                                        $color = '#BEE3F8'; // Couleur pour le niveau junior
+                                                        $textdark = "text-black";
+                                                        $text = "text-black";
+                                                        break;
+                                                    case 2:
+                                                        $level = 'Intermédiaire';
+                                                        $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
+                                                        $textdark = "text-white";
+                                                        $text = "text-black";
+                                                        break;
+                                                    case 3:
+                                                        $level = 'Expert';
+                                                        $color = '#2C5282'; // Couleur pour le niveau expert
+                                                        $textdark = "text-white";
+                                                        $text = "text-white";
+                                                        break;
+                                                    default:
+                                                        $level = 'N/A'; // Si la valeur de missionSkillsExperience n'est pas valide, afficher "N/A"
+                                                        break;
+                                                }
+                                            ?>
+                                            <div class="skill-item" data-level="<?=$level?>">
+                                                <span class="dark:<?=$textdark?> inline-block px-4 py-1 mt-2 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                                                <div class="skill-level"><?=$level?></div>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                    <div class="flex justify-end gap-4" id="legendeskills">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-3 h-3 mr-1 rounded-full" style="background-color: #BEE3F8;"></div>
+                                            <span class="text-gray-600 mr-2 text-sm dark:text-white">Junior</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-3 h-3 mr-1 rounded-full" style="background-color: #63B3ED;"></div>
+                                            <span class="text-gray-600 mr-2 text-sm dark:text-white">Intermédiaire</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-3 h-3 mr-1 rounded-full" style="background-color: #2C5282;"></div>
+                                            <span class="text-gray-600 mr-2 text-sm dark:text-white">Expert</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="flex items-center gap-2">
-                                <div class="w-3 h-3 mr-1 rounded-full" style="background-color: #63B3ED;"></div>
-                                <span class="text-gray-600 mr-2 text-sm dark:text-white">Intermédiaire</span>
+                        </div>
+                        <div class="w-3/4 sticky top-0">
+                            <div class="w-full">
+                                <div class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
+                                    <h2 class="font-bold text-2xl">La mission</h2>
+                                    <p class="text-gray-500 mt-2 dark:text-white">
+                                        <?=$mission->missionDescription?>
+                                    </p>
+                                </div>
+                                <div class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
+                                    <h2 class="font-bold text-2xl">L'entreprise</h2>
+                                    <p class="text-gray-500 mt-2 dark:text-white">
+                                        <?=$company->companyDescription?>
+                                    </p>
+                                </div>
+                                <?php
+                                if ($mission->missionAvantage != null) {
+                                ?>
+                                <div class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
+                                    <h2 class="font-bold text-2xl">Les avantages</h2>
+                                    <p class="text-gray-500 mt-2 dark:text-white">
+                                        <?=$mission->missionAvantage?>
+                                    </p>
+                                </div>
+                                <?php
+                                }
+                                ?> 
                             </div>
-                            <div class="flex items-center gap-2">
-                                <div class="w-3 h-3 mr-1 rounded-full" style="background-color: #2C5282;"></div>
-                                <span class="text-gray-600 mr-2 text-sm dark:text-white">Expert</span>
-                            </div>
                         </div>
-                    </div>
-                    </div>
-                    <div class="items-center overflow-hidden bg-white rounded-lg mb-4 dark:bg-gray-800 py-2 px-4">
-                        <div class="justify-between p-2"> 
-                            <h2 class="font-bold text-2xl">L'entreprise</h2>
-                            <p class="text-gray-500 mt-2 dark:text-white">
-                                <?=$company->companyDescription?>
-                            </p>
-                        </div>
-                    </div>
-                    <?php
-                    if ($mission->missionAvantage != null) {
-                    ?>
-                    <div class="items-center overflow-hidden bg-white rounded-lg mb-4 dark:bg-gray-800 py-2 px-4">
-                        <div class="justify-between p-2"> 
-                            <h2 class="font-bold text-2xl">Les avantages</h2>
-                            <p class="text-gray-500 mt-2 dark:text-white">
-                                <?=$mission->missionAvantage?>
-                            </p>
-                        </div>
-                    </div>
-                    <?php
-                    }
-                    ?>              
+                    </div> 
+             
             </div>
             <h2 class="font-bold text-2xl mt-2">Les autres offres proposés par <?=$company->companyName?></h2>
             <div class="overflow-x-auto flex pb-4 no-scrollbar">

@@ -9,6 +9,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
 
 <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
 <link href="<?php echo base_url('assets/css/app.css');?>" rel="stylesheet">
+<link href="<?php echo base_url('/node_modules/choices.js/public/assets/styles/choices.min.css');?>" rel="stylesheet" type="text/css">
 
 <style>
         /* Barre de progression */
@@ -64,17 +65,17 @@ include(APPPATH . 'views/layouts/company/header.php' );
 </head>
 
 <?php
-// Rating
-$totalStars = 0;
-$totalCount = 0;
-foreach ($ratings as $rating) {
-  $totalStars += $rating->ratingStars;
-  $totalCount += 1;
-}
-if ($totalCount > 0) {
-  $averageStars = $totalStars / $totalCount;
-} else {
-  $averageStars = 0;
+$ratedUsersApproved = array(); // Initialiser le tableau pour les utilisateurs approuvés
+$ratedUsersWaiting = array();  // Initialiser le tableau pour les utilisateurs en attente
+
+foreach ($ratedUsers as $rating) {
+    if ($rating->ratingStatus == 1) {
+        // Si ratingStatus est égal à 1, ajoutez l'utilisateur à $ratedUsersApproved
+        $ratedUsersApproved[] = $rating;
+    } else {
+        // Sinon, ajoutez l'utilisateur à $ratedUsersWaiting
+        $ratedUsersWaiting[] = $rating;
+    }
 }
 ?>
 
@@ -92,19 +93,9 @@ if ($totalCount > 0) {
                                 <h1 class="text-5xl font-bold"><?=$company->companyName?></h1>
                             </div>
                             <p class="text-2xl text-black-500 font-bold"><?=$company->companySlogan?></p>
-                            <h3 class="text-xl font-medium text-gray-400">Secteur d'activité: <?=$company->companySecteur?></h3>
-                            <!--<div class="flex items-center mb-4">
-                                <?php for ($i = 1; $i <= 5; $i++) { ?>
-                                <?php if ($i <= $averageStars) { ?>
-                                    <img src="<?php echo base_url('assets/img/fill-star.svg'); ?>" class="w-6 h-6">
-                                <?php } else { ?>
-                                    <img src="<?php echo base_url('assets/img/light-star.svg'); ?>" class="w-6 h-6">
-                                <?php } ?>
-                                <?php } ?>
-                                <a href="#rating">
-                                    <p class="ml-2"><?=round($averageStars, 1).' ( '.$ratingCount.' avis )'?></p>
-                                </a>
-                            </div>-->
+                            <h3 class="text-xl font-medium text-gray-400">Secteur d'activité : <?=$company->companySecteur?></h3>
+
+
                         <!-- Whatsapp -->
                         <div class="flex flex-wrap items-center">
                                 <!-- Whatsapp -->
@@ -128,13 +119,13 @@ if ($totalCount > 0) {
                 <div class="rounded-lg h-full w-1/3 mb-4 mr-4 dark:text-white">
                     <div class="relative flex grid-cols-2 items-center overflow-hidden bg-white h-full w-full rounded-lg mb-4 dark:bg-gray-800 py-8 px-4">
                         <ul class=" w-full">
-                            <li class="tab-item mb-3 w-full"> <a href="#user-data" class="tab-link px-6 text-lg w-full"><i class="fas fa-user mr-4"></i>Informations personnelles</a></li>
+                            <li class="tab-item mb-8 w-full"> <a href="#user-data" class="tab-link px-6 text-lg font-bold w-full"><i class="fas fa-user mr-4"></i>Informations personnelles</a></li>
 
-                            <li class="tab-item mb-3"> <a href="#company-data" class="tab-link px-6 text-lg text-gray-400 w-full"><i class="fas fa-building mr-4"></i>Informations professionnelles</a></li>
+                            <li class="tab-item mb-8"> <a href="#company-data" class="tab-link px-6 text-lg w-full"><i class="fas fa-building mr-4"></i>Informations professionnelles</a></li>
 
-                            <li class="tab-item mb-3"> <a href="#user-password" class="tab-link px-6 text-lg text-gray-400 w-full"><i class="fas fa-key mr-4"></i>Mot de passe</a></li>
+                            <li class="tab-item mb-8"> <a href="#user-password" class="tab-link px-6 text-lg w-full"><i class="fas fa-key mr-4"></i>Mot de passe</a></li>
                             
-                            <li class="tab-item"> <a href="#rating" class="tab-link px-6 text-lg text-gray-400 w-full"><i class="fas fa-star mr-4"></i>Avis</a></li>
+                            <li class="tab-item"> <a href="#rating" class="tab-link px-6 text-lg w-full"><i class="fas fa-star mr-4"></i>Avis</a></li>
                         </ul>
                     </div>
                 </div>
@@ -153,7 +144,7 @@ if ($totalCount > 0) {
                                 <input type="text" name="userTelephone" id="userTelephone" value="<?=$user->userTelephone?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>    
 
                                 <label for="userEmail" class="block font-medium text-gray-900 dark:text-white">Votre email *</label>
-                                <input type="email" name="userEmail" id="userEmail" value="<?=$user->userEmail?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>    
+                                <input type="email" name="userEmail" id="userEmail" value="<?=$user->userEmail?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" disabled>    
 
                                 <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 mt-4 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                     Valider
@@ -167,7 +158,17 @@ if ($totalCount > 0) {
                                 <label for="companySlogan" class="block font-medium text-gray-900 dark:text-white">Slogan *</label>
                                 <input type="text" name="companySlogan" id="companySlogan" value="<?=$company->companySlogan?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>    
                                 <label for="companySecteur" class="block font-medium text-gray-900 dark:text-white">Secteur *</label>
-                                <input type="text" name="companySecteur" id="companySecteur" value="<?=$company->companySecteur?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>                                
+                                <select id="secteursAll" name="secteursAll[]"  class=" mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    <option value="">Sélectionnez un secteur</option>
+                                    <?php foreach ($secteursAll as $secteur): ?>
+                                        <option class="dark:text-black" value="<?= $secteur['secteurName'] ?>"
+                                            <?= ($company->companySecteur == $secteur['secteurName']) ? 'selected' : '' ?>>
+                                        <?= $secteur['secteurName'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+
+                                <input type="text" name="userLinkedinLink" id="userLinkedinLink" value="<?=$user->userLinkedinLink?>" class="hidden mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                              
                                 <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 mt-4 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                     Valider
                                 </button>
@@ -200,6 +201,114 @@ if ($totalCount > 0) {
                                 </button>
                             </form>
                         </div>
+                        <div id="rating" class="px-6 space-y-4 md:space-y-6 w-full hidden">
+                        <?php
+                            if (is_array($ratedUsersApproved) && !empty($ratedUsersApproved)) {
+                                foreach ($ratedUsersApproved as $rating) {
+                                ?>
+                                    <div class="relative">
+                                        <a href="<?= base_url('company/freelancerView/'.$rating->userId) ?>" title="Voir le profil" class="flex-shrink-0 w-full ">
+                                            <div class="flex grid-cols-2 items-center mt-4 mb-4">
+                                                <div>
+                                                    <img src="<?php echo base_url($rating->userAvatarPath); ?>" alt="User Photo" class="rounded-full w-20 h-20 transition-transform transform hover:scale-110">
+                                                </div>
+                                                <div>
+                                                    <p class="text-lg font-medium ml-4 "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
+                                                    <p class="text mt-2 ml-4"><?= '"'.$rating->ratingComment.'"'?></p>
+                                                    <div class="flex items-center ml-4">
+                                                        <?php for ($i = 1; $i <= 5; $i++) { ?>
+                                                            <?php if ($i <= $rating->ratingStars) { ?>
+                                                                <img src="<?php echo base_url('assets/img/fill-star.svg'); ?>" class="w-4 h-4">
+                                                            <?php } else { ?>
+                                                                <img src="<?php echo base_url('assets/img/light-star.svg'); ?>" class="w-4 h-4">
+                                                            <?php } ?>
+                                                        <?php } ?>
+                                                    </div>
+                                                    <p class="text text-sm text-gray-400 mt-2 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
+                                                </div>
+                                            </div>
+                                            <div class="absolute bottom-0 right-0">
+                                                <a onclick="showModal('deleteRatingConfirmationModal-<?= $rating->idRating ?>');">
+                                                    <button type="button" class="text-red-600 hover:text-red-900 focus:outline-none ml-2">
+                                                    <span>Supprimer l'avis</span>
+                                                    </button>
+                                                </a>
+                                                <div id="deleteRatingConfirmationModal-<?= $rating->idRating ?>" class="hidden fixed inset-0 flex items-center justify-center z-50">
+                                                    <div class="fixed inset-0 bg-black opacity-50"></div>
+                                                    <div class="relative bg-gray-50 rounded-lg shadow p-6 border border-gray-800 dark:bg-gray-800 sm:p-5">
+                                                        <h3 class="text-lg font-semibold mb-4">Confirmation de suppression</h3>
+                                                        <p class="text-gray-700 dark:text-white mb-6">Êtes-vous sûr de vouloir supprimer cet avis ?</p>
+                                                        <div class="flex justify-end">
+                                                            <button type="button" onclick="hideModal('deleteRatingConfirmationModal-<?= $rating->idRating ?>');" class="text-gray-600 inline-flex items-center hover:text-white hover:bg-gray-800 border-gray-600  focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500  dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">Annuler</button>
+                                                            <a href="<?=base_url('company/deleteRating/'.$rating->idRating)?>" class="text-red-800 inline-flex items-center hover:text-white hover:bg-red-900 border-red-900  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500  dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Supprimer</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                <?php
+                                }
+                            }
+                            
+                            if (is_array($ratedUsersWaiting) && !empty($ratedUsersWaiting)){ ?>
+                                <hr>
+                                <?php 
+                                foreach ($ratedUsersWaiting as $rating) {
+                                ?>
+                                <div class="relative">
+                                    <a href="<?= base_url('company/freelancerView/'.$rating->userId) ?>" title="Visiter le portfolio" class="flex-shrink-0 w-full " target="_blank">
+                                        <div class="flex grid-cols-2 items-center mt-4 mb-4">
+                                            <div>
+                                                <img src="<?php echo base_url($rating->userAvatarPath); ?>" alt="User Photo" class="rounded-full w-20 h-20 transition-transform transform hover:scale-110">
+                                            </div>
+                                            <div>
+                                                <p class="text-lg font-medium ml-4 "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
+                                                <p class="text mt-2 ml-4"><?= '"'.$rating->ratingComment.'"'?></p>
+                                                <div class="flex items-center ml-4">
+                                                    <?php for ($i = 1; $i <= 5; $i++) { ?>
+                                                        <?php if ($i <= $rating->ratingStars) { ?>
+                                                            <img src="<?php echo base_url('assets/img/fill-star.svg'); ?>" class="w-4 h-4">
+                                                        <?php } else { ?>
+                                                            <img src="<?php echo base_url('assets/img/light-star.svg'); ?>" class="w-4 h-4">
+                                                        <?php } ?>
+                                                    <?php } ?>
+                                                </div>
+                                                <p class="text text-sm text-gray-400 mt-2 ml-4" style="font-style: italic">En attente</p>
+                                            </div>
+                                        </div>
+                                        <div class="absolute bottom-0 right-0">
+                                            <a onclick="showModal('deleteRatingConfirmationModal-<?= $rating->idRating ?>');">
+                                                <button type="button" class="text-red-600 hover:text-red-900 focus:outline-none ml-2">
+                                                <span>Supprimer l'avis</span>
+                                                </button>
+                                            </a>
+                                            <div id="deleteRatingConfirmationModal-<?= $rating->idRating ?>" class="hidden fixed inset-0 flex items-center justify-center z-50">
+                                                <div class="fixed inset-0 bg-black opacity-50"></div>
+                                                <div class="relative bg-gray-50 rounded-lg shadow p-6 border border-gray-800 dark:bg-gray-800 sm:p-5">
+                                                    <h3 class="text-lg font-semibold mb-4">Confirmation de suppression</h3>
+                                                    <p class="text-gray-700 dark:text-white mb-6">Êtes-vous sûr de vouloir supprimer cet avis ?</p>
+                                                    <div class="flex justify-end">
+                                                        <button type="button" onclick="hideModal('deleteRatingConfirmationModal-<?= $rating->idRating ?>');" class="text-gray-600 inline-flex items-center hover:text-white hover:bg-gray-800 border-gray-600  focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500  dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">Annuler</button>
+                                                        <a href="<?=base_url('company/deleteRating/'.$rating->idRating)?>" class="text-red-800 inline-flex items-center hover:text-white hover:bg-red-900 border-red-900  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500  dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Supprimer</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <?php
+                                } ?>
+
+                            <?php
+                            }
+                            else {
+                                ?>
+                                    <p class="mt-2 mb-2"> Vous n'avez donné aucun avis pour le moment. </p>
+                                    <?php
+                            }
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -214,9 +323,20 @@ if ($totalCount > 0) {
 
 <script src="<?php echo base_url('assets/js/app.js'); ?>"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="<?php echo base_url('/node_modules/choices.js/public/assets/scripts/choices.min.js'); ?>"></script>
+
 
 <script>
 $(document).ready(function () {
+
+    const secteurChoices = new Choices('#secteursAll', {
+        searchEnabled: true,
+        removeItemButton: true,
+        itemSelectText: '',
+        placeholder: true,
+        placeholderValue: 'Sélectionnez un secteur',
+    });
+
     // Cacher tous les formulaires sauf le premier au chargement de la page
     $(".form-container > div:not(:first-child)").hide();
 
@@ -228,9 +348,9 @@ $(document).ready(function () {
         $(target).fadeIn();
 
         // Supprimer la classe "text-gray-400" de tous les liens avec la classe "tab-link"
-        $(".tab-link").addClass("text-gray-400");
+        $(".tab-link").removeClass("font-bold");
         // Ajouter la classe "text-gray-400" à l'élément cliqué
-        $(this).removeClass("text-gray-400");
+        $(this).addClass("font-bold");
 
         // Mettre à jour l'URL sans recharger la page
         history.pushState(null, null, target);
@@ -347,6 +467,17 @@ togglePasswordCheckbox.addEventListener('change', function () {
         confirmPasswordInput.setAttribute('type', 'password');
     }
 });
+
+
+function showModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.classList.remove('hidden');
+    }
+
+    function hideModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.classList.add('hidden');
+    }
 
 </script>
 

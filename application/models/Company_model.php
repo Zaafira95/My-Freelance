@@ -83,6 +83,15 @@ class Company_model extends CI_Model {
     public function getRatingCountByUser($id){
         $this->db->select('COUNT(*) as total');
         $this->db->where('idRatedUser', $id);
+        $this->db->where('ratingStatus', 1);
+        $query = $this->db->get('rating');
+        return $query->row()->total;
+    }
+    
+    public function getRatingCountByCompanyForAUser($idRatedUser, $idUser){
+        $this->db->select('COUNT(*) as total');
+        $this->db->where('idRatedUser', $idRatedUser);
+        $this->db->where('idUser', $idUser);
         $query = $this->db->get('rating');
         return $query->row()->total;
     }
@@ -92,6 +101,7 @@ class Company_model extends CI_Model {
             $this->db->from('rating');
             $this->db->join('users', 'users.userId = rating.idUser');
             $this->db->where('idRatedUser', $id);
+            $this->db->where('ratingStatus', 1);
             $query = $this->db->get();
             return $query->result();
     }
@@ -107,6 +117,30 @@ class Company_model extends CI_Model {
         return $query->result();
     }
 
+    public function deleteRating($ratingId) {
+        $this->db->where('idRating', $ratingId);
+        $this->db->delete('rating');
+    }
+
+    public function addRating($userId, $ratedUserId, $ratingComment, $ratingStars, $ratingDate, $ratingStatus){
+        $this->db->set('idUser', $userId);
+        $this->db->set('idRatedUser', $ratedUserId);
+        $this->db->set('ratingComment', $ratingComment);
+        $this->db->set('ratingStars', $ratingStars);
+        $this->db->set('ratingDate', $ratingDate);
+        $this->db->set('ratingStatus', $ratingStatus);
+        $this->db->insert('rating');
+    }
+
+    public function getAllRatingsByCompany($id){
+        $this->db->select('*');
+            $this->db->from('rating');
+            $this->db->join('users', 'users.userId = rating.idRatedUser');
+            $this->db->where('idUser', $id);
+            $this->db->order_by('rating.ratingDate', 'DESC');
+            $query = $this->db->get();
+            return $query->result();
+    }
     public function getJobNameForAUser($id){
         $this->db->select('jobName');
         $this->db->from('job');
@@ -115,6 +149,7 @@ class Company_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+    
 
     public function getUserSkillsAll($id) {
         $this->db->select('skills.skillId, skills.skillName, userSkills.userSkillsExperience');
@@ -232,6 +267,11 @@ class Company_model extends CI_Model {
 
     public function get_all_skills() {
         $query = $this->db->get('skills'); // Remplacez 'skills' par le nom exact de votre table de compétences si ce n'est pas le cas.
+        return $query->result_array();
+    }
+    
+    public function get_all_secteurs() {
+        $query = $this->db->get('secteurs'); // Remplacez 'skills' par le nom exact de votre table de compétences si ce n'est pas le cas.
         return $query->result_array();
     }
 
@@ -359,12 +399,17 @@ class Company_model extends CI_Model {
         $this->db->update('company');
     }    
 
-    public function updateCompanyData($companyId, $companyName, $companySlogan, $companySecteur){
+    public function updateCompanyData($companyId, $companyName, $companySlogan, $companySecteur, $userId, $userLinkedinLink){
         $this->db->set('companyName', $companyName);
         $this->db->set('companySlogan', $companySlogan);
         $this->db->set('companySecteur', $companySecteur);
         $this->db->where('idCompany', $companyId);
         $this->db->update('company');
+        
+        $this->db->set('userLinkedinLink', $userLinkedinLink);
+        $this->db->where('userId', $userId);
+        $this->db->update('users');
+
     }
         
     public function updateBannerPath($companyId, $file_path){
@@ -426,11 +471,10 @@ class Company_model extends CI_Model {
         $this->db->update('companyPhotos');
     }
 
-    public function updateUserData($userId, $userFirstName, $userLastName, $userTelephone, $userEmail){
+    public function updateUserData($userId, $userFirstName, $userLastName, $userTelephone){
         $this->db->set('userFirstName', $userFirstName);
         $this->db->set('userLastName', $userLastName);
         $this->db->set('userTelephone', $userTelephone);
-        $this->db->set('userEmail', $userEmail);
         $this->db->where('userId', $userId);
         $this->db->update('users');
     }
@@ -441,5 +485,11 @@ class Company_model extends CI_Model {
         $this->db->update('users');
     }
 
+    public function getWhatsAppGroups(){
+        $this->db->select('*');
+        $this->db->from('whatsAppGroups');
+        $query = $this->db->get();
+        return $query->result();
+    }
 }
 ?>

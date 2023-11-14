@@ -56,15 +56,11 @@
                     </div>
                     <!-- Dropdown Menu -->
                     <div id="dropdown" class=" absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md overflow-hidden shadow-xl z-10 hidden">
-                        <a href="<?php echo base_url('user/profil');?>" class="flex items-center space-x-2 block rounded-md px-4 py-4 text-gray-400 dark:text-gray-400 hover:bg-secondary dark:hover:text-white hover:text-gray-900 dark:hover:bg-primary">
+                        <a href="<?php echo base_url('company/my_company');?>" class="flex items-center space-x-2 block rounded-md px-4 py-4 text-gray-400 dark:text-gray-400 hover:bg-secondary dark:hover:text-white hover:text-gray-900 dark:hover:bg-primary">
                             <i class="fas fa-user-circle"></i>
-                            <span>Mon Profil</span>
+                            <span>Mon entreprise</span>
                         </a>
-                        <a href="<?php echo base_url('User/favoriteMission');?>" class="flex items-center space-x-2 block rounded-md px-4 py-4 text-gray-400 dark:text-gray-400 hover:bg-secondary dark:hover:text-white hover:text-gray-900 dark:hover:bg-primary">
-                            <i class="far fa-heart"></i>
-                            <span>Favoris</span>
-                        </a>
-                        <a href="#" class="flex items-center space-x-2 block rounded-md px-4 py-4 text-gray-400 dark:text-gray-400 hover:bg-secondary dark:hover:text-white hover:text-gray-900 dark:hover:bg-primary">
+                        <a href="<?php echo base_url('company/settings');?>" class="flex items-center space-x-2 block rounded-md px-4 py-4 text-gray-400 dark:text-gray-400 hover:bg-secondary dark:hover:text-white hover:text-gray-900 dark:hover:bg-primary">
                             <i class="fas fa-cog"></i>
                             <span>Paramètres</span>
                         </a>
@@ -133,11 +129,11 @@
                         <?php 
                             if ($currentPage == 'whatsapp'){
                         ?>
-                            <a href="<?php echo base_url('user/whatsapp');?>" class="block py-2 pr-4 pl-3 text-primary bg-primary lg:bg-transparent lg:text-primary lg:p-0 border-b-2 border-primary dark:text-white">Communauté</a>
+                            <a href="<?php echo base_url('company/whatsapp');?>" class="block py-2 pr-4 pl-3 text-primary bg-primary lg:bg-transparent lg:text-primary lg:p-0 border-b-2 border-primary dark:text-white">Communauté</a>
                         <?php
                             } else {
                         ?>
-                            <a href="<?php echo base_url('user/whatsapp');?>" class="block py-2 pr-4 pl-3 text-black border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-400 lg:p-0 dark:text-white">Communauté</a>
+                            <a href="<?php echo base_url('company/whatsapp');?>" class="block py-2 pr-4 pl-3 text-black border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-400 lg:p-0 dark:text-white">Communauté</a>
                         <?php
                             }
                         ?>

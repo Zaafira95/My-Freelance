@@ -9,6 +9,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
 
 <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
 <link href="<?php echo base_url('assets/css/app.css');?>" rel="stylesheet">
+<link href="<?php echo base_url('/node_modules/choices.js/public/assets/styles/choices.min.css');?>" rel="stylesheet" type="text/css">
 
 <style>
         /* Barre de progression */
@@ -92,7 +93,8 @@ foreach ($ratedUsers as $rating) {
                                 <h1 class="text-5xl font-bold"><?=$company->companyName?></h1>
                             </div>
                             <p class="text-2xl text-black-500 font-bold"><?=$company->companySlogan?></p>
-                            <h3 class="text-xl font-medium text-gray-400">Secteur d'activité: <?=$company->companySecteur?></h3>
+                            <h3 class="text-xl font-medium text-gray-400">Secteur d'activité : <?=$company->companySecteur?></h3>
+
 
                         <!-- Whatsapp -->
                         <div class="flex flex-wrap items-center">
@@ -156,7 +158,14 @@ foreach ($ratedUsers as $rating) {
                                 <label for="companySlogan" class="block font-medium text-gray-900 dark:text-white">Slogan *</label>
                                 <input type="text" name="companySlogan" id="companySlogan" value="<?=$company->companySlogan?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>    
                                 <label for="companySecteur" class="block font-medium text-gray-900 dark:text-white">Secteur *</label>
-                                <input type="text" name="companySecteur" id="companySecteur" value="<?=$company->companySecteur?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>  
+                                <select id="secteursAll" name="secteursAll[]"  class=" mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    <option value="">Sélectionnez un secteur</option>
+                                    <?php foreach ($secteursAll as $secteur): ?>
+                                        <option class="dark:text-black" value="<?= $secteur['secteurName'] ?>"
+                                            <?= ($company->companySecteur == $secteur['secteurName']) ? 'selected' : '' ?>>
+                                        <?= $secteur['secteurName'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
 
                                 <input type="text" name="userLinkedinLink" id="userLinkedinLink" value="<?=$user->userLinkedinLink?>" class="hidden mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                               
@@ -314,9 +323,20 @@ foreach ($ratedUsers as $rating) {
 
 <script src="<?php echo base_url('assets/js/app.js'); ?>"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="<?php echo base_url('/node_modules/choices.js/public/assets/scripts/choices.min.js'); ?>"></script>
+
 
 <script>
 $(document).ready(function () {
+
+    const secteurChoices = new Choices('#secteursAll', {
+        searchEnabled: true,
+        removeItemButton: true,
+        itemSelectText: '',
+        placeholder: true,
+        placeholderValue: 'Sélectionnez un secteur',
+    });
+
     // Cacher tous les formulaires sauf le premier au chargement de la page
     $(".form-container > div:not(:first-child)").hide();
 

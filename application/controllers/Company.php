@@ -66,15 +66,12 @@ class Company extends CI_Controller {
     }
 
     public function freelancerView($id){
-
         $userId = $this->session->userdata('userId');
         $this->load->model('Company_model');
         $user = $this->Company_model->get_UserData($userId);
-
         if ($user->userCompanyId == 0) {
             redirect('login'); 
         }
-
         $data['user'] = $user;
 
         $this->load->model('Company_model');
@@ -380,11 +377,17 @@ class Company extends CI_Controller {
     public function my_company(){
         $userId = $this->session->userdata('userId');
         $this->load->model('Company_model');
+        $this->load->model('User_model');
         $company = $this->Company_model->getCompanyData($userId);
         $data['company'] = $company;
         $companyId = $company->idCompany;
         $missions = $this->Company_model->getCompanyMissions($companyId);
         $data['missions'] = $missions;
+
+        $user = $this->User_model->get_UserData($userId);
+        if ($user->userCompanyId == 0) {
+            redirect('login'); 
+        }
 
         // Récupérer les skills de chaque mission
         $missionSkills = array();
@@ -400,6 +403,8 @@ class Company extends CI_Controller {
         $user = $this->Company_model->get_UserData($userId);
         $data['user'] = $user;
 
+        $data['secteursAll'] = $this->Company_model->get_all_secteurs();
+        
         $this->load->view('company/my_company', $data);
     }
 
@@ -463,7 +468,9 @@ class Company extends CI_Controller {
         $this->load->model('User_model');
         $this->load->model('Company_model');
         $user = $this->User_model->get_UserData($userId);
-
+        if ($user->userCompanyId == 0) {
+            redirect('login'); 
+        }
         $freelancers = $this->Company_model->get_freelancers();
         $data['freelancers'] = $freelancers;
         
@@ -532,10 +539,11 @@ class Company extends CI_Controller {
         $userId = $this->session->userdata('userId');
         $companyName = $this->input->post('companyName');
         $companySlogan = $this->input->post('companySlogan');
-        $companySecteur = $this->input->post('companySecteur');
+        $companySecteur = $this->input->post('secteursAll');
         $userLinkedinLink = $this->input->post('userLinkedinLink');
         $company = $this->Company_model->getCompanyData($userId);
         $companyId = $company->idCompany;
+        $companySecteur = implode(',', $companySecteur);
     
         // Vérifier si un fichier a été téléchargé
         if ($_FILES['banner-upload']['name']) {
@@ -748,24 +756,26 @@ class Company extends CI_Controller {
         $this->load->model('Company_model');
         $user = $this->Company_model->get_UserData($userId);
         $data['user'] = $user;
-
+        if ($user->userCompanyId == 0) {
+            redirect('login'); 
+        }
         // Récupérer l'expérience de l'utilisateur connecté avec l'expérience id
         $experiences = $this->Company_model->getUserExperience($userId);
         $data['experiences'] = $experiences;
 
-       // $ratings = $this->Company_model->getRatingsByUser($userId);
-       // $data['ratings'] = $ratings;
-       $ratingCount = $this->Company_model->getRatingCountByUser($userId);
-       $data['ratingCount'] = $ratingCount;
+        // $ratings = $this->Company_model->getRatingsByUser($userId);
+        // $data['ratings'] = $ratings;
+        $ratingCount = $this->Company_model->getRatingCountByUser($userId);
+        $data['ratingCount'] = $ratingCount;
 
-       // $raterUser = $this->Company_model->getRaterUser($userId);
-       // $data['raterUser'] = $raterUser;
-       
-       $company = $this->Company_model->getCompanyData($userId);
-       $data['company'] = $company;
+        // $raterUser = $this->Company_model->getRaterUser($userId);
+        // $data['raterUser'] = $raterUser;
+        
+        $company = $this->Company_model->getCompanyData($userId);
+        $data['company'] = $company;
 
-       $ratedUsers = $this->Company_model->getAllRatingsByCompany($userId);
-       $data['ratedUsers'] = $ratedUsers;
+        $ratedUsers = $this->Company_model->getAllRatingsByCompany($userId);
+        $data['ratedUsers'] = $ratedUsers;
 
         $isAvailable = $user->userIsAvailable;
         
@@ -778,6 +788,7 @@ class Company extends CI_Controller {
 
         $data['checkboxChecked'] = $checkboxChecked;
 
+        $data['secteursAll'] = $this->Company_model->get_all_secteurs();
 
 
         $this->load->view('company/settings', $data);
@@ -838,6 +849,9 @@ class Company extends CI_Controller {
         $userId = $this->session->userdata('userId');
         $this->load->model('Company_model');
         $user = $this->Company_model->get_UserData($userId);
+        if ($user->userCompanyId == 0) {
+            redirect('login'); 
+        }
         $data['user'] = $user;
 
         $groups = $this->Company_model->getWhatsAppGroups();

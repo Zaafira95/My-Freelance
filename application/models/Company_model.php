@@ -149,6 +149,7 @@ class Company_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+    
 
     public function getUserSkillsAll($id) {
         $this->db->select('skills.skillId, skills.skillName, userSkills.userSkillsExperience');
@@ -266,6 +267,11 @@ class Company_model extends CI_Model {
 
     public function get_all_skills() {
         $query = $this->db->get('skills'); // Remplacez 'skills' par le nom exact de votre table de compétences si ce n'est pas le cas.
+        return $query->result_array();
+    }
+    
+    public function get_all_secteurs() {
+        $query = $this->db->get('secteurs'); // Remplacez 'skills' par le nom exact de votre table de compétences si ce n'est pas le cas.
         return $query->result_array();
     }
 

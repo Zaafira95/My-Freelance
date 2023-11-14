@@ -60,7 +60,7 @@
                             <i class="fas fa-user-circle"></i>
                             <span>Mon entreprise</span>
                         </a>
-                        <a href="#" class="flex items-center space-x-2 block rounded-md px-4 py-4 text-gray-400 dark:text-gray-400 hover:bg-secondary dark:hover:text-white hover:text-gray-900 dark:hover:bg-primary">
+                        <a href="<?php echo base_url('company/settings');?>" class="flex items-center space-x-2 block rounded-md px-4 py-4 text-gray-400 dark:text-gray-400 hover:bg-secondary dark:hover:text-white hover:text-gray-900 dark:hover:bg-primary">
                             <i class="fas fa-cog"></i>
                             <span>Paramètres</span>
                         </a>

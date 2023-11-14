@@ -130,13 +130,14 @@ else if ($user->userType == "sales"){
                                     <p>
                                         <span class="font-bold text-2xl"><?=$company->companyName?></span>
                                     </p>
-                                    <p class="font-bold text-xl"><?=$mission->missionTJM.'€/Jour'?> -  <span class=" text-md"><?=ucfirst($mission->missionExpertise)?></span>
+                                    <p class="font-bold text-xl"><?=$mission->missionTJM.'€/Jour'?>
                                     <p class="font-medium text-xl">
                                     <?php foreach ($jobsAll as $joba): ?>
                                         <?php if ($mission->missionJobId == $joba['jobId']): ?>
                                             <?= $joba['jobName'] ?>
                                         <?php endif; ?>
                                     <?php endforeach; ?>
+                                     - <?=ucfirst($mission->missionExpertise)?>
                                     </p>
                                 </div>
                             </div>
@@ -196,7 +197,7 @@ else if ($user->userType == "sales"){
                         <div class="w-1/4 sticky top-0">
                             <div class="w-full">
                                 <div class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                                    <h2 class="text-xl font-bold mb-4">Cadre de la mission</h2> 
+                                    <h2 class="text-xl font-bold mb-4">Informations clés</h2> 
 
                                         <div class="flex grid-cols-2 items-center mb-4">
                                             <?php

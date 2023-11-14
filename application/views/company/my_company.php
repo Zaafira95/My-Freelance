@@ -65,8 +65,14 @@ include(APPPATH . 'views/layouts/company/header.php');
                         <input type="text" name="companySlogan" id="companySlogan" value="<?=$company->companySlogan?>" class="mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                     
                     <label for="companySecteur" class="block mb-1  font-medium text-gray-900 dark:text-white">Secteur d'activité *</label>
-                        <input type="text" name="companySecteur" id="companySecteur" value="<?=$company->companySecteur?>" class="mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                                        
+                    <select id="secteursAll" name="secteursAll[]"  class=" mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <option value="">Sélectionnez un secteur</option>
+                        <?php foreach ($secteursAll as $secteur): ?>
+                            <option class="dark:text-black" value="<?= $secteur['secteurName'] ?>"
+                                <?= ($company->companySecteur == $secteur['secteurName']) ? 'selected' : '' ?>>
+                            <?= $secteur['secteurName'] ?></option>
+                        <?php endforeach; ?>
+                    </select>                                        
                     <label for="userLinkedinLink" class="block mb-1  font-medium text-gray-900 dark:text-white">Lien LinkedIn</label>
                         <input type="text" name="userLinkedinLink" id="userLinkedinLink" value="<?=$user->userLinkedinLink?>" class="mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     
@@ -277,12 +283,12 @@ include(APPPATH . 'views/layouts/company/header.php');
                     <div>
                         <h2 class="text-5xl font-bold flex items-center"><?= $company->companyName ?></h2>
                         <h3 class="text-2xl font-medium"><?=$company->companySlogan?></h3>
-                        <h3 class="text-xl font-medium text-gray-400">Secteur d'activité: <?=$company->companySecteur?></h3>
+                        <h3 class="text-xl font-medium text-gray-400">Secteur d'activité : <?=$company->companySecteur?></h3>
                     </div>
                     <div class="flex flex-wrap">
                         <a href="https://wa.me/<?=$user->userTelephone?>?text=Bonjour%20<?=$user->userFirstName?>%20!%20Je%20suis%20intéressé%20par%20votre%20profil%20sur%20Café%20Crème%20Community%20!%20" target="_blank">
                             <button type="button" data-te-ripple-init data-te-ripple-color="light"
-                                class="mr-4 inline-flex items-center rounded-full px-3 h-8 leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
+                                class="mr-4 inline-flex items-center rounded-full px-3 h-8 leading-normal text-white "
                                 style="background-color: #25D366">
                                 <span class="mr-2">Contacter</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
@@ -573,8 +579,20 @@ include(APPPATH . 'views/layouts/company/header.php');
 </div>
 <script src="<?php echo base_url('assets/js/app.js'); ?>"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="<?php echo base_url('/node_modules/choices.js/public/assets/scripts/choices.min.js'); ?>"></script>
 
 <script>
+
+    $(document).ready(function () {
+
+        const secteurChoices = new Choices('#secteursAll', {
+            searchEnabled: true,
+            removeItemButton: true,
+            itemSelectText: '',
+            placeholder: true,
+            placeholderValue: 'Sélectionnez un secteur',
+        });
+    });
     
     function showFileName(input, elementId) {
         let imageElement = document.getElementById(elementId);

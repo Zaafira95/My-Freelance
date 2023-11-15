@@ -644,7 +644,7 @@ else if ($user->userType == "sales"){
             document.getElementById("customMessageWrapper").classList.remove("hidden");
         }
     }
-
+//test
 
     function sendMessageOnWhatsApp() {
         var companyContactNumber = "<?php echo $companyContact->userTelephone; ?>";

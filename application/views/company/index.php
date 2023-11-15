@@ -301,7 +301,9 @@ include(APPPATH . 'views/layouts/company/header.php');
                                     <a href="<?= base_url('company/missionView/' . $job->idMission) ?>" class="flex items-center mt-2 mb-2">
                                         <div class="flex items-center mt-2 mb-2">
                                             <div class="mr-2 mt-2">
-                                                <p class="w-10 h-10 rounded-full bg-secondary text-white text-center flex items-center justify-center mr-4" style="font-size:1rem;">💼</p>
+                                                <div class="w-10 h-10" style="font-size:1rem;">
+                                                    <img src="<?=base_url($company->companyLogoPath)?>" class="w-10 h-10 rounded-full flex items-center justify-center" alt="Logo de l'entreprise">
+                                                </div>
                                             </div>
                                             <div>
                                                 <h3 class="text-lg font-medium"><?= $job->missionName ?></h3>

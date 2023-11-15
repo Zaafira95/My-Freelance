@@ -482,8 +482,10 @@ if ($totalCount > 0) {
                                                 ?>
                                                 <a href="<?= base_url('company/freelancer/'.$rating->idUser) ?>" title="Visiter le portfolio" class="flex-shrink-0 mr-2" target="_blank">
                                                     <div class="flex grid-cols-2 items-center mb-4">
-                                                        <div>
-                                                            <img src="<?php echo base_url($rating->userAvatarPath); ?>" alt="User Photo" class="rounded-full w-10 h-10 transition-transform transform hover:scale-110">
+                                                        <div class="mr-2 mt-2">
+                                                            <div class="w-10 h-10" style="font-size:1rem;">
+                                                                <img src="<?=base_url($rating->userAvatarPath)?>" class="w-10 h-10 rounded-full flex items-center justify-center" alt="User Photo">
+                                                            </div>
                                                         </div>
                                                         <div>
                                                             <p class="text ml-4"><?= '"'.$rating->ratingComment.'"'?></p>
@@ -497,6 +499,7 @@ if ($totalCount > 0) {
                                                                 <?php } ?>
                                                             </div>
                                                             <p class="text ml-4 mt-2 "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
+                                                            <p class="text text-sm text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
                                                         </div>
                                                     </div>
                                                 </a>
@@ -509,8 +512,10 @@ if ($totalCount > 0) {
                                                     <div id="more-avis" class="hidden">
                                                         <a href="<?= base_url('company/freelancer/'.$rating->idUser) ?>" title="Visiter le portfolio" class="flex-shrink-0 mr-2" target="_blank">
                                                             <div class="flex grid-cols-2 items-center mb-4">
-                                                                <div>
-                                                                    <img src="<?php echo base_url($rating->userAvatarPath); ?>" alt="User Photo" class="rounded-full w-10 h-10 transition-transform transform hover:scale-110">
+                                                                <div class="mr-2 mt-2">
+                                                                    <div class="w-10 h-10" style="font-size:1rem;">
+                                                                        <img src="<?=base_url($rating->userAvatarPath)?>" class="w-10 h-10 rounded-full flex items-center justify-center" alt="User Photo">
+                                                                    </div>
                                                                 </div>
                                                                 <div>
                                                                     <p class="text ml-4"><?= '"'.$rating->ratingComment.'"'?></p>
@@ -524,6 +529,7 @@ if ($totalCount > 0) {
                                                                         <?php } ?>
                                                                     </div>
                                                                     <p class="text ml-4 mt-2 "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
+                                                                    <p class="text text-sm text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
                                                                 </div>
                                                             </div>
                                                         </a>

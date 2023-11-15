@@ -86,7 +86,7 @@ foreach ($ratedUsers as $rating) {
                 <div class="relative flex grid-cols-2 items-center overflow-hidden bg-white rounded-lg mb-4 dark:bg-gray-800 py-4 px-4">
                 <div class="flex flex-1">
                         <div>
-                            <img src="<?=base_url($company->companyLogoPath)?>" class="w-40 h-40 rounded-full" alt="Photo de profil">
+                            <img src="<?=base_url($company->companyLogoPath)?>" class="w-40 h-40 rounded-full" alt="Logo de l'entreprise">
                         </div>
                         <div class="ml-4">
                             <div class="flex">
@@ -208,9 +208,11 @@ foreach ($ratedUsers as $rating) {
                                 ?>
                                     <div class="relative">
                                         <a href="<?= base_url('company/freelancerView/'.$rating->userId) ?>" title="Voir le profil" class="flex-shrink-0 w-full ">
-                                            <div class="flex grid-cols-2 items-center mt-4 mb-4">
-                                                <div>
-                                                    <img src="<?php echo base_url($rating->userAvatarPath); ?>" alt="User Photo" class="rounded-full w-20 h-20 transition-transform transform hover:scale-110">
+                                            <div class="flex grid-cols-2 items-center mt-4 mb-4">                                             
+                                                <div class="mr-2 mt-2">
+                                                    <div class="w-20 h-20">
+                                                        <img src="<?=base_url($rating->userAvatarPath)?>" class="w-20 h-20 rounded-full flex items-center justify-center" alt="User Photo">
+                                                    </div>
                                                 </div>
                                                 <div>
                                                     <p class="text-lg font-medium ml-4 "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
@@ -257,11 +259,13 @@ foreach ($ratedUsers as $rating) {
                                 foreach ($ratedUsersWaiting as $rating) {
                                 ?>
                                 <div class="relative">
-                                    <a href="<?= base_url('company/freelancerView/'.$rating->userId) ?>" title="Visiter le portfolio" class="flex-shrink-0 w-full " target="_blank">
+                                    <a href="<?= base_url('company/freelancerView/'.$rating->userId) ?>" title="Voir le profil" class="flex-shrink-0 w-full " target="_blank">
                                         <div class="flex grid-cols-2 items-center mt-4 mb-4">
-                                            <div>
-                                                <img src="<?php echo base_url($rating->userAvatarPath); ?>" alt="User Photo" class="rounded-full w-20 h-20 transition-transform transform hover:scale-110">
-                                            </div>
+                                            <div class="mr-2 mt-2">
+                                                    <div class="w-20 h-20">
+                                                        <img src="<?=base_url($rating->userAvatarPath)?>" class="w-20 h-20 rounded-full flex items-center justify-center" alt="User Photo">
+                                                    </div>
+                                                </div>
                                             <div>
                                                 <p class="text-lg font-medium ml-4 "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
                                                 <p class="text mt-2 ml-4"><?= '"'.$rating->ratingComment.'"'?></p>

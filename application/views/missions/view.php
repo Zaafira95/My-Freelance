@@ -1,11 +1,12 @@
 <?php
 // Header Call
-$currentPage = 'missions';
 
 if($user->userType == "freelance"){
+    $currentPage = 'missions';
     include(APPPATH . 'views/layouts/user/header.php' );
 }
 else if ($user->userType == "sales"){
+    $currentPage = 'my_company';
     include(APPPATH . 'views/layouts/company/header.php' );
 }
 ?>
@@ -644,7 +645,7 @@ else if ($user->userType == "sales"){
             document.getElementById("customMessageWrapper").classList.remove("hidden");
         }
     }
-//test
+
 
     function sendMessageOnWhatsApp() {
         var companyContactNumber = "<?php echo $companyContact->userTelephone; ?>";

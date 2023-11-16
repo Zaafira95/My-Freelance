@@ -12,10 +12,11 @@ class User_model extends CI_Model {
     }
     
     // Récupérer le job de l'utilisateur connecté avec le job id
-    public function getUserJob($jobId){
+    public function getUserJob($userId){
         $this->db->select('*');
         $this->db->from('job');
-        $this->db->where('jobId', $jobId);
+        $this->db->join('userJob', 'userJob.userJob_jobId = job.jobId');
+        $this->db->where('userJob_userId', $userId);
         $query = $this->db->get();
         return $query->row();
     }
@@ -154,11 +155,14 @@ class User_model extends CI_Model {
             $this->db->set('userFirstName', $userFirstName);
             $this->db->set('userLastName', $userLastName);
             $this->db->set('userTelephone', $userTelephone);
-            $this->db->set('userJobId', $jobId);
             $this->db->set('userExperienceYear', $userExperienceYear);
             $this->db->set('userTJM', $userTJM);
             $this->db->where('userId', $userId);
             $this->db->update('users');
+
+            $this->db->set('userJob_jobId', $jobId);
+            $this->db->where('userJob_userId', $userId);
+            $this->db->update('userjob');
         }
 
         public function updateUserPreference($userId, $userIsAvailable, $jobTypeString, $userVille, $userJobTime, $userJobTimePartielOrFullTime){

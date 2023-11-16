@@ -180,14 +180,14 @@ include(APPPATH . 'views/layouts/company/header.php' );
                 <div class="w-1/4 sticky top-0">
                     <div class="bg-white rounded-lg h-22vh p-4 dark:bg-gray-800 dark:text-white">
                         <div class="flex flex-col items-center mb-4">
-                        <a class="flex flex-col items-center" href="<?=base_url('user/profil')?>">
+                        <a class="flex flex-col items-center" href="<?=base_url('company/my_company')?>">
                             <div class="w-20 h-20 rounded-full border-10 ring-2 ring-primary overflow-hidden">
                                 <?php 
                                 if($user->userAvatarPath == null){
                                     $user->userAvatarPath = 'assets/img/default-avatar.png';
                                 }
                                 ?>
-                                <img src="<?php echo base_url($user->userAvatarPath); ?>" alt="Avatar" class="w-20 h-20 p-0.5 rounded-full ring-2 ring-primary">
+                                <img src="<?php echo base_url($company->companyLogoPath); ?>" alt="Avatar" class="w-20 h-20 p-0.5 rounded-full ring-2 ring-primary">
                             </div>
 
                                 <h3 class="text-lg font-medium mt-2"><?=$user->userFirstName .' '. $user->userLastName?></h3>
@@ -210,7 +210,9 @@ include(APPPATH . 'views/layouts/company/header.php' );
                             ?>
                                     <div class="flex items-center mt-2 mb-2">
                                         <div class="mr-2 mt-2">
-                                            <p class="w-10 h-10 rounded-full bg-secondary text-white text-center flex items-center justify-center mr-4" style="font-size:1rem;">💼</p>
+                                            <div class="w-10 h-10" style="font-size:1rem;">
+                                                <img src="<?=base_url($company->companyLogoPath)?>" class="w-10 h-10 rounded-full flex items-center justify-center" alt="Logo de l'entreprise">
+                                            </div>
                                         </div>
                                         <div>
                                             <h3 class="text-lg font-medium"><?= $job->missionName ?></h3>

@@ -558,11 +558,27 @@ include(APPPATH . 'views/layouts/company/header.php');
                                                 <?php } ?>
 
                                                 <?php if($user->userType == 'sales') { ?>
-                                                <a href="<?php echo base_url('company/missionEdit/'.$mission->idMission);?>">
-                                                    <button class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
-                                                        <i class="fas fa-pen fa-fw"></i>
-                                                    </button>
-                                                </a>
+                                                    <a href="<?php echo base_url('company/missionEdit/'.$mission->idMission);?>">
+                                                        <button class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                                                            <i class="fas fa-pen fa-fw"></i>
+                                                        </button>
+                                                    </a>
+                                                    <a href="#" onclick="showModal('deleteMissionConfirmationModal-<?= $mission->idMission?>');">
+                                                        <button type="button" class="text-red-600 hover:text-red-900 focus:outline-none ml-2">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </a>
+                                                    <div id="deleteMissionConfirmationModal-<?= $mission->idMission ?>" class="hidden fixed inset-0 flex items-center justify-center z-50">
+                                                        <div class="fixed inset-0 bg-black opacity-50"></div>
+                                                        <div class="relative bg-gray-50 rounded-lg shadow p-6 border border-gray-800 dark:bg-gray-800 sm:p-5">
+                                                            <h3 class="text-lg font-semibold mb-4">Confirmation de suppression</h3>
+                                                            <p class="text-gray-700 dark:text-white mb-6">Êtes-vous sûr de vouloir supprimer cette mission ?</p>
+                                                            <div class="flex justify-end">
+                                                                <button type="button" onclick="hideModal('deleteMissionConfirmationModal-<?= $mission->idMission ?>');" class="text-gray-600 inline-flex items-center hover:text-white hover:bg-gray-800 border-gray-600  focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500  dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">Annuler</button>
+                                                                <a href="<?=base_url('company/deleteMission/'.$mission->idMission)?>" class="text-red-800 inline-flex items-center hover:text-white hover:bg-red-900 border-red-900  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500  dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Supprimer</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 <?php } ?>
                                                 
                                             </div>

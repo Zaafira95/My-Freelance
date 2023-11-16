@@ -124,7 +124,7 @@ else if ($user->userType == "sales"){
                         <div class="flex justify-between"> <!-- Utilisation de justify-between ici -->
                             <div class="flex items-center">
                                 <div>
-                                    <img src="<?=base_url('assets/img/airbnb.png')?>" alt="Logo de l'entreprise" class="w-20 h-20 rounded-full mr-3">
+                                    <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="w-32 h-32 rounded-full mr-3">
                                 </div>
                                 <div>
                                     <p class="font-bold text-3xl"><?=$mission->missionName?></p>
@@ -142,8 +142,15 @@ else if ($user->userType == "sales"){
                                     </p>
                                 </div>
                             </div>
-                            <div id="contactBlock" class="flex items-center">
-                                <div>
+                            <div id="contactBlock" class="flex items-center justify-end">
+                                <div class="flex flex-col items-end justify-end">
+                                    <?php if($user->userType == 'sales') { ?>
+                                        <a href="<?php echo base_url('company/missionEdit/'.$mission->idMission);?>">
+                                            <button class="ml-4 text-primary hover:text-blue-600" type="button">
+                                                <p>Modifier cette mission</p>
+                                            </button>   
+                                        </a>                                     
+                                    <?php } ?>
                                     <?php if($user->userType == 'freelance') { ?>
                                         <?php foreach ($companyUser as $companyContact) : ?>
                                             <div class="mb-2 flex items-center justify-end">
@@ -185,7 +192,8 @@ else if ($user->userType == "sales"){
                                             ?>
                                             <button class="px-4 py-2 rounded-full bg-primary text-white mr-2 hover:bg-blue-700" id="sendMessage" data-modal-toggle="sendMessage">Postuler maintenant</button>
                                         <?php } ?>
-                                        <button id="generate-pdf-btn" class="bg-primary mb-4  hover:bg-blue-700 text-white py-2 px-4 rounded-full">
+
+                                        <button id="generate-pdf-btn" class="bg-primary mb-4 hover:bg-blue-700 text-white py-2 px-4 rounded-full">
                                             PDF
                                         </button>
                                     </div>
@@ -418,70 +426,70 @@ else if ($user->userType == "sales"){
                                 <div class="w-3/4 mr-4">
                                     <h2 class="font-bold text-lg"><?=$companyMission->missionName?></h2>
                                     <p>
-                                        <span class="mr-2"> • TJM : <?=$mission->missionTJM?> €</span>
+                                        <span class="mr-2"> • TJM : <?=$companyMission->missionTJM?> €</span>
                                         
                                         <span class="mr-2"> •
                                         <?php
-                                        if ($mission->missionDuration == "courte"){
-                                            $mission->missionDuration = "Courte durée";
+                                        if ($companyMission->missionDuration == "courte"){
+                                            $companyMission->missionDuration = "Courte durée";
                                         }
-                                        elseif ($mission->missionDuration == "longue"){
-                                            $mission->missionDuration = "Longue durée";
+                                        elseif ($companyMission->missionDuration == "longue"){
+                                            $companyMission->missionDuration = "Longue durée";
                                         }
-                                        elseif ($mission->missionDuration == "indefinie"){
-                                            $mission->missionDuration = "Durée indéfinie";
+                                        elseif ($companyMission->missionDuration == "indefinie"){
+                                            $companyMission->missionDuration = "Durée indéfinie";
                                         }                                            
                                         ?>
-                                        <?=$mission->missionDuration?> 
+                                        <?=$companyMission->missionDuration?> 
                                         </span>
                                         
                                         <span class="mr-2"> •
                                         <?php
-                                        if ($mission->missionType == "temps-plein"){
-                                            $mission->missionType = "Temps Plein";
+                                        if ($companyMission->missionType == "temps-plein"){
+                                            $companyMission->missionType = "Temps Plein";
                                         }
-                                        elseif ($mission->missionType == "temps-partiel"){
-                                            $mission->missionType = "Temps Partiel";
+                                        elseif ($companyMission->missionType == "temps-partiel"){
+                                            $companyMission->missionType = "Temps Partiel";
                                         }
-                                        elseif ($mission->missionType == "remote"){
-                                            $mission->missionType = "Remote";
+                                        elseif ($companyMission->missionType == "remote"){
+                                            $companyMission->missionType = "Remote";
                                         }                                            
                                         ?>
-                                        <?=$mission->missionType?> 
+                                        <?=$companyMission->missionType?> 
                                         </span>
 
                                         <span class="mr-2"> • 
                                         <?php
 
-                                        if ($mission->missionDeroulement == "teletravail"){
-                                            $mission->missionDeroulement = "Télétravail";
+                                        if ($companyMission->missionDeroulement == "teletravail"){
+                                            $companyMission->missionDeroulement = "Télétravail";
                                         }
-                                        elseif ($mission->missionDeroulement == "site"){
-                                            $mission->missionDeroulement = "Sur site";
+                                        elseif ($companyMission->missionDeroulement == "site"){
+                                            $companyMission->missionDeroulement = "Sur site";
                                         }
-                                        elseif ($mission->missionDeroulement == "hybride"){
-                                            $mission->missionDeroulement = "Hybride";
+                                        elseif ($companyMission->missionDeroulement == "hybride"){
+                                            $companyMission->missionDeroulement = "Hybride";
                                         }                                            
                                         ?>
-                                        <?=$mission->missionDeroulement?>
+                                        <?=$companyMission->missionDeroulement?>
                                         </span>
 
-                                        <span class="mr-2"> • <?=$mission->missionLocalisation?></span>
+                                        <span class="mr-2"> • <?=$companyMission->missionLocalisation?></span>
 
                                         <span class="mr-2"> •
                                         <?php
-                                        if ($mission->missionExpertise == "junior"){
-                                            $mission->missionExpertise = "Junior";
+                                        if ($companyMission->missionExpertise == "junior"){
+                                            $companyMission->missionExpertise = "Junior";
                                         }
-                                        elseif ($mission->missionExpertise == "intermediaire"){
-                                            $mission->missionExpertise = "Intermédiaire";
+                                        elseif ($companyMission->missionExpertise == "intermediaire"){
+                                            $companyMission->missionExpertise = "Intermédiaire";
                                         }
-                                        elseif ($mission->missionExpertise == "expert"){
-                                            $mission->missionExpertise = "Expert";
+                                        elseif ($companyMission->missionExpertise == "expert"){
+                                            $companyMission->missionExpertise = "Expert";
                                         }
                                                                             
                                         ?>
-                                        <?=$mission->missionExpertise?>
+                                        <?=$companyMission->missionExpertise?>
                                         </span>
 
                                     </p>
@@ -546,15 +554,15 @@ else if ($user->userType == "sales"){
                             <div class="absolute top-0 right-4 mt-4 mb-4 z-9">
                                 <?php if($user->userType == 'freelance') { ?>
                                     <?php
-                                    if(isFavorite($mission->idMission, $favoriteMissions)){
+                                    if(isFavorite($companyMission->idMission, $favoriteMissions)){
                                         ?>
-                                        <a href="<?php echo base_url('user/removeFromFavorite/'.$mission->idMission);?>">
+                                        <a href="<?php echo base_url('user/removeFromFavorite/'.$companyMission->idMission);?>">
                                             <i class="fas fa-heart text-xl text-red-800"></i>
                                         </a>
                                         <?php
                                     } else {
                                         ?>
-                                        <a href="<?php echo base_url('user/addToFavorite/'.$mission->idMission);?>">
+                                        <a href="<?php echo base_url('user/addToFavorite/'.$companyMission->idMission);?>">
                                             <i class="far fa-heart text-xl text-red-800"></i>
                                         </a>
                                         <?php
@@ -563,7 +571,7 @@ else if ($user->userType == "sales"){
                                 <?php } ?>
 
                                 <?php if($user->userType == 'sales') { ?>
-                                <a href="<?php echo base_url('company/missionEdit/'.$mission->idMission);?>">
+                                <a href="<?php echo base_url('company/missionEdit/'.$companyMission->idMission);?>">
                                     <button class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
                                         <i class="fas fa-pen fa-fw"></i>
                                     </button>

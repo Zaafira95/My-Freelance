@@ -1123,15 +1123,29 @@ if ($totalCount > 0) {
                                     
                                 </div> 
                                 <div class="flex items-center">
-                                        <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
-                                            <button id="editUserSkills" data-modal-toggle="editUserSkills" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white ml-2" type="button">
-                                                <i class="fas fa-pen fa-fw"></i>
-                                            </button>
-                                            <button id="addUserSkills" data-modal-toggle="addUserSkills" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
-                                                <i class="fas fa-plus"></i>
-                                            </button>
-                                        </div>
-                                    </div> 
+                                    <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
+                                        <button id="editUserSkills" data-modal-toggle="editUserSkills" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white ml-2" type="button">
+                                            <i class="fas fa-pen fa-fw"></i>
+                                        </button>
+                                        <button id="addUserSkills" data-modal-toggle="addUserSkills" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div> 
+                                <div class="flex justify-end gap-4" id="legendeskills">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-3 h-3 mr-1 rounded-full" style="background-color: #BEE3F8;"></div>
+                                        <span class="text-gray-600 mr-2 text-sm dark:text-white">Junior</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-3 h-3 mr-1 rounded-full" style="background-color: #63B3ED;"></div>
+                                        <span class="text-gray-600 mr-2 text-sm dark:text-white">Intermédiaire</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-3 h-3 mr-1 rounded-full" style="background-color: #2C5282;"></div>
+                                        <span class="text-gray-600 mr-2 text-sm dark:text-white">Expert</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

@@ -605,8 +605,21 @@ if ($totalCount > 0) {
                                     ?>
                                     <?php } ?>
                                     
+                                </div>
+                                <div class="flex justify-end gap-4" id="legendeskills">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-3 h-3 mr-1 rounded-full" style="background-color: #BEE3F8;"></div>
+                                        <span class="text-gray-600 mr-2 text-sm dark:text-white">Junior</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-3 h-3 mr-1 rounded-full" style="background-color: #63B3ED;"></div>
+                                        <span class="text-gray-600 mr-2 text-sm dark:text-white">Intermédiaire</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-3 h-3 mr-1 rounded-full" style="background-color: #2C5282;"></div>
+                                        <span class="text-gray-600 mr-2 text-sm dark:text-white">Expert</span>
+                                    </div>
                                 </div> 
-                                
                             </div>
                         </div>
 

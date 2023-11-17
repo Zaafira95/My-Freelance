@@ -76,18 +76,20 @@ include(APPPATH . 'views/layouts/user/header.php' );
                     <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description" <?php echo $checkboxChecked; ?> class="relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-green-200">
                     <label class="text-gray-500 ml-3 dark:text-gray-400">Oui</label>
                     <label for="name" class="block mb-2 mt-2 font-medium text-gray-900 dark:text-white">Combien de jours par semaine êtes-vous disponible ?</label>
-                    <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="bg-gray-50 border mt-2 border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <?php
-                        $userJobTimePartielOrFullTime = ['Temps Plein', 'Temps Partiel'];
-                        foreach ($userJobTimePartielOrFullTime as $option) {
-                            echo '<option value="' . $option . '"';
-                            if ($user->userJobTimePartielOrFullTime === $option) {
-                                echo ' selected';
+                    <div class="w-full text-black">
+                        <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="bg-gray-50 border mt-2 border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <?php
+                            $userJobTimePartielOrFullTime = ['Temps Plein', 'Temps Partiel'];
+                            foreach ($userJobTimePartielOrFullTime as $option) {
+                                echo '<option value="' . $option . '"';
+                                if ($user->userJobTimePartielOrFullTime === $option) {
+                                    echo ' selected';
+                                }
+                                echo '>' . $option . '</option>';
                             }
-                            echo '>' . $option . '</option>';
-                        }
-                        ?>
-                    </select>
+                            ?>
+                        </select>
+                    </div>
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
                     <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
@@ -171,13 +173,15 @@ include(APPPATH . 'views/layouts/user/header.php' );
                     <label for="userLastName" class="block mb-1  font-medium text-gray-900 dark:text-white">Votre nom *</label>
                         <input type="text" name="userLastName" id="userLastName" value="<?=$user->userLastName?>" class="mb-2 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                     <label for="userJobName" class="block mb-1  font-medium text-gray-900 dark:text-white">Votre métier *</label>
-                        <select id="jobsAll" name="jobsAll[]"  style="font-size:1rem;" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                            <?php foreach ($jobsAll as $joba): ?>
-                                <option class="dark:text-black" value="<?= $joba['jobName']?>"
-                                    <?= ($job->jobName == $joba['jobName']) ? 'selected' : '' ?>>
-                                <?= $joba['jobName'] ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                        <div class="w-full text-black">    
+                            <select id="jobsAll" name="jobsAll[]"  style="font-size:1rem;" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                <?php foreach ($jobsAll as $joba): ?>
+                                    <option class="dark:text-black" value="<?= $joba['jobName']?>"
+                                        <?= ($job->jobName == $joba['jobName']) ? 'selected' : '' ?>>
+                                    <?= $joba['jobName'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
                     <label for="userExpertise" class="block mb-1  font-medium text-gray-900 dark:text-white">Votre expertise *</label>
                         <select id="userExpertise" name="userExpertise"  style="font-size:1rem;" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                             <option class="dark:text-black" value="junior">Junior (1 à 2 ans)</option>

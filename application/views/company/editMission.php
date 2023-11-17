@@ -53,7 +53,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
                             <input type="number" name="missionTJM" placeholder="TJM €" value="<?= $mission->missionTJM ?>" class="block mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
                         </div>
 
-                        <div>
+                        <div class="w-full text-black">
                             <select id="jobsAll" name="jobsAll[]"  style="font-size:1rem;" class="block mr-3 mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                                 <?php foreach ($jobsAll as $joba): ?>
                                     <option class="dark:text-black" value="<?= $joba['jobId'] ?>" <?= ($mission->missionJobId == $joba['jobId']) ? 'selected' : '' ?>><?= $joba['jobName'] ?></option>
@@ -146,7 +146,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
                             <?php if (!empty($missionSkills)): ?>
                                 <?php foreach ($missionSkills as $missionSkill): ?>
                                     <div class="flex flex-1 mb-4 skill-row">
-                                        <div class="w-3/4 mr-2">
+                                        <div class="w-3/4 mr-2 text-black">
                                             <!--<select id="skillsAll" name="skillsAll[]"  class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>-->
                                             <select id="skillsAll" name="skillsAll[]"  class="new-skill-select bg-white border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                                                 <option value="">Sélectionnez une compétence</option>
@@ -487,7 +487,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
         $('#add-skill-btn').on('click', function() {
             const newSkillRow = `
             <div class="flex flex-1 mb-4 skill-row">
-                <div class="w-3/4 mr-2">
+                <div class="w-3/4 mr-2 text-black">
                     <select id="skillsAll" name="skillsAll[]"  class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
                         <option value="">Sélectionnez une compétence</option>
                         <?php foreach ($skillsAll as $skill): ?>

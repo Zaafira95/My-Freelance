@@ -16,7 +16,7 @@ class User extends CI_Controller {
         $user = $this->User_model->get_UserData($userId);
 
         // Récupérer le job de l'utilisateur connecté avec le job id
-        $jobUser = $this->User_model->getUserJob($user->userJobId);
+        $jobUser = $this->User_model->getUserJob($userId);
         $data['jobUser'] = $jobUser;
         // var_dump($data['job']);die;
         // Récupérer l'expérience de l'utilisateur connecté avec l'expérience id
@@ -176,7 +176,7 @@ class User extends CI_Controller {
         $data['user'] = $user;
 
          // Récupérer le job de l'utilisateur connecté avec le job id
-         $job = $this->User_model->getUserJob($user->userJobId);
+         $job = $this->User_model->getUserJob($userId);
          $data['job'] = $job;
  
          // Récupérer l'expérience de l'utilisateur connecté avec l'expérience id
@@ -261,11 +261,6 @@ class User extends CI_Controller {
 
        var_dump($userTelephone);
 
-
-
-    
-        
-    
         // Vérifier si un fichier a été téléchargé
         if ($_FILES['avatar-upload']['name']) {
             // Créer un dossier pour chaque utilisateur avec son ID
@@ -484,7 +479,7 @@ class User extends CI_Controller {
         $data['user'] = $user;
 
         // Récupérer le job de l'utilisateur connecté avec le job id
-        $job = $this->User_model->getUserJob($user->userJobId);
+        $job = $this->User_model->getUserJob($userId);
         $data['job'] = $job;
 
         // Récupérer l'expérience de l'utilisateur connecté avec l'expérience id

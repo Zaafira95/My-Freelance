@@ -789,7 +789,7 @@ class Company extends CI_Controller {
         $data['checkboxChecked'] = $checkboxChecked;
 
         $data['secteursAll'] = $this->Company_model->get_all_secteurs();
-
+        $data['jobsAll'] = $this->Company_model->get_all_jobs();
 
         $this->load->view('company/settings', $data);
     }

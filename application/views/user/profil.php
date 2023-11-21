@@ -76,18 +76,20 @@ include(APPPATH . 'views/layouts/user/header.php' );
                     <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description" <?php echo $checkboxChecked; ?> class="relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-green-200">
                     <label class="text-gray-500 ml-3 dark:text-gray-400">Oui</label>
                     <label for="name" class="block mb-2 mt-2 font-medium text-gray-900 dark:text-white">Combien de jours par semaine êtes-vous disponible ?</label>
-                    <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="bg-gray-50 border mt-2 border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <?php
-                        $userJobTimePartielOrFullTime = ['Temps Plein', 'Temps Partiel'];
-                        foreach ($userJobTimePartielOrFullTime as $option) {
-                            echo '<option value="' . $option . '"';
-                            if ($user->userJobTimePartielOrFullTime === $option) {
-                                echo ' selected';
+                    <div class="w-full text-black">
+                        <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="bg-gray-50 border mt-2 border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <?php
+                            $userJobTimePartielOrFullTime = ['Temps Plein', 'Temps Partiel'];
+                            foreach ($userJobTimePartielOrFullTime as $option) {
+                                echo '<option value="' . $option . '"';
+                                if ($user->userJobTimePartielOrFullTime === $option) {
+                                    echo ' selected';
+                                }
+                                echo '>' . $option . '</option>';
                             }
-                            echo '>' . $option . '</option>';
-                        }
-                        ?>
-                    </select>
+                            ?>
+                        </select>
+                    </div>
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
                     <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
@@ -171,11 +173,15 @@ include(APPPATH . 'views/layouts/user/header.php' );
                     <label for="userLastName" class="block mb-1  font-medium text-gray-900 dark:text-white">Votre nom *</label>
                         <input type="text" name="userLastName" id="userLastName" value="<?=$user->userLastName?>" class="mb-2 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                     <label for="userJobName" class="block mb-1  font-medium text-gray-900 dark:text-white">Votre métier *</label>
-                        <select id="jobsAll" name="jobsAll[]"  style="font-size:1rem;" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                            <?php foreach ($jobsAll as $joba): ?>
-                                <option class="dark:text-black" value="<?= $joba['jobName']?>"><?= $joba['jobName'] ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                        <div class="w-full text-black">    
+                            <select id="jobsAll" name="jobsAll[]"  style="font-size:1rem;" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                <?php foreach ($jobsAll as $joba): ?>
+                                    <option class="dark:text-black" value="<?= $joba['jobName']?>"
+                                        <?= ($job->jobName == $joba['jobName']) ? 'selected' : '' ?>>
+                                    <?= $joba['jobName'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
                     <label for="userExpertise" class="block mb-1  font-medium text-gray-900 dark:text-white">Votre expertise *</label>
                         <select id="userExpertise" name="userExpertise"  style="font-size:1rem;" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                             <option class="dark:text-black" value="junior">Junior (1 à 2 ans)</option>
@@ -983,8 +989,10 @@ if ($totalCount > 0) {
                                                     ?>
                                                     <a href="<?= base_url('user/'.$rating->idUser) ?>" title="Visiter le portfolio" class="flex-shrink-0 mr-2" target="_blank">
                                                         <div class="flex grid-cols-2 items-center mb-4">
-                                                            <div>
-                                                                <img src="<?php echo base_url($rating->userAvatarPath); ?>" alt="User Photo" class="rounded-full w-10 h-10 transition-transform transform hover:scale-110">
+                                                            <div class="mr-2 mt-2">
+                                                                <div class="w-10 h-10" style="font-size:1rem;">
+                                                                    <img src="<?=base_url($rating->userAvatarPath)?>" class="w-10 h-10 rounded-full flex items-center justify-center" alt="User Photo">
+                                                                </div>
                                                             </div>
                                                             <div>
                                                                 <p class="text ml-4"><?= '"'.$rating->ratingComment.'"'?></p>
@@ -998,6 +1006,7 @@ if ($totalCount > 0) {
                                                                     <?php } ?>
                                                                 </div>
                                                                 <p class="text ml-4 mt-2 "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
+                                                                <p class="text text-sm text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
                                                             </div>
                                                         </div>
                                                     </a>
@@ -1010,8 +1019,10 @@ if ($totalCount > 0) {
                                                     <div id="more-avis" class="hidden">
                                                         <a href="<?= base_url('company/freelancer/'.$rating->idUser) ?>" title="Visiter le portfolio" class="flex-shrink-0 mr-2" target="_blank">
                                                             <div class="flex grid-cols-2 items-center mb-4">
-                                                                <div>
-                                                                    <img src="<?php echo base_url($rating->userAvatarPath); ?>" alt="User Photo" class="rounded-full w-10 h-10 transition-transform transform hover:scale-110">
+                                                                <div class="mr-2 mt-2">
+                                                                    <div class="w-10 h-10" style="font-size:1rem;">
+                                                                        <img src="<?=base_url($rating->userAvatarPath)?>" class="w-10 h-10 rounded-full flex items-center justify-center" alt="User Photo">
+                                                                    </div>
                                                                 </div>
                                                                 <div>
                                                                     <p class="text ml-4"><?= '"'.$rating->ratingComment.'"'?></p>
@@ -1025,6 +1036,7 @@ if ($totalCount > 0) {
                                                                         <?php } ?>
                                                                     </div>
                                                                     <p class="text ml-4 mt-2 "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
+                                                                    <p class="text text-sm text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
                                                                 </div>
                                                             </div>
                                                         </a>
@@ -1117,15 +1129,29 @@ if ($totalCount > 0) {
                                     
                                 </div> 
                                 <div class="flex items-center">
-                                        <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
-                                            <button id="editUserSkills" data-modal-toggle="editUserSkills" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white ml-2" type="button">
-                                                <i class="fas fa-pen fa-fw"></i>
-                                            </button>
-                                            <button id="addUserSkills" data-modal-toggle="addUserSkills" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
-                                                <i class="fas fa-plus"></i>
-                                            </button>
-                                        </div>
-                                    </div> 
+                                    <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
+                                        <button id="editUserSkills" data-modal-toggle="editUserSkills" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white ml-2" type="button">
+                                            <i class="fas fa-pen fa-fw"></i>
+                                        </button>
+                                        <button id="addUserSkills" data-modal-toggle="addUserSkills" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div> 
+                                <div class="flex justify-end gap-4" id="legendeskills">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-3 h-3 mr-1 rounded-full" style="background-color: #BEE3F8;"></div>
+                                        <span class="text-gray-600 mr-2 text-sm dark:text-white">Junior</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-3 h-3 mr-1 rounded-full" style="background-color: #63B3ED;"></div>
+                                        <span class="text-gray-600 mr-2 text-sm dark:text-white">Intermédiaire</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-3 h-3 mr-1 rounded-full" style="background-color: #2C5282;"></div>
+                                        <span class="text-gray-600 mr-2 text-sm dark:text-white">Expert</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

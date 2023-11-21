@@ -86,7 +86,7 @@ foreach ($ratedUsers as $rating) {
                 <div class="relative flex grid-cols-2 items-center overflow-hidden bg-white rounded-lg mb-4 dark:bg-gray-800 py-4 px-4">
                 <div class="flex flex-1">
                         <div>
-                            <img src="<?=base_url($company->companyLogoPath)?>" class="w-40 h-40 rounded-full" alt="Photo de profil">
+                            <img src="<?=base_url($company->companyLogoPath)?>" class="w-40 h-40 rounded-full" alt="Logo de l'entreprise">
                         </div>
                         <div class="ml-4">
                             <div class="flex">
@@ -158,15 +158,16 @@ foreach ($ratedUsers as $rating) {
                                 <label for="companySlogan" class="block font-medium text-gray-900 dark:text-white">Slogan *</label>
                                 <input type="text" name="companySlogan" id="companySlogan" value="<?=$company->companySlogan?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>    
                                 <label for="companySecteur" class="block font-medium text-gray-900 dark:text-white">Secteur *</label>
-                                <select id="secteursAll" name="secteursAll[]"  class=" mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    <option value="">Sélectionnez un secteur</option>
-                                    <?php foreach ($secteursAll as $secteur): ?>
-                                        <option class="dark:text-black" value="<?= $secteur['secteurName'] ?>"
-                                            <?= ($company->companySecteur == $secteur['secteurName']) ? 'selected' : '' ?>>
-                                        <?= $secteur['secteurName'] ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-
+                                <div class="w-full text-black">
+                                    <select id="secteursAll" name="secteursAll[]"  class=" mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                        <option value="">Sélectionnez un secteur</option>
+                                        <?php foreach ($secteursAll as $secteur): ?>
+                                            <option class="dark:text-black" value="<?= $secteur['secteurName'] ?>"
+                                                <?= ($company->companySecteur == $secteur['secteurName']) ? 'selected' : '' ?>>
+                                            <?= $secteur['secteurName'] ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
                                 <input type="text" name="userLinkedinLink" id="userLinkedinLink" value="<?=$user->userLinkedinLink?>" class="hidden mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                               
                                 <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 mt-4 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
@@ -203,15 +204,69 @@ foreach ($ratedUsers as $rating) {
                         </div>
                         <div id="rating" class="px-6 space-y-4 md:space-y-6 w-full hidden">
                         <?php
-                            if (is_array($ratedUsersApproved) && !empty($ratedUsersApproved)) {
-                                foreach ($ratedUsersApproved as $rating) {
-                                ?>
-                                    <div class="relative">
-                                        <a href="<?= base_url('company/freelancerView/'.$rating->userId) ?>" title="Voir le profil" class="flex-shrink-0 w-full ">
-                                            <div class="flex grid-cols-2 items-center mt-4 mb-4">
-                                                <div>
-                                                    <img src="<?php echo base_url($rating->userAvatarPath); ?>" alt="User Photo" class="rounded-full w-20 h-20 transition-transform transform hover:scale-110">
+                            if (is_array($ratedUsers) && !empty($ratedUsers)) {
+                                if (is_array($ratedUsersApproved) && !empty($ratedUsersApproved)) {
+                                    foreach ($ratedUsersApproved as $rating) {
+                                    ?>
+                                        <div class="relative">
+                                            <a href="<?= base_url('company/freelancerView/'.$rating->userId) ?>" title="Voir le profil" class="flex-shrink-0 w-full ">
+                                                <div class="flex grid-cols-2 items-center mt-4 mb-4">                                             
+                                                    <div class="mr-2 mt-2">
+                                                        <div class="w-20 h-20">
+                                                            <img src="<?=base_url($rating->userAvatarPath)?>" class="w-20 h-20 rounded-full flex items-center justify-center" alt="User Photo">
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <p class="text-lg font-medium ml-4 "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
+                                                        <p class="text mt-2 ml-4"><?= '"'.$rating->ratingComment.'"'?></p>
+                                                        <div class="flex items-center ml-4">
+                                                            <?php for ($i = 1; $i <= 5; $i++) { ?>
+                                                                <?php if ($i <= $rating->ratingStars) { ?>
+                                                                    <img src="<?php echo base_url('assets/img/fill-star.svg'); ?>" class="w-4 h-4">
+                                                                <?php } else { ?>
+                                                                    <img src="<?php echo base_url('assets/img/light-star.svg'); ?>" class="w-4 h-4">
+                                                                <?php } ?>
+                                                            <?php } ?>
+                                                        </div>
+                                                        <p class="text text-sm text-gray-400 mt-2 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
+                                                    </div>
                                                 </div>
+                                                <div class="absolute bottom-0 right-0">
+                                                    <a onclick="showModal('deleteRatingConfirmationModal-<?= $rating->idRating ?>');">
+                                                        <button type="button" class="text-red-600 hover:text-red-900 focus:outline-none ml-2">
+                                                        <span>Supprimer l'avis</span>
+                                                        </button>
+                                                    </a>
+                                                    <div id="deleteRatingConfirmationModal-<?= $rating->idRating ?>" class="hidden fixed inset-0 flex items-center justify-center z-50">
+                                                        <div class="fixed inset-0 bg-black opacity-50"></div>
+                                                        <div class="relative bg-gray-50 rounded-lg shadow p-6 border border-gray-800 dark:bg-gray-800 sm:p-5">
+                                                            <h3 class="text-lg font-semibold mb-4">Confirmation de suppression</h3>
+                                                            <p class="text-gray-700 dark:text-white mb-6">Êtes-vous sûr de vouloir supprimer cet avis ?</p>
+                                                            <div class="flex justify-end">
+                                                                <button type="button" onclick="hideModal('deleteRatingConfirmationModal-<?= $rating->idRating ?>');" class="text-gray-600 inline-flex items-center hover:text-white hover:bg-gray-800 border-gray-600  focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500  dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">Annuler</button>
+                                                                <a href="<?=base_url('company/deleteRating/'.$rating->idRating)?>" class="text-red-800 inline-flex items-center hover:text-white hover:bg-red-900 border-red-900  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500  dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Supprimer</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    <?php
+                                    }
+                                }
+                                if (is_array($ratedUsersWaiting) && !empty($ratedUsersWaiting)){ ?>
+                                    <hr>
+                                    <?php 
+                                    foreach ($ratedUsersWaiting as $rating) {
+                                    ?>
+                                    <div class="relative">
+                                        <a href="<?= base_url('company/freelancerView/'.$rating->userId) ?>" title="Voir le profil" class="flex-shrink-0 w-full " target="_blank">
+                                            <div class="flex grid-cols-2 items-center mt-4 mb-4">
+                                                <div class="mr-2 mt-2">
+                                                        <div class="w-20 h-20">
+                                                            <img src="<?=base_url($rating->userAvatarPath)?>" class="w-20 h-20 rounded-full flex items-center justify-center" alt="User Photo">
+                                                        </div>
+                                                    </div>
                                                 <div>
                                                     <p class="text-lg font-medium ml-4 "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
                                                     <p class="text mt-2 ml-4"><?= '"'.$rating->ratingComment.'"'?></p>
@@ -224,7 +279,7 @@ foreach ($ratedUsers as $rating) {
                                                             <?php } ?>
                                                         <?php } ?>
                                                     </div>
-                                                    <p class="text text-sm text-gray-400 mt-2 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
+                                                    <p class="text text-sm text-gray-400 mt-2 ml-4" style="font-style: italic">En attente</p>
                                                 </div>
                                             </div>
                                             <div class="absolute bottom-0 right-0">
@@ -247,60 +302,11 @@ foreach ($ratedUsers as $rating) {
                                             </div>
                                         </a>
                                     </div>
+                                    <?php
+                                    } ?>
+
                                 <?php
                                 }
-                            }
-                            
-                            if (is_array($ratedUsersWaiting) && !empty($ratedUsersWaiting)){ ?>
-                                <hr>
-                                <?php 
-                                foreach ($ratedUsersWaiting as $rating) {
-                                ?>
-                                <div class="relative">
-                                    <a href="<?= base_url('company/freelancerView/'.$rating->userId) ?>" title="Visiter le portfolio" class="flex-shrink-0 w-full " target="_blank">
-                                        <div class="flex grid-cols-2 items-center mt-4 mb-4">
-                                            <div>
-                                                <img src="<?php echo base_url($rating->userAvatarPath); ?>" alt="User Photo" class="rounded-full w-20 h-20 transition-transform transform hover:scale-110">
-                                            </div>
-                                            <div>
-                                                <p class="text-lg font-medium ml-4 "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
-                                                <p class="text mt-2 ml-4"><?= '"'.$rating->ratingComment.'"'?></p>
-                                                <div class="flex items-center ml-4">
-                                                    <?php for ($i = 1; $i <= 5; $i++) { ?>
-                                                        <?php if ($i <= $rating->ratingStars) { ?>
-                                                            <img src="<?php echo base_url('assets/img/fill-star.svg'); ?>" class="w-4 h-4">
-                                                        <?php } else { ?>
-                                                            <img src="<?php echo base_url('assets/img/light-star.svg'); ?>" class="w-4 h-4">
-                                                        <?php } ?>
-                                                    <?php } ?>
-                                                </div>
-                                                <p class="text text-sm text-gray-400 mt-2 ml-4" style="font-style: italic">En attente</p>
-                                            </div>
-                                        </div>
-                                        <div class="absolute bottom-0 right-0">
-                                            <a onclick="showModal('deleteRatingConfirmationModal-<?= $rating->idRating ?>');">
-                                                <button type="button" class="text-red-600 hover:text-red-900 focus:outline-none ml-2">
-                                                <span>Supprimer l'avis</span>
-                                                </button>
-                                            </a>
-                                            <div id="deleteRatingConfirmationModal-<?= $rating->idRating ?>" class="hidden fixed inset-0 flex items-center justify-center z-50">
-                                                <div class="fixed inset-0 bg-black opacity-50"></div>
-                                                <div class="relative bg-gray-50 rounded-lg shadow p-6 border border-gray-800 dark:bg-gray-800 sm:p-5">
-                                                    <h3 class="text-lg font-semibold mb-4">Confirmation de suppression</h3>
-                                                    <p class="text-gray-700 dark:text-white mb-6">Êtes-vous sûr de vouloir supprimer cet avis ?</p>
-                                                    <div class="flex justify-end">
-                                                        <button type="button" onclick="hideModal('deleteRatingConfirmationModal-<?= $rating->idRating ?>');" class="text-gray-600 inline-flex items-center hover:text-white hover:bg-gray-800 border-gray-600  focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500  dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">Annuler</button>
-                                                        <a href="<?=base_url('company/deleteRating/'.$rating->idRating)?>" class="text-red-800 inline-flex items-center hover:text-white hover:bg-red-900 border-red-900  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500  dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Supprimer</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <?php
-                                } ?>
-
-                            <?php
                             }
                             else {
                                 ?>

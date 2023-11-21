@@ -65,14 +65,16 @@ include(APPPATH . 'views/layouts/company/header.php');
                         <input type="text" name="companySlogan" id="companySlogan" value="<?=$company->companySlogan?>" class="mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                     
                     <label for="companySecteur" class="block mb-1  font-medium text-gray-900 dark:text-white">Secteur d'activité *</label>
-                    <select id="secteursAll" name="secteursAll[]"  class=" mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                        <option value="">Sélectionnez un secteur</option>
-                        <?php foreach ($secteursAll as $secteur): ?>
-                            <option class="dark:text-black" value="<?= $secteur['secteurName'] ?>"
-                                <?= ($company->companySecteur == $secteur['secteurName']) ? 'selected' : '' ?>>
-                            <?= $secteur['secteurName'] ?></option>
-                        <?php endforeach; ?>
-                    </select>                                        
+                    <div class="w-full text-black mb-1">
+                        <select id="secteursAll" name="secteursAll[]"  class=" mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <option value="">Sélectionnez un secteur</option>
+                            <?php foreach ($secteursAll as $secteur): ?>
+                                <option class="dark:text-black" value="<?= $secteur['secteurName'] ?>"
+                                    <?= ($company->companySecteur == $secteur['secteurName']) ? 'selected' : '' ?>>
+                                <?= $secteur['secteurName'] ?></option>
+                            <?php endforeach; ?>
+                        </select> 
+                    </div>
                     <label for="userLinkedinLink" class="block mb-1  font-medium text-gray-900 dark:text-white">Lien LinkedIn</label>
                         <input type="text" name="userLinkedinLink" id="userLinkedinLink" value="<?=$user->userLinkedinLink?>" class="mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     
@@ -286,7 +288,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                         <h3 class="text-xl font-medium text-gray-400">Secteur d'activité : <?=$company->companySecteur?></h3>
                     </div>
                     <div class="flex flex-wrap">
-                        <a href="https://wa.me/<?=$user->userTelephone?>?text=Bonjour%20<?=$user->userFirstName?>%20!%20Je%20suis%20intéressé%20par%20votre%20profil%20sur%20Café%20Crème%20Community%20!%20" target="_blank">
+                        <a href="https://wa.me/<?=$user->userTelephone?>?text=Bonjour%20<?=$user->userFirstName?>%20!%20Je%20suis%20intéressé%20par%20votre%20offre%20sur%20Café%20Crème%20Community%20!%20" target="_blank">
                             <button type="button" data-te-ripple-init data-te-ripple-color="light"
                                 class="mr-4 inline-flex items-center rounded-full px-3 h-8 leading-normal text-white "
                                 style="background-color: #25D366">
@@ -558,11 +560,27 @@ include(APPPATH . 'views/layouts/company/header.php');
                                                 <?php } ?>
 
                                                 <?php if($user->userType == 'sales') { ?>
-                                                <a href="<?php echo base_url('company/missionEdit/'.$mission->idMission);?>">
-                                                    <button class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
-                                                        <i class="fas fa-pen fa-fw"></i>
-                                                    </button>
-                                                </a>
+                                                    <a href="<?php echo base_url('company/missionEdit/'.$mission->idMission);?>">
+                                                        <button class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                                                            <i class="fas fa-pen fa-fw"></i>
+                                                        </button>
+                                                    </a>
+                                                    <a href="#" onclick="showModal('deleteMissionConfirmationModal-<?= $mission->idMission?>');">
+                                                        <button type="button" class="text-red-600 hover:text-red-900 focus:outline-none ml-2">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </a>
+                                                    <div id="deleteMissionConfirmationModal-<?= $mission->idMission ?>" class="hidden fixed inset-0 flex items-center justify-center z-50">
+                                                        <div class="fixed inset-0 bg-black opacity-50"></div>
+                                                        <div class="relative bg-gray-50 rounded-lg shadow p-6 border border-gray-800 dark:bg-gray-800 sm:p-5">
+                                                            <h3 class="text-lg font-semibold mb-4">Confirmation de suppression</h3>
+                                                            <p class="text-gray-700 dark:text-white mb-6">Êtes-vous sûr de vouloir supprimer cette mission ?</p>
+                                                            <div class="flex justify-end">
+                                                                <button type="button" onclick="hideModal('deleteMissionConfirmationModal-<?= $mission->idMission ?>');" class="text-gray-600 inline-flex items-center hover:text-white hover:bg-gray-800 border-gray-600  focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500  dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">Annuler</button>
+                                                                <a href="<?=base_url('company/deleteMission/'.$mission->idMission)?>" class="text-red-800 inline-flex items-center hover:text-white hover:bg-red-900 border-red-900  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500  dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Supprimer</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 <?php } ?>
                                                 
                                             </div>

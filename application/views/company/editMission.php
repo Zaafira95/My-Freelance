@@ -53,7 +53,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
                             <input type="number" name="missionTJM" placeholder="TJM €" value="<?= $mission->missionTJM ?>" class="block mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
                         </div>
 
-                        <div>
+                        <div class="w-full text-black">
                             <select id="jobsAll" name="jobsAll[]"  style="font-size:1rem;" class="block mr-3 mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                                 <?php foreach ($jobsAll as $joba): ?>
                                     <option class="dark:text-black" value="<?= $joba['jobId'] ?>" <?= ($mission->missionJobId == $joba['jobId']) ? 'selected' : '' ?>><?= $joba['jobName'] ?></option>
@@ -146,7 +146,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
                             <?php if (!empty($missionSkills)): ?>
                                 <?php foreach ($missionSkills as $missionSkill): ?>
                                     <div class="flex flex-1 mb-4 skill-row">
-                                        <div class="w-3/4 mr-2">
+                                        <div class="w-3/4 mr-2 text-black">
                                             <!--<select id="skillsAll" name="skillsAll[]"  class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>-->
                                             <select id="skillsAll" name="skillsAll[]"  class="new-skill-select bg-white border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                                                 <option value="">Sélectionnez une compétence</option>
@@ -226,14 +226,14 @@ include(APPPATH . 'views/layouts/company/header.php' );
                 <div class="w-1/4 sticky top-0">
                     <div class="bg-white rounded-lg h-22vh p-4 dark:bg-gray-800 dark:text-white">
                         <div class="flex flex-col items-center mb-4">
-                        <a class="flex flex-col items-center" href="<?=base_url('user/profil')?>">
+                        <a class="flex flex-col items-center" href="<?=base_url('company/my_company')?>">
                             <div class="w-20 h-20 rounded-full border-10 ring-2 ring-primary overflow-hidden">
                                 <?php 
                                 if($user->userAvatarPath == null){
                                     $user->userAvatarPath = 'assets/img/default-avatar.png';
                                 }
                                 ?>
-                                <img src="<?php echo base_url($user->userAvatarPath); ?>" alt="Avatar" class="w-20 h-20 p-0.5 rounded-full ring-2 ring-primary">
+                                <img src="<?php echo base_url($company->companyLogoPath); ?>" alt="Avatar" class="w-20 h-20 p-0.5 rounded-full ring-2 ring-primary">
                             </div>
 
                                 <h3 class="text-lg font-medium mt-2"><?=$user->userFirstName .' '. $user->userLastName?></h3>
@@ -256,7 +256,9 @@ include(APPPATH . 'views/layouts/company/header.php' );
                             ?>
                                     <div class="flex items-center mt-2 mb-2">
                                         <div class="mr-2 mt-2">
-                                            <p class="w-10 h-10 rounded-full bg-secondary text-white text-center flex items-center justify-center mr-4" style="font-size:1rem;">💼</p>
+                                            <div class="w-10 h-10" style="font-size:1rem;">
+                                                <img src="<?=base_url($company->companyLogoPath)?>" class="w-10 h-10 rounded-full flex items-center justify-center" alt="Logo de l'entreprise">
+                                            </div>
                                         </div>
                                         <div>
                                             <h3 class="text-lg font-medium"><?= $job->missionName ?></h3>
@@ -485,7 +487,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
         $('#add-skill-btn').on('click', function() {
             const newSkillRow = `
             <div class="flex flex-1 mb-4 skill-row">
-                <div class="w-3/4 mr-2">
+                <div class="w-3/4 mr-2 text-black">
                     <select id="skillsAll" name="skillsAll[]"  class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
                         <option value="">Sélectionnez une compétence</option>
                         <?php foreach ($skillsAll as $skill): ?>

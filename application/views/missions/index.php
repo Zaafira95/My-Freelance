@@ -377,7 +377,183 @@ include(APPPATH . 'views/layouts/user/header.php' );
                         </a>
                     <?php endforeach; ?>
                     </div>
-                    <p class="text-xl mt-10 hidden text-left" id="no-mission-found">Aucune mission n'a été trouvée.</p>
+                    <div id="no-mission-found">
+                        <p class="text-xl mt-6 text-left">Aucune mission n'a été trouvée.</p>
+                        <h3 class="text-2xl font-medium mt-10" id="result-section">Autres missions :</h3>
+                        <?php foreach($missions as $mission): ?>
+                        <?php
+                        $dataMissionSkills = [];
+                        foreach ($missionSkills[$mission->idMission] as $skill):
+                            $dataMissionSkills[] = $skill->skillId;
+                        endforeach;
+                        $dataMissionSkillsString = implode(',', $dataMissionSkills);
+                        ?>
+                        <a href="<?=base_url('user/missionView/'.$mission->idMission)?>" 
+                            class="" 
+                            data-mission-name="<?=strtolower($mission->missionName)?>" 
+                            data-mission-type="<?=strtolower($mission->missionType)?>"
+                            data-mission-deroulement="<?=strtolower($mission->missionDeroulement)?>"
+                            data-mission-duree="<?=strtolower($mission->missionDuration)?>" 
+                            data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" 
+                            data-mission-tjm="<?=$mission->missionTJM?>" 
+                            data-mission-localisation="<?=strtolower($mission->missionLocalisation)?>"
+                            data-mission-skills="<?=$dataMissionSkillsString?>"> <!-- Utilisez implode pour combiner les compétences en une chaîne -->
+                            <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative " data-mission-name="<?=strtolower($mission->missionName)?>" data-mission-type="<?=strtolower($mission->missionType)?>" data-mission-deroulement="<?=strtolower($mission->missionDeroulement)?>" data-mission-duree="<?=strtolower($mission->missionDuration)?>" data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" data-mission-tjm="<?=$mission->missionTJM?>" data-mission-localisation="<?=$mission->missionLocalisation?>" data-mission-skills="<?=$dataMissionSkillsString?>">
+                                <div class="flex items-center">
+                                    <div class="mr-4">
+                                        <img src="<?=base_url('assets/img/airbnb.png')?>" alt="Logo de l'entreprise" class="w-10 h-10 rounded-full">
+                                    </div>
+                                    <div class="w-3/4 mr-4">
+                                        <h2 class="font-bold text-lg"><?=$mission->missionName?></h2>
+                                        <p>
+                                        <?php foreach ($missionCompany[$mission->idMission] as $company) : ?>
+                                            <?php if (is_object($company)) : ?>
+                                                <!-- <span class="mr-2"> • <?= $company->companyName ?></span> -->
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                            <span class="mr-2"> • TJM : <?=$mission->missionTJM?> €</span>
+                                            
+                                            <span class="mr-2"> •
+                                            <?php
+                                            if ($mission->missionDuration == "courte"){
+                                                $mission->missionDuration = "Courte durée";
+                                            }
+                                            elseif ($mission->missionDuration == "longue"){
+                                                $mission->missionDuration = "Longue durée";
+                                            }
+                                            elseif ($mission->missionDuration == "indefinie"){
+                                                $mission->missionDuration = "Durée indéfinie";
+                                            }                                            
+                                            ?>
+                                            <?=$mission->missionDuration?> 
+                                            </span>
+                                            
+                                            <span class="mr-2"> •
+                                            <?php
+                                            if ($mission->missionType == "temps-plein"){
+                                                $mission->missionType = "Temps Plein";
+                                            }
+                                            elseif ($mission->missionType == "temps-partiel"){
+                                                $mission->missionType = "Temps Partiel";
+                                            }
+                                            elseif ($mission->missionType == "remote"){
+                                                $mission->missionType = "Remote";
+                                            }                                            
+                                            ?>
+                                            <?=$mission->missionType?> 
+                                            </span>
+
+                                            <span class="mr-2"> • 
+                                            <?php
+
+                                            if ($mission->missionDeroulement == "teletravail"){
+                                                $mission->missionDeroulement = "Télétravail";
+                                            }
+                                            elseif ($mission->missionDeroulement == "site"){
+                                                $mission->missionDeroulement = "Sur site";
+                                            }
+                                            elseif ($mission->missionDeroulement == "hybride"){
+                                                $mission->missionDeroulement = "Hybride";
+                                            }                                            
+                                            ?>
+                                            <?=$mission->missionDeroulement?>
+                                            </span>
+
+                                            <span class="mr-2"> • <?=$mission->missionLocalisation?></span>
+
+                                            <span class="mr-2"> •
+                                            <?php
+                                            if ($mission->missionExpertise == "junior"){
+                                                $mission->missionExpertise = "Junior";
+                                            }
+                                            elseif ($mission->missionExpertise == "intermediaire"){
+                                                $mission->missionExpertise = "Intermédiaire";
+                                            }
+                                            elseif ($mission->missionExpertise == "expert"){
+                                                $mission->missionExpertise = "Expert";
+                                            }
+                                                                                
+                                            ?>
+                                            <?=$mission->missionExpertise?>
+                                            </span>
+
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="mt-4">
+                                        <p class="font-light mt-4 mb-4">
+                                            <?php 
+                                            // limit missionDescription to 270 caracteres and add '...' at the end
+                                            $mission->missionDescription = strlen($mission->missionDescription) > 270 ? substr($mission->missionDescription,0,270)."..." : $mission->missionDescription;    
+                                            ?>
+                                            <?=$mission->missionDescription?>
+                                        </p>
+                                        <div class="skills-container mb-4">
+                                        <?php
+                                            $dataMissionSkills = [];
+                                            foreach ($missionSkills[$mission->idMission] as $skill):
+                                                $dataMissionSkills[] = $skill->skillName;
+                                            $dataMissionSkillsString = implode(',', $dataMissionSkills);
+                                        
+                                                // Déterminer le niveau en fonction de la valeur de missionSkillsExperience
+                                                $level = '';
+                                                $color = '';
+                                                switch ($skill->missionSkillsExperience) {
+                                                    case 1:
+                                                        $level = 'Junior';
+                                                        $color = '#BEE3F8'; // Couleur pour le niveau junior
+                                                        $textdark = "text-black";
+                                                        $text = "text-black";
+                                                        
+                                                        break;
+                                                    case 2:
+                                                        $level = 'Intermédiaire';
+                                                        $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
+                                                        $textdark = "text-white";
+                                                        $text = "text-black";
+                                                        break;
+                                                    case 3:
+                                                        $level = 'Expert';
+                                                        $color = '#2C5282'; // Couleur pour le niveau expert
+                                                        $textdark = "text-white";
+                                                        $text = "text-white";
+                                                        break;
+                                                    default:
+                                                        $level = 'N/A'; // Si la valeur de missionSkillsExperience n'est pas valide, afficher "N/A"
+                                                        break;
+                                                }
+                                            ?>
+                                            <div class="skill-item" data-level="<?=$level?>">
+                                                <span class="dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                                                <div class="skill-level"><?=$level?></div>
+                                            </div>
+                                        <?php endforeach; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="absolute top-0 right-4 mt-4 mb-4 z-9">
+                                    <?php
+                                    if(isFavorite($mission->idMission, $favoriteMissions)){
+                                        ?>
+                                        <a href="<?php echo base_url('user/removeFromFavorite/'.$mission->idMission);?>">
+                                            <i class="fas fa-heart text-xl text-red-800"></i>
+                                        </a>
+                                        <?php
+                                    } else {
+                                        ?>
+                                        <a href="<?php echo base_url('user/addToFavorite/'.$mission->idMission);?>">
+                                            <i class="far fa-heart text-xl text-red-800"></i>
+                                        </a>
+                                        <?php
+                                    }
+                                    ?>
+                                </div>
+
+                            </div>
+                        </a>
+                    <?php endforeach; ?>
+                    </div>
                     </div>
                 </div>
             </div>

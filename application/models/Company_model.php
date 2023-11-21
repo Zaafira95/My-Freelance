@@ -11,7 +11,7 @@ class Company_model extends CI_Model {
     }
 
     public function get_freelancers(){
-        $this->db->select('userId, userFirstName, userLastName, userEmail, userBio, userType, userJobId, userJobName, userJobType, userRemote, userJobTimePartielOrFullTime, userJobTime, userTJM, userTelephone, userAdresse, userVille, userPays, userCodePostal, userSkillsId, userSkill, userRatingAverage, userPortfolioLink, userLinkedinLink, userGithubLink, userDribbleLink, userBehanceLink, userExperienceYear, userSeniorite, userIsAvailable, userCreated, userModified, userAvatarPath, userExperienceId, userCertificationId, userSavedMissionId, userRatingId, userLoginCount, userCompanyId');
+        $this->db->select('userId, userFirstName, userLastName, userEmail, userBio, userType, userJobType, userRemote, userJobTimePartielOrFullTime, userJobTime, userTJM, userTelephone, userAdresse, userVille, userPays, userCodePostal, userSkillsId, userSkill, userRatingAverage, userPortfolioLink, userLinkedinLink, userGithubLink, userDribbleLink, userBehanceLink, userExperienceYear, userSeniorite, userIsAvailable, userCreated, userModified, userAvatarPath, userExperienceId, userCertificationId, userSavedMissionId, userRatingId, userLoginCount, userCompanyId');
         $this->db->from('users');
         $this->db->where('userCompanyId', 0);
         $this->db->where('userType', 'freelance');
@@ -72,7 +72,7 @@ class Company_model extends CI_Model {
     }
 
     public function get_freelancer($id){
-        $this->db->select('userId, userFirstName, userLastName, userEmail, userBio, userType, userJobId, userJobName, userJobType, userRemote, userJobTimePartielOrFullTime, userJobTime, userTJM, userTelephone, userAdresse, userVille, userPays, userCodePostal, userSkillsId, userSkill, userRatingAverage, userPortfolioLink, userLinkedinLink, userGithubLink, userDribbleLink, userBehanceLink, userExperienceYear, userSeniorite, userIsAvailable, userCreated, userModified, userAvatarPath, userExperienceId, userCertificationId, userSavedMissionId, userRatingId, userLoginCount, userCompanyId');
+        $this->db->select('userId, userFirstName, userLastName, userEmail, userBio, userType, userJobType, userRemote, userJobTimePartielOrFullTime, userJobTime, userTJM, userTelephone, userAdresse, userVille, userPays, userCodePostal, userSkillsId, userSkill, userRatingAverage, userPortfolioLink, userLinkedinLink, userGithubLink, userDribbleLink, userBehanceLink, userExperienceYear, userSeniorite, userIsAvailable, userCreated, userModified, userAvatarPath, userExperienceId, userCertificationId, userSavedMissionId, userRatingId, userLoginCount, userCompanyId');
         $this->db->from('users');
         $this->db->where('userId', $id);
         $query = $this->db->get();

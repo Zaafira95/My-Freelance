@@ -1,10 +1,9 @@
-/* Statut par défaut des avis : 0 (en attente d'approbation) */
+/* drop job related fields in 'users' */
 
-ALTER TABLE `rating` CHANGE `ratingStatus` `ratingStatus` INT(11) NULL DEFAULT '0';
+ALTER TABLE cafecreme.users DROP FOREIGN KEY Users_fk0;
+ALTER TABLE `users` DROP `userJobId`;
 
-
-
-
+ALTER TABLE `users` DROP `userJobName`;
 
 
 

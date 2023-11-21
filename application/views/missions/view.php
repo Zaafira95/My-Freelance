@@ -120,7 +120,7 @@ else if ($user->userType == "sales"){
                 <!-- <a href="#" class="text-primary cursor-pointer mb-4"> 
                     < Retour
                 </a>  -->
-                    <div class="items-center overflow-hidden bg-white rounded-lg mb-4 dark:bg-gray-800 py-2 px-4">
+                    <div id="mission-header" class="items-center overflow-hidden bg-white rounded-lg mb-4 dark:bg-gray-800 py-2 px-4">
                         <div class="flex justify-between"> <!-- Utilisation de justify-between ici -->
                             <div class="flex items-center">
                                 <div>
@@ -151,13 +151,13 @@ else if ($user->userType == "sales"){
                                             </button>   
                                         </a>                                     
                                     <?php } ?>
-                                    <?php if($user->userType == 'freelance') { ?>
+                                    
                                         <?php foreach ($companyUser as $companyContact) : ?>
                                             <div class="mb-2 flex items-center justify-end">
                                                 <span class="text-md mr-2">Contact </span>
                                                 
                                                 <div class="mr-2 flex p-1 text-primary border-primary border-1 rounded-full hover:bg-primary hover:text-white">
-                                                <a href="https://wa.me/<?=$companyContact->userTelephone?>?text=Bonjour%20<?=$companyContact->userFirstName?>%20!%20Je%20suis%20intéressé%20par%20votre%20mission%20sur%20Café%20Crème%20Community%20!%20" target="_blank">
+                                                <a href="https://wa.me/<?=$companyContact->userTelephone?>?text=Bonjour%20<?=$companyContact->userFirstName?>%20!%20Je%20suis%20intéressé%20par%20votre%20offre%20de%20mission%20sur%20Café%20Crème%20Community%20!%20" target="_blank">
                                                         <i class="fab fa-whatsapp"></i>
                                                     </a>
                                                 </div>
@@ -168,7 +168,7 @@ else if ($user->userType == "sales"){
                                                 </div>
                                             </div>
                                         <?php endforeach; ?>
-                                    <?php } ?>
+                                    
                                     <div class="mb-2 flex items-center justify-end">
                                     
                                     </div>
@@ -205,7 +205,7 @@ else if ($user->userType == "sales"){
                     <div class="flex gap-6 mb-3 mt-6">
                         <div class="w-1/4 sticky top-0">
                             <div class="w-full">
-                                <div class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
+                                <div id="mission-infos" class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                                     <h2 class="text-xl font-bold mb-4">Informations clés</h2> 
 
                                         <div class="flex grid-cols-2 items-center mb-4">
@@ -326,7 +326,7 @@ else if ($user->userType == "sales"){
                                             </div>
                                         </div>
                                 </div>
-                                <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
+                                <div id="mission-skills" class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                                     <h2 class="text-xl font-bold mb-4"> Compétences requises </h2> 
                                     <div class="skills-container mb-4">
                                         <?php foreach ($missionSkills[$mission->idMission] as $skill) : ?>
@@ -383,13 +383,13 @@ else if ($user->userType == "sales"){
                         </div>
                         <div class="w-3/4 sticky top-0">
                             <div class="w-full">
-                                <div class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
+                                <div id="mission-description" class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                                     <h2 class="font-bold text-2xl">La mission</h2>
                                     <p class="text-gray-500 mt-2 dark:text-white">
                                         <?=$mission->missionDescription?>
                                     </p>
                                 </div>
-                                <div class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
+                                <div id="company-description" class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                                     <h2 class="font-bold text-2xl">L'entreprise</h2>
                                     <p class="text-gray-500 mt-2 dark:text-white">
                                         <?=$company->companyDescription?>
@@ -398,7 +398,7 @@ else if ($user->userType == "sales"){
                                 <?php
                                 if ($mission->missionAvantage != null) {
                                 ?>
-                                <div class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
+                                <div id="mission-avantages" class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                                     <h2 class="font-bold text-2xl">Les avantages</h2>
                                     <p class="text-gray-500 mt-2 dark:text-white">
                                         <?=$mission->missionAvantage?>
@@ -609,6 +609,13 @@ else if ($user->userType == "sales"){
     // Dupliquer le contenu de la div "pdf-content" sans le bloc "contactBlock"
     const clonedContent = element.cloneNode(true);
     const contactBlock = clonedContent.querySelector('#contactBlock');
+    const missionHeader = clonedContent.querySelector('#mission-header');
+    const missionInfos = clonedContent.querySelector('#mission-infos');
+    const missionSkills = clonedContent.querySelector('#mission-skills');
+    const missionDescription = clonedContent.querySelector('#mission-description');
+    const companyDescription = clonedContent.querySelector('#company-description');
+    const missionAvantages = clonedContent.querySelector('#mission-avantages');
+    const paragrapheElements = clonedContent.querySelectorAll('p');
 
     const legendeskills = clonedContent.querySelector('#legendeskills');
     if (legendeskills) {
@@ -617,6 +624,38 @@ else if ($user->userType == "sales"){
     if (contactBlock) {
       contactBlock.remove();
     }
+    if (missionHeader) {
+        missionHeader.classList.remove('dark:bg-gray-800');
+        missionHeader.classList.add('text-black');
+    }
+    if (missionInfos) {
+        missionInfos.classList.remove('dark:bg-gray-800');
+        missionInfos.classList.remove('dark:text-white');
+        missionInfos.classList.add('text-black');
+    }
+    if (missionSkills) {
+        missionSkills.classList.remove('dark:bg-gray-800');
+        missionSkills.classList.remove('dark:text-white');
+        missionSkills.classList.add('text-black');
+    }
+    if (missionDescription) {
+        missionDescription.classList.remove('dark:bg-gray-800');
+        missionDescription.classList.remove('dark:text-white');
+        missionDescription.classList.add('text-black');
+    }
+    if (companyDescription) {
+        companyDescription.classList.remove('dark:bg-gray-800');
+        companyDescription.classList.remove('dark:text-white');
+        companyDescription.classList.add('text-black');
+    }
+    if (missionAvantages) {
+        missionAvantages.classList.remove('dark:bg-gray-800');
+        missionAvantages.classList.remove('dark:text-white');
+        missionAvantages.classList.add('text-black');
+    }
+    paragrapheElements.forEach((pElement) => {
+        pElement.classList.remove('dark:text-white');
+    });
 
     const opt = {
       margin: 10,

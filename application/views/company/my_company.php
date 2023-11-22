@@ -288,7 +288,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                         <h3 class="text-xl font-medium text-gray-400">Secteur d'activité : <?=$company->companySecteur?></h3>
                     </div>
                     <div class="flex flex-wrap">
-                        <a href="https://wa.me/<?=$user->userTelephone?>?text=Bonjour%20<?=$user->userFirstName?>%20!%20Je%20suis%20intéressé%20par%20votre%20offre%20sur%20Café%20Crème%20Community%20!%20" target="_blank">
+                        <a href="https://wa.me/<?=$user->userTelephone?>?text=Bonjour%20<?=$user->userFirstName?>%20!%20Je%20suis%20intéressé%20par%20votre%20entreprise%20sur%20Café%20Crème%20Community%20!%20" target="_blank">
                             <button type="button" data-te-ripple-init data-te-ripple-color="light"
                                 class="mr-4 inline-flex items-center rounded-full px-3 h-8 leading-normal text-white "
                                 style="background-color: #25D366">

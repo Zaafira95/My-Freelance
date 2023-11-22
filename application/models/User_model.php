@@ -372,7 +372,39 @@ class User_model extends CI_Model {
 
         }
 
+        public function getCompanyDataById($id) {
+            $this->db->select('*');
+            $this->db->from('company');
+            $this->db->join('users', 'users.userId = company.companyUserId');
+            $this->db->where('idCompany', $id);
+            $query = $this->db->get();
+            return $query->row();
+        }
         
+        public function getCompanyMissions($companyId) {
+            $this->db->select('*');
+            $this->db->from('Mission');
+            $this->db->where('missionCompanyId', $companyId);
+            $this->db->order_by('idMission', 'DESC');
+            $query = $this->db->get();
+            
+            if ($query->num_rows() > 0) {
+                // Utilisez result() pour retourner un tableau d'objets contenant les résultats
+                return $query->result();
+            } else {
+                // Retournez null si aucune donnée n'est trouvée
+                return null;
+            }
+        }
+
+        public function getCompanyAllPhotos($companyId){
+            $this->db->select('*');
+            $this->db->from('companyPhotos');
+            $this->db->where('companyPhotos_companyId', $companyId);
+            $query = $this->db->get();
+            return $query->result();
+        }
+
         public function get_skills($term=''){
             $this->db->like('skillName', $term);
             $query = $this->db->get('skills');

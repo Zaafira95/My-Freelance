@@ -1234,7 +1234,7 @@ if ($totalCount > 0) {
                                 <?php if (is_array($attachments) && !empty($attachments)) { ?>
                                     <div class="grid grid-cols-4 gap-8">
                                         <?php foreach ($attachments as $index => $attachment) { ?>
-                                            <div class="border border-1 p-2 mr-4 mb-4 relative rounded-lg bg-white">
+                                            <div class="shadow-lg p-2 mr-4 mb-4 relative rounded-lg bg-white">
                                                 <h3 class="text-lg font-medium"><?= $attachment->attachmentName ?></h3>
                                                 <div class="pdf-thumbnail relative z-10 mb-2" data-pdf="<?= base_url($attachment->attachmentPath) ?>">
                                                     <div class="absolute top-0 right-0 flex space-x-4 z-20">

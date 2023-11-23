@@ -130,9 +130,11 @@ else if ($user->userType == "sales"){
                                 </a>
                                 <div>
                                     <p class="font-bold text-3xl"><?=$mission->missionName?></p>
+                                    <a href="<?=base_url('user/companyView/'.$company->idCompany)?>">
                                     <p>
                                         <span class="font-bold text-2xl"><?=$company->companyName?></span>
                                     </p>
+                                    </a>
                                     <p class="font-bold text-xl"><?=$mission->missionTJM.'€/Jour'?>
                                     <p class="font-medium text-xl">
                                     <?php foreach ($jobsAll as $joba): ?>
@@ -198,6 +200,15 @@ else if ($user->userType == "sales"){
                                         <button id="generate-pdf-btn" class="bg-primary mb-4 hover:bg-blue-700 text-white py-2 px-4 rounded-full">
                                             PDF
                                         </button>
+                                    </div>
+                                    <div>
+                                        <?php if($user->userType == 'freelance') { ?>
+                                        <a href="<?=base_url('user/companyView/'.$company->idCompany)?>">
+                                            <button class="border border-primary text-primary mb-4 py-2 px-4 rounded-full">
+                                                Voir l'entreprise 
+                                            </button>
+                                        </a>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>

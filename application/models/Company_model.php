@@ -100,6 +100,8 @@ class Company_model extends CI_Model {
         $this->db->select('*');
             $this->db->from('rating');
             $this->db->join('users', 'users.userId = rating.idUser');
+
+            $this->db->join('company', 'users.userId = company.companyUserID');
             $this->db->where('idRatedUser', $id);
             $this->db->where('ratingStatus', 1);
             $query = $this->db->get();
@@ -399,10 +401,11 @@ class Company_model extends CI_Model {
         $this->db->update('company');
     }    
 
-    public function updateCompanyData($companyId, $companyName, $companySlogan, $companySecteur, $userId, $userLinkedinLink){
+    public function updateCompanyData($companyId, $companyName, $companySlogan, $companySecteur, $companyLocalisation, $userId, $userLinkedinLink){
         $this->db->set('companyName', $companyName);
         $this->db->set('companySlogan', $companySlogan);
         $this->db->set('companySecteur', $companySecteur);
+        $this->db->set('companyLocalisation', $companyLocalisation);
         $this->db->where('idCompany', $companyId);
         $this->db->update('company');
         

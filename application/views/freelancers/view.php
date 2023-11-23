@@ -480,29 +480,33 @@ if ($totalCount > 0) {
                                             foreach ($raterUser as $rating) {
                                                 if ($ratingsCount < 3) {
                                                 ?>
-                                                <a href="<?= base_url('company/freelancer/'.$rating->idUser) ?>" title="Visiter le portfolio" class="flex-shrink-0 mr-2" target="_blank">
-                                                    <div class="flex grid-cols-2 items-center mb-4">
-                                                        <div class="mr-2 mt-2">
-                                                            <div class="w-10 h-10" style="font-size:1rem;">
-                                                                <img src="<?=base_url($rating->userAvatarPath)?>" class="w-10 h-10 rounded-full flex items-center justify-center" alt="User Photo">
+                                                        <div class="items-center mb-4 mt-4">
+                                                            <div class="flex items-center">
+                                                                <div class="w-10 h-10" style="font-size:1rem;">
+                                                                    <img src="<?=base_url($rating->companyLogoPath)?>" class="w-10 h-10 rounded-full flex items-center justify-center" alt="User Photo">
+                                                                </div>
+                                                                <div class="ml-4">
+                                                                    <p class="text "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
+                                                                    <p class="text mt-1  text-gray-400"><?= $rating->companyName?></p>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div>
-                                                            <p class="text ml-4"><?= '"'.$rating->ratingComment.'"'?></p>
-                                                            <div class="flex items-center ml-4">
-                                                                <?php for ($i = 1; $i <= 5; $i++) { ?>
-                                                                    <?php if ($i <= $rating->ratingStars) { ?>
-                                                                        <img src="<?php echo base_url('assets/img/fill-star.svg'); ?>" class="w-4 h-4">
-                                                                    <?php } else { ?>
-                                                                        <img src="<?php echo base_url('assets/img/light-star.svg'); ?>" class="w-4 h-4">
+                                                            <div class="flex items-center mt-4 mb-4">
+                                                                <div class="flex items-center">
+                                                                    <?php for ($i = 1; $i <= 5; $i++) { ?>
+                                                                        <?php if ($i <= $rating->ratingStars) { ?>
+                                                                            <img src="<?php echo base_url('assets/img/fill-star.svg'); ?>" class="w-4 h-4">
+                                                                        <?php } else { ?>
+                                                                            <img src="<?php echo base_url('assets/img/light-star.svg'); ?>" class="w-4 h-4">
+                                                                        <?php } ?>
                                                                     <?php } ?>
-                                                                <?php } ?>
+                                                                </div>
+                                                                <p class="text text-sm text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
+
+                                                            </div>  
+                                                            <div>
+                                                                <p class="text"><?= '"'.$rating->ratingComment.'"'?></p>
                                                             </div>
-                                                            <p class="text ml-4 mt-2 "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
-                                                            <p class="text text-sm text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
                                                         </div>
-                                                    </div>
-                                                </a>
                                                 <?php
                                                 $ratingsCount++;
                                                 } else {
@@ -510,16 +514,19 @@ if ($totalCount > 0) {
                                                     //echo $ratingsCount;
                                                     ?>
                                                     <div id="more-avis" class="hidden">
-                                                        <a href="<?= base_url('company/freelancer/'.$rating->idUser) ?>" title="Visiter le portfolio" class="flex-shrink-0 mr-2" target="_blank">
-                                                            <div class="flex grid-cols-2 items-center mb-4">
-                                                                <div class="mr-2 mt-2">
+                                                        
+                                                            <div class="items-center mb-4 mt-4">
+                                                                <div class="flex items-center">
                                                                     <div class="w-10 h-10" style="font-size:1rem;">
-                                                                        <img src="<?=base_url($rating->userAvatarPath)?>" class="w-10 h-10 rounded-full flex items-center justify-center" alt="User Photo">
+                                                                        <img src="<?=base_url($rating->companyLogoPath)?>" class="w-10 h-10 rounded-full flex items-center justify-center" alt="User Photo">
+                                                                    </div>
+                                                                    <div class="ml-4">
+                                                                        <p class="text "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
+                                                                        <p class="text mt-1  text-gray-400"><?= $rating->companyName?></p>
                                                                     </div>
                                                                 </div>
-                                                                <div>
-                                                                    <p class="text ml-4"><?= '"'.$rating->ratingComment.'"'?></p>
-                                                                    <div class="flex items-center ml-4">
+                                                                <div class="flex items-center mt-4 mb-4">
+                                                                    <div class="flex items-center">
                                                                         <?php for ($i = 1; $i <= 5; $i++) { ?>
                                                                             <?php if ($i <= $rating->ratingStars) { ?>
                                                                                 <img src="<?php echo base_url('assets/img/fill-star.svg'); ?>" class="w-4 h-4">
@@ -528,11 +535,14 @@ if ($totalCount > 0) {
                                                                             <?php } ?>
                                                                         <?php } ?>
                                                                     </div>
-                                                                    <p class="text ml-4 mt-2 "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
                                                                     <p class="text text-sm text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
+
+                                                                </div>  
+                                                                <div>
+                                                                    <p class="text"><?= '"'.$rating->ratingComment.'"'?></p>
                                                                 </div>
                                                             </div>
-                                                        </a>
+                                                        
                                                     </div>
                                                         <button id="extra-avis-button" class="text-primary mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">
                                                             Voir plus

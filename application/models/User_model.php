@@ -84,7 +84,7 @@ class User_model extends CI_Model {
 
     public function getCompanyMission($idMissions)
     {
-        $this->db->select('company.companyName');
+        $this->db->select('company.companyName, company.companyLogoPath');
         $this->db->from('mission');
         $this->db->join('company', 'mission.missionCompanyId = company.idCompany');
         $this->db->where('mission.idMission', $idMissions);
@@ -194,6 +194,11 @@ class User_model extends CI_Model {
             $this->db->update('users');
         }
 
+        public function updateUserBio($userId, $userBio){
+            $this->db->set('userBio', $userBio);
+            $this->db->where('userId', $userId);
+            $this->db->update('users');
+        }
 
         public function getUserJobType($userId){
             $this->db->select('userJobType');

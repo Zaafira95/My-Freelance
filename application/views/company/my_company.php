@@ -281,12 +281,19 @@ include(APPPATH . 'views/layouts/company/header.php');
                         <div class="bg-white dark:bg-gray-800 w-full h-full flex items-center justify-center">
                             <img src="<?=base_url($company->companyBannerPath)?>" class="object-cover w-full h-full rounded-lg dark:bg-gray-800" alt="Image de l'entreprise">
                         </div>
+                    </div>                    
+                    <?php if($user->userType == 'sales') { ?>
+                    <div class="w-full flex justify-end mb-4 mr-4 flex">
+                        <button id="updateCompanyData" data-modal-toggle="updateCompanyData" class="ml-4 mr-4 mt-4 text-primary hover:text-blue-600" type="button">
+                            <p>Modifier mes informations</p>
+                        </button>
                     </div>
+                    <?php } ?>
                     <div class="rounded-full border-10 w-40 h-40 flex items-center justify-center" style="margin-top:-50px;">
                         <img src="<?=base_url($company->companyLogoPath)?>" class="ml-4 object-cover w-full h-full rounded-full ring-8 ring-white dark:ring-gray-800" alt="Image de l'entreprise">
                     </div>
                 </div>
-                <div class="px-4 flex flex-wrap justify-between mt-4">
+                <div class="relative px-4 flex flex-wrap justify-between mt-4">
                     <div>
                         <h2 class="text-5xl font-bold flex items-center"><?= $company->companyName ?></h2>
                         <h3 class="text-2xl font-medium"><?=$company->companySlogan?></h3>
@@ -334,13 +341,6 @@ include(APPPATH . 'views/layouts/company/header.php');
                         <button class="inline-block border-b-2 font-normal hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="myCompanyMissions-tab" data-tabs-target="#myCompanyMissions" type="button" role="tab" aria-controls="myCompanyMissions" aria-selected="false">Missions</button>
                     </li>
                 </ul>
-                <?php if($user->userType == 'sales') { ?>
-                <div class="absolute bottom-0 right-0 mb-4 mr-4 flex">
-                    <button id="updateCompanyData" data-modal-toggle="updateCompanyData" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
-                        <i class="fas fa-pen fa-fw"></i>
-                    </button>
-                </div>
-                <?php } ?>
             </div>  
             <div id="relative myTabContent w-full">
                 <div class="hidden" id="myCompanyProfile" role="tabpanel" aria-labelledby="myCompanyProfile-tab">

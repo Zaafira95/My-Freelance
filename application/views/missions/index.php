@@ -224,7 +224,11 @@ include(APPPATH . 'views/layouts/user/header.php' );
                             <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative mission-item" data-mission-name="<?=strtolower($mission->missionName)?>" data-mission-type="<?=strtolower($mission->missionType)?>" data-mission-deroulement="<?=strtolower($mission->missionDeroulement)?>" data-mission-duree="<?=strtolower($mission->missionDuration)?>" data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" data-mission-tjm="<?=$mission->missionTJM?>" data-mission-localisation="<?=$mission->missionLocalisation?>" data-mission-skills="<?=$dataMissionSkillsString?>">
                                 <div class="flex items-center">
                                     <div class="mr-4">
-                                        <img src="<?=base_url('assets/img/airbnb.png')?>" alt="Logo de l'entreprise" class="w-10 h-10 rounded-full">
+                                    <?php foreach ($missionCompany[$mission->idMission] as $company) : ?>
+                                            <?php if (is_object($company)) : ?>
+                                        <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="w-10 h-10 rounded-full">
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
                                     </div>
                                     <div class="w-3/4 mr-4">
                                         <h2 class="font-bold text-lg"><?=$mission->missionName?></h2>
@@ -401,7 +405,11 @@ include(APPPATH . 'views/layouts/user/header.php' );
                             <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative " data-mission-name="<?=strtolower($mission->missionName)?>" data-mission-type="<?=strtolower($mission->missionType)?>" data-mission-deroulement="<?=strtolower($mission->missionDeroulement)?>" data-mission-duree="<?=strtolower($mission->missionDuration)?>" data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" data-mission-tjm="<?=$mission->missionTJM?>" data-mission-localisation="<?=$mission->missionLocalisation?>" data-mission-skills="<?=$dataMissionSkillsString?>">
                                 <div class="flex items-center">
                                     <div class="mr-4">
-                                        <img src="<?=base_url('assets/img/airbnb.png')?>" alt="Logo de l'entreprise" class="w-10 h-10 rounded-full">
+                                        <?php foreach ($missionCompany[$mission->idMission] as $company) : ?>
+                                            <?php if (is_object($company)) : ?>
+                                            <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="w-10 h-10 rounded-full">
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
                                     </div>
                                     <div class="w-3/4 mr-4">
                                         <h2 class="font-bold text-lg"><?=$mission->missionName?></h2>

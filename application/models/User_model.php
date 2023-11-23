@@ -62,6 +62,14 @@ class User_model extends CI_Model {
         return $query->result();
     }
 
+    public function getAllCompanies(){
+        $this->db->select('*');
+        $this->db->from('company');
+        $this->db->join('secteurs', 'company.companySecteur = secteurs.secteurName');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     public function getMissionSkills($idMissions) {
         $this->db->select('skills.skillName, skills.skillId, missionSkills.missionSkillsExperience');
         $this->db->from('missionSkills');
@@ -133,6 +141,7 @@ class User_model extends CI_Model {
             $this->db->select('*');
             $this->db->from('rating');
             $this->db->join('users', 'users.userId = rating.idUser');
+            $this->db->join('company', 'users.userId = company.companyUserID');
             $this->db->where('idRatedUser', $userId);
             $this->db->where('ratingStatus', 1);
             $query = $this->db->get();
@@ -372,7 +381,39 @@ class User_model extends CI_Model {
 
         }
 
+        public function getCompanyDataById($id) {
+            $this->db->select('*');
+            $this->db->from('company');
+            $this->db->join('users', 'users.userId = company.companyUserId');
+            $this->db->where('idCompany', $id);
+            $query = $this->db->get();
+            return $query->row();
+        }
         
+        public function getCompanyMissions($companyId) {
+            $this->db->select('*');
+            $this->db->from('Mission');
+            $this->db->where('missionCompanyId', $companyId);
+            $this->db->order_by('idMission', 'DESC');
+            $query = $this->db->get();
+            
+            if ($query->num_rows() > 0) {
+                // Utilisez result() pour retourner un tableau d'objets contenant les résultats
+                return $query->result();
+            } else {
+                // Retournez null si aucune donnée n'est trouvée
+                return null;
+            }
+        }
+
+        public function getCompanyAllPhotos($companyId){
+            $this->db->select('*');
+            $this->db->from('companyPhotos');
+            $this->db->where('companyPhotos_companyId', $companyId);
+            $query = $this->db->get();
+            return $query->result();
+        }
+
         public function get_skills($term=''){
             $this->db->like('skillName', $term);
             $query = $this->db->get('skills');
@@ -383,7 +424,12 @@ class User_model extends CI_Model {
             $query = $this->db->get('skills'); // Remplacez 'skills' par le nom exact de votre table de compétences si ce n'est pas le cas.
             return $query->result_array();
         }
-        
+
+        public function get_all_secteurs() {
+            $query = $this->db->get('secteurs'); // Remplacez 'skills' par le nom exact de votre table de compétences si ce n'est pas le cas.
+            return $query->result_array();
+        }
+
         public function get_all_cities(){
             $query = $this->db->get('geonames_cities');
             return $query->result_array();

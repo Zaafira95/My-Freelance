@@ -241,9 +241,8 @@ include(APPPATH . 'views/layouts/company/header.php' );
                             <div class="flex items-center mt-1">
                                 <p class="font-light"><?=$company->companyName?></p>
                             </div>
-                            <a href="<?php echo base_url('company/my_company');?>" class="text-primary mt-2 border border-primary px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">Modifier mon profil</a>
-                        <!-- missions favorites -->
-                            <a href="<?php echo base_url('Company/missionAdd');?>" class="text-primary mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">Ajouter une offre</a>
+                            <a href="<?php echo base_url('company/my_company');?>" class="text-primary mt-2 px-4 py-1 rounded 2">Modifier mon profil</a>
+                            <a href="<?php echo base_url('Company/missionAdd');?>" class="mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 bg-primary-700 text-white">Ajouter une offre</a>
                             <a href="<?php echo base_url('Company/logout');?>" class="text-red-600 mt-2 hover:text-red-900">Déconnexion</a>
                         </div>
                     </div>

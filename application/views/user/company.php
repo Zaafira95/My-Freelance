@@ -77,7 +77,6 @@ include(APPPATH . 'views/layouts/user/header.php');
                         <h2 class="text-5xl font-bold flex items-center"><?= $company->companyName ?></h2>
                         <h3 class="text-2xl font-medium"><?=$company->companySlogan?></h3>
                         <h3 class="text-xl font-medium text-gray-400">Secteur d'activité : <?=$company->companySecteur?></h3>
-                        <h3 class="text-xl font-medium text-gray-400"><?=$company->companyLocalisation?></h3>
                     </div>
                     <div class="flex flex-wrap">
                         <a href="https://wa.me/<?=$company->userTelephone?>?text=Bonjour%20<?=$company->userFirstName?>%20!%20Je%20suis%20intéressé%20par%20votre%20entreprise%20sur%20Café%20Crème%20Community%20!%20" target="_blank">
@@ -171,8 +170,7 @@ include(APPPATH . 'views/layouts/user/header.php');
                             <h1 class="text-2xl font-bold mb-4 mt-4">Nos missions</h1>
                         </div>
                         <div class="grid grid-cols-2 gap-4">
-                            
-                            <?php 
+                        <?php 
                             if (empty($missions)) {
                                 echo '<p class="text-center">Aucune mission disponible pour le moment</p>';
                             }
@@ -183,7 +181,7 @@ include(APPPATH . 'views/layouts/user/header.php');
                                         <div class="bg-white rounded-lg h-20vh w-full mt-4 p-4 dark:bg-gray-800 dark:text-white relative mission-item" data-mission-name="<?=strtolower($mission->missionName)?>">
                                             <div class="flex items-center">
                                                 <div class="mr-4">
-                                                    <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="w-10 h-10 rounded-full">
+                                                    <img src="<?=base_url('assets/img/airbnb.png')?>" alt="Logo de l'entreprise" class="w-10 h-10 rounded-full">
                                                 </div>
                                                 <div class="w-3/4 mr-4">
                                                     <h2 class="font-bold text-lg"><?=$mission->missionName?></h2>
@@ -331,7 +329,7 @@ include(APPPATH . 'views/layouts/user/header.php');
                                         </div>
                                     </a>
                                 </div>
-                            <?php endforeach; }?>
+                            <?php endforeach; } ?>
                         </div>    
                     </div>
                 </div>

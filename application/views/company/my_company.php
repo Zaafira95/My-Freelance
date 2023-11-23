@@ -415,13 +415,18 @@ include(APPPATH . 'views/layouts/company/header.php');
                             <a href="<?php echo base_url('Company/missionAdd');?>" class="px-4 py-1 rounded 2 hover:bg-primary-900 bg-primary-700 text-white">Ajouter une offre</a>
                         </div>
                         <div class="grid grid-cols-2 gap-4">
-                            <?php foreach($missions as $mission): ?>
+                        <?php 
+                            if (empty($missions)) {
+                                echo '<p class="text-center">Aucune mission disponible pour le moment</p>';
+                            }
+                            else {
+                            foreach($missions as $mission): ?>
                                 <div class="flex flex-wrap">
                                     <a href="<?=base_url('company/missionView/'.$mission->idMission)?>">
                                         <div class="bg-white rounded-lg h-20vh w-full mt-4 p-4 dark:bg-gray-800 dark:text-white relative mission-item" data-mission-name="<?=strtolower($mission->missionName)?>">
                                             <div class="flex items-center">
                                                 <div class="mr-4">
-                                                    <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="w-10 h-10 rounded-full">
+                                                    <img src=<?=base_url($company->companyLogoPath)?> alt="Logo de l'entreprise" class="w-10 h-10 rounded-full">
                                                 </div>
                                                 <div class="w-3/4 mr-4">
                                                     <h2 class="font-bold text-lg"><?=$mission->missionName?></h2>
@@ -593,7 +598,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                                         </div>
                                     </a>
                                 </div>
-                            <?php endforeach; ?>
+                            <?php endforeach; }?>
                         </div>    
                     </div>
                 </div>

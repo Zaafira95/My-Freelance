@@ -1086,10 +1086,16 @@ class User extends CI_Controller {
 
         // Récupérer les skills de chaque mission
         $missionSkills = array();
-        foreach ($missions as $mission) {
-            $idMission = $mission->idMission;
-            $missionSkills[$idMission] = $this->User_model->getMissionSkills($idMission);
+        if ($missions) {
+            foreach ($missions as $mission) {
+                $idMission = $mission->idMission;
+                $missionSkills[$idMission] = $this->User_model->getMissionSkills($idMission);
+            }
         }
+        // foreach ($missions as $mission) {
+        //     $idMission = $mission->idMission;
+        //     $missionSkills[$idMission] = $this->User_model->getMissionSkills($idMission);
+        // }
         $data['missionSkills'] = $missionSkills;
 
         $companyPhotos = $this->User_model->getCompanyAllPhotos($companyId);

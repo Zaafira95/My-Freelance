@@ -304,7 +304,17 @@ class User extends CI_Controller {
         redirect($_SERVER['HTTP_REFERER']);
     }
     
+    public function updateUserBio(){
+        $this->load->model('User_model');
+        $userId = $this->session->userdata('userId');
+        $userBio = $this->input->post('userBio');
 
+        $this->User_model->updateUserBio($userId, $userBio);
+        $this->session->set_flashdata('message', 'Votre description a bien été mise à jour !');
+        $this->session->set_flashdata('status', 'success');
+        redirect($_SERVER['HTTP_REFERER']);
+       
+    }
 
     public function updateUserPreference(){
         $this->load->model('User_model');
@@ -394,7 +404,7 @@ class User extends CI_Controller {
 
     public function addUserAttachment(){
         $config['upload_path'] = 'assets/attachments/';
-        $config['allowed_types'] = 'pdf';
+        $config['allowed_types'] = 'pdf|jpg|jpeg|png';
         $config['max_size'] = 2048; // Taille maximale du fichier en kilo-octets
     
         $this->load->library('upload', $config);

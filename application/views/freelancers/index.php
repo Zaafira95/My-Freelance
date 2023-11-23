@@ -283,7 +283,7 @@ include(APPPATH . 'views/layouts/company/header.php');
         $('#citySearch').on('keyup', function() {
             let term = $(this).val();
             if(term.length > 2) { // Recherche après 2 caractères
-                $.post('company/search_cities', { term: term }, function(data) {
+                $.post('search_cities', { term: term }, function(data) {
                     let cities = JSON.parse(data);
                     if(cities.length > 0) {
                         // Ajoutez la classe .has-border si des résultats sont retournés

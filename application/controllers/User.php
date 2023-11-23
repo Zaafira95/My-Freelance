@@ -394,7 +394,7 @@ class User extends CI_Controller {
 
     public function addUserAttachment(){
         $config['upload_path'] = 'assets/attachments/';
-        $config['allowed_types'] = 'pdf';
+        $config['allowed_types'] = 'pdf|jpg|jpeg|png';
         $config['max_size'] = 2048; // Taille maximale du fichier en kilo-octets
     
         $this->load->library('upload', $config);
@@ -1028,7 +1028,68 @@ class User extends CI_Controller {
         echo json_encode($jobs);
     }
     
+    public function companies(){
+        $userId = $this->session->userdata('userId');
+        $this->load->model('User_model');
+        $user = $this->User_model->get_UserData($userId);
+        $data['user'] = $user;
+        $isAvailable = $user->userIsAvailable;
     
+        // Cocher la case appropriée en fonction de la valeur récupérée
+        if ($isAvailable == 1) {
+            $checkboxChecked = 'checked';
+        } else {
+            $checkboxChecked = '';
+        }
+        $data['checkboxChecked'] = $checkboxChecked;
+        $banner = $this->User_model->getBanner();
+		$data['banner'] = $banner;
+        
+        $companies = $this->User_model->getAllCompanies();
+        $data['companies'] = $companies;
+        $data['secteursAll'] = $this->User_model->get_all_secteurs();
+
+        $this->load->view('companies/index', $data);
+    }
+
+    public function companyView($companyId){
+        $userId = $this->session->userdata('userId');
+        $this->load->model('User_model');
+        $user = $this->User_model->get_UserData($userId);
+        $data['user'] = $user;
+        $isAvailable = $user->userIsAvailable ;
+        
+        // Cocher la case appropriée en fonction de la valeur récupérée
+        if ($isAvailable == 1) {
+            $checkboxChecked = 'checked';
+        } else {
+            $checkboxChecked = '';
+        }
+        $data['checkboxChecked'] = $checkboxChecked;
+
+        $company = $this->User_model->getCompanyDataById($companyId);
+        $data['company'] = $company;
+        $missions = $this->User_model->getCompanyMissions($companyId);
+        $data['missions'] = $missions;
+
+        $user = $this->User_model->get_UserData($userId);
+
+        // Récupérer les skills de chaque mission
+        $missionSkills = array();
+        foreach ($missions as $mission) {
+            $idMission = $mission->idMission;
+            $missionSkills[$idMission] = $this->User_model->getMissionSkills($idMission);
+        }
+        $data['missionSkills'] = $missionSkills;
+
+        $companyPhotos = $this->User_model->getCompanyAllPhotos($companyId);
+        $data['companyPhotos'] = $companyPhotos;
+
+        $favoriteMissions = $this->User_model->getFavoriteMissions($userId); // Remplacez cette ligne avec votre logique pour récupérer les missions favorites de l'utilisateur
+        $data['favoriteMissions'] = $favoriteMissions;
+        
+        $this->load->view('companies/view', $data);
+    }
     
     
     

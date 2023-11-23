@@ -1088,6 +1088,7 @@ class User extends CI_Controller {
         $favoriteMissions = $this->User_model->getFavoriteMissions($userId); // Remplacez cette ligne avec votre logique pour récupérer les missions favorites de l'utilisateur
         $data['favoriteMissions'] = $favoriteMissions;
         
+
         $this->load->view('companies/view', $data);
     }
     

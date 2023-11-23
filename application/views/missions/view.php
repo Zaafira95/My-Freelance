@@ -130,9 +130,11 @@ else if ($user->userType == "sales"){
                                 </a>
                                 <div>
                                     <p class="font-bold text-3xl"><?=$mission->missionName?></p>
+                                    <a href="<?=base_url('user/companyView/'.$company->idCompany)?>">
                                     <p>
                                         <span class="font-bold text-2xl"><?=$company->companyName?></span>
                                     </p>
+                                    </a>
                                     <p class="font-bold text-xl"><?=$mission->missionTJM.'€/Jour'?>
                                     <p class="font-medium text-xl">
                                     <?php foreach ($jobsAll as $joba): ?>
@@ -198,6 +200,15 @@ else if ($user->userType == "sales"){
                                         <button id="generate-pdf-btn" class="bg-primary mb-4 hover:bg-blue-700 text-white py-2 px-4 rounded-full">
                                             PDF
                                         </button>
+                                    </div>
+                                    <div>
+                                        <?php if($user->userType == 'freelance') { ?>
+                                        <a href="<?=base_url('user/companyView/'.$company->idCompany)?>">
+                                            <button class="border border-primary text-primary mb-4 py-2 px-4 rounded-full">
+                                                Voir l'entreprise 
+                                            </button>
+                                        </a>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>
@@ -824,6 +835,57 @@ else if ($user->userType == "sales"){
     }
     paragrapheElements.forEach((pElement) => {
         pElement.classList.remove('dark:text-white');
+        const element = document.getElementById('pdf-content');
+
+        // Dupliquer le contenu de la div "pdf-content" sans le bloc "contactBlock"
+        const clonedContent = element.cloneNode(true);
+        const contactBlock = clonedContent.querySelector('#contactBlock');
+        const missionHeader = clonedContent.querySelector('#mission-header');
+        const missionInfos = clonedContent.querySelector('#mission-infos');
+        const missionSkills = clonedContent.querySelector('#mission-skills');
+        const missionDescription = clonedContent.querySelector('#mission-description');
+        const companyDescription = clonedContent.querySelector('#company-description');
+        const missionAvantages = clonedContent.querySelector('#mission-avantages');
+        const leftSideContent = clonedContent.querySelector('#left-side-content');
+        const missionMainContent = clonedContent.querySelector('#mission-main-content');
+        const paragrapheElements = clonedContent.querySelectorAll('p');
+
+        if (contactBlock) {
+        contactBlock.remove();
+        }    
+        if (leftSideContent) {
+        leftSideContent.remove();
+        }
+        if (missionMainContent) {
+        missionMainContent.classList.remove('w-3/4');
+        }
+        if (missionHeader) {
+            missionHeader.classList.remove('dark:bg-gray-800');
+            missionHeader.classList.add('text-black');
+        }
+        if (missionInfos) {
+            missionInfos.classList.remove('hidden');
+        }
+        if (missionSkills) {
+            missionSkills.classList.remove('hidden');
+        }
+        if (missionDescription) {
+            missionDescription.classList.remove('dark:bg-gray-800');
+            missionDescription.classList.remove('dark:text-white');
+            missionDescription.classList.add('text-black');
+        }
+        if (companyDescription) {
+            companyDescription.classList.remove('dark:bg-gray-800');
+            companyDescription.classList.remove('dark:text-white');
+            companyDescription.classList.add('text-black');
+        }
+        if (missionAvantages) {
+            missionAvantages.classList.remove('dark:bg-gray-800');
+            missionAvantages.classList.remove('dark:text-white');
+            missionAvantages.classList.add('text-black');
+        }
+        paragrapheElements.forEach((pElement) => {
+            pElement.classList.remove('dark:text-white');
     });
 
     const opt = {

@@ -74,6 +74,11 @@ include(APPPATH . 'views/layouts/company/header.php');
                                 <?= $secteur['secteurName'] ?></option>
                             <?php endforeach; ?>
                         </select> 
+                    </div>                    
+                    <label for="companyCity" class="block mb-1 font-medium text-gray-900 dark:text-white">Localisation *</label>
+                    <div class="relative city-search-container w-full">
+                        <input type="text" id="citySearch" name="companyLocalisation" value="<?=$company->companyLocalisation?>" placeholder="Cherchez votre ville" class="border p-2 rounded-lg w-full text-black">
+                            <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                     </div>
                     <label for="userLinkedinLink" class="block mb-1  font-medium text-gray-900 dark:text-white">Lien LinkedIn</label>
                         <input type="text" name="userLinkedinLink" id="userLinkedinLink" value="<?=$user->userLinkedinLink?>" class="mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -286,6 +291,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                         <h2 class="text-5xl font-bold flex items-center"><?= $company->companyName ?></h2>
                         <h3 class="text-2xl font-medium"><?=$company->companySlogan?></h3>
                         <h3 class="text-xl font-medium text-gray-400">Secteur d'activité : <?=$company->companySecteur?></h3>
+                        <h3 class="text-xl font-medium text-gray-400"><?=$company->companyLocalisation?></h3>
                     </div>
                     <div class="flex flex-wrap">
                         <a href="https://wa.me/<?=$user->userTelephone?>?text=Bonjour%20<?=$user->userFirstName?>%20!%20Je%20suis%20intéressé%20par%20votre%20entreprise%20sur%20Café%20Crème%20Community%20!%20" target="_blank">
@@ -406,7 +412,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                     <div class="flex flex-wrap w-full pb-4 mb-12 mt-4" id="missions-section">
                         <div class="w-full flex flex-wrap justify-between items-center">
                             <h1 class="text-2xl font-bold mb-4 mt-4">Nos missions</h1>
-                            <a href="<?php echo base_url('Company/missionAdd');?>" class="text-primary mt-2 border border-primary px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">Ajouter une offre</a>
+                            <a href="<?php echo base_url('Company/missionAdd');?>" class="px-4 py-1 rounded 2 hover:bg-primary-900 bg-primary-700 text-white">Ajouter une offre</a>
                         </div>
                         <div class="grid grid-cols-2 gap-4">
                             <?php foreach($missions as $mission): ?>
@@ -600,6 +606,53 @@ include(APPPATH . 'views/layouts/company/header.php');
 <script src="<?php echo base_url('/node_modules/choices.js/public/assets/scripts/choices.min.js'); ?>"></script>
 
 <script>
+
+    $(document).ready(function() {
+    
+        $('#citySearch').on('keyup', function() {
+            let term = $(this).val();
+            if(term.length > 2) { // Recherche après 2 caractères
+                $.post('search_cities', { term: term }, function(data) {
+                    let cities = JSON.parse(data);
+                    if(cities.length > 0) {
+                        // Ajoutez la classe .has-border si des résultats sont retournés
+                        $('#cities-list').addClass('has-border');
+                    } else {
+                        // Supprimez la classe .has-border si aucun résultat n'est retourné
+                        $('#cities-list').removeClass('has-border');
+                    }
+                    $('#cities-list').empty();
+                    cities.forEach(function(city) {
+                        $('#cities-list').append(`<div class="city-item p-2 hover:bg-gray-200 cursor-pointer" data-id="${city.geoname_id}">${city.name}</div>`);
+                    });
+                });
+            }
+            else {
+                // Supprimez la classe .has-border si l'input est trop court
+                $('#cities-list').removeClass('has-border').empty();
+            }
+        });
+
+        $(document).on('click', '.city-item', function() {
+            let cityName = $(this).text();
+            $('#citySearch').val(cityName);  // Mettez à jour le champ de saisie avec le nom de la ville sélectionnée
+            $('#cities-list').empty(); // Videz la liste
+            $('#cities-list').removeClass('has-border').empty();
+        });
+
+        // Pour fermer la liste lorsque vous cliquez en dehors
+        $(document).on('click', function(event) {
+            // Si le clic n'est pas sur le champ de saisie (#citySearch)
+            // et n'est pas sur un élément à l'intérieur de la liste (#cities-list)...
+            if (!$(event.target).closest('#citySearch, #cities-list').length) {
+                // ... alors videz et fermez la liste.
+                $('#cities-list').empty().removeClass('has-border');
+            }
+        });
+
+    });
+
+
 
     $(document).ready(function () {
 

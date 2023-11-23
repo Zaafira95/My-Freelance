@@ -171,7 +171,13 @@ include(APPPATH . 'views/layouts/user/header.php');
                             <h1 class="text-2xl font-bold mb-4 mt-4">Nos missions</h1>
                         </div>
                         <div class="grid grid-cols-2 gap-4">
-                            <?php foreach($missions as $mission): ?>
+                            
+                            <?php 
+                            if (empty($missions)) {
+                                echo '<p class="text-center">Aucune mission disponible pour le moment</p>';
+                            }
+                            else {
+                            foreach($missions as $mission): ?>
                                 <div class="flex flex-wrap">
                                     <a href="<?=base_url('company/missionView/'.$mission->idMission)?>">
                                         <div class="bg-white rounded-lg h-20vh w-full mt-4 p-4 dark:bg-gray-800 dark:text-white relative mission-item" data-mission-name="<?=strtolower($mission->missionName)?>">
@@ -325,7 +331,7 @@ include(APPPATH . 'views/layouts/user/header.php');
                                         </div>
                                     </a>
                                 </div>
-                            <?php endforeach; ?>
+                            <?php endforeach; }?>
                         </div>    
                     </div>
                 </div>

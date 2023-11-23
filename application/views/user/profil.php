@@ -1294,19 +1294,11 @@ if ($totalCount > 0) {
                                 <?php if (is_array($attachments) && !empty($attachments)) { ?>
                                     <div class="grid grid-cols-4 gap-8">
                                         <?php foreach ($attachments as $index => $attachment) { ?>
-<<<<<<< HEAD
-                                            <div class="shadow-lg p-2 mr-4 mb-4 relative rounded-lg bg-white">
-                                                <h3 class="text-lg font-medium"><?= $attachment->attachmentName ?></h3>
-                                                <div class="pdf-thumbnail relative z-10 mb-2" data-pdf="<?= base_url($attachment->attachmentPath) ?>">
-                                                    <div class="absolute top-0 right-0 flex space-x-4 z-20">
-                                                    <a href="<?= base_url($attachment->attachmentPath) ?>" download class="download-icon text-primary hover:text-gray-900" onclick="event.stopPropagation();">
-=======
                                             <div class="relative flex justify-center items-center border border-1 p-2 mr-4 mb-4 relative rounded-lg bg-white">
                                                 <h3 class="text-lg font-medium"><?= $attachment->attachmentName ?></h3>
                                                 <div class="pdf-thumbnail overflow-hidden z-10 mb-2" style="max-height: 14rem" data-pdf="<?= base_url($attachment->attachmentPath) ?>">
                                                     <div class="absolute top-0 right-0 mr-4 mt-4 flex space-x-4 z-20">
                                                     <a href="<?= base_url($attachment->attachmentPath) ?>" download class="download-icon text-gray-400 hover:text-gray-900" onclick="event.stopPropagation();">
->>>>>>> ae19e2171a562b8d47226d03688ae72a8942ce4e
                                                         <i class="fas fa-download"></i>
                                                     </a>
                                                     <a href="#" class="delete-icon text-red-800 hover:text-red-900" onclick="event.stopPropagation(); showModal('deleteAttachmentConfirmationModal<?=$index?>');">

@@ -74,6 +74,11 @@ include(APPPATH . 'views/layouts/company/header.php');
                                 <?= $secteur['secteurName'] ?></option>
                             <?php endforeach; ?>
                         </select> 
+                    </div>                    
+                    <label for="companyCity" class="block mb-1 font-medium text-gray-900 dark:text-white">Localisation *</label>
+                    <div class="relative city-search-container w-full">
+                        <input type="text" id="citySearch" name="companyLocalisation" value="<?=$company->companyLocalisation?>" placeholder="Cherchez votre ville" class="border p-2 rounded-lg w-full text-black">
+                            <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                     </div>
                     <label for="userLinkedinLink" class="block mb-1  font-medium text-gray-900 dark:text-white">Lien LinkedIn</label>
                         <input type="text" name="userLinkedinLink" id="userLinkedinLink" value="<?=$user->userLinkedinLink?>" class="mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -276,16 +281,24 @@ include(APPPATH . 'views/layouts/company/header.php');
                         <div class="bg-white dark:bg-gray-800 w-full h-full flex items-center justify-center">
                             <img src="<?=base_url($company->companyBannerPath)?>" class="object-cover w-full h-full rounded-lg dark:bg-gray-800" alt="Image de l'entreprise">
                         </div>
+                    </div>                    
+                    <?php if($user->userType == 'sales') { ?>
+                    <div class="w-full flex justify-end mb-4 mr-4 flex">
+                        <button id="updateCompanyData" data-modal-toggle="updateCompanyData" class="ml-4 mr-4 mt-4 text-primary hover:text-blue-600" type="button">
+                            <p>Modifier mes informations</p>
+                        </button>
                     </div>
+                    <?php } ?>
                     <div class="rounded-full border-10 w-40 h-40 flex items-center justify-center" style="margin-top:-50px;">
                         <img src="<?=base_url($company->companyLogoPath)?>" class="ml-4 object-cover w-full h-full rounded-full ring-8 ring-white dark:ring-gray-800" alt="Image de l'entreprise">
                     </div>
                 </div>
-                <div class="px-4 flex flex-wrap justify-between mt-4">
+                <div class="relative px-4 flex flex-wrap justify-between mt-4">
                     <div>
                         <h2 class="text-5xl font-bold flex items-center"><?= $company->companyName ?></h2>
                         <h3 class="text-2xl font-medium"><?=$company->companySlogan?></h3>
                         <h3 class="text-xl font-medium text-gray-400">Secteur d'activité : <?=$company->companySecteur?></h3>
+                        <h3 class="text-xl font-medium text-gray-400"><?=$company->companyLocalisation?></h3>
                     </div>
                     <div class="flex flex-wrap">
                         <a href="https://wa.me/<?=$user->userTelephone?>?text=Bonjour%20<?=$user->userFirstName?>%20!%20Je%20suis%20intéressé%20par%20votre%20entreprise%20sur%20Café%20Crème%20Community%20!%20" target="_blank">
@@ -328,13 +341,6 @@ include(APPPATH . 'views/layouts/company/header.php');
                         <button class="inline-block border-b-2 font-normal hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="myCompanyMissions-tab" data-tabs-target="#myCompanyMissions" type="button" role="tab" aria-controls="myCompanyMissions" aria-selected="false">Missions</button>
                     </li>
                 </ul>
-                <?php if($user->userType == 'sales') { ?>
-                <div class="absolute bottom-0 right-0 mb-4 mr-4 flex">
-                    <button id="updateCompanyData" data-modal-toggle="updateCompanyData" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
-                        <i class="fas fa-pen fa-fw"></i>
-                    </button>
-                </div>
-                <?php } ?>
             </div>  
             <div id="relative myTabContent w-full">
                 <div class="hidden" id="myCompanyProfile" role="tabpanel" aria-labelledby="myCompanyProfile-tab">
@@ -415,7 +421,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                                         <div class="bg-white rounded-lg h-20vh w-full mt-4 p-4 dark:bg-gray-800 dark:text-white relative mission-item" data-mission-name="<?=strtolower($mission->missionName)?>">
                                             <div class="flex items-center">
                                                 <div class="mr-4">
-                                                    <img src="<?=base_url('assets/img/airbnb.png')?>" alt="Logo de l'entreprise" class="w-10 h-10 rounded-full">
+                                                    <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="w-10 h-10 rounded-full">
                                                 </div>
                                                 <div class="w-3/4 mr-4">
                                                     <h2 class="font-bold text-lg"><?=$mission->missionName?></h2>
@@ -600,6 +606,53 @@ include(APPPATH . 'views/layouts/company/header.php');
 <script src="<?php echo base_url('/node_modules/choices.js/public/assets/scripts/choices.min.js'); ?>"></script>
 
 <script>
+
+    $(document).ready(function() {
+    
+        $('#citySearch').on('keyup', function() {
+            let term = $(this).val();
+            if(term.length > 2) { // Recherche après 2 caractères
+                $.post('search_cities', { term: term }, function(data) {
+                    let cities = JSON.parse(data);
+                    if(cities.length > 0) {
+                        // Ajoutez la classe .has-border si des résultats sont retournés
+                        $('#cities-list').addClass('has-border');
+                    } else {
+                        // Supprimez la classe .has-border si aucun résultat n'est retourné
+                        $('#cities-list').removeClass('has-border');
+                    }
+                    $('#cities-list').empty();
+                    cities.forEach(function(city) {
+                        $('#cities-list').append(`<div class="city-item p-2 hover:bg-gray-200 cursor-pointer" data-id="${city.geoname_id}">${city.name}</div>`);
+                    });
+                });
+            }
+            else {
+                // Supprimez la classe .has-border si l'input est trop court
+                $('#cities-list').removeClass('has-border').empty();
+            }
+        });
+
+        $(document).on('click', '.city-item', function() {
+            let cityName = $(this).text();
+            $('#citySearch').val(cityName);  // Mettez à jour le champ de saisie avec le nom de la ville sélectionnée
+            $('#cities-list').empty(); // Videz la liste
+            $('#cities-list').removeClass('has-border').empty();
+        });
+
+        // Pour fermer la liste lorsque vous cliquez en dehors
+        $(document).on('click', function(event) {
+            // Si le clic n'est pas sur le champ de saisie (#citySearch)
+            // et n'est pas sur un élément à l'intérieur de la liste (#cities-list)...
+            if (!$(event.target).closest('#citySearch, #cities-list').length) {
+                // ... alors videz et fermez la liste.
+                $('#cities-list').empty().removeClass('has-border');
+            }
+        });
+
+    });
+
+
 
     $(document).ready(function () {
 

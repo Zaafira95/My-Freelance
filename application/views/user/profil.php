@@ -12,7 +12,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
     body {
         height: 100vh;
     }
-    .pdf-thumbnail-img {
+    .file-thumbnail-img {
     max-width: 100%;
     height: auto;
     cursor: pointer;
@@ -542,8 +542,8 @@ foreach ($experiences as $index => $experience) {
             <!-- Modal body -->
             <form action="<?= base_url("user/addUserAttachment") ?>" method="post" enctype="multipart/form-data">
                 <div>
-                    <label for="userAttachmentFile" class="block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Pièce jointe (PDF)</label>
-                    <input type="file" id="userAttachmentFile" name="userAttachmentFile" accept=".pdf" class="hidden" data-max-size="2048">
+                    <label for="userAttachmentFile" class="block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Pièce jointe</label>
+                    <input type="file" id="userAttachmentFile" name="userAttachmentFile" accept=".pdf, .png, .jpeg, .jpg" class="hidden" data-max-size="2048">
                     <label for="userAttachmentFile" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 cursor-pointer">
                         <span class="filename">Choisir un fichier</span>
                     </label>
@@ -612,8 +612,6 @@ foreach ($experiences as $index => $experience) {
                     </button>
                 </div>
             </form>
-
-
         </div>
     </div>
 </div>
@@ -675,6 +673,41 @@ foreach ($experiences as $index => $experience) {
     </div>
 </div>
 
+<!--Company Advantages modal -->
+<div id="editUserBio" tabindex="-1" aria-hidden="true" class=" hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
+    <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+        <!-- Modal content -->
+        <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+            <!-- Modal header -->
+            <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                    À propos de vous
+                </h3>
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="editUserBio">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <span class="sr-only">Fermer</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <form action="<?=base_url("user/updateUserBio")?>" method="post" enctype="multipart/form-data">
+                <div>
+
+                    <!--<label for="companyDescription" class="block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Description</label>-->
+                    <textarea id="userBio" name="userBio" rows="6" class="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><?=$user->userBio?></textarea>
+
+                </div>
+                <div class="flex items-center space-x-4 mt-4">
+                    <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                        Valider
+                    </button>
+                    <button type="button" data-modal-toggle="editUserBio" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                        Annuler
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 
 <?php
@@ -987,16 +1020,19 @@ if ($totalCount > 0) {
                                                 foreach ($raterUser as $rating) {
                                                     if ($ratingsCount < 3) {
                                                     ?>
-                                                    <a href="<?= base_url('user/'.$rating->idUser) ?>" title="Visiter le portfolio" class="flex-shrink-0 mr-2" target="_blank">
-                                                        <div class="flex grid-cols-2 items-center mb-4">
-                                                            <div class="mr-2 mt-2">
+                                                    <a href="<?= base_url('user/companyView/'.$rating->idCompany) ?>" title="Voir le profil" class="flex-shrink-0 mr-2" target="_blank">
+                                                        <div class="items-center mb-4 mt-4">
+                                                            <div class="flex items-center">
                                                                 <div class="w-10 h-10" style="font-size:1rem;">
-                                                                    <img src="<?=base_url($rating->userAvatarPath)?>" class="w-10 h-10 rounded-full flex items-center justify-center" alt="User Photo">
+                                                                    <img src="<?=base_url($rating->companyLogoPath)?>" class="w-10 h-10 rounded-full flex items-center justify-center" alt="User Photo">
+                                                                </div>
+                                                                <div class="ml-4">
+                                                                    <p class="text "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
+                                                                    <p class="text mt-1  text-gray-400"><?= $rating->companyName?></p>
                                                                 </div>
                                                             </div>
-                                                            <div>
-                                                                <p class="text ml-4"><?= '"'.$rating->ratingComment.'"'?></p>
-                                                                <div class="flex items-center ml-4">
+                                                            <div class="flex items-center mt-4 mb-4">
+                                                                <div class="flex items-center">
                                                                     <?php for ($i = 1; $i <= 5; $i++) { ?>
                                                                         <?php if ($i <= $rating->ratingStars) { ?>
                                                                             <img src="<?php echo base_url('assets/img/fill-star.svg'); ?>" class="w-4 h-4">
@@ -1005,8 +1041,11 @@ if ($totalCount > 0) {
                                                                         <?php } ?>
                                                                     <?php } ?>
                                                                 </div>
-                                                                <p class="text ml-4 mt-2 "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
                                                                 <p class="text text-sm text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
+
+                                                            </div>  
+                                                            <div>
+                                                                <p class="text"><?= '"'.$rating->ratingComment.'"'?></p>
                                                             </div>
                                                         </div>
                                                     </a>
@@ -1017,16 +1056,19 @@ if ($totalCount > 0) {
                                                     //echo $ratingsCount;
                                                     ?>
                                                     <div id="more-avis" class="hidden">
-                                                        <a href="<?= base_url('company/freelancer/'.$rating->idUser) ?>" title="Visiter le portfolio" class="flex-shrink-0 mr-2" target="_blank">
-                                                            <div class="flex grid-cols-2 items-center mb-4">
-                                                                <div class="mr-2 mt-2">
+                                                        <a href="<?= base_url('user/companyView/'.$rating->idCompany) ?>" title="Voir le profil" class="flex-shrink-0 mr-2" target="_blank">
+                                                            <div class="items-center mb-4 mt-4">
+                                                                <div class="flex items-center">
                                                                     <div class="w-10 h-10" style="font-size:1rem;">
-                                                                        <img src="<?=base_url($rating->userAvatarPath)?>" class="w-10 h-10 rounded-full flex items-center justify-center" alt="User Photo">
+                                                                        <img src="<?=base_url($rating->companyLogoPath)?>" class="w-10 h-10 rounded-full flex items-center justify-center" alt="User Photo">
+                                                                    </div>
+                                                                    <div class="ml-4">
+                                                                        <p class="text "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
+                                                                        <p class="text mt-1  text-gray-400"><?= $rating->companyName?></p>
                                                                     </div>
                                                                 </div>
-                                                                <div>
-                                                                    <p class="text ml-4"><?= '"'.$rating->ratingComment.'"'?></p>
-                                                                    <div class="flex items-center ml-4">
+                                                                <div class="flex items-center mt-4 mb-4">
+                                                                    <div class="flex items-center">
                                                                         <?php for ($i = 1; $i <= 5; $i++) { ?>
                                                                             <?php if ($i <= $rating->ratingStars) { ?>
                                                                                 <img src="<?php echo base_url('assets/img/fill-star.svg'); ?>" class="w-4 h-4">
@@ -1035,8 +1077,11 @@ if ($totalCount > 0) {
                                                                             <?php } ?>
                                                                         <?php } ?>
                                                                     </div>
-                                                                    <p class="text ml-4 mt-2 "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
                                                                     <p class="text text-sm text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
+
+                                                                </div>  
+                                                                <div>
+                                                                    <p class="text"><?= '"'.$rating->ratingComment.'"'?></p>
                                                                 </div>
                                                             </div>
                                                         </a>
@@ -1067,8 +1112,17 @@ if ($totalCount > 0) {
                         </div>
                     </div>
                     <div class="w-3/4 sticky top-0">
+                        <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
+                            <h2 class="text-xl font-bold mb-4">À propos de moi</h2>
+                            <p class="text-lg text-gray-500 mb-4 mt-4 dark:text-white"><?= $user->userBio ?></p>
+                            <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
+                                <button id="editUserBio" data-modal-toggle="editUserBio" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white ml-2" type="button">
+                                    <i class="fas fa-pen fa-fw"></i>
+                                </button>
+                            </div>
+                        </div>
                         <div class="w-full">
-                            <div class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
+                            <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                                 <h2 class="text-xl font-bold mb-4 flex items-center cursor-pointer" id="skillsTitle">
                                     Compétences
                                     <i class="fas fa-chevron-down ml-2" id="skillsArrow" style='font-size:0.75rem;' data-order="asc"></i>
@@ -1130,9 +1184,15 @@ if ($totalCount > 0) {
                                 </div> 
                                 <div class="flex items-center">
                                     <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
+                                        <?php 
+                                        if(is_array($skills) && !empty($skills)){ 
+                                        ?>
                                         <button id="editUserSkills" data-modal-toggle="editUserSkills" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white ml-2" type="button">
                                             <i class="fas fa-pen fa-fw"></i>
                                         </button>
+                                        <?php 
+                                        }
+                                        ?>
                                         <button id="addUserSkills" data-modal-toggle="addUserSkills" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
                                             <i class="fas fa-plus"></i>
                                         </button>
@@ -1234,11 +1294,19 @@ if ($totalCount > 0) {
                                 <?php if (is_array($attachments) && !empty($attachments)) { ?>
                                     <div class="grid grid-cols-4 gap-8">
                                         <?php foreach ($attachments as $index => $attachment) { ?>
+<<<<<<< HEAD
                                             <div class="shadow-lg p-2 mr-4 mb-4 relative rounded-lg bg-white">
                                                 <h3 class="text-lg font-medium"><?= $attachment->attachmentName ?></h3>
                                                 <div class="pdf-thumbnail relative z-10 mb-2" data-pdf="<?= base_url($attachment->attachmentPath) ?>">
                                                     <div class="absolute top-0 right-0 flex space-x-4 z-20">
                                                     <a href="<?= base_url($attachment->attachmentPath) ?>" download class="download-icon text-primary hover:text-gray-900" onclick="event.stopPropagation();">
+=======
+                                            <div class="relative flex justify-center items-center border border-1 p-2 mr-4 mb-4 relative rounded-lg bg-white">
+                                                <h3 class="text-lg font-medium"><?= $attachment->attachmentName ?></h3>
+                                                <div class="pdf-thumbnail overflow-hidden z-10 mb-2" style="max-height: 14rem" data-pdf="<?= base_url($attachment->attachmentPath) ?>">
+                                                    <div class="absolute top-0 right-0 mr-4 mt-4 flex space-x-4 z-20">
+                                                    <a href="<?= base_url($attachment->attachmentPath) ?>" download class="download-icon text-gray-400 hover:text-gray-900" onclick="event.stopPropagation();">
+>>>>>>> ae19e2171a562b8d47226d03688ae72a8942ce4e
                                                         <i class="fas fa-download"></i>
                                                     </a>
                                                     <a href="#" class="delete-icon text-red-800 hover:text-red-900" onclick="event.stopPropagation(); showModal('deleteAttachmentConfirmationModal<?=$index?>');">
@@ -1559,7 +1627,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     var thumbnailUrl = canvas.toDataURL();
                     var img = new Image();
                     img.src = thumbnailUrl;
-                    img.classList.add('pdf-thumbnail-img');
+                    img.classList.add('file-thumbnail-img');
 
                     // Ajouter l'image miniature dans le conteneur spécifié
                     container.appendChild(img);
@@ -1606,12 +1674,64 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Chargement des miniatures pour chaque conteneur avec la classe .pdf-thumbnail
-    var thumbnailContainers = document.querySelectorAll('.pdf-thumbnail');
-    thumbnailContainers.forEach(function(container) {
-        var pdfUrl = container.getAttribute('data-pdf');
-        loadPdfThumbnail(pdfUrl, container);
-    });
+        function loadFileThumbnail(fileUrl, container) {
+            var fileExtension = fileUrl.split('.').pop().toLowerCase();
+
+            if (fileExtension === 'pdf') {
+                // Afficher la miniature PDF
+                loadPdfThumbnail(fileUrl, container);
+            } else if (fileExtension === 'png' || fileExtension === 'jpeg' || fileExtension === 'jpg') {
+                // Afficher la miniature d'image
+                loadImageThumbnail(fileUrl, container);
+            } else {
+                // Gérer d'autres types de fichiers ici
+                // Par exemple, afficher une icône générique pour les types de fichiers inconnus
+                displayGenericThumbnail(container);
+            }
+        }
+
+        function loadImageThumbnail(imageUrl, container) {
+            var img = new Image();
+            img.src = imageUrl;
+            img.classList.add('file-thumbnail-img');
+            container.appendChild(img);
+
+            // Gérer le clic sur la miniature pour afficher le fichier complet (image)
+            container.addEventListener('click', function () {
+                // Afficher l'image complète dans une boîte de dialogue
+                var fullImageContainer = document.createElement('div');
+                fullImageContainer.classList.add('full-image-container');
+
+                var fullImg = new Image();
+                fullImg.src = imageUrl;
+
+                fullImageContainer.appendChild(fullImg);
+                fullImageContainer.style.display = 'block';
+                document.body.appendChild(fullImageContainer);
+
+                // Gérer le clic en dehors de la boîte de dialogue pour la fermer
+                fullImageContainer.addEventListener('click', function (event) {
+                    if (event.target === fullImageContainer) {
+                        fullImageContainer.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        function displayGenericThumbnail(container) {
+            // Afficher une icône générique ou un message pour les types de fichiers inconnus
+            var genericThumbnail = document.createElement('div');
+            genericThumbnail.textContent = 'Fichier non pris en charge';
+            container.appendChild(genericThumbnail);
+        }
+
+        // Chargement des miniatures pour chaque conteneur avec la classe .file-thumbnail
+        var thumbnailContainers = document.querySelectorAll('.pdf-thumbnail');
+        thumbnailContainers.forEach(function (container) {
+            var fileUrl = container.getAttribute('data-pdf');
+            loadFileThumbnail(fileUrl, container);
+        });
+
 
     const fileInput = document.getElementById('userAttachmentFile');
     const filenameSpan = document.querySelector('.filename');

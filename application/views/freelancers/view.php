@@ -12,7 +12,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
     body {
         height: 100vh;
     }
-    .pdf-thumbnail-img {
+    .file-thumbnail-img {
     max-width: 100%;
     height: auto;
     cursor: pointer;
@@ -480,29 +480,33 @@ if ($totalCount > 0) {
                                             foreach ($raterUser as $rating) {
                                                 if ($ratingsCount < 3) {
                                                 ?>
-                                                <a href="<?= base_url('company/freelancer/'.$rating->idUser) ?>" title="Visiter le portfolio" class="flex-shrink-0 mr-2" target="_blank">
-                                                    <div class="flex grid-cols-2 items-center mb-4">
-                                                        <div class="mr-2 mt-2">
-                                                            <div class="w-10 h-10" style="font-size:1rem;">
-                                                                <img src="<?=base_url($rating->userAvatarPath)?>" class="w-10 h-10 rounded-full flex items-center justify-center" alt="User Photo">
+                                                        <div class="items-center mb-4 mt-4">
+                                                            <div class="flex items-center">
+                                                                <div class="w-10 h-10" style="font-size:1rem;">
+                                                                    <img src="<?=base_url($rating->companyLogoPath)?>" class="w-10 h-10 rounded-full flex items-center justify-center" alt="User Photo">
+                                                                </div>
+                                                                <div class="ml-4">
+                                                                    <p class="text "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
+                                                                    <p class="text mt-1  text-gray-400"><?= $rating->companyName?></p>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div>
-                                                            <p class="text ml-4"><?= '"'.$rating->ratingComment.'"'?></p>
-                                                            <div class="flex items-center ml-4">
-                                                                <?php for ($i = 1; $i <= 5; $i++) { ?>
-                                                                    <?php if ($i <= $rating->ratingStars) { ?>
-                                                                        <img src="<?php echo base_url('assets/img/fill-star.svg'); ?>" class="w-4 h-4">
-                                                                    <?php } else { ?>
-                                                                        <img src="<?php echo base_url('assets/img/light-star.svg'); ?>" class="w-4 h-4">
+                                                            <div class="flex items-center mt-4 mb-4">
+                                                                <div class="flex items-center">
+                                                                    <?php for ($i = 1; $i <= 5; $i++) { ?>
+                                                                        <?php if ($i <= $rating->ratingStars) { ?>
+                                                                            <img src="<?php echo base_url('assets/img/fill-star.svg'); ?>" class="w-4 h-4">
+                                                                        <?php } else { ?>
+                                                                            <img src="<?php echo base_url('assets/img/light-star.svg'); ?>" class="w-4 h-4">
+                                                                        <?php } ?>
                                                                     <?php } ?>
-                                                                <?php } ?>
+                                                                </div>
+                                                                <p class="text text-sm text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
+
+                                                            </div>  
+                                                            <div>
+                                                                <p class="text"><?= '"'.$rating->ratingComment.'"'?></p>
                                                             </div>
-                                                            <p class="text ml-4 mt-2 "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
-                                                            <p class="text text-sm text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
                                                         </div>
-                                                    </div>
-                                                </a>
                                                 <?php
                                                 $ratingsCount++;
                                                 } else {
@@ -510,16 +514,19 @@ if ($totalCount > 0) {
                                                     //echo $ratingsCount;
                                                     ?>
                                                     <div id="more-avis" class="hidden">
-                                                        <a href="<?= base_url('company/freelancer/'.$rating->idUser) ?>" title="Visiter le portfolio" class="flex-shrink-0 mr-2" target="_blank">
-                                                            <div class="flex grid-cols-2 items-center mb-4">
-                                                                <div class="mr-2 mt-2">
+                                                        
+                                                            <div class="items-center mb-4 mt-4">
+                                                                <div class="flex items-center">
                                                                     <div class="w-10 h-10" style="font-size:1rem;">
-                                                                        <img src="<?=base_url($rating->userAvatarPath)?>" class="w-10 h-10 rounded-full flex items-center justify-center" alt="User Photo">
+                                                                        <img src="<?=base_url($rating->companyLogoPath)?>" class="w-10 h-10 rounded-full flex items-center justify-center" alt="User Photo">
+                                                                    </div>
+                                                                    <div class="ml-4">
+                                                                        <p class="text "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
+                                                                        <p class="text mt-1  text-gray-400"><?= $rating->companyName?></p>
                                                                     </div>
                                                                 </div>
-                                                                <div>
-                                                                    <p class="text ml-4"><?= '"'.$rating->ratingComment.'"'?></p>
-                                                                    <div class="flex items-center ml-4">
+                                                                <div class="flex items-center mt-4 mb-4">
+                                                                    <div class="flex items-center">
                                                                         <?php for ($i = 1; $i <= 5; $i++) { ?>
                                                                             <?php if ($i <= $rating->ratingStars) { ?>
                                                                                 <img src="<?php echo base_url('assets/img/fill-star.svg'); ?>" class="w-4 h-4">
@@ -528,11 +535,14 @@ if ($totalCount > 0) {
                                                                             <?php } ?>
                                                                         <?php } ?>
                                                                     </div>
-                                                                    <p class="text ml-4 mt-2 "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
                                                                     <p class="text text-sm text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
+
+                                                                </div>  
+                                                                <div>
+                                                                    <p class="text"><?= '"'.$rating->ratingComment.'"'?></p>
                                                                 </div>
                                                             </div>
-                                                        </a>
+                                                        
                                                     </div>
                                                         <button id="extra-avis-button" class="text-primary mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">
                                                             Voir plus
@@ -558,6 +568,10 @@ if ($totalCount > 0) {
                         </div>
                     </div>
                     <div class="w-3/4 sticky top-0">
+                        <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
+                            <h2 class="text-xl font-bold mb-4">À propos de moi</h2>
+                            <p class="text-lg text-gray-500 mb-4 mt-4 dark:text-white"><?= $user->userBio ?></p>
+                        </div>
                         <div class="w-full">
                             <div class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                                 <h2 class="text-xl font-bold mb-4 flex items-center cursor-pointer" id="skillsTitle">
@@ -690,15 +704,16 @@ if ($totalCount > 0) {
                                 <?php if (is_array($attachments) && !empty($attachments)) { ?>
                                     <div class="grid grid-cols-4 gap-8">
                                         <?php foreach ($attachments as $index => $attachment) { ?>
-                                            <div class="border border-1 p-2 mr-4 mb-4 relative rounded-lg bg-white">
+                                            <div class="relative flex justify-center items-center border border-1 p-2 mr-4 mb-4 relative rounded-lg bg-white">
                                                 <h3 class="text-lg font-medium"><?= $attachment->attachmentName ?></h3>
-                                                <div class="pdf-thumbnail relative z-10 mb-2" data-pdf="<?= base_url($attachment->attachmentPath) ?>">
-                                                    <div class="absolute top-0 right-0 flex space-x-4 z-20">
+                                                <div class="pdf-thumbnail overflow-hidden z-10 mb-2" style="max-height: 14rem" data-pdf="<?= base_url($attachment->attachmentPath) ?>">
+                                                    <div class="absolute top-0 right-0  mr-4 mt-4 flex space-x-4 z-20">
                                                     <a href="<?= base_url($attachment->attachmentPath) ?>" download class="download-icon text-gray-400 hover:text-gray-900" onclick="event.stopPropagation();">
                                                         <i class="fas fa-download"></i>
                                                     </a>
                                                     </div>
-                                                </div>              
+                                                </div>
+                                                
                                             </div>
                                         <?php } ?>
                                     </div>
@@ -868,7 +883,7 @@ if ($totalCount > 0) {
                     var thumbnailUrl = canvas.toDataURL();
                     var img = new Image();
                     img.src = thumbnailUrl;
-                    img.classList.add('pdf-thumbnail-img');
+                    img.classList.add('file-thumbnail-img');
 
                     // Ajouter l'image miniature dans le conteneur spécifié
                     container.appendChild(img);
@@ -915,12 +930,63 @@ if ($totalCount > 0) {
         });
     }
 
-    // Chargement des miniatures pour chaque conteneur avec la classe .pdf-thumbnail
-    var thumbnailContainers = document.querySelectorAll('.pdf-thumbnail');
-    thumbnailContainers.forEach(function(container) {
-        var pdfUrl = container.getAttribute('data-pdf');
-        loadPdfThumbnail(pdfUrl, container);
-    });
+        function loadFileThumbnail(fileUrl, container) {
+            var fileExtension = fileUrl.split('.').pop().toLowerCase();
+
+            if (fileExtension === 'pdf') {
+                // Afficher la miniature PDF
+                loadPdfThumbnail(fileUrl, container);
+            } else if (fileExtension === 'png' || fileExtension === 'jpeg' || fileExtension === 'jpg') {
+                // Afficher la miniature d'image
+                loadImageThumbnail(fileUrl, container);
+            } else {
+                // Gérer d'autres types de fichiers ici
+                // Par exemple, afficher une icône générique pour les types de fichiers inconnus
+                displayGenericThumbnail(container);
+            }
+        }
+
+        function loadImageThumbnail(imageUrl, container) {
+            var img = new Image();
+            img.src = imageUrl;
+            img.classList.add('file-thumbnail-img');
+            container.appendChild(img);
+
+            // Gérer le clic sur la miniature pour afficher le fichier complet (image)
+            container.addEventListener('click', function () {
+                // Afficher l'image complète dans une boîte de dialogue
+                var fullImageContainer = document.createElement('div');
+                fullImageContainer.classList.add('full-image-container');
+
+                var fullImg = new Image();
+                fullImg.src = imageUrl;
+
+                fullImageContainer.appendChild(fullImg);
+                fullImageContainer.style.display = 'block';
+                document.body.appendChild(fullImageContainer);
+
+                // Gérer le clic en dehors de la boîte de dialogue pour la fermer
+                fullImageContainer.addEventListener('click', function (event) {
+                    if (event.target === fullImageContainer) {
+                        fullImageContainer.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        function displayGenericThumbnail(container) {
+            // Afficher une icône générique ou un message pour les types de fichiers inconnus
+            var genericThumbnail = document.createElement('div');
+            genericThumbnail.textContent = 'Fichier non pris en charge';
+            container.appendChild(genericThumbnail);
+        }
+
+        // Chargement des miniatures pour chaque conteneur avec la classe .file-thumbnail
+        var thumbnailContainers = document.querySelectorAll('.pdf-thumbnail');
+        thumbnailContainers.forEach(function (container) {
+            var fileUrl = container.getAttribute('data-pdf');
+            loadFileThumbnail(fileUrl, container);
+        });
 
     const fileInput = document.getElementById('userAttachmentFile');
     const filenameSpan = document.querySelector('.filename');

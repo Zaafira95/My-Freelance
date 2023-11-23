@@ -130,9 +130,11 @@ else if ($user->userType == "sales"){
                                 </a>
                                 <div>
                                     <p class="font-bold text-3xl"><?=$mission->missionName?></p>
+                                    <a href="<?=base_url('user/companyView/'.$company->idCompany)?>">
                                     <p>
                                         <span class="font-bold text-2xl"><?=$company->companyName?></span>
                                     </p>
+                                    </a>
                                     <p class="font-bold text-xl"><?=$mission->missionTJM.'€/Jour'?>
                                     <p class="font-medium text-xl">
                                     <?php foreach ($jobsAll as $joba): ?>
@@ -198,6 +200,15 @@ else if ($user->userType == "sales"){
                                         <button id="generate-pdf-btn" class="bg-primary mb-4 hover:bg-blue-700 text-white py-2 px-4 rounded-full">
                                             PDF
                                         </button>
+                                    </div>
+                                    <div>
+                                        <?php if($user->userType == 'freelance') { ?>
+                                        <a href="<?=base_url('user/companyView/'.$company->idCompany)?>">
+                                            <button class="border border-primary text-primary mb-4 py-2 px-4 rounded-full">
+                                                Voir l'entreprise 
+                                            </button>
+                                        </a>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>
@@ -586,7 +597,7 @@ else if ($user->userType == "sales"){
                         <div class="w-full h-full flex items-start justify-center" style="width:500px;">
                             <div class="flex items-center">
                                 <div class="mr-4">
-                                    <img src="<?=base_url('assets/img/airbnb.png')?>" alt="Logo de l'entreprise" class="w-10 h-10 rounded-full">
+                                    <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="w-10 h-10 rounded-full">
                                 </div>
                                 <div class="w-3/4 mr-4">
                                     <h2 class="font-bold text-lg"><?=$companyMission->missionName?></h2>

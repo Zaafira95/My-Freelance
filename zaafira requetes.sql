@@ -1,17 +1,10 @@
-/* drop job related fields in 'users' */
+/* add of company location */
 
-ALTER TABLE cafecreme.users DROP FOREIGN KEY Users_fk0;
-ALTER TABLE `users` DROP `userJobId`;
+ALTER TABLE `company` ADD `companyLocalisation` VARCHAR(255) NULL DEFAULT NULL AFTER `companyBannerPath`;
 
-ALTER TABLE `users` DROP `userJobName`;
+UPDATE `company` SET `companyLocalisation` = 'Paris' WHERE `company`.`idCompany` = 1;
 
-
-
-
-
-
-
-
+UPDATE `company` SET `companyLocalisation` = 'Paris' WHERE `company`.`idCompany` = 2;
 
 
 

@@ -412,7 +412,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                     <div class="flex flex-wrap w-full pb-4 mb-12 mt-4" id="missions-section">
                         <div class="w-full flex flex-wrap justify-between items-center">
                             <h1 class="text-2xl font-bold mb-4 mt-4">Nos missions</h1>
-                            <a href="<?php echo base_url('Company/missionAdd');?>" class="text-primary mt-2 border border-primary px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">Ajouter une offre</a>
+                            <a href="<?php echo base_url('Company/missionAdd');?>" class="px-4 py-1 rounded 2 hover:bg-primary-900 bg-primary-700 text-white">Ajouter une offre</a>
                         </div>
                         <div class="grid grid-cols-2 gap-4">
                             <?php foreach($missions as $mission): ?>

@@ -246,6 +246,8 @@ class User_model extends CI_Model {
             $this->db->set('experienceDateFin', $userExperienceDateFin);
             $this->db->set('experienceUserId', $userId);
             $this->db->insert('experience');
+            $experienceId = $this->db->insert_id();
+            return $experienceId; 
            
         }
 

@@ -1373,8 +1373,13 @@ if ($totalCount > 0) {
                             </div>
 
                             
-                    
-                    <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
+
+                </div>
+                
+            </div>
+
+                                
+            <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                         <h2 class="text-xl font-bold mb-4">Portfolio & Réalisations </h2>
                         <?php if (is_array($attachments) && !empty($attachments)) { ?>
                             <div class="grid grid-cols-4 gap-8">
@@ -1419,8 +1424,6 @@ if ($totalCount > 0) {
                             </button>
                         </div>
                     </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>

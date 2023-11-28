@@ -375,6 +375,18 @@ class User extends CI_Controller {
         $userExperienceDateFin = $this->input->post('userExperienceDateFin');
         
         $this->User_model->updateUserExperience($experienceId, $userId, $userExperienceJob, $userExperienceCompany, $userExperienceDescription, $userExperienceDateDebut, $userExperienceDateFin);
+        $skills = $this->input->post("skillsAll");
+        $levels = $this->input->post("skillsLevel");
+        
+        // Bouclez à travers les compétences et les niveaux associés
+        $this->User_model->deleteUserExperienceSkills($experienceId);
+            for ($i = 0; $i < count($skills); $i++) {
+                $skillId = $skills[$i];
+                $level = $levels[$i];
+
+                // Ajoutez les compétences de mission à la table missionSkills
+                $this->User_model->updateUserExperienceSkills($experienceId, $skillId, $level);
+            }
 
         $this->session->set_flashdata('message', 'Votre expérience a bien été mise à jour !');
         $this->session->set_flashdata('status', 'success');
@@ -1039,28 +1051,6 @@ class User extends CI_Controller {
     }
     
     
-    public function updateUserExperienceSkills($experienceId){
-        $userId = $this->session->userdata('userId');
-        $this->load->model('User_model');
-        $skills = $this->input->post("skillsAll");
-        $levels = $this->input->post("skillsLevel");
-        
-        // Bouclez à travers les compétences et les niveaux associés
-        $this->User_model->deleteUserExperienceSkills($experienceId);
-            for ($i = 0; $i < count($skills); $i++) {
-                $skillId = $skills[$i];
-                $level = $levels[$i];
-
-                // Ajoutez les compétences de mission à la table missionSkills
-                $this->User_model->updateUserExperienceSkills($experienceId, $skillId, $level);
-            }
-        
-    
-        $this->session->set_flashdata('message', 'Vos compétences ont bien été mises à jour !');
-        $this->session->set_flashdata('status', 'success');
-        redirect($_SERVER['HTTP_REFERER']);
-    }
-
     public function search_jobs() {
         $term = $this->input->post('term');
         $this->load->model('User_model'); 

@@ -898,6 +898,7 @@ else if ($user->userType == "sales"){
 
     html2pdf().from(clonedContent).set(opt).save();
   });
+});
 
 
     function toggleCustomMessage() {

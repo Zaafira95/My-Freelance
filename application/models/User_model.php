@@ -27,6 +27,7 @@ class User_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('experience');
         $this->db->where('experienceUserId', $userId);
+        $this->db->order_by('experienceDateDebut', 'DESC');
         $query = $this->db->get();
         return $query->result();
     }
@@ -80,7 +81,26 @@ class User_model extends CI_Model {
         return $query->result();
     }
     
+    public function getExperienceSkills($idExperience) {
+        $this->db->select('skills.skillName, skills.skillId, experienceSkills.experienceSkillsExpertise,  experienceSkills.experienceSkills_skillId');
+        $this->db->from('experienceSkills');
+        $this->db->join('skills', 'experienceSkills.experienceSkills_skillId = skills.skillId');
+        $this->db->where('experienceSkills.experienceSkills_experienceId', $idExperience);
+        $query = $this->db->get();
+        return $query->result();
+    }
     
+    public function deleteUserExperienceSkills($experienceId){
+        $this->db->where('experienceSkills_experienceId', $experienceId);
+        $this->db->delete('experienceSkills');
+    }
+
+    public function updateUserExperienceSkills($experienceId, $skillId, $level){
+        $this->db->set('experienceSkills_experienceId', $experienceId);
+        $this->db->set('experienceSkills_skillId', $skillId);
+        $this->db->set('experienceSkillsExpertise', $level);
+        $this->db->insert('experienceSkills');
+    }
 
     public function getCompanyMission($idMissions)
     {
@@ -227,6 +247,8 @@ class User_model extends CI_Model {
             $this->db->set('experienceDateFin', $userExperienceDateFin);
             $this->db->set('experienceUserId', $userId);
             $this->db->insert('experience');
+            $experienceId = $this->db->insert_id();
+            return $experienceId; 
            
         }
 

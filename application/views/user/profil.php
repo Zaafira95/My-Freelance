@@ -370,7 +370,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
 foreach ($experiences as $index => $experience) {
 ?>
     <div id="updateUserExperience<?=$index?>" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
-        <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+        <div class="relative p-4 w-full max-w-2xl h-full md:h-auto" style="height:90%; margin-top:0px; margin-bottom:20px">
             <!-- Modal content -->
             <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
                 <!-- Modal header -->
@@ -401,6 +401,36 @@ foreach ($experiences as $index => $experience) {
                         <textarea id="userExperienceDescription" name="userExperienceDescription" rows="3" class="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><?=$experience->experienceDescription?></textarea>
                     </div>
                     <!-- Rest of the form fields for the experience -->
+                    <div class="mt-6 mb-6 bg-white rounded-lg dark:bg-gray-800 text-black">
+                    <label for="userExperienceSkills" class="block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Vos compétences</label>
+
+                        <div id="experience-skills-container-<?=$index?>">
+                        <?php foreach ($experienceSkills[$experience->idExperience] as $experienceSkill): ?>
+                            <div class="flex flex-1 mb-4 skill-row">
+                                <div class="w-3/4 mr-2 text-black">
+                                    <!--<select id="skillsAll" name="skillsAll[]"  class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>-->
+                                    <select id="skillsAll" name="skillsAll[]"  class="new-skill-select bg-white border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                        <option value="">Sélectionnez une compétence</option>
+                                        <?php foreach ($skillsAll as $skill): ?>
+                                            <option value="<?= $skill['skillId'] ?>" <?= ($experienceSkill->experienceSkills_skillId == $skill['skillId']) ? 'selected' : '' ?>><?= $skill['skillName'] ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                                <div class="w-1/4">
+                                    <select name="skillsLevel[]" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                        <option value="1" <?= ($experienceSkill->experienceSkillsExpertise == 1) ? 'selected' : '' ?>>Junior</option>
+                                        <option value="2" <?= ($experienceSkill->experienceSkillsExpertise == 2) ? 'selected' : '' ?>>Intermédiaire</option>
+                                        <option value="3" <?= ($experienceSkill->experienceSkillsExpertise == 3) ? 'selected' : '' ?>>Expert</option>
+                                    </select>
+                                </div>
+                                <button type="button" class="text-red-600 hover:text-red-900 focus:outline-none ml-4 delete-skill-row">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        <?php endforeach; ?>
+                        </div>
+                        <button id="add-experience-skill-btn" type="button" class="add-experience-skill-btn py-2 px-4 bg-primary text-white rounded-lg" data-container="experience-skills-container-<?=$index?>">Ajouter une compétence</button>
+                    </div>
 
                     <div class="flex items-center justify-between mt-4">
                         <div>
@@ -430,6 +460,7 @@ foreach ($experiences as $index => $experience) {
             </div>
         </div>
     </div>
+
 <?php
 }
 ?>
@@ -469,6 +500,14 @@ foreach ($experiences as $index => $experience) {
                     <label for="userExperienceDescription" class="block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Description</label>
                     <textarea id="userExperienceDescription" name="userExperienceDescription" rows="3" class="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
 
+                </div>
+                <div class="mt-6 mb-6 bg-white rounded-lg dark:bg-gray-800 text-black">
+                    <label for="userExperienceSkills" class="block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Vos compétences</label>
+
+                    <div id="experience-skills-container">
+
+                    </div>
+                    <button id="add-experience-skill-btn" type="button" class="add-experience-skill-btn py-2 px-4 bg-primary text-white rounded-lg" data-container="experience-skills-container">Ajouter une compétence</button>
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
                     <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
@@ -633,7 +672,7 @@ foreach ($experiences as $index => $experience) {
             </div>
             <form action="<?= base_url("user/editUserSkills") ?>" method="post" enctype="multipart/form-data">
                 <div class="p-4 bg-white rounded-lg dark:bg-gray-800 text-black">
-                    <div id="skills-container">
+                    <div>
                     <?php 
                     $index = 0;
                     foreach ($skills as $skill): ?>
@@ -1263,8 +1302,51 @@ if ($totalCount > 0) {
                                                     </div>
                                                 </div>
 
-                                                <p class="text-lg text-gray-500 mb-4 mt-4 ml-2 mr-4 dark:text-white"><?= $experience->experienceDescription ?></p>
+                                                <p class="text-lg text-gray-500 mb-6 mt-4 ml-2 mr-4 dark:text-white"><?= $experience->experienceDescription ?></p>
+                                                <div class="skills-container mb-4">
+                                                <?php
+                                                    $dataExperienceSkills = [];
+                                                    foreach ($experienceSkills[$experience->idExperience] as $skill):
+                                                        $dataExperienceSkills[] = $skill->skillName;
+                                                    $dataExperienceSkillsString = implode(',', $dataExperienceSkills);
+                                                
+                                                        // Déterminer le niveau en fonction de la valeur de missionSkillsExperience
+                                                        $level = '';
+                                                        $color = '';
+                                                        switch ($skill->experienceSkillsExpertise) {
+                                                            case 1:
+                                                                $level = 'Junior';
+                                                                $color = '#BEE3F8'; // Couleur pour le niveau junior
+                                                                $textdark = "text-black";
+                                                                $text = "text-black";
+                                                                
+                                                                break;
+                                                            case 2:
+                                                                $level = 'Intermédiaire';
+                                                                $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
+                                                                $textdark = "text-white";
+                                                                $text = "text-black";
+                                                                break;
+                                                            case 3:
+                                                                $level = 'Expert';
+                                                                $color = '#2C5282'; // Couleur pour le niveau expert
+                                                                $textdark = "text-white";
+                                                                $text = "text-white";
+                                                                break;
+                                                            default:
+                                                                $level = 'N/A'; // Si la valeur de missionSkillsExperience n'est pas valide, afficher "N/A"
+                                                                break;
+                                                        }
+                                                    ?>
+                                                    <div class="skill-item" data-level="<?=$level?>">
+                                                        <span class="dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                                                        <div class="skill-level"><?=$level?></div>
+                                                    </div>
+                                                         
+                                                <?php endforeach; ?>
+                                                                                               
                                             </div>
+
                                             <?php
                                             if ($experienceCount < 2) {
                                             ?>
@@ -1289,6 +1371,7 @@ if ($totalCount > 0) {
                                     </button>
                                 </div>
                             </div>
+
                             <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                                 <h2 class="text-xl font-bold mb-4">Portfolio & Réalisations </h2>
                                 <?php if (is_array($attachments) && !empty($attachments)) { ?>
@@ -1309,32 +1392,53 @@ if ($totalCount > 0) {
                                                 
                                             </div>
 
-                                            <div id="deleteAttachmentConfirmationModal<?=$index?>" class="hidden fixed flex inset-0 items-center justify-center z-50">
-                                                <div class="fixed inset-0 bg-black opacity-50"></div>
-                                                <div class="relative bg-gray-50 rounded-lg shadow p-6 border border-gray-800 dark:bg-gray-800 sm:p-5">
-                                                    <h3 class="text-lg font-semibold mb-4">Confirmation de suppression</h3>
-                                                    <p class="text-gray-700 dark:text-white mb-6">Êtes-vous sûr de vouloir supprimer cette pièce jointe ?</p>
-                                                    <div class="flex justify-end">
-                                                        <button type="button" onclick="hideModal('deleteAttachmentConfirmationModal<?=$index?>');" class="text-gray-600 inline-flex items-center hover:text-white hover:bg-gray-800 border-gray-600  focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500  dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">Annuler</button>
-                                                        <a href="<?=base_url("user/deleteUserAttachment/".$attachment->idAttachment)?>" class="text-red-800 inline-flex items-center hover:text-white hover:bg-red-900 border-red-900  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500  dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Supprimer</a>
-                                                    </div>
-                                                </div>
+                        </div>
+                    </div>
+                    
+                    <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
+                        <h2 class="text-xl font-bold mb-4">Portfolio & Réalisations </h2>
+                        <?php if (is_array($attachments) && !empty($attachments)) { ?>
+                            <div class="grid grid-cols-4 gap-8">
+                                <?php foreach ($attachments as $index => $attachment) { ?>
+                                    <div class="relative flex justify-center items-center border border-1 p-2 mr-4 mb-4 relative rounded-lg bg-white">
+                                        <h3 class="text-lg font-medium"><?= $attachment->attachmentName ?></h3>
+                                        <div class="pdf-thumbnail overflow-hidden z-10 mb-2" style="max-height: 14rem" data-pdf="<?= base_url($attachment->attachmentPath) ?>">
+                                            <div class="absolute top-0 right-0 mr-4 mt-4 flex space-x-4 z-20">
+                                            <a href="<?= base_url($attachment->attachmentPath) ?>" download class="download-icon text-gray-400 hover:text-gray-900" onclick="event.stopPropagation();">
+                                                <i class="fas fa-download"></i>
+                                            </a>
+                                            <a href="#" class="delete-icon text-red-800 hover:text-red-900" onclick="event.stopPropagation(); showModal('deleteAttachmentConfirmationModal<?=$index?>');">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
                                             </div>
-
-                                        <?php } ?>
+                                        </div>
+                                        
                                     </div>
 
-                            <?php } else { ?>
-                                <p class="mt-2 mb-2">Aucune pièce jointe disponible.</p>
-                            <?php } ?>
+                                    <div id="deleteAttachmentConfirmationModal<?=$index?>" class="hidden fixed flex inset-0 items-center justify-center z-50">
+                                        <div class="fixed inset-0 bg-black opacity-50"></div>
+                                        <div class="relative bg-gray-50 rounded-lg shadow p-6 border border-gray-800 dark:bg-gray-800 sm:p-5">
+                                            <h3 class="text-lg font-semibold mb-4">Confirmation de suppression</h3>
+                                            <p class="text-gray-700 dark:text-white mb-6">Êtes-vous sûr de vouloir supprimer cette pièce jointe ?</p>
+                                            <div class="flex justify-end">
+                                                <button type="button" onclick="hideModal('deleteAttachmentConfirmationModal<?=$index?>');" class="text-gray-600 inline-flex items-center hover:text-white hover:bg-gray-800 border-gray-600  focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500  dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">Annuler</button>
+                                                <a href="<?=base_url("user/deleteUserAttachment/".$attachment->idAttachment)?>" class="text-red-800 inline-flex items-center hover:text-white hover:bg-red-900 border-red-900  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500  dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Supprimer</a>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                   
-                                <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
-                                    <button id="addUserAttachment" data-modal-toggle="addUserAttachment" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
+                                <?php } ?>
                             </div>
+
+                    <?php } else { ?>
+                        <p class="mt-2 mb-2">Aucune pièce jointe disponible.</p>
+                    <?php } ?>
+
+                            
+                        <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
+                            <button id="addUserAttachment" data-modal-toggle="addUserAttachment" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                                <i class="fas fa-plus"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1538,6 +1642,53 @@ if ($totalCount > 0) {
                     /* options spécifiques à Choices */
                 });
             });
+        });
+        // Utilisez une classe pour cibler les boutons "Ajouter une compétence"
+        $('.add-experience-skill-btn').on('click', function() {
+            const container = $(this).data('container'); // Récupérer le conteneur correspondant à ce bouton
+
+            const newSkillRow2 = `
+                <div class="flex flex-1 mb-4 skill-row">
+                    <div class="w-3/4 mr-2 text-black">
+                        <select name="skillsAll[]" class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                            <option value="">Sélectionnez une compétence</option>
+                            <?php foreach ($skillsAll as $skill): ?>
+                                <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="w-1/4">
+                        <select name="skillsLevel[]" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <option value="1">Junior</option>
+                            <option value="2">Intermédiaire</option>
+                            <option value="3">Expert</option>
+                        </select>
+                    </div>
+                    <button type="button" class="text-red-600 hover:text-red-900 focus:outline-none ml-4 delete-skill-row">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `;
+            $('#' + container).append(newSkillRow2);
+
+            // Désinitialiser les instances Choices existantes
+            $('.new-skill-select').each(function() {
+                const choicesInstance2 = this.choices;
+                if (choicesInstance2) {
+                    choicesInstance2.destroy();
+                }
+            });
+            // Réinitialiser les instances Choices
+            $('.new-skill-select').each(function() {
+                new Choices(this, {
+                    /* options spécifiques à Choices */
+                });
+            });
+        });
+
+        $(document).on('click', '.delete-skill-row', function() {
+            // Supprimez le parent .skill-row
+            $(this).closest('.skill-row').remove();
         });
     });
 

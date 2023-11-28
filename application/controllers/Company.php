@@ -99,6 +99,15 @@ class Company extends CI_Controller {
         $experiences = $this->Company_model->getUserExperience($id);
         $data['experiences'] = $experiences;
 
+        // Récupérer les skills de chaque experience
+        $experienceSkills = array();
+        foreach ($experiences as $experience) {
+            $idExperience = $experience->idExperience;
+            $experienceSkills[$idExperience] = $this->Company_model->getExperienceSkills($idExperience);
+        }
+        $data['experienceSkills'] = $experienceSkills;
+ 
+
         $attachments = $this->Company_model->getUserAttachement($id);
         $data['attachments'] = $attachments;
 

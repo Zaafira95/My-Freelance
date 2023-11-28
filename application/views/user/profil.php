@@ -1372,6 +1372,26 @@ if ($totalCount > 0) {
                                 </div>
                             </div>
 
+                            <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
+                                <h2 class="text-xl font-bold mb-4">Portfolio & Réalisations </h2>
+                                <?php if (is_array($attachments) && !empty($attachments)) { ?>
+                                    <div class="grid grid-cols-4 gap-8">
+                                        <?php foreach ($attachments as $index => $attachment) { ?>
+                                            <div class="relative flex justify-center items-center shadow p-2 mr-4 mb-4 relative rounded-lg bg-white">
+                                                <h3 class="text-lg font-medium"><?= $attachment->attachmentName ?></h3>
+                                                <div class="pdf-thumbnail overflow-hidden z-10 mb-2" style="max-height: 14rem" data-pdf="<?= base_url($attachment->attachmentPath) ?>">
+                                                    <div class="absolute top-0 right-0 mr-4 mt-4 flex space-x-4 z-20">
+                                                    <a href="<?= base_url($attachment->attachmentPath) ?>" download class="download-icon text-gray-400 hover:text-gray-900" onclick="event.stopPropagation();">
+                                                        <i class="fas fa-download"></i>
+                                                    </a>
+                                                    <a href="#" class="delete-icon text-red-800 hover:text-red-900" onclick="event.stopPropagation(); showModal('deleteAttachmentConfirmationModal<?=$index?>');">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+
                         </div>
                     </div>
                     

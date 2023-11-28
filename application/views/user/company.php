@@ -1,5 +1,5 @@
 <?php
-$currentPage = 'company';
+$currentPage = 'companies';
 
 
 // Header Call

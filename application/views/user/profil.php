@@ -1372,28 +1372,7 @@ if ($totalCount > 0) {
                                 </div>
                             </div>
 
-                            <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                                <h2 class="text-xl font-bold mb-4">Portfolio & Réalisations </h2>
-                                <?php if (is_array($attachments) && !empty($attachments)) { ?>
-                                    <div class="grid grid-cols-4 gap-8">
-                                        <?php foreach ($attachments as $index => $attachment) { ?>
-                                            <div class="relative flex justify-center items-center shadow p-2 mr-4 mb-4 relative rounded-lg bg-white">
-                                                <h3 class="text-lg font-medium"><?= $attachment->attachmentName ?></h3>
-                                                <div class="pdf-thumbnail overflow-hidden z-10 mb-2" style="max-height: 14rem" data-pdf="<?= base_url($attachment->attachmentPath) ?>">
-                                                    <div class="absolute top-0 right-0 mr-4 mt-4 flex space-x-4 z-20">
-                                                    <a href="<?= base_url($attachment->attachmentPath) ?>" download class="download-icon text-gray-400 hover:text-gray-900" onclick="event.stopPropagation();">
-                                                        <i class="fas fa-download"></i>
-                                                    </a>
-                                                    <a href="#" class="delete-icon text-red-800 hover:text-red-900" onclick="event.stopPropagation(); showModal('deleteAttachmentConfirmationModal<?=$index?>');">
-                                                        <i class="fas fa-trash"></i>
-                                                    </a>
-                                                    </div>
-                                                </div>
-                                                
-                                            </div>
-
-                        </div>
-                    </div>
+                            
                     
                     <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                         <h2 class="text-xl font-bold mb-4">Portfolio & Réalisations </h2>
@@ -1412,7 +1391,6 @@ if ($totalCount > 0) {
                                             </a>
                                             </div>
                                         </div>
-                                        
                                     </div>
 
                                     <div id="deleteAttachmentConfirmationModal<?=$index?>" class="hidden fixed flex inset-0 items-center justify-center z-50">
@@ -1748,9 +1726,6 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- Inclure le PDF.js Worker -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js"></script>
 
-
-
-
 <script>
     // Fonction pour charger la miniature PDF dans un conteneur donné
     function loadPdfThumbnail(pdfUrl, container) {
@@ -1817,63 +1792,63 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-        function loadFileThumbnail(fileUrl, container) {
-            var fileExtension = fileUrl.split('.').pop().toLowerCase();
+    function loadFileThumbnail(fileUrl, container) {
+        var fileExtension = fileUrl.split('.').pop().toLowerCase();
 
-            if (fileExtension === 'pdf') {
-                // Afficher la miniature PDF
-                loadPdfThumbnail(fileUrl, container);
-            } else if (fileExtension === 'png' || fileExtension === 'jpeg' || fileExtension === 'jpg') {
-                // Afficher la miniature d'image
-                loadImageThumbnail(fileUrl, container);
-            } else {
-                // Gérer d'autres types de fichiers ici
-                // Par exemple, afficher une icône générique pour les types de fichiers inconnus
-                displayGenericThumbnail(container);
-            }
+        if (fileExtension === 'pdf') {
+            // Afficher la miniature PDF
+            loadPdfThumbnail(fileUrl, container);
+        } else if (fileExtension === 'png' || fileExtension === 'jpeg' || fileExtension === 'jpg') {
+            // Afficher la miniature d'image
+            loadImageThumbnail(fileUrl, container);
+        } else {
+            // Gérer d'autres types de fichiers ici
+            // Par exemple, afficher une icône générique pour les types de fichiers inconnus
+            displayGenericThumbnail(container);
         }
+    }
 
-        function loadImageThumbnail(imageUrl, container) {
-            var img = new Image();
-            img.src = imageUrl;
-            img.classList.add('file-thumbnail-img');
-            container.appendChild(img);
+    function loadImageThumbnail(imageUrl, container) {
+        var img = new Image();
+        img.src = imageUrl;
+        img.classList.add('file-thumbnail-img');
+        container.appendChild(img);
 
-            // Gérer le clic sur la miniature pour afficher le fichier complet (image)
-            container.addEventListener('click', function () {
-                // Afficher l'image complète dans une boîte de dialogue
-                var fullImageContainer = document.createElement('div');
-                fullImageContainer.classList.add('full-image-container');
+        // Gérer le clic sur la miniature pour afficher le fichier complet (image)
+        container.addEventListener('click', function () {
+            // Afficher l'image complète dans une boîte de dialogue
+            var fullImageContainer = document.createElement('div');
+            fullImageContainer.classList.add('full-image-container');
 
-                var fullImg = new Image();
-                fullImg.src = imageUrl;
+            var fullImg = new Image();
+            fullImg.src = imageUrl;
 
-                fullImageContainer.appendChild(fullImg);
-                fullImageContainer.style.display = 'block';
-                document.body.appendChild(fullImageContainer);
+            fullImageContainer.appendChild(fullImg);
+            fullImageContainer.style.display = 'block';
+            document.body.appendChild(fullImageContainer);
 
-                // Gérer le clic en dehors de la boîte de dialogue pour la fermer
-                fullImageContainer.addEventListener('click', function (event) {
-                    if (event.target === fullImageContainer) {
-                        fullImageContainer.style.display = 'none';
-                    }
-                });
+            // Gérer le clic en dehors de la boîte de dialogue pour la fermer
+            fullImageContainer.addEventListener('click', function (event) {
+                if (event.target === fullImageContainer) {
+                    fullImageContainer.style.display = 'none';
+                }
             });
-        }
-
-        function displayGenericThumbnail(container) {
-            // Afficher une icône générique ou un message pour les types de fichiers inconnus
-            var genericThumbnail = document.createElement('div');
-            genericThumbnail.textContent = 'Fichier non pris en charge';
-            container.appendChild(genericThumbnail);
-        }
-
-        // Chargement des miniatures pour chaque conteneur avec la classe .file-thumbnail
-        var thumbnailContainers = document.querySelectorAll('.pdf-thumbnail');
-        thumbnailContainers.forEach(function (container) {
-            var fileUrl = container.getAttribute('data-pdf');
-            loadFileThumbnail(fileUrl, container);
         });
+    }
+
+    function displayGenericThumbnail(container) {
+        // Afficher une icône générique ou un message pour les types de fichiers inconnus
+        var genericThumbnail = document.createElement('div');
+        genericThumbnail.textContent = 'Fichier non pris en charge';
+        container.appendChild(genericThumbnail);
+    }
+
+    // Chargement des miniatures pour chaque conteneur avec la classe .file-thumbnail
+    var thumbnailContainers = document.querySelectorAll('.pdf-thumbnail');
+    thumbnailContainers.forEach(function (container) {
+        var fileUrl = container.getAttribute('data-pdf');
+        loadFileThumbnail(fileUrl, container);
+    });
 
 
     const fileInput = document.getElementById('userAttachmentFile');
@@ -1895,4 +1870,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Afficher la taille maximale autorisée dans le div #fileSizeInfo
         $("#fileSizeInfo").text("La taille maximale autorisée est " + maxSizeInMB + " Mo.");
     });
+
+
 </script>

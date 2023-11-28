@@ -27,6 +27,7 @@ class User_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('experience');
         $this->db->where('experienceUserId', $userId);
+        $this->db->order_by('experienceDateDebut', 'DESC');
         $query = $this->db->get();
         return $query->result();
     }

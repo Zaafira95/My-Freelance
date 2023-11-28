@@ -1371,52 +1371,54 @@ if ($totalCount > 0) {
                                     </button>
                                 </div>
                             </div>
-                            <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                                <h2 class="text-xl font-bold mb-4">Portfolio & Réalisations </h2>
-                                <?php if (is_array($attachments) && !empty($attachments)) { ?>
-                                    <div class="grid grid-cols-4 gap-8">
-                                        <?php foreach ($attachments as $index => $attachment) { ?>
-                                            <div class="relative flex justify-center items-center border border-1 p-2 mr-4 mb-4 relative rounded-lg bg-white">
-                                                <h3 class="text-lg font-medium"><?= $attachment->attachmentName ?></h3>
-                                                <div class="pdf-thumbnail overflow-hidden z-10 mb-2" style="max-height: 14rem" data-pdf="<?= base_url($attachment->attachmentPath) ?>">
-                                                    <div class="absolute top-0 right-0 mr-4 mt-4 flex space-x-4 z-20">
-                                                    <a href="<?= base_url($attachment->attachmentPath) ?>" download class="download-icon text-gray-400 hover:text-gray-900" onclick="event.stopPropagation();">
-                                                        <i class="fas fa-download"></i>
-                                                    </a>
-                                                    <a href="#" class="delete-icon text-red-800 hover:text-red-900" onclick="event.stopPropagation(); showModal('deleteAttachmentConfirmationModal<?=$index?>');">
-                                                        <i class="fas fa-trash"></i>
-                                                    </a>
-                                                    </div>
-                                                </div>
-                                                
-                                            </div>
 
-                                            <div id="deleteAttachmentConfirmationModal<?=$index?>" class="hidden fixed flex inset-0 items-center justify-center z-50">
-                                                <div class="fixed inset-0 bg-black opacity-50"></div>
-                                                <div class="relative bg-gray-50 rounded-lg shadow p-6 border border-gray-800 dark:bg-gray-800 sm:p-5">
-                                                    <h3 class="text-lg font-semibold mb-4">Confirmation de suppression</h3>
-                                                    <p class="text-gray-700 dark:text-white mb-6">Êtes-vous sûr de vouloir supprimer cette pièce jointe ?</p>
-                                                    <div class="flex justify-end">
-                                                        <button type="button" onclick="hideModal('deleteAttachmentConfirmationModal<?=$index?>');" class="text-gray-600 inline-flex items-center hover:text-white hover:bg-gray-800 border-gray-600  focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500  dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">Annuler</button>
-                                                        <a href="<?=base_url("user/deleteUserAttachment/".$attachment->idAttachment)?>" class="text-red-800 inline-flex items-center hover:text-white hover:bg-red-900 border-red-900  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500  dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Supprimer</a>
-                                                    </div>
-                                                </div>
+                        </div>
+                    </div>
+                    
+                    <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
+                        <h2 class="text-xl font-bold mb-4">Portfolio & Réalisations </h2>
+                        <?php if (is_array($attachments) && !empty($attachments)) { ?>
+                            <div class="grid grid-cols-4 gap-8">
+                                <?php foreach ($attachments as $index => $attachment) { ?>
+                                    <div class="relative flex justify-center items-center border border-1 p-2 mr-4 mb-4 relative rounded-lg bg-white">
+                                        <h3 class="text-lg font-medium"><?= $attachment->attachmentName ?></h3>
+                                        <div class="pdf-thumbnail overflow-hidden z-10 mb-2" style="max-height: 14rem" data-pdf="<?= base_url($attachment->attachmentPath) ?>">
+                                            <div class="absolute top-0 right-0 mr-4 mt-4 flex space-x-4 z-20">
+                                            <a href="<?= base_url($attachment->attachmentPath) ?>" download class="download-icon text-gray-400 hover:text-gray-900" onclick="event.stopPropagation();">
+                                                <i class="fas fa-download"></i>
+                                            </a>
+                                            <a href="#" class="delete-icon text-red-800 hover:text-red-900" onclick="event.stopPropagation(); showModal('deleteAttachmentConfirmationModal<?=$index?>');">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
                                             </div>
-
-                                        <?php } ?>
+                                        </div>
+                                        
                                     </div>
 
-                            <?php } else { ?>
-                                <p class="mt-2 mb-2">Aucune pièce jointe disponible.</p>
-                            <?php } ?>
+                                    <div id="deleteAttachmentConfirmationModal<?=$index?>" class="hidden fixed flex inset-0 items-center justify-center z-50">
+                                        <div class="fixed inset-0 bg-black opacity-50"></div>
+                                        <div class="relative bg-gray-50 rounded-lg shadow p-6 border border-gray-800 dark:bg-gray-800 sm:p-5">
+                                            <h3 class="text-lg font-semibold mb-4">Confirmation de suppression</h3>
+                                            <p class="text-gray-700 dark:text-white mb-6">Êtes-vous sûr de vouloir supprimer cette pièce jointe ?</p>
+                                            <div class="flex justify-end">
+                                                <button type="button" onclick="hideModal('deleteAttachmentConfirmationModal<?=$index?>');" class="text-gray-600 inline-flex items-center hover:text-white hover:bg-gray-800 border-gray-600  focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500  dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">Annuler</button>
+                                                <a href="<?=base_url("user/deleteUserAttachment/".$attachment->idAttachment)?>" class="text-red-800 inline-flex items-center hover:text-white hover:bg-red-900 border-red-900  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500  dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Supprimer</a>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                   
-                                <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
-                                    <button id="addUserAttachment" data-modal-toggle="addUserAttachment" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
+                                <?php } ?>
                             </div>
+
+                    <?php } else { ?>
+                        <p class="mt-2 mb-2">Aucune pièce jointe disponible.</p>
+                    <?php } ?>
+
+                            
+                        <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
+                            <button id="addUserAttachment" data-modal-toggle="addUserAttachment" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                                <i class="fas fa-plus"></i>
+                            </button>
                         </div>
                     </div>
                 </div>

@@ -182,6 +182,14 @@ class User extends CI_Controller {
          // Récupérer l'expérience de l'utilisateur connecté avec l'expérience id
          $experiences = $this->User_model->getUserExperience($userId);
          $data['experiences'] = $experiences;
+
+        // Récupérer les skills de chaque experience
+        $experienceSkills = array();
+        foreach ($experiences as $experience) {
+            $idExperience = $experience->idExperience;
+            $experienceSkills[$idExperience] = $this->User_model->getExperienceSkills($idExperience);
+        }
+        $data['experienceSkills'] = $experienceSkills;
  
          // Récupérer les compétences de l'utilisateur connecté avec les compétences id
          $skills = $this->User_model->getUserSkillsAll($user->userId);
@@ -1030,6 +1038,28 @@ class User extends CI_Controller {
         redirect($_SERVER['HTTP_REFERER']);
     }
     
+    
+    public function updateUserExperienceSkills($experienceId){
+        $userId = $this->session->userdata('userId');
+        $this->load->model('User_model');
+        $skills = $this->input->post("skillsAll");
+        $levels = $this->input->post("skillsLevel");
+        
+        // Bouclez à travers les compétences et les niveaux associés
+        $this->User_model->deleteUserExperienceSkills($experienceId);
+            for ($i = 0; $i < count($skills); $i++) {
+                $skillId = $skills[$i];
+                $level = $levels[$i];
+
+                // Ajoutez les compétences de mission à la table missionSkills
+                $this->User_model->updateUserExperienceSkills($experienceId, $skillId, $level);
+            }
+        
+    
+        $this->session->set_flashdata('message', 'Vos compétences ont bien été mises à jour !');
+        $this->session->set_flashdata('status', 'success');
+        redirect($_SERVER['HTTP_REFERER']);
+    }
 
     public function search_jobs() {
         $term = $this->input->post('term');

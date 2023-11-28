@@ -103,7 +103,7 @@ include(APPPATH . 'views/layouts/company/header.php');
             <div class="w-full overflow-y-auto no-scrollbar">
                 <div class="bg-primary rounded-lg h-20vh p-4 text-white">
                     <p class="font-bold">Hello, <?=$user->userFirstName?></p>
-                    <p class="font-normal mt-2 mb-2">Découvrez la manière la plus rapide et efficace de décrocher une mission.</p>
+                    <p class="font-normal mt-2 mb-2">Découvrez la manière la plus rapide et efficace de trouver votre freelance.</p>
                     <div class="flex w-full">
                         <input type="text" id="search-input" class="w-full bg-white bg-opacity-20 rounded-lg p-2 placeholder-white mr-2 text-center" placeholder="Ecrivez le nom du freelance que vous recherchez..." />
                         <!-- <button class="w-1/5 bg-white text-primary rounded-lg px-4 py-2">Rechercher</button> -->

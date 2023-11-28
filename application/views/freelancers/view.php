@@ -682,6 +682,47 @@ if ($totalCount > 0) {
                                                 </div>
 
                                                 <p class="text-lg text-gray-500 mb-4 mt-4 ml-2 mr-4 dark:text-white"><?= $experience->experienceDescription ?></p>
+                                                <div class="skills-container mb-4">
+                                                <?php
+                                                    $dataExperienceSkills = [];
+                                                    foreach ($experienceSkills[$experience->idExperience] as $skill):
+                                                        $dataExperienceSkills[] = $skill->skillName;
+                                                    $dataExperienceSkillsString = implode(',', $dataExperienceSkills);
+                                                
+                                                        // Déterminer le niveau en fonction de la valeur de missionSkillsExperience
+                                                        $level = '';
+                                                        $color = '';
+                                                        switch ($skill->experienceSkillsExpertise) {
+                                                            case 1:
+                                                                $level = 'Junior';
+                                                                $color = '#BEE3F8'; // Couleur pour le niveau junior
+                                                                $textdark = "text-black";
+                                                                $text = "text-black";
+                                                                
+                                                                break;
+                                                            case 2:
+                                                                $level = 'Intermédiaire';
+                                                                $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
+                                                                $textdark = "text-white";
+                                                                $text = "text-black";
+                                                                break;
+                                                            case 3:
+                                                                $level = 'Expert';
+                                                                $color = '#2C5282'; // Couleur pour le niveau expert
+                                                                $textdark = "text-white";
+                                                                $text = "text-white";
+                                                                break;
+                                                            default:
+                                                                $level = 'N/A'; // Si la valeur de missionSkillsExperience n'est pas valide, afficher "N/A"
+                                                                break;
+                                                        }
+                                                    ?>
+                                                    <div class="skill-item" data-level="<?=$level?>">
+                                                        <span class="dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                                                        <div class="skill-level"><?=$level?></div>
+                                                    </div>
+                                                <?php endforeach; ?>
+                                                </div> 
                                             </div>
                                             <?php
                                             if ($experienceCount < 2) {

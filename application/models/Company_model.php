@@ -312,7 +312,16 @@ class Company_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
-
+    
+    public function getExperienceSkills($idExperience) {
+        $this->db->select('skills.skillName, skills.skillId, experienceSkills.experienceSkillsExpertise');
+        $this->db->from('experienceSkills');
+        $this->db->join('skills', 'experienceSkills.experienceSkills_skillId = skills.skillId');
+        $this->db->where('experienceSkills.experienceSkills_experienceId', $idExperience);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    
     public function getCompanyMission($idMissions)
     {
         $this->db->select('company.companyName');

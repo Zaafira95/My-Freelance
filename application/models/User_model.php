@@ -14,8 +14,8 @@ class User_model extends CI_Model {
     // Récupérer le job de l'utilisateur connecté avec le job id
     public function getUserJob($userId){
         $this->db->select('*');
-        $this->db->from('job');
-        $this->db->join('userJob', 'userJob.userJob_jobId = job.jobId');
+        $this->db->from('Job');
+        $this->db->join('UserJob', 'UserJob.userJob_jobId = Job.jobId');
         $this->db->where('userJob_userId', $userId);
         $query = $this->db->get();
         return $query->row();
@@ -58,15 +58,15 @@ class User_model extends CI_Model {
 
     public function getAllMission(){
         $this->db->select('*');
-        $this->db->from('mission');
+        $this->db->from('Mission');
         $query = $this->db->get();
         return $query->result();
     }
 
     public function getAllCompanies(){
         $this->db->select('*');
-        $this->db->from('company');
-        $this->db->join('secteurs', 'company.companySecteur = secteurs.secteurName');
+        $this->db->from('Company');
+        $this->db->join('secteurs', 'Company.companySecteur = secteurs.secteurName');
         $query = $this->db->get();
         return $query->result();
     }
@@ -104,10 +104,10 @@ class User_model extends CI_Model {
 
     public function getCompanyMission($idMissions)
     {
-        $this->db->select('company.companyName, company.companyLogoPath');
-        $this->db->from('mission');
-        $this->db->join('company', 'mission.missionCompanyId = company.idCompany');
-        $this->db->where('mission.idMission', $idMissions);
+        $this->db->select('Company.companyName, Company.companyLogoPath');
+        $this->db->from('Mission');
+        $this->db->join('Company', 'Mission.missionCompanyId = Company.idCompany');
+        $this->db->where('Mission.idMission', $idMissions);
         $query = $this->db->get();
         return $query->result();
     }
@@ -161,7 +161,7 @@ class User_model extends CI_Model {
             $this->db->select('*');
             $this->db->from('rating');
             $this->db->join('users', 'users.userId = rating.idUser');
-            $this->db->join('company', 'users.userId = company.companyUserID');
+            $this->db->join('Company', 'users.userId = Company.companyUserID');
             $this->db->where('idRatedUser', $userId);
             $this->db->where('ratingStatus', 1);
             $query = $this->db->get();
@@ -283,7 +283,7 @@ class User_model extends CI_Model {
 
         public function getJobId($jobName) {
             $this->db->select('jobId');
-            $this->db->from('job');
+            $this->db->from('Job');
             $this->db->where('jobName', $jobName);
             $query = $this->db->get();
             return $query->row()->jobId;
@@ -410,8 +410,8 @@ class User_model extends CI_Model {
 
         public function getCompanyDataById($id) {
             $this->db->select('*');
-            $this->db->from('company');
-            $this->db->join('users', 'users.userId = company.companyUserId');
+            $this->db->from('Company');
+            $this->db->join('users', 'users.userId = Company.companyUserId');
             $this->db->where('idCompany', $id);
             $query = $this->db->get();
             return $query->row();
@@ -497,7 +497,7 @@ class User_model extends CI_Model {
                              CASE WHEN M.missionLocalisation = U.userVille THEN 20 ELSE 0 END + 
                              CASE WHEN M.missionExpertise = U.userSeniorite THEN 10 ELSE 0 END) AS RelevanceScore');
             
-            $this->db->from('mission M');
+            $this->db->from('Mission M');
             
             $this->db->join('users U', 'U.userId = ' . $userId, 'left');
             
@@ -548,7 +548,7 @@ class User_model extends CI_Model {
 
         public function getJobs(){
             $this->db->select('*');
-            $this->db->from('job');
+            $this->db->from('Job');
             $query = $this->db->get();
             return $query->result();
         }
@@ -556,12 +556,12 @@ class User_model extends CI_Model {
 
         public function get_jobs($term=''){
             $this->db->like('jobName', $term);
-            $query = $this->db->get('job');
+            $query = $this->db->get('Job');
             return $query->result_array();
         }
 
         public function get_all_jobs() {
-            $query = $this->db->get('job'); // Remplacez 'skills' par le nom exact de votre table de compétences si ce n'est pas le cas.
+            $query = $this->db->get('Job'); // Remplacez 'skills' par le nom exact de votre table de compétences si ce n'est pas le cas.
             return $query->result_array();
         }
         

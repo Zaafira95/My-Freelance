@@ -31,10 +31,10 @@ class Company_model extends CI_Model {
 
     public function getJobByUserId($freelancerUserId) {
         $this->db->select('Job.jobName, Job.jobId');
-        $this->db->from('Users');
-        $this->db->join('UserJob', 'Users.userId = UserJob.userJob_userId'); 
+        $this->db->from('users');
+        $this->db->join('UserJob', 'users.userId = UserJob.userJob_userId'); 
         $this->db->join('Job', 'UserJob.userJob_jobId = Job.jobId');
-        $this->db->where('Users.userId', $freelancerUserId);
+        $this->db->where('users.userId', $freelancerUserId);
         $query = $this->db->get();
         return $query->result();
     }
@@ -244,7 +244,7 @@ class Company_model extends CI_Model {
     }
 
     public function get_all_jobs() {
-        $query = $this->db->get('job'); // Remplacez 'skills' par le nom exact de votre table de compétences si ce n'est pas le cas.
+        $query = $this->db->get('Job'); // Remplacez 'skills' par le nom exact de votre table de compétences si ce n'est pas le cas.
         return $query->result_array();
     }
 
@@ -280,7 +280,7 @@ class Company_model extends CI_Model {
 
     public function getMissionById($missionId){
         $this->db->select('*');
-        $this->db->from('mission');
+        $this->db->from('Mission');
         $this->db->where('idMission', $missionId);
         $query = $this->db->get();
         return $query->row();
@@ -288,16 +288,16 @@ class Company_model extends CI_Model {
 
     public function getCompanyForMission($missionId){
         $this->db->select('*');
-        $this->db->from('company');
-        $this->db->join('mission', 'mission.missionCompanyId = company.idCompany');
-        $this->db->where('mission.idMission', $missionId);
+        $this->db->from('Company');
+        $this->db->join('Mission', 'Mission.missionCompanyId = Company.idCompany');
+        $this->db->where('Mission.idMission', $missionId);
         $query = $this->db->get();
         return $query->row();
     }
 
     public function getMissionOfCompany($companyId){
         $this->db->select('*');
-        $this->db->from('mission');
+        $this->db->from('Mission');
         $this->db->where('missionCompanyId', $companyId);
         $query = $this->db->get();
         return $query->result();
@@ -324,10 +324,10 @@ class Company_model extends CI_Model {
     
     public function getCompanyMission($idMissions)
     {
-        $this->db->select('company.companyName');
-        $this->db->from('mission');
-        $this->db->join('company', 'mission.missionCompanyId = company.idCompany');
-        $this->db->where('mission.idMission', $idMissions);
+        $this->db->select('Company.companyName');
+        $this->db->from('Mission');
+        $this->db->join('Company', 'Mission.missionCompanyId = Company.idCompany');
+        $this->db->where('Mission.idMission', $idMissions);
         $query = $this->db->get();
         return $query->result();
     }

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 // Header Call
 $currentPage = 'my_company';
@@ -9,6 +10,9 @@ include(APPPATH . 'views/layouts/company/header.php' );
     <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url('assets/css/app.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('/node_modules/choices.js/public/assets/styles/choices.min.css');?>" rel="stylesheet" type="text/css">
+    
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    
 
 </head>
 <div class="px-4 lg:px-6 py-6 h-full overflow-y-auto no-scrollbar">
@@ -160,7 +164,12 @@ include(APPPATH . 'views/layouts/company/header.php' );
                             <p class="text-lg font-bold"> Description de la mission</p>
                         </div>
                         <div class="flex flex-1 mt-4">
-                            <textarea name="missionDescription" placeholder="Description de la mission" cols="20" rows="5" class="block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
+                            <textarea id="descriptionTextarea" name="missionDescription" placeholder="Description de la mission" cols="20" rows="5" class="block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
+                        </div>
+                        <div id="editor">
+                            <p>Hello World!</p>
+                            <p>Some initial <strong>bold</strong> text</p>
+                            <p><br></p>
                         </div>
 
                         <div class="flex flex-1 mt-4">
@@ -240,10 +249,24 @@ include(APPPATH . 'views/layouts/company/header.php' );
 <script src="<?php echo base_url('/node_modules/choices.js/public/assets/scripts/choices.min.js'); ?>"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/choices.js@10.0.0"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
 
 <script src="<?php echo base_url('assets/js/app.js'); ?>"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.1/tinymce.min.js"></script>-->
 
 <script>
+  var quill = new Quill('#editor', {
+    theme: 'snow'
+  });
+
+    /*tinymce.init({
+        selector: "#descriptionTextarea",
+        plugins: "autoresize",
+        toolbar: "undo redo | bold italic | alignleft aligncenter alignright | image",
+        autoresize_max_height: 300
+    });*/
+
     var base_url = '<?php echo base_url(); ?>';
 
     // Fonction pour détruire l'instance Choices.js existante

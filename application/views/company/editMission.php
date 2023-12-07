@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 // Header Call
 $currentPage = 'my_company';
@@ -9,6 +10,8 @@ include(APPPATH . 'views/layouts/company/header.php' );
     <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url('assets/css/app.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('/node_modules/choices.js/public/assets/styles/choices.min.css');?>" rel="stylesheet" type="text/css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
 
 </head>
 
@@ -47,7 +50,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
             <div class="w-full flex gap-6 h-full mb-3">
                 <div class="w-3/4 relative grid-cols-2 bg-white rounded-lg mb-4 dark:bg-gray-800 py-4 px-4 overflow-y-auto no-scrollbaroverflow-y-auto no-scrollbar">
                     <h1 class="text-2xl font-bold "> Modifiez votre offre de mission </h1>
-                    <form action="<?=base_url("company/editMission/".$mission->idMission)?>" method="post" enctype="multipart/form-data">
+                    <form id="missionForm" action="<?=base_url("company/editMission/".$mission->idMission)?>" method="post" enctype="multipart/form-data">
                         <div class="flex flex-1 mt-4">
                             <input type="text" name="missionName" placeholder= "Titre de la mission" value="<?= $mission->missionName ?>" class="mr-3 w-full block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
                             <input type="number" name="missionTJM" placeholder="TJM €" value="<?= $mission->missionTJM ?>" class="block mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
@@ -194,9 +197,14 @@ include(APPPATH . 'views/layouts/company/header.php' );
                         <div class="flex flex-1 mt-4">
                             <p class="text-lg font-bold"> Description de la mission</p>
                         </div>
-                        <div class="flex flex-1 mt-4">
-                            <textarea name="missionDescription" placeholder="Description de la mission" cols="20" rows="5" class="block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required><?= $mission->missionDescription ?></textarea>
+                        <div class=" mt-4">
+                            <div id="editor" class="ql-editor">
+                                <!--<textarea name="missionDescription" placeholder="Description de la mission" cols="20" rows="5" class="hidden block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
+                                -->
+                                <?= $mission->missionDescription ?>
+                            </div>
                         </div>
+                        <textarea id="missionDescription" name="missionDescription" placeholder="Description de la mission" cols="20" rows="5" class="hidden block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
 
                         <div class="flex flex-1 mt-4">
                             <p class="text-lg font-bold"> Avantages de la mission</p>
@@ -248,6 +256,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
                     </div>
                     <div class="bg-white rounded-lg mt-4 p-4 text-left dark:bg-gray-800 dark:text-white">
                         <h3 class="text-xl font-medium mt-2">Vos Offres de mission</h3>
+                        <div class="">
                         <?php if (is_array($job_for_company) && !empty($job_for_company)) {
                             $job_for_companyCount = 0;
                             foreach ($job_for_company as $job) {
@@ -276,6 +285,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
                             <p class="mt-2 mb-2"> Aucune offre disponible. </p>
                             <button class="bg-primary text-white px-4 py-2 mt-2 rounded-full">Ajouter une offre</button>
                         <?php } ?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -286,10 +296,24 @@ include(APPPATH . 'views/layouts/company/header.php' );
 <script src="<?php echo base_url('/node_modules/choices.js/public/assets/scripts/choices.min.js'); ?>"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/choices.js@10.0.0"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
 
 <script src="<?php echo base_url('assets/js/app.js'); ?>"></script>
 
 <script>
+    var quill = new Quill('#editor', {
+        theme: 'snow'
+    });
+
+    document.getElementById('missionForm').addEventListener('submit', function (e) {
+            // Récupérer le contenu HTML de Quill
+            var missionDescriptionHTML = document.querySelector('.ql-editor').innerHTML;
+
+            // Mettre le contenu HTML dans le champ de texte masqué
+            document.getElementById('missionDescription').value = missionDescriptionHTML;
+        });
+
     var base_url = '<?php echo base_url(); ?>';
 
     // Fonction pour détruire l'instance Choices.js existante

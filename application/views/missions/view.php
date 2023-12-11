@@ -561,9 +561,11 @@ else if ($user->userType == "sales"){
                                 </div>
                                 <div id="mission-description" class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                                     <h2 class="font-bold text-2xl">La mission</h2>
-                                    <p class="text-gray-500 mt-2 dark:text-white">
-                                        <?=$mission->missionDescription?>
-                                    </p>
+                                    <div class="richTextList">
+                                        <div class="text-gray-500 mt-2 dark:text-white">
+                                            <?=$mission->missionDescription?>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div id="company-description" class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                                     <h2 class="font-bold text-2xl">L'entreprise</h2>
@@ -779,6 +781,7 @@ else if ($user->userType == "sales"){
 
 
 <script>
+
     document.getElementById('generate-pdf-btn').addEventListener('click', function () {
     const element = document.getElementById('pdf-content');
 

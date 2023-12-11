@@ -501,13 +501,14 @@ include(APPPATH . 'views/layouts/company/header.php');
                                             </div>
                                             <div class="flex items-center justify-between">
                                                 <div class="mt-4">
-                                                    <p class="font-light mt-4 mb-4">
-                                                        <?php 
-                                                        // limit missionDescription to 270 caracteres and add '...' at the end
-                                                        $mission->missionDescription = strlen($mission->missionDescription) > 370 ? substr($mission->missionDescription,0,370)."..." : $mission->missionDescription;    
-                                                        ?>
-                                                        <?=$mission->missionDescription?>
-                                                    </p>
+                                                    <div  class="font-light mt-4 mb-4 overflow-hidden" style="max-height : 6em">
+                                                            <?php 
+                                                            // limit missionDescription to 270 caracteres and add '...' at the end
+                                                            //$mission->missionDescription = strlen($mission->missionDescription) > 370 ? substr($mission->missionDescription,0,370)."..." : $mission->missionDescription;    
+                                                            ?>
+                                                            <?=$mission->missionDescription?>
+                                                        
+                                                    </div>
                                                     <div class="skills-container mb-4">
                                                         <?php
                                                             $dataMissionSkills = [];

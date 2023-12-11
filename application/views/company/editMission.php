@@ -10,7 +10,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
     <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url('assets/css/app.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('/node_modules/choices.js/public/assets/styles/choices.min.css');?>" rel="stylesheet" type="text/css">
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <!-- <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet"> -->
 
 
 </head>

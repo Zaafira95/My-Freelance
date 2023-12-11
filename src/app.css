@@ -185,3 +185,46 @@ body.dark {
   }
   
   
+  .richTextList ul {
+    list-style: circle;
+    padding-left: 40px;
+  }
+
+.richTextList h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.richTextList h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.richTextList h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}   
+
+.richTextList h4 {
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.richTextList h5 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.richTextList ol {
+    list-style: decimal;
+    padding-left: 40px;
+}
+
+
+
+

@@ -296,7 +296,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
 <script src="<?php echo base_url('/node_modules/choices.js/public/assets/scripts/choices.min.js'); ?>"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/choices.js@10.0.0"></script>
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script src="<?php echo base_url('assets/quill/quill.js'); ?>"></script>
 
 <script src="<?php echo base_url('assets/js/app.js'); ?>"></script>
 

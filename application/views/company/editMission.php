@@ -198,7 +198,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
                             <p class="text-lg font-bold"> Description de la mission</p>
                         </div>
                         <div class="mt-4">
-                            <div id="editor">
+                            <div id="editor" class="block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <!--<textarea name="missionDescription" placeholder="Description de la mission" cols="20" rows="5" class="hidden block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
                                 -->
                                 <div class="ql-editor "><?= $mission->missionDescription ?></div>
@@ -306,12 +306,12 @@ include(APPPATH . 'views/layouts/company/header.php' );
     });
 
     document.getElementById('missionForm').addEventListener('submit', function (e) {
-            // Récupérer le contenu HTML de Quill
-            var missionDescriptionHTML = document.querySelector('.ql-editor').innerHTML;
+        // Récupérer le contenu HTML de Quill
+        var missionDescriptionHTML = document.querySelector('.ql-editor').innerHTML;
 
-            // Mettre le contenu HTML dans le champ de texte masqué
-            document.getElementById('missionDescription').value = missionDescriptionHTML;
-        });
+        // Mettre le contenu HTML dans le champ de texte masqué
+        document.getElementById('missionDescription').value = missionDescriptionHTML;
+    });
 
     var base_url = '<?php echo base_url(); ?>';
 

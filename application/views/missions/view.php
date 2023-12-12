@@ -578,9 +578,9 @@ else if ($user->userType == "sales"){
                                 ?>
                                 <div id="mission-avantages" class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                                     <h2 class="font-bold text-2xl">Les avantages</h2>
-                                    <p class="text-gray-500 mt-2 dark:text-white">
+                                    <div class="text-gray-500 mt-2 dark:text-white">
                                         <?=$mission->missionAvantage?>
-                                    </p>
+                                    </div>
                                 </div>
                                 <?php
                                 }
@@ -675,13 +675,13 @@ else if ($user->userType == "sales"){
                             </div>
                             <div class="flex items-center justify-between">
                                 <div class="mt-4">
-                                    <p class="font-light mt-4 mb-4">
+                                    <div class="font-light mt-4 mb-4 overflow-hidden" style="max-height : 6em">
                                         <?php 
                                         // limit missionDescription to 270 characters and add '...' at the end
                                         $companyMission->missionDescription = strlen($companyMission->missionDescription) > 270 ? substr($companyMission->missionDescription,0,270)."..." : $companyMission->missionDescription;    
                                         ?>
                                         <?=$companyMission->missionDescription?>
-                                    </p>
+                                    </div>
                                     <?php if (isset($missionSkills[$companyMission->idMission])) : ?>
                                         <div class="skills-container mb-4">
                                         <?php foreach ($missionSkills[$companyMission->idMission] as $skill) : ?>

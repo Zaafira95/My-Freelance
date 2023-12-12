@@ -298,7 +298,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                                     if ($job_for_companyCount < 3) {
                                 ?>
                                     <a href="<?= base_url('company/missionView/' . $job->idMission) ?>" class="flex items-center mt-2 mb-2">
-                                        <div class="flex items-center mt-2 mb-2">
+                                        <div class="flex items-center mt-2 mb-2 p-2 rounded-lg shadow">
                                             <div class="mr-2 mt-2">
                                                 <div class="w-10 h-10" style="font-size:1rem;">
                                                     <img src="<?=base_url($company->companyLogoPath)?>" class="w-10 h-10 rounded-full flex items-center justify-center" alt="Logo de l'entreprise">
@@ -306,8 +306,8 @@ include(APPPATH . 'views/layouts/company/header.php');
                                             </div>
                                             <div>
                                                 <h3 class="text-lg font-medium"><?= $job->missionName ?></h3>
-                                                <p class="text-sm text-gray-500"><?= strlen($job->missionDescription) > 100 ? substr($job->missionDescription, 0, 100)."..." : $job->missionDescription ?></p>
-                                            </p>
+                                                <div class="text-sm text-gray-500"><?= strlen($job->missionDescription) > 100 ? substr($job->missionDescription, 0, 100)."..." : $job->missionDescription ?></p>
+                                    </div>
                                             </div>
                                         </div>
                                     </a>
@@ -386,7 +386,7 @@ include(APPPATH . 'views/layouts/company/header.php');
         removeItemButton: true,
         itemSelectText: '',
         placeholder: true, // Ajoutez cette ligne pour activer le placeholder
-        placeholderValue: 'Sélectionnez des compétences', // Texte du placeholder
+        placeholderValue: 'Sélectionnez des métiers', // Texte du placeholder
 
     });
 

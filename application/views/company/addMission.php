@@ -164,22 +164,23 @@ include(APPPATH . 'views/layouts/company/header.php' );
                             <p class="text-lg font-bold"> Description de la mission</p>
                         </div>
                         <div class="mt-4">
-                            <div id="editor">
+                            <div id="editor" class="block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <!--<textarea name="missionDescription" placeholder="Description de la mission" cols="20" rows="5" class="hidden block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
                                 -->
-                                <div class="ql-editor "></div>
+                                <div id="editor-description" class="ql-editor"></div>
                             </div>
                         </div>
                         <textarea id="missionDescription" name="missionDescription" placeholder="Description de la mission" cols="20" rows="5" class="hidden block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
 
-
                         <div class="flex flex-1 mt-4">
                             <p class="text-lg font-bold"> Avantages de la mission</p>
                         </div>
-                        <div class="flex flex-1 mt-4">
-                            <textarea name="missionAvantages" placeholder="Avantages de la mission" cols="20" rows="5" class="block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
+                        <div class="mt-4">
+                            <div id="editor2" class="block mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <div class="ql-editor"></div>
+                            </div>
                         </div>
-
+                        <textarea id="missionAvantages" name="missionAvantages" placeholder="Description de la mission" cols="20" rows="5" class="hidden block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
 
                         <div class="flex flex-1 mt-4">
                             <button type="submit" class="bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Poster la mission</button>
@@ -217,7 +218,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
                             foreach ($job_for_company as $job) {
                                 if ($job_for_companyCount < 3) {
                             ?>
-                                    <div class="flex items-center mt-2 mb-2">
+                                    <div class="flex items-center mt-2 mb-2 p-2 rounded-lg shadow">
                                         <div class="mr-2 mt-2">
                                             <div class="w-10 h-10" style="font-size:1rem;">
                                                 <img src="<?=base_url($company->companyLogoPath)?>" class="w-10 h-10 rounded-full flex items-center justify-center" alt="Logo de l'entreprise">
@@ -225,8 +226,8 @@ include(APPPATH . 'views/layouts/company/header.php' );
                                         </div>
                                         <div>
                                             <h3 class="text-lg font-medium"><?= $job->missionName ?></h3>
-                                            <p class="text-sm text-gray-500"><?= strlen($job->missionDescription) > 100 ? substr($job->missionDescription, 0, 100)."..." : $job->missionDescription ?></p>
-                                        </p>
+                                            <div class="text-sm text-gray-500"><?= strlen($job->missionDescription) > 100 ? substr($job->missionDescription, 0, 100)."..." : $job->missionDescription ?></p>
+                                </div>
                                         </div>
                                     </div>
                             <?php
@@ -250,8 +251,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
 <script src="<?php echo base_url('/node_modules/choices.js/public/assets/scripts/choices.min.js'); ?>"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/choices.js@10.0.0"></script>
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-
+<script src="<?php echo base_url('assets/quill/quill.js'); ?>"></script>
 
 <script src="<?php echo base_url('assets/js/app.js'); ?>"></script>
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.1/tinymce.min.js"></script>-->
@@ -261,12 +261,19 @@ include(APPPATH . 'views/layouts/company/header.php' );
     theme: 'snow'
   });
 
+  var quill2 = new Quill('#editor2', {
+        theme: 'snow'
+    });
+    
   document.getElementById('missionForm').addEventListener('submit', function (e) {
         // Récupérer le contenu HTML de Quill
-        var missionDescriptionHTML = document.querySelector('.ql-editor').innerHTML;
+        var missionElementsHTML = document.querySelectorAll('.ql-editor');
 
         // Mettre le contenu HTML dans le champ de texte masqué
-        document.getElementById('missionDescription').value = missionDescriptionHTML;
+        document.getElementById('missionDescription').value = missionElementsHTML[0].innerHTML;
+
+        // Mettre le contenu HTML dans le champ de texte masqué
+        document.getElementById('missionAvantages').value =  missionElementsHTML[1].innerHTML;;
     });
 
     var base_url = '<?php echo base_url(); ?>';

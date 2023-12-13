@@ -297,7 +297,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                                 foreach ($job_for_company as $job) {
                                     if ($job_for_companyCount < 3) {
                                 ?>
-                                    <a href="<?= base_url('company/missionView/' . $job->idMission) ?>" class="flex items-center mt-2 mb-2">
+                                    <a href="<?= base_url('company/missionView/' . $job->idMission) ?>" class="flex items-center">
                                         <div class="flex items-center mt-2 mb-2 p-2 rounded-lg shadow">
                                             <div class="mr-2 mt-2">
                                                 <div class="w-10 h-10" style="font-size:1rem;">

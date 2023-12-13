@@ -10,6 +10,12 @@ include(APPPATH . 'views/layouts/company/header.php');
     <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url('/node_modules/choices.js/public/assets/styles/choices.min.css');?>" rel="stylesheet" type="text/css">
     <title><?=$company->companyName?> - Café Crème Community </title>
+
+    <style>
+    .ql-container {
+      height: 30%;
+    }
+  </style>
 </head>
 
 <!--Company Data modal -->
@@ -113,11 +119,13 @@ include(APPPATH . 'views/layouts/company/header.php');
                 </button>
             </div>
             <!-- Modal body -->
-            <form action="<?=base_url("company/updateCompanyDescription")?>" method="post" enctype="multipart/form-data">
+            <form id="descriptionForm" action="<?=base_url("company/updateCompanyDescription")?>" method="post" enctype="multipart/form-data">
                 <div>
-
+                    <div id="editor2" class="block mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <div class="ql-editor"><?= $company->companyDescription ?></div>
+                    </div>
                     <!--<label for="companyDescription" class="block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Description</label>-->
-                    <textarea id="companyDescription" name="companyDescription" rows="6" class="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><?=$company->companyDescription?></textarea>
+                    <textarea id="companyDescription" name="companyDescription" rows="6" class="hidden bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><?=$company->companyDescription?></textarea>
 
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
@@ -149,12 +157,13 @@ include(APPPATH . 'views/layouts/company/header.php');
                 </button>
             </div>
             <!-- Modal body -->
-            <form action="<?=base_url("company/updateCompanyAdvantages")?>" method="post" enctype="multipart/form-data">
+            <form id="avantagesForm" action="<?=base_url("company/updateCompanyAdvantages")?>" method="post" enctype="multipart/form-data">
                 <div>
-
+                    <div id="editor" class="block mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <div class="ql-editor"><?= $company->companyAdvantages ?></div>
+                    </div>
                     <!--<label for="companyDescription" class="block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Description</label>-->
-                    <textarea id="companyAvantages" name="companyAvantages" rows="6" class="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><?=$company->companyAdvantages?></textarea>
-
+                    <textarea id="companyAvantages" name="companyAvantages" rows="6" class="hidden bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><?=$company->companyAdvantages?></textarea>
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
                     <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
@@ -610,8 +619,38 @@ include(APPPATH . 'views/layouts/company/header.php');
 <script src="<?php echo base_url('assets/js/app.js'); ?>"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="<?php echo base_url('/node_modules/choices.js/public/assets/scripts/choices.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/quill/quill.js'); ?>"></script>
 
 <script>
+
+    var quill = new Quill('#editor', {
+        theme: 'snow'
+    });
+    
+    var quill2 = new Quill('#editor2', {
+        theme: 'snow'
+    });
+
+    document.getElementById('descriptionForm').addEventListener('submit', function (e) {
+        // Récupérer le contenu HTML de Quill
+        var companyElementsHTML = document.querySelectorAll('.ql-editor');
+
+        // Mettre le contenu HTML dans le champ de texte masqué
+        document.getElementById('companyDescription').value = companyElementsHTML[0].innerHTML;
+
+        // Mettre le contenu HTML dans le champ de texte masqué
+    });
+
+    
+    document.getElementById('avantagesForm').addEventListener('submit', function (e) {
+        // Récupérer le contenu HTML de Quill
+        var companyElementsHTML = document.querySelectorAll('.ql-editor');
+
+        // Mettre le contenu HTML dans le champ de texte masqué
+        document.getElementById('companyAvantages').value = companyElementsHTML[1].innerHTML;
+
+        // Mettre le contenu HTML dans le champ de texte masqué
+    });
 
     $(document).ready(function() {
     

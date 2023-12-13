@@ -313,6 +313,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
     var quill2 = new Quill('#editor2', {
         theme: 'snow'
     });
+    
 
     document.getElementById('missionForm').addEventListener('submit', function (e) {
         // Récupérer le contenu HTML de Quill

@@ -121,7 +121,7 @@ include(APPPATH . 'views/layouts/company/header.php');
             <!-- Modal body -->
             <form id="descriptionForm" action="<?=base_url("company/updateCompanyDescription")?>" method="post" enctype="multipart/form-data">
                 <div>
-                    <div id="editor2" class="block mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <div id="editor2" class="block mb-4 border mt-2 border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <div class="ql-editor"><?= $company->companyDescription ?></div>
                     </div>
                     <!--<label for="companyDescription" class="block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Description</label>-->
@@ -159,7 +159,7 @@ include(APPPATH . 'views/layouts/company/header.php');
             <!-- Modal body -->
             <form id="avantagesForm" action="<?=base_url("company/updateCompanyAdvantages")?>" method="post" enctype="multipart/form-data">
                 <div>
-                    <div id="editor" class="block mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <div id="editor" class="block mb-4 border mt-2 border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <div class="ql-editor"><?= $company->companyAdvantages ?></div>
                     </div>
                     <!--<label for="companyDescription" class="block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Description</label>-->

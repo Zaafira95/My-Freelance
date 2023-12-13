@@ -10,11 +10,15 @@ include(APPPATH . 'views/layouts/company/header.php' );
     <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url('assets/css/app.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('/node_modules/choices.js/public/assets/styles/choices.min.css');?>" rel="stylesheet" type="text/css">
-    
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    
+        
 
 </head>
+
+<style>
+    .ql-editor {
+      height: 200px;
+    }
+  </style>
 <div class="px-4 lg:px-6 py-6 h-full overflow-y-auto no-scrollbar">
     <div class="flex flex-wrap justify-between mx-auto max-w-screen-xl h-full">
         <div class="flex h-full w-full mb-3">
@@ -164,10 +168,10 @@ include(APPPATH . 'views/layouts/company/header.php' );
                             <p class="text-lg font-bold"> Description de la mission</p>
                         </div>
                         <div class="mt-4">
-                            <div id="editor" class="block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <div id="editor" class="block  mb-4 border mt-2 border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <!--<textarea name="missionDescription" placeholder="Description de la mission" cols="20" rows="5" class="hidden block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
                                 -->
-                                <div id="editor-description" class="ql-editor"></div>
+                                <div id="editor-description" class="ql-editor" style="height:200px;"></div>
                             </div>
                         </div>
                         <textarea id="missionDescription" name="missionDescription" placeholder="Description de la mission" cols="20" rows="5" class="hidden block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
@@ -176,14 +180,14 @@ include(APPPATH . 'views/layouts/company/header.php' );
                             <p class="text-lg font-bold"> Avantages de la mission</p>
                         </div>
                         <div class="mt-4">
-                            <div id="editor2" class="block mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <div id="editor2" class="block mb-4 border mt-2 border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <div class="ql-editor"></div>
                             </div>
                         </div>
                         <textarea id="missionAvantages" name="missionAvantages" placeholder="Description de la mission" cols="20" rows="5" class="hidden block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
 
                         <div class="flex flex-1 mt-4">
-                            <button type="submit" class="bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Poster la mission</button>
+                            <button type="submit" class="bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">Poster la mission</button>
                         </div>
 
                     </form> 
@@ -218,6 +222,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
                             foreach ($job_for_company as $job) {
                                 if ($job_for_companyCount < 3) {
                             ?>
+                                <a href="<?=base_url('company/missionView/'.$job->idMission)?>">
                                     <div class="flex items-center mt-2 mb-2 p-2 rounded-lg shadow">
                                         <div class="mr-2 mt-2">
                                             <div class="w-10 h-10" style="font-size:1rem;">
@@ -227,9 +232,10 @@ include(APPPATH . 'views/layouts/company/header.php' );
                                         <div>
                                             <h3 class="text-lg font-medium"><?= $job->missionName ?></h3>
                                             <div class="text-sm text-gray-500"><?= strlen($job->missionDescription) > 100 ? substr($job->missionDescription, 0, 100)."..." : $job->missionDescription ?></p>
-                                </div>
+                                            </div>
                                         </div>
                                     </div>
+                                </a>
                             <?php
                                     $job_for_companyCount++;
                                 } else {

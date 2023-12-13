@@ -14,7 +14,11 @@ include(APPPATH . 'views/layouts/company/header.php' );
 
 
 </head>
-
+<style>
+    .ql-editor {
+      height: 200px;
+    }
+  </style>
 <!--Delete Mission Confirmation modal -->
 <div id="deleteMission" tabindex="-1" aria-hidden="true" class=" hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
     <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
@@ -198,7 +202,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
                             <p class="text-lg font-bold"> Description de la mission</p>
                         </div>
                         <div class="mt-4">
-                            <div id="editor" class="block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <div id="editor" class="block  mb-4 border mt-2 border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <!--<textarea name="missionDescription" placeholder="Description de la mission" cols="20" rows="5" class="hidden block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
                                 -->
                                 <div class="ql-editor"><?= $mission->missionDescription ?></div>
@@ -210,7 +214,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
                             <p class="text-lg font-bold"> Avantages de la mission</p>
                         </div>
                         <div class="mt-4">
-                            <div id="editor2" class="block mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <div id="editor2" class="block mb-4 border mt-2 border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <div class="ql-editor"><?= $mission->missionAvantage ?></div>
                             </div>
                         </div>
@@ -266,6 +270,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
                             foreach ($job_for_company as $job) {
                                 if ($job_for_companyCount < 3) {
                             ?>
+                                <a href="<?=base_url('company/missionView/'.$job->idMission)?>">
                                     <div class="flex items-center mt-2 mb-2 p-2 rounded-lg shadow">
                                         <div class="mr-2 mt-2">
                                             <div class="w-10 h-10" style="font-size:1rem;">
@@ -278,6 +283,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
                                             </div>
                                         </div>
                                     </div>
+                                </a>
                             <?php
                                     $job_for_companyCount++;
                                 } else {

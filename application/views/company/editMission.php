@@ -14,7 +14,11 @@ include(APPPATH . 'views/layouts/company/header.php' );
 
 
 </head>
-
+<style>
+    .ql-editor {
+      height: 200px;
+    }
+  </style>
 <!--Delete Mission Confirmation modal -->
 <div id="deleteMission" tabindex="-1" aria-hidden="true" class=" hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
     <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
@@ -198,10 +202,10 @@ include(APPPATH . 'views/layouts/company/header.php' );
                             <p class="text-lg font-bold"> Description de la mission</p>
                         </div>
                         <div class="mt-4">
-                            <div id="editor" class="block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <div id="editor" class="block  mb-4 border mt-2 border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <!--<textarea name="missionDescription" placeholder="Description de la mission" cols="20" rows="5" class="hidden block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
                                 -->
-                                <div class="ql-editor "><?= $mission->missionDescription ?></div>
+                                <div class="ql-editor"><?= $mission->missionDescription ?></div>
                             </div>
                         </div>
                         <textarea id="missionDescription" name="missionDescription" placeholder="Description de la mission" cols="20" rows="5" class="hidden block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
@@ -209,9 +213,13 @@ include(APPPATH . 'views/layouts/company/header.php' );
                         <div class="flex flex-1 mt-4">
                             <p class="text-lg font-bold"> Avantages de la mission</p>
                         </div>
-                        <div class="flex flex-1 mt-4">
-                            <textarea name="missionAvantages" placeholder="Avantages de la mission" cols="20" rows="5" class="block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required><?= $mission->missionAvantage ?></textarea>
+                        <div class="mt-4">
+                            <div id="editor2" class="block mb-4 border mt-2 border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <div class="ql-editor"><?= $mission->missionAvantage ?></div>
+                            </div>
                         </div>
+                        <textarea id="missionAvantages" name="missionAvantages" placeholder="Description de la mission" cols="20" rows="5" class="hidden block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+
 
                         <div class="flex items-center justify-between space-x-4 mt-4">
                             <div class="flex items-center space-x-4">
@@ -229,7 +237,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
                             </button>
                         </div>
 
-                    </form> 
+                    </form>
                 </div>
                 <div class="w-1/4 sticky top-0">
                     <div class="bg-white rounded-lg h-22vh p-4 dark:bg-gray-800 dark:text-white">
@@ -262,7 +270,8 @@ include(APPPATH . 'views/layouts/company/header.php' );
                             foreach ($job_for_company as $job) {
                                 if ($job_for_companyCount < 3) {
                             ?>
-                                    <div class="flex items-center mt-2 mb-2">
+                                <a href="<?=base_url('company/missionView/'.$job->idMission)?>">
+                                    <div class="flex items-center mt-2 mb-2 p-2 rounded-lg shadow">
                                         <div class="mr-2 mt-2">
                                             <div class="w-10 h-10" style="font-size:1rem;">
                                                 <img src="<?=base_url($company->companyLogoPath)?>" class="w-10 h-10 rounded-full flex items-center justify-center" alt="Logo de l'entreprise">
@@ -270,10 +279,11 @@ include(APPPATH . 'views/layouts/company/header.php' );
                                         </div>
                                         <div>
                                             <h3 class="text-lg font-medium"><?= $job->missionName ?></h3>
-                                            <p class="text-sm text-gray-500"><?= strlen($job->missionDescription) > 100 ? substr($job->missionDescription, 0, 100)."..." : $job->missionDescription ?></p>
-                                        </p>
+                                            <div class="text-sm text-gray-500"><?= strlen($job->missionDescription) > 100 ? substr($job->missionDescription, 0, 100)."..." : $job->missionDescription ?></p>
+                                            </div>
                                         </div>
                                     </div>
+                                </a>
                             <?php
                                     $job_for_companyCount++;
                                 } else {
@@ -305,12 +315,21 @@ include(APPPATH . 'views/layouts/company/header.php' );
         theme: 'snow'
     });
 
+    
+    var quill2 = new Quill('#editor2', {
+        theme: 'snow'
+    });
+    
+
     document.getElementById('missionForm').addEventListener('submit', function (e) {
         // Récupérer le contenu HTML de Quill
-        var missionDescriptionHTML = document.querySelector('.ql-editor').innerHTML;
+        var missionElementsHTML = document.querySelectorAll('.ql-editor');
 
         // Mettre le contenu HTML dans le champ de texte masqué
-        document.getElementById('missionDescription').value = missionDescriptionHTML;
+        document.getElementById('missionDescription').value = missionElementsHTML[0].innerHTML;
+
+        // Mettre le contenu HTML dans le champ de texte masqué
+        document.getElementById('missionAvantages').value =  missionElementsHTML[1].innerHTML;;
     });
 
     var base_url = '<?php echo base_url(); ?>';

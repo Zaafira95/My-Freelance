@@ -357,10 +357,10 @@ include(APPPATH . 'views/layouts/company/header.php');
                         <h2 class="text-xl font-bold mb-4 flex items-center">
                             Description de l'entreprise
                         </h2>
-                        <div class="flex items-center justify-between">
-                            <p class="font-normal mb-4">
+                        <div class="richTextList flex items-center justify-between">
+                            <div class="font-normal mb-4">
                                 <?=$company->companyDescription?>
-                            </p>
+                        </div>
                         </div>
                         <?php if($user->userType == 'sales') { ?>
                         <div class="absolute top-0 right-0 mt-4 mr-4 flex">
@@ -374,10 +374,10 @@ include(APPPATH . 'views/layouts/company/header.php');
                         <h2 class="text-xl font-bold mb-4 flex items-center">
                             Les avantages de l'entreprise
                         </h2>
-                        <div class="flex items-center justify-between">
-                            <p class="font-normal mb-4">
+                        <div class="richTextList flex items-center justify-between">
+                            <div class="font-normal mb-4">
                                 <?=$company->companyAdvantages?>
-                            </p>
+                            </div>
                         </div>
                         <?php if($user->userType == 'sales') { ?>
                         <div class="absolute top-0 right-0 mt-4 mr-4 flex">

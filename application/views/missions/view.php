@@ -569,16 +569,16 @@ else if ($user->userType == "sales"){
                                 </div>
                                 <div id="company-description" class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                                     <h2 class="font-bold text-2xl">L'entreprise</h2>
-                                    <p class="text-gray-500 mt-2 dark:text-white">
+                                    <div class="richTextList text-gray-500 mt-2 dark:text-white">
                                         <?=$company->companyDescription?>
-                                    </p>
+                                    </div>
                                 </div>
                                 <?php
                                 if ($mission->missionAvantage != null) {
                                 ?>
                                 <div id="mission-avantages" class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                                     <h2 class="font-bold text-2xl">Les avantages</h2>
-                                    <div class="text-gray-500 mt-2 dark:text-white">
+                                    <div class="richTextList text-gray-500 mt-2 dark:text-white">
                                         <?=$mission->missionAvantage?>
                                     </div>
                                 </div>

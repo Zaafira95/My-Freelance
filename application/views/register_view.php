@@ -3,6 +3,8 @@
 <head>
     <title>Inscription | Café Crème Community - Rejoignez la plus grande communauté de freelances</title>
     <link href="<?php echo base_url('assets/css/app.css');?>" rel="stylesheet">
+    <link href="<?php echo base_url('/node_modules/choices.js/public/assets/styles/choices.min.css');?>" rel="stylesheet" type="text/css">
+
     <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
     <style>
         body {
@@ -83,7 +85,7 @@
                             <img class="w-50 mr-2" src="<?php echo base_url('assets/img/logo.svg');?>" alt="Café Crème Community" id="logoLogin">
                         </a>
                         
-                        <div id="step1">
+                        <div id="step1" style="display:none">
                             <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
                                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                     <h1 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
@@ -131,7 +133,7 @@
                                     </h2>
                                     <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
                                     <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
-                                        1/4
+                                        1/5
                                     </div>
                                     <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
                                     <div class="absolute inset-0 bg-primary rounded-md" style="width: 25%;"></div>
@@ -184,7 +186,7 @@
                                     </h2>
                                     <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
                                     <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
-                                        2/4
+                                        2/5
                                     </div>
                                     <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
                                     <div class="absolute inset-0 bg-primary rounded-md" style="width: 50%;"></div>
@@ -215,14 +217,17 @@
                                 <div>
                                     <input type="text" name="userLastName" id="userLastName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre nom *" required>
                                 </div>
-                                <div>
+                                <div>    
+                                    <div class="relative city-search-container w-full">
+                                        <input type="text" id="citySearch" name="userVille" placeholder="Cherchez votre ville" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" required>
+                                            <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
+                                    </div>
+                                    <!--
                                     <input type="text" name="userVille" id="userVille" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" required>
+                                    -->
                                 </div>
                                 <div>
-                                    <input type="text" name="userJobName" id="userJobName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre métier *" required>
-                                </div>
-                                <div>
-                                    <input type="number" name="userTJM" id="userTJM" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre TJM *" min="100" required>
+                                    <input type="text" name="userTelephone" id="userTelephone" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre numéro de téléphone *" required>
                                 </div>
                                 <div class="flex justify-between">
                                     <!-- button for previous step -->
@@ -231,39 +236,158 @@
                                     <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" id="nextButton" onclick="goToStep4()">Suivant</button>
                                 </div>
                                 <p id="errorMessage2" class="text-red-500 text-sm mt-2 hidden">Veuillez remplir tous les champs correctement</p>
-                                <p id="tjmErrorMessage" class="text-red-500 text-sm mt-2 hidden">Le TJM doit être supérieur à 100</p>
-
 
                             </div>
                         </div>
                         </div>
                         <div id="step4" style="display:none;">
                         <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
-                                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                 <div class="flex items-center">
                                     <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white" style="width: 60%;">
                                     Tes Expertises
                                     </h2>
                                     <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
                                     <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
-                                        3/4
+                                        3/5
                                     </div>
                                     <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
                                     <div class="absolute inset-0 bg-primary rounded-md" style="width: 75%;"></div>
                                     </div>
                                 </div>
                                 <div>
+                                    <input type="text" name="userJobName" id="userJobName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre métier *" required>
+                                </div>
+                                <div>
+                                    <input type="number" name="userTJM" id="userTJM" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre TJM *" min="100" required>
+                                </div>
+                                <label for="userJobType" class="block mt-4 font-medium text-gray-900 dark:text-white">Type de poste</label>
+                                <div class="flex flex-1 gap-2 mb-3">
+                                    <div class="flex items-center pl-3 border border-gray-200 rounded dark:border-gray-700 w-full mr-4">
+                                        <input id="teletravail" type="radio" value="Remote" name="userJobType" class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" required>
+                                        <label for="teletravail" class="py-4 ml-2  font-medium text-sm text-gray-500 dark:text-white">Télétravail</label>
+                                    </div>
+                                    <div class="flex items-center pl-3 border border-gray-200 rounded dark:border-gray-700 w-full mr-4">
+                                        <input id="hybride" type="radio" value="Hybride" name="userJobType" class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="hybride" class="py-4 ml-2  font-medium text-sm text-gray-500 dark:text-white">Hybride</label>
+                                    </div>
+                                    <div class="flex items-center pl-3 border  border-gray-200 rounded dark:border-gray-700 w-full mr-4">
+                                        <input id="sur-site" type="radio" value="Physique" name="userJobType" class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                        <label for="sur-site" class="py-4 ml-2  font-medium text-sm text-gray-500 dark:text-white">Physique</label>
+                                    </div>
+                                </div>
+                                <label for="userExpertise" class="block  font-medium text-gray-900 dark:text-white">Votre expertise *</label>
+                                    <select id="userExpertise" name="userExpertise" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-sm text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                        <option class="dark:text-black" value="junior">Junior (1 à 2 ans)</option>
+                                        <option class="dark:text-black" value="intermediaire">Intermédiaire (3 à 5 ans)</option>
+                                        <option class="dark:text-black" value="expert">Expert (+ 5 ans)</option>
+                                    </select>
+                                <label for="userJobTime" class="block mt-4 font-medium text-gray-900 dark:text-white">Durée de la mission</label>
+                                <select id="userJobTime" name="userJobTime" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-sm text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                    <option class="dark:text-black" value="Courte Durée">Courte Durée</option>
+                                    <option class="dark:text-black" value="Longue Durée">Longue Durée</option>
+                                    <option class="dark:text-black" value="expert">Durée indéfinie</option>
+                                </select>
+                                <p id="errorMessage3" class="text-red-500 text-sm mt-2 hidden">Veuillez remplir tous les champs correctement</p>
+                                <p id="tjmErrorMessage" class="text-red-500 text-sm mt-2 hidden">Le TJM doit être supérieur à 100</p>
+
+                                <div class="flex justify-between">
+                                    <!-- button for previous step -->
+                                    <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" id="previousButton" onclick="goToStep3()">Retour</button>
+                                    <!-- button for next step -->
+                                    <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" id="nextButton" onclick="goToStep5()">Suivant</button>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div id="step5" style="display:block; height:90%">
+                        <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
+                            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                                <div class="flex items-center">
+                                    <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white" style="width: 60%;">
+                                    Tes Expertises
+                                    </h2>
+                                    <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
+                                    <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
+                                        4/5
+                                    </div>
+                                    <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
+                                    <div class="absolute inset-0 bg-primary rounded-md" style="width: 75%;"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <textarea id="userBio" name="userBio" rows="2" class="bg-gray-50 border border-gray-300 text-sm text-gray-500  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                                </div>
+                                <div>
                                     <input type="text" name="userSkill" id="userSkill" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre compétences *" required>
                                 </div>
+                                <div class=" bg-white rounded-lg dark:bg-gray-800 text-gray-500">
+                                    <div id="skills-container">
+                                        <div class="flex flex-1 mb-4 skill-row">
+                                            <div class="w-3/4 mr-2">
+                                            <select id="skillsAll" name="skillsAll[]"  class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                <option value="">Sélectionnez une compétence</option>
+                                                <?php foreach ($skillsAll as $skill): ?>
+                                                    <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                            </div>
+                                            <div class="w-1/4">
+                                                <select class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="skillsLevel[]" required>
+                                                    <option value="1">Junior</option>
+                                                    <option value="2">Intermédiaire</option>
+                                                    <option value="3">Expert</option>
+                                                </select>
+                                            </div>
+                                            <button type="button" class="text-red-600 hover:text-red-900 focus:outline-none ml-4 delete-skill-row">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <button id="add-skill-btn" type="button" class="py-2 px-4 bg-primary text-white rounded-lg">Ajouter une compétence</button>
+                                </div>
                                 <div class="flex items-center">
-                                <p class="text-sm text-gray-500 mr-3 dark:text-gray-400">Êtes-vous disponible à travailler dès maintenant ?</p>
+                                    <p class="text-sm text-gray-500 mr-3 dark:text-gray-400">Êtes-vous disponible à travailler dès maintenant ?</p>
                                     <label class="text-sm text-gray-500 mr-3 dark:text-gray-400">Non</label>
                                     <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description" class="relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400">
                                     <label class="text-sm text-gray-500 ml-3 dark:text-gray-400">Oui</label>
-                                    </div>
+                                </div>
+                                <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-sm text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                    <option class="dark:text-black" value="Temps Plein">Temps plein</option>
+                                    <option class="dark:text-black" value="Temps Partiel">Temps partiel</option>
+                                </select>
 
-                                <!-- submit -->
-                                    <button type="submit" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" id="submitButton">S'inscrire</button>
+                                <div class="flex justify-between">
+                                    <!-- button for previous step -->
+                                    <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" id="previousButton" onclick="goToStep4()">Retour</button>
+                                    <!-- button for next step -->
+                                    <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" id="nextButton" onclick="goToStep6()">Suivant</button>
+                                </div>
+                                <p id="errorMessage4" class="text-red-500 text-sm mt-2 hidden">Veuillez remplir tous les champs correctement</p>
+                                <p id="skillsErrorMessage" class="text-red-500 text-sm mt-2 hidden">Le TJM doit être supérieur à 100</p>
+                            </div>
+                        </div>
+                        </div>
+                        <div id="step6" style="display:none">
+                        <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
+                            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                                <div class="flex items-center">
+                                    <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white" style="width: 60%;">
+                                    Tes Expertises
+                                    </h2>
+                                    <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
+                                    <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
+                                        4/5
+                                    </div>
+                                    <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
+                                    <div class="absolute inset-0 bg-primary rounded-md" style="width: 75%;"></div>
+                                    </div>
+                                </div>
+                                <!-- submit -->                                        
+                                    <div class="flex justify-between">
+                                        <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" id="previousButton" onclick="goToStep5()">Retour</button>
+                                        <button type="submit" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" id="submitButton">S'inscrire</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -273,7 +397,141 @@
             </div>
         </div>
     </section>
+    <script src="<?php echo base_url('/node_modules/choices.js/public/assets/scripts/choices.min.js'); ?>"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/choices.js@10.0.0"></script>
+
+
     <script>
+
+$(document).ready(function() {
+    
+    $('#citySearch').on('keyup', function() {
+        let term = $(this).val();
+        if(term.length > 2) { // Recherche après 2 caractères
+            $.post('register/search_cities', { term: term }, function(data) {
+                let cities = JSON.parse(data);
+                if(cities.length > 0) {
+                    // Ajoutez la classe .has-border si des résultats sont retournés
+                    $('#cities-list').addClass('has-border');
+                } else {
+                    // Supprimez la classe .has-border si aucun résultat n'est retourné
+                    $('#cities-list').removeClass('has-border');
+                }
+                $('#cities-list').empty();
+                cities.forEach(function(city) {
+                    $('#cities-list').append(`<div class="city-item p-2 hover:bg-gray-200 cursor-pointer" data-id="${city.geoname_id}">${city.name}</div>`);
+                });
+            });
+        }
+        else {
+            // Supprimez la classe .has-border si l'input est trop court
+            $('#cities-list').removeClass('has-border').empty();
+        }
+    });
+
+    $(document).on('click', '.city-item', function() {
+        let cityName = $(this).text();
+        $('#citySearch').val(cityName);  // Mettez à jour le champ de saisie avec le nom de la ville sélectionnée
+        $('#cities-list').empty(); // Videz la liste
+        $('#cities-list').removeClass('has-border').empty();
+    });
+
+    // Pour fermer la liste lorsque vous cliquez en dehors
+    $(document).on('click', function(event) {
+        // Si le clic n'est pas sur le champ de saisie (#citySearch)
+        // et n'est pas sur un élément à l'intérieur de la liste (#cities-list)...
+        if (!$(event.target).closest('#citySearch, #cities-list').length) {
+            // ... alors videz et fermez la liste.
+            $('#cities-list').empty().removeClass('has-border');
+        }
+    });
+
+    const skillsChoices = new Choices('#skillsAll', {
+        searchEnabled: true,
+        removeItemButton: true,
+        itemSelectText: '',
+        placeholder: true,
+        placeholderValue: 'Sélectionnez des compétences',
+    });
+
+    $('#search-input-skill').on('keyup', function(){
+        let term = $(this).val();
+        if (term.length > 2) {
+            $.post('register/search_skills', { term: term }, function(data){
+                let skills = JSON.parse(data);
+                $('#skills-list').empty();
+                skills.forEach(function(skill){
+                    $('#skills-list').append(`<div class="skill-item p-2 hover:bg-gray-200 cursor-pointer" data-id="${skill.skillId}">${skill.skillName}</div>`);
+                });
+            });
+        } else {
+            $('#skills-list').empty();
+        }
+    });
+
+    $(document).on('click', '.skill-item', function(){
+        let skillId = $(this).data('id');
+        let skillName = $(this).text();
+        if (!$(`#selected-skills .selected-skill[data-id="${skillId}"]`).length) {
+            $('#selected-skills').append(`<div class="selected-skill" data-id="${skillId}">${skillName}</div>`);
+        }
+        $('#skills-list').empty(); // Vider la liste après sélection
+    });
+
+    // Pour fermer la liste lorsque vous cliquez en dehors
+    $(document).on('click', function(event) {
+        if (!$(event.target).closest('#search-input-skill, #skills-list').length) {
+            $('#skills-list').empty();
+        }
+    });
+
+    $('#add-skill-btn').on('click', function() {
+        const newSkillRow = `
+        <div class="flex flex-1 mb-4 skill-row">
+            <div class="w-3/4 mr-2 text-black">
+                <select name="skillsAll[]" class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                    <option value="">Sélectionnez une compétence</option>
+                    <?php foreach ($skillsAll as $skill): ?>
+                        <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="w-1/4">
+                <select name="skillsLevel[]" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                    <option value="1">Junior</option>
+                    <option value="2">Intermédiaire</option>
+                    <option value="3">Expert</option>
+                </select>
+            </div>
+            <button type="button" class="text-red-600 hover:text-red-900 focus:outline-none ml-4 delete-skill-row">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+        `;
+        $('#skills-container').append(newSkillRow);
+        // Désinitialiser les instances Choices existantes
+        $('.new-skill-select').each(function() {
+            const choicesInstance = this.choices;
+            if (choicesInstance) {
+                choicesInstance.destroy();
+            }
+        });
+        // Réinitialiser les instances Choices
+        $('.new-skill-select').each(function() {
+            new Choices(this, {
+                /* options spécifiques à Choices */
+            });
+        });
+    });
+
+    $(document).on('click', '.delete-skill-row', function() {
+        // Supprimez le parent .skill-row
+        $(this).closest('.skill-row').remove();
+    });
+
+});
 
 function showFileName(input) {
   const fileNameElement = document.getElementById("file-name");
@@ -601,10 +859,12 @@ function handleClick(element) {
             var step2 = document.getElementById('step2');
             var step3 = document.getElementById('step3');
             var step4 = document.getElementById('step4');
+            var step5 = document.getElementById('step5');
 
             step2.style.display = 'none';
             step3.style.display = 'none';
             step4.style.display = 'none';
+            step5.style.display = 'none';
             step1.style.display = 'block';
         }
 
@@ -630,10 +890,11 @@ function handleClick(element) {
                         var step1 = document.getElementById('step1');
                         var step2 = document.getElementById('step2');
                         var step3 = document.getElementById('step3');
-                        var step4 = document.getElementById('step4');
+                        var step5 = document.getElementById('step5');
                         step1.style.display = 'none';
                         step3.style.display = 'none';
                         step4.style.display = 'none';
+                        step5.style.display = 'none';
                         step2.style.display = 'block';
                     } else {
                         // L'e-mail existe déjà ou les mots de passe ne correspondent pas
@@ -652,12 +913,14 @@ function handleClick(element) {
             var step2 = document.getElementById('step2');
             var step3 = document.getElementById('step3');
             var step4 = document.getElementById('step4');
+            var step5 = document.getElementById('step5');
 
             if (userTypeFreelance.checked || userTypeESN.checked) {
                 errorUserType.style.display = 'none';
                 step1.style.display = 'none';
                 step2.style.display = 'none';
                 step4.style.display = 'none';
+                step5.style.display = 'none';
                 step3.style.display = 'block';
             } else {
                 errorUserType.style.display = 'block';
@@ -669,35 +932,80 @@ function handleClick(element) {
         function goToStep4() {
             var userFirstName = document.getElementById('userFirstName').value;
             var userLastName = document.getElementById('userLastName').value;
-            var userVille = document.getElementById('userVille').value;
-            var userJobName = document.getElementById('userJobName').value;
-            var userTJM = document.getElementById('userTJM').value;
+            var userVille = document.getElementById('citySearch').value;
+            var userTelephone = document.getElementById('userTelephone').value;
+            //var userJobName = document.getElementById('userJobName').value;
+            //var userTJM = document.getElementById('userTJM').value;
             var errorMessage2 = document.getElementById('errorMessage2');
-            var tjmErrorMessage = document.getElementById('tjmErrorMessage');
+            //var tjmErrorMessage = document.getElementById('tjmErrorMessage');
 
             if (
                 userFirstName.trim() === '' ||
                 userLastName.trim() === '' ||
                 userVille.trim() === '' ||
-                userJobName.trim() === '' ||
-                userTJM.trim() === ''
+                userTelephone.trim() === ''
+                //userJobName.trim() === '' ||
+                //userTJM.trim() === ''
             ) {
                 errorMessage2.style.display = 'block';
-                tjmErrorMessage.style.display = 'none';
+                //tjmErrorMessage.style.display = 'none';
             } else if (parseInt(userTJM) <= 100) {
                 errorMessage2.style.display = 'none';
-                tjmErrorMessage.style.display = 'block';
+                //tjmErrorMessage.style.display = 'block';
             } else {
                 errorMessage2.style.display = 'none';
+                //tjmErrorMessage.style.display = 'none';
+                var step1 = document.getElementById('step1');
+                var step2 = document.getElementById('step2');
+                var step3 = document.getElementById('step3');
+                var step4 = document.getElementById('step4');
+                var step5 = document.getElementById('step5');
+                step1.style.display = 'none';
+                step2.style.display = 'none';
+                step3.style.display = 'none';
+                step5.style.display = 'none';
+                step4.style.display = 'block';
+            }
+        }
+        
+        function goToStep5() {
+            var userJobName = document.getElementById('userJobName').value;
+            var userTJM = document.getElementById('userTJM').value;
+            var userJobTypes = document.getElementsByName('userJobType');
+            var jobTypeSelected = false;
+            var errorMessage3 = document.getElementById('errorMessage3');
+            var tjmErrorMessage = document.getElementById('tjmErrorMessage');
+
+            for (var i = 0; i < userJobTypes.length; i++) {
+                if (userJobTypes[i].checked) {
+                    jobTypeSelected = true;
+                    break;
+                }
+            }
+
+            if (
+                userJobName.trim() === '' ||
+                userTJM.trim() === '' ||
+                !jobTypeSelected
+            ) {
+                errorMessage3.style.display = 'block';
+                tjmErrorMessage.style.display = 'none';
+            } else if (parseInt(userTJM) <= 100) {
+                errorMessage3.style.display = 'none';
+                tjmErrorMessage.style.display = 'block';
+            } else {
+                errorMessage3.style.display = 'none';
                 tjmErrorMessage.style.display = 'none';
                 var step1 = document.getElementById('step1');
                 var step2 = document.getElementById('step2');
                 var step3 = document.getElementById('step3');
                 var step4 = document.getElementById('step4');
+                var step5 = document.getElementById('step5');
                 step1.style.display = 'none';
                 step2.style.display = 'none';
                 step3.style.display = 'none';
-                step4.style.display = 'block';
+                step4.style.display = 'none';
+                step5.style.display = 'block';
             }
         }
 

@@ -11,7 +11,9 @@ class Register extends CI_Controller {
         if ($this->session->userdata('userId')) {
             redirect('user');
         }
-        $this->load->view('register_view');
+        $data['skillsAll'] = $this->Register_model->get_all_skills();
+
+        $this->load->view('register_view', $data);
     }
 
     public function checkEmailExists(){
@@ -25,6 +27,21 @@ class Register extends CI_Controller {
             // Email n'existe pas
             echo json_encode(array('status' => 'success', 'message' => ''));
         }
+    }
+
+    public function search_cities() {
+        $term = $this->input->post('term');
+        $this->load->model('Register_model');
+        $cities = $this->Register_model->search_cities($term);
+        echo json_encode($cities);
+    }
+
+    // Dans votre contrôleur, par exemple: Skills.php
+    public function search_skills() {
+        $term = $this->input->post('term');
+        $this->load->model('Register_model'); 
+        $skills = $this->Register_model->get_skills($term);
+        echo json_encode($skills);
     }
 
     public function registerUser(){

@@ -252,34 +252,20 @@ include(APPPATH . 'views/layouts/user/header.php' );
                     <label for="userJobType" class="block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Type de poste</label>
                     
                     <div class="flex flex-1 gap-6 mb-3">
-                        <div class="flex-1">
-                            <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700 w-full">
-                                <input id="bordered-checkbox-1" type="checkbox" value="Remote" name="userJobType[]" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" 
-                                <?php
-                                $jobTypeArray = explode(',', $user->userJobType);
-                                if (in_array('Remote', $jobTypeArray)) {
-                                    echo 'checked="checked"';
-                                }
-                                ?>>
-                                <label for="bordered-checkbox-1" class="py-4 ml-2  font-medium text-gray-900 dark:text-white">Télétravail</label>
-                            </div>
+                        <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700 w-full mr-4">
+                            <input id="teletravail" type="radio" value="Remote" name="userJobType" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" <?php echo ($user->userJobType === 'Remote') ? 'checked' : ''; ?> required>
+                            <label for="teletravail" class="py-4 ml-2  font-medium text-gray-900 dark:text-white">Télétravail</label>
                         </div>
-                        <div class="flex-1">
-                            <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700 w-full">
-                                <input id="bordered-checkbox-2" type="checkbox" value="Physique" name="userJobType[]" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" <?php
-                                if (in_array('Physique', $jobTypeArray)) {
-                                    echo 'checked="checked"';
-                                }
-                                ?>>
-                                <label for="bordered-checkbox-2" class="py-4 ml-2  font-medium text-gray-900 dark:text-white">Physique</label>
-                            </div>
+                        <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700 w-full mr-4">
+                            <input id="hybride" type="radio" value="Hybride" name="userJobType" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" <?php echo ($user->userJobType === 'Hybride') ? 'checked' : ''; ?>>
+                            <label for="hybride" class="py-4 ml-2  font-medium text-gray-900 dark:text-white">Hybride</label>
                         </div>
-                        
+                        <div class="flex items-center pl-4 border  border-gray-200 rounded dark:border-gray-700 w-full mr-4">
+                            <input id="sur-site" type="radio" value="Physique" name="userJobType" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" <?php echo ($user->userJobType === 'Physique') ? 'checked' : ''; ?>>
+                            <label for="sur-site" class="py-4 ml-2  font-medium text-gray-900 dark:text-white">Physique</label>
+                        </div>
                     </div>
                     <p id="errorMessageJobType" class="text-red-500" style="display:none;">Veuillez choisir un type de poste</p>
-
-
-
                     <label for="userVille" class="block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Localisation</label>
                     <input type="text" name="userVille" id="userVille" value="<?=$user->userVille?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Ville">
 
@@ -880,7 +866,7 @@ if ($totalCount > 0) {
                                     <div class="flex grid-cols-2 items-center mb-4">
                                         <?php
                                         // user is available or not
-                                        if($user->userJobType == "Remote,Physique"){
+                                        if($user->userJobType == "Hybride"){
                                         ?>
                                             <div>
                                                 <p class="w-10 h-10 rounded-full bg-pink-300 text-white text-center text-xl flex items-center justify-center mr-4 pt-2">✈️</p>
@@ -905,9 +891,9 @@ if ($totalCount > 0) {
                                         <div>
                                             <p class="text">Type de poste</p>
                                             <?php
-                                                if($user->userJobType == "Remote,Physique"){
+                                                if($user->userJobType == "Hybride"){
                                                 ?>
-                                                    <p class="font-bold text-lg">Télétravail & Physique</p>
+                                                    <p class="font-bold text-lg">Hybride</p>
                                                 <?php
                                                     }else if($user->userJobType == "Remote"){
                                                 ?>

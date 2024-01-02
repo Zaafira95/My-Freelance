@@ -315,12 +315,21 @@
                                     <div class="absolute inset-0 bg-primary rounded-md" style="width: 75%;"></div>
                                     </div>
                                 </div>
+                                <label for="userBio" class="block font-medium text-gray-900 dark:text-white">À propos de toi</label>
                                 <div>
                                     <textarea id="userBio" name="userBio" rows="2" class="bg-gray-50 border border-gray-300 text-sm text-gray-500  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
                                 </div>
-                                <div>
-                                    <input type="text" name="userSkill" id="userSkill" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre compétences *" required>
+                                <div class="flex items-center">
+                                    <p class="text-sm text-gray-500 mr-3 dark:text-gray-400">Êtes-vous disponible à travailler dès maintenant ?</p>
+                                    <label class="text-sm text-gray-500 mr-3 dark:text-gray-400">Non</label>
+                                    <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description" class="relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400">
+                                    <label class="text-sm text-gray-500 ml-3 dark:text-gray-400">Oui</label>
                                 </div>
+                                <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-sm text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                    <option class="dark:text-black" value="Temps Plein">Temps plein</option>
+                                    <option class="dark:text-black" value="Temps Partiel">Temps partiel</option>
+                                </select>
+                                <label for="userSkills" class="block mt-2 font-medium text-gray-900 dark:text-white">Tes compétences (5 minimum)</label>
                                 <div class=" bg-white rounded-lg dark:bg-gray-800 text-gray-500">
                                     <div id="skills-container">
                                         <div class="flex flex-1 mb-4 skill-row">
@@ -346,17 +355,6 @@
                                     </div>
                                     <button id="add-skill-btn" type="button" class="py-2 px-4 bg-primary text-white rounded-lg">Ajouter une compétence</button>
                                 </div>
-                                <div class="flex items-center">
-                                    <p class="text-sm text-gray-500 mr-3 dark:text-gray-400">Êtes-vous disponible à travailler dès maintenant ?</p>
-                                    <label class="text-sm text-gray-500 mr-3 dark:text-gray-400">Non</label>
-                                    <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description" class="relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400">
-                                    <label class="text-sm text-gray-500 ml-3 dark:text-gray-400">Oui</label>
-                                </div>
-                                <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-sm text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                                    <option class="dark:text-black" value="Temps Plein">Temps plein</option>
-                                    <option class="dark:text-black" value="Temps Partiel">Temps partiel</option>
-                                </select>
-
                                 <div class="flex justify-between">
                                     <!-- button for previous step -->
                                     <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" id="previousButton" onclick="goToStep4()">Retour</button>
@@ -364,7 +362,7 @@
                                     <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" id="nextButton" onclick="goToStep6()">Suivant</button>
                                 </div>
                                 <p id="errorMessage4" class="text-red-500 text-sm mt-2 hidden">Veuillez remplir tous les champs correctement</p>
-                                <p id="skillsErrorMessage" class="text-red-500 text-sm mt-2 hidden">Le TJM doit être supérieur à 100</p>
+                                <p id="skillsErrorMessage" class="text-red-500 text-sm mt-2 hidden">Veuillez renseigner au minimum 5 compétences</p>
                             </div>
                         </div>
                         </div>
@@ -377,7 +375,7 @@
                                     </h2>
                                     <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
                                     <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
-                                        4/5
+                                        5/5
                                     </div>
                                     <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
                                     <div class="absolute inset-0 bg-primary rounded-md" style="width: 75%;"></div>
@@ -1006,6 +1004,37 @@ function handleClick(element) {
                 step3.style.display = 'none';
                 step4.style.display = 'none';
                 step5.style.display = 'block';
+            }
+        }
+        
+        function goToStep6() {
+            var userBio = document.getElementById('userBio').value;
+            var errorMessage4 = document.getElementById('errorMessage4');
+            var skillsErrorMessage = document.getElementById('skillsErrorMessage');
+
+            if (
+                userBio.trim() === ''
+            ) {
+                errorMessage4.style.display = 'block';
+                skillsErrorMessage.style.display = 'none';
+            } else if () {
+                errorMessage4.style.display = 'none';
+                skillsErrorMessage.style.display = 'block';
+            } else {
+                errorMessage4.style.display = 'none';
+                skillsErrorMessage.style.display = 'none';
+                var step1 = document.getElementById('step1');
+                var step2 = document.getElementById('step2');
+                var step3 = document.getElementById('step3');
+                var step4 = document.getElementById('step4');
+                var step5 = document.getElementById('step5');
+                var step6 = document.getElementById('step6');
+                step1.style.display = 'none';
+                step2.style.display = 'none';
+                step3.style.display = 'none';
+                step4.style.display = 'none';
+                step5.style.display = 'none';
+                step6.style.display = 'block';
             }
         }
 

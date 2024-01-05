@@ -85,7 +85,7 @@
                             <img class="w-50 mr-2" src="<?php echo base_url('assets/img/logo.svg');?>" alt="Café Crème Community" id="logoLogin">
                         </a>
                         
-                        <div id="step1" style="display:none">
+                        <div id="step1" style="display:block">
                             <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
                                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                     <h1 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
@@ -136,7 +136,7 @@
                                         1/5
                                     </div>
                                     <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
-                                    <div class="absolute inset-0 bg-primary rounded-md" style="width: 25%;"></div>
+                                    <div class="absolute inset-0 bg-primary rounded-md" style="width: 20%;"></div>
                                     </div>
                                 </div>
                                 <div class="block-container flex flex-col items-center">
@@ -154,7 +154,7 @@
                                     </li>
 
                                     <li class="h-48 flex flex-col items-center overflow-hidden">
-                                            <input type="radio" id="userTypeESN" name="userType" value="esn" class="hidden peer" required>
+                                            <input type="radio" id="userTypeESN" name="userType" value="sales" class="hidden peer" required>
                                             <label for="userTypeESN" class="h-full inline-flex flex-col items-center justify-center w-full pt-5 text-black bg-white border hover:bg-primary border-black rounded-lg cursor-pointer dark:hover:bg-primary dark:border-white dark:peer-checked:text-blue-500 peer-checked:bg-primary peer-checked:text-white hover:text-gray-600 dark:text-gray-400 dark:bg-gray-800 mb-4" onclick="handleClick(this)" onmouseover="changeTextColor(this, true)" onmouseout="changeTextColor(this, false)">
                                                 <div class="flex flex-col items-center">
                                                     <h2 class="text-2xl font-bold mt-4 mb-2 leading-tight tracking-tight md:text-2xl dark:text-white">ESN / Sales</h2>
@@ -189,7 +189,7 @@
                                         2/5
                                     </div>
                                     <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
-                                    <div class="absolute inset-0 bg-primary rounded-md" style="width: 50%;"></div>
+                                    <div class="absolute inset-0 bg-primary rounded-md" style="width: 40%;"></div>
                                     </div>
                                 </div>
                                 <div class="flex flex-col items-center">
@@ -245,18 +245,26 @@
                             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                 <div class="flex items-center">
                                     <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white" style="width: 60%;">
-                                    Tes Expertises
+                                    Tes Préférences
                                     </h2>
                                     <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
                                     <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
                                         3/5
                                     </div>
                                     <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
-                                    <div class="absolute inset-0 bg-primary rounded-md" style="width: 75%;"></div>
+                                    <div class="absolute inset-0 bg-primary rounded-md" style="width: 60%;"></div>
                                     </div>
                                 </div>
                                 <div>
-                                    <input type="text" name="userJobName" id="userJobName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre métier *" required>
+                                    <!--<input type="text" name="userJobName" id="userJobName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre métier *" required>-->
+                                    <div class="w-full text-black">    
+                                        <select id="jobsAll" name="jobsAll[]"  style="font-size:1rem;" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                            <?php foreach ($jobsAll as $joba): ?>
+                                                <option class="dark:text-black" value="<?= $joba['jobName']?>">
+                                                <?= $joba['jobName'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div>
                                     <input type="number" name="userTJM" id="userTJM" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre TJM *" min="100" required>
@@ -300,7 +308,7 @@
                             </div>
                         </div>
                         </div>
-                        <div id="step5" style="display:block; height:90%">
+                        <div id="step5" style="display:none; height:80%">
                         <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
                             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                 <div class="flex items-center">
@@ -312,7 +320,7 @@
                                         4/5
                                     </div>
                                     <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
-                                    <div class="absolute inset-0 bg-primary rounded-md" style="width: 75%;"></div>
+                                    <div class="absolute inset-0 bg-primary rounded-md" style="width: 80%;"></div>
                                     </div>
                                 </div>
                                 <label for="userBio" class="block font-medium text-gray-900 dark:text-white">À propos de toi</label>
@@ -326,20 +334,27 @@
                                     <label class="text-sm text-gray-500 ml-3 dark:text-gray-400">Oui</label>
                                 </div>
                                 <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-sm text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                                    <option class="dark:text-black" value="Temps Plein">Temps plein</option>
-                                    <option class="dark:text-black" value="Temps Partiel">Temps partiel</option>
+                                    <option class="dark:text-black" value="temps-plein">Temps plein</option>
+                                    <option class="dark:text-black" value="temps-partiel">Temps partiel</option>
                                 </select>
-                                <label for="userSkills" class="block mt-2 font-medium text-gray-900 dark:text-white">Tes compétences (5 minimum)</label>
+                                <div class="relative flex items-center">
+                                    <label for="userSkills" class="block mt-2 font-medium text-gray-900 dark:text-white">Tes compétences (5 minimum)</label>
+                                    <div class="absolute bottom-0 right-0 flex hover:text-gray-800">
+                                        <button id="add-skill-btn" class="py-1.5 px-1.5 text-sm text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
                                 <div class=" bg-white rounded-lg dark:bg-gray-800 text-gray-500">
                                     <div id="skills-container">
                                         <div class="flex flex-1 mb-4 skill-row">
                                             <div class="w-3/4 mr-2">
-                                            <select id="skillsAll" name="skillsAll[]"  class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                                <option value="">Sélectionnez une compétence</option>
-                                                <?php foreach ($skillsAll as $skill): ?>
-                                                    <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
-                                                <?php endforeach; ?>
-                                            </select>
+                                                <select id="skillsAll" name="skillsAll[]"  class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    <option value="">Sélectionnez une compétence</option>
+                                                    <?php foreach ($skillsAll as $skill): ?>
+                                                        <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
                                             </div>
                                             <div class="w-1/4">
                                                 <select class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="skillsLevel[]" required>
@@ -353,7 +368,6 @@
                                             </button>
                                         </div>
                                     </div>
-                                    <button id="add-skill-btn" type="button" class="py-2 px-4 bg-primary text-white rounded-lg">Ajouter une compétence</button>
                                 </div>
                                 <div class="flex justify-between">
                                     <!-- button for previous step -->
@@ -371,14 +385,14 @@
                             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                 <div class="flex items-center">
                                     <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white" style="width: 60%;">
-                                    Tes Expertises
+                                    Paiement
                                     </h2>
                                     <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
                                     <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
                                         5/5
                                     </div>
                                     <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
-                                    <div class="absolute inset-0 bg-primary rounded-md" style="width: 75%;"></div>
+                                    <div class="absolute inset-0 bg-primary rounded-md" style="width: 100%;"></div>
                                     </div>
                                 </div>
                                 <!-- submit -->                                        
@@ -389,7 +403,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -858,11 +871,13 @@ function handleClick(element) {
             var step3 = document.getElementById('step3');
             var step4 = document.getElementById('step4');
             var step5 = document.getElementById('step5');
+            var step6 = document.getElementById('step6');
 
             step2.style.display = 'none';
             step3.style.display = 'none';
             step4.style.display = 'none';
             step5.style.display = 'none';
+            step6.style.display = 'none';
             step1.style.display = 'block';
         }
 
@@ -889,10 +904,12 @@ function handleClick(element) {
                         var step2 = document.getElementById('step2');
                         var step3 = document.getElementById('step3');
                         var step5 = document.getElementById('step5');
+                        var step6 = document.getElementById('step6');
                         step1.style.display = 'none';
                         step3.style.display = 'none';
                         step4.style.display = 'none';
                         step5.style.display = 'none';
+                        step6.style.display = 'none';
                         step2.style.display = 'block';
                     } else {
                         // L'e-mail existe déjà ou les mots de passe ne correspondent pas
@@ -912,6 +929,7 @@ function handleClick(element) {
             var step3 = document.getElementById('step3');
             var step4 = document.getElementById('step4');
             var step5 = document.getElementById('step5');
+            var step6 = document.getElementById('step6');
 
             if (userTypeFreelance.checked || userTypeESN.checked) {
                 errorUserType.style.display = 'none';
@@ -919,6 +937,7 @@ function handleClick(element) {
                 step2.style.display = 'none';
                 step4.style.display = 'none';
                 step5.style.display = 'none';
+                step6.style.display = 'none';
                 step3.style.display = 'block';
             } else {
                 errorUserType.style.display = 'block';
@@ -932,6 +951,7 @@ function handleClick(element) {
             var userLastName = document.getElementById('userLastName').value;
             var userVille = document.getElementById('citySearch').value;
             var userTelephone = document.getElementById('userTelephone').value;
+            //var userAvatar = document.getElementById('avatar-upload').value;
             //var userJobName = document.getElementById('userJobName').value;
             //var userTJM = document.getElementById('userTJM').value;
             var errorMessage2 = document.getElementById('errorMessage2');
@@ -958,16 +978,18 @@ function handleClick(element) {
                 var step3 = document.getElementById('step3');
                 var step4 = document.getElementById('step4');
                 var step5 = document.getElementById('step5');
+                var step6 = document.getElementById('step6');
                 step1.style.display = 'none';
                 step2.style.display = 'none';
                 step3.style.display = 'none';
                 step5.style.display = 'none';
+                step6.style.display = 'none';
                 step4.style.display = 'block';
             }
         }
         
         function goToStep5() {
-            var userJobName = document.getElementById('userJobName').value;
+            //var userJobName = document.getElementById('userJobName').value;
             var userTJM = document.getElementById('userTJM').value;
             var userJobTypes = document.getElementsByName('userJobType');
             var jobTypeSelected = false;
@@ -982,7 +1004,6 @@ function handleClick(element) {
             }
 
             if (
-                userJobName.trim() === '' ||
                 userTJM.trim() === '' ||
                 !jobTypeSelected
             ) {
@@ -999,10 +1020,12 @@ function handleClick(element) {
                 var step3 = document.getElementById('step3');
                 var step4 = document.getElementById('step4');
                 var step5 = document.getElementById('step5');
+                var step6 = document.getElementById('step6');
                 step1.style.display = 'none';
                 step2.style.display = 'none';
                 step3.style.display = 'none';
                 step4.style.display = 'none';
+                step6.style.display = 'none';
                 step5.style.display = 'block';
             }
         }
@@ -1011,13 +1034,27 @@ function handleClick(element) {
             var userBio = document.getElementById('userBio').value;
             var errorMessage4 = document.getElementById('errorMessage4');
             var skillsErrorMessage = document.getElementById('skillsErrorMessage');
+            var skillRowDivsCount = document.querySelectorAll('.skill-row').length;
+            var skillRows = document.querySelectorAll('.skill-row');
+
+            var allSelectsValid = true;
+            skillRows.forEach(function(skillRow) {
+                var selects = skillRow.querySelectorAll('select');
+
+                selects.forEach(function(select) {
+                    if (select.value === "") {
+                        allSelectsValid = false;
+                    }
+                });
+            });
 
             if (
-                userBio.trim() === ''
+                userBio.trim() === '' ||
+                allSelectsValid == false
             ) {
                 errorMessage4.style.display = 'block';
                 skillsErrorMessage.style.display = 'none';
-            } else if () {
+            } else if (skillRowDivsCount<5) {
                 errorMessage4.style.display = 'none';
                 skillsErrorMessage.style.display = 'block';
             } else {
@@ -1038,11 +1075,6 @@ function handleClick(element) {
             }
         }
 
-
-
-
-
-        
     </script>
 </body>
 </html>

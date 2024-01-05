@@ -267,7 +267,7 @@ class User extends CI_Controller {
 
         $jobId = $this->User_model->getJobId($userJobName);
 
-       var_dump($userTelephone);
+        var_dump($userTelephone);
 
         // Vérifier si un fichier a été téléchargé
         if ($_FILES['avatar-upload']['name']) {

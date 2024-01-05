@@ -12,13 +12,13 @@ class Register extends CI_Controller {
             redirect('user');
         }
         $data['skillsAll'] = $this->Register_model->get_all_skills();
+        $data['jobsAll'] = $this->Register_model->get_all_jobs();
 
         $this->load->view('register_view', $data);
     }
 
     public function checkEmailExists(){
         $email = $this->input->post('userEmail');
-        
 
         if ($this->Register_model->checkEmailExists($email)) {
             // Email existe déjà
@@ -45,73 +45,94 @@ class Register extends CI_Controller {
     }
 
     public function registerUser(){
-        $config['upload_path'] = 'assets/img/';
-        $config['allowed_types'] = 'jpg|jpeg|png';
-        $config['max_size'] = 2048; // Taille maximale du fichier en kilo-octets
+        $this->load->model('Register_model');
+        $userEmail = $this->input->post('userEmail');
+        $userPassword = $this->input->post('userPassword');
+        // hash password
+        $userPassword = password_hash($userPassword, PASSWORD_DEFAULT);
 
-        $this->load->library('upload', $config);
+        $userType = $this->input->post('userType');
 
-        if ($this->input->post()) {
-            // get all information
-            $userFirstName = $this->input->post('userFirstName');
+        $userFirstName = $this->input->post('userFirstName');
+        $userLastName = $this->input->post('userLastName');
+        $userVille = $this->input->post('userVille');
+        $userTelephone = $this->input->post('userTelephone');
 
-            // Check if avatar is uploaded
-            if (!empty($_FILES['avatar-upload']['name'])) {
-                $datetime = date("Y-m-d-H-i-s");
-                $file_extension = pathinfo($_FILES['avatar-upload']['name'], PATHINFO_EXTENSION);
-                $file_name = $datetime . '_' . $file_extension;
-                $file_name = $userFirstName . '_' . $file_name;
+        $userJobName = $this->input->post('jobsAll');
+        $userJobName = implode(',', $userJobName);
+        $userJobId = $this->Register_model->getJobId($userJobName);
+        $userTJM = $this->input->post('userTJM');
+        $userJobType = $this->input->post('userJobType');
+        $userExpertise = $this->input->post('userExpertise');
+        $userJobTime = $this->input->post('userJobTime');
+        
+        $userBio = $this->input->post('userBio');
+        $userIsAvailable = $this->input->post('userIsAvailable');
+        if ($userIsAvailable == 'on') {
+            $userIsAvailable = 1;
+        } else {
+            $userIsAvailable = 0;
+        }
+        $userJobTimePartielOrFullTime = $this->input->post('userJobTimePartielOrFullTime');
 
-                $relative_path = 'assets/img/' . $file_name;
+        $result = $this->Register_model->registerUser($userEmail, $userPassword, $userType, $userFirstName, $userLastName, $userVille, $userTelephone, $userJobId, $userTJM, $userJobType, $userExpertise, $userJobTime, $userBio, $userIsAvailable, $userJobTimePartielOrFullTime);
 
-                // if (!$this->upload->do_upload('avatar-upload')) {
-                //     // Erreur lors du téléchargement du fichier
-                //     $error = $this->upload->display_errors();
-                //     echo "Erreur lors du téléchargement de l'avatar";
-                //     // Gérez l'erreur en conséquence
-                //     return;
-                // } else {
-                    // Téléchargement du fichier réussi
-                    $upload_data = $this->upload->data();
-                    $new_file_path = $upload_data['file_path'] . $file_name;
+        $skills = $this->input->post("skillsAll");
+        $levels = $this->input->post("skillsLevel");
 
-                    // Renommez le fichier téléchargé avec le bon nom dans le répertoire
-                    rename($upload_data['full_path'], $new_file_path);
+        if ($result !== false) {
+            $userId = $result;
+
+            // Vérifier si un fichier a été téléchargé
+            if ($_FILES['avatar-upload']['name']) {
+                // Créer un dossier pour chaque utilisateur avec son ID
+                $userAvatarPath = 'assets/img/user/' . $userId . '/';
+                if (!is_dir($userAvatarPath)) {
+                    mkdir($userAvatarPath, 0777, true);
                 }
-            else {
-                $relative_path = null; // Si aucun avatar n'est chargé, définissez le chemin relatif sur null
+        
+                $config['upload_path'] = $userAvatarPath;
+                $config['allowed_types'] = 'jpg|jpeg|png';
+                $config['max_size'] = 2048; // Taille maximale du fichier en kilo-octets
+        
+                $this->load->library('upload', $config);
+        
+                if (!$this->upload->do_upload('avatar-upload')) {
+                    // Erreur lors du téléchargement du fichier
+                    $error = $this->upload->display_errors();
+                    echo "Erreur lors du téléchargement de l'avatar";
+                    // Gérez l'erreur en conséquence
+                } else {
+                    // Téléchargement du fichier réussi
+                    // Récupérer les informations sur le fichier téléchargé
+                    $uploadData = $this->upload->data();
+                    $userAvatarPath .= $uploadData['file_name'];
+        
+                    // Mettre à jour le chemin de l'avatar de l'utilisateur dans la base de données
+                    $this->Register_model->addAvatarPath($userId, $userAvatarPath);        
+                }
             }
 
-            // get other information
-            $userEmail = $this->input->post('userEmail');
-            $userPassword = $this->input->post('userPassword');
-            // hash password
-            $userPassword = password_hash($userPassword, PASSWORD_DEFAULT);
-            $userLastName = $this->input->post('userLastName');
-            $userType = $this->input->post('userType');
-            $userVille = $this->input->post('userVille');
-            $userJobName = $this->input->post('userJobName');
-            $userTJM = $this->input->post('userTJM');
-            $userSkill = $this->input->post('userSkill');
-            $userJobId = 1;
-            $userIsAvailable = $this->input->post('userIsAvailable');
-            if ($userIsAvailable == 'on') {
-                $userIsAvailable = 1;
-            } else {
-                $userIsAvailable = 0;
-            }
+            if (!empty($skills)) {
+            // Bouclez à travers les compétences et les niveaux associés
+                for ($i = 0; $i < count($skills); $i++) {
+                    $skillId = $skills[$i];
+                    $level = $levels[$i];
 
-            $result = $this->Register_model->registerUser($userEmail, $userPassword, $userFirstName, $userLastName, $userType, $relative_path, $userVille, $userJobName, $userTJM, $userSkill, $userJobId, $userIsAvailable);
-
-            if ($result) {
-                // Enregistrement réussi
-                $this->session->set_flashdata('message', 'Vous êtes bien enregistré. Connectez-vous pour accéder à votre compte.');
-                $this->session->set_flashdata('status', 'success');
-                $this->load->view('login_view');
-            } else {
-                // Erreur lors de l'enregistrement
-                echo "Erreur lors de l'enregistrement";
+                    // Ajoutez les compétences de mission à la table missionSkills
+                    $this->Register_model->addUserSkills($userId, $skillId, $level);
+                }
             }
+        }
+
+        if ($result) {
+            // Enregistrement réussi
+            $this->session->set_flashdata('message', 'Vous êtes bien enregistré. Connectez-vous pour accéder à votre compte.');
+            $this->session->set_flashdata('status', 'success');
+            $this->load->view('login_view');
+        } else {
+            // Erreur lors de l'enregistrement
+            echo "Erreur lors de l'enregistrement";
         }
     }
 }

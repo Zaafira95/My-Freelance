@@ -173,7 +173,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                     <label for="userLastName" class="block mb-1  font-medium text-gray-900 dark:text-white">Votre nom *</label>
                         <input type="text" name="userLastName" id="userLastName" value="<?=$user->userLastName?>" class="mb-2 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                     <label for="userJobName" class="block mb-1  font-medium text-gray-900 dark:text-white">Votre métier *</label>
-                        <div class="w-full text-black bg-blue-500">    
+                        <div class="w-full text-black">    
                             <select id="jobsAll" name="jobsAll[]"  style="font-size:1rem;" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                                 <?php foreach ($jobsAll as $joba): ?>
                                     <option class="dark:text-black" value="<?= $joba['jobName']?>"
@@ -610,7 +610,7 @@ foreach ($experiences as $index => $experience) {
                 <div id="skills-container">
                     <div class="flex flex-1 mb-4 skill-row">
                         <div class="w-3/4 mr-2">
-                        <select id="skillsAll" name="skillsAll[]"  class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <select id="skillsAll" name="skillsAll[]"  class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option value="">Sélectionnez une compétence</option>
                                 <?php foreach ($skillsAll as $skill): ?>
                                     <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>

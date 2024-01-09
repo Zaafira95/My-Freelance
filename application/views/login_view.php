@@ -29,17 +29,21 @@
         }, 3000);
     </script>
 <?php endif; ?>
-    <section class="h-screen">
+<section class="h-screen">
   <div class="container h-full px-6 mx-auto max-w-screen-xl">
     <div class="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between">
       <!-- Left column container with background-->
       <!-- Left column container with background-->
-      <div class="mb-12 md:mb-0 md:w-8/12 lg:w-6/12">
+      <div class="hidden md:block md:w-8/12 lg:w-6/12">
           <img
           src="<?php echo base_url('assets/img/cc-2.png');?>"
           class="w-full image-rotation"
           alt="Login Image with quote" />
       </div>
+      <!-- <div class="hidden md:block bg-red-500">
+        <p>Je ne devrais être visible que sur les écrans moyens et grands</p>
+    </div> -->
+
 
       <!-- Right column container with form -->
       <div class="md:w-8/12 lg:ml-6 lg:w-5/12">

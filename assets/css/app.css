@@ -492,10 +492,10 @@ video {
     max-width: 768px;
   }
 }
-@media (min-width: 1024px) {
+@media (min-width: 1020px) {
 
   .container {
-    max-width: 1024px;
+    max-width: 1020px;
   }
 }
 @media (min-width: 1280px) {
@@ -1347,6 +1347,10 @@ video {
 .text-3xl {
   font-size: 2rem;
 }
+.text-4xl {
+  font-size: 2.441rem;
+}
+
 .text-5xl {
   font-size: 3.052rem;
 }
@@ -3483,8 +3487,16 @@ body.dark {
 
   @media (min-width: 768px) {
 
+  .md\:sticky {
+    position: sticky;
+  }
+
   .md\:inset-0 {
     inset: 0px;
+  }
+
+  .md\:top-0 {
+    top: 0px;
   }
 
   .md\:mb-0 {
@@ -3544,9 +3556,28 @@ body.dark {
   .md\:text-2xl {
     font-size: 1.563rem;
   }
+
+  .md\:text-3xl {
+    font-size: 2rem;
+  }
+
+  .md\:text-base {
+    font-size: 1rem;
+  }
+
+  .md\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+
 }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 1020px) {
+
+  .lg\:px-4{
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 
   .lg\:sticky {
     position: sticky;
@@ -3668,6 +3699,11 @@ body.dark {
     padding-bottom: 0.625rem;
   }
 
+  .lg\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+
   .lg\:text-primary {
     --tw-text-opacity: 1;
     color: rgb(57 113 250 / var(--tw-text-opacity));
@@ -3680,6 +3716,12 @@ body.dark {
   .lg\:hover\:text-primary-400:hover {
     color: rgba(57, 113, 250, 0.4);
   }
+
+  .lg\:text-base {
+    font-size: 1rem;
+  }
+
+
 }
 
   @media (min-width: 1280px) {

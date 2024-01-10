@@ -101,92 +101,92 @@ if ($banner->bannerStatus == "active"){ ?>
         </div>
     </div>
 
-<div class="px-4 py-6 h-90 overflow-y-auto no-scrollbar">
+<div class="px-4 py-6 h-90 overflow-y-auto no-scrollbar ">
     <div class="justify-between items-center mx-auto max-w-screen-xl h-full">
         <div class="lg:flex gap-6 h-full mb-3">
             <!-- Bloc Filtre -->
-            <div class="hidden w-full lg:w-1/4 lg:block lg:sticky lg:top-0">
+            <div class="w-full lg:w-1/4 md:block md:sticky md:top-0">
                 <div class="bg-white rounded-lg h-full overflow-y-auto no-scrollbar mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                    <h3 class="text-xl font-medium mt-2">Filtre</h3>
-                    <h4 class="text-lg font-medium mt-4">Localisation</h4>
+                    <h3 class="text-3xl lg:text-lg font-medium mt-2">Filtre</h3>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Localisation</h4>
                         <div class="flex items-center mt-2">
                             <i class="fa fa-map-marker-alt mr-3"></i>    
                             <div class="relative city-search-container w-full">
-                                <input type="text" id="citySearch" value="<?=$user->userVille?>" placeholder="Cherchez votre ville" class="border p-2 rounded-lg w-full text-black">
-                                    <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
+                                <input type="text" id="citySearch" value="<?=$user->userVille?>" placeholder="Cherchez votre ville" class="text-2xl lg:text-lg border p-2 rounded-lg w-full text-black">
+                                <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                             </div>
                         </div>
-                    <h4 class="text-lg font-medium mt-4">Type de poste</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Type de poste</h4>
                     <div class="mt-2">
-                        <label class="flex items-center">
+                        <label class="flex items-center ">
                             <input type="checkbox" class="form-checkbox mr-2" id="temps-plein" <?= ($user->userJobTimePartielOrFullTime == 'temps-plein') ? 'checked' : '' ?>>
-                            <span class="ml-2">Temps plein</span>
+                            <span class="ml-2 text-2xl lg:text-base">Temps plein</span>
                         </label>
-                        <label class="flex items-center">
+                        <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="form-checkbox mr-2" id="temps-partiel" <?= ($user->userJobTimePartielOrFullTime == 'temps-partiel') ? 'checked' : '' ?>>
-                            <span class="ml-2">Temps partiel</span>
+                            <span class="ml-2 text-2xl lg:text-base">Temps partiel</span>
                         </label>
                     </div>
-                    <h4 class="text-lg font-medium mt-4">Durée de la mission</h4>
+                    <h4 class="text-2xl lg:text-lg font-medium mt-4">Durée de la mission</h4>
                     <div class="mt-2">
-                        <label class="flex items-center">
+                        <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="form-checkbox mr-2" id="courte" <?= ($user->userJobTime == 'courte') ? 'checked' : '' ?>>
-                            <span class="ml-2">Courte durée</span>
+                            <span class="ml-2 text-2xl lg:text-base">Courte durée</span>
                         </label>
-                        <label class="flex items-center">
+                        <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="form-checkbox mr-2" id="longue" <?= ($user->userJobTime == 'longue') ? 'checked' : '' ?>>
-                            <span class="ml-2">Longue durée</span>
+                            <span class="ml-2 text-2xl lg:text-base">Longue durée</span>
                         </label>
-                        <label class="flex items-center">
+                        <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="form-checkbox mr-2" id="indefinie" <?= ($user->userJobTime == 'indefinie') ? 'checked' : '' ?>>
-                            <span class="ml-2">Durée indéfinie</span>
+                            <span class="ml-2 text-2xl lg:text-base">Durée indéfinie</span>
                         </label>
                     </div>
-                    <h4 class="text-lg font-medium mt-4">Mode de déroulement</h4>
+                    <h4 class="text-2xl lg:text-lg font-medium mt-4">Mode de déroulement</h4>
                     <div class="mt-2">
-                        <label class="flex items-center">
+                        <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="form-checkbox mr-2" id="site">
-                            <span class="ml-2">Sur site</span>
+                            <span class="ml-2 text-2xl lg:text-base">Sur site</span>
                         </label>
-                        <label class="flex items-center">
+                        <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="form-checkbox mr-2" id="teletravail" <?php
                                 $jobTypeArray = explode(',', $user->userJobType);
                                 if (in_array('Remote', $jobTypeArray)) {
                                     echo 'checked="checked"';
                                 }
                                 ?>>
-                            <span class="ml-2">Télétravail</span>
+                            <span class="ml-2 text-2xl lg:text-base">Télétravail</span>
                         </label>
-                        <label class="flex items-center">
+                        <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="form-checkbox mr-2" id="hybride">
-                            <span class="ml-2">Hybride</span>
+                            <span class="ml-2 text-2xl lg:text-base">Hybride</span>
                         </label>
                     </div>
-                    <h4 class="text-lg font-medium mt-4">Niveau d'expérience</h4>
+                    <h4 class="text-2xl lg:text-lg font-medium mt-4">Niveau d'expérience</h4>
                     <div class="mt-2">
-                        <label class="flex items-center">
+                        <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="form-checkbox mr-2" id="junior" <?= ($user->userExperienceYear === 'junior') ? 'checked' : '' ?>>
-                            <span class="ml-2">Junior (1 à 2 ans)</span>
+                            <span class="ml-2 text-2xl lg:text-base">Junior (1 à 2 ans)</span>
                         </label>
-                        <label class="flex items-center">
+                        <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="form-checkbox mr-2" id="intermediaire" <?= ($user->userExperienceYear === 'intermediaire') ? 'checked' : '' ?>>
-                            <span class="ml-2">Intermédiaire (3 à 5 ans)</span>
+                            <span class="ml-2 text-2xl lg:text-base">Intermédiaire (3 à 5 ans)</span>
                         </label>
-                        <label class="flex items-center">
+                        <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="form-checkbox mr-2" id="expert" <?= ($user->userExperienceYear === 'expert') ? 'checked' : '' ?>>
-                            <span class="ml-2">Expert (+ 5 ans)</span>
+                            <span class="ml-2 text-2xl lg:text-base">Expert (+ 5 ans)</span>
                         </label>
                     </div>
-                    <h4 class="text-lg font-medium mt-4">TJM</h4>
+                    <h4 class="text-2xl lg:text-lg font-medium mt-4">TJM</h4>
                     <div class="mt-2 mr-3">
                         <div id="tjm-slider" class="w-full mt-2"></div>
                         <div class="flex justify-between mt-2">
-                            <span id="tjm-min" class="text-sm">300€</span>
-                            <span id="tjm-max" class="text-sm">1200€</span>
+                            <span id="tjm-min" class="text-2xl lg:text-base">300€</span>
+                            <span id="tjm-max" class="text-2xl lg:text-base">1200€</span>
                         </div>
                     </div>
                 
-                    <h4 class="text-lg font-medium mt-4">Compétences</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Compétences</h4>
                     <div class="w-full mx-auto mt-5 text-black">
                         <!-- <label for="skillsAll" class="block text-sm font-medium text-gray-700">Sélectionnez vos compétences</label> -->
                         <select id="skillsAll" name="skillsAll[]" multiple class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -221,10 +221,10 @@ if ($banner->bannerStatus == "active"){ ?>
             <div class="w-full lg:w-6/12 h-full overflow-y-auto no-scrollbar">
                 <!-- Barre de recherche -->
                 <div class="bg-primary rounded-lg h-20vh p-4 text-white">
-                    <p class="font-bold">Hello, <?=$user->userFirstName?></p>
-                    <p class="font-normal mt-2 mb-2">Découvrez la manière la plus rapide et efficace de décrocher une mission.</p>
+                    <p class="text-3xl lg:text-lg font-bold">Hello, <?=$user->userFirstName?></p>
+                    <p class="text-2xl lg:text-base mt-2 mb-2">Découvrez la manière la plus rapide et efficace de décrocher une mission.</p>
                     <div class="flex w-full">
-                        <input type="text" id="search-input" class="w-full bg-white bg-opacity-20 rounded-lg p-2 placeholder-white mr-2 text-center" placeholder="Ecrivez le nom du poste que vous recherchez..." />
+                        <input type="text" id="search-input" class="text-xl md:text-base w-full bg-white bg-opacity-20 rounded-lg p-2 placeholder-white mr-2 text-center" placeholder="Ecrivez le nom du poste que vous recherchez..." />
                         <!-- <button class="w-1/5 bg-white text-primary rounded-lg px-4 py-2">Rechercher</button> -->
                     </div>
                 </div>
@@ -293,8 +293,8 @@ if ($banner->bannerStatus == "active"){ ?>
 
                                     <!-- Div informations clés mission -->
                                     <div class="w-3/4 mr-4">
-                                        <h2 class="font-bold text-lg"><?=$mission->missionName?></h2>
-                                        <p>
+                                        <h2 class="text-3xl lg:text-lg font-bold "><?=$mission->missionName?></h2>
+                                        <p class="text-2xl lg:text-base">
                                             <span class="mr-2"> 
                                                 • TJM : <?=$mission->missionTJM?> €
                                             </span>
@@ -376,7 +376,7 @@ if ($banner->bannerStatus == "active"){ ?>
                                     <div class="mt-4">
                                         
                                         <!-- Description mission -->
-                                        <p class="font-light mt-4 mb-4">
+                                        <p class="font-light mt-4 mb-4 text-2xl lg:text-base">
 
                                             <?php 
                                             // limit missionDescription to 270 caracteres and add '...' at the end
@@ -494,8 +494,8 @@ if ($banner->bannerStatus == "active"){ ?>
                                     <?php endforeach; ?>
                                 </div>
                                 <div class="w-3/4 mr-4">
-                                    <h2 class="font-bold text-lg"><?=$mission->missionName?></h2>
-                                    <p>
+                                    <h2 class="text-3xl lg:text-lg font-bold "><?=$mission->missionName?></h2>
+                                    <p class="text-2xl lg:text-base">
                                         <span class="mr-2">
                                             • TJM : <?=$mission->missionTJM?> €
                                         </span>
@@ -571,16 +571,16 @@ if ($banner->bannerStatus == "active"){ ?>
                             <!-- Fin div en tête -->
 
                             <!-- Div Flex description + compétences mission -->
-                            <div class="flex items-center justify-between">
+                            <div class="text-xl md:text-base flex items-center justify-between">
                                 <div class="mt-4">
-                                    <p class="font-light mt-4 mb-4">
+                                    <p class="font-light mt-4 mb-4 text-2xl lg:text-base">
                                         <?php 
                                         // limit missionDescription to 270 caracteres and add '...' at the end
                                         $mission->missionDescription = strlen($mission->missionDescription) > 270 ? substr($mission->missionDescription,0,270)."..." : $mission->missionDescription;    
                                         ?>
                                         <?=$mission->missionDescription?>
                                     </p>
-                                    <div class="skills-container mb-4">
+                                    <div class="skills-container mb-4 mt-4">
                                         <?php
                                             $dataMissionSkills = [];
                                             foreach ($missionSkills[$mission->idMission] as $skill):

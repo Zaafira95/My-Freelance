@@ -74,11 +74,12 @@ class Register extends CI_Controller {
             $userIsAvailable = 0;
         }
         $userJobTimePartielOrFullTime = $this->input->post('userJobTimePartielOrFullTime');
+        
+        $skills = $this->input->post("skillsAll");
+        $levels = $this->input->post("skillsLevel");
 
         $result = $this->Register_model->registerUser($userEmail, $userPassword, $userType, $userFirstName, $userLastName, $userVille, $userTelephone, $userJobId, $userTJM, $userJobType, $userExpertise, $userJobTime, $userBio, $userIsAvailable, $userJobTimePartielOrFullTime);
 
-        $skills = $this->input->post("skillsAll");
-        $levels = $this->input->post("skillsLevel");
 
         if ($result !== false) {
             $userId = $result;
@@ -113,16 +114,16 @@ class Register extends CI_Controller {
                 }
             }
 
-            if (!empty($skills)) {
+            //if (!empty($skills)) {
             // Bouclez à travers les compétences et les niveaux associés
                 for ($i = 0; $i < count($skills); $i++) {
                     $skillId = $skills[$i];
                     $level = $levels[$i];
-
-                    // Ajoutez les compétences de mission à la table missionSkills
                     $this->Register_model->addUserSkills($userId, $skillId, $level);
                 }
-            }
+            //}
+            var_dump($skills);
+            die;
         }
 
         if ($result) {

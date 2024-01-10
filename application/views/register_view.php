@@ -94,7 +94,7 @@
                                     <p class="text-dark mb-2 dark:text-white">
                                         Inscrivez-vous maintenant et commencez à découvrir les opportunités qui vous attendent.
                                     </p>
-                                    <form class="space-y-4 md:space-y-6" method="post" action="<?php echo base_url('register/registerUser'); ?>" onsubmit="showLoader();" enctype="multipart/form-data">
+                                    <form id="register-form" class="space-y-4 md:space-y-6" method="post" action="<?php echo base_url('register/registerUser'); ?>" onsubmit="showLoader();" enctype="multipart/form-data">
                                         <div>
                                             <input type="email" name="userEmail" id="userEmail" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre email *" oninput="checkEmailAvailability(this.value)" required>
                                             <p id="emailError" class="text-red-500"></p>
@@ -257,8 +257,8 @@
                                 </div>
                                 <div>
                                     <!--<input type="text" name="userJobName" id="userJobName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre métier *" required>-->
-                                    <div class="w-full text-black">    
-                                        <select id="jobsAll" name="jobsAll[]"  style="font-size:1rem;" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                    <div class="w-full text-sm text-gray-900">    
+                                        <select id="jobsAll" name="jobsAll[]"  style="font-size:1rem;" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                             <?php foreach ($jobsAll as $joba): ?>
                                                 <option class="dark:text-black" value="<?= $joba['jobName']?>">
                                                 <?= $joba['jobName'] ?></option>
@@ -267,35 +267,41 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <input type="number" name="userTJM" id="userTJM" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre TJM *" min="100" required>
+                                    <input type="number" name="userTJM" id="userTJM" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre TJM *" min="100" >
                                 </div>
-                                <label for="userJobType" class="block mt-4 font-medium text-gray-900 dark:text-white">Type de poste</label>
-                                <div class="flex flex-1 gap-2 mb-3">
-                                    <div class="flex items-center pl-3 border border-gray-200 rounded dark:border-gray-700 w-full mr-4">
-                                        <input id="teletravail" type="radio" value="Remote" name="userJobType" class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" required>
-                                        <label for="teletravail" class="py-4 ml-2  font-medium text-sm text-gray-500 dark:text-white">Télétravail</label>
-                                    </div>
-                                    <div class="flex items-center pl-3 border border-gray-200 rounded dark:border-gray-700 w-full mr-4">
-                                        <input id="hybride" type="radio" value="Hybride" name="userJobType" class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="hybride" class="py-4 ml-2  font-medium text-sm text-gray-500 dark:text-white">Hybride</label>
-                                    </div>
-                                    <div class="flex items-center pl-3 border  border-gray-200 rounded dark:border-gray-700 w-full mr-4">
-                                        <input id="sur-site" type="radio" value="Physique" name="userJobType" class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                        <label for="sur-site" class="py-4 ml-2  font-medium text-sm text-gray-500 dark:text-white">Physique</label>
+                                <div>
+                                    <label for="userJobType" class="block mb-2 font-medium text-gray-900 dark:text-white">Type de poste</label>
+                                    <div class="flex flex-1 gap-2 mb-3">
+                                        <div class="flex items-center pl-3 border border-gray-200 rounded dark:border-gray-700 w-full mr-4">
+                                            <input id="teletravail" type="radio" value="Remote" name="userJobType" class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" >
+                                            <label for="teletravail" class="py-4 ml-2  font-medium text-sm text-gray-500 dark:text-white">Télétravail</label>
+                                        </div>
+                                        <div class="flex items-center pl-3 border border-gray-200 rounded dark:border-gray-700 w-full mr-4">
+                                            <input id="hybride" type="radio" value="Hybride" name="userJobType" class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                            <label for="hybride" class="py-4 ml-2  font-medium text-sm text-gray-500 dark:text-white">Hybride</label>
+                                        </div>
+                                        <div class="flex items-center pl-3 border  border-gray-200 rounded dark:border-gray-700 w-full mr-4">
+                                            <input id="sur-site" type="radio" value="Physique" name="userJobType" class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                            <label for="sur-site" class="py-4 ml-2  font-medium text-sm text-gray-500 dark:text-white">Physique</label>
+                                        </div>
                                     </div>
                                 </div>
-                                <label for="userExpertise" class="block  font-medium text-gray-900 dark:text-white">Votre expertise *</label>
-                                    <select id="userExpertise" name="userExpertise" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-sm text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                <div>
+                                    <label for="userExpertise" class="block mb-2 font-medium text-gray-900 dark:text-white">Votre expertise *</label>
+                                    <select id="userExpertise" name="userExpertise" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-sm text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
                                         <option class="dark:text-black" value="junior">Junior (1 à 2 ans)</option>
                                         <option class="dark:text-black" value="intermediaire">Intermédiaire (3 à 5 ans)</option>
                                         <option class="dark:text-black" value="expert">Expert (+ 5 ans)</option>
                                     </select>
-                                <label for="userJobTime" class="block mt-4 font-medium text-gray-900 dark:text-white">Durée de la mission</label>
-                                <select id="userJobTime" name="userJobTime" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-sm text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                                    <option class="dark:text-black" value="Courte Durée">Courte Durée</option>
-                                    <option class="dark:text-black" value="Longue Durée">Longue Durée</option>
-                                    <option class="dark:text-black" value="expert">Durée indéfinie</option>
-                                </select>
+                                </div>
+                                <div>
+                                    <label for="userJobTime" class="block mb-2 font-medium text-gray-900 dark:text-white">Durée de la mission</label>
+                                    <select id="userJobTime" name="userJobTime" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-sm text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
+                                        <option class="dark:text-black" value="Courte Durée">Courte Durée</option>
+                                        <option class="dark:text-black" value="Longue Durée">Longue Durée</option>
+                                        <option class="dark:text-black" value="expert">Durée indéfinie</option>
+                                    </select>
+                                </div>
                                 <p id="errorMessage3" class="text-red-500 text-sm mt-2 hidden">Veuillez remplir tous les champs correctement</p>
                                 <p id="tjmErrorMessage" class="text-red-500 text-sm mt-2 hidden">Le TJM doit être supérieur à 100</p>
 
@@ -308,7 +314,7 @@
                             </div>
                         </div>
                         </div>
-                        <div id="step5" style="display:none; height:80%">
+                        <div id="step5" style="display:none; height:80%;">
                         <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
                             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                 <div class="flex items-center">
@@ -323,9 +329,11 @@
                                     <div class="absolute inset-0 bg-primary rounded-md" style="width: 80%;"></div>
                                     </div>
                                 </div>
-                                <label for="userBio" class="block font-medium text-gray-900 dark:text-white">À propos de toi</label>
                                 <div>
-                                    <textarea id="userBio" name="userBio" rows="2" class="bg-gray-50 border border-gray-300 text-sm text-gray-500  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                                    <label for="userBio" class="block mb-2 font-medium text-gray-900 dark:text-white">À propos de toi</label>
+                                    <div>
+                                        <textarea id="userBio" name="userBio" rows="2" class="bg-gray-50 border border-gray-300 text-sm text-gray-500  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                                    </div>
                                 </div>
                                 <div class="flex items-center">
                                     <p class="text-sm text-gray-500 mr-3 dark:text-gray-400">Êtes-vous disponible à travailler dès maintenant ?</p>
@@ -333,42 +341,11 @@
                                     <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description" class="relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400">
                                     <label class="text-sm text-gray-500 ml-3 dark:text-gray-400">Oui</label>
                                 </div>
-                                <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-sm text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-sm text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
                                     <option class="dark:text-black" value="temps-plein">Temps plein</option>
                                     <option class="dark:text-black" value="temps-partiel">Temps partiel</option>
                                 </select>
-                                <div class="relative flex items-center">
-                                    <label for="userSkills" class="block mt-2 font-medium text-gray-900 dark:text-white">Tes compétences (5 minimum)</label>
-                                    <div class="absolute bottom-0 right-0 flex hover:text-gray-800">
-                                        <button id="add-skill-btn" class="py-1.5 px-1.5 text-sm text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class=" bg-white rounded-lg dark:bg-gray-800 text-gray-500">
-                                    <div id="skills-container">
-                                        <div class="flex flex-1 mb-4 skill-row">
-                                            <div class="w-3/4 mr-2">
-                                                <select id="skillsAll" name="skillsAll[]"  class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                                    <option value="">Sélectionnez une compétence</option>
-                                                    <?php foreach ($skillsAll as $skill): ?>
-                                                        <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
-                                            <div class="w-1/4">
-                                                <select class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="skillsLevel[]" required>
-                                                    <option value="1">Junior</option>
-                                                    <option value="2">Intermédiaire</option>
-                                                    <option value="3">Expert</option>
-                                                </select>
-                                            </div>
-                                            <button type="button" class="text-red-600 hover:text-red-900 focus:outline-none ml-4 delete-skill-row">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <div class="flex justify-between">
                                     <!-- button for previous step -->
                                     <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" id="previousButton" onclick="goToStep4()">Retour</button>
@@ -376,11 +353,10 @@
                                     <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" id="nextButton" onclick="goToStep6()">Suivant</button>
                                 </div>
                                 <p id="errorMessage4" class="text-red-500 text-sm mt-2 hidden">Veuillez remplir tous les champs correctement</p>
-                                <p id="skillsErrorMessage" class="text-red-500 text-sm mt-2 hidden">Veuillez renseigner au minimum 5 compétences</p>
                             </div>
                         </div>
                         </div>
-                        <div id="step6" style="display:none">
+                        <div id="step6" style="display:none; height:80%;">
                         <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
                             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                 <div class="flex items-center">
@@ -395,6 +371,38 @@
                                     <div class="absolute inset-0 bg-primary rounded-md" style="width: 100%;"></div>
                                     </div>
                                 </div>
+                                
+                                <div class="relative flex items-center">
+                                    <label for="userSkills" class="block mt-2 font-medium text-gray-900 dark:text-white">Tes compétences (5 minimum)</label>
+                                    <div class="absolute bottom-0 right-0 flex hover:text-gray-800">
+                                        <button id="add-skill-btn" class="py-1.5 px-1.5 text-sm text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id="skills-container">
+                                    <div class="flex flex-1 mb-4 skill-row">
+                                        <div class="w-3/4 mr-2 text-black">
+                                            <select id="skillsAll" name="skillsAll[]"  class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                                                <option value="">Sélectionnez une compétence</option>
+                                                <?php foreach ($skillsAll as $skill): ?>
+                                                    <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                        <div class="w-1/4">
+                                            <select class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="skillsLevel[]" required>
+                                                <option value="1">Junior</option>
+                                                <option value="2">Intermédiaire</option>
+                                                <option value="3">Expert</option>
+                                            </select>
+                                        </div>
+                                        <button type="button" class="text-red-600 hover:text-red-900 focus:outline-none ml-4 delete-skill-row">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>                     
+                                </div>
+                                <p id="skillsErrorMessage" class="text-red-500 text-sm mt-2 hidden">Veuillez renseigner au minimum 5 compétences</p>
                                 <!-- submit -->                                        
                                     <div class="flex justify-between">
                                         <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" id="previousButton" onclick="goToStep5()">Retour</button>
@@ -412,9 +420,31 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/choices.js@10.0.0"></script>
+    <script src="<?php echo base_url('assets/js/app.js'); ?>"></script>
 
 
     <script>
+
+
+    // Fonction pour détruire l'instance Choices.js existante
+    function destroyChoicesInstance(element) {
+        if (element.choices) {
+            element.choices.destroy();
+        }
+    }
+
+    // Fonction pour créer une nouvelle instance Choices.js
+    function createChoicesInstance(element) {
+        new Choices(element, {
+            searchEnabled: true,
+            removeItemButton: true,
+            itemSelectText: '',
+            placeholder: true,
+            placeholderValue: 'Sélectionnez des compétences',
+            allowHTML: true,
+            /* options spécifiques à Choices */
+        });
+    }
 
 $(document).ready(function() {
     
@@ -459,12 +489,20 @@ $(document).ready(function() {
         }
     });
 
-    const skillsChoices = new Choices('#skillsAll', {
-        searchEnabled: true,
-        removeItemButton: true,
-        itemSelectText: '',
-        placeholder: true,
-        placeholderValue: 'Sélectionnez des compétences',
+    
+    // Gestion des compétences avec Choices.js
+    const skillSelects = document.querySelectorAll('.new-skill-select');
+
+    // Bouclez à travers chaque élément et initialisez une instance Choices.js
+    skillSelects.forEach(function(skillSelect) {
+        new Choices(skillSelect, {
+            searchEnabled: true,
+            removeItemButton: true,
+            itemSelectText: '',
+            placeholder: true,
+            placeholderValue: 'Sélectionnez des compétences',
+            allowHTML: true,
+        });
     });
 
     $('#search-input-skill').on('keyup', function(){
@@ -498,11 +536,12 @@ $(document).ready(function() {
         }
     });
 
+    // Gestion de l'ajout dynamique de compétences
     $('#add-skill-btn').on('click', function() {
         const newSkillRow = `
         <div class="flex flex-1 mb-4 skill-row">
             <div class="w-3/4 mr-2 text-black">
-                <select name="skillsAll[]" class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                <select id="skillsAll" name="skillsAll[]" class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
                     <option value="">Sélectionnez une compétence</option>
                     <?php foreach ($skillsAll as $skill): ?>
                         <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
@@ -510,7 +549,7 @@ $(document).ready(function() {
                 </select>
             </div>
             <div class="w-1/4">
-                <select name="skillsLevel[]" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                <select class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="skillsLevel[]" required>
                     <option value="1">Junior</option>
                     <option value="2">Intermédiaire</option>
                     <option value="3">Expert</option>
@@ -519,21 +558,14 @@ $(document).ready(function() {
             <button type="button" class="text-red-600 hover:text-red-900 focus:outline-none ml-4 delete-skill-row">
                 <i class="fas fa-trash"></i>
             </button>
-        </div>
+        </div>  
         `;
         $('#skills-container').append(newSkillRow);
-        // Désinitialiser les instances Choices existantes
+
+        // Désinitialisez et réinitialisez les instances Choices.js sur les éléments nouvellement ajoutés
         $('.new-skill-select').each(function() {
-            const choicesInstance = this.choices;
-            if (choicesInstance) {
-                choicesInstance.destroy();
-            }
-        });
-        // Réinitialiser les instances Choices
-        $('.new-skill-select').each(function() {
-            new Choices(this, {
-                /* options spécifiques à Choices */
-            });
+            destroyChoicesInstance(this);
+            createChoicesInstance(this);
         });
     });
 
@@ -1033,33 +1065,13 @@ function handleClick(element) {
         function goToStep6() {
             var userBio = document.getElementById('userBio').value;
             var errorMessage4 = document.getElementById('errorMessage4');
-            var skillsErrorMessage = document.getElementById('skillsErrorMessage');
-            var skillRowDivsCount = document.querySelectorAll('.skill-row').length;
-            var skillRows = document.querySelectorAll('.skill-row');
-
-            var allSelectsValid = true;
-            skillRows.forEach(function(skillRow) {
-                var selects = skillRow.querySelectorAll('select');
-
-                selects.forEach(function(select) {
-                    if (select.value === "") {
-                        allSelectsValid = false;
-                    }
-                });
-            });
 
             if (
-                userBio.trim() === '' ||
-                allSelectsValid == false
+                userBio.trim() === '' 
             ) {
                 errorMessage4.style.display = 'block';
-                skillsErrorMessage.style.display = 'none';
-            } else if (skillRowDivsCount<5) {
-                errorMessage4.style.display = 'none';
-                skillsErrorMessage.style.display = 'block';
             } else {
                 errorMessage4.style.display = 'none';
-                skillsErrorMessage.style.display = 'none';
                 var step1 = document.getElementById('step1');
                 var step2 = document.getElementById('step2');
                 var step3 = document.getElementById('step3');
@@ -1074,6 +1086,33 @@ function handleClick(element) {
                 step6.style.display = 'block';
             }
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var registerForm = document.getElementById('register-form');
+            registerForm.addEventListener('submit', function(event) {
+                var skillsErrorMessage = document.getElementById('skillsErrorMessage');
+                var skillRowDivsCount = document.querySelectorAll('.skill-row').length;
+                var skillRows = document.querySelectorAll('.skill-row');
+                var allSelectsValid = true;
+                skillRows.forEach(function(skillRow) {
+                    var selects = skillRow.querySelectorAll('select');
+
+                    selects.forEach(function(select) {
+                        if (select.value === "") {
+                            allSelectsValid = false;
+                        }
+                    });
+                });
+
+                if (
+                    allSelectsValid == false ||
+                    skillRowDivsCount < 5
+                    ) {
+                    skillsErrorMessage.style.display = 'block';
+                    event.preventDefault(); // Empêche la soumission du formulaire
+                }
+            });
+        });
 
     </script>
 </body>

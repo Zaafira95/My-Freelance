@@ -75,8 +75,12 @@ class Register extends CI_Controller {
         }
         $userJobTimePartielOrFullTime = $this->input->post('userJobTimePartielOrFullTime');
         
-        $skills = $this->input->post("skillsAll");
+        $skills = $this->input->post('skillsAll');
         $levels = $this->input->post("skillsLevel");
+
+        var_dump($userFirstName);
+
+        var_dump($skills);
 
         $result = $this->Register_model->registerUser($userEmail, $userPassword, $userType, $userFirstName, $userLastName, $userVille, $userTelephone, $userJobId, $userTJM, $userJobType, $userExpertise, $userJobTime, $userBio, $userIsAvailable, $userJobTimePartielOrFullTime);
 

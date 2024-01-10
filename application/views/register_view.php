@@ -96,14 +96,14 @@
                                     </p>
                                     <form id="register-form" class="space-y-4 md:space-y-6" method="post" action="<?php echo base_url('register/registerUser'); ?>" onsubmit="showLoader();" enctype="multipart/form-data">
                                         <div>
-                                            <input type="email" name="userEmail" id="userEmail" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre email *" oninput="checkEmailAvailability(this.value)" required>
+                                            <input type="email" name="userEmail" id="userEmail" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre email *" oninput="checkEmailAvailability(this.value)" required>
                                             <p id="emailError" class="text-red-500"></p>
                                         </div>
                                         <div>
-                                            <input type="password" name="userPassword" id="userPassword" placeholder="Saisissez votre mot de passe *" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5" required oninput="checkPasswordStrength(this.value)">
+                                            <input type="password" name="userPassword" id="userPassword" placeholder="Saisissez votre mot de passe *" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5" required oninput="checkPasswordStrength(this.value)">
                                         </div>
                                         <div>
-                                            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirmez votre mot de passe *" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5" required oninput="checkPasswordMatch()">
+                                            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirmez votre mot de passe *" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5" required oninput="checkPasswordMatch()">
                                             <p id="confirmPasswordError" class="text-red-500"></p>
                                         </div>
                                         <div class="password-strength-meter">
@@ -112,13 +112,13 @@
                                         <p id="passwordError" class="text-red-500"></p>
                                         <div>
                                             <input type="checkbox" id="togglePasswordCheckbox" class="form-checkbox text-primary rounded">
-                                            <label for="togglePasswordCheckbox" class="text-sm font-medium text-gray-900 dark:text-white">Afficher le mot de passe</label>
+                                            <label for="togglePasswordCheckbox" class="text-lg font-medium text-gray-900 dark:text-white">Afficher le mot de passe</label>
                                         </div>
                                         <!-- button for next step -->
-                                        <button type="button" class="w-full text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" id="nextButton" onclick="goToStep2()">Suivant</button>
+                                        <button type="button" class="w-full text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep2()">Suivant</button>
                                         <!-- error message -->
                                         <p id="errorMessage1" class="text-red-500" style="display:none;">Un ou plusieurs champs non pas été remplies</p>
-                                        <p class="text-sm font-light text-gray-500 dark:text-white">
+                                        <p class="text-lg font-light text-gray-500 dark:text-white">
                                             Vous avez déjà un compte ? <a href="<?=base_url('login')?>" class="font-medium text-primary hover:underline">Connectez-vous</a>
                                         </p>
                                 </div>
@@ -169,9 +169,9 @@
 
                                     <div class="flex justify-between pl-4 pr-4">
                                         <!-- button for previous step -->
-                                        <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" id="previousButton" onclick="goToStep1()">Retour</button>
+                                        <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep1()">Retour</button>
                                         <!-- button for next step -->
-                                        <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" id="nextButton" onclick="goToStep3()">Suivant</button>
+                                        <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep3()">Suivant</button>
                                     </div>
                                     <p id="errorUserType" class="text-red-500" style="display:none;">Veuillez choisir votre type de profil</p>
                                 </div>
@@ -208,34 +208,34 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <span id="file-name" class="hidden text-sm text-gray-500 mt-4 dark:text-white"></span>
+                                    <span id="file-name" class="hidden text-lg text-gray-500 mt-4 dark:text-white"></span>
                                 </div>
 
                                 <div>
-                                    <input type="text" name="userFirstName" id="userFirstName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre prénom *" required>
+                                    <input type="text" name="userFirstName" id="userFirstName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre prénom *" required>
                                 </div>
                                 <div>
-                                    <input type="text" name="userLastName" id="userLastName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre nom *" required>
+                                    <input type="text" name="userLastName" id="userLastName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre nom *" required>
                                 </div>
                                 <div>    
                                     <div class="relative city-search-container w-full">
-                                        <input type="text" id="citySearch" name="userVille" placeholder="Cherchez votre ville" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" required>
+                                        <input type="text" id="citySearch" name="userVille" placeholder="Cherchez votre ville" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" required>
                                             <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                                     </div>
                                     <!--
-                                    <input type="text" name="userVille" id="userVille" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" required>
+                                    <input type="text" name="userVille" id="userVille" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" required>
                                     -->
                                 </div>
                                 <div>
-                                    <input type="text" name="userTelephone" id="userTelephone" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre numéro de téléphone *" required>
+                                    <input type="text" name="userTelephone" id="userTelephone" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre numéro de téléphone *" required>
                                 </div>
                                 <div class="flex justify-between">
                                     <!-- button for previous step -->
-                                    <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" id="previousButton" onclick="goToStep2()">Retour</button>
+                                    <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep2()">Retour</button>
                                     <!-- button for next step -->
-                                    <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" id="nextButton" onclick="goToStep4()">Suivant</button>
+                                    <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep4()">Suivant</button>
                                 </div>
-                                <p id="errorMessage2" class="text-red-500 text-sm mt-2 hidden">Veuillez remplir tous les champs correctement</p>
+                                <p id="errorMessage2" class="text-red-500 text-lg mt-2 hidden">Veuillez remplir tous les champs correctement</p>
 
                             </div>
                         </div>
@@ -256,8 +256,8 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <!--<input type="text" name="userJobName" id="userJobName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre métier *" required>-->
-                                    <div class="w-full text-sm text-gray-900">    
+                                    <!--<input type="text" name="userJobName" id="userJobName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre métier *" required>-->
+                                    <div class="w-full text-lg text-gray-900">    
                                         <select id="jobsAll" name="jobsAll[]"  style="font-size:1rem;" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                             <?php foreach ($jobsAll as $joba): ?>
                                                 <option class="dark:text-black" value="<?= $joba['jobName']?>">
@@ -267,28 +267,28 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <input type="number" name="userTJM" id="userTJM" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre TJM *" min="100" >
+                                    <input type="number" name="userTJM" id="userTJM" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre TJM € *" min="100" >
                                 </div>
                                 <div>
                                     <label for="userJobType" class="block mb-2 font-medium text-gray-900 dark:text-white">Type de poste</label>
                                     <div class="flex flex-1 gap-2 mb-3">
-                                        <div class="flex items-center pl-3 border border-gray-200 rounded dark:border-gray-700 w-full mr-4">
+                                        <div class="flex items-center px-2 border border-gray-200 rounded dark:border-gray-700 w-full">
                                             <input id="teletravail" type="radio" value="Remote" name="userJobType" class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" >
-                                            <label for="teletravail" class="py-4 ml-2  font-medium text-sm text-gray-500 dark:text-white">Télétravail</label>
+                                            <label for="teletravail" class="py-4 ml-2  font-medium text-lg text-gray-500 dark:text-white">Télétravail</label>
                                         </div>
-                                        <div class="flex items-center pl-3 border border-gray-200 rounded dark:border-gray-700 w-full mr-4">
+                                        <div class="flex items-center px-2 border border-gray-200 rounded dark:border-gray-700 w-full">
                                             <input id="hybride" type="radio" value="Hybride" name="userJobType" class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                            <label for="hybride" class="py-4 ml-2  font-medium text-sm text-gray-500 dark:text-white">Hybride</label>
+                                            <label for="hybride" class="py-4 ml-2  font-medium text-lg text-gray-500 dark:text-white">Hybride</label>
                                         </div>
-                                        <div class="flex items-center pl-3 border  border-gray-200 rounded dark:border-gray-700 w-full mr-4">
+                                        <div class="flex items-center px-2 border  border-gray-200 rounded dark:border-gray-700 w-full">
                                             <input id="sur-site" type="radio" value="Physique" name="userJobType" class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                            <label for="sur-site" class="py-4 ml-2  font-medium text-sm text-gray-500 dark:text-white">Physique</label>
+                                            <label for="sur-site" class="py-4 ml-2  font-medium text-lg text-gray-500 dark:text-white">Physique</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div>
                                     <label for="userExpertise" class="block mb-2 font-medium text-gray-900 dark:text-white">Votre expertise *</label>
-                                    <select id="userExpertise" name="userExpertise" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-sm text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
+                                    <select id="userExpertise" name="userExpertise" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-lg text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
                                         <option class="dark:text-black" value="junior">Junior (1 à 2 ans)</option>
                                         <option class="dark:text-black" value="intermediaire">Intermédiaire (3 à 5 ans)</option>
                                         <option class="dark:text-black" value="expert">Expert (+ 5 ans)</option>
@@ -296,20 +296,20 @@
                                 </div>
                                 <div>
                                     <label for="userJobTime" class="block mb-2 font-medium text-gray-900 dark:text-white">Durée de la mission</label>
-                                    <select id="userJobTime" name="userJobTime" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-sm text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
+                                    <select id="userJobTime" name="userJobTime" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-lg text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
                                         <option class="dark:text-black" value="Courte Durée">Courte Durée</option>
                                         <option class="dark:text-black" value="Longue Durée">Longue Durée</option>
                                         <option class="dark:text-black" value="expert">Durée indéfinie</option>
                                     </select>
                                 </div>
-                                <p id="errorMessage3" class="text-red-500 text-sm mt-2 hidden">Veuillez remplir tous les champs correctement</p>
-                                <p id="tjmErrorMessage" class="text-red-500 text-sm mt-2 hidden">Le TJM doit être supérieur à 100</p>
+                                <p id="errorMessage3" class="text-red-500 text-lg mt-2 hidden">Veuillez remplir tous les champs correctement</p>
+                                <p id="tjmErrorMessage" class="text-red-500 text-lg mt-2 hidden">Le TJM doit être supérieur à 100</p>
 
                                 <div class="flex justify-between">
                                     <!-- button for previous step -->
-                                    <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" id="previousButton" onclick="goToStep3()">Retour</button>
+                                    <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep3()">Retour</button>
                                     <!-- button for next step -->
-                                    <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" id="nextButton" onclick="goToStep5()">Suivant</button>
+                                    <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep5()">Suivant</button>
                                 </div>
                             </div>
                         </div>
@@ -332,27 +332,27 @@
                                 <div>
                                     <label for="userBio" class="block mb-2 font-medium text-gray-900 dark:text-white">À propos de toi</label>
                                     <div>
-                                        <textarea id="userBio" name="userBio" rows="2" class="bg-gray-50 border border-gray-300 text-sm text-gray-500  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                                        <textarea id="userBio" name="userBio" rows="2" class="bg-gray-50 border border-gray-300 text-lg text-gray-500  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
                                     </div>
                                 </div>
                                 <div class="flex items-center">
-                                    <p class="text-sm text-gray-500 mr-3 dark:text-gray-400">Êtes-vous disponible à travailler dès maintenant ?</p>
-                                    <label class="text-sm text-gray-500 mr-3 dark:text-gray-400">Non</label>
+                                    <p class="text-lg text-gray-500 mr-3 dark:text-gray-400">Êtes-vous disponible à travailler dès maintenant ?</p>
+                                    <label class="text-lg text-gray-500 mr-3 dark:text-gray-400">Non</label>
                                     <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description" class="relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400">
-                                    <label class="text-sm text-gray-500 ml-3 dark:text-gray-400">Oui</label>
+                                    <label class="text-lg text-gray-500 ml-3 dark:text-gray-400">Oui</label>
                                 </div>
-                                <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-sm text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
+                                <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-lg text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
                                     <option class="dark:text-black" value="temps-plein">Temps plein</option>
                                     <option class="dark:text-black" value="temps-partiel">Temps partiel</option>
                                 </select>
 
                                 <div class="flex justify-between">
                                     <!-- button for previous step -->
-                                    <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" id="previousButton" onclick="goToStep4()">Retour</button>
+                                    <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep4()">Retour</button>
                                     <!-- button for next step -->
-                                    <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" id="nextButton" onclick="goToStep6()">Suivant</button>
+                                    <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep6()">Suivant</button>
                                 </div>
-                                <p id="errorMessage4" class="text-red-500 text-sm mt-2 hidden">Veuillez remplir tous les champs correctement</p>
+                                <p id="errorMessage4" class="text-red-500 text-lg mt-2 hidden">Veuillez remplir tous les champs correctement</p>
                             </div>
                         </div>
                         </div>
@@ -375,7 +375,7 @@
                                 <div class="relative flex items-center">
                                     <label for="userSkills" class="block mt-2 font-medium text-gray-900 dark:text-white">Tes compétences (5 minimum)</label>
                                     <div class="absolute bottom-0 right-0 flex hover:text-gray-800">
-                                        <button id="add-skill-btn" class="py-1.5 px-1.5 text-sm text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                                        <button id="add-skill-btn" class="py-1.5 px-1.5 text-lg text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
                                             <i class="fas fa-plus"></i>
                                         </button>
                                     </div>
@@ -383,7 +383,7 @@
                                 <div id="skills-container">
                                     <div class="flex flex-1 mb-4 skill-row">
                                         <div class="w-3/4 mr-2 text-black">
-                                            <select id="skillsAll" name="skillsAll[]"  class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                                            <select id="skillsAll" name="skillsAll[]"  class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-lg" required>
                                                 <option value="">Sélectionnez une compétence</option>
                                                 <?php foreach ($skillsAll as $skill): ?>
                                                     <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
@@ -402,11 +402,11 @@
                                         </button>
                                     </div>                     
                                 </div>
-                                <p id="skillsErrorMessage" class="text-red-500 text-sm mt-2 hidden">Veuillez renseigner au minimum 5 compétences</p>
+                                <p id="skillsErrorMessage" class="text-red-500 text-lg mt-2 hidden">Veuillez renseigner au minimum 5 compétences</p>
                                 <!-- submit -->                                        
                                     <div class="flex justify-between">
-                                        <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" id="previousButton" onclick="goToStep5()">Retour</button>
-                                        <button type="submit" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" id="submitButton">S'inscrire</button>
+                                        <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep5()">Retour</button>
+                                        <button type="submit" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="submitButton">S'inscrire</button>
                                     </div>
                                 </div>
                             </div>
@@ -494,16 +494,16 @@ $(document).ready(function() {
     const skillSelects = document.querySelectorAll('.new-skill-select');
 
     // Bouclez à travers chaque élément et initialisez une instance Choices.js
-    skillSelects.forEach(function(skillSelect) {
-        new Choices(skillSelect, {
-            searchEnabled: true,
-            removeItemButton: true,
-            itemSelectText: '',
-            placeholder: true,
-            placeholderValue: 'Sélectionnez des compétences',
-            allowHTML: true,
-        });
-    });
+    // skillSelects.forEach(function(skillSelect) {
+    //     new Choices(skillSelect, {
+    //         searchEnabled: true,
+    //         removeItemButton: true,
+    //         itemSelectText: '',
+    //         placeholder: true,
+    //         placeholderValue: 'Sélectionnez des compétences',
+    //         allowHTML: true,
+    //     });
+    // });
 
     $('#search-input-skill').on('keyup', function(){
         let term = $(this).val();
@@ -541,7 +541,7 @@ $(document).ready(function() {
         const newSkillRow = `
         <div class="flex flex-1 mb-4 skill-row">
             <div class="w-3/4 mr-2 text-black">
-                <select id="skillsAll" name="skillsAll[]" class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                <select id="skillsAll" name="skillsAll[]" class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-lg" required>
                     <option value="">Sélectionnez une compétence</option>
                     <?php foreach ($skillsAll as $skill): ?>
                         <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
@@ -1087,32 +1087,32 @@ function handleClick(element) {
             }
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            var registerForm = document.getElementById('register-form');
-            registerForm.addEventListener('submit', function(event) {
-                var skillsErrorMessage = document.getElementById('skillsErrorMessage');
-                var skillRowDivsCount = document.querySelectorAll('.skill-row').length;
-                var skillRows = document.querySelectorAll('.skill-row');
-                var allSelectsValid = true;
-                skillRows.forEach(function(skillRow) {
-                    var selects = skillRow.querySelectorAll('select');
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     var registerForm = document.getElementById('register-form');
+        //     registerForm.addEventListener('submit', function(event) {
+        //         var skillsErrorMessage = document.getElementById('skillsErrorMessage');
+        //         var skillRowDivsCount = document.querySelectorAll('.skill-row').length;
+        //         var skillRows = document.querySelectorAll('.skill-row');
+        //         var allSelectsValid = true;
+        //         skillRows.forEach(function(skillRow) {
+        //             var selects = skillRow.querySelectorAll('select');
 
-                    selects.forEach(function(select) {
-                        if (select.value === "") {
-                            allSelectsValid = false;
-                        }
-                    });
-                });
+        //             selects.forEach(function(select) {
+        //                 if (select.value === "") {
+        //                     allSelectsValid = false;
+        //                 }
+        //             });
+        //         });
 
-                if (
-                    allSelectsValid == false ||
-                    skillRowDivsCount < 5
-                    ) {
-                    skillsErrorMessage.style.display = 'block';
-                    event.preventDefault(); // Empêche la soumission du formulaire
-                }
-            });
-        });
+        //         if (
+        //             allSelectsValid == false ||
+        //             skillRowDivsCount < 5
+        //             ) {
+        //             skillsErrorMessage.style.display = 'block';
+        //             event.preventDefault(); // Empêche la soumission du formulaire
+        //         }
+        //     });
+        // });
 
     </script>
 </body>

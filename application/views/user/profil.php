@@ -788,8 +788,8 @@ if ($totalCount > 0) {
                                     ?>
                                     <h1 class="text-5xl font-bold ml-2" id="userLastName"><?=$userLastName?></h1>
                             </div>
-                            <p class="text-lg text-black-500 font-bold"><?=$job->jobName?></p>
-                            <p class="text-lg text-black-500 font-medium">
+                            <p class="text-3xl lg:text-lg text-black-500 font-bold"><?=$job->jobName?></p>
+                            <p class="text-2xl lg:text-lg text-black-500 font-medium">
                                 <?php
                                     if ($user->userExperienceYear == "junior"){
                                         $user->userExperienceYear = "Junior";
@@ -812,7 +812,7 @@ if ($totalCount > 0) {
                                 <?php } ?>
                                 <?php } ?>
                                 <a href="#rating">
-                                    <p class="ml-2"><?=round($averageStars, 1).' ( '.$ratingCount.' avis )'?></p>
+                                    <p class="ml-2 text-2xl lg:text-base"><?=round($averageStars, 1).' ( '.$ratingCount.' avis )'?></p>
                                 </a>
                             </div>
                         <!-- Whatsapp -->
@@ -821,7 +821,7 @@ if ($totalCount > 0) {
                             <a href="https://wa.me/<?=$user->userTelephone?>?text=Bonjour%20<?=$user->userFirstName?>%20!%20Je%20suis%20intéressé%20par%20votre%20profil%20sur%20Café%20Crème%20Community%20!%20" target="_blank">
                             
                             <button type="button" data-te-ripple-init data-te-ripple-color="light"
-                                class="mb-2 mr-4 inline-flex items-center rounded-full px-6 py-2.5 leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
+                                class="font-medium text-2xl lg:text-base mb-2 mr-4 inline-flex items-center rounded-full px-6 py-2.5 leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
                                 style="background-color: #25D366">
                                 <span class="mr-2">Contacter</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
@@ -829,7 +829,7 @@ if ($totalCount > 0) {
                                 </svg>
                                 </button>
                             </a>
-                                <p class="mb-2 mt-2 inline-block px-4 py-2.5 rounded-full bg-primary text-white"><?=$user->userTJM?> € / Jour</p>
+                                <p class="font-medium text-2xl lg:text-base mb-2 mt-2 inline-block px-4 py-2.5 rounded-full bg-primary text-white"><?=$user->userTJM?> € / Jour</p>
                             </div>
                         </div>
                     </div>
@@ -843,35 +843,35 @@ if ($totalCount > 0) {
                     <div class="w-full lg:w-1/4 lg:sticky lg:top-0">
                         <div class="lg:w-full">
                             <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                                <h2 class="text-xl font-bold mb-4"> Préférences </h2> 
+                                <h2 class="text-3xl lg:text-xl font-bold mb-4"> Préférences </h2> 
                                     <div class="flex grid-cols-2 items-center mb-4">
                                         <?php
                                         // user is available or not
                                         if($user->userIsAvailable == 1){
                                         ?>
                                             <div>
-                                                <p class="w-10 h-10 rounded-full bg-secondary text-white text-center text-xl flex items-center justify-center mr-4 pt-2">👍🏻</p>
+                                                <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-secondary text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">👍🏻</p>
                                             </div>
                                         <?php
                                         }else
                                         {
                                         ?>
                                         <div>
-                                            <p class="w-10 h-10 rounded-full bg-red-400 text-white text-center text-xl flex items-center justify-center mr-4 pt-2">👎🏻</p>
+                                            <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-red-400 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">👎🏻</p>
                                         </div>
                                         <?php
                                         }
                                         ?>
                                         <div>
-                                            <p class="text">Disponibilité</p>
+                                            <p class="text text-2xl lg:text-lg">Disponibilité</p>
                                             <?php
                                             if($user->userIsAvailable == 1){
                                             ?>
-                                                <p class="font-bold text-lg">Dispo. <?=$user->userJobTimePartielOrFullTime?> </p>
+                                                <p class="font-bold text-3xl lg:text-lg">Dispo. <?=$user->userJobTimePartielOrFullTime?> </p>
                                             <?php
                                                 }else{
                                             ?>
-                                                <p class="font-bold text-lg">Indispo. <?=$user->userJobTimePartielOrFullTime?> </p>
+                                                <p class="font-bold text-3xl lg:text-lg">Indispo. <?=$user->userJobTimePartielOrFullTime?> </p>
                                             <?php
                                                 }
                                             ?>
@@ -883,7 +883,7 @@ if ($totalCount > 0) {
                                         if($user->userJobType == "Remote,Physique"){
                                         ?>
                                             <div>
-                                                <p class="w-10 h-10 rounded-full bg-pink-300 text-white text-center text-xl flex items-center justify-center mr-4 pt-2">✈️</p>
+                                                <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-pink-300 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">✈️</p>
                                             </div>
                                         <?php
                                         }else
@@ -891,31 +891,31 @@ if ($totalCount > 0) {
                                             if ($user->userJobType == "Remote"){
                                         ?>
                                         <div>
-                                            <p class="w-10 h-10 rounded-full bg-pink-300 text-white text-center text-xl flex items-center justify-center mr-4 pt-2">✈️</p>
+                                            <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-pink-300 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">✈️</p>
                                         </div>
                                         <?php
                                             }else{
                                         ?>
                                         <div>
-                                            <p class="w-10 h-10 rounded-full bg-green-400 text-white text-center text-xl flex items-center justify-center mr-4 pt-2">👨🏻‍💻</p>
+                                            <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-green-400 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">👨🏻‍💻</p>
                                         </div>
                                         <?php
                                         } }
                                         ?>
                                         <div>
-                                            <p class="text">Type de poste</p>
+                                            <p class="text text-2xl lg:text-lg">Type de poste</p>
                                             <?php
                                                 if($user->userJobType == "Remote,Physique"){
                                                 ?>
-                                                    <p class="font-bold text-lg">Télétravail & Physique</p>
+                                                    <p class="font-bold text-3xl lg:text-xl">Télétravail & Physique</p>
                                                 <?php
                                                     }else if($user->userJobType == "Remote"){
                                                 ?>
-                                                    <p class="font-bold text-lg">Télétravail</p>
+                                                    <p class="font-bold text-3xl lg:text-xl">Télétravail</p>
                                                 <?php
                                                     }else if($user->userJobType == "Physique"){
                                                 ?>
-                                                    <p class="font-bold text-lg">Physique</p>
+                                                    <p class="font-bold text-3xl lg:text-xl">Physique</p>
                                                 <?php
                                                     }
                                                 ?>
@@ -924,25 +924,25 @@ if ($totalCount > 0) {
                                     </div>
                                     <div class="flex grid-cols-2 items-center mb-4">
                                         <div>
-                                            <p class="w-10 h-10 rounded-full bg-orange-400 text-white text-center text-xl flex items-center justify-center mr-4 pt-2">📍</p>
+                                            <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-orange-400 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">📍</p>
                                         </div>
                                         
                                         <div>
-                                            <p class="text">Localisation</p>
+                                            <p class="text text-2xl lg:text-lg">Localisation</p>
                                             
-                                                <p class="font-bold text-lg"><?=$user->userVille?></p>
+                                                <p class="font-bold text-3xl lg:text-xl"><?=$user->userVille?></p>
                                             
                                         </div>
                                     </div>
                                     <div class="flex grid-cols-2 items-center mb-4">
                                         <div>
-                                            <p class="w-10 h-10 rounded-full bg-indigo-300 text-white text-center text-xl flex items-center justify-center mr-4 pt-2">⏳</p>
+                                            <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-indigo-300 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">⏳</p>
                                         </div>
                                         
                                         <div>
-                                            <p class="text">Durée de la mission</p>
+                                            <p class="text text-2xl lg:text-lg">Durée de la mission</p>
                                             
-                                            <p class="font-bold text-lg"><?=$user->userJobTime?></p>
+                                            <p class="font-bold text-3xl lg:text-xl"><?=$user->userJobTime?></p>
                                             
                                         </div>
                                     </div>
@@ -953,7 +953,7 @@ if ($totalCount > 0) {
                                     </div>
                             </div>
                             <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                                <h2 class="text-xl font-bold mb-4"> Liens utiles </h2> 
+                                <h2 class="text-3xl lg:text-xl font-bold mb-4"> Liens utiles </h2> 
                                 <div class="flex flex-col mt-2 mb-2 w-full">
                                     <?php
                                     // mail link
@@ -963,10 +963,10 @@ if ($totalCount > 0) {
                                     <a href="mailto:<?=$user->userEmail?>" title="Envoyer un mail" class="flex-shrink-0 mr-2">
                                         <div class="flex grid-cols-2 items-center mb-4">
                                                 <div>
-                                                    <img src="<?=base_url('assets/img/logo-link/mail.png')?>" alt="Logo Mail" class="w-10 h-10 transition-transform transform hover:scale-110">
+                                                    <img src="<?=base_url('assets/img/logo-link/mail.png')?>" alt="Logo Mail" class="w-16 h-16 lg:w-9 lg:h-9 transition-transform transform hover:scale-110">
                                                 </div>
                                                 <div>
-                                                    <p class="text ml-4"><?=$user->userEmail?></p>
+                                                    <p class="text-3xl lg:text-xl ml-4"><?=$user->userEmail?></p>
                                                 </div>
                                         </div>
                                     </a>
@@ -979,10 +979,10 @@ if ($totalCount > 0) {
                                     <a href="<?=$user->userPortfolioLink?>" title="Visiter le portfolio" class="flex-shrink-0 mr-2" target="_blank">
                                         <div class="flex grid-cols-2 items-center mb-4">
                                                 <div>
-                                                    <img src="<?=base_url('assets/img/logo-link/portfolio.png')?>" alt="Logo Portfolio" class="w-10 h-10 transition-transform transform hover:scale-110">
+                                                    <img src="<?=base_url('assets/img/logo-link/portfolio.png')?>" alt="Logo Portfolio" class="w-16 h-16 lg:w-9 lg:h-9 transition-transform transform hover:scale-110">
                                                 </div>
                                                 <div>
-                                                    <p class="text ml-4">Portfolio</p>
+                                                    <p class="text-3xl lg:text-xl ml-4">Portfolio</p>
                                                 </div>
                                         </div>
                                     </a>
@@ -993,10 +993,10 @@ if ($totalCount > 0) {
                                     <a href="<?=$user->userLinkedinLink?>" title="Visiter le linkedin" class="flex-shrink-0 mr-2" target="_blank">
                                         <div class="flex grid-cols-2 items-center mb-4">
                                                 <div>
-                                                    <img src="<?=base_url('assets/img/logo-link/linkedin.png')?>" alt="Logo Linkedin" class="w-10 h-10 transition-transform transform hover:scale-110">
+                                                    <img src="<?=base_url('assets/img/logo-link/linkedin.png')?>" alt="Logo Linkedin" class="w-16 h-16 lg:w-9 lg:h-9 transition-transform transform hover:scale-110">
                                                 </div>
                                                 <div>
-                                                    <p class="text ml-4">Linkedin</p>
+                                                    <p class="text-3xl lg:text-xl ml-4">Linkedin</p>
                                                 </div>
                                         </div>
                                     </a>
@@ -1007,10 +1007,10 @@ if ($totalCount > 0) {
                                     <a href="<?=$user->userGithubLink?>" title="Visiter le github" class="flex-shrink-0 mr-2" target="_blank">
                                         <div class="flex grid-cols-2 items-center mb-4">
                                                 <div>
-                                                    <img src="<?=base_url('assets/img/logo-link/github.png')?>" alt="Logo Github" class="w-10 h-10 transition-transform transform hover:scale-110">
+                                                    <img src="<?=base_url('assets/img/logo-link/github.png')?>" alt="Logo Github" class="w-16 h-16 lg:w-9 lg:h-9 transition-transform transform hover:scale-110">
                                                 </div>
                                                 <div>
-                                                    <p class="text ml-4">Github</p>
+                                                    <p class="text-3xl lg:text-xl ml-4">Github</p>
                                                 </div>
                                         </div>
                                     </a>
@@ -1021,10 +1021,10 @@ if ($totalCount > 0) {
                                     <a href="<?=$user->userDribbleLink?>" title="Visiter le dribbble" class="flex-shrink-0 mr-2" target="_blank">
                                         <div class="flex grid-cols-2 items-center mb-4">
                                                 <div>
-                                                    <img src="<?=base_url('assets/img/logo-link/dribbble.png')?>" alt="Logo Dribbble" class="w-10 h-10 transition-transform transform hover:scale-110">
+                                                    <img src="<?=base_url('assets/img/logo-link/dribbble.png')?>" alt="Logo Dribbble" class="w-16 h-16 lg:w-9 lg:h-9 transition-transform transform hover:scale-110">
                                                 </div>
                                                 <div>
-                                                    <p class="text ml-4">Dribbble</p>
+                                                    <p class="text-3xl lg:text-xl ml-4">Dribbble</p>
                                                 </div>
                                         </div>
                                     </a>
@@ -1034,10 +1034,10 @@ if ($totalCount > 0) {
                                         <a href="<?=$user->userBehanceLink?>" title="Visiter le Behance" class="flex-shrink-0 mr-2" target="_blank">
                                             <div class="flex grid-cols-2 items-center mb-4">
                                                 <div>
-                                                    <img src="<?=base_url('assets/img/logo-link/behance.png')?>" alt="Logo Behance" class="w-10 h-10 transition-transform transform hover:scale-110">
+                                                    <img src="<?=base_url('assets/img/logo-link/behance.png')?>" alt="Logo Behance" class="w-16 h-16 lg:w-9 lg:h-9 transition-transform transform hover:scale-110">
                                                 </div>
                                                 <div>
-                                                    <p class="text ml-4">Behance</p>
+                                                    <p class="text-3xl lg:text-xl ml-4">Behance</p>
                                                 </div>
                                             </div>
                                         </a>
@@ -1050,7 +1050,7 @@ if ($totalCount > 0) {
                                     </div>
                             </div>
                             <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white" id="rating">
-                                <h2 class="text-xl font-bold mb-4"> Avis </h2> 
+                                <h2 class="text-3xl lg:text-xl font-bold mb-4"> Avis </h2> 
                                     <div class="flex flex-col mt-2 mb-2 w-full">
                                     <div class="flex-1"></div>
                                     <?php
@@ -1066,8 +1066,8 @@ if ($totalCount > 0) {
                                                                     <img src="<?=base_url($rating->companyLogoPath)?>" class="w-10 h-10 rounded-full flex items-center justify-center" alt="User Photo">
                                                                 </div>
                                                                 <div class="ml-4">
-                                                                    <p class="text "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
-                                                                    <p class="text mt-1  text-gray-400"><?= $rating->companyName?></p>
+                                                                    <p class="text text-2xl lg:text-base"><?= $rating->userFirstName.' '.$rating->userLastName?></p>
+                                                                    <p class="text text-2xl lg:text-base mt-1  text-gray-400"><?= $rating->companyName?></p>
                                                                 </div>
                                                             </div>
                                                             <div class="flex items-center mt-4 mb-4">
@@ -1080,11 +1080,11 @@ if ($totalCount > 0) {
                                                                         <?php } ?>
                                                                     <?php } ?>
                                                                 </div>
-                                                                <p class="text text-sm text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
+                                                                <p class="text text-2xl lg:text-base text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
 
                                                             </div>  
                                                             <div>
-                                                                <p class="text"><?= '"'.$rating->ratingComment.'"'?></p>
+                                                                <p class="text-2xl lg:text-base"><?= '"'.$rating->ratingComment.'"'?></p>
                                                             </div>
                                                         </div>
                                                     </a>
@@ -1102,8 +1102,8 @@ if ($totalCount > 0) {
                                                                         <img src="<?=base_url($rating->companyLogoPath)?>" class="w-10 h-10 rounded-full flex items-center justify-center" alt="User Photo">
                                                                     </div>
                                                                     <div class="ml-4">
-                                                                        <p class="text "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
-                                                                        <p class="text mt-1  text-gray-400"><?= $rating->companyName?></p>
+                                                                        <p class="text text-2xl lg:text-base"><?= $rating->userFirstName.' '.$rating->userLastName?></p>
+                                                                        <p class="text text-2xl lg:text-base mt-1  text-gray-400"><?= $rating->companyName?></p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="flex items-center mt-4 mb-4">
@@ -1116,19 +1116,19 @@ if ($totalCount > 0) {
                                                                             <?php } ?>
                                                                         <?php } ?>
                                                                     </div>
-                                                                    <p class="text text-sm text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
+                                                                    <p class="text text-2xl lg:text-base text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
 
                                                                 </div>  
                                                                 <div>
-                                                                    <p class="text"><?= '"'.$rating->ratingComment.'"'?></p>
+                                                                    <p class="text text-2xl lg:text-base"><?= '"'.$rating->ratingComment.'"'?></p>
                                                                 </div>
                                                             </div>
                                                         </a>
                                                     </div>
-                                                        <button id="extra-avis-button" class="text-primary mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">
+                                                        <button id="extra-avis-button" class="text-primary text-2xl lg:text-base mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">
                                                             Voir plus
                                                         </button>
-                                                        <button id="less-avis-button" class="hidden text-primary mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">
+                                                        <button id="less-avis-button" class="hidden text-primary text-2xl lg:text-base mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">
                                                             Voir moins
                                                         </button>
                                                 <?php 
@@ -1140,7 +1140,7 @@ if ($totalCount > 0) {
                                         }
                                         else {
                                             ?>
-                                                <p class="mt-2 mb-2"> Aucun avis pour le moment. </p>
+                                                <p class="mt-2 mb-2 text-2xl lg:text-base"> Aucun avis pour le moment. </p>
                                              <?php
                                         }
                                         ?>
@@ -1152,8 +1152,8 @@ if ($totalCount > 0) {
                     </div>
                     <div class="w-full lg:w-3/4 sticky top-0">
                         <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                            <h2 class="text-xl font-bold mb-4">À propos de moi</h2>
-                            <p class="text-lg text-gray-500 mb-4 mt-4 dark:text-white"><?= $user->userBio ?></p>
+                            <h2 class="text-3xl lg:text-xl font-bold mb-4">À propos de moi</h2>
+                            <p class="text-2xl lg:text-base text-gray-500 mb-4 mt-4 dark:text-white"><?= $user->userBio ?></p>
                             <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
                                 <button id="editUserBio" data-modal-toggle="editUserBio" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white ml-2" type="button">
                                     <i class="fas fa-pen fa-fw"></i>
@@ -1161,7 +1161,7 @@ if ($totalCount > 0) {
                             </div>
                         </div>
                         <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                            <h2 class="text-xl font-bold mb-4 flex items-center cursor-pointer" id="skillsTitle">
+                            <h2 class="text-3xl lg:text-xl font-bold mb-4 flex items-center cursor-pointer" id="skillsTitle">
                                 Compétences
                                 <i class="fas fa-chevron-down ml-2" id="skillsArrow" style='font-size:0.75rem;' data-order="asc"></i>
                             </h2>
@@ -1198,7 +1198,7 @@ if ($totalCount > 0) {
                                     }
                                 ?>
                                     <div class="skill-item" data-level="<?=$level?>">
-                                        <span class="dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                                        <span class="text-2xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
                                         <div class="skill-level"><?=$level?></div>
                                     </div>
                                 <?php
@@ -1214,7 +1214,7 @@ if ($totalCount > 0) {
                                     </button>
                                 </div>
                                 <div class="display inline">
-                                    <p class="mt-2 mb-2">Aucune compétences et expertises renseignées.</p>
+                                    <p class="mt-2 mb-2 text-2xl lg:text-base">Aucune compétences et expertises renseignées.</p>
                                     <button id="addUserSkills" data-modal-toggle="addUserSkills" class="bg-primary text-white px-4 py-2 mt-2 rounded-full">Ajouter vos compténces</button>
                                 </div>
                                 <?php } ?>
@@ -1239,20 +1239,20 @@ if ($totalCount > 0) {
                             <div class="flex justify-end gap-4" id="legendeskills">
                                 <div class="flex items-center gap-2">
                                     <div class="w-3 h-3 mr-1 rounded-full" style="background-color: #BEE3F8;"></div>
-                                    <span class="text-gray-600 mr-2 text-sm dark:text-white">Junior</span>
+                                    <span class="text-gray-600 mr-2 text-2xl lg:text-base dark:text-white">Junior</span>
                                 </div>
                                 <div class="flex items-center gap-2">
                                     <div class="w-3 h-3 mr-1 rounded-full" style="background-color: #63B3ED;"></div>
-                                    <span class="text-gray-600 mr-2 text-sm dark:text-white">Intermédiaire</span>
+                                    <span class="text-gray-600 mr-2 text-2xl lg:text-base dark:text-white">Intermédiaire</span>
                                 </div>
                                 <div class="flex items-center gap-2">
                                     <div class="w-3 h-3 mr-1 rounded-full" style="background-color: #2C5282;"></div>
-                                    <span class="text-gray-600 mr-2 text-sm dark:text-white">Expert</span>
+                                    <span class="text-gray-600 mr-2 text-2xl lg:text-base dark:text-white">Expert</span>
                                 </div>
                             </div>
                         </div>
                         <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                            <h2 class="text-xl font-bold mb-4">Expériences</h2>
+                            <h2 class="text-3xl lg:text-xl font-bold mb-4">Expériences</h2>
                             <?php
                             if (is_array($experiences) && !empty($experiences)) {
                                 $experienceCount = 0;
@@ -1265,7 +1265,7 @@ if ($totalCount > 0) {
                                                     <p class="w-20 h-20 rounded-full bg-secondary text-white text-center flex items-center justify-center mr-4" style="font-size:2rem;">💼</p>
                                                 </div>
                                                 <div>
-                                                    <h3 class="text-lg font-medium"><?= $experience->experienceJob?></h3>
+                                                    <h3 class="text-3xl lg:text-lg font-medium"><?= $experience->experienceJob?></h3>
                                                     <h3 class=" font-medium"><?= $experience->experienceCompany?></h3>
                                                     <?php
                                                     setlocale(LC_TIME, 'fr_FR.utf8');
@@ -1369,7 +1369,7 @@ if ($totalCount > 0) {
                             </div>
                         </div> 
                         <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                            <h2 class="text-xl font-bold mb-4">Portfolio & Réalisations </h2>
+                            <h2 class="text-3xl lg:text-xl font-bold mb-4">Portfolio & Réalisations </h2>
                             <?php if (is_array($attachments) && !empty($attachments)) { ?>
                                 <div class="grid grid-cols-4 gap-8">
                                     <?php foreach ($attachments as $index => $attachment) { ?>

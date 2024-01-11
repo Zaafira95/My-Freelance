@@ -101,7 +101,7 @@ if ($banner->bannerStatus == "active"){ ?>
         </div>
     </div>
 
-<div class="px-4 py-6 h-90 overflow-y-auto no-scrollbar ">
+<div class="px-8 py-6 lg:px-4 lg:py-6 h-90 overflow-y-auto no-scrollbar ">
     <div class="justify-between items-center mx-auto max-w-screen-xl h-full">
         <div class="lg:flex gap-6 h-full mb-3">
             <!-- Bloc Filtre -->
@@ -224,13 +224,13 @@ if ($banner->bannerStatus == "active"){ ?>
                     <p class="text-3xl lg:text-lg font-bold">Hello, <?=$user->userFirstName?></p>
                     <p class="text-2xl lg:text-base mt-2 mb-2">Découvrez la manière la plus rapide et efficace de décrocher une mission.</p>
                     <div class="flex w-full">
-                        <input type="text" id="search-input" class="text-xl md:text-base w-full bg-white bg-opacity-20 rounded-lg p-2 placeholder-white mr-2 text-center" placeholder="Ecrivez le nom du poste que vous recherchez..." />
+                        <input type="text" id="search-input" class="text-2xl lg:text-base w-full bg-white bg-opacity-20 rounded-lg p-2 placeholder-white mr-2 text-center" placeholder="Ecrivez le nom du poste que vous recherchez..." />
                         <!-- <button class="w-1/5 bg-white text-primary rounded-lg px-4 py-2">Rechercher</button> -->
                     </div>
                 </div>
                 <!-- Fin Barre de recherche -->
                 <!-- Début section pour vous -->
-                <h3 class="text-2xl font-medium mt-4" id="result-section">Pour vous :</h3>
+                <h3 class="text-3xl lg:text-lg font-medium mt-4" id="result-section">Pour vous :</h3>
                 <!-- Début section contenant toutes les missions -->
                 <div class="flex flex-wrap" id="missions-section">
                     <!-- Fonction ajouter favoris -->
@@ -274,7 +274,7 @@ if ($banner->bannerStatus == "active"){ ?>
                             <!-- Fin du a -->
 
                             <!-- Début de la carte -->
-                            <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative mission-item" data-mission-name="<?=strtolower($mission->missionName)?>" data-mission-type="<?=strtolower($mission->missionType)?>" data-mission-deroulement="<?=strtolower($mission->missionDeroulement)?>" data-mission-duree="<?=strtolower($mission->missionDuration)?>" data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" data-mission-tjm="<?=$mission->missionTJM?>" data-mission-localisation="<?=$mission->missionLocalisation?>" data-mission-skills="<?=$dataMissionSkillsString?>">
+                            <div class="bg-white rounded-lg lg:h-20vh p-4 dark:bg-gray-800 dark:text-white relative mission-item" data-mission-name="<?=strtolower($mission->missionName)?>" data-mission-type="<?=strtolower($mission->missionType)?>" data-mission-deroulement="<?=strtolower($mission->missionDeroulement)?>" data-mission-duree="<?=strtolower($mission->missionDuration)?>" data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" data-mission-tjm="<?=$mission->missionTJM?>" data-mission-localisation="<?=$mission->missionLocalisation?>" data-mission-skills="<?=$dataMissionSkillsString?>">
                                 
                                 <!-- Début div en tête -->
                                 <div class="flex items-center">
@@ -284,7 +284,7 @@ if ($banner->bannerStatus == "active"){ ?>
                                         <!-- Logo entreprise --> 
                                         <?php foreach ($missionCompany[$mission->idMission] as $company) : ?>
                                             <?php if (is_object($company)) : ?>
-                                            <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="w-10 h-10 rounded-full">
+                                            <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="w-16 h-16 lg:w-10 rounded-full">
                                             <?php endif; ?>
                                         <?php endforeach; ?>
                                         <!-- Fin logo entreprise -->
@@ -376,7 +376,7 @@ if ($banner->bannerStatus == "active"){ ?>
                                     <div class="mt-4">
                                         
                                         <!-- Description mission -->
-                                        <p class="font-light mt-4 mb-4 text-2xl lg:text-base">
+                                        <p class="font-normal text-2xl lg:text-base mt-4 mb-4">
 
                                             <?php 
                                             // limit missionDescription to 270 caracteres and add '...' at the end
@@ -421,8 +421,8 @@ if ($banner->bannerStatus == "active"){ ?>
                                                             break;
                                                     }
                                                 ?>
-                                                <div class="skill-item" data-level="<?=$level?>">
-                                                    <span class="dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                                                <div class="text-2xl lg:text-base skill-item" data-level="<?=$level?>">
+                                                    <span class="text-2xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
                                                     <div class="skill-level"><?=$level?></div>
                                                 </div>
                                             <?php endforeach; ?>
@@ -440,13 +440,13 @@ if ($banner->bannerStatus == "active"){ ?>
                                         if(isFavorite($mission->idMission, $favoriteMissions)){
                                     ?>
                                     <a href="<?php echo base_url('user/removeFromFavorite/'.$mission->idMission);?>">
-                                        <i class="fas fa-heart text-xl text-red-800"></i>
+                                        <i class="fas fa-heart text-3xl lg:text-xl text-red-800"></i>
                                     </a>
                                     <?php
                                         } else {
                                     ?>
                                     <a href="<?php echo base_url('user/addToFavorite/'.$mission->idMission);?>">
-                                        <i class="far fa-heart text-xl text-red-800"></i>
+                                        <i class="far fa-heart text-3xl lg:text-xl text-red-800"></i>
                                     </a>
                                     <?php
                                         }
@@ -463,8 +463,8 @@ if ($banner->bannerStatus == "active"){ ?>
                 <!-- Fin section contenant toutes les missions -->
                 <!-- Début section aucune mission trouvée -->
                 <div id="no-mission-found">
-                    <p class="text-xl mt-6 text-left">Aucune mission n'a été trouvée.</p>
-                    <h3 class="text-2xl font-medium mt-10" id="result-section">Autres missions :</h3>
+                    <p class="text-2xl lg:text-base mt-6 text-left">Aucune mission n'a été trouvée.</p>
+                    <h3 class="text-3xl lg:text-lg font-medium mt-10" id="result-section">Autres missions :</h3>
                     <?php 
                         foreach($missionsPerso as $mission):
                             $dataMissionSkills = [];
@@ -483,13 +483,13 @@ if ($banner->bannerStatus == "active"){ ?>
                         data-mission-localisation="<?=strtolower($mission->missionLocalisation)?>"
                         data-mission-skills="<?=$dataMissionSkillsString?>"> 
                         <!-- Début carte mission -->
-                        <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative " data-mission-name="<?=strtolower($mission->missionName)?>" data-mission-type="<?=strtolower($mission->missionType)?>" data-mission-deroulement="<?=strtolower($mission->missionDeroulement)?>" data-mission-duree="<?=strtolower($mission->missionDuration)?>" data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" data-mission-tjm="<?=$mission->missionTJM?>" data-mission-localisation="<?=$mission->missionLocalisation?>" data-mission-skills="<?=$dataMissionSkillsString?>">
+                        <div class="mb-12 bg-white rounded-lg h-20vh mt-4 p-8 lg:p-4 dark:bg-gray-800 dark:text-white relative lg:mb-2" data-mission-name="<?=strtolower($mission->missionName)?>" data-mission-type="<?=strtolower($mission->missionType)?>" data-mission-deroulement="<?=strtolower($mission->missionDeroulement)?>" data-mission-duree="<?=strtolower($mission->missionDuration)?>" data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" data-mission-tjm="<?=$mission->missionTJM?>" data-mission-localisation="<?=$mission->missionLocalisation?>" data-mission-skills="<?=$dataMissionSkillsString?>">
                             <!-- Début div en tête -->
                             <div class="flex items-center">
                                 <div class="mr-4">
                                     <?php foreach ($missionCompany[$mission->idMission] as $company) : ?>
                                         <?php if (is_object($company)) : ?>
-                                            <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="w-10 h-10 rounded-full">
+                                            <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="w-16 h-16 lg:w-10 rounded-full">
                                         <?php endif; ?>
                                     <?php endforeach; ?>
                                 </div>
@@ -571,9 +571,9 @@ if ($banner->bannerStatus == "active"){ ?>
                             <!-- Fin div en tête -->
 
                             <!-- Div Flex description + compétences mission -->
-                            <div class="text-xl md:text-base flex items-center justify-between">
+                            <div class="text-2xl lg:text-base flex items-center justify-between">
                                 <div class="mt-4">
-                                    <p class="font-light mt-4 mb-4 text-2xl lg:text-base">
+                                    <p class="font-normal mt-4 mb-4 text-2xl lg:text-base">
                                         <?php 
                                         // limit missionDescription to 270 caracteres and add '...' at the end
                                         $mission->missionDescription = strlen($mission->missionDescription) > 270 ? substr($mission->missionDescription,0,270)."..." : $mission->missionDescription;    
@@ -615,7 +615,7 @@ if ($banner->bannerStatus == "active"){ ?>
                                                 }
                                             ?>
                                             <div class="skill-item" data-level="<?=$level?>">
-                                                <span class="dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                                                <span class="text-2xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
                                                 <div class="skill-level"><?=$level?></div>
                                             </div>
                                         <?php endforeach; ?>
@@ -625,18 +625,18 @@ if ($banner->bannerStatus == "active"){ ?>
                             <!-- Fin div Flex description + compétences mission -->
 
                             <!-- Div bouton favoris -->
-                            <div class="absolute top-0 right-4 mt-4 mb-4 z-9">
+                            <div class="absolute top-0 right-8 mt-8 lg:right-4 lg:mt-4 mb-4 z-9">
                                 <?php
                                 if(isFavorite($mission->idMission, $favoriteMissions)){
                                     ?>
                                     <a href="<?php echo base_url('user/removeFromFavorite/'.$mission->idMission);?>">
-                                        <i class="fas fa-heart text-xl text-red-800"></i>
+                                        <i class="fas fa-heart text-3xl lg:text-xl text-red-800"></i>
                                     </a>
                                     <?php
                                 } else {
                                     ?>
                                     <a href="<?php echo base_url('user/addToFavorite/'.$mission->idMission);?>">
-                                        <i class="far fa-heart text-xl text-red-800"></i>
+                                        <i class="far fa-heart text-3xl lg:text-xl text-red-800"></i>
                                     </a>
                                     <?php
                                 }
@@ -653,7 +653,7 @@ if ($banner->bannerStatus == "active"){ ?>
             <!-- Fin Mission -->
 
             <!-- Vos informations -->
-            <div class="hidden lg:block lg:w-1/4 sticky top-0">
+            <div class="hidden lg:block lg:w-1/4 sticky top-0 h-full overflow-y-auto no-scrollbar">
                 <div class="bg-white rounded-lg h-22vh p-4 dark:bg-gray-800 dark:text-white">
                     <div class="flex flex-col items-center mb-4">
                     <a class="flex flex-col items-center" href="<?=base_url('user/profil')?>">

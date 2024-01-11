@@ -28,10 +28,10 @@
 <?php endif; ?>
 
 <header>
-    <nav class="bg-white px-12 py-6 lg:px-6 lg:py-6 dark:bg-gray-800">
+    <nav class="bg-white py-6 px-12 lg:px-6 lg:py-6 dark:bg-gray-800">
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
             <a href="<?php echo base_url('/');?>" class="flex items-center">
-                <img src="<?php echo base_url('assets/img/logo.svg');?>" class="mr-3 h-20 lg:h-9" id="logo" alt="Café Crème Community"/>
+                <img src="<?php echo base_url('assets/img/logo.svg');?>" class="mr-3 h-16 lg:h-9" id="logo" alt="Café Crème Community"/>
                 <!-- <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span> -->
             </a>
             <div class="flex items-center lg:order-2">
@@ -42,14 +42,14 @@
                 if($user->userIsAvailable == 1){
             ?>
                 <div style="padding-top: 0.2em; padding-bottom: 0.2rem" class="flex items-center space-x-1 bg-green-100 text-green-800 text-2xl lg:text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-300 dark:text-green-900">
-                    <div style="width: 0.5rem; height: 0.5rem" class="bg-green-500 rounded-full dark:bg-green-700"></div>
+                    <div class="w-3 h-3 lg:h-2 lg:w-2 bg-green-500 rounded-full dark:bg-green-700"></div>
                     <div>Disponibilité confirmée</div>
                 </div>
             <?php
                 } else {
             ?>
                 <div style="padding-top: 0.2em; padding-bottom: 0.2rem" class="flex items-center space-x-1 bg-red-100 text-red-800 text-2xl lg:text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-300 dark:text-red-900">
-                    <div style="width: 0.5rem; height: 0.5rem" class="bg-red-500 rounded-full dark:bg-red-700"></div>
+                    <div class="w-3 h-3 lg:h-2 lg:w-2 bg-red-500 rounded-full dark:bg-red-700"></div>
                     <div>Non Disponible</div>
                 </div>
             <?php
@@ -73,24 +73,24 @@
                 <div class="relative">
                     <!-- Avatar avec une bordure primary de 3px -->
                     <div class="rounded-full border-10 border-primary cursor-pointer" onclick="toggleDropdown()">
-                    <img src="<?php echo base_url($user->userAvatarPath); ?>" alt="Avatar" class="w-16 h-16 lg:w-10 rounded-full ring-2 ring-primary">
+                    <img src="<?php echo base_url($user->userAvatarPath); ?>" alt="Avatar" class="w-16 h-16 lg:w-8 lg:h-8 rounded-full ring-2 ring-primary">
                     </div>
                     <!-- Dropdown Menu -->
-                    <div id="dropdown" class=" absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md overflow-hidden shadow-xl z-10 hidden">
-                        <a href="<?php echo base_url('user/profil');?>" class="flex items-center space-x-2 block rounded-md px-4 py-4 text-gray-400 dark:text-gray-400 hover:bg-secondary dark:hover:text-white hover:text-gray-900 dark:hover:bg-primary">
+                    <div id="dropdown" class=" absolute right-0 mt-2 w-64 lg:w-48 bg-white dark:bg-gray-800 rounded-md overflow-hidden shadow-xl z-10 hidden">
+                        <a href="<?php echo base_url('user/profil');?>" class="text-2xl lg:text-base items-center space-x-2 block rounded-md px-4 py-4 text-gray-400 dark:text-gray-400 hover:bg-secondary dark:hover:text-white hover:text-gray-900 dark:hover:bg-primary">
                             <i class="fas fa-user-circle"></i>
                             <span>Mon Profil</span>
                         </a>
-                        <a href="<?php echo base_url('User/favoriteMission');?>" class="flex items-center space-x-2 block rounded-md px-4 py-4 text-gray-400 dark:text-gray-400 hover:bg-secondary dark:hover:text-white hover:text-gray-900 dark:hover:bg-primary">
+                        <a href="<?php echo base_url('User/favoriteMission');?>" class="text-2xl lg:text-base items-center space-x-2 block rounded-md px-4 py-4 text-gray-400 dark:text-gray-400 hover:bg-secondary dark:hover:text-white hover:text-gray-900 dark:hover:bg-primary">
                             <i class="far fa-heart"></i>
                             <span>Favoris</span>
                         </a>
-                        <a href="#" class="flex items-center space-x-2 block rounded-md px-4 py-4 text-gray-400 dark:text-gray-400 hover:bg-secondary dark:hover:text-white hover:text-gray-900 dark:hover:bg-primary">
+                        <a href="#" class="text-2xl lg:text-base items-center space-x-2 block rounded-md px-4 py-4 text-gray-400 dark:text-gray-400 hover:bg-secondary dark:hover:text-white hover:text-gray-900 dark:hover:bg-primary">
                             <i class="fas fa-cog"></i>
                             <span>Paramètres</span>
                         </a>
                        
-                        <a href="<?php echo base_url('user/logout');?>" class="flex items-center space-x-2 block rounded-md px-4 py-4 text-red-600 dark:text-red-900 dark:hover:text-white hover:text-white hover:bg-red-900">
+                        <a href="<?php echo base_url('user/logout');?>" class="text-2xl lg:text-base items-center space-x-2 block rounded-md px-4 py-4 text-red-600 dark:text-red-900 dark:hover:text-white hover:text-white hover:bg-red-900">
                             <i class="fas fa-sign-out-alt"></i>
                             <span>Déconnexion</span>
                         </a>

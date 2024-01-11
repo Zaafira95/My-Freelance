@@ -769,7 +769,7 @@ if ($totalCount > 0) {
     </svg>
 </div>
 
-<div class="px-4 lg:px-6 py-6 h-full overflow-y-auto no-scrollbar">
+<div class="px-8 py-6 lg:px-4 lg:py-6 h-full overflow-y-auto no-scrollbar">
     <div class="lg:flex flex-wrap justify-between mx-auto max-w-screen-xl h-full">
         <div class="lg:flex h-full w-full mb-3">
             <div class="lg:rounded-lg h-full w-full mb-4 dark:text-white ">
@@ -966,7 +966,7 @@ if ($totalCount > 0) {
                                                     <img src="<?=base_url('assets/img/logo-link/mail.png')?>" alt="Logo Mail" class="w-16 h-16 lg:w-9 lg:h-9 transition-transform transform hover:scale-110">
                                                 </div>
                                                 <div>
-                                                    <p class="text-3xl lg:text-xl ml-4"><?=$user->userEmail?></p>
+                                                    <p class="text-3xl lg:text-base ml-4"><?=$user->userEmail?></p>
                                                 </div>
                                         </div>
                                     </a>
@@ -982,7 +982,7 @@ if ($totalCount > 0) {
                                                     <img src="<?=base_url('assets/img/logo-link/portfolio.png')?>" alt="Logo Portfolio" class="w-16 h-16 lg:w-9 lg:h-9 transition-transform transform hover:scale-110">
                                                 </div>
                                                 <div>
-                                                    <p class="text-3xl lg:text-xl ml-4">Portfolio</p>
+                                                    <p class="text-3xl lg:text-base ml-4">Portfolio</p>
                                                 </div>
                                         </div>
                                     </a>
@@ -996,7 +996,7 @@ if ($totalCount > 0) {
                                                     <img src="<?=base_url('assets/img/logo-link/linkedin.png')?>" alt="Logo Linkedin" class="w-16 h-16 lg:w-9 lg:h-9 transition-transform transform hover:scale-110">
                                                 </div>
                                                 <div>
-                                                    <p class="text-3xl lg:text-xl ml-4">Linkedin</p>
+                                                    <p class="text-3xl lg:text-base ml-4">Linkedin</p>
                                                 </div>
                                         </div>
                                     </a>
@@ -1010,7 +1010,7 @@ if ($totalCount > 0) {
                                                     <img src="<?=base_url('assets/img/logo-link/github.png')?>" alt="Logo Github" class="w-16 h-16 lg:w-9 lg:h-9 transition-transform transform hover:scale-110">
                                                 </div>
                                                 <div>
-                                                    <p class="text-3xl lg:text-xl ml-4">Github</p>
+                                                    <p class="text-3xl lg:text-base ml-4">Github</p>
                                                 </div>
                                         </div>
                                     </a>
@@ -1024,7 +1024,7 @@ if ($totalCount > 0) {
                                                     <img src="<?=base_url('assets/img/logo-link/dribbble.png')?>" alt="Logo Dribbble" class="w-16 h-16 lg:w-9 lg:h-9 transition-transform transform hover:scale-110">
                                                 </div>
                                                 <div>
-                                                    <p class="text-3xl lg:text-xl ml-4">Dribbble</p>
+                                                    <p class="text-3xl lg:text-base ml-4">Dribbble</p>
                                                 </div>
                                         </div>
                                     </a>
@@ -1037,7 +1037,7 @@ if ($totalCount > 0) {
                                                     <img src="<?=base_url('assets/img/logo-link/behance.png')?>" alt="Logo Behance" class="w-16 h-16 lg:w-9 lg:h-9 transition-transform transform hover:scale-110">
                                                 </div>
                                                 <div>
-                                                    <p class="text-3xl lg:text-xl ml-4">Behance</p>
+                                                    <p class="text-3xl lg:text-base ml-4">Behance</p>
                                                 </div>
                                             </div>
                                         </a>
@@ -1215,7 +1215,7 @@ if ($totalCount > 0) {
                                 </div>
                                 <div class="display inline">
                                     <p class="mt-2 mb-2 text-2xl lg:text-base">Aucune compétences et expertises renseignées.</p>
-                                    <button id="addUserSkills" data-modal-toggle="addUserSkills" class="bg-primary text-white px-4 py-2 mt-2 rounded-full">Ajouter vos compténces</button>
+                                    <button id="addUserSkills" data-modal-toggle="addUserSkills" class="text-2xl lg:text-base bg-primary text-white px-4 py-2 mt-2 rounded-full">Ajouter vos compténces</button>
                                 </div>
                                 <?php } ?>
                                 
@@ -1266,7 +1266,7 @@ if ($totalCount > 0) {
                                                 </div>
                                                 <div>
                                                     <h3 class="text-3xl lg:text-lg font-medium"><?= $experience->experienceJob?></h3>
-                                                    <h3 class=" font-medium"><?= $experience->experienceCompany?></h3>
+                                                    <h3 class="text-3xl lg:text-lg font-medium"><?= $experience->experienceCompany?></h3>
                                                     <?php
                                                     setlocale(LC_TIME, 'fr_FR.utf8');
                                                     $dateDebut = strftime('%d %B %Y', strtotime($experience->experienceDateDebut));
@@ -1289,7 +1289,7 @@ if ($totalCount > 0) {
                                                     $dateDebut = strtr($dateDebut, $months);
                                                     $dateFin = strtr($dateFin, $months);
                                                     ?>
-                                                    <p class=""><?= $dateDebut.' - '. $dateFin?></p>
+                                                    <p class="text-2xl lg:text-base"><?= $dateDebut.' - '. $dateFin?></p>
                                                 </div>
                                                 
                                                 <div class="ml-auto mr-4">
@@ -1299,7 +1299,7 @@ if ($totalCount > 0) {
                                                 </div>
                                             </div>
 
-                                            <p class="text-lg text-gray-500 mb-6 mt-4 ml-2 mr-4 dark:text-white"><?= $experience->experienceDescription ?></p>
+                                            <p class="text-2xl lg:text-base text-gray-500 mb-6 mt-4 ml-2 mr-4 dark:text-white"><?= $experience->experienceDescription ?></p>
                                             <div class="skills-container mb-4">
                                             <?php
                                                 $dataExperienceSkills = [];
@@ -1336,7 +1336,7 @@ if ($totalCount > 0) {
                                                     }
                                                 ?>
                                                 <div class="skill-item" data-level="<?=$level?>">
-                                                    <span class="dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                                                    <span class="text-2xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
                                                     <div class="skill-level"><?=$level?></div>
                                                 </div>
                                                     
@@ -1359,8 +1359,8 @@ if ($totalCount > 0) {
                                 }
                             ?>
                             <?php } else { ?>
-                                <p class="mt-2 mb-2">Aucune expérience disponible.</p>
-                                <button id="addUserExperience" data-modal-toggle="addUserExperience" class="bg-primary text-white px-4 py-2 mt-2 rounded-full">Ajouter une expérience</button>
+                                <p class="mt-2 mb-2 text-2xl lg:text-base">Aucune expérience disponible.</p>
+                                <button id="addUserExperience" data-modal-toggle="addUserExperience" class="text-2xl lg:text-base bg-primary text-white px-4 py-2 mt-2 rounded-full">Ajouter une expérience</button>
                             <?php } ?>
                             <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
                                 <button id="addUserExperience" data-modal-toggle="addUserExperience" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
@@ -1374,7 +1374,7 @@ if ($totalCount > 0) {
                                 <div class="grid grid-cols-4 gap-8">
                                     <?php foreach ($attachments as $index => $attachment) { ?>
                                         <div class="relative flex justify-center items-center border border-1 p-2 mr-4 mb-4 relative rounded-lg bg-white">
-                                            <h3 class="text-lg font-medium"><?= $attachment->attachmentName ?></h3>
+                                            <h3 class="text-2xl lg:text-base font-medium"><?= $attachment->attachmentName ?></h3>
                                             <div class="pdf-thumbnail overflow-hidden z-10 mb-2" style="max-height: 14rem" data-pdf="<?= base_url($attachment->attachmentPath) ?>">
                                                 <div class="absolute top-0 right-0 mr-4 mt-4 flex space-x-4 z-20">
                                                 <a href="<?= base_url($attachment->attachmentPath) ?>" download class="download-icon text-gray-400 hover:text-gray-900" onclick="event.stopPropagation();">
@@ -1403,7 +1403,7 @@ if ($totalCount > 0) {
                                 </div>
 
                             <?php } else { ?>
-                                <p class="mt-2 mb-2">Aucune pièce jointe disponible.</p>
+                                <p class="text-2xl lg:text-base mt-2 mb-2">Aucune pièce jointe disponible.</p>
                             <?php } ?>
                             <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
                                 <button id="addUserAttachment" data-modal-toggle="addUserAttachment" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">

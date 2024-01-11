@@ -5,9 +5,9 @@
     <link href="<?php echo base_url('assets/css/app.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
     <style>
-        body {
+        /* body {
             background-color: #ffffff;
-        }
+        } */
         .image-rotation {
             transition: opacity 0.5s ease;
             opacity: 0;

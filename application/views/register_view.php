@@ -127,46 +127,45 @@
                         <div id="step2" style="display: none;">
                             <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
                                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                                <div class="flex items-center">
-                                    <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white" style="width: 60%;">
-                                    Je suis un :
-                                    </h2>
-                                    <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
-                                        <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
-                                            1/5
-                                        </div>
-                                        <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
-                                        <div class="absolute inset-0 bg-primary rounded-md" style="width: 20%;"></div>
-                                    </div>
-                                </div>
-                                <div class="block-container flex flex-col items-center">
-                                    <ul class="w-full col-6 md:col-cols-2">
-                                    <li class="h-48 flex flex-col items-center overflow-hidden mb-4">
-                                        <input type="radio" id="userTypeFreelance" name="userType" value="freelance" class="hidden peer" required>
-                                        <label for="userTypeFreelance" class="h-full inline-flex flex-col items-center justify-center w-full pt-5 text-black bg-white border hover:bg-primary border-black rounded-lg cursor-pointer dark:hover:bg-primary dark:border-white dark:peer-checked:text-blue-500 peer-checked:bg-primary peer-checked:text-white hover:text-gray-600 dark:text-gray-400 dark:bg-gray-800 mb-4" onclick="handleClick(this)" onmouseover="changeTextColor(this, true)" onmouseout="changeTextColor(this, false)">
-                                            <div class="flex flex-col items-center">
-                                            <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight md:text-2xl dark:text-white">Freelance</h2>
-                                                <div class="flex flex-col items-center">
-                                                    <img src="<?=base_url('assets/img/person.png')?>" alt="Freelance Image" style="width:35%;">
-                                                </div>
+                                    <div class="flex items-center">
+                                        <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white" style="width: 60%;">
+                                        Je suis un :
+                                        </h2>
+                                        <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
+                                            <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
+                                                1/5
                                             </div>
-                                        </label>
-                                    </li>
-
-                                    <li class="h-48 flex flex-col items-center overflow-hidden">
-                                            <input type="radio" id="userTypeESN" name="userType" value="sales" class="hidden peer" required>
-                                            <label for="userTypeESN" class="h-full inline-flex flex-col items-center justify-center w-full pt-5 text-black bg-white border hover:bg-primary border-black rounded-lg cursor-pointer dark:hover:bg-primary dark:border-white dark:peer-checked:text-blue-500 peer-checked:bg-primary peer-checked:text-white hover:text-gray-600 dark:text-gray-400 dark:bg-gray-800 mb-4" onclick="handleClick(this)" onmouseover="changeTextColor(this, true)" onmouseout="changeTextColor(this, false)">
-                                                <div class="flex flex-col items-center">
-                                                    <h2 class="text-2xl font-bold mt-4 mb-2 leading-tight tracking-tight md:text-2xl dark:text-white">ESN / Sales</h2>
+                                            <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
+                                            <div class="absolute inset-0 bg-primary rounded-md" style="width: 20%;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="block-container flex flex-col items-center">
+                                        <ul class="w-full col-6 md:col-cols-2">
+                                            <li class="h-48 flex flex-col items-center overflow-hidden mb-4">
+                                                <input type="radio" id="userTypeFreelance" name="userType" value="freelance" class="hidden peer" required>
+                                                <label for="userTypeFreelance" class="h-full inline-flex flex-col items-center justify-center w-full pt-5 text-black bg-white border hover:bg-primary border-black rounded-lg cursor-pointer dark:hover:bg-primary dark:border-white dark:peer-checked:text-blue-500 peer-checked:bg-primary peer-checked:text-white hover:text-gray-600 dark:text-gray-400 dark:bg-gray-800 mb-4" onclick="handleClick(this)" onmouseover="changeTextColor(this, true)" onmouseout="changeTextColor(this, false)">
                                                     <div class="flex flex-col items-center">
-                                                        <img src="<?=base_url('assets/img/esn.png')?>" alt="ESN Image" style="width:35%;">
+                                                    <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight md:text-2xl dark:text-white">Freelance</h2>
+                                                        <div class="flex flex-col items-center">
+                                                            <img src="<?=base_url('assets/img/person.png')?>" alt="Freelance Image" style="width:35%;">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </label>
-                                        </li>
-                                    </ul>
-                                </div>
+                                                </label>
+                                            </li>
 
+                                            <li class="h-48 flex flex-col items-center overflow-hidden">
+                                                <input type="radio" id="userTypeESN" name="userType" value="sales" class="hidden peer" required>
+                                                <label for="userTypeESN" class="h-full inline-flex flex-col items-center justify-center w-full pt-5 text-black bg-white border hover:bg-primary border-black rounded-lg cursor-pointer dark:hover:bg-primary dark:border-white dark:peer-checked:text-blue-500 peer-checked:bg-primary peer-checked:text-white hover:text-gray-600 dark:text-gray-400 dark:bg-gray-800 mb-4" onclick="handleClick(this)" onmouseover="changeTextColor(this, true)" onmouseout="changeTextColor(this, false)">
+                                                    <div class="flex flex-col items-center">
+                                                        <h2 class="text-2xl font-bold mt-4 mb-2 leading-tight tracking-tight md:text-2xl dark:text-white">ESN / Sales</h2>
+                                                        <div class="flex flex-col items-center">
+                                                            <img src="<?=base_url('assets/img/esn.png')?>" alt="ESN Image" style="width:35%;">
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
                                     <div class="flex justify-between pl-4 pr-4">
                                         <!-- button for previous step -->
                                         <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep1()">Retour</button>
@@ -220,12 +219,12 @@
                                 <div>
                                     <input type="number" name="userTelephone" id="userTelephone" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre numéro de téléphone *" >
                                 </div>
-                                <div id="step3-freelance-city" class="flex gap-2">    
+                                <div id="step3-freelance-city" class="flex">    
                                     <div class="relative city-search-container w-full mr-4">
                                         <input type="text" id="citySearch" name="userVille" placeholder="Cherchez votre ville" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" >
                                             <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                                     </div>
-                                    <div class="flex items-center">
+                                    <div class="flex items-center py-2.5 px-4 px- border border-gray-200 rounded dark:border-gray-700">
                                         <input type="checkbox" id="userEtranger" name="userEtranger">
                                         <label class="ml-2 text-gray-500 dark:text-gray-400">Étranger</label>
                                     </div>
@@ -256,7 +255,9 @@
                                         <div class="absolute inset-0 bg-primary rounded-md" style="width: 60%;"></div>
                                     </div>
                                 </div>
-                                <div id="step4-freelance-" class="space-y-4 md:space-y-6">   
+                                <div id="step4-esn" class="space-y-4 md:space-y-6">
+                                </div>
+                                <div id="step4-freelance" class="space-y-4 md:space-y-6">   
                                     <div class="relative job-search-container w-full">
                                         <input type="text" id="jobSearch" name="userJob" placeholder="Cherchez votre métier" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500">
                                             <div id="jobs-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
@@ -875,6 +876,8 @@ function handleClick(element) {
 
 
         function goToStep3() {
+            var selectedRadio = document.querySelector('input[name="userType"]:checked').value;
+            console.log("type", selectedRadio);
             var userTypeFreelance = document.getElementById('userTypeFreelance');
             var userTypeESN = document.getElementById('userTypeESN');
             var errorUserType = document.getElementById('errorUserType');

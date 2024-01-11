@@ -267,8 +267,17 @@ include(APPPATH . 'views/layouts/user/header.php' );
                     </div>
                     <p id="errorMessageJobType" class="text-red-500" style="display:none;">Veuillez choisir un type de poste</p>
                     <label for="userVille" class="block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Localisation</label>
-                    <input type="text" name="userVille" id="userVille" value="<?=$user->userVille?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Ville">
-
+                    <!--<input type="text" name="userVille" id="userVille" value="<?=$user->userVille?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Ville">-->
+                    <div id="step3-freelance-city" class="flex gap-8">
+                        <div class="relative city-search-container w-full">
+                            <input type="text" id="citySearch" name="userVille" value="<?=$user->userVille?>" placeholder="Cherchez votre ville" class="border p-2 rounded-lg w-full text-black">
+                                <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
+                        </div>
+                        <div class="flex items-center py-2.5 px-4 px- border border-gray-200 rounded dark:border-gray-700">
+                            <input type="checkbox" id="userEtranger" name="userEtranger">
+                            <label class="ml-2 text-gray-500 dark:text-white">Étranger</label>
+                        </div>
+                    </div>
                     <label for="userJobTime" class="block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Durée de la mission</label>
                     <select id="userJobTime" name="userJobTime" class="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <?php
@@ -1490,45 +1499,92 @@ if($totalInfos == 1 ){
 
     $(document).ready(function() {
 
-        const jobsChoices = new Choices('#jobsAll', {
+    
+        $('#citySearch').on('keyup', function() {
+            let term = $(this).val();
+            if(term.length > 2) { // Recherche après 2 caractères
+                $.post('user/search_cities', { term: term }, function(data) {
+                    let cities = JSON.parse(data);
+                    if(cities.length > 0) {
+                        // Ajoutez la classe .has-border si des résultats sont retournés
+                        $('#cities-list').addClass('has-border');
+                    } else {
+                        // Supprimez la classe .has-border si aucun résultat n'est retourné
+                        $('#cities-list').removeClass('has-border');
+                    }
+                    $('#cities-list').empty();
+                    cities.forEach(function(city) {
+                        $('#cities-list').append(`<div class="city-item p-2 hover:bg-gray-200 cursor-pointer" data-id="${city.geoname_id}">${city.name}</div>`);
+                    });
+                });
+            }
+            else {
+                // Supprimez la classe .has-border si l'input est trop court
+                $('#cities-list').removeClass('has-border').empty();
+            }
+        });
+
+        $(document).on('click', '.city-item', function() {
+            let cityName = $(this).text();
+            $('#citySearch').val(cityName);  // Mettez à jour le champ de saisie avec le nom de la ville sélectionnée
+            $('#cities-list').empty(); // Videz la liste
+            $('#cities-list').removeClass('has-border').empty();
+        });
+
+        // Pour fermer la liste lorsque vous cliquez en dehors
+        $(document).on('click', function(event) {
+            // et n'est pas sur un élément à l'intérieur de la liste (#cities-list)...
+            if (!$(event.target).closest('#citySearch, #cities-list').length) {
+                // ... alors videz et fermez la liste.
+                $('#cities-list').empty().removeClass('has-border');
+            }
+        });
+
+        $('#userEtranger').change(function() {
+            if ($(this).is(':checked')) {
+                $('#citySearch').val('');
+            }
+        });
+
+            const jobsChoices = new Choices('#jobsAll', {
+                searchEnabled: true,
+                removeItemButton: true,
+                itemSelectText: '',
+                placeholder: true, // Ajoutez cette ligne pour activer le placeholder
+                placeholderValue: 'Sélectionnez votre métier', // Texte du placeholder
+
+            });
+
+            /*const expertiseChoices = new Choices('#expertiseAll', {
             searchEnabled: true,
             removeItemButton: true,
             itemSelectText: '',
             placeholder: true, // Ajoutez cette ligne pour activer le placeholder
-            placeholderValue: 'Sélectionnez votre métier', // Texte du placeholder
+            placeholderValue: 'Sélectionnez votre expertise', // Texte du placeholder
 
-        });
-
-        /*const expertiseChoices = new Choices('#expertiseAll', {
-        searchEnabled: true,
-        removeItemButton: true,
-        itemSelectText: '',
-        placeholder: true, // Ajoutez cette ligne pour activer le placeholder
-        placeholderValue: 'Sélectionnez votre expertise', // Texte du placeholder
-
-    });*/
-    
-    $(document).ready(function(){
-        $('#search-input-job').on('keyup', function(){
-            let term = $(this).val();
-            $.post('user/search_jobs', { term: term }, function(data){
-                let jobs = JSON.parse(data);
-                $('#jobs-list').empty();
-                jobs.forEach(function(job){
-                    $('#jobs-list').append(`<div class="job-item" data-id="${job.jobId}">${job.jobName}</div>`);
+        });*/
+        
+        $(document).ready(function(){
+            $('#search-input-job').on('keyup', function(){
+                let term = $(this).val();
+                $.post('user/search_jobs', { term: term }, function(data){
+                    let jobs = JSON.parse(data);
+                    $('#jobs-list').empty();
+                    jobs.forEach(function(job){
+                        $('#jobs-list').append(`<div class="job-item" data-id="${job.jobId}">${job.jobName}</div>`);
+                    });
                 });
             });
-        });
 
-        $(document).on('click', '.job-item', function(){
-            let jobId = $(this).data('id');
-            let jobName = $(this).text();
-            // Vérifiez si la compétence est déjà sélectionnée
-            if (!$(`#selected-jobs .selected-job[data-id="${jobId}"]`).length) {
-                $('#selected-jobs').append(`<div class="selected-job" data-id="${jobId}">${jobName}</div>`);
-            }
+            $(document).on('click', '.job-item', function(){
+                let jobId = $(this).data('id');
+                let jobName = $(this).text();
+                // Vérifiez si la compétence est déjà sélectionnée
+                if (!$(`#selected-jobs .selected-job[data-id="${jobId}"]`).length) {
+                    $('#selected-jobs').append(`<div class="selected-job" data-id="${jobId}">${jobName}</div>`);
+                }
+            });
         });
-    });
 
         
     });

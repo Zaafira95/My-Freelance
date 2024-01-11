@@ -105,8 +105,8 @@ if ($banner->bannerStatus == "active"){ ?>
     <div class="justify-between items-center mx-auto max-w-screen-xl h-full">
         <div class="lg:flex gap-6 h-full mb-3">
             <!-- Bloc Filtre -->
-            <div class="w-full lg:w-1/4 md:block md:sticky md:top-0">
-                <div class="bg-white rounded-lg h-full overflow-y-auto no-scrollbar mb-4 p-4 dark:bg-gray-800 dark:text-white">
+            <div class=" w-full lg:w-1/4 md:block md:sticky md:top-0">
+                <div class="hidden lg:block bg-white rounded-lg h-full overflow-y-auto no-scrollbar mb-4 p-4 dark:bg-gray-800 dark:text-white">
                     <h3 class="text-3xl lg:text-lg font-medium mt-2">Filtre</h3>
                     <h4 class="text-3xl lg:text-lg font-medium mt-4">Localisation</h4>
                         <div class="flex items-center mt-2">

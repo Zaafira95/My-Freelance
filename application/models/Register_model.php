@@ -34,6 +34,31 @@ class Register_model extends CI_Model {
         $query = $this->db->get();
         return $query->result_array();
     }
+    
+    public function search_jobs($term) {
+        $escaped_term = $this->db->escape_str($term);
+        
+        // Sélectionner toutes les colonnes
+        $this->db->select('*');
+        $this->db->from('job');
+    
+        // Condition pour filtrer les villes qui contiennent le terme
+        $this->db->like('jobName', $term);
+        
+        // Ordonner par priorité
+        $this->db->order_by("
+            CASE 
+                WHEN jobName LIKE '".$escaped_term."%' THEN 1 
+                WHEN jobName LIKE '%".$escaped_term."%' THEN 2 
+                ELSE 3 
+            END, jobName", 'ASC');
+        
+        // Limiter les résultats (optionnel)
+        $this->db->limit(10);
+        
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 
     public function RegisterUser($userEmail, $userPassword, $userType, $userFirstName, $userLastName, $userVille, $userTelephone, $userJobId, $userTJM, $userJobType, $userExpertise, $userJobTime, $userBio, $userIsAvailable, $userJobTimePartielOrFullTime){
         $data = array(

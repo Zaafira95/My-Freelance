@@ -35,6 +35,13 @@ class Register extends CI_Controller {
         $cities = $this->Register_model->search_cities($term);
         echo json_encode($cities);
     }
+    
+    public function search_jobs() {
+        $term = $this->input->post('term');
+        $this->load->model('Register_model');
+        $jobs = $this->Register_model->search_jobs($term);
+        echo json_encode($jobs);
+    }
 
     // Dans votre contrôleur, par exemple: Skills.php
     public function search_skills() {
@@ -55,11 +62,13 @@ class Register extends CI_Controller {
 
         $userFirstName = $this->input->post('userFirstName');
         $userLastName = $this->input->post('userLastName');
-        $userVille = $this->input->post('userVille');
         $userTelephone = $this->input->post('userTelephone');
+        $userVille = $this->input->post('userVille');
+        $userEtranger = $this->input->post('userEtranger');
+        $userVille = $userEtranger == 'on' ? "Étranger" : $userVille;
 
-        $userJobName = $this->input->post('jobsAll');
-        $userJobName = implode(',', $userJobName);
+        $userJobName = $this->input->post('userJob');
+        //$userJobName = implode(',', $userJobName);
         $userJobId = $this->Register_model->getJobId($userJobName);
         $userTJM = $this->input->post('userTJM');
         $userJobType = $this->input->post('userJobType');

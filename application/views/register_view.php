@@ -192,7 +192,7 @@
                                         <div class="absolute inset-0 bg-primary rounded-md" style="width: 40%;"></div>
                                     </div>
                                 </div>
-                                <div class="flex flex-col items-center">
+                                <div id="step3-freelance-avatar" class="flex flex-col items-center">
                                     <div class="relative w-32 h-32">
                                         <div class="rounded-full ring ring-primary w-full h-full flex items-center justify-center">
                                             <div class="w-full h-full rounded-full flex items-center justify-center">
@@ -212,19 +212,23 @@
                                 </div>
 
                                 <div>
-                                    <input type="text" name="userFirstName" id="userFirstName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre prénom *" required>
+                                    <input type="text" name="userFirstName" id="userFirstName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre prénom *" >
                                 </div>
                                 <div>
-                                    <input type="text" name="userLastName" id="userLastName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre nom *" required>
+                                    <input type="text" name="userLastName" id="userLastName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre nom *" >
                                 </div>
-                                <div>    
-                                    <div class="relative city-search-container w-full">
-                                        <input type="text" id="citySearch" name="userVille" placeholder="Cherchez votre ville" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" required>
+                                <div>
+                                    <input type="number" name="userTelephone" id="userTelephone" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre numéro de téléphone *" >
+                                </div>
+                                <div id="step3-freelance-city" class="flex gap-2">    
+                                    <div class="relative city-search-container w-full mr-4">
+                                        <input type="text" id="citySearch" name="userVille" placeholder="Cherchez votre ville" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" >
                                             <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                                     </div>
-                                </div>
-                                <div>
-                                    <input type="number" name="userTelephone" id="userTelephone" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre numéro de téléphone *" required>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="userEtranger" name="userEtranger">
+                                        <label class="ml-2 text-gray-500 dark:text-gray-400">Étranger</label>
+                                    </div>
                                 </div>
                                 <div class="flex justify-between">
                                     <!-- button for previous step -->
@@ -237,7 +241,7 @@
                             </div>
                         </div>
                         </div>
-                        <div id="step4" style="display:none;">
+                        <div id="step4" style="display: none;">
                         <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
                             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                 <div class="flex items-center">
@@ -252,52 +256,47 @@
                                         <div class="absolute inset-0 bg-primary rounded-md" style="width: 60%;"></div>
                                     </div>
                                 </div>
-                                <div>
-                                    <!--<input type="text" name="userJobName" id="userJobName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre métier *" required>-->
-                                    <div class="w-full text-lg text-gray-900">    
-                                        <select id="jobsAll" name="jobsAll[]"  style="font-size:1rem;" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                            <?php foreach ($jobsAll as $joba): ?>
-                                                <option class="dark:text-black" value="<?= $joba['jobName']?>">
-                                                <?= $joba['jobName'] ?></option>
-                                            <?php endforeach; ?>
+                                <div id="step4-freelance-" class="space-y-4 md:space-y-6">   
+                                    <div class="relative job-search-container w-full">
+                                        <input type="text" id="jobSearch" name="userJob" placeholder="Cherchez votre métier" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500">
+                                            <div id="jobs-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
+                                    </div>
+                                    <div>
+                                        <input type="number" name="userTJM" id="userTJM" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre TJM € *" min="100" >
+                                    </div>
+                                    <div>
+                                        <label for="userJobType" class="block mb-2 font-medium text-gray-900 dark:text-white">Type de poste</label>
+                                        <div class="flex flex-1 gap-2 mb-3">
+                                            <div class="flex items-center px-2 border border-gray-200 rounded dark:border-gray-700 w-full">
+                                                <input id="teletravail" type="radio" value="Remote" name="userJobType" class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" >
+                                                <label for="teletravail" class="py-4 ml-2  font-medium text-lg text-gray-500 dark:text-white">Télétravail</label>
+                                            </div>
+                                            <div class="flex items-center px-2 border border-gray-200 rounded dark:border-gray-700 w-full">
+                                                <input id="hybride" type="radio" value="Hybride" name="userJobType" class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                <label for="hybride" class="py-4 ml-2  font-medium text-lg text-gray-500 dark:text-white">Hybride</label>
+                                            </div>
+                                            <div class="flex items-center px-2 border border-gray-200 rounded dark:border-gray-700 w-full">
+                                                <input id="sur-site" type="radio" value="Physique" name="userJobType" class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                <label for="sur-site" class="py-4 ml-2  font-medium text-lg text-gray-500 dark:text-white">Physique</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label for="userExpertise" class="block mb-2 font-medium text-gray-900 dark:text-white">Votre expertise *</label>
+                                        <select id="userExpertise" name="userExpertise" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-lg text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
+                                            <option class="dark:text-black" value="junior">Junior (1 à 2 ans)</option>
+                                            <option class="dark:text-black" value="intermediaire">Intermédiaire (3 à 5 ans)</option>
+                                            <option class="dark:text-black" value="expert">Expert (+ 5 ans)</option>
                                         </select>
                                     </div>
-                                </div>
-                                <div>
-                                    <input type="number" name="userTJM" id="userTJM" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre TJM € *" min="100" >
-                                </div>
-                                <div>
-                                    <label for="userJobType" class="block mb-2 font-medium text-gray-900 dark:text-white">Type de poste</label>
-                                    <div class="flex flex-1 gap-2 mb-3">
-                                        <div class="flex items-center px-2 border border-gray-200 rounded dark:border-gray-700 w-full">
-                                            <input id="teletravail" type="radio" value="Remote" name="userJobType" class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" >
-                                            <label for="teletravail" class="py-4 ml-2  font-medium text-lg text-gray-500 dark:text-white">Télétravail</label>
-                                        </div>
-                                        <div class="flex items-center px-2 border border-gray-200 rounded dark:border-gray-700 w-full">
-                                            <input id="hybride" type="radio" value="Hybride" name="userJobType" class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                            <label for="hybride" class="py-4 ml-2  font-medium text-lg text-gray-500 dark:text-white">Hybride</label>
-                                        </div>
-                                        <div class="flex items-center px-2 border  border-gray-200 rounded dark:border-gray-700 w-full">
-                                            <input id="sur-site" type="radio" value="Physique" name="userJobType" class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                            <label for="sur-site" class="py-4 ml-2  font-medium text-lg text-gray-500 dark:text-white">Physique</label>
-                                        </div>
+                                    <div>
+                                        <label for="userJobTime" class="block mb-2 font-medium text-gray-900 dark:text-white">Durée de la mission</label>
+                                        <select id="userJobTime" name="userJobTime" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-lg text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
+                                            <option class="dark:text-black" value="Courte Durée">Courte Durée</option>
+                                            <option class="dark:text-black" value="Longue Durée">Longue Durée</option>
+                                            <option class="dark:text-black" value="expert">Durée indéfinie</option>
+                                        </select>
                                     </div>
-                                </div>
-                                <div>
-                                    <label for="userExpertise" class="block mb-2 font-medium text-gray-900 dark:text-white">Votre expertise *</label>
-                                    <select id="userExpertise" name="userExpertise" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-lg text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
-                                        <option class="dark:text-black" value="junior">Junior (1 à 2 ans)</option>
-                                        <option class="dark:text-black" value="intermediaire">Intermédiaire (3 à 5 ans)</option>
-                                        <option class="dark:text-black" value="expert">Expert (+ 5 ans)</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label for="userJobTime" class="block mb-2 font-medium text-gray-900 dark:text-white">Durée de la mission</label>
-                                    <select id="userJobTime" name="userJobTime" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-lg text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
-                                        <option class="dark:text-black" value="Courte Durée">Courte Durée</option>
-                                        <option class="dark:text-black" value="Longue Durée">Longue Durée</option>
-                                        <option class="dark:text-black" value="expert">Durée indéfinie</option>
-                                    </select>
                                 </div>
                                 <p id="errorMessage3" class="text-red-500 text-lg mt-2 hidden">Veuillez remplir tous les champs correctement</p>
                                 <p id="tjmErrorMessage" class="text-red-500 text-lg mt-2 hidden">Le TJM doit être supérieur à 100</p>
@@ -444,6 +443,44 @@ $(document).ready(function() {
         $('#cities-list').removeClass('has-border').empty();
     });
 
+    $('#userEtranger').change(function() {
+        if ($(this).is(':checked')) {
+            // Si la case 'userEtranger' est cochée, vider le champ 'citySearch'
+            $('#citySearch').val('');
+        }
+    });
+    
+    $('#jobSearch').on('keyup', function() {
+        let term = $(this).val();
+        if(term.length > 1) { // Recherche après 2 caractères
+            $.post('register/search_jobs', { term: term }, function(data) {
+                let jobs = JSON.parse(data);
+                if(jobs.length > 0) {
+                    // Ajoutez la classe .has-border si des résultats sont retournés
+                    $('#jobs-list').addClass('has-border');
+                } else {
+                    // Supprimez la classe .has-border si aucun résultat n'est retourné
+                    $('#jobs-list').removeClass('has-border');
+                }
+                $('#jobs-list').empty();
+                jobs.forEach(function(job) {
+                    $('#jobs-list').append(`<div class="job-item p-2 hover:bg-gray-200 cursor-pointer" data-id="${job.jobId}">${job.jobName}</div>`);
+                });
+            });
+        }
+        else {
+            // Supprimez la classe .has-border si l'input est trop court
+            $('#jobs-list').removeClass('has-border').empty();
+        }
+    });
+
+    $(document).on('click', '.job-item', function() {
+        let jobName = $(this).text();
+        $('#jobSearch').val(jobName);  // Mettez à jour le champ de saisie avec le nom de la ville sélectionnée
+        $('#jobs-list').empty(); // Videz la liste
+        $('#jobs-list').removeClass('has-border').empty();
+    });
+
     // Pour fermer la liste lorsque vous cliquez en dehors
     $(document).on('click', function(event) {
         // Si le clic n'est pas sur le champ de saisie (#citySearch)
@@ -451,6 +488,11 @@ $(document).ready(function() {
         if (!$(event.target).closest('#citySearch, #cities-list').length) {
             // ... alors videz et fermez la liste.
             $('#cities-list').empty().removeClass('has-border');
+        }
+        
+        if (!$(event.target).closest('#jobSearch, #jobs-list').length) {
+            // ... alors videz et fermez la liste.
+            $('#jobs-list').empty().removeClass('has-border');
         }
     });
 

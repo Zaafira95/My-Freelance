@@ -456,7 +456,7 @@ foreach ($experiences as $index => $experience) {
 <!-- User Add Experience -->
 
 <div id="addUserExperience" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
-    <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+    <div class="relative p-4 w-full max-w-2xl h-full md:h-auto" style="height:90%; margin-top:0px; margin-bottom:20px">
         <!-- Modal content -->
         <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
             <!-- Modal header -->
@@ -1491,13 +1491,13 @@ if($totalInfos == 1 ){
     $(document).ready(function() {
 
         const jobsChoices = new Choices('#jobsAll', {
-        searchEnabled: true,
-        removeItemButton: true,
-        itemSelectText: '',
-        placeholder: true, // Ajoutez cette ligne pour activer le placeholder
-        placeholderValue: 'Sélectionnez votre métier', // Texte du placeholder
+            searchEnabled: true,
+            removeItemButton: true,
+            itemSelectText: '',
+            placeholder: true, // Ajoutez cette ligne pour activer le placeholder
+            placeholderValue: 'Sélectionnez votre métier', // Texte du placeholder
 
-    });
+        });
 
         /*const expertiseChoices = new Choices('#expertiseAll', {
         searchEnabled: true,

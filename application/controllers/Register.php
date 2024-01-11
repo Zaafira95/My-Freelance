@@ -74,13 +74,6 @@ class Register extends CI_Controller {
             $userIsAvailable = 0;
         }
         $userJobTimePartielOrFullTime = $this->input->post('userJobTimePartielOrFullTime');
-        
-        $skills = $this->input->post('skillsAll');
-        $levels = $this->input->post("skillsLevel");
-
-        var_dump($userFirstName);
-
-        var_dump($skills);
 
         $result = $this->Register_model->registerUser($userEmail, $userPassword, $userType, $userFirstName, $userLastName, $userVille, $userTelephone, $userJobId, $userTJM, $userJobType, $userExpertise, $userJobTime, $userBio, $userIsAvailable, $userJobTimePartielOrFullTime);
 
@@ -117,17 +110,6 @@ class Register extends CI_Controller {
                     $this->Register_model->addAvatarPath($userId, $userAvatarPath);        
                 }
             }
-
-            //if (!empty($skills)) {
-            // Bouclez à travers les compétences et les niveaux associés
-                for ($i = 0; $i < count($skills); $i++) {
-                    $skillId = $skills[$i];
-                    $level = $levels[$i];
-                    $this->Register_model->addUserSkills($userId, $skillId, $level);
-                }
-            //}
-            var_dump($skills);
-            die;
         }
 
         if ($result) {

@@ -80,13 +80,6 @@ class Register_model extends CI_Model {
         $this->db->update('users');
     }
     
-    public function addUserSkills($userId, $skillId, $level){
-        $this->db->set('userSkills_userId', $userId);
-        $this->db->set('userSkills_skillId', $skillId);
-        $this->db->set('userSkillsExperience', $level);
-        $this->db->insert('userSkills');
-    }
-    
     public function getJobId($jobName) {
         $this->db->select('jobId');
         $this->db->from('Job');

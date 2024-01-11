@@ -748,6 +748,33 @@ if ($totalCount > 0) {
 } else {
   $averageStars = 0;
 }
+
+// Vérification taux de complétion du profil
+$totalInfos = 0;
+$tauxCompletion = 40;
+if(is_array($skills) && !empty($skills)){
+    $totalInfos += 1;
+}
+if(is_array($experiences) && !empty($experiences)){
+    $totalInfos += 1;
+}
+if(is_array($attachments) && !empty($attachments)){
+    $totalInfos += 1;
+}
+if((isset($user->userPortfolioLink) && !empty($user->userPortfolioLink)) || (isset($user->userLinkedinLink) && !empty($user->userLinkedinLink)) || (isset($user->userGithubLink) && !empty($user->userGithubLink)) || (isset($user->userDribbleLink) && !empty($user->userDribbleLink)) || (isset($user->userBehanceLink) && !empty($user->userBehanceLink))){
+    $totalInfos += 1;
+}
+
+if($totalInfos == 1 ){
+    $tauxCompletion = 55;
+} else if ($totalInfos == 2 ){
+    $tauxCompletion = 70;
+} else if ($totalInfos == 3 ){
+    $tauxCompletion = 85;
+} else if ($totalInfos == 4 ){
+    $tauxCompletion = 100;
+}
+
 ?>
 <div class="absolute hidden top-0 right-4 mt-4 mb-4">
     <svg id="heart" class="w-5 h-5 text-red-600 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 30" xmlns="http://www.w3.org/2000/svg">
@@ -759,6 +786,20 @@ if ($totalCount > 0) {
     <div class="flex flex-wrap justify-between mx-auto max-w-screen-xl h-full">
         <div class="flex h-full w-full mb-3">
             <div class="rounded-lg h-full w-full mb-4 dark:text-white ">
+                <?php
+                if ($tauxCompletion != 100){
+                ?>
+                <div class="relative py-4 mb-4">
+                    <p class="text-lg mb-2">Votre profil est complété à <?=$tauxCompletion?>% </p>
+                    <div class="relative flex flex-grow items-center w-full h-4 bg-primary-light rounded-md" style="width: 100%;">
+                        <div class="absolute inset-0 bg-secondary rounded-lg" style="width: 100%;"></div>
+                        <div class="absolute inset-0 bg-primary rounded-lg" style="width: <?=$tauxCompletion?>%;"></div>
+                    </div>
+                </div>
+                
+                <?php
+                }
+                ?>
                 <div class="relative flex grid-cols-2 items-center overflow-hidden bg-white rounded-lg mb-4 dark:bg-gray-800 py-4 px-4">
                     <div class="flex flex-1">
                         <div>
@@ -1239,57 +1280,55 @@ if ($totalCount > 0) {
                                 </div>
                             </div>
                         </div>
-
-                            <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                                <h2 class="text-xl font-bold mb-4">Expériences</h2>
-                                <?php
-                                if (is_array($experiences) && !empty($experiences)) {
-                                    $experienceCount = 0;
-                                    foreach ($experiences as $index => $experience) {
-                                        if ($experienceCount < 3) {
-                                ?>
-                                            <div class="mb-4 mt-4">
-                                                <div class="flex items-center mt-2 mb-2">
-                                                    <div class="mr-2 mt-2">
-                                                        <p class="w-20 h-20 rounded-full bg-secondary text-white text-center flex items-center justify-center mr-4" style="font-size:2rem;">💼</p>
-                                                    </div>
-                                                    <div>
-                                                        <h3 class="text-lg font-medium"><?= $experience->experienceJob?></h3>
-                                                        <h3 class=" font-medium"><?= $experience->experienceCompany?></h3>
-                                                        <?php
-                                                        setlocale(LC_TIME, 'fr_FR.utf8');
-                                                        $dateDebut = strftime('%d %B %Y', strtotime($experience->experienceDateDebut));
-                                                        $dateFin = strftime('%d %B %Y', strtotime($experience->experienceDateFin));
-                                                        $months = array(
-                                                            'January' => 'Janvier',
-                                                            'February' => 'Février',
-                                                            'March' => 'Mars',
-                                                            'April' => 'Avril',
-                                                            'May' => 'Mai',
-                                                            'June' => 'Juin',
-                                                            'July' => 'Juillet',
-                                                            'August' => 'Août',
-                                                            'September' => 'Septembre',
-                                                            'October' => 'Octobre',
-                                                            'November' => 'Novembre',
-                                                            'December' => 'Décembre'
-                                                        );
-
-                                                        $dateDebut = strtr($dateDebut, $months);
-                                                        $dateFin = strtr($dateFin, $months);
-                                                        ?>
-                                                        <p class=""><?= $dateDebut.' - '. $dateFin?></p>
-                                                    </div>
-                                                    
-                                                    <div class="ml-auto mr-4">
-                                                        <button id="updateUserExperience<?=$index?>" data-modal-toggle="updateUserExperience<?=$index?>" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
-                                                            <i class="fas fa-pen fa-fw"></i>
-                                                        </button>
-                                                    </div>
+                        <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
+                            <h2 class="text-xl font-bold mb-4">Expériences</h2>
+                            <?php
+                            if (is_array($experiences) && !empty($experiences)) {
+                                $experienceCount = 0;
+                                foreach ($experiences as $index => $experience) {
+                                    if ($experienceCount < 3) {
+                            ?>
+                                        <div class="mb-4 mt-4">
+                                            <div class="flex items-center mt-2 mb-2">
+                                                <div class="mr-2 mt-2">
+                                                    <p class="w-20 h-20 rounded-full bg-secondary text-white text-center flex items-center justify-center mr-4" style="font-size:2rem;">💼</p>
                                                 </div>
+                                                <div>
+                                                    <h3 class="text-lg font-medium"><?= $experience->experienceJob?></h3>
+                                                    <h3 class=" font-medium"><?= $experience->experienceCompany?></h3>
+                                                    <?php
+                                                    setlocale(LC_TIME, 'fr_FR.utf8');
+                                                    $dateDebut = strftime('%d %B %Y', strtotime($experience->experienceDateDebut));
+                                                    $dateFin = strftime('%d %B %Y', strtotime($experience->experienceDateFin));
+                                                    $months = array(
+                                                        'January' => 'Janvier',
+                                                        'February' => 'Février',
+                                                        'March' => 'Mars',
+                                                        'April' => 'Avril',
+                                                        'May' => 'Mai',
+                                                        'June' => 'Juin',
+                                                        'July' => 'Juillet',
+                                                        'August' => 'Août',
+                                                        'September' => 'Septembre',
+                                                        'October' => 'Octobre',
+                                                        'November' => 'Novembre',
+                                                        'December' => 'Décembre'
+                                                    );
 
-                                                <p class="text-lg text-gray-500 mb-6 mt-4 ml-2 mr-4 dark:text-white"><?= $experience->experienceDescription ?></p>
-                                                <div class="skills-container mb-4">
+                                                    $dateDebut = strtr($dateDebut, $months);
+                                                    $dateFin = strtr($dateFin, $months);
+                                                    ?>
+                                                    <p class=""><?= $dateDebut.' - '. $dateFin?></p>
+                                                </div>
+                                                
+                                                <div class="ml-auto mr-4">
+                                                    <button id="updateUserExperience<?=$index?>" data-modal-toggle="updateUserExperience<?=$index?>" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                                                        <i class="fas fa-pen fa-fw"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <p class="text-lg text-gray-500 mb-6 mt-4 ml-2 mr-4 dark:text-white"><?= $experience->experienceDescription ?></p>
+                                            <div class="skills-container mb-4">
                                                 <?php
                                                     $dataExperienceSkills = [];
                                                     foreach ($experienceSkills[$experience->idExperience] as $skill):
@@ -1323,14 +1362,14 @@ if ($totalCount > 0) {
                                                                 $level = 'N/A'; // Si la valeur de missionSkillsExperience n'est pas valide, afficher "N/A"
                                                                 break;
                                                         }
-                                                    ?>
+                                                ?>
                                                     <div class="skill-item" data-level="<?=$level?>">
                                                         <span class="dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
                                                         <div class="skill-level"><?=$level?></div>
                                                     </div>
-                                                         
-                                                <?php endforeach; ?>
-                                                                                               
+                                                <?php 
+                                                    endforeach;
+                                                ?>                                        
                                             </div>
 
                                             <?php
@@ -1339,77 +1378,81 @@ if ($totalCount > 0) {
                                                 <hr>
                                             <?php
                                             }
-                                        ?>
-                                    <?php
-                                            $experienceCount++;
-                                        } else {
-                                            break;
-                                        }
+                                            ?>
+                                        </div>
+                                <?php
+                                        $experienceCount++;
+                                    } else {
+                                        break;
                                     }
-                                ?>
-                                <?php } else { ?>
-                                    <p class="mt-2 mb-2">Aucune expérience disponible.</p>
-                                    <button id="addUserExperience" data-modal-toggle="addUserExperience" class="bg-primary text-white px-4 py-2 mt-2 rounded-full">Ajouter une expérience</button>
-                                <?php } ?>
-                                <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
-                                    <button id="addUserExperience" data-modal-toggle="addUserExperience" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
+                                }
+                            ?>
+                            <?php 
+                            } else { 
+                            ?>
+                                <p class="mt-2 mb-2">Aucune expérience disponible.</p>
+                                <button id="addUserExperience" data-modal-toggle="addUserExperience" class="bg-primary text-white px-4 py-2 mt-2 rounded-full">Ajouter une expérience</button>
+                            <?php 
+                            } 
+                            ?>
+                            <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
+                                <button id="addUserExperience" data-modal-toggle="addUserExperience" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
+                            <h2 class="text-xl font-bold mb-4">Portfolio & Réalisations </h2>
+                            <?php 
+                            if (is_array($attachments) && !empty($attachments)) { 
+                            ?>
+                                <div class="grid grid-cols-4 gap-8">
+                                    <?php foreach ($attachments as $index => $attachment) { ?>
+                                        <div class="relative flex justify-center items-center border border-1 p-2 mr-4 mb-4 relative rounded-lg bg-white">
+                                            <h3 class="text-lg font-medium"><?= $attachment->attachmentName ?></h3>
+                                            <div class="pdf-thumbnail overflow-hidden z-10 mb-2" style="max-height: 14rem" data-pdf="<?= base_url($attachment->attachmentPath) ?>">
+                                                <div class="absolute top-0 right-0 mr-4 mt-4 flex space-x-4 z-20">
+                                                <a href="<?= base_url($attachment->attachmentPath) ?>" download class="download-icon text-gray-400 hover:text-gray-900" onclick="event.stopPropagation();">
+                                                    <i class="fas fa-download"></i>
+                                                </a>
+                                                <a href="#" class="delete-icon text-red-800 hover:text-red-900" onclick="event.stopPropagation(); showModal('deleteAttachmentConfirmationModal<?=$index?>');">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="deleteAttachmentConfirmationModal<?=$index?>" class="hidden fixed flex inset-0 items-center justify-center z-50">
+                                            <div class="fixed inset-0 bg-black opacity-50"></div>
+                                            <div class="relative bg-gray-50 rounded-lg shadow p-6 border border-gray-800 dark:bg-gray-800 sm:p-5">
+                                                <h3 class="text-lg font-semibold mb-4">Confirmation de suppression</h3>
+                                                <p class="text-gray-700 dark:text-white mb-6">Êtes-vous sûr de vouloir supprimer cette pièce jointe ?</p>
+                                                <div class="flex justify-end">
+                                                    <button type="button" onclick="hideModal('deleteAttachmentConfirmationModal<?=$index?>');" class="text-gray-600 inline-flex items-center hover:text-white hover:bg-gray-800 border-gray-600  focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500  dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">Annuler</button>
+                                                    <a href="<?=base_url("user/deleteUserAttachment/".$attachment->idAttachment)?>" class="text-red-800 inline-flex items-center hover:text-white hover:bg-red-900 border-red-900  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500  dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Supprimer</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    <?php } ?>
                                 </div>
+
+                            <?php 
+                            } else { 
+                            ?>
+                                <p class="mt-2 mb-2">Aucune pièce jointe disponible.</p>
+                            <?php 
+                            } 
+                            ?>
+                            <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
+                                <button id="addUserAttachment" data-modal-toggle="addUserAttachment" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                                    <i class="fas fa-plus"></i>
+                                </button>
                             </div>
-
-                            
-
-                </div>
-                
-            </div>
-
-                                
-            <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                        <h2 class="text-xl font-bold mb-4">Portfolio & Réalisations </h2>
-                        <?php if (is_array($attachments) && !empty($attachments)) { ?>
-                            <div class="grid grid-cols-4 gap-8">
-                                <?php foreach ($attachments as $index => $attachment) { ?>
-                                    <div class="relative flex justify-center items-center border border-1 p-2 mr-4 mb-4 relative rounded-lg bg-white">
-                                        <h3 class="text-lg font-medium"><?= $attachment->attachmentName ?></h3>
-                                        <div class="pdf-thumbnail overflow-hidden z-10 mb-2" style="max-height: 14rem" data-pdf="<?= base_url($attachment->attachmentPath) ?>">
-                                            <div class="absolute top-0 right-0 mr-4 mt-4 flex space-x-4 z-20">
-                                            <a href="<?= base_url($attachment->attachmentPath) ?>" download class="download-icon text-gray-400 hover:text-gray-900" onclick="event.stopPropagation();">
-                                                <i class="fas fa-download"></i>
-                                            </a>
-                                            <a href="#" class="delete-icon text-red-800 hover:text-red-900" onclick="event.stopPropagation(); showModal('deleteAttachmentConfirmationModal<?=$index?>');">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div id="deleteAttachmentConfirmationModal<?=$index?>" class="hidden fixed flex inset-0 items-center justify-center z-50">
-                                        <div class="fixed inset-0 bg-black opacity-50"></div>
-                                        <div class="relative bg-gray-50 rounded-lg shadow p-6 border border-gray-800 dark:bg-gray-800 sm:p-5">
-                                            <h3 class="text-lg font-semibold mb-4">Confirmation de suppression</h3>
-                                            <p class="text-gray-700 dark:text-white mb-6">Êtes-vous sûr de vouloir supprimer cette pièce jointe ?</p>
-                                            <div class="flex justify-end">
-                                                <button type="button" onclick="hideModal('deleteAttachmentConfirmationModal<?=$index?>');" class="text-gray-600 inline-flex items-center hover:text-white hover:bg-gray-800 border-gray-600  focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500  dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">Annuler</button>
-                                                <a href="<?=base_url("user/deleteUserAttachment/".$attachment->idAttachment)?>" class="text-red-800 inline-flex items-center hover:text-white hover:bg-red-900 border-red-900  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500  dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Supprimer</a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                <?php } ?>
-                            </div>
-
-                    <?php } else { ?>
-                        <p class="mt-2 mb-2">Aucune pièce jointe disponible.</p>
-                    <?php } ?>
-
-                            
-                        <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
-                            <button id="addUserAttachment" data-modal-toggle="addUserAttachment" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
-                                <i class="fas fa-plus"></i>
-                            </button>
                         </div>
                     </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

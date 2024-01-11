@@ -132,11 +132,11 @@
                                     Je suis un :
                                     </h2>
                                     <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
-                                    <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
-                                        1/5
-                                    </div>
-                                    <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
-                                    <div class="absolute inset-0 bg-primary rounded-md" style="width: 20%;"></div>
+                                        <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
+                                            1/5
+                                        </div>
+                                        <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
+                                        <div class="absolute inset-0 bg-primary rounded-md" style="width: 20%;"></div>
                                     </div>
                                 </div>
                                 <div class="block-container flex flex-col items-center">
@@ -185,11 +185,11 @@
                                     Présentes toi
                                     </h2>
                                     <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
-                                    <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
-                                        2/5
-                                    </div>
-                                    <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
-                                    <div class="absolute inset-0 bg-primary rounded-md" style="width: 40%;"></div>
+                                        <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
+                                            2/5
+                                        </div>
+                                        <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
+                                        <div class="absolute inset-0 bg-primary rounded-md" style="width: 40%;"></div>
                                     </div>
                                 </div>
                                 <div class="flex flex-col items-center">
@@ -222,12 +222,9 @@
                                         <input type="text" id="citySearch" name="userVille" placeholder="Cherchez votre ville" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" required>
                                             <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                                     </div>
-                                    <!--
-                                    <input type="text" name="userVille" id="userVille" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" required>
-                                    -->
                                 </div>
                                 <div>
-                                    <input type="text" name="userTelephone" id="userTelephone" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre numéro de téléphone *" required>
+                                    <input type="number" name="userTelephone" id="userTelephone" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre numéro de téléphone *" required>
                                 </div>
                                 <div class="flex justify-between">
                                     <!-- button for previous step -->
@@ -248,11 +245,11 @@
                                     Tes Préférences
                                     </h2>
                                     <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
-                                    <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
-                                        3/5
-                                    </div>
-                                    <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
-                                    <div class="absolute inset-0 bg-primary rounded-md" style="width: 60%;"></div>
+                                        <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
+                                            3/5
+                                        </div>
+                                        <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
+                                        <div class="absolute inset-0 bg-primary rounded-md" style="width: 60%;"></div>
                                     </div>
                                 </div>
                                 <div>
@@ -322,11 +319,11 @@
                                     Tes Expertises
                                     </h2>
                                     <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
-                                    <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
-                                        4/5
-                                    </div>
-                                    <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
-                                    <div class="absolute inset-0 bg-primary rounded-md" style="width: 80%;"></div>
+                                        <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
+                                            4/5
+                                        </div>
+                                        <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
+                                        <div class="absolute inset-0 bg-primary rounded-md" style="width: 80%;"></div>
                                     </div>
                                 </div>
                                 <div>
@@ -361,48 +358,16 @@
                             <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                 <div class="flex items-center">
                                     <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white" style="width: 60%;">
-                                    Paiement
+                                    Finales ton inscription
                                     </h2>
                                     <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
-                                    <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
-                                        5/5
-                                    </div>
-                                    <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
-                                    <div class="absolute inset-0 bg-primary rounded-md" style="width: 100%;"></div>
-                                    </div>
-                                </div>
-                                
-                                <div class="relative flex items-center">
-                                    <label for="userSkills" class="block mt-2 font-medium text-gray-900 dark:text-white">Tes compétences (5 minimum)</label>
-                                    <div class="absolute bottom-0 right-0 flex hover:text-gray-800">
-                                        <button id="add-skill-btn" class="py-1.5 px-1.5 text-lg text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div id="skills-container">
-                                    <div class="flex flex-1 mb-4 skill-row">
-                                        <div class="w-3/4 mr-2 text-black">
-                                            <select id="skillsAll" name="skillsAll[]"  class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-lg" required>
-                                                <option value="">Sélectionnez une compétence</option>
-                                                <?php foreach ($skillsAll as $skill): ?>
-                                                    <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
-                                                <?php endforeach; ?>
-                                            </select>
+                                        <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
+                                            5/5
                                         </div>
-                                        <div class="w-1/4">
-                                            <select class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="skillsLevel[]" required>
-                                                <option value="1">Junior</option>
-                                                <option value="2">Intermédiaire</option>
-                                                <option value="3">Expert</option>
-                                            </select>
-                                        </div>
-                                        <button type="button" class="text-red-600 hover:text-red-900 focus:outline-none ml-4 delete-skill-row">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>                     
+                                        <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
+                                        <div class="absolute inset-0 bg-primary rounded-md" style="width: 100%;"></div>
+                                    </div>
                                 </div>
-                                <p id="skillsErrorMessage" class="text-red-500 text-lg mt-2 hidden">Veuillez renseigner au minimum 5 compétences</p>
                                 <!-- submit -->                                        
                                     <div class="flex justify-between">
                                         <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep5()">Retour</button>
@@ -487,91 +452,6 @@ $(document).ready(function() {
             // ... alors videz et fermez la liste.
             $('#cities-list').empty().removeClass('has-border');
         }
-    });
-
-    
-    // Gestion des compétences avec Choices.js
-    const skillSelects = document.querySelectorAll('.new-skill-select');
-
-    // Bouclez à travers chaque élément et initialisez une instance Choices.js
-    // skillSelects.forEach(function(skillSelect) {
-    //     new Choices(skillSelect, {
-    //         searchEnabled: true,
-    //         removeItemButton: true,
-    //         itemSelectText: '',
-    //         placeholder: true,
-    //         placeholderValue: 'Sélectionnez des compétences',
-    //         allowHTML: true,
-    //     });
-    // });
-
-    $('#search-input-skill').on('keyup', function(){
-        let term = $(this).val();
-        if (term.length > 2) {
-            $.post('register/search_skills', { term: term }, function(data){
-                let skills = JSON.parse(data);
-                $('#skills-list').empty();
-                skills.forEach(function(skill){
-                    $('#skills-list').append(`<div class="skill-item p-2 hover:bg-gray-200 cursor-pointer" data-id="${skill.skillId}">${skill.skillName}</div>`);
-                });
-            });
-        } else {
-            $('#skills-list').empty();
-        }
-    });
-
-    $(document).on('click', '.skill-item', function(){
-        let skillId = $(this).data('id');
-        let skillName = $(this).text();
-        if (!$(`#selected-skills .selected-skill[data-id="${skillId}"]`).length) {
-            $('#selected-skills').append(`<div class="selected-skill" data-id="${skillId}">${skillName}</div>`);
-        }
-        $('#skills-list').empty(); // Vider la liste après sélection
-    });
-
-    // Pour fermer la liste lorsque vous cliquez en dehors
-    $(document).on('click', function(event) {
-        if (!$(event.target).closest('#search-input-skill, #skills-list').length) {
-            $('#skills-list').empty();
-        }
-    });
-
-    // Gestion de l'ajout dynamique de compétences
-    $('#add-skill-btn').on('click', function() {
-        const newSkillRow = `
-        <div class="flex flex-1 mb-4 skill-row">
-            <div class="w-3/4 mr-2 text-black">
-                <select id="skillsAll" name="skillsAll[]" class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-lg" required>
-                    <option value="">Sélectionnez une compétence</option>
-                    <?php foreach ($skillsAll as $skill): ?>
-                        <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-            <div class="w-1/4">
-                <select class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="skillsLevel[]" required>
-                    <option value="1">Junior</option>
-                    <option value="2">Intermédiaire</option>
-                    <option value="3">Expert</option>
-                </select>
-            </div>
-            <button type="button" class="text-red-600 hover:text-red-900 focus:outline-none ml-4 delete-skill-row">
-                <i class="fas fa-trash"></i>
-            </button>
-        </div>  
-        `;
-        $('#skills-container').append(newSkillRow);
-
-        // Désinitialisez et réinitialisez les instances Choices.js sur les éléments nouvellement ajoutés
-        $('.new-skill-select').each(function() {
-            destroyChoicesInstance(this);
-            createChoicesInstance(this);
-        });
-    });
-
-    $(document).on('click', '.delete-skill-row', function() {
-        // Supprimez le parent .skill-row
-        $(this).closest('.skill-row').remove();
     });
 
 });
@@ -973,7 +853,6 @@ function handleClick(element) {
                 step3.style.display = 'block';
             } else {
                 errorUserType.style.display = 'block';
-                // L'utilisateur n'a pas choisi Freelance ou ESN, affichez un message d'erreur ou effectuez des actions supplémentaires ici
             }
         }
 
@@ -983,28 +862,19 @@ function handleClick(element) {
             var userLastName = document.getElementById('userLastName').value;
             var userVille = document.getElementById('citySearch').value;
             var userTelephone = document.getElementById('userTelephone').value;
-            //var userAvatar = document.getElementById('avatar-upload').value;
-            //var userJobName = document.getElementById('userJobName').value;
-            //var userTJM = document.getElementById('userTJM').value;
             var errorMessage2 = document.getElementById('errorMessage2');
-            //var tjmErrorMessage = document.getElementById('tjmErrorMessage');
 
             if (
                 userFirstName.trim() === '' ||
                 userLastName.trim() === '' ||
                 userVille.trim() === '' ||
                 userTelephone.trim() === ''
-                //userJobName.trim() === '' ||
-                //userTJM.trim() === ''
             ) {
                 errorMessage2.style.display = 'block';
-                //tjmErrorMessage.style.display = 'none';
             } else if (parseInt(userTJM) <= 100) {
                 errorMessage2.style.display = 'none';
-                //tjmErrorMessage.style.display = 'block';
             } else {
                 errorMessage2.style.display = 'none';
-                //tjmErrorMessage.style.display = 'none';
                 var step1 = document.getElementById('step1');
                 var step2 = document.getElementById('step2');
                 var step3 = document.getElementById('step3');
@@ -1021,7 +891,6 @@ function handleClick(element) {
         }
         
         function goToStep5() {
-            //var userJobName = document.getElementById('userJobName').value;
             var userTJM = document.getElementById('userTJM').value;
             var userJobTypes = document.getElementsByName('userJobType');
             var jobTypeSelected = false;
@@ -1086,33 +955,6 @@ function handleClick(element) {
                 step6.style.display = 'block';
             }
         }
-
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     var registerForm = document.getElementById('register-form');
-        //     registerForm.addEventListener('submit', function(event) {
-        //         var skillsErrorMessage = document.getElementById('skillsErrorMessage');
-        //         var skillRowDivsCount = document.querySelectorAll('.skill-row').length;
-        //         var skillRows = document.querySelectorAll('.skill-row');
-        //         var allSelectsValid = true;
-        //         skillRows.forEach(function(skillRow) {
-        //             var selects = skillRow.querySelectorAll('select');
-
-        //             selects.forEach(function(select) {
-        //                 if (select.value === "") {
-        //                     allSelectsValid = false;
-        //                 }
-        //             });
-        //         });
-
-        //         if (
-        //             allSelectsValid == false ||
-        //             skillRowDivsCount < 5
-        //             ) {
-        //             skillsErrorMessage.style.display = 'block';
-        //             event.preventDefault(); // Empêche la soumission du formulaire
-        //         }
-        //     });
-        // });
 
     </script>
 </body>

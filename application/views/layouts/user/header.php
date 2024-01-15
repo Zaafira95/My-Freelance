@@ -13,7 +13,7 @@
 
 <!-- Main modal -->
 <?php if ($this->session->flashdata('message')) : ?>
-    <div class="flashdata <?php echo $this->session->flashdata('status') === 'error' ? 'error' : 'success'; ?>">
+    <div class="text-2xl lg:text-base flashdata <?php echo $this->session->flashdata('status') === 'error' ? 'error' : 'success'; ?>">
         <?php echo $this->session->flashdata('message'); ?>
     </div>
     <script>

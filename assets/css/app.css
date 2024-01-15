@@ -3758,6 +3758,10 @@ body.dark {
     padding: 1.5rem;
   }
 
+  .md\:text-sm {
+    font-size: 0.8rem;
+  }
+
   .md\:text-lg {
     font-size: 1.125rem;
     line-height: 1.75rem;
@@ -3891,6 +3895,18 @@ body.dark {
     width: 50%;
   }
 
+  .lg\:w-3 {
+    width: 0.75rem;
+  }
+
+  .lg\:w-4 {
+    width: 1rem;
+  }
+
+  .lg\:h-3 {
+    height: 0.75rem;
+  }
+
   .lg\:flex-row {
     flex-direction: row;
   }
@@ -3954,6 +3970,14 @@ body.dark {
   .lg\:text-lg {
     font-size: 1.125rem;
     line-height: 1.75rem;
+  }
+
+  .lg\:text-sm {
+    font-size: 0.8rem;
+  }
+
+  .lg\:text-3xl {
+    font-size: 2rem;
   }
 
   .lg\:text-xs {

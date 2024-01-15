@@ -274,7 +274,7 @@ if ($banner->bannerStatus == "active"){ ?>
                             <!-- Fin du a -->
 
                             <!-- Début de la carte -->
-                            <div class="bg-white rounded-lg lg:h-20vh p-4 dark:bg-gray-800 dark:text-white relative mission-item" data-mission-name="<?=strtolower($mission->missionName)?>" data-mission-type="<?=strtolower($mission->missionType)?>" data-mission-deroulement="<?=strtolower($mission->missionDeroulement)?>" data-mission-duree="<?=strtolower($mission->missionDuration)?>" data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" data-mission-tjm="<?=$mission->missionTJM?>" data-mission-localisation="<?=$mission->missionLocalisation?>" data-mission-skills="<?=$dataMissionSkillsString?>">
+                            <div class="bg-white mb-4 rounded-lg lg:h-20vh p-4 dark:bg-gray-800 dark:text-white relative mission-item" data-mission-name="<?=strtolower($mission->missionName)?>" data-mission-type="<?=strtolower($mission->missionType)?>" data-mission-deroulement="<?=strtolower($mission->missionDeroulement)?>" data-mission-duree="<?=strtolower($mission->missionDuration)?>" data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" data-mission-tjm="<?=$mission->missionTJM?>" data-mission-localisation="<?=$mission->missionLocalisation?>" data-mission-skills="<?=$dataMissionSkillsString?>">
                                 
                                 <!-- Début div en tête -->
                                 <div class="flex items-center">
@@ -373,7 +373,7 @@ if ($banner->bannerStatus == "active"){ ?>
                                 <!-- Div Flex description + compétences mission -->                
                                 <div class="flex items-center justify-between">
                                     <!-- Div description + compétences mission -->
-                                    <div class="mt-4">
+                                    <div class="mt-4 text-2xl lg:text-base">
                                         
                                         <!-- Description mission -->
                                         <p class="font-normal text-2xl lg:text-base mt-4 mb-4">

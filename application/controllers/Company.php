@@ -330,7 +330,7 @@ class Company extends CI_Controller {
 
         $this->session->set_flashdata('message', 'Votre mission a bien été ajoutée !');
         $this->session->set_flashdata('status', 'success');
-        redirect('company/missionView/' . $missionId); 
+        redirect('company');
     }
     
     public function editMission($missionId) {
@@ -368,9 +368,7 @@ class Company extends CI_Controller {
                 }
             }
 
-            $this->session->set_flashdata('message', 'Votre mission a bien été modifiée !');
-            $this->session->set_flashdata('status', 'success');
-            redirect('company/missionView/' . $missionId); 
+            redirect('company/my_company'); 
         } else {
             $this->load->view('company/editMission', $data);
         }

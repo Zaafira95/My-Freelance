@@ -78,7 +78,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                         <div class="flex items-center mt-2">
                             <i class="fa fa-map-marker-alt mr-3"></i>    
                             <div class="relative city-search-container w-full">
-                                <input type="text" id="citySearch" value="<?=$user->userVille?>" placeholder="Cherchez votre ville" class="border p-2 rounded-lg w-full text-black">
+                                <input type="text" id="citySearch" value="<?=$user->userVille?>" placeholder="Cherchez votre ville" class="border p-2 rounded-lg w-full text-black" onkeypress="return preventNumberInput(event)">
                                     <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                             </div>
                         </div>
@@ -576,6 +576,15 @@ include(APPPATH . 'views/layouts/user/header.php' );
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
+
+    function preventNumberInput(e) {
+        var charCode = (e.which) ? e.which : e.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return true;
+        }
+        return false;
+    }
+
     $(document).ready(function() {
     
         $('#citySearch').on('keyup', function() {
@@ -759,6 +768,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             $('#citySearch').val('');
 
+            document.querySelector('#skillsAll').parentNode.querySelector('.choices__input--cloned').value = '';
             skillsChoices.removeActiveItems();
             
             var slider = document.getElementById('tjm-slider');
@@ -883,8 +893,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // Filtre par mode de deroulement
             let matchesDeroulement = true;
-            console.log("1", deroulementFilters);
-            console.log("1", deroulementFilters);
             if (deroulementFilters.length > 0) {
                 matchesDeroulement = deroulementFilters.some(function(filter) {
                     return (
@@ -909,8 +917,6 @@ document.addEventListener("DOMContentLoaded", function() {
             // Filtre par compétences
             if (selectedSkills.length > 0) {
                 const missionSkills = missionSkillsAttr.split(','); // Divise la chaîne en un tableau d'IDs de compétences
-                console.log("1 :",missionSkills);
-                console.log("2 :",selectedSkills);
                 const matchesSkills = selectedSkills.some(function(selectedSkill) {
                     return missionSkills.includes(selectedSkill);
                 });

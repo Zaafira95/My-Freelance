@@ -329,7 +329,7 @@ include(APPPATH . 'views/layouts/company/header.php');
         removeItemButton: true,
         itemSelectText: '',
         placeholder: true, // Ajoutez cette ligne pour activer le placeholder
-        placeholderValue: 'Sélectionnez des compétences', // Texte du placeholder
+        placeholderValue: 'Sélectionnez des métiers', // Texte du placeholder
 
     });
 

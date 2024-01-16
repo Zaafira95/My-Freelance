@@ -22,7 +22,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                         <div class="flex items-center mt-2">
                             <i class="fa fa-map-marker-alt mr-3"></i>    
                             <div class="relative city-search-container w-full">
-                                <input type="text" id="citySearch" placeholder="Cherchez votre ville" class="border p-2 rounded-lg w-full text-black">
+                                <input type="text" id="citySearch" placeholder="Cherchez votre ville" class="border p-2 rounded-lg w-full text-black" onkeypress="return preventNumberInput(event)">
                                     <div id="cities-list" class="absolute z-10 mt-2 w-full rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                             </div>
                         </div>
@@ -278,6 +278,14 @@ include(APPPATH . 'views/layouts/company/header.php');
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 
+    function preventNumberInput(e) {
+        var charCode = (e.which) ? e.which : e.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return true;
+        }
+        return false;
+    }
+
     $(document).ready(function() {
         
         $('#citySearch').on('keyup', function() {
@@ -468,6 +476,8 @@ include(APPPATH . 'views/layouts/company/header.php');
             $('.form-checkbox').prop('checked', false);
 
             $('#citySearch').val('');
+            document.querySelector('#skillsAll').parentNode.querySelector('.choices__input--cloned').value = '';
+            document.querySelector('#jobsAll').parentNode.querySelector('.choices__input--cloned').value = '';
 
             skillsChoices.removeActiveItems();
             jobsChoices.removeActiveItems();
@@ -509,6 +519,22 @@ include(APPPATH . 'views/layouts/company/header.php');
             }
         });
 
+        const typeFilters = []; // Tableau pour stocker les filtres d'expertise sélectionnés
+
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked && (checkbox.id === "temps-plein" || checkbox.id === "temps-partiel")) {
+                typeFilters.push(checkbox.id);
+            }
+        });
+
+        const availableFilters = []; // Tableau pour stocker les filtres d'expertise sélectionnés
+
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked && (checkbox.id === "available" || checkbox.id === "unavailable")) {
+                availableFilters.push(checkbox.id);
+            }
+        });
+
         let visibleFreelancersCount = 0;
 
         freelancers.forEach(function(freelancer) {
@@ -525,13 +551,38 @@ include(APPPATH . 'views/layouts/company/header.php');
 
             let showFreelancer = true;  
             activeFilters.every(function(filter) {
-                if (filter === "temps-plein" && freelancerTime !== "temps-plein") showFreelancer = false;
+                //if (filter === "temps-plein" && freelancerTime !== "temps-plein") showFreelancer = false;
                 if (filter === "remote" && freelancerRemote !== "1") showFreelancer = false;
-                if (filter === "temps-partiel" && freelancerTime !== "temps-partiel") showFreelancer = false;
-                if (filter === "available" && freelancerIsAvailable !== "1") showFreelancer = false;
-                if (filter === "unavailable" && freelancerIsAvailable !== "0") showFreelancer = false;
+                //if (filter === "temps-partiel" && freelancerTime !== "temps-partiel") showFreelancer = false;
+                //if (filter === "available" && freelancerIsAvailable !== "1") showFreelancer = false;
+                //if (filter === "unavailable" && freelancerIsAvailable !== "0") showFreelancer = false;
                 return true;
             });
+
+           
+            // Filtre par expertise
+            let matchesAvailable = true;
+            if (availableFilters.length > 0) {
+                matchesAvailable = availableFilters.some(function(filter) {
+                    return (
+                        (filter === "available" && freelancerIsAvailable === "1") ||
+                        (filter === "unavailable" && freelancerIsAvailable === "0")
+                    );
+                });
+            }
+            showFreelancer = showFreelancer && matchesAvailable; 
+           
+            // Filtre par expertise
+            let matchesType = true;
+            if (typeFilters.length > 0) {
+                matchesType = typeFilters.some(function(filter) {
+                    return (
+                        (filter === "temps-plein" && freelancerTime === "temps-plein") ||
+                        (filter === "temps-partiel" && freelancerTime === "temps-partiel")
+                    );
+                });
+            }
+            showFreelancer = showFreelancer && matchesType; 
 
             // Filtre par expertise
             let matchesExpertise = true;

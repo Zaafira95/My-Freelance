@@ -758,6 +758,8 @@ document.addEventListener("DOMContentLoaded", function() {
             $('.form-checkbox').prop('checked', false);
 
             $('#citySearch').val('');
+            document.querySelector('#skillsAll').parentNode.querySelector('.choices__input--cloned').value = '';
+
 
             skillsChoices.removeActiveItems();
             

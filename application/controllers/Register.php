@@ -52,6 +52,13 @@ class Register extends CI_Controller {
         echo json_encode($skills);
     }
 
+    public function search_secteurs() {
+        $term = $this->input->post('term');
+        $this->load->model('Register_model');
+        $jobs = $this->Register_model->search_secteurs($term);
+        echo json_encode($jobs);
+    }
+
     public function registerUser(){
         $this->load->model('Register_model');
         $userEmail = $this->input->post('userEmail');
@@ -133,7 +140,7 @@ class Register extends CI_Controller {
             $companyEtranger = $this->input->post('companyEtranger');
             $companyVille = $companyEtranger == 'on' ? "Étranger" : $companyVille;
             $companySlogan = $this->input->post('companySlogan');
-            $companySecteur = $this->input->post('secteursAll');
+            $companySecteur = $this->input->post('companySecteur');
             
             $companyDescription = $this->input->post('companyDescription');
             $companyAvantages = $this->input->post('companyAvantages');
@@ -144,6 +151,11 @@ class Register extends CI_Controller {
 
             $companyId = $result;
 
+            $config = [
+                'allowed_types' => 'jpg|jpeg|png',
+                'max_size' => 2048, // Taille maximale du fichier en kilo-octets
+            ];
+
             // Vérifier si un fichier a été téléchargé
             if ($_FILES['banner-upload']['name']) {
                 // Créer un dossier pour chaque utilisateur avec son ID
@@ -153,9 +165,8 @@ class Register extends CI_Controller {
                 }
         
                 $config['upload_path'] = $companyBannerPath;
-                $config['allowed_types'] = 'jpg|jpeg|png';
-                $config['max_size'] = 2048; // Taille maximale du fichier en kilo-octets
                 $this->load->library('upload', $config);
+                $this->upload->initialize($config);
         
                 if (!$this->upload->do_upload('banner-upload')) {
                     // Erreur lors du téléchargement du fichier
@@ -173,7 +184,6 @@ class Register extends CI_Controller {
                     // Mettre à jour le chemin de l'avatar de l'utilisateur dans la base de données
                     $this->Register_model->insertBannerPath($companyId, $companyBannerPath);
         
-                    echo "Image téléchargée avec succès";
                 }
             }
 
@@ -186,9 +196,8 @@ class Register extends CI_Controller {
                 }
 
                 $config['upload_path'] = $companyLogoPath;
-                $config['allowed_types'] = 'jpg|jpeg|png';
-                $config['max_size'] = 2048; // Taille maximale du fichier en kilo-octets
                 $this->load->library('upload', $config);
+                $this->upload->initialize($config);
         
                 if (!$this->upload->do_upload('companyLogo')) {
                     // Erreur lors du téléchargement du fichier
@@ -204,7 +213,6 @@ class Register extends CI_Controller {
                     // Mettre à jour le chemin de l'avatar de l'utilisateur dans la base de données
                     $this->Register_model->insertLogoPath($companyId, $companyLogoPath);
         
-                    echo "Image téléchargée avec succès";
                 }
             }
  
@@ -220,9 +228,8 @@ class Register extends CI_Controller {
 
                 // Configuration pour le téléchargement du fichier
                 $config['upload_path'] = $companyPhotoPath;
-                $config['allowed_types'] = 'jpg|jpeg|png';
-                $config['max_size'] = 2048; // Taille maximale du fichier en kilo-octets
                 $this->load->library('upload', $config);
+                $this->upload->initialize($config);
 
                 // Itérer sur chaque fichier
                 foreach ($_FILES['photo-upload']['name'] as $i => $name) {
@@ -247,8 +254,6 @@ class Register extends CI_Controller {
                             
                             // Insérer le nouveau chemin de l'image dans la table 'companyphotos'
                             $this->Register_model->insertPhotoPath($companyId, $companyPhotoFullPath);
-
-                            echo "Image téléchargée avec succès : " . $companyPhotoName . "<br>";
                         }
                     }
                 }

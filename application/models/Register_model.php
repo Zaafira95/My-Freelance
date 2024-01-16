@@ -59,6 +59,31 @@ class Register_model extends CI_Model {
         $query = $this->db->get();
         return $query->result_array();
     }
+    
+    public function search_secteurs($term) {
+        $escaped_term = $this->db->escape_str($term);
+        
+        // Sélectionner toutes les colonnes
+        $this->db->select('*');
+        $this->db->from('secteurs');
+    
+        // Condition pour filtrer les villes qui contiennent le terme
+        $this->db->like('secteurName', $term);
+        
+        // Ordonner par priorité
+        $this->db->order_by("
+            CASE 
+                WHEN secteurName LIKE '".$escaped_term."%' THEN 1 
+                WHEN secteurName LIKE '%".$escaped_term."%' THEN 2 
+                ELSE 3 
+            END, secteurName", 'ASC');
+        
+        // Limiter les résultats (optionnel)
+        $this->db->limit(10);
+        
+        $query = $this->db->get();
+        return $query->result_array();
+    }
 
     public function RegisterUser($userEmail, $userPassword, $userType, $userFirstName, $userLastName, $userVille, $userTelephone, $userJobId, $userTJM, $userJobType, $userExpertise, $userJobTime, $userBio, $userIsAvailable, $userJobTimePartielOrFullTime){
         $data = array(
@@ -102,28 +127,36 @@ class Register_model extends CI_Model {
     public function registerCompany($userEmail, $userPassword, $userType, 
     $companyUserFirstName, $companyUserLastName, $companyUserTelephone, $companyName, $companyVille, 
     $companySlogan, $companySecteur, $companyDescription, $companyAvantages){
+        
         $data = array(
-            'companyName' => $companyName,
-            'companyVille' => $companyVille,
-            'companySlogan' => $companySlogan,
-            'companySecteur' => $companySecteur,
-            'companyDescription' => $companyDescription,
-            'companyAvantages' => $companyAvantages
+            'userEmail' => $userEmail,
+            'userPassword' => $userPassword,
+            'userType' => $userType,
+            'userFirstName' => $companyUserFirstName,
+            'userLastName' => $companyUserLastName,
+            'userTelephone' => $companyUserTelephone
         );
-        $this->db->insert('company', $data);
+        $this->db->insert('users', $data);
 
         if ($this->db->affected_rows() > 0) {
-            $companyId = $this->db->insert_id();
+            $companyUserId = $this->db->insert_id();
+
             $data = array(
-                'userEmail' => $userEmail,
-                'userPassword' => $userPassword,
-                'userType' => $userType,
-                'userFirstName' => $companyUserFirstName,
-                'userLastName' => $companyUserLastName,
-                'userTelephone' => $companyUserTelephone,
-                'userCompanyId' => $companyId
+                'companyName' => $companyName,
+                'companyLocalisation' => $companyVille,
+                'companySlogan' => $companySlogan,
+                'companySecteur' => $companySecteur,
+                'companyDescription' => $companyDescription,
+                'companyAdvantages' => $companyAvantages,
+                'companyUserId' => $companyUserId
             );
-            $this->db->insert('users', $data);
+            $this->db->insert('company', $data);
+
+            $companyId = $this->db->insert_id();
+            
+            $this->db->set('userCompanyId', $companyId);
+            $this->db->where('userId', $companyUserId);
+            $this->db->update('users');
 
             if ($this->db->affected_rows() > 0) {
                 return $companyId;

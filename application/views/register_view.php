@@ -165,13 +165,13 @@
                                             </li>
                                         </ul>
                                     </div>
+                                    <p id="errorUserType" class="text-red-500" style="display:none;">Veuillez choisir votre type de profil</p>
                                     <div class="flex justify-between pl-4 pr-4">
                                         <!-- button for previous step -->
                                         <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep1()">Retour</button>
                                         <!-- button for next step -->
                                         <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep3()">Suivant</button>
                                     </div>
-                                    <p id="errorUserType" class="text-red-500" style="display:none;">Veuillez choisir votre type de profil</p>
                                 </div>
                             </div>
                         </div>
@@ -358,7 +358,7 @@
                                             </div>
                                             <div class="absolute w-10 h-10 text-center bottom-0 right-0 bg-white rounded-full">
                                                 <label for="banner-upload">
-                                                    <div class="rounded-full p-2 ring ring-primary">
+                                                    <div class="rounded-full ring ring-primary h-full w-full flex items-center justify-center">
                                                         <i class="fas fa-plus text-primary cursor-pointer"></i>
                                                     </div>
                                                 </label>
@@ -368,9 +368,9 @@
                                         <div class="">
                                             <div class="relative rounded-full border-10 w-20 h-20 flex items-center justify-center" style="margin-top:-50px;">
                                                 <img id="logo-image" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class="object-cover w-full h-full rounded-full ring-8 ring-white dark:ring-gray-800" alt="Image de l'entreprise">
-                                                <div class="absolute w-10 h-10 text-center bottom-0 right-0 bg-white rounded-full">
+                                                <div class="absolute w-8 h-8 text-center bottom-0 right-0 bg-white rounded-full">
                                                     <label for="companyLogo">
-                                                        <div class="rounded-full p-2 ring ring-primary">
+                                                        <div class="rounded-full ring ring-primary h-full w-full flex items-center justify-center">
                                                             <i class="fas fa-plus text-primary cursor-pointer"></i>
                                                         </div>
                                                     </label>
@@ -395,7 +395,11 @@
                                             <label class="ml-2 text-gray-500 dark:text-gray-400">Étranger</label>
                                         </div>
                                     </div>
-                                    <div class="w-full text-black mb-1">
+                                    <div class="relative secteur-search-container w-full">
+                                        <input type="text" id="secteurSearch" name="companySecteur" placeholder="Sélectionnez votre secteur d'activité" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500">
+                                            <div id="secteurs-list" class="absolute z-10 mt-2 w-full rounded bg-white max-h-64 overflow-y-auto text-black"></div>
+                                    </div>
+                                    <!--<div class="w-full text-black mb-1">
                                         <select id="secteursAll" name="secteursAll[]"  class=" mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                             <option value="">Sélectionnez un secteur</option>
                                             <?php foreach ($secteursAll as $secteur): ?>
@@ -403,9 +407,9 @@
                                                 <?= $secteur['secteurName'] ?></option>
                                             <?php endforeach; ?>
                                         </select> 
-                                    </div>
+                                    </div>-->
                                     <p id="errorMessage-step4-esn" class="text-red-500 text-lg mt-2 hidden">Veuillez remplir tous les champs correctement</p>
-
+                                    <p id="logoErrorMessage" class="text-red-500 text-lg mt-2 hidden">Veuillez fournir votre logo</p>
                                     <div class="flex justify-between">
                                         <!-- button for previous step -->
                                         <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep3()">Retour</button>
@@ -456,7 +460,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="step5-esn" style="display:none; height:80%;">
+                        <div id="step5-esn" style="display:block; height:80%;">
                             <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
                                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                     <div class="flex items-center">
@@ -485,20 +489,58 @@
                                     </div>                
                                     <div class="relative rounded-lg flex flex-wrap mb-4">
                                         <label for="companyPhotos" class="block mb-2 font-medium text-gray-900 dark:text-white">Photos de votre entreprise</label>
+                                        <!--
                                         <div class="absolute top-0 right-0 flex hover:text-gray-800">
                                             <button id="add-photo-btn" type="button" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
                                                 <i class="fas fa-plus"></i>
                                             </button>
                                         </div>
+                                        -->
                                         <div class="photos-container w-full h-full flex grid grid-cols-2 gap-2 items-center justify-center">
-                                            <div class="new-photo-div relative">
-                                                <img id="company-image" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class=" max-h-64 max-w-xs rounded-lg" alt="Image de l'entreprise" style="width:100%;">
-                                                <input type="file" id="photo-upload" name="photo-upload[]" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'company-image')">
+                                            <div class="new-photo-div relative flex justify-center">
+                                                <img id="company-image-1" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class=" h-32 max-w-xs rounded-lg" alt="Image de l'entreprise" style="max-width:100%;">
+                                                <input type="file" id="photo-upload-1" name="photo-upload[]" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'company-image-1')">
                                                 <div class="absolute right-0 top-0 flex text-gray-500 hover:text-gray-800 rounded-lg pt-2 pr-4">
-                                                    <label for="photo-upload" class="cursor-pointer">
+                                                    <label for="photo-upload-1" class="cursor-pointer">
                                                         <i class="fas fa-pen"></i>
                                                     </label>
-                                                    <button type="button" class="delete-photo-div text-red-600 hover:text-red-900 focus:outline-none ml-2">
+                                                    <button type="button" class="delete-photo text-red-600 hover:text-red-900 focus:outline-none ml-2">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="new-photo-div relative flex justify-center">
+                                                <img id="company-image-2" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class=" h-32 max-w-xs rounded-lg" alt="Image de l'entreprise" style="max-width:100%;">
+                                                <input type="file" id="photo-upload-2" name="photo-upload[]" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'company-image-2')">
+                                                <div class="absolute right-0 top-0 flex text-gray-500 hover:text-gray-800 rounded-lg pt-2 pr-4">
+                                                    <label for="photo-upload-2" class="cursor-pointer">
+                                                        <i class="fas fa-pen"></i>
+                                                    </label>
+                                                    <button type="button" class="delete-photo text-red-600 hover:text-red-900 focus:outline-none ml-2">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="new-photo-div relative flex justify-center">
+                                                <img id="company-image-3" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class=" h-32 max-w-xs rounded-lg" alt="Image de l'entreprise" style="max-width:100%;">
+                                                <input type="file" id="photo-upload-3" name="photo-upload[]" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'company-image-3')">
+                                                <div class="absolute right-0 top-0 flex text-gray-500 hover:text-gray-800 rounded-lg pt-2 pr-4">
+                                                    <label for="photo-upload-3" class="cursor-pointer">
+                                                        <i class="fas fa-pen"></i>
+                                                    </label>
+                                                    <button type="button" class="delete-photo text-red-600 hover:text-red-900 focus:outline-none ml-2">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="new-photo-div relative flex justify-center">
+                                                <img id="company-image-4" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class=" h-32 max-w-xs rounded-lg" alt="Image de l'entreprise" style="max-width:100%;">
+                                                <input type="file" id="photo-upload-4" name="photo-upload[]" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'company-image-4')">
+                                                <div class="absolute right-0 top-0 flex text-gray-500 hover:text-gray-800 rounded-lg pt-2 pr-4">
+                                                    <label for="photo-upload-4" class="cursor-pointer">
+                                                        <i class="fas fa-pen"></i>
+                                                    </label>
+                                                    <button type="button" class="delete-photo text-red-600 hover:text-red-900 focus:outline-none ml-2">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </div>
@@ -617,12 +659,16 @@
             }
         });
 
-        const secteurChoices = new Choices('#secteursAll', {
-            searchEnabled: true,
-            removeItemButton: true,
-            itemSelectText: '',
-            placeholder: true,
-            placeholderValue: 'Sélectionnez un secteur',
+        $(document).on('click', '.delete-photo', function() {
+            // Trouve le conteneur parent '.new-photo-div' de ce bouton
+            var photoDiv = $(this).closest('.new-photo-div');
+
+            // Trouve l'input de fichier et réinitialise sa valeur
+            photoDiv.find('input[type="file"]').val('');
+
+            // Change l'image à l'image par défaut
+            var defaultImageUrl = "<?php echo base_url('assets/img/default-image-input.jpg'); ?>";
+            photoDiv.find('img').attr('src', defaultImageUrl);
         });
         
         $('.citySearch').on('keyup', function() {
@@ -709,6 +755,37 @@
             $('#jobs-list').empty(); // Videz la liste
             $('#jobs-list').removeClass('has-border').empty();
         });
+        
+        $('#secteurSearch').on('keyup', function() {
+            let term = $(this).val();
+            if(term.length > 1) { // Recherche après 2 caractères
+                $.post('register/search_secteurs', { term: term }, function(data) {
+                    let secteurs = JSON.parse(data);
+                    if(secteurs.length > 0) {
+                        // Ajoutez la classe .has-border si des résultats sont retournés
+                        $('#secteurs-list').addClass('has-border');
+                    } else {
+                        // Supprimez la classe .has-border si aucun résultat n'est retourné
+                        $('#secteurs-list').removeClass('has-border');
+                    }
+                    $('#secteurs-list').empty();
+                    secteurs.forEach(function(secteur) {
+                        $('#secteurs-list').append(`<div class="secteur-item p-2 hover:bg-gray-200 cursor-pointer" data-id="${secteur.secteurId}">${secteur.secteurName}</div>`);
+                    });
+                });
+            }
+            else {
+                // Supprimez la classe .has-border si l'input est trop court
+                $('#secteurs-list').removeClass('has-border').empty();
+            }
+        });
+
+        $(document).on('click', '.secteur-item', function() {
+            let secteurName = $(this).text();
+            $('#secteurSearch').val(secteurName);  // Mettez à jour le champ de saisie avec le nom de la ville sélectionnée
+            $('#secteurs-list').empty(); // Videz la liste
+            $('#secteurs-list').removeClass('has-border').empty();
+        });
 
         // Pour fermer la liste lorsque vous cliquez en dehors
         $(document).on('click', function(event) {
@@ -722,6 +799,11 @@
             if (!$(event.target).closest('#jobSearch, #jobs-list').length) {
                 // ... alors videz et fermez la liste.
                 $('#jobs-list').empty().removeClass('has-border');
+            }
+            
+            if (!$(event.target).closest('#secteurSearch, #secteurs-list').length) {
+                // ... alors videz et fermez la liste.
+                $('#secteurs-list').empty().removeClass('has-border');
             }
         });
 
@@ -1111,8 +1193,8 @@
         }
 
         function goToStep3() {
-            var selectedRadio = document.querySelector('input[name="userType"]:checked').value;
-            console.log("type", selectedRadio);
+            // var selectedRadio = document.querySelector('input[name="userType"]:checked').value;
+            // console.log("type", selectedRadio);
             var userTypeFreelance = document.getElementById('userTypeFreelance');
             var userTypeESN = document.getElementById('userTypeESN');
             var errorUserType = document.getElementById('errorUserType');
@@ -1234,19 +1316,26 @@
             var companyVille = document.getElementById('companyCitySearch').value;
             var companyEtranger = document.getElementById('companyEtranger');
             var companySlogan = document.getElementById('companySlogan').value;
-            var companySecteur = document.getElementById('secteursAll').value;
+            var companySecteur = document.getElementById('secteurSearch').value;
             var errorMessage3 = document.getElementById('errorMessage-step4-esn');
+            var logoErrorMessage = document.getElementById('logoErrorMessage');
 
             if (
-                companyLogo.trim() === '' ||
                 companyName.trim() === '' ||
                 (companyVille.trim() === '' && !companyEtranger.checked) ||
                 companySlogan.trim() === '' ||
                 companySecteur.trim() === ''
             ) {
                 errorMessage3.style.display = 'block';
+                logoErrorMessage.style.display = 'none';
+            } else if (
+                companyLogo.trim() === ''
+            ) {
+                errorMessage3.style.display = 'none';
+                logoErrorMessage.style.display = 'block';
             } else {
                 errorMessage3.style.display = 'none';
+                logoErrorMessage.style.display = 'none';
                 var step4 = document.getElementById('step4-esn');
                 var step5 = document.getElementById('step5-esn');
                 var step6 = document.getElementById('step6');

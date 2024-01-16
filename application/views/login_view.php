@@ -29,53 +29,57 @@
         }, 3000);
     </script>
 <?php endif; ?>
-    <section class="h-screen">
+<section class="h-screen">
   <div class="container h-full px-6 mx-auto max-w-screen-xl">
     <div class="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between">
       <!-- Left column container with background-->
       <!-- Left column container with background-->
-      <div class="mb-12 md:mb-0 md:w-8/12 lg:w-6/12">
+      <div class="hidden lg:block md:w-8/12 lg:w-6/12">
           <img
           src="<?php echo base_url('assets/img/cc-2.png');?>"
           class="w-full image-rotation"
           alt="Login Image with quote" />
       </div>
+      <!-- <div class="hidden md:block bg-red-500">
+        <p>Je ne devrais être visible que sur les écrans moyens et grands</p>
+    </div> -->
+
 
       <!-- Right column container with form -->
-      <div class="md:w-8/12 lg:ml-6 lg:w-5/12">
+      <div class="w-full lg:ml-6 lg:w-5/12">
       <div class="flex flex-col justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
             <a href="#" class="flex mb-6 text-2xl font-semibold text-gray-900">
-                <img class="w-50 mr-2" src="<?php echo base_url('assets/img/logo.svg');?>" alt="Café Crème Community" id="logoLogin">
+                <img class="w-60 lg:justify-start lg:m-0 lg:w-40 mr-2" src="<?php echo base_url('assets/img/logo.svg');?>" alt="Café Crème Community" id="logoLogin">
             </a>
-            <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
+            <div class="p-6 w-full bg-white rounded-lg shadow md:mt-0 xl:p-0 dark:bg-gray-800 dark:text-white lg:p-0">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                <h1 class="text-2-xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                <h1 class="text-5xl lg:text-lg font-bold mb-2 leading-tight tracking-tight text-gray-900 dark:text-white">
                       Connectez-vous
                   </h1>
-                  <p class="text-dark mb-2 dark:text-white">
+                  <p class="text-3xl lg:text-base text-dark mb-2 dark:text-white">
                   Explorer de nouvelles missions, discuter avec d'autres professionnels de l'IT au coeur d’une communauté dynamique.
                   </p>
-      <form class="space-y-4 md:space-y-6" method="post" action="<?php echo base_url('login/login'); ?>" onsubmit="showLoader();">
+        <form class="space-y-4 md:space-y-6" method="post" action="<?php echo base_url('login/login'); ?>" onsubmit="showLoader();">
             <div>
-                <label for="email" class="block mb-2 font-medium text-gray-900 dark:text-white">Votre email</label>
-                <input type="email" name="userEmail" id="userEmail" class="bg-gray-50 border border-gray-300 text-gray-900 sm:  rounded-lg block w-full p-2.5 " placeholder="name@company.com" required="">
+                <label for="email" class="text-3xl lg:text-base block mb-2 font-medium text-gray-900 dark:text-white">Votre email</label>
+                <input type="email" name="userEmail" id="userEmail" class="rounded-lg p-4 text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 block w-full lg:p-2.5" placeholder="name@company.com" required="">
             </div>
             <div class="relative">
-                <label for="password" class="block mb-2   font-medium text-gray-900 dark:text-white">Votre mot de passe</label>
+                <label for="password" class="text-3xl lg:text-base block mb-2 font-medium text-gray-900 dark:text-white">Votre mot de passe</label>
                 <div class="flex flex-col">
-                    <input type="password" name="userPassword" id="userPassword" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:  rounded-lg block w-full p-2.5" required="">
+                    <input type="password" name="userPassword" id="userPassword" placeholder="••••••••" class="rounded-lg p-4 text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 block w-full lg:p-2.5" required="">
                     <div class="mt-4">
-                    <input type="checkbox" id="togglePasswordCheckbox" class="form-checkbox text-primary rounded">
-                    <label for="togglePasswordCheckbox" class=" text-sm font-medium text-gray-900 dark:text-white">Afficher le mot de passe</label>
+                    <input type="checkbox" id="togglePasswordCheckbox" class="form-checkbox text-primary rounded mr-2">
+                    <label for="togglePasswordCheckbox" class="text-3xl lg:text-base font-medium text-gray-900 dark:text-white">Afficher le mot de passe</label>
                     </div>
                 </div>
             </div>
             <div class="flex items-center justify-between">
-                <a href="<?php echo base_url('login/forgot_password'); ?>" class="  font-medium text-primary hover:underline">Mot de passe oublié ?</a>
+                <a href="<?php echo base_url('login/forgot_password'); ?>" class="text-3xl lg:text-base font-medium text-primary hover:underline">Mot de passe oublié ?</a>
             </div>
-            <button type="submit" class="w-full text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg   px-5 py-2.5 text-center">Se connecter</button>
-            <p class="  font-light text-gray-500 dark:text-white">
-                Vous n'avez pas de compte ? <a href="<?=base_url('register')?>" class="font-medium text-primary hover:underline">Inscrivez-vous</a>
+            <button type="submit" class="text-3xl lg:text-base w-full text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center">Se connecter</button>
+            <p class="text-3xl lg:text-base font-light text-gray-500 dark:text-white">
+                Vous n'avez pas de compte ? <a href="<?=base_url('register')?>" class="text-3xl lg:text-base font-medium text-primary hover:underline">Inscrivez-vous</a>
             </p>
         </form>
       </div>

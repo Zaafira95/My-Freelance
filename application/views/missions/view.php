@@ -561,26 +561,24 @@ else if ($user->userType == "sales"){
                                 </div>
                                 <div id="mission-description" class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                                     <h2 class="font-bold text-2xl">La mission</h2>
-                                    <div class="richTextList">
-                                        <div class="text-gray-500 mt-2 dark:text-white">
-                                            <?=$mission->missionDescription?>
-                                        </div>
-                                    </div>
+                                    <p class="text-gray-500 mt-2 dark:text-white">
+                                        <?=$mission->missionDescription?>
+                                    </p>
                                 </div>
                                 <div id="company-description" class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                                     <h2 class="font-bold text-2xl">L'entreprise</h2>
-                                    <div class="richTextList text-gray-500 mt-2 dark:text-white">
+                                    <p class="text-gray-500 mt-2 dark:text-white">
                                         <?=$company->companyDescription?>
-                                    </div>
+                                    </p>
                                 </div>
                                 <?php
                                 if ($mission->missionAvantage != null) {
                                 ?>
                                 <div id="mission-avantages" class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                                     <h2 class="font-bold text-2xl">Les avantages</h2>
-                                    <div class="richTextList text-gray-500 mt-2 dark:text-white">
+                                    <p class="text-gray-500 mt-2 dark:text-white">
                                         <?=$mission->missionAvantage?>
-                                    </div>
+                                    </p>
                                 </div>
                                 <?php
                                 }
@@ -675,13 +673,13 @@ else if ($user->userType == "sales"){
                             </div>
                             <div class="flex items-center justify-between">
                                 <div class="mt-4">
-                                    <div class="font-light mt-4 mb-4 overflow-hidden" style="max-height : 6em">
+                                    <p class="font-light mt-4 mb-4">
                                         <?php 
                                         // limit missionDescription to 270 characters and add '...' at the end
                                         $companyMission->missionDescription = strlen($companyMission->missionDescription) > 270 ? substr($companyMission->missionDescription,0,270)."..." : $companyMission->missionDescription;    
                                         ?>
                                         <?=$companyMission->missionDescription?>
-                                    </div>
+                                    </p>
                                     <?php if (isset($missionSkills[$companyMission->idMission])) : ?>
                                         <div class="skills-container mb-4">
                                         <?php foreach ($missionSkills[$companyMission->idMission] as $skill) : ?>
@@ -781,7 +779,6 @@ else if ($user->userType == "sales"){
 
 
 <script>
-
     document.getElementById('generate-pdf-btn').addEventListener('click', function () {
     const element = document.getElementById('pdf-content');
 

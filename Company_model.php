@@ -20,8 +20,8 @@ class Company_model extends CI_Model {
     }
 
     public function get_freelancer_job($freelancerUserId) {
-        $this->db->select('Job.jobId, joJob.jobName, UserJob.userJob_jobId, UserJob.userJob_userId');
-        $this->db->from('UserJob');
+        $this->db->select('job.jobId, job.jobName, userJob.userJob_jobId, userJob.userJob_userId');
+        $this->db->from('Userjob');
         $this->db->join('Job', 'UserJob.userJob_userId = Users.userId');
         $this->db->where('UserSkills.userSkills_userId', $freelancerUserId);
         $query = $this->db->get();
@@ -144,7 +144,7 @@ class Company_model extends CI_Model {
             return $query->result();
     }
     public function getJobNameForAUser($id){
-        $this->db->select('jobName');
+        $this->db->select('Jobname');
         $this->db->from('Job');
         $this->db->join('UserJob', 'UserJob.userJob_jobId = Job.jobId');
         $this->db->where('userJob_userId', $id);
@@ -154,10 +154,10 @@ class Company_model extends CI_Model {
     
 
     public function getUserSkillsAll($id) {
-        $this->db->select('Skills.skillId, Skills.skillName, UserSkills.userSkillsExperience');
-        $this->db->from('UserSkills');
-        $this->db->join('Skills', 'UserSkills.userSkills_skillId = Skills.skillId');
-        $this->db->where('UserSkills.userSkills_userId', $id);
+        $this->db->select('Skills.skillId, Skills.skillName, Userskills.userSkillsExperience');
+        $this->db->from('Userskills');
+        $this->db->join('Skills', 'Userskills.userSkills_skillId = Skills.skillId');
+        $this->db->where('Userskills.userSkills_userId', $id);
         $query = $this->db->get();
         return $query->result();
     }
@@ -240,7 +240,7 @@ class Company_model extends CI_Model {
         $this->db->set('missionSkills_missionId', $missionId);
         $this->db->set('missionSkills_skillId', $skillId);
         $this->db->set('missionSkillsExperience', $level);
-        $this->db->insert('MissionSkills');
+        $this->db->insert('Missionskills');
     }
 
     public function get_all_jobs() {
@@ -304,20 +304,20 @@ class Company_model extends CI_Model {
     }
 
     public function getMissionSkills($idMissions) {
-        $this->db->select('Skills.skillName, MissionSkills.missionSkills_skillId, MissionSkills.missionSkillsExperience');
-        $this->db->from('MissionSkills');
-        $this->db->join('Skills', 'MissionSkills.missionSkills_skillId = Skills.skillId');
-        $this->db->where('MissionSkills.missionSkills_missionId', $idMissions);
-        $this->db->order_by('MissionSkills.missionSkillsExperience', 'DESC'); // Tri par ordre décroissant
+        $this->db->select('skills.skillName, missionSkills.missionSkills_skillId, missionSkills.missionSkillsExperience');
+        $this->db->from('Missionskills');
+        $this->db->join('skills', 'missionSkills.missionSkills_skillId = skills.skillId');
+        $this->db->where('missionSkills.missionSkills_missionId', $idMissions);
+        $this->db->order_by('missionSkills.missionSkillsExperience', 'DESC'); // Tri par ordre décroissant
         $query = $this->db->get();
         return $query->result();
     }
     
     public function getExperienceSkills($idExperience) {
-        $this->db->select('Skills.skillName, Skills.skillId, ExperienceSkills.experienceSkillsExpertise');
-        $this->db->from('ExperienceSkills');
-        $this->db->join('Skills', 'ExperienceSkills.experienceSkills_skillId = Skills.skillId');
-        $this->db->where('ExperienceSkills.experienceSkills_experienceId', $idExperience);
+        $this->db->select('skills.skillName, skills.skillId, experienceSkills.experienceSkillsExpertise');
+        $this->db->from('Experienceskills');
+        $this->db->join('skills', 'experienceSkills.experienceSkills_skillId = skills.skillId');
+        $this->db->where('experienceSkills.experienceSkills_experienceId', $idExperience);
         $query = $this->db->get();
         return $query->result();
     }
@@ -341,7 +341,7 @@ class Company_model extends CI_Model {
 
     public function getMessageExamples(){
         $this->db->select('*');
-        $this->db->from('MessageExamples');
+        $this->db->from('Messageexamples');
         $query = $this->db->get();
         return $query->result();
     }
@@ -357,7 +357,7 @@ class Company_model extends CI_Model {
 
     public function getFavoriteMissions($userId){
         $this->db->select('*');
-        $this->db->from('SavedMission');
+        $this->db->from('Savedmission');
         $this->db->where('idUsersavedMission', $userId);
         $query = $this->db->get();
         return $query->result();
@@ -383,16 +383,16 @@ class Company_model extends CI_Model {
         );
 
         $this->db->where('idMission', $missionId);
-        $this->db->update('Mission', $data);
+        $this->db->update('mission', $data);
 
         // Supprimez d'abord les compétences existantes liées à cette mission
         $this->db->where('missionSkills_missionId', $missionId);
-        $this->db->delete('MissionSkills');
+        $this->db->delete('Missionskills');
     }
 
     public function deleteMission($missionId) {
         $this->db->where('missionSkills_missionId', $missionId);
-        $this->db->delete('MissionSkills');
+        $this->db->delete('Missionskills');
         
         $this->db->where('idMission', $missionId);
         $this->db->delete('Mission');
@@ -452,19 +452,19 @@ class Company_model extends CI_Model {
     
     public function deletePhotoPath($id) {
         $this->db->where('idCompanyPhotos', $id);
-        $this->db->delete('CompanyPhotos');
+        $this->db->delete('Companyphotos');
     }
     public function insertPhotoPath($companyId, $companyPhotoPath) {
         $data = array(
             'companyPhotosPath' => $companyPhotoPath,
             'companyPhotos_companyId' => $companyId
         );
-        $this->db->insert('CompanyPhotos', $data);
+        $this->db->insert('companyphotos', $data);
     }
     
     public function getAllPhotos($companyId){
         $this->db->select('*');
-        $this->db->from('CompanyPhotos');
+        $this->db->from('Companyphotos');
         $this->db->where('companyPhotos_companyId', $companyId);
         $query = $this->db->get();
         return $query->result();
@@ -473,14 +473,14 @@ class Company_model extends CI_Model {
     public function getPhotoPath($id){
         $this->db->select('Companyphotospath');
         $this->db->where('idCompanyPhotos', $id);
-        $query = $this->db->get('CompanyPhotos');
+        $query = $this->db->get('Companyphotos');
         return $query->row()->companyPhotosPath;
     }
 
     public function updatePhotoPath($id, $companyPhotoPath){
         $this->db->set('companyPhotosPath', $companyPhotoPath);
         $this->db->where('idCompanyPhotos', $id);
-        $this->db->update('CompanyPhotos');
+        $this->db->update('Companyphotos');
     }
 
     public function updateUserData($userId, $userFirstName, $userLastName, $userTelephone){
@@ -499,7 +499,7 @@ class Company_model extends CI_Model {
 
     public function getWhatsAppGroups(){
         $this->db->select('*');
-        $this->db->from('WhatsAppGroups');
+        $this->db->from('Whatsappgroups');
         $query = $this->db->get();
         return $query->result();
     }

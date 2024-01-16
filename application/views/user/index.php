@@ -11,7 +11,7 @@ include(APPPATH . 'views/layouts/user/header.php');
 <style>
     html,
     body {
-        height: 85vh;
+        height: 100vh;
     }
     #cities-list {
     max-height: 200px; /* ou toute autre valeur appropriée */
@@ -101,12 +101,12 @@ if ($banner->bannerStatus == "active"){ ?>
         </div>
     </div>
 
-<div class="px-4 py-6 h-90 overflow-y-auto no-scrollbar ">
+<div class="px-8 py-6 lg:px-4 lg:py-6 h-90 overflow-y-auto no-scrollbar ">
     <div class="justify-between items-center mx-auto max-w-screen-xl h-full">
         <div class="lg:flex gap-6 h-full mb-3">
             <!-- Bloc Filtre -->
-            <div class="w-full lg:w-1/4 md:block md:sticky md:top-0">
-                <div class="bg-white rounded-lg h-full overflow-y-auto no-scrollbar mb-4 p-4 dark:bg-gray-800 dark:text-white">
+            <div class=" w-full lg:w-1/4 md:block md:sticky md:top-0">
+                <div class="hidden lg:block bg-white rounded-lg h-full overflow-y-auto no-scrollbar mb-4 p-4 dark:bg-gray-800 dark:text-white">
                     <h3 class="text-3xl lg:text-lg font-medium mt-2">Filtre</h3>
                     <h4 class="text-3xl lg:text-lg font-medium mt-4">Localisation</h4>
                         <div class="flex items-center mt-2">
@@ -114,40 +114,58 @@ if ($banner->bannerStatus == "active"){ ?>
                             <div class="relative city-search-container w-full">
                                 <input type="text" id="citySearch" value="<?=$user->userVille?>" placeholder="Cherchez votre ville" class="text-2xl lg:text-lg border p-2 rounded-lg w-full text-black">
                                 <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
+                                <input type="text" id="citySearch" value="<?=$user->userVille?>" placeholder="Cherchez votre ville" class="text-2xl lg:text-lg border p-2 rounded-lg w-full text-black">
+                                <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                             </div>
                         </div>
                     <h4 class="text-3xl lg:text-lg font-medium mt-4">Type de poste</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Type de poste</h4>
                     <div class="mt-2">
+                        <label class="flex items-center ">
                         <label class="flex items-center ">
                             <input type="checkbox" class="form-checkbox mr-2" id="temps-plein" <?= ($user->userJobTimePartielOrFullTime == 'temps-plein') ? 'checked' : '' ?>>
                             <span class="ml-2 text-2xl lg:text-base">Temps plein</span>
+                            <span class="ml-2 text-2xl lg:text-base">Temps plein</span>
                         </label>
                         <label class="flex items-center text-xl lg:text-base">
+                        <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="form-checkbox mr-2" id="temps-partiel" <?= ($user->userJobTimePartielOrFullTime == 'temps-partiel') ? 'checked' : '' ?>>
+                            <span class="ml-2 text-2xl lg:text-base">Temps partiel</span>
                             <span class="ml-2 text-2xl lg:text-base">Temps partiel</span>
                         </label>
                     </div>
                     <h4 class="text-2xl lg:text-lg font-medium mt-4">Durée de la mission</h4>
+                    <h4 class="text-2xl lg:text-lg font-medium mt-4">Durée de la mission</h4>
                     <div class="mt-2">
+                        <label class="flex items-center text-xl lg:text-base">
                         <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="form-checkbox mr-2" id="courte" <?= ($user->userJobTime == 'courte') ? 'checked' : '' ?>>
                             <span class="ml-2 text-2xl lg:text-base">Courte durée</span>
+                            <span class="ml-2 text-2xl lg:text-base">Courte durée</span>
                         </label>
+                        <label class="flex items-center text-xl lg:text-base">
                         <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="form-checkbox mr-2" id="longue" <?= ($user->userJobTime == 'longue') ? 'checked' : '' ?>>
                             <span class="ml-2 text-2xl lg:text-base">Longue durée</span>
+                            <span class="ml-2 text-2xl lg:text-base">Longue durée</span>
                         </label>
                         <label class="flex items-center text-xl lg:text-base">
+                        <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="form-checkbox mr-2" id="indefinie" <?= ($user->userJobTime == 'indefinie') ? 'checked' : '' ?>>
+                            <span class="ml-2 text-2xl lg:text-base">Durée indéfinie</span>
                             <span class="ml-2 text-2xl lg:text-base">Durée indéfinie</span>
                         </label>
                     </div>
                     <h4 class="text-2xl lg:text-lg font-medium mt-4">Mode de déroulement</h4>
+                    <h4 class="text-2xl lg:text-lg font-medium mt-4">Mode de déroulement</h4>
                     <div class="mt-2">
+                        <label class="flex items-center text-xl lg:text-base">
                         <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="form-checkbox mr-2" id="site">
                             <span class="ml-2 text-2xl lg:text-base">Sur site</span>
+                            <span class="ml-2 text-2xl lg:text-base">Sur site</span>
                         </label>
+                        <label class="flex items-center text-xl lg:text-base">
                         <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="form-checkbox mr-2" id="teletravail" <?php
                                 $jobTypeArray = explode(',', $user->userJobType);
@@ -156,36 +174,51 @@ if ($banner->bannerStatus == "active"){ ?>
                                 }
                                 ?>>
                             <span class="ml-2 text-2xl lg:text-base">Télétravail</span>
+                            <span class="ml-2 text-2xl lg:text-base">Télétravail</span>
                         </label>
                         <label class="flex items-center text-xl lg:text-base">
+                        <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="form-checkbox mr-2" id="hybride">
+                            <span class="ml-2 text-2xl lg:text-base">Hybride</span>
                             <span class="ml-2 text-2xl lg:text-base">Hybride</span>
                         </label>
                     </div>
                     <h4 class="text-2xl lg:text-lg font-medium mt-4">Niveau d'expérience</h4>
+                    <h4 class="text-2xl lg:text-lg font-medium mt-4">Niveau d'expérience</h4>
                     <div class="mt-2">
+                        <label class="flex items-center text-xl lg:text-base">
                         <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="form-checkbox mr-2" id="junior" <?= ($user->userExperienceYear === 'junior') ? 'checked' : '' ?>>
                             <span class="ml-2 text-2xl lg:text-base">Junior (1 à 2 ans)</span>
+                            <span class="ml-2 text-2xl lg:text-base">Junior (1 à 2 ans)</span>
                         </label>
+                        <label class="flex items-center text-xl lg:text-base">
                         <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="form-checkbox mr-2" id="intermediaire" <?= ($user->userExperienceYear === 'intermediaire') ? 'checked' : '' ?>>
                             <span class="ml-2 text-2xl lg:text-base">Intermédiaire (3 à 5 ans)</span>
+                            <span class="ml-2 text-2xl lg:text-base">Intermédiaire (3 à 5 ans)</span>
                         </label>
+                        <label class="flex items-center text-xl lg:text-base">
                         <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="form-checkbox mr-2" id="expert" <?= ($user->userExperienceYear === 'expert') ? 'checked' : '' ?>>
                             <span class="ml-2 text-2xl lg:text-base">Expert (+ 5 ans)</span>
+                            <span class="ml-2 text-2xl lg:text-base">Expert (+ 5 ans)</span>
                         </label>
                     </div>
+                    <h4 class="text-2xl lg:text-lg font-medium mt-4">TJM</h4>
                     <h4 class="text-2xl lg:text-lg font-medium mt-4">TJM</h4>
                     <div class="mt-2 mr-3">
                         <div id="tjm-slider" class="w-full mt-2"></div>
                         <div class="flex justify-between mt-2">
                             <span id="tjm-min" class="text-2xl lg:text-base">300€</span>
                             <span id="tjm-max" class="text-2xl lg:text-base">1200€</span>
+                            <span id="tjm-min" class="text-2xl lg:text-base">300€</span>
+                            <span id="tjm-max" class="text-2xl lg:text-base">1200€</span>
                         </div>
                     </div>
                 
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Compétences</h4>
+                    <div class="w-full mx-auto mt-5 text-black">
                     <h4 class="text-3xl lg:text-lg font-medium mt-4">Compétences</h4>
                     <div class="w-full mx-auto mt-5 text-black">
                         <!-- <label for="skillsAll" class="block text-sm font-medium text-gray-700">Sélectionnez vos compétences</label> -->
@@ -220,19 +253,27 @@ if ($banner->bannerStatus == "active"){ ?>
             <!-- Début Mission -->
             <div class="w-full lg:w-6/12 h-full overflow-y-auto no-scrollbar">
                 <!-- Barre de recherche -->
+            <!-- Fin Bloc Filtre -->
+
+            <!-- Début Mission -->
+            <div class="w-full lg:w-6/12 h-full overflow-y-auto no-scrollbar">
+                <!-- Barre de recherche -->
                 <div class="bg-primary rounded-lg h-20vh p-4 text-white">
                     <p class="text-3xl lg:text-lg font-bold">Hello, <?=$user->userFirstName?></p>
                     <p class="text-2xl lg:text-base mt-2 mb-2">Découvrez la manière la plus rapide et efficace de décrocher une mission.</p>
+                    <p class="text-3xl lg:text-lg font-bold">Hello, <?=$user->userFirstName?></p>
+                    <p class="text-2xl lg:text-base mt-2 mb-2">Découvrez la manière la plus rapide et efficace de décrocher une mission.</p>
                     <div class="flex w-full">
-                        <input type="text" id="search-input" class="text-xl md:text-base w-full bg-white bg-opacity-20 rounded-lg p-2 placeholder-white mr-2 text-center" placeholder="Ecrivez le nom du poste que vous recherchez..." />
+                        <input type="text" id="search-input" class="text-2xl lg:text-base w-full bg-white bg-opacity-20 rounded-lg p-2 placeholder-white mr-2 text-center" placeholder="Ecrivez le nom du poste que vous recherchez..." />
                         <!-- <button class="w-1/5 bg-white text-primary rounded-lg px-4 py-2">Rechercher</button> -->
                     </div>
                 </div>
                 <!-- Fin Barre de recherche -->
                 <!-- Début section pour vous -->
-                <h3 class="text-2xl font-medium mt-4" id="result-section">Pour vous :</h3>
+                <h3 class="text-3xl lg:text-lg font-medium mt-4" id="result-section">Pour vous :</h3>
                 <!-- Début section contenant toutes les missions -->
                 <div class="flex flex-wrap" id="missions-section">
+                    <!-- Fonction ajouter favoris -->
                     <!-- Fonction ajouter favoris -->
                     <?php
                         function isFavorite($missionId, $favoriteMissions) {
@@ -247,7 +288,13 @@ if ($banner->bannerStatus == "active"){ ?>
                     <!-- Fin Fonction ajouter favoris -->
 
                     <!-- Début Affichage mission -->
+                    <!-- Fin Fonction ajouter favoris -->
+
+                    <!-- Début Affichage mission -->
                     <?php foreach($missionsPerso as $mission): ?>
+
+
+                        <!-- Compétences de mission -->
 
 
                         <!-- Compétences de mission -->
@@ -257,11 +304,20 @@ if ($banner->bannerStatus == "active"){ ?>
                                 $dataMissionSkills[] = $skill->skillId;
                             endforeach;
                             $dataMissionSkillsString = implode(',', $dataMissionSkills);
+                            $dataMissionSkills = [];
+                            foreach ($missionSkills[$mission->idMission] as $skill):
+                                $dataMissionSkills[] = $skill->skillId;
+                            endforeach;
+                            $dataMissionSkillsString = implode(',', $dataMissionSkills);
                         ?>
                         <!-- Fin Compétences de mission -->
 
                         <!-- Début section mission -->
+                        <!-- Fin Compétences de mission -->
+
+                        <!-- Début section mission -->
                         <a href="<?=base_url('user/missionView/'.$mission->idMission)?>" 
+                            class="mission-item" 
                             class="mission-item" 
                             data-mission-name="<?=strtolower($mission->missionName)?>" 
                             data-mission-type="<?=strtolower($mission->missionType)?>"
@@ -274,21 +330,28 @@ if ($banner->bannerStatus == "active"){ ?>
                             <!-- Fin du a -->
 
                             <!-- Début de la carte -->
-                            <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative mission-item" data-mission-name="<?=strtolower($mission->missionName)?>" data-mission-type="<?=strtolower($mission->missionType)?>" data-mission-deroulement="<?=strtolower($mission->missionDeroulement)?>" data-mission-duree="<?=strtolower($mission->missionDuration)?>" data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" data-mission-tjm="<?=$mission->missionTJM?>" data-mission-localisation="<?=$mission->missionLocalisation?>" data-mission-skills="<?=$dataMissionSkillsString?>">
+                            <div class="bg-white mb-4 rounded-lg lg:h-20vh p-4 dark:bg-gray-800 dark:text-white relative mission-item" data-mission-name="<?=strtolower($mission->missionName)?>" data-mission-type="<?=strtolower($mission->missionType)?>" data-mission-deroulement="<?=strtolower($mission->missionDeroulement)?>" data-mission-duree="<?=strtolower($mission->missionDuration)?>" data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" data-mission-tjm="<?=$mission->missionTJM?>" data-mission-localisation="<?=$mission->missionLocalisation?>" data-mission-skills="<?=$dataMissionSkillsString?>">
                                 
                                 <!-- Début div en tête -->
                                 <div class="flex items-center">
 
                                     <!-- Div logo entreprise -->
+
+                                    <!-- Div logo entreprise -->
                                     <div class="mr-4">
+                                        <!-- Logo entreprise --> 
                                         <!-- Logo entreprise --> 
                                         <?php foreach ($missionCompany[$mission->idMission] as $company) : ?>
                                             <?php if (is_object($company)) : ?>
-                                            <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="w-10 h-10 rounded-full">
+                                            <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="w-16 h-16 lg:w-10 rounded-full">
                                             <?php endif; ?>
                                         <?php endforeach; ?>
                                         <!-- Fin logo entreprise -->
+                                        <!-- Fin logo entreprise -->
                                     </div>
+                                    <!-- Fin div logo entreprise -->
+
+                                    <!-- Div informations clés mission -->
                                     <!-- Fin div logo entreprise -->
 
                                     <!-- Div informations clés mission -->
@@ -298,8 +361,25 @@ if ($banner->bannerStatus == "active"){ ?>
                                             <span class="mr-2"> 
                                                 • TJM : <?=$mission->missionTJM?> €
                                             </span>
+                                        <h2 class="text-3xl lg:text-lg font-bold "><?=$mission->missionName?></h2>
+                                        <p class="text-2xl lg:text-base">
+                                            <span class="mr-2"> 
+                                                • TJM : <?=$mission->missionTJM?> €
+                                            </span>
                                             
                                             <span class="mr-2"> •
+                                                <?php
+                                                if ($mission->missionDuration == "courte"){
+                                                    $mission->missionDuration = "Courte durée";
+                                                }
+                                                elseif ($mission->missionDuration == "longue"){
+                                                    $mission->missionDuration = "Longue durée";
+                                                }
+                                                elseif ($mission->missionDuration == "indefinie"){
+                                                    $mission->missionDuration = "Durée indéfinie";
+                                                }                                            
+                                                ?>
+                                                <?=$mission->missionDuration?> 
                                                 <?php
                                                 if ($mission->missionDuration == "courte"){
                                                     $mission->missionDuration = "Courte durée";
@@ -327,9 +407,22 @@ if ($banner->bannerStatus == "active"){ ?>
                                                 }                                            
                                                 ?>
                                                 <?=$mission->missionType?> 
+                                                <?php
+                                                if ($mission->missionType == "temps-plein"){
+                                                    $mission->missionType = "Temps Plein";
+                                                }
+                                                elseif ($mission->missionType == "temps-partiel"){
+                                                    $mission->missionType = "Temps Partiel";
+                                                }
+                                                elseif ($mission->missionType == "remote"){
+                                                    $mission->missionType = "Remote";
+                                                }                                            
+                                                ?>
+                                                <?=$mission->missionType?> 
                                             </span>
 
                                             <span class="mr-2"> • 
+                                                <?php
                                                 <?php
 
                                                 if ($mission->missionDeroulement == "teletravail"){
@@ -343,8 +436,22 @@ if ($banner->bannerStatus == "active"){ ?>
                                                 }                                            
                                                 ?>
                                                 <?=$mission->missionDeroulement?>
+                                                if ($mission->missionDeroulement == "teletravail"){
+                                                    $mission->missionDeroulement = "Télétravail";
+                                                }
+                                                elseif ($mission->missionDeroulement == "site"){
+                                                    $mission->missionDeroulement = "Sur site";
+                                                }
+                                                elseif ($mission->missionDeroulement == "hybride"){
+                                                    $mission->missionDeroulement = "Hybride";
+                                                }                                            
+                                                ?>
+                                                <?=$mission->missionDeroulement?>
                                             </span>
 
+                                            <span class="mr-2"> •
+                                                <?=$mission->missionLocalisation?>
+                                            </span>
                                             <span class="mr-2"> •
                                                 <?=$mission->missionLocalisation?>
                                             </span>
@@ -363,27 +470,48 @@ if ($banner->bannerStatus == "active"){ ?>
                                                                                     
                                                 ?>
                                                 <?=$mission->missionExpertise?>
+                                                <?php
+                                                if ($mission->missionExpertise == "junior"){
+                                                    $mission->missionExpertise = "Junior";
+                                                }
+                                                elseif ($mission->missionExpertise == "intermediaire"){
+                                                    $mission->missionExpertise = "Intermédiaire";
+                                                }
+                                                elseif ($mission->missionExpertise == "expert"){
+                                                    $mission->missionExpertise = "Expert";
+                                                }
+                                                                                    
+                                                ?>
+                                                <?=$mission->missionExpertise?>
                                             </span>
                                         </p>
                                     </div>
+                                    <!-- Fin div informations clés mission -->
                                     <!-- Fin div informations clés mission -->
                                 </div>
                                 <!-- Fin div en tête -->
 
                                 <!-- Div Flex description + compétences mission -->                
+                                <!-- Fin div en tête -->
+
+                                <!-- Div Flex description + compétences mission -->                
                                 <div class="flex items-center justify-between">
                                     <!-- Div description + compétences mission -->
-                                    <div class="mt-4">
+                                    <div class="mt-4 text-2xl lg:text-base">
                                         
                                         <!-- Description mission -->
-                                        <p class="font-light mt-4 mb-4 text-2xl lg:text-base">
+                                        <p class="font-normal text-2xl lg:text-base mt-4 mb-4">
 
                                             <?php 
                                             // limit missionDescription to 270 caracteres and add '...' at the end
                                                 $mission->missionDescription = strlen($mission->missionDescription) > 270 ? substr($mission->missionDescription,0,270)."..." : $mission->missionDescription;    
+                                                $mission->missionDescription = strlen($mission->missionDescription) > 270 ? substr($mission->missionDescription,0,270)."..." : $mission->missionDescription;    
                                             ?>
                                             <?=$mission->missionDescription?>
                                         </p>
+                                        <!-- Fin description mission -->
+
+                                        <!-- Compétences mission -->
                                         <!-- Fin description mission -->
 
                                         <!-- Compétences mission -->
@@ -421,17 +549,23 @@ if ($banner->bannerStatus == "active"){ ?>
                                                             break;
                                                     }
                                                 ?>
-                                                <div class="skill-item" data-level="<?=$level?>">
-                                                    <span class="dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                                                <div class="text-2xl lg:text-base skill-item" data-level="<?=$level?>">
+                                                    <span class="text-2xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
                                                     <div class="skill-level"><?=$level?></div>
                                                 </div>
                                             <?php endforeach; ?>
                                         </div>
                                         <!-- Fin compétences mission -->
+                                        <!-- Fin compétences mission -->
                                     </div>
                                     <!-- Fin div description + compétences mission -->
 
+                                    <!-- Fin div description + compétences mission -->
+
                                 </div>
+                                <!-- Fin div Flex description + compétences mission -->
+
+                                <!-- Div bouton favoris -->
                                 <!-- Fin div Flex description + compétences mission -->
 
                                 <!-- Div bouton favoris -->
@@ -440,22 +574,25 @@ if ($banner->bannerStatus == "active"){ ?>
                                         if(isFavorite($mission->idMission, $favoriteMissions)){
                                     ?>
                                     <a href="<?php echo base_url('user/removeFromFavorite/'.$mission->idMission);?>">
-                                        <i class="fas fa-heart text-xl text-red-800"></i>
+                                        <i class="fas fa-heart text-3xl lg:text-xl text-red-800"></i>
                                     </a>
                                     <?php
                                         } else {
                                     ?>
                                     <a href="<?php echo base_url('user/addToFavorite/'.$mission->idMission);?>">
-                                        <i class="far fa-heart text-xl text-red-800"></i>
+                                        <i class="far fa-heart text-3xl lg:text-xl text-red-800"></i>
                                     </a>
                                     <?php
                                         }
                                     ?>
                                 </div>
                                 <!-- Fin div bouton favoris -->
+                                <!-- Fin div bouton favoris -->
                             </div>
                             <!-- Fin de la carte -->
+                            <!-- Fin de la carte -->
                         </a>
+                        <!-- Fin section mission -->
                         <!-- Fin section mission -->
                     <?php endforeach; ?>
                     <!-- Fin Affichage mission -->
@@ -463,8 +600,8 @@ if ($banner->bannerStatus == "active"){ ?>
                 <!-- Fin section contenant toutes les missions -->
                 <!-- Début section aucune mission trouvée -->
                 <div id="no-mission-found">
-                    <p class="text-xl mt-6 text-left">Aucune mission n'a été trouvée.</p>
-                    <h3 class="text-2xl font-medium mt-10" id="result-section">Autres missions :</h3>
+                    <p class="text-2xl lg:text-base mt-6 text-left">Aucune mission n'a été trouvée.</p>
+                    <h3 class="text-3xl lg:text-lg font-medium mt-10" id="result-section">Autres missions :</h3>
                     <?php 
                         foreach($missionsPerso as $mission):
                             $dataMissionSkills = [];
@@ -483,13 +620,13 @@ if ($banner->bannerStatus == "active"){ ?>
                         data-mission-localisation="<?=strtolower($mission->missionLocalisation)?>"
                         data-mission-skills="<?=$dataMissionSkillsString?>"> 
                         <!-- Début carte mission -->
-                        <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative " data-mission-name="<?=strtolower($mission->missionName)?>" data-mission-type="<?=strtolower($mission->missionType)?>" data-mission-deroulement="<?=strtolower($mission->missionDeroulement)?>" data-mission-duree="<?=strtolower($mission->missionDuration)?>" data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" data-mission-tjm="<?=$mission->missionTJM?>" data-mission-localisation="<?=$mission->missionLocalisation?>" data-mission-skills="<?=$dataMissionSkillsString?>">
+                        <div class="mb-12 bg-white rounded-lg h-20vh mt-4 p-8 lg:p-4 dark:bg-gray-800 dark:text-white relative lg:mb-2" data-mission-name="<?=strtolower($mission->missionName)?>" data-mission-type="<?=strtolower($mission->missionType)?>" data-mission-deroulement="<?=strtolower($mission->missionDeroulement)?>" data-mission-duree="<?=strtolower($mission->missionDuration)?>" data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" data-mission-tjm="<?=$mission->missionTJM?>" data-mission-localisation="<?=$mission->missionLocalisation?>" data-mission-skills="<?=$dataMissionSkillsString?>">
                             <!-- Début div en tête -->
                             <div class="flex items-center">
                                 <div class="mr-4">
                                     <?php foreach ($missionCompany[$mission->idMission] as $company) : ?>
                                         <?php if (is_object($company)) : ?>
-                                            <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="w-10 h-10 rounded-full">
+                                            <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="w-16 h-16 lg:w-10 rounded-full">
                                         <?php endif; ?>
                                     <?php endforeach; ?>
                                 </div>
@@ -516,6 +653,9 @@ if ($banner->bannerStatus == "active"){ ?>
                                         </span>
                                         
                                         <span class="mr-2"> •
+                                        </span>
+                                        
+                                        <span class="mr-2"> •
                                             <?php
                                             if ($mission->missionType == "temps-plein"){
                                                 $mission->missionType = "Temps Plein";
@@ -529,7 +669,9 @@ if ($banner->bannerStatus == "active"){ ?>
                                             ?>
                                             <?=$mission->missionType?> 
                                         </span>
+                                        </span>
 
+                                        <span class="mr-2"> • 
                                         <span class="mr-2"> • 
                                             <?php
 
@@ -545,11 +687,16 @@ if ($banner->bannerStatus == "active"){ ?>
                                             ?>
                                             <?=$mission->missionDeroulement?>
                                         </span>
+                                        </span>
 
                                         <span class="mr-2"> • 
                                             <?=$mission->missionLocalisation?>
                                         </span>
+                                        <span class="mr-2"> • 
+                                            <?=$mission->missionLocalisation?>
+                                        </span>
 
+                                        <span class="mr-2"> •
                                         <span class="mr-2"> •
                                             <?php
                                             if ($mission->missionExpertise == "junior"){
@@ -571,9 +718,9 @@ if ($banner->bannerStatus == "active"){ ?>
                             <!-- Fin div en tête -->
 
                             <!-- Div Flex description + compétences mission -->
-                            <div class="text-xl md:text-base flex items-center justify-between">
+                            <div class="text-2xl lg:text-base flex items-center justify-between">
                                 <div class="mt-4">
-                                    <p class="font-light mt-4 mb-4 text-2xl lg:text-base">
+                                    <p class="font-normal mt-4 mb-4 text-2xl lg:text-base">
                                         <?php 
                                         // limit missionDescription to 270 caracteres and add '...' at the end
                                         $mission->missionDescription = strlen($mission->missionDescription) > 270 ? substr($mission->missionDescription,0,270)."..." : $mission->missionDescription;    
@@ -585,6 +732,7 @@ if ($banner->bannerStatus == "active"){ ?>
                                             $dataMissionSkills = [];
                                             foreach ($missionSkills[$mission->idMission] as $skill):
                                                 $dataMissionSkills[] = $skill->skillName;
+                                                $dataMissionSkillsString = implode(',', $dataMissionSkills);
                                                 $dataMissionSkillsString = implode(',', $dataMissionSkills);
                                                 // Déterminer le niveau en fonction de la valeur de missionSkillsExperience
                                                 $level = '';
@@ -615,7 +763,7 @@ if ($banner->bannerStatus == "active"){ ?>
                                                 }
                                             ?>
                                             <div class="skill-item" data-level="<?=$level?>">
-                                                <span class="dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                                                <span class="text-2xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
                                                 <div class="skill-level"><?=$level?></div>
                                             </div>
                                         <?php endforeach; ?>
@@ -625,18 +773,18 @@ if ($banner->bannerStatus == "active"){ ?>
                             <!-- Fin div Flex description + compétences mission -->
 
                             <!-- Div bouton favoris -->
-                            <div class="absolute top-0 right-4 mt-4 mb-4 z-9">
+                            <div class="absolute top-0 right-8 mt-8 lg:right-4 lg:mt-4 mb-4 z-9">
                                 <?php
                                 if(isFavorite($mission->idMission, $favoriteMissions)){
                                     ?>
                                     <a href="<?php echo base_url('user/removeFromFavorite/'.$mission->idMission);?>">
-                                        <i class="fas fa-heart text-xl text-red-800"></i>
+                                        <i class="fas fa-heart text-3xl lg:text-xl text-red-800"></i>
                                     </a>
                                     <?php
                                 } else {
                                     ?>
                                     <a href="<?php echo base_url('user/addToFavorite/'.$mission->idMission);?>">
-                                        <i class="far fa-heart text-xl text-red-800"></i>
+                                        <i class="far fa-heart text-3xl lg:text-xl text-red-800"></i>
                                     </a>
                                     <?php
                                 }
@@ -647,13 +795,16 @@ if ($banner->bannerStatus == "active"){ ?>
                         </div>
                         <!-- Fin carte mission -->
                     </a>
+                        </div>
+                        <!-- Fin carte mission -->
+                    </a>
                     <?php endforeach; ?>
                 </div>
             </div>
             <!-- Fin Mission -->
 
             <!-- Vos informations -->
-            <div class="hidden lg:block lg:w-1/4 sticky top-0">
+            <div class="hidden lg:block lg:w-1/4 sticky top-0 h-full overflow-y-auto no-scrollbar">
                 <div class="bg-white rounded-lg h-22vh p-4 dark:bg-gray-800 dark:text-white">
                     <div class="flex flex-col items-center mb-4">
                     <a class="flex flex-col items-center" href="<?=base_url('user/profil')?>">
@@ -668,10 +819,9 @@ if ($banner->bannerStatus == "active"){ ?>
 
                             <h3 class="text-lg font-medium mt-2"><?=$user->userFirstName .' '. $user->userLastName?></h3>
                     </a>
-                        <div class="flex items-center mt-1">
-                            <p class="font-light"><?=$jobUser->jobName?></p>
-                            <span class="mx-2">•</span>
-                            <p class="font-light"><?=$user->userTJM . ' €'?></p>
+                        <div class="items-center mt-1">
+                            <p class="font-light text-center"><?=$jobUser->jobName?></p>
+                            <p class="font-light text-center"><?=$user->userTJM . ' €'?></p>
                         </div>
                         <a href="<?php echo base_url('User/profil');?>" class="text-primary mt-2 border border-primary px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">Modifier mon profil</a>
                     <!-- missions favorites -->
@@ -681,6 +831,35 @@ if ($banner->bannerStatus == "active"){ ?>
                     </div>
                 </div>
 
+                <div class="bg-white rounded-lg mt-4 p-4 text-left dark:bg-gray-800 dark:text-white">
+                    <h3 class="text-xl font-medium mt-2">Expériences</h3>
+                    <?php if (is_array($experiences) && !empty($experiences)) {
+                        $experienceCount = 0;
+                        foreach ($experiences as $experience) {
+                            if ($experienceCount < 3) {
+                        ?>
+                                <div class="flex items-center mt-2 mb-2">
+                                    <div class="mr-2 mt-2">
+                                        <p class="w-10 h-10 rounded-full bg-secondary text-white text-center flex items-center justify-center mr-4" style="font-size:1rem;">💼</p>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-medium"><?= $experience->experienceJob ?></h3>
+                                        <p class="text-sm text-gray-500"><?= $experience->experienceCompany ?></p>
+                                        <p class="text-sm text-gray-500"><?= $experience->experienceJob ?></p>
+                                    </div>
+                                </div>
+                        <?php
+                                $experienceCount++;
+                            } else {
+                                break;
+                            }
+                        }
+                        ?>
+                    <?php } else { ?>
+                        <p class="mt-2 mb-2"> Aucune expérience disponible. </p>
+                        <button class="bg-primary text-white px-4 py-2 mt-2 rounded-full">Ajouter une expérience</button>
+                    <?php } ?>
+                </div>
                 <div class="bg-white rounded-lg mt-4 p-4 text-left dark:bg-gray-800 dark:text-white">
                     <h3 class="text-xl font-medium mt-2">Expériences</h3>
                     <?php if (is_array($experiences) && !empty($experiences)) {
@@ -743,13 +922,51 @@ if ($banner->bannerStatus == "active"){ ?>
                     <?php
                         }
                     } else {
+                <div class="bg-white rounded-lg mt-4 p-4 text-left dark:bg-gray-800 dark:text-white">
+                    <h3 class="text-xl font-medium mt-2 mb-4">Compétences et expertises</h3>
+                    <?php if (is_array($skills) && !empty($skills)) {
+                        foreach ($skills as $skill) {
+                            $level = '';
+                            $color = '';
+                            switch ($skill->userSkillsExperience) {
+                                case 1:
+                                    $level = 'Junior';
+                                    $color = '#BEE3F8'; // Couleur pour le niveau junior
+                                    $text = "text-black";
+                                    break;
+                                case 2:
+                                    $level = 'Intermédiaire';
+                                    $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
+                                    $text = "text-black";
+                                    break;
+                                case 3:
+                                    $level = 'Expert';
+                                    $color = '#2C5282'; // Couleur pour le niveau expert
+                                    $text = "text-white";
+                                    break;
+                                default:
+                                    $level = 'N/A'; // Si la valeur de userSkillsExperience n'est pas valide, afficher "N/A"
+                                    break;
+                            }
+                    ?>
+                        <span class="inline-block px-4 py-1 mb-2 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                    <?php
+                        }
+                    } else {
 
                     ?>
                         <p class="mt-2 mb-2"> Aucune compétences et expertises renseignées. </p>
                         <button class="bg-primary text-white px-4 py-2 mt-2 rounded-full">Ajouter une compétence</button>
                     <?php } ?>
                 </div>
+                    ?>
+                        <p class="mt-2 mb-2"> Aucune compétences et expertises renseignées. </p>
+                        <button class="bg-primary text-white px-4 py-2 mt-2 rounded-full">Ajouter une compétence</button>
+                    <?php } ?>
+                </div>
 
+            </div>
+            <!-- Fin Vos informations -->
             </div>
             <!-- Fin Vos informations -->
         </div>

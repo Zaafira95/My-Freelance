@@ -20,8 +20,8 @@ class Company_model extends CI_Model {
     }
 
     public function get_freelancer_job($freelancerUserId) {
-        $this->db->select('Job.jobId, joJob.jobName, Userjob.userJob_jobId, Userjob.userJob_userId');
-        $this->db->from('Userjob');
+        $this->db->select('Job.jobId, joJob.jobName, UserJob.userJob_jobId, UserJob.userJob_userId');
+        $this->db->from('UserJob');
         $this->db->join('Job', 'UserJob.userJob_userId = Users.userId');
         $this->db->where('UserSkills.userSkills_userId', $freelancerUserId);
         $query = $this->db->get();
@@ -144,7 +144,7 @@ class Company_model extends CI_Model {
             return $query->result();
     }
     public function getJobNameForAUser($id){
-        $this->db->select('Jobname');
+        $this->db->select('jobName');
         $this->db->from('Job');
         $this->db->join('UserJob', 'UserJob.userJob_jobId = Job.jobId');
         $this->db->where('userJob_userId', $id);
@@ -341,7 +341,7 @@ class Company_model extends CI_Model {
 
     public function getMessageExamples(){
         $this->db->select('*');
-        $this->db->from('Messageexamples');
+        $this->db->from('MessageExamples');
         $query = $this->db->get();
         return $query->result();
     }
@@ -357,7 +357,7 @@ class Company_model extends CI_Model {
 
     public function getFavoriteMissions($userId){
         $this->db->select('*');
-        $this->db->from('Savedmission');
+        $this->db->from('SavedMission');
         $this->db->where('idUsersavedMission', $userId);
         $query = $this->db->get();
         return $query->result();
@@ -383,16 +383,16 @@ class Company_model extends CI_Model {
         );
 
         $this->db->where('idMission', $missionId);
-        $this->db->update('mission', $data);
+        $this->db->update('Mission', $data);
 
         // Supprimez d'abord les compétences existantes liées à cette mission
         $this->db->where('missionSkills_missionId', $missionId);
-        $this->db->delete('Missionskills');
+        $this->db->delete('MissionSkills');
     }
 
     public function deleteMission($missionId) {
         $this->db->where('missionSkills_missionId', $missionId);
-        $this->db->delete('Missionskills');
+        $this->db->delete('MissionSkills');
         
         $this->db->where('idMission', $missionId);
         $this->db->delete('Mission');

@@ -92,7 +92,7 @@ class User_model extends CI_Model {
     
     public function deleteUserExperienceSkills($experienceId){
         $this->db->where('experienceSkills_experienceId', $experienceId);
-        $this->db->delete('Experienceskills');
+        $this->db->delete('ExperienceSkills');
     }
 
     public function updateUserExperienceSkills($experienceId, $skillId, $level){
@@ -181,7 +181,7 @@ class User_model extends CI_Model {
 
             $this->db->set('userJob_jobId', $jobId);
             $this->db->where('userJob_userId', $userId);
-            $this->db->update('Userjob');
+            $this->db->update('UserJob');
         }
 
         public function updateUserPreference($userId, $userIsAvailable, $jobTypeString, $userVille, $userJobTime, $userJobTimePartielOrFullTime){
@@ -262,7 +262,7 @@ class User_model extends CI_Model {
 
 
         public function getUserSkills($userId){
-            $this->db->select('Userskill'); // Ajout de la colonne userSkillsExperience
+            $this->db->select('userSkill'); // Ajout de la colonne userSkillsExperience
             $this->db->from('Users');
             $this->db->where('userId', $userId);
             $query = $this->db->get();
@@ -569,6 +569,3 @@ class User_model extends CI_Model {
         }
         
 }
-
-
-// !! mettre tout les noms des tables en majuscules afin d'éviter les conflits avec les mots clés de mysql pendant la mise en prod de l'app

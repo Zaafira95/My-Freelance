@@ -151,6 +151,7 @@ class Register extends CI_Controller {
 
             $companyId = $result;
 
+
             $config = [
                 'allowed_types' => 'jpg|jpeg|png',
                 'max_size' => 2048, // Taille maximale du fichier en kilo-octets
@@ -265,12 +266,13 @@ class Register extends CI_Controller {
             // Enregistrement réussi
             $this->session->set_flashdata('message', 'Vous êtes bien enregistré. Connectez-vous pour accéder à votre compte.');
             $this->session->set_flashdata('status', 'success');
-            if($userType == 'freelance') {
                 $this->load->view('login_view');
-            }
+            
         } else {
             // Erreur lors de l'enregistrement
-            echo "Erreur lors de l'enregistrement";
+            $this->session->set_flashdata('message', 'Erreur lors de l\'enregistrement. Veuillez réessayer.');
+            $this->session->set_flashdata('status', 'error');
+            $this->load->view('register_view');
         }
     }
 }

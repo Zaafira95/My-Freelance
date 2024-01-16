@@ -578,7 +578,7 @@ else if ($user->userType == "sales"){
                                     <h2 class="font-bold text-5xl lg:text-2xl">L'entreprise</h2>
                                     <div class="richTextList text-3xl lg:text-base text-gray-500 mt-2 dark:text-white">
                                         <?=$company->companyDescription?>
-                                    </p>
+                                    </div>
                                 </div>
                                 <?php
                                 if ($mission->missionAvantage != null) {
@@ -587,7 +587,7 @@ else if ($user->userType == "sales"){
                                     <h2 class="font-bold text-5xl lg:text-2xl">Les avantages</h2>
                                     <div class="richTextList text-3xl lg:text-base text-gray-500 mt-2 dark:text-white">
                                         <?=$mission->missionAvantage?>
-                                    </p>
+                                    </div>
                                 </div>
                                 <?php
                                 }
@@ -688,7 +688,7 @@ else if ($user->userType == "sales"){
                                         $companyMission->missionDescription = strlen($companyMission->missionDescription) > 270 ? substr($companyMission->missionDescription,0,270)."..." : $companyMission->missionDescription;    
                                         ?>
                                         <?=$companyMission->missionDescription?>
-                                    </p>
+                                    </div>
                                     <?php if (isset($missionSkills[$companyMission->idMission])) : ?>
                                         <div class="skills-container mb-4">
                                         <?php foreach ($missionSkills[$companyMission->idMission] as $skill) : ?>
@@ -788,6 +788,7 @@ else if ($user->userType == "sales"){
 
 
 <script>
+
     document.getElementById('generate-pdf-btn').addEventListener('click', function () {
     const element = document.getElementById('pdf-content');
 

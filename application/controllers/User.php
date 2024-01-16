@@ -265,9 +265,9 @@ class User extends CI_Controller {
         $userJobName = implode(',', $userJobName);
         //$userExpertise = implode(',', $userExpertise);
 
-        //$jobId = $this->User_model->getJobId($userJobName);
+        $jobId = $this->User_model->getJobId($userJobName);
 
-        var_dump($userTelephone);
+       var_dump($userTelephone);
 
         // Vérifier si un fichier a été téléchargé
         if ($_FILES['avatar-upload']['name']) {
@@ -303,7 +303,7 @@ class User extends CI_Controller {
        
     
         // Mettre à jour les autres données de l'utilisateur dans la base de données
-        $this->User_model->updateUserData($userId, $userFirstName, $userLastName, $userTelephone, $userJobName, $userExpertise, $userTJM);
+        $this->User_model->updateUserData($userId, $userFirstName, $userLastName, $userTelephone, $jobId, $userExpertise, $userTJM);
     
         $this->session->set_flashdata('message', 'Vos informations ont bien été mises à jour !');
         $this->session->set_flashdata('status', 'success');

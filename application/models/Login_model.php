@@ -6,7 +6,7 @@ class Login_model extends CI_Model {
 
     public function login($userEmail, $userPassword) {
         $this->db->where('userEmail', $userEmail);
-        $query = $this->db->get('Users');
+        $query = $this->db->get('users');
         $user = $query->row();
 
         if ($user) {
@@ -21,12 +21,12 @@ class Login_model extends CI_Model {
     public function incrementLogin($userId) {
         $this->db->set('userLoginCount', 'userLoginCount+1', FALSE);
         $this->db->where('userId', $userId);
-        $this->db->update('Users');
+        $this->db->update('users');
     }
 
     public function getUserData($userId) {
         $this->db->where('userId', $userId);
-        $query = $this->db->get('Users');
+        $query = $this->db->get('users');
         return $query->row();
     }
 }

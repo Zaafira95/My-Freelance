@@ -384,7 +384,6 @@ document.addEventListener("DOMContentLoaded", function() {
             // Réinitialisez les filtres en décochant toutes les cases à cocher
 
             $('#citySearch').val('');
-            document.querySelector('#secteursAll').parentNode.querySelector('.choices__input--cloned').value = '';
 
             secteursChoices.removeActiveItems();
             filterCompanies();

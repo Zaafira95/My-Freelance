@@ -1,5 +1,5 @@
 <?php
-//admin
+
 class Admin_model extends CI_Model {
     
     public function get_Users(){

@@ -1143,7 +1143,6 @@ if ($totalCount > 0) {
                         </div>
                     </div>
                     <div class="w-full lg:w-3/4 sticky top-0">
-                    <div class="w-full lg:w-3/4 sticky top-0">
                         <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                             <h2 class="text-3xl lg:text-xl font-bold mb-4">À propos de moi</h2>
                             <p class="text-2xl lg:text-base text-gray-500 mb-4 mt-4 dark:text-white"><?= $user->userBio ?></p>
@@ -1159,31 +1158,6 @@ if ($totalCount > 0) {
                                 <i class="fas fa-chevron-down ml-2" id="skillsArrow" style='font-size:0.75rem;' data-order="asc"></i>
                             </h2>
 
-                            <div class="skills-container mb-4">
-                                <?php
-                                if (is_array($skills) && !empty($skills)) {
-                                foreach ($skills as $skill) {
-                                    $level = '';
-                                    $color = '';
-                                    switch ($skill->userSkillsExperience) {
-                                        case 1:
-                                            $level = 'Junior';
-                                            $color = '#BEE3F8'; // Couleur pour le niveau junior
-                                            $text = "text-black";
-                                            $textdark = "text-black";
-                                            break;
-                                        case 2:
-                                            $level = 'Intermédiaire';
-                                            $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
-                                            $text = "text-black";
-                                            $textdark = "text-white";
-                                            break;
-                                        case 3:
-                                            $level = 'Expert';
-                                            $color = '#2C5282'; // Couleur pour le niveau confirmé
-                                            $text = "text-white";
-                                            $textdark = "text-white";
-                                            break;
                             <div class="skills-container mb-4">
                                 <?php
                                 if (is_array($skills) && !empty($skills)) {
@@ -1416,20 +1390,7 @@ if ($totalCount > 0) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="deleteAttachmentConfirmationModal<?=$index?>" class="hidden fixed flex inset-0 items-center justify-center z-50">
-                                            <div class="fixed inset-0 bg-black opacity-50"></div>
-                                            <div class="relative bg-gray-50 rounded-lg shadow p-6 border border-gray-800 dark:bg-gray-800 sm:p-5">
-                                                <h3 class="text-lg font-semibold mb-4">Confirmation de suppression</h3>
-                                                <p class="text-gray-700 dark:text-white mb-6">Êtes-vous sûr de vouloir supprimer cette pièce jointe ?</p>
-                                                <div class="flex justify-end">
-                                                    <button type="button" onclick="hideModal('deleteAttachmentConfirmationModal<?=$index?>');" class="text-gray-600 inline-flex items-center hover:text-white hover:bg-gray-800 border-gray-600  focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500  dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">Annuler</button>
-                                                    <a href="<?=base_url("user/deleteUserAttachment/".$attachment->idAttachment)?>" class="text-red-800 inline-flex items-center hover:text-white hover:bg-red-900 border-red-900  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500  dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Supprimer</a>
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                    <?php } ?>
-                                </div>
                                     <?php } ?>
                                 </div>
 

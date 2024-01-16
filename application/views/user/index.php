@@ -721,7 +721,7 @@ if($totalInfos == 1 ){
                         foreach ($experiences as $experience) {
                             if ($experienceCount < 3) {
                         ?>
-                                <div class="flex items-center mt-2 mb-2">
+                                <div class="flex items-center mt-2 mb-2 p-2 rounded-lg shadow">
                                     <div class="mr-2 mt-2">
                                         <p class="w-10 h-10 rounded-full bg-secondary text-white text-center flex items-center justify-center mr-4" style="font-size:1rem;">💼</p>
                                     </div>

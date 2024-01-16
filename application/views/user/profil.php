@@ -64,7 +64,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                     Votre disponibilité
                 </h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateProductModal">
-                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <svg aria-hidden="true" class="w-8 h-8 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     <span class="sr-only">Fermer</span>
                 </button>
             </div>
@@ -450,8 +450,6 @@ foreach ($experiences as $index => $experience) {
 }
 ?>
 
-
-
 <!-- User Add Experience -->
 
 <div id="addUserExperience" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
@@ -508,16 +506,16 @@ foreach ($experiences as $index => $experience) {
 </div>
 
 <div id="updateUserSkills" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
-    <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+    <div class="relative p-4 w-80 lg:w-60 h-full md:h-auto">
         <!-- Modal content -->
         <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
             <!-- Modal header -->
             <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
                     Vos Compétences
                 </h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateUserSkills">
-                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <svg aria-hidden="true" class="w-8 h-8 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     <span class="sr-only">Fermer</span>
                 </button>
             </div>
@@ -528,16 +526,16 @@ foreach ($experiences as $index => $experience) {
                     foreach ($skills as $index => $skill) {
                     ?> 
 
-                    <label for="userSkill<?=$index?>" class="block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Compétence</label>
-                    <input type="text" id="userSkill<?=$index?>" name="userSkill<?=$index?>" value="<?=$skill->skillName?>" class="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-3/4 p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Compétence">
+                    <label for="userSkill<?=$index?>" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Compétence</label>
+                    <input type="text" id="userSkill<?=$index?>" name="userSkill<?=$index?>" value="<?=$skill->skillName?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-3/4 p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Compétence">
 
                     <?php } ?>
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
-                    <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                    <button type="submit" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                         Valider
                     </button>
-                    <button type="button" data-modal-toggle="updateUserSkills" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                    <button type="button" data-modal-toggle="updateUserSkills" class="text-2xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
                         Annuler
                     </button>
                 </div>
@@ -550,34 +548,34 @@ foreach ($experiences as $index => $experience) {
 <!-- User Add Attachment -->
 
 <div id="addUserAttachment" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
-    <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+    <div class="relative p-4 w-80 lg:w-60 h-full md:h-auto">
         <!-- Modal content -->
         <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
             <!-- Modal header -->
             <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
                     Ajouter une pièce jointe
                 </h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="addUserAttachment">
-                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <svg aria-hidden="true" class="w-8 h-8 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     <span class="sr-only">Fermer</span>
                 </button>
             </div>
             <!-- Modal body -->
             <form action="<?= base_url("user/addUserAttachment") ?>" method="post" enctype="multipart/form-data">
                 <div>
-                    <label for="userAttachmentFile" class="block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Pièce jointe</label>
+                    <label for="userAttachmentFile" class="text-2xl lg:text-base block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Pièce jointe</label>
                     <input type="file" id="userAttachmentFile" name="userAttachmentFile" accept=".pdf, .png, .jpeg, .jpg" class="hidden" data-max-size="2048">
-                    <label for="userAttachmentFile" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 cursor-pointer">
+                    <label for="userAttachmentFile" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 cursor-pointer">
                         <span class="filename">Choisir un fichier</span>
                     </label>
-                    <div id="fileSizeInfo" class="text-sm text-gray-500 mt-1">La taille maximale autorisée est 2 Mo.</div>
+                    <div id="fileSizeInfo" class="text-2xl lg:text-sm text-gray-500 mt-1">La taille maximale autorisée est 2 Mo.</div>
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
-                    <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                    <button type="submit" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                         Valider
                     </button>
-                    <button type="button" data-modal-toggle="addUserAttachment" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                    <button type="button" data-modal-toggle="addUserAttachment" class="text-2xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
                         Annuler
                     </button>
                 </div>
@@ -590,16 +588,16 @@ foreach ($experiences as $index => $experience) {
 
 <!-- User Add Skill -->
 <div id="addUserSkills" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
-    <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+    <div class="relative p-4 w-80 lg:w-60 h-full md:h-auto">
         <!-- Modal content -->
         <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5 ">
             <!-- Modal header -->
             <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
                     Ajouter vos compétences
                 </h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="addUserSkills">
-                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <svg aria-hidden="true" class="w-8 h-8 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     <span class="sr-only">Fermer</span>
                 </button>
             </div>
@@ -609,7 +607,7 @@ foreach ($experiences as $index => $experience) {
                 <div id="skills-container">
                     <div class="flex flex-1 mb-4 skill-row">
                         <div class="w-3/4 mr-2">
-                        <select id="skillsAll" name="skillsAll[]"  class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <select id="skillsAll" name="skillsAll[]"  class="text-2xl lg:text-base new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option value="">Sélectionnez une compétence</option>
                                 <?php foreach ($skillsAll as $skill): ?>
                                     <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
@@ -617,7 +615,7 @@ foreach ($experiences as $index => $experience) {
                             </select>
                         </div>
                         <div class="w-1/4">
-                            <select class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="skillsLevel[]" required>
+                            <select class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="skillsLevel[]" required>
                                 <option value="1">Junior</option>
                                 <option value="2">Intermédiaire</option>
                                 <option value="3">Expert</option>
@@ -625,13 +623,13 @@ foreach ($experiences as $index => $experience) {
                         </div>
                     </div>
                 </div>
-                <button id="add-skill-btn" type="button" class="py-2 px-4 bg-primary text-white rounded-lg">Ajouter une compétence</button>
+                <button id="add-skill-btn" type="button" class="text-2xl lg:text-base py-2 px-4 bg-primary text-white rounded-lg">Ajouter une compétence</button>
             </div>
                 <div class="flex items-center space-x-4 mt-4">
-                    <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                    <button type="submit" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                         Valider
                     </button>
-                    <button type="button" data-modal-toggle="addUserSkills" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                    <button type="button" data-modal-toggle="addUserSkills" class="text-2xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
                         Annuler
                     </button>
                 </div>
@@ -642,37 +640,37 @@ foreach ($experiences as $index => $experience) {
 
 <!-- Modal pour modifier les compétences -->
 <div id="editUserSkills" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
-    <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+    <div class="relative p-4 w-80 lg:w-60 h-full md:h-auto">
         <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
             <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
                     Modifier vos compétences
                 </h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="editUserSkills">
-                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <svg aria-hidden="true" class="w-8 h-8 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                     </svg>
                     <span class="sr-only">Fermer</span>
                 </button>
             </div>
             <form action="<?= base_url("user/editUserSkills") ?>" method="post" enctype="multipart/form-data">
-                <div class="p-4 bg-white rounded-lg dark:bg-gray-800 text-black">
+                <div class="text-2xl lg:text-base p-4 bg-white rounded-lg dark:bg-gray-800 text-black">
                     <div>
                     <?php 
                     $index = 0;
                     foreach ($skills as $skill): ?>
                         <div class="flex flex-1 mb-4 skill-row items-center">
                             <div class="w-3/4 mr-2">
-                            <input type="text" name="skillsName[<?=$index?>]" id="skillName" value="<?=$skill->skillName?>" readonly class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <input type="text" name="skillsName[<?=$index?>]" id="skillName" value="<?=$skill->skillName?>" readonly class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
                             <div class="w-1/4 flex items-center justify-between">
-                                <select class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-4/5 p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="skillsLevel[]" id="skillLevel" required>
+                                <select class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-4/5 p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="skillsLevel[]" id="skillLevel" required>
                                     <option value="1" <?= ($skill->userSkillsExperience == 1) ? 'selected' : '' ?>>Junior</option>
                                     <option value="2" <?= ($skill->userSkillsExperience == 2) ? 'selected' : '' ?>>Intermédiaire</option>
                                     <option value="3" <?= ($skill->userSkillsExperience == 3) ? 'selected' : '' ?>>Expert</option>
                                 </select>
                                 <a href="<?=base_url('user/deleteUserSkill/'.$skill->skillId)?>">
-                                    <button type="button" class="text-red-600 hover:text-red-900 focus:outline-none ml-4">
+                                    <button type="button" class="text-2xl lg:text-base text-red-600 hover:text-red-900 focus:outline-none ml-4">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </a>
@@ -685,10 +683,10 @@ foreach ($experiences as $index => $experience) {
                     </div>
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
-                    <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                    <button type="submit" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                         Valider
                     </button>
-                    <button type="button" data-modal-toggle="editUserSkills" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                    <button type="button" data-modal-toggle="editUserSkills" class="text-2xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
                         Annuler
                     </button>
                 </div>
@@ -699,16 +697,16 @@ foreach ($experiences as $index => $experience) {
 
 <!--Company Advantages modal -->
 <div id="editUserBio" tabindex="-1" aria-hidden="true" class=" hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
-    <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+    <div class="relative p-4 w-80 lg:w-60 h-full md:h-auto">
         <!-- Modal content -->
         <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
             <!-- Modal header -->
             <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
                     À propos de vous
                 </h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="editUserBio">
-                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <svg aria-hidden="true" class="w-8 h-8 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     <span class="sr-only">Fermer</span>
                 </button>
             </div>
@@ -717,14 +715,14 @@ foreach ($experiences as $index => $experience) {
                 <div>
 
                     <!--<label for="companyDescription" class="block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Description</label>-->
-                    <textarea id="userBio" name="userBio" rows="6" class="bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><?=$user->userBio?></textarea>
+                    <textarea id="userBio" name="userBio" rows="6" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><?=$user->userBio?></textarea>
 
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
-                    <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                    <button type="submit" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                         Valider
                     </button>
-                    <button type="button" data-modal-toggle="editUserBio" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                    <button type="button" data-modal-toggle="editUserBio" class="text-2xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
                         Annuler
                     </button>
                 </div>
@@ -801,19 +799,28 @@ if ($totalCount > 0) {
                                 </a>
                             </div>
                         <!-- Whatsapp -->
+                        
                         <div class="flex flex-wrap items-center">
                                 <!-- Whatsapp -->
-                            <a href="https://wa.me/<?=$user->userTelephone?>?text=Bonjour%20<?=$user->userFirstName?>%20!%20Je%20suis%20intéressé%20par%20votre%20profil%20sur%20Café%20Crème%20Community%20!%20" target="_blank">
-                            
-                            <button type="button" data-te-ripple-init data-te-ripple-color="light"
-                                class="font-medium text-2xl lg:text-base mb-2 mr-4 inline-flex items-center rounded-full px-6 py-2.5 leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
-                                style="background-color: #25D366">
-                                <span class="mr-2">Contacter</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
-                                </svg>
-                                </button>
-                            </a>
+                            <?php
+                            // if not user
+                                if($user->userId != $this->session->userdata('userId')){
+                            ?>
+                                <a href="https://wa.me/<?=$user->userTelephone?>?text=Bonjour%20<?=$user->userFirstName?>%20!%20Je%20suis%20intéressé%20par%20votre%20profil%20sur%20Café%20Crème%20Community%20!%20" target="_blank">
+                                
+                                <button type="button" data-te-ripple-init data-te-ripple-color="light"
+                                    class="font-medium text-2xl lg:text-base mb-2 mr-4 inline-flex items-center rounded-full px-6 py-2.5 leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
+                                    style="background-color: #25D366">
+                                    <span class="mr-2">Contacter</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+                                    </svg>
+                                    </button>
+                                </a>
+                            <?php
+                                }
+                            ?>
+
                                 <p class="font-medium text-2xl lg:text-base mb-2 mt-2 inline-block px-4 py-2.5 rounded-full bg-primary text-white"><?=$user->userTJM?> € / Jour</p>
                             </div>
                         </div>
@@ -1358,7 +1365,7 @@ if ($totalCount > 0) {
                             <?php if (is_array($attachments) && !empty($attachments)) { ?>
                                 <div class="grid grid-cols-4 gap-8">
                                     <?php foreach ($attachments as $index => $attachment) { ?>
-                                        <div class="relative flex justify-center items-center border border-1 p-2 mr-4 mb-4 relative rounded-lg bg-white">
+                                        <div class="relative flex justify-center items-center border border-1 p-2 mr-4 mb-4 rounded-lg bg-white">
                                             <h3 class="text-2xl lg:text-base font-medium"><?= $attachment->attachmentName ?></h3>
                                             <div class="pdf-thumbnail overflow-hidden z-10 mb-2" style="max-height: 14rem" data-pdf="<?= base_url($attachment->attachmentPath) ?>">
                                                 <div class="absolute top-0 right-0 mr-4 mt-4 flex space-x-4 z-20">

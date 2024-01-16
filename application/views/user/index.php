@@ -11,7 +11,7 @@ include(APPPATH . 'views/layouts/user/header.php');
 <style>
     html,
     body {
-        height: 85vh;
+        height: 100vh;
     }
     #cities-list {
     max-height: 200px; /* ou toute autre valeur appropriée */
@@ -668,10 +668,9 @@ if ($banner->bannerStatus == "active"){ ?>
 
                             <h3 class="text-lg font-medium mt-2"><?=$user->userFirstName .' '. $user->userLastName?></h3>
                     </a>
-                        <div class="flex items-center mt-1">
-                            <p class="font-light"><?=$jobUser->jobName?></p>
-                            <span class="mx-2">•</span>
-                            <p class="font-light"><?=$user->userTJM . ' €'?></p>
+                        <div class="items-center mt-1">
+                            <p class="font-light text-center"><?=$jobUser->jobName?></p>
+                            <p class="font-light text-center"><?=$user->userTJM . ' €'?></p>
                         </div>
                         <a href="<?php echo base_url('User/profil');?>" class="text-primary mt-2 border border-primary px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">Modifier mon profil</a>
                     <!-- missions favorites -->

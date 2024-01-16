@@ -90,9 +90,15 @@ else if ($user->userType == "sales"){
                     <label for="message" class="text-2xl lg:text-base block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Choisissez un message prédéfini</label>
                     <select id="message" name="message" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onchange="updateTextarea()">
                         <option value="">Sélectionnez un message</option>
-                        <?php foreach ($messageExamples as $message) { ?>
+                        <!-- <?php foreach ($messageExamples as $message) { ?>
                             <option value="<?php echo $message->messageExamplesContent; ?>"><?php echo $message->messageExamplesContent; ?></option>
-                        <?php } ?>
+                        <?php } ?> -->
+                        <option value="Bonjour, je suis intéressé par votre offre de mission (<?=$mission->missionName?>) sur Café Crème Community ! Je suis disponible dès maintenant.">
+                            Bonjour, je suis intéressé par votre offre de mission (<?=$mission->missionName?>) sur Café Crème Community ! Je suis disponible dès maintenant.
+                        </option>
+                        <option value="Hello, votre mission (<?=$mission->missionName?>) m'intéresse ! Je suis disponible dès maintenant.">
+                            Hello, votre mission (<?=$mission->missionName?>) m'intéresse ! Je suis disponible dès maintenant.
+                        </option>
                     </select>
                 </div>
                 <div id="customMessageWrapper" class="hidden">

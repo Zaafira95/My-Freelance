@@ -4126,6 +4126,10 @@ body.dark {
     width: 12rem;
   }
 
+  .lg\:w-48percent {
+    width: 48%;
+  }
+
 
 
 }

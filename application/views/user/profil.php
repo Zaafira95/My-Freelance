@@ -752,7 +752,7 @@ if ($totalCount > 0) {
     </svg>
 </div>
 
-<div class="px-8 py-6 lg:px-4 lg:py-6 h-full overflow-y-auto no-scrollbar">
+<div class="px-8 py-6 lg:px-4 lg:py-6 h-full no-scrollbar">
     <div class="lg:flex flex-wrap justify-between mx-auto max-w-screen-xl h-full">
         <div class="lg:flex h-full w-full mb-3">
             <div class="lg:rounded-lg h-full w-full mb-4 dark:text-white ">

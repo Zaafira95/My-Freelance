@@ -750,6 +750,16 @@ video {
   height: 2.25rem;
 }
 
+.h-10{
+  height: 2.5rem;
+}
+.h-11{
+  height: 2.75rem;
+}
+.h-12{
+  height: 3rem;
+}
+
 .h-90{
   height: 90%;
 }
@@ -839,6 +849,15 @@ video {
 }
 .w-9 {
   width: 2.25rem;
+}
+.w-10 {
+  width: 2.5rem;
+}
+.w-11 {
+  width: 2.75rem;
+}
+.w-12 {
+  width: 3rem;
 }
 
 .w-64 {
@@ -4128,6 +4147,15 @@ body.dark {
 
   .lg\:w-48percent {
     width: 48%;
+  }
+
+  .lg\:border-primary {
+    --tw-border-opacity: 1;
+    border-color: rgb(57 113 250 / var(--tw-border-opacity));
+  }
+
+  .lg\:border-b-2 {
+    border-bottom-width: 2px;
   }
 
 

@@ -979,6 +979,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
             $('#citySearch').val('');
 
+            document.querySelector('#skillsAll').parentNode.querySelector('.choices__input--cloned').value = '';
+
+
             skillsChoices.removeActiveItems();
             
             var slider = document.getElementById('tjm-slider');

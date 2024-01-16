@@ -80,7 +80,7 @@
 
                 <!-- Right column container with form -->
                 <div class="md:w-8/12 lg:ml-6 lg:w-5/12">
-                    <div class="flex flex-col justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+                    <div class="flex flex-col justify-start px-6 py-6 mx-auto md:h-screen">
                         <a href="#" class="flex mb-6 text-2xl font-semibold text-gray-900">
                             <img class="w-50 mr-2" src="<?php echo base_url('assets/img/logo.svg');?>" alt="Café Crème Community" id="logoLogin">
                         </a>
@@ -114,10 +114,10 @@
                                             <input type="checkbox" id="togglePasswordCheckbox" class="form-checkbox text-primary rounded">
                                             <label for="togglePasswordCheckbox" class="text-lg font-medium text-gray-900 dark:text-white">Afficher le mot de passe</label>
                                         </div>
-                                        <!-- button for next step -->
-                                        <button type="button" class="w-full text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep2()">Suivant</button>
                                         <!-- error message -->
                                         <p id="errorMessage1" class="text-red-500" style="display:none;">Un ou plusieurs champs non pas été remplies</p>
+                                        <!-- button for next step -->
+                                        <button type="button" class="w-full text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep2()">Suivant</button>
                                         <p class="text-lg font-light text-gray-500 dark:text-white">
                                             Vous avez déjà un compte ? <a href="<?=base_url('login')?>" class="font-medium text-primary hover:underline">Connectez-vous</a>
                                         </p>
@@ -152,7 +152,6 @@
                                                     </div>
                                                 </label>
                                             </li>
-
                                             <li class="h-48 flex flex-col items-center overflow-hidden">
                                                 <input type="radio" id="userTypeESN" name="userType" value="sales" class="hidden peer" required>
                                                 <label for="userTypeESN" class="h-full inline-flex flex-col items-center justify-center w-full pt-5 text-black bg-white border hover:bg-primary border-black rounded-lg cursor-pointer dark:hover:bg-primary dark:border-white dark:peer-checked:text-blue-500 peer-checked:bg-primary peer-checked:text-white hover:text-gray-600 dark:text-gray-400 dark:bg-gray-800 mb-4" onclick="handleClick(this)" onmouseover="changeTextColor(this, true)" onmouseout="changeTextColor(this, false)">
@@ -176,91 +175,118 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="step3" style="display:none;">
+                        <div id="step3-freelance" style="display:none;">
                             <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
                                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                                <div class="flex items-center">
-                                    <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white" style="width: 60%;">
-                                    Présentes toi
-                                    </h2>
-                                    <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
-                                        <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
-                                            2/5
-                                        </div>
-                                        <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
-                                        <div class="absolute inset-0 bg-primary rounded-md" style="width: 40%;"></div>
-                                    </div>
-                                </div>
-                                <div id="step3-freelance-avatar" class="flex flex-col items-center">
-                                    <div class="relative w-32 h-32">
-                                        <div class="rounded-full ring ring-primary w-full h-full flex items-center justify-center">
-                                            <div class="w-full h-full rounded-full flex items-center justify-center">
-                                            <img id="avatar-image" src="<?php echo base_url('assets/img/default-avatar.png'); ?>" class="rounded-full object-cover w-full h-full" alt="Avatar">
+                                    <div class="flex items-center">
+                                        <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white" style="width: 60%;">
+                                        Présentes toi
+                                        </h2>
+                                        <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
+                                            <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
+                                                2/5
                                             </div>
-                                            <div class="absolute w-10 h-10 text-center bottom-0 right-0 bg-white rounded-full">
-                                            <label for="avatar-upload">
-                                                <div class="rounded-full p-2 ring ring-primary">
-                                                <i class="fas fa-plus text-primary cursor-pointer"></i>
+                                            <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
+                                            <div class="absolute inset-0 bg-primary rounded-md" style="width: 40%;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <div class="relative w-32 h-32">
+                                            <div class="rounded-full ring ring-primary w-full h-full flex items-center justify-center">
+                                                <div class="w-full h-full rounded-full flex items-center justify-center">
+                                                <img id="avatar-image" src="<?php echo base_url('assets/img/default-avatar.png'); ?>" class="rounded-full object-cover w-full h-full" alt="Avatar">
                                                 </div>
-                                            </label>
-                                            <input type="file" id="avatar-upload" name="avatar-upload" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this)">
+                                                <div class="absolute w-10 h-10 text-center bottom-0 right-0 bg-white rounded-full">
+                                                    <label for="avatar-upload">
+                                                        <div class="rounded-full p-2 ring ring-primary">
+                                                            <i class="fas fa-plus text-primary cursor-pointer"></i>
+                                                        </div>
+                                                    </label>
+                                                    <input type="file" id="avatar-upload" name="avatar-upload" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'avatar-image')">
+                                                </div>
                                             </div>
                                         </div>
+                                        <span id="file-name" class="hidden text-lg text-gray-500 mt-4 dark:text-white"></span>
                                     </div>
-                                    <span id="file-name" class="hidden text-lg text-gray-500 mt-4 dark:text-white"></span>
-                                </div>
-
-                                <div>
-                                    <input type="text" name="userFirstName" id="userFirstName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre prénom *" >
-                                </div>
-                                <div>
-                                    <input type="text" name="userLastName" id="userLastName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre nom *" >
-                                </div>
-                                <div>
-                                    <input type="number" name="userTelephone" id="userTelephone" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre numéro de téléphone *" >
-                                </div>
-                                <div id="step3-freelance-city" class="flex">    
+                                    <div>
+                                        <input type="text" name="userFirstName" id="userFirstName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre prénom *" >
+                                    </div>
+                                    <div>
+                                        <input type="text" name="userLastName" id="userLastName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre nom *" >
+                                    </div>
+                                    <div>
+                                        <input type="number" name="userTelephone" id="userTelephone" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre numéro de téléphone *" >
+                                    </div>
                                     <div class="relative city-search-container w-full mr-4">
-                                        <input type="text" id="citySearch" name="userVille" placeholder="Cherchez votre ville" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" >
-                                            <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
+                                        <input type="text" id="citySearch" name="userVille" placeholder="Cherchez votre ville" class="citySearch bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" >
+                                            <div id="cities-list" class="cities-list absolute z-10 mt-2 w-full rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                                     </div>
-                                    <div class="flex items-center py-2.5 px-4 px- border border-gray-200 rounded dark:border-gray-700">
+                                    <div class="flex items-center mt-2">
                                         <input type="checkbox" id="userEtranger" name="userEtranger">
                                         <label class="ml-2 text-gray-500 dark:text-gray-400">Étranger</label>
                                     </div>
-                                </div>
-                                <div class="flex justify-between">
-                                    <!-- button for previous step -->
-                                    <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep2()">Retour</button>
-                                    <!-- button for next step -->
-                                    <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep4()">Suivant</button>
-                                </div>
-                                <p id="errorMessage2" class="text-red-500 text-lg mt-2 hidden">Veuillez remplir tous les champs correctement</p>
-
-                            </div>
-                        </div>
-                        </div>
-                        <div id="step4" style="display: none;">
-                        <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
-                            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                                <div class="flex items-center">
-                                    <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white" style="width: 60%;">
-                                    Tes Préférences
-                                    </h2>
-                                    <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
-                                        <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
-                                            3/5
-                                        </div>
-                                        <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
-                                        <div class="absolute inset-0 bg-primary rounded-md" style="width: 60%;"></div>
+                                    <p id="errorMessage-step3-freelance" class="text-red-500 text-lg mt-2 hidden">Veuillez remplir tous les champs correctement</p>
+                                    <div class="flex justify-between">
+                                        <!-- button for previous step -->
+                                        <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep2()">Retour</button>
+                                        <!-- button for next step -->
+                                        <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep4_freelance()">Suivant</button>
                                     </div>
                                 </div>
-                                <div id="step4-esn" class="space-y-4 md:space-y-6">
+                            </div>
+                        </div>
+                        <div id="step3-esn" style="display:none;">
+                            <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
+                                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                                    <div class="flex items-center">
+                                        <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white" style="width: 60%;">
+                                        Présentes toi
+                                        </h2>
+                                        <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
+                                            <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
+                                                2/5
+                                            </div>
+                                            <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
+                                            <div class="absolute inset-0 bg-primary rounded-md" style="width: 40%;"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <input type="text" name="companyUserFirstName" id="companyUserFirstName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre prénom *" >
+                                    </div>
+                                    <div>
+                                        <input type="text" name="companyUserLastName" id="companyUserLastName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre nom *" >
+                                    </div>
+                                    <div>
+                                        <input type="number" name="companyUserTelephone" id="companyUserTelephone" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre numéro de téléphone *" >
+                                    </div>
+                                    <p id="errorMessage-step3-esn" class="text-red-500 text-lg mt-2 hidden">Veuillez remplir tous les champs correctement</p>
+                                    <div class="flex justify-between">
+                                        <!-- button for previous step -->
+                                        <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep2()">Retour</button>
+                                        <!-- button for next step -->
+                                        <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep4_esn()">Suivant</button>
+                                    </div>
                                 </div>
-                                <div id="step4-freelance" class="space-y-4 md:space-y-6">   
+                            </div>
+                        </div>
+                        <div id="step4-freelance" style="display: none;">
+                            <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
+                                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                                    <div class="flex items-center">
+                                        <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white" style="width: 60%;">
+                                        Tes Préférences
+                                        </h2>
+                                        <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
+                                            <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
+                                                3/5
+                                            </div>
+                                            <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
+                                            <div class="absolute inset-0 bg-primary rounded-md" style="width: 60%;"></div>
+                                        </div>
+                                    </div>
                                     <div class="relative job-search-container w-full">
                                         <input type="text" id="jobSearch" name="userJob" placeholder="Cherchez votre métier" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500">
-                                            <div id="jobs-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
+                                            <div id="jobs-list" class="absolute z-10 mt-2 w-full rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                                     </div>
                                     <div>
                                         <input type="number" name="userTJM" id="userTJM" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre TJM € *" min="100" >
@@ -298,60 +324,196 @@
                                             <option class="dark:text-black" value="expert">Durée indéfinie</option>
                                         </select>
                                     </div>
-                                </div>
-                                <p id="errorMessage3" class="text-red-500 text-lg mt-2 hidden">Veuillez remplir tous les champs correctement</p>
-                                <p id="tjmErrorMessage" class="text-red-500 text-lg mt-2 hidden">Le TJM doit être supérieur à 100</p>
+                                    <p id="errorMessage-step4-freelance" class="text-red-500 text-lg mt-2 hidden">Veuillez remplir tous les champs correctement</p>
+                                    <p id="tjmErrorMessage" class="text-red-500 text-lg mt-2 hidden">Le TJM doit être supérieur à 100</p>
 
-                                <div class="flex justify-between">
-                                    <!-- button for previous step -->
-                                    <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep3()">Retour</button>
-                                    <!-- button for next step -->
-                                    <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep5()">Suivant</button>
+                                    <div class="flex justify-between">
+                                        <!-- button for previous step -->
+                                        <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep3()">Retour</button>
+                                        <!-- button for next step -->
+                                        <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep5_freelance()">Suivant</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        </div>
-                        <div id="step5" style="display:none; height:80%;">
-                        <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
-                            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                                <div class="flex items-center">
-                                    <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white" style="width: 60%;">
-                                    Tes Expertises
-                                    </h2>
-                                    <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
-                                        <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
-                                            4/5
+                        <div id="step4-esn" style="display: none;">
+                            <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
+                                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                                    <div class="flex items-center">
+                                        <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white" style="width: 60%;">
+                                        Présentes ton ESN
+                                        </h2>
+                                        <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
+                                            <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
+                                                3/5
+                                            </div>
+                                            <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
+                                            <div class="absolute inset-0 bg-primary rounded-md" style="width: 60%;"></div>
                                         </div>
-                                        <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
-                                        <div class="absolute inset-0 bg-primary rounded-md" style="width: 80%;"></div>
                                     </div>
-                                </div>
-                                <div>
-                                    <label for="userBio" class="block mb-2 font-medium text-gray-900 dark:text-white">À propos de toi</label>
+                                    <div class="bg-white dark:bg-gray-800 relative rounded-lg w-full h-auto mb-8">
+                                        <div class="bg-white dark:bg-gray-800 rounded-lg w-full h-32 flex items-center justify-center">
+                                            <div class="bg-white dark:bg-gray-800 w-full h-full flex items-center justify-center">
+                                                <img id="banner-image" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class="object-cover w-full h-full rounded-lg dark:bg-gray-800" alt="Image de l'entreprise">
+                                            </div>
+                                            <div class="absolute w-10 h-10 text-center bottom-0 right-0 bg-white rounded-full">
+                                                <label for="banner-upload">
+                                                    <div class="rounded-full p-2 ring ring-primary">
+                                                        <i class="fas fa-plus text-primary cursor-pointer"></i>
+                                                    </div>
+                                                </label>
+                                                <input type="file" id="banner-upload" name="banner-upload" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'banner-image')">
+                                            </div>
+                                        </div>
+                                        <div class="">
+                                            <div class="relative rounded-full border-10 w-20 h-20 flex items-center justify-center" style="margin-top:-50px;">
+                                                <img id="logo-image" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class="object-cover w-full h-full rounded-full ring-8 ring-white dark:ring-gray-800" alt="Image de l'entreprise">
+                                                <div class="absolute w-10 h-10 text-center bottom-0 right-0 bg-white rounded-full">
+                                                    <label for="companyLogo">
+                                                        <div class="rounded-full p-2 ring ring-primary">
+                                                            <i class="fas fa-plus text-primary cursor-pointer"></i>
+                                                        </div>
+                                                    </label>
+                                                    <input type="file" id="companyLogo" name="companyLogo" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'logo-image')">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div>
-                                        <textarea id="userBio" name="userBio" rows="2" class="bg-gray-50 border border-gray-300 text-lg text-gray-500  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                                        <input type="text" name="companyName" id="companyName" placeholder="Nom de votre entreprise *" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" >
+                                    </div>
+                                    <div>
+                                        <input type="text" name="companySlogan" id="companySlogan" placeholder="Votre slogan *" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" >
+                                    </div>
+                                    <div>    
+                                        <div class="relative city-search-container w-full mr-4">
+                                            <input type="text" id="companyCitySearch" name="companyVille" placeholder="Saisissez votre localisation *" class=" citySearch bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500">
+                                                <div id="cities-list" class="cities-list absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
+                                        </div>
+                                        <div class="flex items-center mt-2">
+                                            <input type="checkbox" id="companyEtranger" name="companyEtranger">
+                                            <label class="ml-2 text-gray-500 dark:text-gray-400">Étranger</label>
+                                        </div>
+                                    </div>
+                                    <div class="w-full text-black mb-1">
+                                        <select id="secteursAll" name="secteursAll[]"  class=" mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                            <option value="">Sélectionnez un secteur</option>
+                                            <?php foreach ($secteursAll as $secteur): ?>
+                                                <option class="dark:text-black" value="<?= $secteur['secteurName'] ?>">
+                                                <?= $secteur['secteurName'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select> 
+                                    </div>
+                                    <p id="errorMessage-step4-esn" class="text-red-500 text-lg mt-2 hidden">Veuillez remplir tous les champs correctement</p>
+
+                                    <div class="flex justify-between">
+                                        <!-- button for previous step -->
+                                        <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep3()">Retour</button>
+                                        <!-- button for next step -->
+                                        <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep5_esn()">Suivant</button>
                                     </div>
                                 </div>
-                                <div class="flex items-center">
-                                    <p class="text-lg text-gray-500 mr-3 dark:text-gray-400">Êtes-vous disponible à travailler dès maintenant ?</p>
-                                    <label class="text-lg text-gray-500 mr-3 dark:text-gray-400">Non</label>
-                                    <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description" class="relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400">
-                                    <label class="text-lg text-gray-500 ml-3 dark:text-gray-400">Oui</label>
-                                </div>
-                                <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-lg text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
-                                    <option class="dark:text-black" value="temps-plein">Temps plein</option>
-                                    <option class="dark:text-black" value="temps-partiel">Temps partiel</option>
-                                </select>
-
-                                <div class="flex justify-between">
-                                    <!-- button for previous step -->
-                                    <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep4()">Retour</button>
-                                    <!-- button for next step -->
-                                    <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep6()">Suivant</button>
-                                </div>
-                                <p id="errorMessage4" class="text-red-500 text-lg mt-2 hidden">Veuillez remplir tous les champs correctement</p>
                             </div>
                         </div>
+                        <div id="step5-freelance" style="display:none; height:80%;">
+                            <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
+                                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                                    <div class="flex items-center">
+                                        <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white" style="width: 60%;">
+                                        Tes Expertises
+                                        </h2>
+                                        <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
+                                            <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
+                                                4/5
+                                            </div>
+                                            <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
+                                            <div class="absolute inset-0 bg-primary rounded-md" style="width: 80%;"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label for="userBio" class="block mb-2 font-medium text-gray-900 dark:text-white">À propos de toi</label>
+                                        <div>
+                                            <textarea id="userBio" name="userBio" rows="2" class="bg-gray-50 border border-gray-300 text-lg text-gray-500  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <p class="text-lg text-gray-500 mr-3 dark:text-gray-400">Êtes-vous disponible à travailler dès maintenant ?</p>
+                                        <label class="text-lg text-gray-500 mr-3 dark:text-gray-400">Non</label>
+                                        <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description" class="relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400">
+                                        <label class="text-lg text-gray-500 ml-3 dark:text-gray-400">Oui</label>
+                                    </div>
+                                    <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-lg text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
+                                        <option class="dark:text-black" value="temps-plein">Temps plein</option>
+                                        <option class="dark:text-black" value="temps-partiel">Temps partiel</option>
+                                    </select>
+                                    <p id="errorMessage-step5-freelance" class="text-red-500 text-lg mt-2 hidden">Veuillez remplir tous les champs correctement</p>
+                                    <div class="flex justify-between">
+                                        <!-- button for previous step -->
+                                        <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep4_freelance()">Retour</button>
+                                        <!-- button for next step -->
+                                        <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep6_freelance()">Suivant</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="step5-esn" style="display:none; height:80%;">
+                            <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
+                                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                                    <div class="flex items-center">
+                                        <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white" style="width: 60%;">
+                                        À propos de votre entreprise
+                                        </h2>
+                                        <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
+                                            <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
+                                                4/5
+                                            </div>
+                                            <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
+                                            <div class="absolute inset-0 bg-primary rounded-md" style="width: 80%;"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label for="companyDescription" class="block mb-2 font-medium text-gray-900 dark:text-white">Description de l'entreprise</label>
+                                        <div>
+                                            <textarea id="companyDescription" name="companyDescription" rows="2" class="bg-gray-50 border border-gray-300 text-lg text-gray-500  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label for="companyAvantages" class="block mb-2 font-medium text-gray-900 dark:text-white">Vos avantages</label>
+                                        <div>
+                                            <textarea id="companyAvantages" name="companyAvantages" rows="2" class="bg-gray-50 border border-gray-300 text-lg text-gray-500  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                                        </div>
+                                    </div>                
+                                    <div class="relative rounded-lg flex flex-wrap mb-4">
+                                        <label for="companyPhotos" class="block mb-2 font-medium text-gray-900 dark:text-white">Photos de votre entreprise</label>
+                                        <div class="absolute top-0 right-0 flex hover:text-gray-800">
+                                            <button id="add-photo-btn" type="button" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+                                        <div class="photos-container w-full h-full flex grid grid-cols-2 gap-2 items-center justify-center">
+                                            <div class="new-photo-div relative">
+                                                <img id="company-image" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class=" max-h-64 max-w-xs rounded-lg" alt="Image de l'entreprise" style="width:100%;">
+                                                <input type="file" id="photo-upload" name="photo-upload[]" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'company-image')">
+                                                <div class="absolute right-0 top-0 flex text-gray-500 hover:text-gray-800 rounded-lg pt-2 pr-4">
+                                                    <label for="photo-upload" class="cursor-pointer">
+                                                        <i class="fas fa-pen"></i>
+                                                    </label>
+                                                    <button type="button" class="delete-photo-div text-red-600 hover:text-red-900 focus:outline-none ml-2">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p id="errorMessage-step5-esn" class="text-red-500 text-lg mt-2 hidden">Veuillez remplir tous les champs correctement</p>
+                                    <div class="flex justify-between">
+                                        <!-- button for previous step -->
+                                        <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep4_esn()">Retour</button>
+                                        <!-- button for next step -->
+                                        <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep6_esn()">Suivant</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div id="step6" style="display:none; height:80%;">
                         <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
@@ -381,15 +543,13 @@
             </div>
         </div>
     </section>
-    <script src="<?php echo base_url('/node_modules/choices.js/public/assets/scripts/choices.min.js'); ?>"></script>
 
+    <script src="<?php echo base_url('/node_modules/choices.js/public/assets/scripts/choices.min.js'); ?>"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/choices.js@10.0.0"></script>
     <script src="<?php echo base_url('assets/js/app.js'); ?>"></script>
 
-
     <script>
-
 
     // Fonction pour détruire l'instance Choices.js existante
     function destroyChoicesInstance(element) {
@@ -407,151 +567,226 @@
             placeholder: true,
             placeholderValue: 'Sélectionnez des compétences',
             allowHTML: true,
-            /* options spécifiques à Choices */
         });
     }
 
-$(document).ready(function() {
-    
-    $('#citySearch').on('keyup', function() {
-        let term = $(this).val();
-        if(term.length > 2) { // Recherche après 2 caractères
-            $.post('register/search_cities', { term: term }, function(data) {
-                let cities = JSON.parse(data);
-                if(cities.length > 0) {
-                    // Ajoutez la classe .has-border si des résultats sont retournés
-                    $('#cities-list').addClass('has-border');
-                } else {
-                    // Supprimez la classe .has-border si aucun résultat n'est retourné
-                    $('#cities-list').removeClass('has-border');
-                }
-                $('#cities-list').empty();
-                cities.forEach(function(city) {
-                    $('#cities-list').append(`<div class="city-item p-2 hover:bg-gray-200 cursor-pointer" data-id="${city.geoname_id}">${city.name}</div>`);
-                });
-            });
-        }
-        else {
-            // Supprimez la classe .has-border si l'input est trop court
-            $('#cities-list').removeClass('has-border').empty();
-        }
-    });
+    $(document).ready(function() {
 
-    $(document).on('click', '.city-item', function() {
-        let cityName = $(this).text();
-        $('#citySearch').val(cityName);  // Mettez à jour le champ de saisie avec le nom de la ville sélectionnée
-        $('#cities-list').empty(); // Videz la liste
-        $('#cities-list').removeClass('has-border').empty();
-    });
+        let photoCounter = 0;
 
-    $('#userEtranger').change(function() {
-        if ($(this).is(':checked')) {
-            // Si la case 'userEtranger' est cochée, vider le champ 'citySearch'
-            $('#citySearch').val('');
-        }
-    });
-    
-    $('#jobSearch').on('keyup', function() {
-        let term = $(this).val();
-        if(term.length > 1) { // Recherche après 2 caractères
-            $.post('register/search_jobs', { term: term }, function(data) {
-                let jobs = JSON.parse(data);
-                if(jobs.length > 0) {
-                    // Ajoutez la classe .has-border si des résultats sont retournés
-                    $('#jobs-list').addClass('has-border');
-                } else {
-                    // Supprimez la classe .has-border si aucun résultat n'est retourné
-                    $('#jobs-list').removeClass('has-border');
-                }
-                $('#jobs-list').empty();
-                jobs.forEach(function(job) {
-                    $('#jobs-list').append(`<div class="job-item p-2 hover:bg-gray-200 cursor-pointer" data-id="${job.jobId}">${job.jobName}</div>`);
-                });
-            });
-        }
-        else {
-            // Supprimez la classe .has-border si l'input est trop court
-            $('#jobs-list').removeClass('has-border').empty();
-        }
-    });
+        $('#add-photo-btn').click(function() {
+            var photosContainer = $('.photos-container');
+            photoCounter++;
 
-    $(document).on('click', '.job-item', function() {
-        let jobName = $(this).text();
-        $('#jobSearch').val(jobName);  // Mettez à jour le champ de saisie avec le nom de la ville sélectionnée
-        $('#jobs-list').empty(); // Videz la liste
-        $('#jobs-list').removeClass('has-border').empty();
-    });
+            var newPhotoDiv = `
+                <div class="new-photo-div relative">
+                    <img id="company-image-${photoCounter}" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class="max-h-64 max-w-xs rounded-lg" alt="Image de l'entreprise" style="width:100%;">
+                    <input type="file" id="photo-upload-${photoCounter}" name="photo-upload[]" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'company-image-${photoCounter}')">
+                    <div class="absolute right-0 top-0 flex text-gray-500 hover:text-gray-800 rounded-lg pt-2 pr-4">
+                        <label for="photo-upload-${photoCounter}" class="cursor-pointer">
+                            <i class="fas fa-pen"></i>
+                        </label>
+                        <button type="button" class="delete-photo-div text-red-600 hover:text-red-900 focus:outline-none ml-2">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
 
-    // Pour fermer la liste lorsque vous cliquez en dehors
-    $(document).on('click', function(event) {
-        // Si le clic n'est pas sur le champ de saisie (#citySearch)
-        // et n'est pas sur un élément à l'intérieur de la liste (#cities-list)...
-        if (!$(event.target).closest('#citySearch, #cities-list').length) {
-            // ... alors videz et fermez la liste.
-            $('#cities-list').empty().removeClass('has-border');
-        }
+            // Ajout de la nouvelle div
+            photosContainer.append(newPhotoDiv);
+
+            // Vérification du nombre de div 'new-photo-div'
+            var count = photosContainer.children('.new-photo-div').length;
+            if(count >= 4) {
+                // Cache le bouton 'add-photo-btn' s'il y a 4 photos ou plus
+                $('#add-photo-btn').addClass('hidden');
+            }
+        });
+
+        // Gestionnaire d'événements pour supprimer une div 'new-photo-div'
+        $(document).on('click', '.delete-photo-div', function() {
+            // Supprime la div 'new-photo-div' parente
+            $(this).closest('.new-photo-div').remove();
+
+            // Vérifie le nombre de div 'new-photo-div' restantes
+            var count = $('.photos-container').children('.new-photo-div').length;
+            if(count < 4) {
+                // Si moins de 4, fait réapparaître le bouton 'add-photo-btn'
+                $('#add-photo-btn').removeClass('hidden');
+            }
+        });
+
+        const secteurChoices = new Choices('#secteursAll', {
+            searchEnabled: true,
+            removeItemButton: true,
+            itemSelectText: '',
+            placeholder: true,
+            placeholderValue: 'Sélectionnez un secteur',
+        });
         
-        if (!$(event.target).closest('#jobSearch, #jobs-list').length) {
-            // ... alors videz et fermez la liste.
-            $('#jobs-list').empty().removeClass('has-border');
-        }
+        $('.citySearch').on('keyup', function() {
+            let term = $(this).val();
+            if(term.length > 2) { // Recherche après 2 caractères
+                $.post('register/search_cities', { term: term }, function(data) {
+                    let cities = JSON.parse(data);
+                    if(cities.length > 0) {
+                        // Ajoutez la classe .has-border si des résultats sont retournés
+                        $('.cities-list').addClass('has-border');
+                    } else {
+                        // Supprimez la classe .has-border si aucun résultat n'est retourné
+                        $('.cities-list').removeClass('has-border');
+                    }
+                    $('.cities-list').empty();
+                    cities.forEach(function(city) {
+                        $('.cities-list').append(`<div class="city-item p-2 hover:bg-gray-200 cursor-pointer" data-id="${city.geoname_id}">${city.name}</div>`);
+                    });
+                });
+            }
+            else {
+                // Supprimez la classe .has-border si l'input est trop court
+                $('.cities-list').removeClass('has-border').empty();
+            }
+        });
+
+        $(document).on('click', '.city-item', function() {
+            let cityName = $(this).text();
+            $('.citySearch').val(cityName);  // Mettez à jour le champ de saisie avec le nom de la ville sélectionnée
+            $('.cities-list').empty(); // Videz la liste
+            $('.cities-list').removeClass('has-border').empty();
+        });
+
+        $('#userEtranger').change(function() {
+            if ($(this).is(':checked')) {
+                // Si la case 'userEtranger' est cochée, vider le champ 'citySearch'
+                $('#citySearch').val('');
+            }
+        });
+        
+        $('#citySearch').on('input', function() {
+            $('#userEtranger').prop('checked', false);
+        });
+        
+
+        $('#companyEtranger').change(function() {
+            if ($(this).is(':checked')) {
+                // Si la case 'userEtranger' est cochée, vider le champ 'citySearch'
+                $('.citySearch').val('');
+            }
+        });
+        
+        $('.citySearch').on('input', function() {
+            $('#companyEtranger').prop('checked', false);
+        });
+        
+        $('#jobSearch').on('keyup', function() {
+            let term = $(this).val();
+            if(term.length > 1) { // Recherche après 2 caractères
+                $.post('register/search_jobs', { term: term }, function(data) {
+                    let jobs = JSON.parse(data);
+                    if(jobs.length > 0) {
+                        // Ajoutez la classe .has-border si des résultats sont retournés
+                        $('#jobs-list').addClass('has-border');
+                    } else {
+                        // Supprimez la classe .has-border si aucun résultat n'est retourné
+                        $('#jobs-list').removeClass('has-border');
+                    }
+                    $('#jobs-list').empty();
+                    jobs.forEach(function(job) {
+                        $('#jobs-list').append(`<div class="job-item p-2 hover:bg-gray-200 cursor-pointer" data-id="${job.jobId}">${job.jobName}</div>`);
+                    });
+                });
+            }
+            else {
+                // Supprimez la classe .has-border si l'input est trop court
+                $('#jobs-list').removeClass('has-border').empty();
+            }
+        });
+
+        $(document).on('click', '.job-item', function() {
+            let jobName = $(this).text();
+            $('#jobSearch').val(jobName);  // Mettez à jour le champ de saisie avec le nom de la ville sélectionnée
+            $('#jobs-list').empty(); // Videz la liste
+            $('#jobs-list').removeClass('has-border').empty();
+        });
+
+        // Pour fermer la liste lorsque vous cliquez en dehors
+        $(document).on('click', function(event) {
+            // Si le clic n'est pas sur le champ de saisie (#citySearch)
+            // et n'est pas sur un élément à l'intérieur de la liste (#cities-list)...
+            if (!$(event.target).closest('#citySearch, #cities-list').length) {
+                // ... alors videz et fermez la liste.
+                $('#cities-list').empty().removeClass('has-border');
+            }
+            
+            if (!$(event.target).closest('#jobSearch, #jobs-list').length) {
+                // ... alors videz et fermez la liste.
+                $('#jobs-list').empty().removeClass('has-border');
+            }
+        });
+
     });
 
-});
+    /*function showFileName(input, fileNameId, imageId) {
+        let fileNameElement = document.getElementById(fileNameId);
+        let imageElement = document.getElementById(imageId);
 
-function showFileName(input) {
-  const fileNameElement = document.getElementById("file-name");
-  const avatarImageElement = document.getElementById("avatar-image");
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                imageElement.src = e.target.result;
+            };
+            reader.readAsDataURL(input.files[0]);
 
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-    reader.onload = function(e) {
-      avatarImageElement.src = e.target.result;
-    };
-    reader.readAsDataURL(input.files[0]);
+            fileNameElement.textContent = input.files[0].name;
+            fileNameElement.classList.remove("hidden");
+        } else {
+            fileNameElement.textContent = "";
+            fileNameElement.classList.add("hidden");
+        }
+    }*/
 
-    fileNameElement.textContent = input.files[0].name;
-    fileNameElement.classList.remove("hidden");
-  } else {
-    fileNameElement.textContent = "";
-    fileNameElement.classList.add("hidden");
-  }
-}
-
+    function showFileName(input, elementId) {
+        let imageElement = document.getElementById(elementId);
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                imageElement.src = e.target.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 
     var activeElement = null;
 
-function selectChoice(choice) {
-    document.getElementById("userType").value = choice;
-    console.log(document.getElementById("userType").value);
-}
-
-function changeTextColor(element, isActive) {
-    var textElement = element.querySelector("h2");
-    if (isActive) {
-        textElement.classList.add("text-white");
-        element.classList.add("bg-primary");
-    } else {
-        textElement.classList.remove("text-white");
-        element.classList.remove("bg-primary");
-    }
-}
-
-function handleClick(element) {
-    if (element === activeElement) {
-        return;
+    function selectChoice(choice) {
+        document.getElementById("userType").value = choice;
+        console.log(document.getElementById("userType").value);
     }
 
-    if (activeElement) {
-        changeTextColor(activeElement, false);
+    function changeTextColor(element, isActive) {
+        var textElement = element.querySelector("h2");
+        if (isActive) {
+            textElement.classList.add("text-white");
+            element.classList.add("bg-primary");
+        } else {
+            textElement.classList.remove("text-white");
+            element.classList.remove("bg-primary");
+        }
     }
 
-    changeTextColor(element, true);
-    selectChoice(element.dataset.choice);
-}
+    function handleClick(element) {
+        if (element === activeElement) {
+            return;
+        }
 
-    
+        if (activeElement) {
+            changeTextColor(activeElement, false);
+        }
 
+        changeTextColor(element, true);
+        selectChoice(element.dataset.choice);
+    }
 
         const images = [
             '<?php echo base_url('assets/img/cc-1.png');?>',
@@ -821,18 +1056,18 @@ function handleClick(element) {
         // }
 
         function goToStep1(){
-            var step1 = document.getElementById('step1');
-            var step2 = document.getElementById('step2');
-            var step3 = document.getElementById('step3');
-            var step4 = document.getElementById('step4');
-            var step5 = document.getElementById('step5');
-            var step6 = document.getElementById('step6');
+            var step1 = document.getElementById('step1-freelance');
+            var step2 = document.getElementById('step2-freelance');
+            //var step3 = document.getElementById('step3');
+            //var step4 = document.getElementById('step4');
+            // var step5 = document.getElementById('step5');
+            // var step6 = document.getElementById('step6');
 
             step2.style.display = 'none';
-            step3.style.display = 'none';
-            step4.style.display = 'none';
-            step5.style.display = 'none';
-            step6.style.display = 'none';
+            // step3.style.display = 'none';
+            // step4.style.display = 'none';
+            // step5.style.display = 'none';
+            // step6.style.display = 'none';
             step1.style.display = 'block';
         }
 
@@ -857,14 +1092,16 @@ function handleClick(element) {
                         errorMessage1.style.display = 'none';
                         var step1 = document.getElementById('step1');
                         var step2 = document.getElementById('step2');
-                        var step3 = document.getElementById('step3');
-                        var step5 = document.getElementById('step5');
-                        var step6 = document.getElementById('step6');
+                        var step3_esn = document.getElementById('step3-esn');
+                        var step3_freelance = document.getElementById('step3-freelance');
+                        // var step5 = document.getElementById('step5');
+                        // var step6 = document.getElementById('step6');
                         step1.style.display = 'none';
-                        step3.style.display = 'none';
-                        step4.style.display = 'none';
-                        step5.style.display = 'none';
-                        step6.style.display = 'none';
+                        step3_esn.style.display = 'none';
+                        step3_freelance.style.display = 'none';
+                        // step4.style.display = 'none';
+                        // step5.style.display = 'none';
+                        // step6.style.display = 'none';
                         step2.style.display = 'block';
                     } else {
                         // L'e-mail existe déjà ou les mots de passe ne correspondent pas
@@ -873,73 +1110,94 @@ function handleClick(element) {
             }
         }
 
-
-
         function goToStep3() {
             var selectedRadio = document.querySelector('input[name="userType"]:checked').value;
             console.log("type", selectedRadio);
             var userTypeFreelance = document.getElementById('userTypeFreelance');
             var userTypeESN = document.getElementById('userTypeESN');
             var errorUserType = document.getElementById('errorUserType');
-            var step1 = document.getElementById('step1');
+            // var step1 = document.getElementById('step1');
             var step2 = document.getElementById('step2');
-            var step3 = document.getElementById('step3');
-            var step4 = document.getElementById('step4');
-            var step5 = document.getElementById('step5');
-            var step6 = document.getElementById('step6');
+            var step3_freelance = document.getElementById('step3-freelance');
+            var step3_esn = document.getElementById('step3-esn');
+            var step4_freelance = document.getElementById('step4-freelance');
+            var step4_esn = document.getElementById('step4-esn');
 
-            if (userTypeFreelance.checked || userTypeESN.checked) {
+            if (userTypeFreelance.checked) {
                 errorUserType.style.display = 'none';
-                step1.style.display = 'none';
+                // step1.style.display = 'none';
                 step2.style.display = 'none';
-                step4.style.display = 'none';
-                step5.style.display = 'none';
-                step6.style.display = 'none';
-                step3.style.display = 'block';
+                step4_freelance.style.display = 'none';
+                step4_esn.style.display = 'none';
+                step3_freelance.style.display = 'block';
+            } else if (userTypeESN.checked) {
+                errorUserType.style.display = 'none';
+                // step1.style.display = 'none';
+                step2.style.display = 'none';
+                step4_freelance.style.display = 'none';
+                step4_esn.style.display = 'none';
+                step3_esn.style.display = 'block';
             } else {
                 errorUserType.style.display = 'block';
             }
         }
 
-
-        function goToStep4() {
+        function goToStep4_freelance() {
             var userFirstName = document.getElementById('userFirstName').value;
             var userLastName = document.getElementById('userLastName').value;
             var userVille = document.getElementById('citySearch').value;
+            var userEtranger = document.getElementById('userEtranger');
             var userTelephone = document.getElementById('userTelephone').value;
-            var errorMessage2 = document.getElementById('errorMessage2');
+            var errorMessageStep3 = document.getElementById('errorMessage-step3-freelance');
 
             if (
                 userFirstName.trim() === '' ||
                 userLastName.trim() === '' ||
-                userVille.trim() === '' ||
+                (userVille.trim() === '' && !userEtranger.checked) ||
                 userTelephone.trim() === ''
             ) {
-                errorMessage2.style.display = 'block';
+                errorMessageStep3.style.display = 'block';
             } else if (parseInt(userTJM) <= 100) {
-                errorMessage2.style.display = 'none';
+                errorMessageStep3.style.display = 'none';
             } else {
-                errorMessage2.style.display = 'none';
-                var step1 = document.getElementById('step1');
-                var step2 = document.getElementById('step2');
-                var step3 = document.getElementById('step3');
-                var step4 = document.getElementById('step4');
-                var step5 = document.getElementById('step5');
-                var step6 = document.getElementById('step6');
-                step1.style.display = 'none';
-                step2.style.display = 'none';
+                errorMessageStep3.style.display = 'none';
+                var step3 = document.getElementById('step3-freelance');
+                var step4 = document.getElementById('step4-freelance');
+                var step5 = document.getElementById('step5-freelance');
                 step3.style.display = 'none';
                 step5.style.display = 'none';
-                step6.style.display = 'none';
+                step4.style.display = 'block';
+            }
+        }
+
+        function goToStep4_esn() {
+            var companyUserFirstName = document.getElementById('companyUserFirstName').value;
+            var companyUserLastName = document.getElementById('companyUserLastName').value;
+            var companyUserTelephone = document.getElementById('companyUserTelephone').value;
+            var errorMessageStep3 = document.getElementById('errorMessage-step3-esn');
+
+            if (
+                companyUserFirstName.trim() === '' ||
+                companyUserLastName.trim() === '' ||
+                companyUserTelephone.trim() === ''
+            ) {
+                errorMessageStep3.style.display = 'block';
+            } else {
+                errorMessageStep3.style.display = 'none';
+                var step3 = document.getElementById('step3-esn');
+                var step4 = document.getElementById('step4-esn');
+                var step5 = document.getElementById('step5-esn');
+                step3.style.display = 'none';
+                step5.style.display = 'none';
                 step4.style.display = 'block';
             }
         }
         
-        function goToStep5() {
+        function goToStep5_freelance() {
             var userTJM = document.getElementById('userTJM').value;
             var userJobTypes = document.getElementsByName('userJobType');
             var jobTypeSelected = false;
-            var errorMessage3 = document.getElementById('errorMessage3');
+            var errorMessage3 = document.getElementById('errorMessage-step4-freelance');
             var tjmErrorMessage = document.getElementById('tjmErrorMessage');
 
             for (var i = 0; i < userJobTypes.length; i++) {
@@ -961,24 +1219,64 @@ function handleClick(element) {
             } else {
                 errorMessage3.style.display = 'none';
                 tjmErrorMessage.style.display = 'none';
-                var step1 = document.getElementById('step1');
-                var step2 = document.getElementById('step2');
-                var step3 = document.getElementById('step3');
-                var step4 = document.getElementById('step4');
-                var step5 = document.getElementById('step5');
+                var step4 = document.getElementById('step4-freelance');
+                var step5 = document.getElementById('step5-freelance');
                 var step6 = document.getElementById('step6');
-                step1.style.display = 'none';
-                step2.style.display = 'none';
-                step3.style.display = 'none';
                 step4.style.display = 'none';
                 step6.style.display = 'none';
                 step5.style.display = 'block';
             }
         }
         
-        function goToStep6() {
+        function goToStep5_esn() {
+            var companyLogo = document.getElementById('companyLogo').value;
+            var companyName = document.getElementById('companyName').value;
+            var companyVille = document.getElementById('companyCitySearch').value;
+            var companyEtranger = document.getElementById('companyEtranger');
+            var companySlogan = document.getElementById('companySlogan').value;
+            var companySecteur = document.getElementById('secteursAll').value;
+            var errorMessage3 = document.getElementById('errorMessage-step4-esn');
+
+            if (
+                companyLogo.trim() === '' ||
+                companyName.trim() === '' ||
+                (companyVille.trim() === '' && !companyEtranger.checked) ||
+                companySlogan.trim() === '' ||
+                companySecteur.trim() === ''
+            ) {
+                errorMessage3.style.display = 'block';
+            } else {
+                errorMessage3.style.display = 'none';
+                var step4 = document.getElementById('step4-esn');
+                var step5 = document.getElementById('step5-esn');
+                var step6 = document.getElementById('step6');
+                step4.style.display = 'none';
+                step6.style.display = 'none';
+                step5.style.display = 'block';
+            }
+        }
+
+        function goToStep5() {
+            var userTypeFreelance = document.getElementById('userTypeFreelance');
+            var userTypeESN = document.getElementById('userTypeESN');
+            var step6 = document.getElementById('step6');
+            var step5_freelance = document.getElementById('step5-freelance');
+            var step5_esn = document.getElementById('step5-esn');
+
+            if (userTypeFreelance.checked) {
+                step6.style.display = 'none';
+                step5_esn.style.display = 'none';
+                step5_freelance.style.display = 'block';
+            } else if (userTypeESN.checked) {
+                step6.style.display = 'none';
+                step5_freelance.style.display = 'none';
+                step5_esn.style.display = 'block';
+            }
+        }
+        
+        function goToStep6_freelance() {
             var userBio = document.getElementById('userBio').value;
-            var errorMessage4 = document.getElementById('errorMessage4');
+            var errorMessage4 = document.getElementById('errorMessage-step5-freelance');
 
             if (
                 userBio.trim() === '' 
@@ -986,16 +1284,27 @@ function handleClick(element) {
                 errorMessage4.style.display = 'block';
             } else {
                 errorMessage4.style.display = 'none';
-                var step1 = document.getElementById('step1');
-                var step2 = document.getElementById('step2');
-                var step3 = document.getElementById('step3');
-                var step4 = document.getElementById('step4');
-                var step5 = document.getElementById('step5');
+                var step5 = document.getElementById('step5-freelance');
                 var step6 = document.getElementById('step6');
-                step1.style.display = 'none';
-                step2.style.display = 'none';
-                step3.style.display = 'none';
-                step4.style.display = 'none';
+                step5.style.display = 'none';
+                step6.style.display = 'block';
+            }
+        }
+        
+        function goToStep6_esn() {
+            var companyDescription = document.getElementById('companyDescription').value;
+            var companyAvantages = document.getElementById('companyAvantages').value;
+            var errorMessage4 = document.getElementById('errorMessage-step5-esn');
+
+            if (
+                companyDescription.trim() === '' ||  
+                companyAvantages.trim() === ''
+            ) {
+                errorMessage4.style.display = 'block';
+            } else {
+                errorMessage4.style.display = 'none';
+                var step5 = document.getElementById('step5-esn');
+                var step6 = document.getElementById('step6');
                 step5.style.display = 'none';
                 step6.style.display = 'block';
             }

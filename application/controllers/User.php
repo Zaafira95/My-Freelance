@@ -35,7 +35,6 @@ class User extends CI_Controller {
         $missionsPerso = $this->User_model->getRelevantMissions($userId);
         $data['missionsPerso'] = $missionsPerso;
 
-
         // Récupérer les skills de chaque mission
         $missionSkills = array();
         foreach ($missions as $mission) {
@@ -69,7 +68,8 @@ class User extends CI_Controller {
 
         $data['checkboxChecked'] = $checkboxChecked;
 
-
+        $attachments = $this->User_model->getUserAttachement($userId);
+        $data['attachments'] = $attachments;
                 
         $data['skillsAll'] = $this->User_model->get_all_skills();
 

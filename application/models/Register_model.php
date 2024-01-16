@@ -99,6 +99,42 @@ class Register_model extends CI_Model {
         }
     }
     
+    public function registerCompany($userEmail, $userPassword, $userType, 
+    $companyUserFirstName, $companyUserLastName, $companyUserTelephone, $companyName, $companyVille, 
+    $companySlogan, $companySecteur, $companyDescription, $companyAvantages){
+        $data = array(
+            'companyName' => $companyName,
+            'companyVille' => $companyVille,
+            'companySlogan' => $companySlogan,
+            'companySecteur' => $companySecteur,
+            'companyDescription' => $companyDescription,
+            'companyAvantages' => $companyAvantages
+        );
+        $this->db->insert('company', $data);
+
+        if ($this->db->affected_rows() > 0) {
+            $companyId = $this->db->insert_id();
+            $data = array(
+                'userEmail' => $userEmail,
+                'userPassword' => $userPassword,
+                'userType' => $userType,
+                'userFirstName' => $companyUserFirstName,
+                'userLastName' => $companyUserLastName,
+                'userTelephone' => $companyUserTelephone,
+                'userCompanyId' => $companyId
+            );
+            $this->db->insert('users', $data);
+
+            if ($this->db->affected_rows() > 0) {
+                return $companyId;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    
     public function addAvatarPath($userId, $file_path){
         $this->db->set('userAvatarPath', $file_path);
         $this->db->where('userId', $userId);
@@ -122,11 +158,36 @@ class Register_model extends CI_Model {
         $query = $this->db->get('skills'); // Remplacez 'skills' par le nom exact de votre table de compétences si ce n'est pas le cas.
         return $query->result_array();
     }
+    
+    public function get_all_secteurs() {
+        $query = $this->db->get('secteurs'); // Remplacez 'skills' par le nom exact de votre table de compétences si ce n'est pas le cas.
+        return $query->result_array();
+    }
 
     public function get_skills($term=''){
         $this->db->like('skillName', $term);
         $query = $this->db->get('skills');
         return $query->result_array();
+    }
+
+    public function insertBannerPath($companyId, $companyBannerPath) {
+        $this->db->set('companyBannerPath', $companyBannerPath);
+        $this->db->where('idcompany', $companyId);
+        $this->db->update('company');
+    }
+
+    public function insertLogoPath($companyId, $companyLogoPath) {
+        $this->db->set('companyLogoPath', $companyLogoPath);
+        $this->db->where('idcompany', $companyId);
+        $this->db->update('company');
+    }
+
+    public function insertPhotoPath($companyId, $companyPhotoPath) {
+        $data = array(
+            'companyPhotosPath' => $companyPhotoPath,
+            'companyPhotos_companyId' => $companyId
+        );
+        $this->db->insert('companyphotos', $data);
     }
 }
 ?>

@@ -78,16 +78,16 @@ include(APPPATH . 'views/layouts/user/header.php' );
                     <label for="name" class="block mb-2 mt-2 font-medium text-gray-900 dark:text-white">Combien de jours par semaine êtes-vous disponible ?</label>
                     <div class="w-full text-black">
                         <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="bg-gray-50 border mt-2 border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <?php
-                            $userJobTimePartielOrFullTime = ['Temps Plein', 'Temps Partiel'];
-                            foreach ($userJobTimePartielOrFullTime as $option) {
-                                echo '<option value="' . $option . '"';
-                                if ($user->userJobTimePartielOrFullTime === $option) {
+                            <option value="temps-plein" 
+                                <?php if ($user->userJobTimePartielOrFullTime === "temps-plein") {
                                     echo ' selected';
-                                }
-                                echo '>' . $option . '</option>';
-                            }
-                            ?>
+                                } ?>> Temps Plein 
+                            </option>
+                            <option value="temps-partiel" 
+                                <?php if ($user->userJobTimePartielOrFullTime === "temps-partiel") {
+                                    echo ' selected';
+                                } ?>> Temps Partiel 
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -237,16 +237,16 @@ include(APPPATH . 'views/layouts/user/header.php' );
                     <label class=" text-gray-500 ml-3 dark:text-gray-400">Oui</label>
 
                     <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="bg-gray-50 border mt-2 border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <?php
-                        $userJobTimePartielOrFullTime = ['Temps Plein', 'Temps Partiel'];
-                        foreach ($userJobTimePartielOrFullTime as $option) {
-                            echo '<option value="' . $option . '"';
-                            if ($user->userJobTimePartielOrFullTime === $option) {
+                        <option value="temps-plein" 
+                            <?php if ($user->userJobTimePartielOrFullTime === "temps-plein") {
                                 echo ' selected';
-                            }
-                            echo '>' . $option . '</option>';
-                        }
-                        ?>
+                            } ?>> Temps Plein 
+                        </option>
+                        <option value="temps-partiel" 
+                            <?php if ($user->userJobTimePartielOrFullTime === "temps-partiel") {
+                                echo ' selected';
+                            } ?>> Temps Partiel 
+                        </option>
                     </select>
 
                     <label for="userJobType" class="block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Type de poste</label>
@@ -268,14 +268,14 @@ include(APPPATH . 'views/layouts/user/header.php' );
                     <p id="errorMessageJobType" class="text-red-500" style="display:none;">Veuillez choisir un type de poste</p>
                     <label for="userVille" class="block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Localisation</label>
                     <!--<input type="text" name="userVille" id="userVille" value="<?=$user->userVille?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Ville">-->
-                    <div id="step3-freelance-city" class="flex gap-8">
-                        <div class="relative city-search-container w-full">
-                            <input type="text" id="citySearch" name="userVille" value="<?=$user->userVille?>" placeholder="Cherchez votre ville" class="border p-2 rounded-lg w-full text-black">
+                    <div id="step3-freelance-city">    
+                        <div class="relative city-search-container w-full mr-4">
+                            <input type="text" id="citySearch" name="userVille" placeholder="Cherchez votre ville" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" >
                                 <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                         </div>
-                        <div class="flex items-center py-2.5 px-4 px- border border-gray-200 rounded dark:border-gray-700">
+                        <div class="flex items-center mt-2">
                             <input type="checkbox" id="userEtranger" name="userEtranger">
-                            <label class="ml-2 text-gray-500 dark:text-white">Étranger</label>
+                            <label class="ml-2 text-gray-500 dark:text-gray-400">Étranger</label>
                         </div>
                     </div>
                     <label for="userJobTime" class="block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Durée de la mission</label>
@@ -460,10 +460,7 @@ foreach ($experiences as $index => $experience) {
 }
 ?>
 
-
-
 <!-- User Add Experience -->
-
 <div id="addUserExperience" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
     <div class="relative p-4 w-full max-w-2xl h-full md:h-auto" style="height:90%; margin-top:0px; margin-bottom:20px">
         <!-- Modal content -->
@@ -556,9 +553,7 @@ foreach ($experiences as $index => $experience) {
     </div>
 </div>
 
-
 <!-- User Add Attachment -->
-
 <div id="addUserAttachment" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
     <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
         <!-- Modal content -->
@@ -1545,15 +1540,19 @@ if($totalInfos == 1 ){
                 $('#citySearch').val('');
             }
         });
+        
+        $('#citySearch').on('input', function() {
+            $('#userEtranger').prop('checked', false);
+        });
 
-            const jobsChoices = new Choices('#jobsAll', {
-                searchEnabled: true,
-                removeItemButton: true,
-                itemSelectText: '',
-                placeholder: true, // Ajoutez cette ligne pour activer le placeholder
-                placeholderValue: 'Sélectionnez votre métier', // Texte du placeholder
+        const jobsChoices = new Choices('#jobsAll', {
+            searchEnabled: true,
+            removeItemButton: true,
+            itemSelectText: '',
+            placeholder: true, // Ajoutez cette ligne pour activer le placeholder
+            placeholderValue: 'Sélectionnez votre métier', // Texte du placeholder
 
-            });
+        });
 
             /*const expertiseChoices = new Choices('#expertiseAll', {
             searchEnabled: true,

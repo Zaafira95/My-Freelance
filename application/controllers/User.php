@@ -35,7 +35,6 @@ class User extends CI_Controller {
         $missionsPerso = $this->User_model->getRelevantMissions($userId);
         $data['missionsPerso'] = $missionsPerso;
 
-
         // Récupérer les skills de chaque mission
         $missionSkills = array();
         foreach ($missions as $mission) {
@@ -69,7 +68,8 @@ class User extends CI_Controller {
 
         $data['checkboxChecked'] = $checkboxChecked;
 
-
+        $attachments = $this->User_model->getUserAttachement($userId);
+        $data['attachments'] = $attachments;
                 
         $data['skillsAll'] = $this->User_model->get_all_skills();
 
@@ -267,7 +267,7 @@ class User extends CI_Controller {
 
         $jobId = $this->User_model->getJobId($userJobName);
 
-       var_dump($userTelephone);
+        var_dump($userTelephone);
 
         // Vérifier si un fichier a été téléchargé
         if ($_FILES['avatar-upload']['name']) {
@@ -332,17 +332,17 @@ class User extends CI_Controller {
         
         $userJobType = $this->input->post('userJobType');
         
-        if (is_array($userJobType) && in_array('Remote', $userJobType)) {
+        /*if (is_array($userJobType) && in_array('Remote', $userJobType)) {
         }
         if (is_array($userJobType) && in_array('Physique', $userJobType)) {
-        }
-        $jobTypeString = implode(',', $userJobType);
+        }*/
+        //$jobTypeString = implode(',', $userJobType);
         $userVille = $this->input->post('userVille');
         $userJobTime = $this->input->post('userJobTime');
 
         $userJobTimePartielOrFullTime = $this->input->post('userJobTimePartielOrFullTime');
 
-        $this->User_model->updateUserPreference($userId, $userIsAvailable, $jobTypeString, $userVille, $userJobTime, $userJobTimePartielOrFullTime);
+        $this->User_model->updateUserPreference($userId, $userIsAvailable, $userJobType, $userVille, $userJobTime, $userJobTimePartielOrFullTime);
         $this->session->set_flashdata('message', 'Vos préférences ont bien été mises à jour !');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);

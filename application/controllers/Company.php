@@ -560,6 +560,7 @@ class Company extends CI_Controller {
         $companySecteur = $this->input->post('secteursAll');
         $companyLocalisation = $this->input->post('companyLocalisation');
         $userLinkedinLink = $this->input->post('userLinkedinLink');
+        $userTelephone = $this->input->post('userTelephone');
         $company = $this->Company_model->getCompanyData($userId);
         $companyId = $company->idCompany;
         $companySecteur = implode(',', $companySecteur);
@@ -647,7 +648,7 @@ class Company extends CI_Controller {
             }
         }
 
-        $this->Company_model->updateCompanyData($companyId, $companyName, $companySlogan, $companySecteur, $companyLocalisation, $userId, $userLinkedinLink);
+        $this->Company_model->updateCompanyData($companyId, $companyName, $companySlogan, $companySecteur, $companyLocalisation, $userId, $userLinkedinLink, $userTelephone);
         $this->session->set_flashdata('message', 'Vos informations ont bien été mises à jour !');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);

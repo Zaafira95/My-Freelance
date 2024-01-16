@@ -52,7 +52,7 @@
                 <div class="relative">
                     <!-- Avatar avec une bordure primary de 3px -->
                     <div class="rounded-full border-10 border-primary cursor-pointer" onclick="toggleDropdown()">
-                    <img src="<?php echo base_url($user->userAvatarPath); ?>" alt="Avatar" class="w-10 h-10 p-0.5 rounded-full ring-2 ring-primary">
+                    <img src="<?php echo base_url($company->companyLogoPath); ?>" alt="Avatar" class="w-10 h-10 p-0.5 rounded-full ring-2 ring-primary">
                     </div>
                     <!-- Dropdown Menu -->
                     <div id="dropdown" class=" absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md overflow-hidden shadow-xl z-10 hidden">

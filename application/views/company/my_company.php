@@ -38,6 +38,11 @@ include(APPPATH . 'views/layouts/company/header.php');
                 <div class="bg-white dark:bg-gray-800 relative rounded-lg w-full h-auto mb-8">
                     <div class="bg-white dark:bg-gray-800 rounded-lg w-full h-32 flex items-center justify-center">
                         <div class="bg-white dark:bg-gray-800 w-full h-full flex items-center justify-center">
+                            <?php 
+                                if($company->companyBannerPath == null){
+                                    $company->companyBannerPath = 'assets/img/default-image-input.jpg';
+                                }
+                            ?>
                             <img id="banner-image" src="<?=base_url($company->companyBannerPath)?>" class="object-cover w-full h-full rounded-lg dark:bg-gray-800" alt="Image de l'entreprise">
                         </div>
                         <div class="absolute bottom-0 right-0 bg-white rounded-full">
@@ -82,12 +87,15 @@ include(APPPATH . 'views/layouts/company/header.php');
                         </select> 
                     </div>                    
                     <label for="companyCity" class="block mb-1 font-medium text-gray-900 dark:text-white">Localisation *</label>
-                    <div class="relative city-search-container w-full">
+                    <div class="relative city-search-container w-full mb-1">
                         <input type="text" id="citySearch" name="companyLocalisation" value="<?=$company->companyLocalisation?>" placeholder="Cherchez votre ville" class="border p-2 rounded-lg w-full text-black">
                             <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                     </div>
                     <label for="userLinkedinLink" class="block mb-1  font-medium text-gray-900 dark:text-white">Lien LinkedIn</label>
                         <input type="text" name="userLinkedinLink" id="userLinkedinLink" value="<?=$user->userLinkedinLink?>" class="mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    
+                    <label for="userTelephone" class="block mb-1  font-medium text-gray-900 dark:text-white">Numéro de téléphone</label>
+                        <input type="number" name="userTelephone" id="userTelephone" value="<?=$user->userTelephone?>" class="mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
@@ -288,6 +296,11 @@ include(APPPATH . 'views/layouts/company/header.php');
                 <div class="bg-white dark:bg-gray-800 relative rounded-lg w-full h-auto mb-8">
                     <div class="bg-white dark:bg-gray-800 rounded-lg w-full h-48 flex items-center justify-center">
                         <div class="bg-white dark:bg-gray-800 w-full h-full flex items-center justify-center">
+                            <?php 
+                                if($company->companyBannerPath == null){
+                                    $company->companyBannerPath = 'assets/img/default-image-input.jpg';
+                                }
+                            ?>
                             <img src="<?=base_url($company->companyBannerPath)?>" class="object-cover w-full h-full rounded-lg dark:bg-gray-800" alt="Image de l'entreprise">
                         </div>
                     </div>                    

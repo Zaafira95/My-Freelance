@@ -70,6 +70,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
             </div>
             <!-- Modal body -->
             <form action="<?=base_url("user/updateAvailability")?>" method="post">
+
                     <div class="mt-4 mb-4">
                         <label for="name" class="text-2xl lg:text-base block mb-2  font-medium text-gray-900 dark:text-white">Êtes-vous disponible pour travailler dès maintenant ?</label>
                         <label class="text-2xl lg:text-base text-gray-500 mr-3 dark:text-gray-400">Non</label>
@@ -153,6 +154,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                 ?>
 
                         </div>
+
                     <label for="userFirstName" class="text-2xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Votre prénom *</label>
                         <input type="text" name="userFirstName" id="userFirstName" value="<?=$user->userFirstName?>" class="text-2xl lg:text-base mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                     <label for="userLastName" class="text-2xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Votre nom *</label>
@@ -220,56 +222,51 @@ include(APPPATH . 'views/layouts/user/header.php' );
                     <label class="text-2xl lg:text-base text-gray-500 mr-3 dark:text-gray-400">Non</label>
                     <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description" <?php echo $checkboxChecked; ?> class="text-2xl lg:text-base relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-green-200">
                     <label class="text-2xl lg:text-base text-gray-500 ml-3 dark:text-gray-400">Oui</label>
-
                     <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="text-2xl lg:text-base bg-gray-50 border mt-2 border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <?php
-                        $userJobTimePartielOrFullTime = ['Temps Plein', 'Temps Partiel'];
-                        foreach ($userJobTimePartielOrFullTime as $option) {
-                            echo '<option value="' . $option . '"';
-                            if ($user->userJobTimePartielOrFullTime === $option) {
+                        <option value="temps-plein" 
+                            <?php if ($user->userJobTimePartielOrFullTime === "temps-plein") {
                                 echo ' selected';
-                            }
-                            echo '>' . $option . '</option>';
-                        }
-                        ?>
+                            } ?>> Temps Plein 
+                        </option>
+                        <option value="temps-partiel" 
+                            <?php if ($user->userJobTimePartielOrFullTime === "temps-partiel") {
+                                echo ' selected';
+                            } ?>> Temps Partiel 
+                        </option>
                     </select>
 
                     <label for="userJobType" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Type de poste</label>
                     
                     <div class="flex flex-1 gap-6 mb-3">
-                        <div class="flex-1">
-                            <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700 w-full">
-                                <input id="bordered-checkbox-1" type="checkbox" value="Remote" name="userJobType[]" class="text-2xl lg:text-base w-6 h-6 lg:w-4 lg:h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" 
-                                <?php
-                                $jobTypeArray = explode(',', $user->userJobType);
-                                if (in_array('Remote', $jobTypeArray)) {
-                                    echo 'checked="checked"';
-                                }
-                                ?>>
-                                <label for="bordered-checkbox-1" class="text-2xl lg:text-base py-4 ml-2  font-medium text-gray-900 dark:text-white">Télétravail</label>
-                            </div>
+                        <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700 w-full mr-4">
+                            <input id="teletravail" type="radio" value="Remote" name="userJobType" class="text-2xl lg:text-base w-6 h-6 lg:w-4 lg:h-4  text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" <?php echo ($user->userJobType === 'Remote') ? 'checked' : ''; ?> required>
+                            <label for="teletravail" class="text-2xl lg:text-base py-4 ml-2  font-medium text-gray-900 dark:text-white">Télétravail</label>
                         </div>
-                        <div class="flex-1">
-                            <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700 w-full">
-                                <input id="bordered-checkbox-2" type="checkbox" value="Physique" name="userJobType[]" class="text-2xl lg:text-base w-6 h-6 lg:w-4 lg:h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" <?php
-                                if (in_array('Physique', $jobTypeArray)) {
-                                    echo 'checked="checked"';
-                                }
-                                ?>>
-                                <label for="bordered-checkbox-2" class="text-2xl lg:text-base py-4 ml-2  font-medium text-gray-900 dark:text-white">Physique</label>
-                            </div>
+                        <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700 w-full mr-4">
+                            <input id="hybride" type="radio" value="Hybride" name="userJobType" class="text-2xl lg:text-base w-6 h-6 lg:w-4 lg:h-4  text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" <?php echo ($user->userJobType === 'Hybride') ? 'checked' : ''; ?>>
+                            <label for="hybride" class="text-2xl lg:text-base py-4 ml-2  font-medium text-gray-900 dark:text-white">Hybride</label>
                         </div>
-                        
+                        <div class="flex items-center pl-4 border  border-gray-200 rounded dark:border-gray-700 w-full mr-4">
+                            <input id="sur-site" type="radio" value="Physique" name="userJobType" class="text-2xl lg:text-base w-6 h-6 lg:w-4 lg:h-4  text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" <?php echo ($user->userJobType === 'Physique') ? 'checked' : ''; ?>>
+                            <label for="sur-site" class="text-2xl lg:text-base py-4 ml-2  font-medium text-gray-900 dark:text-white">Physique</label>
+                        </div>
                     </div>
                     <p id="errorMessageJobType" class="text-2xl lg:text-base text-red-500" style="display:none;">Veuillez choisir un type de poste</p>
-
-
-
                     <label for="userVille" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Localisation</label>
-                    <input type="text" name="userVille" id="userVille" value="<?=$user->userVille?>" class="text-2xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Ville">
-
+                    <!--<input type="text" name="userVille" id="userVille" value="<?=$user->userVille?>" class="text-2xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Ville">-->
+                    <div id="step3-freelance-city">    
+                        <div class="relative city-search-container w-full mr-4">
+                            <input type="text" id="citySearch" name="userVille" placeholder="Cherchez votre ville" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" >
+                                <div id="cities-list" class="text-2xl lg:text-base absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
+                        </div>
+                        <div class="flex items-center mt-2">
+                            <input type="checkbox" id="userEtranger" name="userEtranger">
+                            <label class="text-2xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Étranger</label>
+                        </div>
+                    </div>
                     <label for="userJobTime" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Durée de la mission</label>
                     <select id="userJobTime" name="userJobTime" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
                         <?php
                         $jobTimeOptions = ['Courte Durée', 'Longue Durée', 'Durée indéfinie'];
                         foreach ($jobTimeOptions as $option) {
@@ -451,8 +448,8 @@ foreach ($experiences as $index => $experience) {
 ?>
 
 <!-- User Add Experience -->
-
 <div id="addUserExperience" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
+
     <div class="relative p-4 w-80 lg:w-60 h-90 overflow-y-auto no-scrollbar">
         <!-- Modal content -->
         <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
@@ -544,9 +541,7 @@ foreach ($experiences as $index => $experience) {
     </div>
 </div>
 
-
 <!-- User Add Attachment -->
-
 <div id="addUserAttachment" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
     <div class="relative p-4 w-80 lg:w-60 h-full md:h-auto">
         <!-- Modal content -->
@@ -745,6 +740,33 @@ if ($totalCount > 0) {
 } else {
   $averageStars = 0;
 }
+
+// Vérification taux de complétion du profil
+$totalInfos = 0;
+$tauxCompletion = 40;
+if(is_array($skills) && !empty($skills)){
+    $totalInfos += 1;
+}
+if(is_array($experiences) && !empty($experiences)){
+    $totalInfos += 1;
+}
+if(is_array($attachments) && !empty($attachments)){
+    $totalInfos += 1;
+}
+if((isset($user->userPortfolioLink) && !empty($user->userPortfolioLink)) || (isset($user->userLinkedinLink) && !empty($user->userLinkedinLink)) || (isset($user->userGithubLink) && !empty($user->userGithubLink)) || (isset($user->userDribbleLink) && !empty($user->userDribbleLink)) || (isset($user->userBehanceLink) && !empty($user->userBehanceLink))){
+    $totalInfos += 1;
+}
+
+if($totalInfos == 1 ){
+    $tauxCompletion = 55;
+} else if ($totalInfos == 2 ){
+    $tauxCompletion = 70;
+} else if ($totalInfos == 3 ){
+    $tauxCompletion = 85;
+} else if ($totalInfos == 4 ){
+    $tauxCompletion = 100;
+}
+
 ?>
 <div class="absolute hidden top-0 right-4 mt-4 mb-4">
     <svg id="heart" class="w-5 h-5 text-red-600 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 30" xmlns="http://www.w3.org/2000/svg">
@@ -756,6 +778,20 @@ if ($totalCount > 0) {
     <div class="lg:flex flex-wrap justify-between mx-auto max-w-screen-xl h-full">
         <div class="lg:flex h-full w-full mb-3">
             <div class="lg:rounded-lg h-full w-full mb-4 dark:text-white ">
+               <?php
+                if ($tauxCompletion != 100){
+                ?>
+                <div class="relative py-4 mb-4">
+                    <p class="text-lg mb-2">Votre profil est complété à <?=$tauxCompletion?>% </p>
+                    <div class="relative flex flex-grow items-center w-full h-4 bg-primary-light rounded-md" style="width: 100%;">
+                        <div class="absolute inset-0 bg-secondary rounded-lg" style="width: 100%;"></div>
+                        <div class="absolute inset-0 bg-primary rounded-lg" style="width: <?=$tauxCompletion?>%;"></div>
+                    </div>
+                </div>
+                
+                <?php
+                }
+                ?>
                 <div class="relative flex grid-cols-2 items-center overflow-hidden bg-white rounded-lg mb-4 dark:bg-gray-800 py-4 px-4">
                     <div class="flex flex-1">
                         <div>
@@ -872,7 +908,7 @@ if ($totalCount > 0) {
                                     <div class="flex grid-cols-2 items-center mb-4">
                                         <?php
                                         // user is available or not
-                                        if($user->userJobType == "Remote,Physique"){
+                                        if($user->userJobType == "Hybride"){
                                         ?>
                                             <div>
                                                 <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-pink-300 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">✈️</p>
@@ -897,9 +933,9 @@ if ($totalCount > 0) {
                                         <div>
                                             <p class="text text-2xl lg:text-lg">Type de poste</p>
                                             <?php
-                                                if($user->userJobType == "Remote,Physique"){
+                                                if($user->userJobType == "Hybride"){
                                                 ?>
-                                                    <p class="font-bold text-3xl lg:text-xl">Télétravail & Physique</p>
+                                                    <p class="font-bold text-3xl lg:text-xl">Hybride</p>
                                                 <?php
                                                     }else if($user->userJobType == "Remote"){
                                                 ?>
@@ -1244,6 +1280,7 @@ if ($totalCount > 0) {
                             </div>
                         </div>
                         <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
+
                             <h2 class="text-3xl lg:text-xl font-bold mb-4">Expériences</h2>
                             <?php
                             if (is_array($experiences) && !empty($experiences)) {
@@ -1281,6 +1318,7 @@ if ($totalCount > 0) {
                                                     $dateDebut = strtr($dateDebut, $months);
                                                     $dateFin = strtr($dateFin, $months);
                                                     ?>
+
                                                     <p class="text-2xl lg:text-base"><?= $dateDebut.' - '. $dateFin?></p>
                                                 </div>
                                                 
@@ -1350,6 +1388,7 @@ if ($totalCount > 0) {
                                     }
                                 }
                             ?>
+
                             <?php } else { ?>
                                 <p class="mt-2 mb-2 text-2xl lg:text-base">Aucune expérience disponible.</p>
                                 <button id="addUserExperience" data-modal-toggle="addUserExperience" class="text-2xl lg:text-base bg-primary text-white px-4 py-2 mt-2 rounded-full">Ajouter une expérience</button>
@@ -1393,6 +1432,7 @@ if ($totalCount > 0) {
 
                                     <?php } ?>
                                 </div>
+
 
                             <?php } else { ?>
                                 <p class="text-2xl lg:text-base mt-2 mb-2">Aucune pièce jointe disponible.</p>
@@ -1443,21 +1483,73 @@ if ($totalCount > 0) {
 
     $(document).ready(function() {
 
+    
+        $('#citySearch').on('keyup', function() {
+            let term = $(this).val();
+            if(term.length > 2) { // Recherche après 2 caractères
+                $.post('user/search_cities', { term: term }, function(data) {
+                    let cities = JSON.parse(data);
+                    if(cities.length > 0) {
+                        // Ajoutez la classe .has-border si des résultats sont retournés
+                        $('#cities-list').addClass('has-border');
+                    } else {
+                        // Supprimez la classe .has-border si aucun résultat n'est retourné
+                        $('#cities-list').removeClass('has-border');
+                    }
+                    $('#cities-list').empty();
+                    cities.forEach(function(city) {
+                        $('#cities-list').append(`<div class="city-item p-2 hover:bg-gray-200 cursor-pointer" data-id="${city.geoname_id}">${city.name}</div>`);
+                    });
+                });
+            }
+            else {
+                // Supprimez la classe .has-border si l'input est trop court
+                $('#cities-list').removeClass('has-border').empty();
+            }
+        });
+
+        $(document).on('click', '.city-item', function() {
+            let cityName = $(this).text();
+            $('#citySearch').val(cityName);  // Mettez à jour le champ de saisie avec le nom de la ville sélectionnée
+            $('#cities-list').empty(); // Videz la liste
+            $('#cities-list').removeClass('has-border').empty();
+        });
+
+        // Pour fermer la liste lorsque vous cliquez en dehors
+        $(document).on('click', function(event) {
+            // et n'est pas sur un élément à l'intérieur de la liste (#cities-list)...
+            if (!$(event.target).closest('#citySearch, #cities-list').length) {
+                // ... alors videz et fermez la liste.
+                $('#cities-list').empty().removeClass('has-border');
+            }
+        });
+
+        $('#userEtranger').change(function() {
+            if ($(this).is(':checked')) {
+                $('#citySearch').val('');
+            }
+        });
+        
+        $('#citySearch').on('input', function() {
+            $('#userEtranger').prop('checked', false);
+        });
+
         const jobsChoices = new Choices('#jobsAll', {
-        searchEnabled: true,
-        removeItemButton: true,
-        itemSelectText: '',
-        placeholder: true, // Ajoutez cette ligne pour activer le placeholder
-        placeholderValue: 'Sélectionnez votre métier', // Texte du placeholder
+            searchEnabled: true,
+            removeItemButton: true,
+            itemSelectText: '',
+            placeholder: true, // Ajoutez cette ligne pour activer le placeholder
+            placeholderValue: 'Sélectionnez votre métier', // Texte du placeholder
 
-    });
+        });
 
-        /*const expertiseChoices = new Choices('#expertiseAll', {
-        searchEnabled: true,
-        removeItemButton: true,
-        itemSelectText: '',
-        placeholder: true, // Ajoutez cette ligne pour activer le placeholder
-        placeholderValue: 'Sélectionnez votre expertise', // Texte du placeholder
+            /*const expertiseChoices = new Choices('#expertiseAll', {
+            searchEnabled: true,
+            removeItemButton: true,
+            itemSelectText: '',
+            placeholder: true, // Ajoutez cette ligne pour activer le placeholder
+            placeholderValue: 'Sélectionnez votre expertise', // Texte du placeholder
+
 
     });*/
     
@@ -1471,7 +1563,7 @@ if ($totalCount > 0) {
                     $('#jobs-list').append(`<div class="text-2xl lg:text-base job-item" data-id="${job.jobId}">${job.jobName}</div>`);
                 });
             });
-        });
+
 
         $(document).on('click', '.job-item', function(){
             let jobId = $(this).data('id');
@@ -1481,7 +1573,6 @@ if ($totalCount > 0) {
                 $('#selected-jobs').append(`<div class="text-2xl lg:text-base selected-job" data-id="${jobId}">${jobName}</div>`);
             }
         });
-    });
 
         
     });

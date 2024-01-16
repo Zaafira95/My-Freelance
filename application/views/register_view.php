@@ -460,7 +460,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="step5-esn" style="display:block; height:80%;">
+                        <div id="step5-esn" style="display:none; height:80%;">
                             <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
                                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                     <div class="flex items-center">
@@ -614,6 +614,7 @@
 
     $(document).ready(function() {
 
+        /*
         let photoCounter = 0;
 
         $('#add-photo-btn').click(function() {
@@ -658,6 +659,7 @@
                 $('#add-photo-btn').removeClass('hidden');
             }
         });
+        */
 
         $(document).on('click', '.delete-photo', function() {
             // Trouve le conteneur parent '.new-photo-div' de ce bouton

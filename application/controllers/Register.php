@@ -265,7 +265,9 @@ class Register extends CI_Controller {
             // Enregistrement réussi
             $this->session->set_flashdata('message', 'Vous êtes bien enregistré. Connectez-vous pour accéder à votre compte.');
             $this->session->set_flashdata('status', 'success');
-            $this->load->view('login_view');
+            if($userType == 'freelance') {
+                $this->load->view('login_view');
+            }
         } else {
             // Erreur lors de l'enregistrement
             echo "Erreur lors de l'enregistrement";

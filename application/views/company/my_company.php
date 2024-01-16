@@ -288,6 +288,11 @@ include(APPPATH . 'views/layouts/company/header.php');
                 <div class="bg-white dark:bg-gray-800 relative rounded-lg w-full h-auto mb-8">
                     <div class="bg-white dark:bg-gray-800 rounded-lg w-full h-48 flex items-center justify-center">
                         <div class="bg-white dark:bg-gray-800 w-full h-full flex items-center justify-center">
+                            <?php 
+                                if($company->companyBannerPath == null){
+                                    $company->companyBannerPath = 'assets/img/default-image-input.jpg';
+                                }
+                            ?>
                             <img src="<?=base_url($company->companyBannerPath)?>" class="object-cover w-full h-full rounded-lg dark:bg-gray-800" alt="Image de l'entreprise">
                         </div>
                     </div>                    

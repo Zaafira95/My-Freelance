@@ -1140,18 +1140,10 @@
         // }
 
         function goToStep1(){
-            var step1 = document.getElementById('step1-freelance');
-            var step2 = document.getElementById('step2-freelance');
-            //var step3 = document.getElementById('step3');
-            //var step4 = document.getElementById('step4');
-            // var step5 = document.getElementById('step5');
-            // var step6 = document.getElementById('step6');
+            var step1 = document.getElementById('step1');
+            var step2 = document.getElementById('step2');
 
             step2.style.display = 'none';
-            // step3.style.display = 'none';
-            // step4.style.display = 'none';
-            // step5.style.display = 'none';
-            // step6.style.display = 'none';
             step1.style.display = 'block';
         }
 
@@ -1178,14 +1170,9 @@
                         var step2 = document.getElementById('step2');
                         var step3_esn = document.getElementById('step3-esn');
                         var step3_freelance = document.getElementById('step3-freelance');
-                        // var step5 = document.getElementById('step5');
-                        // var step6 = document.getElementById('step6');
                         step1.style.display = 'none';
                         step3_esn.style.display = 'none';
                         step3_freelance.style.display = 'none';
-                        // step4.style.display = 'none';
-                        // step5.style.display = 'none';
-                        // step6.style.display = 'none';
                         step2.style.display = 'block';
                     } else {
                         // L'e-mail existe déjà ou les mots de passe ne correspondent pas

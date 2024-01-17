@@ -16,148 +16,131 @@ include(APPPATH . 'views/layouts/user/header.php' );
 
 </head>   
 <div id="updateProductModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
-        <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
-            <!-- Modal content -->
-            <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
-                <!-- Modal header -->
-                <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        Votre disponibilité
-                    </h3>
-                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateProductModal">
-                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                        <span class="sr-only">Fermer</span>
+    <div class="relative p-4 w-80 lg:w-60 h-full md:h-auto">
+        <!-- Modal content -->
+        <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+            <!-- Modal header -->
+            <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+                <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
+                    Votre disponibilité
+                </h3>
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateProductModal">
+                    <svg aria-hidden="true" class="w-8 h-8 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <span class="sr-only">Fermer</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <form action="<?=base_url("user/updateAvailability")?>" method="post">
+
+                    <div class="mt-4 mb-4">
+                        <label for="name" class="text-2xl lg:text-base block mb-2  font-medium text-gray-900 dark:text-white">Êtes-vous disponible pour travailler dès maintenant ?</label>
+                        <label class="text-2xl lg:text-base text-gray-500 mr-3 dark:text-gray-400">Non</label>
+                        <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description" <?php echo $checkboxChecked; ?> class="text-2xl lg:text-base relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-green-200">
+                        <label class="text-2xl lg:text-base text-gray-500 ml-3 dark:text-gray-400">Oui</label>
+                    </div>
+                <div class="flex items-center space-x-4 mt-4">
+                    <button type="submit" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                        Valider
+                    </button>
+                    <button type="button" data-modal-toggle="updateProductModal" class="text-2xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                        Annuler
                     </button>
                 </div>
-                <!-- Modal body -->
-                <form action="<?=base_url("user/updateAvailability")?>" method="post">
-                        <div>
-                            <label for="name" class="block mb-2 font-medium text-gray-900 dark:text-white">Êtes-vous disponible pour travailler dès maintenant ?</label>
-                            <label class="text-gray-500 mr-3 dark:text-gray-400">Non</label>
-                            <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description" <?php echo $checkboxChecked; ?> class="relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-green-200">
-                            <label class="text-gray-500 ml-3 dark:text-gray-400">Oui</label>
-                            <label for="name" class="block mb-2 mt-2 font-medium text-gray-900 dark:text-white">Combien de jours par semaine êtes-vous disponible ?</label>
-                            <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="bg-gray-50 border mt-2 border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <?php
-                                $userJobTimePartielOrFullTime = ['Temps Plein', 'Temps Partiel'];
-                                foreach ($userJobTimePartielOrFullTime as $option) {
-                                    echo '<option value="' . $option . '"';
-                                    if ($user->userJobTimePartielOrFullTime === $option) {
-                                        echo ' selected';
-                                    }
-                                    echo '>' . $option . '</option>';
-                                }
-                                ?>
-                            </select>
-                        </div>
-                    <div class="flex items-center space-x-4 mt-4">
-                        <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                            Valider
-                        </button>
-                        <button type="button" data-modal-toggle="updateProductModal" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
-                            Annuler
-                        </button>
-                    </div>
-                </form>
-            </div>
+            </form>
         </div>
     </div>
-
-<!-- <div class="absolute hidden top-0 right-4 mt-4 mb-4">
-    <svg id="heart" class="w-5 h-5 text-red-600 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 30" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.879c-2.484-4.375-12-1.82-12 4.879 0 5.572 5.126 7.664 12 14.121 6.874-6.457 12-8.549 12-14.121 0-6.699-9.516-9.254-12-4.879z"/>
-    </svg>
-</div> -->
-<div class="px-4 lg:px-6 py-6 h-90 overflow-y-auto no-scrollbar">
-    <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl h-full">
-        <div class="w-full flex gap-6 h-full mb-3">
-            <div class="w-1/4 sticky top-0">
-                <div class="bg-white rounded-lg h-full overflow-y-auto no-scrollbar mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                    <h3 class="text-xl font-medium mt-2">Filtre</h3>
-                    <h4 class="text-lg font-medium mt-4">Localisation</h4>
+</div>
+<div class="px-8 py-6 lg:px-4 lg:py-6 h-90 overflow-y-auto no-scrollbar ">
+    <div class="justify-between items-center mx-auto max-w-screen-xl h-full">
+        <div class="lg:flex gap-6 h-full mb-3">
+            <div class=" w-full lg:w-1/4 md:block md:sticky md:top-0 z-10">
+                <!-- Button to show filer block on mobile -->
+                <div class="text-right mb-4 lg:hidden">
+                    <button id="showFilterButton" class="text-4xl text-primary border p-2 border-primary  rounded-lg 2 hover:bg-primary-900 hover:text-white">
+                        <i class="fas fa-sliders-h"></i>
+                    </button>
+                </div>
+                <div class="hidden lg:block bg-white rounded-lg h-full overflow-y-auto no-scrollbar lg:no-shadow shadow-lg mb-8 lg:mb-4 p-4 dark:bg-gray-800 dark:text-white" id="FilterMission">
+                    <h3 class="text-3xl lg:text-lg font-medium mt-2">Filtre</h3>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Localisation</h4>
                         <div class="flex items-center mt-2">
-                            <i class="fa fa-map-marker-alt mr-3"></i>    
+                            <i class="text-3xl lg:text-base fa fa-map-marker-alt mr-3"></i>    
                             <div class="relative city-search-container w-full">
-                                <input type="text" id="citySearch" value="<?=$user->userVille?>" placeholder="Cherchez votre ville" class="border p-2 rounded-lg w-full text-black">
-                                    <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
+                                <input type="text" id="citySearch" value="<?=$user->userVille?>" placeholder="Cherchez votre ville" class="text-3xl lg:text-lg border p-2 rounded-lg w-full text-black">
+                                <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                             </div>
                         </div>
-                    <h4 class="text-lg font-medium mt-4">Type de poste</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Type de poste</h4>
                     <div class="mt-2">
-                        <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="temps-plein" <?= ($user->userJobTimePartielOrFullTime == 'temps-plein') ? 'checked' : '' ?>>
-                            <span class="ml-2">Temps plein</span>
+                        <label class="flex items-center ">
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="temps-plein" <?= ($user->userJobTimePartielOrFullTime == 'temps-plein') ? 'checked' : '' ?>>
+                            <span class="ml-2 text-3xl lg:text-base">Temps plein</span>
                         </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="temps-partiel" <?= ($user->userJobTimePartielOrFullTime == 'temps-partiel') ? 'checked' : '' ?>>
-                            <span class="ml-2">Temps partiel</span>
+                        <label class="flex items-center text-xl lg:text-base">
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="temps-partiel" <?= ($user->userJobTimePartielOrFullTime == 'temps-partiel') ? 'checked' : '' ?>>
+                            <span class="ml-2 text-3xl lg:text-base">Temps partiel</span>
                         </label>
                     </div>
-                    <h4 class="text-lg font-medium mt-4">Durée de la mission</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Durée de la mission</h4>
                     <div class="mt-2">
-                        <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="courte" <?= ($user->userJobTime == 'courte') ? 'checked' : '' ?>>
-                            <span class="ml-2">Courte durée</span>
+                        <label class="flex items-center text-xl lg:text-base">
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="courte" <?= ($user->userJobTime == 'Courte Durée') ? 'checked' : '' ?>>
+                            <span class="ml-2 text-3xl lg:text-base">Courte durée</span>
                         </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="longue" <?= ($user->userJobTime == 'longue') ? 'checked' : '' ?>>
-                            <span class="ml-2">Longue durée</span>
+                        <label class="flex items-center text-xl lg:text-base">
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="longue" <?= ($user->userJobTime == 'Longue Durée') ? 'checked' : '' ?>>
+                            <span class="ml-2 text-3xl lg:text-base">Longue durée</span>
                         </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="indefinie" <?= ($user->userJobTime == 'indefinie') ? 'checked' : '' ?>>
-                            <span class="ml-2">Durée indéfinie</span>
+                        <label class="flex items-center text-xl lg:text-base">
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="indefinie" <?= ($user->userJobTime == 'Durée indéfinie') ? 'checked' : '' ?>>
+                            <span class="ml-2 text-3xl lg:text-base">Durée indéfinie</span>
                         </label>
                     </div>
-                    <h4 class="text-lg font-medium mt-4">Mode de déroulement</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Mode de déroulement</h4>
                     <div class="mt-2">
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="site">
-                            <span class="ml-2">Sur site</span>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="site" <?= ($user->userJobType === 'Physique') ? 'checked' : '' ?>>
+                            <span class="ml-2 text-3xl lg:text-base">Sur site</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="teletravail" <?php
-                                $jobTypeArray = explode(',', $user->userJobType);
-                                if (in_array('Remote', $jobTypeArray)) {
-                                    echo 'checked="checked"';
-                                }
-                                ?>>
-                            <span class="ml-2">Télétravail</span>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="teletravail" <?= ($user->userJobType === 'Remote') ? 'checked' : '' ?>>
+                            <span class="ml-2 text-3xl lg:text-base">Télétravail</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="hybride">
-                            <span class="ml-2">Hybride</span>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="hybride" <?= ($user->userJobType === 'Hybride') ? 'checked' : '' ?>>
+                            <span class="ml-2 text-3xl lg:text-base">Hybride</span>
                         </label>
                     </div>
-                    <h4 class="text-lg font-medium mt-4">Niveau d'expérience</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Niveau d'expérience</h4>
                     <div class="mt-2">
-                        <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="junior" <?= ($user->userExperienceYear === 'junior') ? 'checked' : '' ?>>
-                            <span class="ml-2">Junior (1 à 2 ans)</span>
+                        <label class="flex items-center text-xl lg:text-base">
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="junior" <?= ($user->userExperienceYear === 'junior') ? 'checked' : '' ?>>
+                            <span class="ml-2 text-3xl lg:text-base">Junior (1 à 2 ans)</span>
                         </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="intermediaire" <?= ($user->userExperienceYear === 'intermediaire') ? 'checked' : '' ?>>
-                            <span class="ml-2">Intermédiaire (3 à 5 ans)</span>
+                        <label class="flex items-center text-xl lg:text-base">
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="intermediaire" <?= ($user->userExperienceYear === 'intermediaire') ? 'checked' : '' ?>>
+                            <span class="ml-2 text-3xl lg:text-base">Intermédiaire (3 à 5 ans)</span>
                         </label>
-                        <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="expert" <?= ($user->userExperienceYear === 'expert') ? 'checked' : '' ?>>
-                            <span class="ml-2">Expert (+ 5 ans)</span>
+                        <label class="flex items-center text-xl lg:text-base">
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="expert" <?= ($user->userExperienceYear === 'expert') ? 'checked' : '' ?>>
+                            <span class="ml-2 text-3xl lg:text-base">Expert (+ 5 ans)</span>
                         </label>
                     </div>
-                    <h4 class="text-lg font-medium mt-4">TJM</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">TJM</h4>
                     <div class="mt-2 mr-3">
                         <div id="tjm-slider" class="w-full mt-2"></div>
                         <div class="flex justify-between mt-2">
-                            <span id="tjm-min" class="text-sm">300€</span>
-                            <span id="tjm-max" class="text-sm">1200€</span>
+                            <span id="tjm-min" class="text-3xl lg:text-base">300€</span>
+                            <span id="tjm-max" class="text-3xl lg:text-base">1200€</span>
                         </div>
                     </div>
                 
-                    <h4 class="text-lg font-medium mt-4">Compétences</h4>
-                    <div class="w-full max-w-xs mx-auto mt-5 text-black">
+                    <h4 class="text-3xl lg:text-base font-medium mt-4">Compétences</h4>
+                    <div class="w-full mx-auto mt-5 text-black">
                         <!-- <label for="skillsAll" class="block text-sm font-medium text-gray-700">Sélectionnez vos compétences</label> -->
-                        <select id="skillsAll" name="skillsAll[]" multiple class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <select id="skillsAll" name="skillsAll[]" multiple class="text-3xl lg:text-base mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
                             <?php foreach ($skillsAll as $skill): ?>
-                                <option class="text-black" value="<?= $skill['skillId'] ?>" 
+                                <option class="text-3xl lg:text-base text-black" value="<?= $skill['skillId'] ?>" 
                                     <?php if (!empty($skills)): ?>
                                         <?php foreach ($skills as $userSkill): ?>
                                             <?= ($userSkill->skillId == $skill['skillId']) ? 'selected' : '' ?>
@@ -168,7 +151,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                         </select>
                     </div>
                     <div class="flex justify-between mt-6">
-                        <button id="resetFiltersButton" class="text-primary border border-primary px-4 py-1 rounded-lg 2 hover:bg-primary-900 hover:text-white">Effacer</button>
+                        <button id="resetFiltersButton" class="text-3xl lg:text-base text-primary border border-primary px-4 py-1 rounded-lg 2 hover:bg-primary-900 hover:text-white">Effacer</button>
                     </div>
 
                     
@@ -182,12 +165,12 @@ include(APPPATH . 'views/layouts/user/header.php' );
                 
             </div>
             <div class="w-full overflow-y-auto no-scrollbar">
+                <!-- Barre de recherche -->
                 <div class="bg-primary rounded-lg h-20vh p-4 text-white">
-                    <p class="font-bold">Hello, <?=$user->userFirstName?></p>
-                    <p class="font-normal mt-2 mb-2">Découvrez la manière la plus rapide et efficace de décrocher une mission.</p>
-
+                    <p class="text-3xl lg:text-lg font-bold">Hello, <?=$user->userFirstName?></p>
+                    <p class="text-3xl lg:text-base mt-2 mb-2">Découvrez la manière la plus rapide et efficace de décrocher une mission.</p>
                     <div class="flex w-full">
-                        <input type="text" id="search-input" class="w-full bg-white bg-opacity-20 rounded-lg p-2 placeholder-white mr-2 text-center" placeholder="Ecrivez le nom du poste que vous recherchez..." />
+                        <input type="text" id="search-input" class="text-3xl lg:text-base w-full bg-white bg-opacity-20 rounded-lg p-2 placeholder-white mr-2 text-center" placeholder="Ecrivez le nom du poste que vous recherchez..." />
                         <!-- <button class="w-1/5 bg-white text-primary rounded-lg px-4 py-2">Rechercher</button> -->
                     </div>
                 </div>
@@ -576,6 +559,10 @@ include(APPPATH . 'views/layouts/user/header.php' );
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
+    // When you click on showFilterButton the filter block appears in mobile version
+    $('#showFilterButton').click(function() {
+        $('#FilterMission').toggleClass('hidden');
+    });
     $(document).ready(function() {
     
         $('#citySearch').on('keyup', function() {

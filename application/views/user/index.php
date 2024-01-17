@@ -841,8 +841,6 @@ if($totalInfos == 1 ){
 
     });
 
-
-
     //Script selection des compétences
     const skillsChoices = new Choices('#skillsAll', {
         searchEnabled: true,

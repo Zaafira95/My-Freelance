@@ -272,7 +272,7 @@ class User_model extends CI_Model {
         // // get job id from job name
 
         public function getJobId($jobName) {
-            $this->db->select('Jobid');
+            $this->db->select('jobId');
             $this->db->from('Job');
             $this->db->where('jobName', $jobName);
             $query = $this->db->get();

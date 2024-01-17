@@ -38,10 +38,6 @@ include(APPPATH . 'views/layouts/user/header.php' );
     border-radius: 4px;
 }
 
-
-
-
-
 </style>
 
 <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
@@ -1243,7 +1239,7 @@ if($totalInfos == 1 ){
                                 </div>
                                 <div class="display inline">
                                     <p class="mt-2 mb-2 text-2xl lg:text-base">Aucune compétences et expertises renseignées.</p>
-                                    <button id="addUserSkills" data-modal-toggle="addUserSkills" class="text-2xl lg:text-base bg-primary text-white px-4 py-2 mt-2 rounded-full">Ajouter vos compténces</button>
+                                    <button id="addUserSkills" data-modal-toggle="addUserSkills" class="text-2xl lg:text-base py-2 px-4 bg-primary text-white rounded-lg">Ajouter vos compténces</button>
                                 </div>
                                 <?php } ?>
                                 
@@ -1280,7 +1276,6 @@ if($totalInfos == 1 ){
                             </div>
                         </div>
                         <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-
                             <h2 class="text-3xl lg:text-xl font-bold mb-4">Expériences</h2>
                             <?php
                             if (is_array($experiences) && !empty($experiences)) {
@@ -1371,7 +1366,7 @@ if($totalInfos == 1 ){
                                                 </div>
                                                     
                                             <?php endforeach; ?>
-                                                                                        
+                                            </div>                                        
                                         </div>
 
                                         <?php
@@ -1387,17 +1382,25 @@ if($totalInfos == 1 ){
                                         break;
                                     }
                                 }
+                                if ($experienceCount < 3) {
                             ?>
 
-                            <?php } else { ?>
+                                <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
+                                    <button id="addUserExperience" data-modal-toggle="addUserExperience" class="text-3xl lg:text-base py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            <?php 
+                                }
+                            } else { ?>
                                 <p class="mt-2 mb-2 text-2xl lg:text-base">Aucune expérience disponible.</p>
-                                <button id="addUserExperience" data-modal-toggle="addUserExperience" class="text-2xl lg:text-base bg-primary text-white px-4 py-2 mt-2 rounded-full">Ajouter une expérience</button>
+                                <button id="addUserExperience" data-modal-toggle="addUserExperience" class="text-2xl lg:text-base py-2 px-4 bg-primary text-white rounded-lg">Ajouter une expérience</button>
+                                <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
+                                    <button id="addUserExperience" data-modal-toggle="addUserExperience" class="text-3xl lg:text-base py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
                             <?php } ?>
-                            <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
-                                <button id="addUserExperience" data-modal-toggle="addUserExperience" class="text-3xl lg:text-base py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
                         </div> 
                         <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                             <h2 class="text-3xl lg:text-xl font-bold mb-4">Portfolio & Réalisations </h2>

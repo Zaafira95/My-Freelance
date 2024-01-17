@@ -603,7 +603,7 @@ else if ($user->userType == "sales"){
                     <?php if ($companyMission->idMission !== $mission->idMission): ?>
                     <a href="<?=base_url('user/missionView/'.$companyMission->idMission)?>">
                         <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative mr-4">
-                        <div class="w-full h-full flex items-start justify-center" style="width:500px;">
+                        <div class="lg:w-500px h-full flex items-start justify-center" style="width:500px;">
                             <div class="flex items-center">
                                 <div class="mr-4">
                                     <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="w-10 h-10 rounded-full">
@@ -742,13 +742,13 @@ else if ($user->userType == "sales"){
                                     if(isFavorite($companyMission->idMission, $favoriteMissions)){
                                         ?>
                                         <a href="<?php echo base_url('user/removeFromFavorite/'.$companyMission->idMission);?>">
-                                            <i class="fas fa-heart text-xl text-red-800"></i>
+                                            <i class="fas fa-heart text-3xl lg:text-xl text-red-800"></i>
                                         </a>
                                         <?php
                                     } else {
                                         ?>
                                         <a href="<?php echo base_url('user/addToFavorite/'.$companyMission->idMission);?>">
-                                            <i class="far fa-heart text-xl text-red-800"></i>
+                                            <i class="far fa-heart text-3xl lg:text-xl text-red-800"></i>
                                         </a>
                                         <?php
                                     }

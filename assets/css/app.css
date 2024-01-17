@@ -4158,6 +4158,10 @@ body.dark {
     border-bottom-width: 2px;
   }
 
+  .lg\:no-shadow {
+    box-shadow: none;
+  }
+
 
 
 }

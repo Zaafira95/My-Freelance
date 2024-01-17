@@ -69,7 +69,7 @@
                 <div class="flex flex-col">
                     <input type="password" name="userPassword" id="userPassword" placeholder="••••••••" class="rounded-lg p-4 text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 block w-full lg:p-2.5" required="">
                     <div class="mt-4">
-                    <input type="checkbox" id="togglePasswordCheckbox" class="form-checkbox text-primary rounded mr-2">
+                    <input type="checkbox" id="togglePasswordCheckbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox text-primary rounded mr-2">
                     <label for="togglePasswordCheckbox" class="text-3xl lg:text-base font-medium text-gray-900 dark:text-white">Afficher le mot de passe</label>
                     </div>
                 </div>

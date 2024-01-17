@@ -142,11 +142,11 @@ if($totalInfos == 1 ){
                         <i class="fas fa-sliders-h"></i>
                     </button>
                 </div>
-                <div class="hidden lg:block bg-white rounded-lg h-full overflow-y-auto no-scrollbar mb-4 p-4 dark:bg-gray-800 dark:text-white" id="FilterMission">
+                <div class="hidden lg:block bg-white rounded-lg h-full overflow-y-auto no-scrollbar lg:no-shadow shadow-lg mb-8 lg:mb-4 p-4 dark:bg-gray-800 dark:text-white" id="FilterMission">
                     <h3 class="text-3xl lg:text-lg font-medium mt-2">Filtre</h3>
                     <h4 class="text-3xl lg:text-lg font-medium mt-4">Localisation</h4>
                         <div class="flex items-center mt-2">
-                            <i class="fa fa-map-marker-alt mr-3"></i>    
+                            <i class="text-3xl lg:text-base fa fa-map-marker-alt mr-3"></i>    
                             <div class="relative city-search-container w-full">
                                 <input type="text" id="citySearch" value="<?=$user->userVille?>" placeholder="Cherchez votre ville" class="text-3xl lg:text-lg border p-2 rounded-lg w-full text-black">
                                 <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
@@ -261,7 +261,7 @@ if($totalInfos == 1 ){
                 </div>
                 <!-- Fin Barre de recherche -->
                 <!-- Début section pour vous -->
-                <h3 class="text-5xl lg:text-lg font-medium mt-4 mb-4" id="result-section">Pour vous :</h3>
+                <h3 class="text-5xl lg:text-2xl font-medium mt-4 mb-4" id="result-section">Pour vous :</h3>
                 <!-- Début section contenant toutes les missions -->
                 <div class="flex flex-wrap" id="missions-section">
                     <!-- Fonction ajouter favoris -->
@@ -494,8 +494,8 @@ if($totalInfos == 1 ){
                 <!-- Fin section contenant toutes les missions -->
                 <!-- Début section aucune mission trouvée -->
                 <div id="no-mission-found">
-                    <p class="text-3xl lg:text-base mt-6 text-left">Aucune mission n'a été trouvée.</p>
-                    <h3 class="text-5xl lg:text-lg font-medium mt-10" id="result-section">Autres missions :</h3>
+                    <p class="text-3xl lg:text-lg mt-6 text-left">Aucune mission n'a été trouvée.</p>
+                    <h3 class="text-5xl lg:text-2xl font-medium mt-10" id="result-section">Autres missions :</h3>
                     <?php 
                         foreach($missionsPerso as $mission):
                             $dataMissionSkills = [];

@@ -362,7 +362,7 @@ foreach ($experiences as $index => $experience) {
                     </button>
                 </div>
                 <!-- Modal body -->
-                <form action="<?=base_url("user/updateUserExperience/".$experience->idExperience)?>" method="post" enctype="multipart/form-data">
+                <form id="updateUserExperience-form" action="<?=base_url("user/updateUserExperience/".$experience->idExperience)?>" method="post" enctype="multipart/form-data">
                     <div>
                         <label for="userExperienceJob" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Nom de l'experience</label>
                         <input type="text" id="userExperienceJob" name="userExperienceJob" value="<?=$experience->experienceJob?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Titre">
@@ -370,18 +370,18 @@ foreach ($experiences as $index => $experience) {
                         <input type="text" id="userExperienceCompany" name="userExperienceCompany" value="<?=$experience->experienceCompany?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Entreprise">
 
                         <label for="userExperienceDateDebut" class="w-full text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Date de début</label>
-                        <input type="date" id="userExperienceDateDebut" name="userExperienceDateDebut" value="<?=$experience->experienceDateDebut?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <input type="date" id="updateUserExperienceDateDebut" name="userExperienceDateDebut" value="<?=$experience->experienceDateDebut?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                         <label for="userExperienceDateFin" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Date de fin</label>
-                        <input type="date" id="userExperienceDateFin" name="userExperienceDateFin" value="<?=$experience->experienceDateFin?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        
+                        <input type="date" id="updateUserExperienceDateFin" name="userExperienceDateFin" value="<?=$experience->experienceDateFin?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <p id="errorUpdateUserExperienceDate" class="text-red-500" style="display:none;">La date de fin doit être postérieure à la date de début</p>
+
                         <label for="userExperienceDescription" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Description</label>
                         <textarea id="userExperienceDescription" name="userExperienceDescription" rows="3" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><?=$experience->experienceDescription?></textarea>
                     </div>
                     <!-- Rest of the form fields for the experience -->
                     <div class="mt-6 mb-6 bg-white rounded-lg dark:bg-gray-800 text-black">
-                    <label for="userExperienceSkills" class="text-2xl lg:text-lg block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Vos compétences</label>
-
+                        <label for="userExperienceSkills" class="text-2xl lg:text-lg block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Vos compétences</label>
                         <div id="experience-skills-container-<?=$index?>">
                         <?php foreach ($experienceSkills[$experience->idExperience] as $experienceSkill): ?>
                             <div class="flex flex-1 mb-4 skill-row">
@@ -1479,10 +1479,6 @@ if($totalInfos == 1 ){
         var phoneNumber = iti.getNumber();
     });
 
-</script>
-
-
-<script>
 
     $(document).ready(function() {
 
@@ -1552,9 +1548,9 @@ if($totalInfos == 1 ){
             itemSelectText: '',
             placeholder: true, // Ajoutez cette ligne pour activer le placeholder
             placeholderValue: 'Sélectionnez votre expertise', // Texte du placeholder
+*/
 
-
-    });*/
+    });
     
     $(document).ready(function(){
         $('#search-input-job').on('keyup', function(){
@@ -1566,6 +1562,7 @@ if($totalInfos == 1 ){
                     $('#jobs-list').append(`<div class="text-2xl lg:text-base job-item" data-id="${job.jobId}">${job.jobName}</div>`);
                 });
             });
+        })
 
 
         $(document).on('click', '.job-item', function(){
@@ -1576,9 +1573,8 @@ if($totalInfos == 1 ){
                 $('#selected-jobs').append(`<div class="text-2xl lg:text-base selected-job" data-id="${jobId}">${jobName}</div>`);
             }
         });
-
-        
     });
+
     document.addEventListener('DOMContentLoaded', function() {
         const arrow = document.getElementById('skillsArrow');
         const skillsContainer = document.querySelector('.skills-container');
@@ -1773,9 +1769,6 @@ if($totalInfos == 1 ){
         }
     }
 
-</script>
-
-<script>
 document.addEventListener('DOMContentLoaded', function() {
     var errorMessageJobType = document.getElementById('errorMessageJobType');
     var form = document.getElementById('userPreferenceForm');
@@ -1795,8 +1788,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-</script>
-<script>
     function showModal(modalId) {
         const modal = document.getElementById(modalId);
         modal.classList.remove('hidden');
@@ -1956,6 +1947,41 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Afficher la taille maximale autorisée dans le div #fileSizeInfo
         $("#fileSizeInfo").text("La taille maximale autorisée est " + maxSizeInMB + " Mo.");
+    });
+
+    document.getElementById('updateUserExperience-form').addEventListener('submit', function(event) {
+        var startDate = new Date(document.getElementById('updateUserExperienceDateDebut').value);
+        var endDate = new Date(document.getElementById('updateUserExperienceDateFin').value);
+        var errorMessage = document.getElementById('errorUpdateUserExperienceDate');
+
+        if (startDate > endDate) {
+            errorMessage.style.display = 'block';
+            event.preventDefault(); // Empêcher la soumission du formulaire
+        } else {
+            errorMessage.style.display = 'none';
+        }
+    });
+
+    $('#updateUserExperienceDateDebut, #updateUserExperienceDateFin').on('change keyup', function() {
+        var startDate = new Date($('#updateUserExperienceDateDebut').val());
+        var endDate = new Date($('#updateUserExperienceDateFin').val());
+        var errorMessage = $('#errorUpdateUserExperienceDate');
+
+        if (startDate && endDate && startDate > endDate) {
+            errorMessage.show();
+        } else {
+            errorMessage.hide();
+        }
+    });
+
+    $('#updateUserExperience-form').on('submit', function(event) {
+        var startDate = new Date($('#updateUserExperienceDateDebut').val());
+        var endDate = new Date($('#updateUserExperienceDateFin').val());
+
+        if (startDate && endDate && startDate > endDate) {
+            $('#errorUpdateUserExperienceDate').show();
+            event.preventDefault(); // Empêcher la soumission du formulaire
+        }
     });
 
 

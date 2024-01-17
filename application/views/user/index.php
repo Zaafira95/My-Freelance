@@ -217,12 +217,12 @@ if($totalInfos == 1 ){
                         </div>
                     </div>
                 
-                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Compétences</h4>
+                    <h4 class="text-3xl lg:text-base font-medium mt-4">Compétences</h4>
                     <div class="w-full mx-auto mt-5 text-black">
                         <!-- <label for="skillsAll" class="block text-sm font-medium text-gray-700">Sélectionnez vos compétences</label> -->
-                        <select id="skillsAll" name="skillsAll[]" multiple class="text-3xl lg:text-base mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <select id="skillsAll" name="skillsAll[]" multiple class="text-3xl lg:text-base mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
                             <?php foreach ($skillsAll as $skill): ?>
-                                <option class="text-black" value="<?= $skill['skillId'] ?>" 
+                                <option class="text-3xl lg:text-base text-black" value="<?= $skill['skillId'] ?>" 
                                     <?php if (!empty($skills)): ?>
                                         <?php foreach ($skills as $userSkill): ?>
                                             <?= ($userSkill->skillId == $skill['skillId']) ? 'selected' : '' ?>

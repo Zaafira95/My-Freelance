@@ -396,8 +396,17 @@
                                         </div>
                                     </div>
                                     <div class="relative secteur-search-container w-full">
-                                        <input type="text" id="secteurSearch" name="companySecteur" placeholder="Sélectionnez votre secteur d'activité" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500">
+                                        <select id="companySecteur" name="companySecteur" class="text-2xl lg:text-base font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            <option value="">Sélectionnez un secteur</option>
+                                            <?php foreach ($secteursAll as $secteur): ?>
+                                                <option class="text-2xl lg:text-base dark:text-black" value="<?= $secteur['secteurName'] ?>">
+                                                <?= $secteur['secteurName'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <!--
+                                            <input type="text" id="secteurSearch" name="companySecteur" placeholder="Sélectionnez votre secteur d'activité" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500">
                                             <div id="secteurs-list" class="absolute z-10 mt-2 w-full rounded bg-white max-h-64 overflow-y-auto text-black"></div>
+                                        -->
                                     </div>
                                     <!--<div class="w-full text-black mb-1">
                                         <select id="secteursAll" name="secteursAll[]"  class=" mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -455,7 +464,7 @@
                                         <!-- button for previous step -->
                                         <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep4_freelance()">Retour</button>
                                         <!-- button for next step -->
-                                        <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep6_freelance()">Suivant</button>
+                                        <button id="submitFreelanceBtn" type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton">S'inscrire</button>
                                     </div>
                                 </div>
                             </div>
@@ -478,17 +487,41 @@
                                     <div>
                                         <label for="companyDescription" class="block mb-2 font-medium text-gray-900 dark:text-white">Description de l'entreprise</label>
                                         <div>
-                                            <textarea id="companyDescription" name="companyDescription" rows="2" class="bg-gray-50 border border-gray-300 text-lg text-gray-500  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                                            <textarea id="companyDescription" name="companyDescription" rows="4" class="bg-gray-50 border border-gray-300 text-lg text-gray-500  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
                                         </div>
                                     </div>
                                     <div>
                                         <label for="companyAvantages" class="block mb-2 font-medium text-gray-900 dark:text-white">Vos avantages</label>
                                         <div>
-                                            <textarea id="companyAvantages" name="companyAvantages" rows="2" class="bg-gray-50 border border-gray-300 text-lg text-gray-500  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                                            <textarea id="companyAvantages" name="companyAvantages" rows="4" class="bg-gray-50 border border-gray-300 text-lg text-gray-500  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
                                         </div>
-                                    </div>                
+                                    </div> 
+                                    <p id="errorMessage-step5-esn" class="text-red-500 text-lg mt-2 hidden">Veuillez remplir tous les champs correctement</p>
+                                    <div class="flex justify-between">
+                                        <!-- button for previous step -->
+                                        <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep4_esn()">Retour</button>
+                                        <!-- button for next step -->
+                                        <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep6_esn()">Suivant</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="step6" style="display:none; height:80%;">
+                            <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
+                                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                                    <div class="flex items-center">
+                                        <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white" style="width: 60%;">
+                                        Photos de votre entreprise
+                                        </h2>
+                                        <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
+                                            <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
+                                                5/5
+                                            </div>
+                                            <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
+                                            <div class="absolute inset-0 bg-primary rounded-md" style="width: 100%;"></div>
+                                        </div>
+                                    </div>              
                                     <div class="relative rounded-lg flex flex-wrap mb-4">
-                                        <label for="companyPhotos" class="block mb-2 font-medium text-gray-900 dark:text-white">Photos de votre entreprise</label>
                                         <!--
                                         <div class="absolute top-0 right-0 flex hover:text-gray-800">
                                             <button id="add-photo-btn" type="button" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
@@ -547,35 +580,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <p id="errorMessage-step5-esn" class="text-red-500 text-lg mt-2 hidden">Veuillez remplir tous les champs correctement</p>
+                                    <!-- submit -->                                        
                                     <div class="flex justify-between">
-                                        <!-- button for previous step -->
-                                        <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep4_esn()">Retour</button>
-                                        <!-- button for next step -->
-                                        <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep6_esn()">Suivant</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="step6" style="display:none; height:80%;">
-                        <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
-                            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                                <div class="flex items-center">
-                                    <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white" style="width: 60%;">
-                                    Finales ton inscription
-                                    </h2>
-                                    <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
-                                        <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
-                                            5/5
-                                        </div>
-                                        <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
-                                        <div class="absolute inset-0 bg-primary rounded-md" style="width: 100%;"></div>
-                                    </div>
-                                </div>
-                                <!-- submit -->                                        
-                                    <div class="flex justify-between">
-                                        <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep5()">Retour</button>
-                                        <button type="submit" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="submitButton">S'inscrire</button>
+                                        <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep5_esn()">Retour</button>
+                                        <button id="submitEsnBtn" type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center">S'inscrire</button>
                                     </div>
                                 </div>
                             </div>
@@ -592,6 +600,13 @@
     <script src="<?php echo base_url('assets/js/app.js'); ?>"></script>
 
     <script>
+
+    document.getElementById('register-form').addEventListener('keypress', function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            return false;
+        }
+    });
 
     // Fonction pour détruire l'instance Choices.js existante
     function destroyChoicesInstance(element) {
@@ -917,7 +932,6 @@
         });
 
         // Dark mode
-
         var body = document.body;
         var logoImg = document.getElementById('logoLogin');
 
@@ -1071,74 +1085,7 @@
             }
         }
 
-        // function validateForm() {
-        //     var emailInput = document.getElementById('userEmail');
-        //     var emailError = document.getElementById('emailError');
-        //     var passwordInput = document.getElementById('userPassword');
-        //     var confirmPasswordInput = document.getElementById('confirmPassword');
-        //     var confirmPasswordError = document.getElementById('confirmPasswordError');
-        //     var nextButton = document.getElementById('nextButton');
-
-        //     // Vérification de l'e-mail
-        //     if (emailInput.value.trim() === '') {
-        //         emailInput.classList.add('border-red-500');
-        //         emailError.textContent = 'Veuillez saisir votre e-mail';
-        //         nextButton.disabled = true;
-        //         return false;
-        //     }
-
-        //     // Vérification du mot de passe
-        //     if (passwordInput.value.trim() === '') {
-        //         passwordInput.classList.add('border-red-500');
-        //         nextButton.disabled = true;
-        //         return false;
-        //     }
-
-        //     // Vérification de la confirmation du mot de passe
-        //     if (confirmPasswordInput.value.trim() === '') {
-        //         confirmPasswordInput.classList.add('border-red-500');
-        //         confirmPasswordError.textContent = 'Veuillez confirmer votre mot de passe';
-        //         nextButton.disabled = true;
-        //         return false;
-        //     }
-
-        //     // Vérification de la correspondance des mots de passe
-        //     if (passwordInput.value !== confirmPasswordInput.value) {
-        //         confirmPasswordInput.classList.add('border-red-500');
-        //         confirmPasswordError.textContent = 'Les mots de passe ne correspondent pas';
-        //         nextButton.disabled = true;
-        //         return false;
-        //     }
-
-        //     // Vérification de l'existence de l'e-mail
-        //     var xhr = new XMLHttpRequest();
-        //     xhr.open('POST', '<?php echo base_url('register/checkEmailExists'); ?>', false);
-        //     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        //     xhr.onreadystatechange = function() {
-        //         if (xhr.readyState === XMLHttpRequest.DONE) {
-        //             if (xhr.status === 200) {
-        //                 var response = JSON.parse(xhr.responseText);
-        //                 if (response.status === 'error') {
-        //                     emailInput.classList.add('border-red-500');
-        //                     emailError.textContent = response.message;
-        //                     nextButton.disabled = true;
-        //                 } else {
-        //                     emailInput.classList.remove('border-red-500');
-        //                     emailError.textContent = '';
-        //                     nextButton.disabled = false;
-        //                 }
-        //             }
-        //         }
-        //     };
-        //     xhr.send('userEmail=' + emailInput.value);
-
-        //     if (!nextButton.disabled) {
-        //         goToStep2();
-        //     }
-
-        //     return !nextButton.disabled;
-        // }
-
+        /* Zaafira 17/01/2024 : correction fonction goToStep1 */
         function goToStep1(){
             var step1 = document.getElementById('step1');
             var step2 = document.getElementById('step2');
@@ -1213,6 +1160,7 @@
             }
         }
 
+        /* Zaafira 17/01/2024 : correction fonction goToStep4_freelance */
         function goToStep4_freelance() {
             var userFirstName = document.getElementById('userFirstName').value;
             var userLastName = document.getElementById('userLastName').value;
@@ -1220,6 +1168,7 @@
             var userEtranger = document.getElementById('userEtranger');
             var userTelephone = document.getElementById('userTelephone').value;
             var errorMessageStep3 = document.getElementById('errorMessage-step3-freelance');
+            var submitFreelanceBtn = document.getElementById('submitFreelanceBtn');
 
             if (
                 userFirstName.trim() === '' ||
@@ -1238,6 +1187,7 @@
                 step3.style.display = 'none';
                 step5.style.display = 'none';
                 step4.style.display = 'block';
+                submitFreelanceBtn.setAttribute('type', 'button');
             }
         }
 
@@ -1264,12 +1214,14 @@
             }
         }
         
+        /* Zaafira 17/01/2024 : correction fonction goToStep5_freelance */
         function goToStep5_freelance() {
             var userTJM = document.getElementById('userTJM').value;
             var userJobTypes = document.getElementsByName('userJobType');
             var jobTypeSelected = false;
             var errorMessage3 = document.getElementById('errorMessage-step4-freelance');
             var tjmErrorMessage = document.getElementById('tjmErrorMessage');
+            var submitFreelanceBtn = document.getElementById('submitFreelanceBtn');
 
             for (var i = 0; i < userJobTypes.length; i++) {
                 if (userJobTypes[i].checked) {
@@ -1292,22 +1244,25 @@
                 tjmErrorMessage.style.display = 'none';
                 var step4 = document.getElementById('step4-freelance');
                 var step5 = document.getElementById('step5-freelance');
-                var step6 = document.getElementById('step6');
+                //var step6 = document.getElementById('step6');
                 step4.style.display = 'none';
-                step6.style.display = 'none';
+                //step6.style.display = 'none';
                 step5.style.display = 'block';
+                submitFreelanceBtn.setAttribute('type', 'submit');
             }
         }
         
+        /* Zaafira 17/01/2024 : correction fonction goToStep5_esn */
         function goToStep5_esn() {
             var companyLogo = document.getElementById('companyLogo').value;
             var companyName = document.getElementById('companyName').value;
             var companyVille = document.getElementById('companyCitySearch').value;
             var companyEtranger = document.getElementById('companyEtranger');
             var companySlogan = document.getElementById('companySlogan').value;
-            var companySecteur = document.getElementById('secteurSearch').value;
+            var companySecteur = document.getElementById('companySecteur').value;
             var errorMessage3 = document.getElementById('errorMessage-step4-esn');
             var logoErrorMessage = document.getElementById('logoErrorMessage');
+            var submitEsnBtn = document.getElementById('submitEsnBtn');
 
             if (
                 companyName.trim() === '' ||
@@ -1331,48 +1286,16 @@
                 step4.style.display = 'none';
                 step6.style.display = 'none';
                 step5.style.display = 'block';
-            }
-        }
-
-        function goToStep5() {
-            var userTypeFreelance = document.getElementById('userTypeFreelance');
-            var userTypeESN = document.getElementById('userTypeESN');
-            var step6 = document.getElementById('step6');
-            var step5_freelance = document.getElementById('step5-freelance');
-            var step5_esn = document.getElementById('step5-esn');
-
-            if (userTypeFreelance.checked) {
-                step6.style.display = 'none';
-                step5_esn.style.display = 'none';
-                step5_freelance.style.display = 'block';
-            } else if (userTypeESN.checked) {
-                step6.style.display = 'none';
-                step5_freelance.style.display = 'none';
-                step5_esn.style.display = 'block';
+                submitEsnBtn.setAttribute('type', 'button');
             }
         }
         
-        function goToStep6_freelance() {
-            var userBio = document.getElementById('userBio').value;
-            var errorMessage4 = document.getElementById('errorMessage-step5-freelance');
-
-            if (
-                userBio.trim() === '' 
-            ) {
-                errorMessage4.style.display = 'block';
-            } else {
-                errorMessage4.style.display = 'none';
-                var step5 = document.getElementById('step5-freelance');
-                var step6 = document.getElementById('step6');
-                step5.style.display = 'none';
-                step6.style.display = 'block';
-            }
-        }
-        
+        /* Zaafira 17/01/2024 : correction fonction goToStep6_esn */
         function goToStep6_esn() {
             var companyDescription = document.getElementById('companyDescription').value;
             var companyAvantages = document.getElementById('companyAvantages').value;
             var errorMessage4 = document.getElementById('errorMessage-step5-esn');
+            var submitEsnBtn = document.getElementById('submitEsnBtn');
 
             if (
                 companyDescription.trim() === '' ||  
@@ -1385,6 +1308,7 @@
                 var step6 = document.getElementById('step6');
                 step5.style.display = 'none';
                 step6.style.display = 'block';
+                submitEsnBtn.setAttribute('type', 'submit');
             }
         }
 

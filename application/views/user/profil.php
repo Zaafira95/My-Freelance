@@ -1622,7 +1622,88 @@ if($totalInfos == 1 ){
         
     });
 
+    /* Zaafira 17/01/2024 : Correction fonctions onclick add-skill-btn et add-experience-skill-btn */
+    $(document).ready(function() {
+        $('#add-skill-btn').on('click', function() {
+            const newSkillRow = `
+                <div class="flex flex-1 mb-4 skill-row">
+                    <div class="w-3/4 mr-2">
+                        <select class="p-2 border rounded-lg w-full new-skill-select" name="skillsAll[]" id="skillsAll" required>
+                            <option value="">Sélectionnez une compétence</option>
+                            <?php foreach ($skillsAll as $skill): ?>
+                                <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="w-1/4">
+                        <select class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="skillsLevel[]" required>
+                            <option value="1">Junior</option>
+                            <option value="2">Intermédiaire</option>
+                            <option value="3">Expert</option>
+                        </select>
+                    </div>
+                </div>
+            `;
+            $('#skills-container').append(newSkillRow);
+            // Désinitialiser les instances Choices existantes
+            $('.new-skill-select').each(function() {
+                const choicesInstance = this.choices;
+                if (choicesInstance) {
+                    choicesInstance.destroy();
+                }
+            });
+            // Réinitialiser les instances Choices
+            $('.new-skill-select').each(function() {
+                new Choices(this, {
+                    /* options spécifiques à Choices */
+                });
+            });
+        });
 
+        
+        // Utilisez une classe pour cibler les boutons "Ajouter une compétence"
+        $('.add-experience-skill-btn').on('click', function() {
+            const container = $(this).data('container'); // Récupérer le conteneur correspondant à ce bouton
+
+            const newSkillRow2 = `
+                <div class="flex flex-1 mb-4 skill-row">
+                    <div class="w-3/4 mr-2 text-black">
+                        <select name="skillsAll[]" class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                            <option value="">Sélectionnez une compétence</option>
+                            <?php foreach ($skillsAll as $skill): ?>
+                                <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="w-1/4">
+                        <select name="skillsLevel[]" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <option value="1">Junior</option>
+                            <option value="2">Intermédiaire</option>
+                            <option value="3">Expert</option>
+                        </select>
+                    </div>
+                    <button type="button" class="text-red-600 hover:text-red-900 focus:outline-none ml-4 delete-skill-row">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `;
+            $('#' + container).append(newSkillRow2);
+
+            // Désinitialiser les instances Choices existantes
+            $('.new-skill-select').each(function() {
+                const choicesInstance2 = this.choices;
+                if (choicesInstance2) {
+                    choicesInstance2.destroy();
+                }
+            });
+            // Réinitialiser les instances Choices
+            $('.new-skill-select').each(function() {
+                new Choices(this, {
+                    /* options spécifiques à Choices */
+                });
+            });
+        });
+    });
 
     $(document).ready(function() {
         const skillsChoices = new Choices('#skillsAll', {
@@ -1670,83 +1751,6 @@ if($totalInfos == 1 ){
             if (!$(event.target).closest('#search-input-skill, #skills-list').length) {
                 $('#skills-list').empty();
             }
-        });
-        $('#add-skill-btn').on('click', function() {
-            const newSkillRow = `
-                <div class="flex flex-1 mb-4 skill-row">
-                    <div class="w-3/4 mr-2">
-                        <select class="p-2 border rounded-lg w-full new-skill-select" name="skillsAll[]" id="skillsAll" required>
-                            <option value="">Sélectionnez une compétence</option>
-                            <?php foreach ($skillsAll as $skill): ?>
-                                <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="w-1/4">
-                        <select class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="skillsLevel[]" required>
-                            <option value="1">Junior</option>
-                            <option value="2">Intermédiaire</option>
-                            <option value="3">Expert</option>
-                        </select>
-                    </div>
-                </div>
-            `;
-            $('#skills-container').append(newSkillRow);
-            // Désinitialiser les instances Choices existantes
-            $('.new-skill-select').each(function() {
-                const choicesInstance = this.choices;
-                if (choicesInstance) {
-                    choicesInstance.destroy();
-                }
-            });
-            // Réinitialiser les instances Choices
-            $('.new-skill-select').each(function() {
-                new Choices(this, {
-                    /* options spécifiques à Choices */
-                });
-            });
-        });
-        // Utilisez une classe pour cibler les boutons "Ajouter une compétence"
-        $('.add-experience-skill-btn').on('click', function() {
-            const container = $(this).data('container'); // Récupérer le conteneur correspondant à ce bouton
-
-            const newSkillRow2 = `
-                <div class="flex flex-1 mb-4 skill-row">
-                    <div class="w-3/4 mr-2 text-black">
-                        <select name="skillsAll[]" class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-                            <option value="">Sélectionnez une compétence</option>
-                            <?php foreach ($skillsAll as $skill): ?>
-                                <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="w-1/4">
-                        <select name="skillsLevel[]" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                            <option value="1">Junior</option>
-                            <option value="2">Intermédiaire</option>
-                            <option value="3">Expert</option>
-                        </select>
-                    </div>
-                    <button type="button" class="text-red-600 hover:text-red-900 focus:outline-none ml-4 delete-skill-row">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </div>
-            `;
-            $('#' + container).append(newSkillRow2);
-
-            // Désinitialiser les instances Choices existantes
-            $('.new-skill-select').each(function() {
-                const choicesInstance2 = this.choices;
-                if (choicesInstance2) {
-                    choicesInstance2.destroy();
-                }
-            });
-            // Réinitialiser les instances Choices
-            $('.new-skill-select').each(function() {
-                new Choices(this, {
-                    /* options spécifiques à Choices */
-                });
-            });
         });
 
         $(document).on('click', '.delete-skill-row', function() {

@@ -1461,6 +1461,7 @@ if($totalInfos == 1 ){
 <script src="<?php echo base_url('/node_modules/intl-tel-input/build/js/intlTelInput.min.js'); ?>"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+        
         var base_url = '<?php echo base_url(); ?>';
         var input = document.querySelector("#userTelephone");
         var iti = window.intlTelInput(input, {
@@ -1950,20 +1951,7 @@ document.addEventListener('DOMContentLoaded', function() {
         $("#fileSizeInfo").text("La taille maximale autorisée est " + maxSizeInMB + " Mo.");
     });
 
-    function validateDates(dateDebut, dateFin, errorMessageDate, submitButton) {
-        var startDate = new Date(document.getElementById(dateDebut).value);
-        var endDate = new Date(document.getElementById(dateFin).value);
-        var errorMessage = document.getElementById(errorMessageDate);
-        var submitBtn = document.getElementById(submitButton);
-
-        if (startDate && endDate && startDate > endDate) {
-            errorMessage.style.display = "block";
-            submitBtn.disabled = true;
-        } else {
-            errorMessage.style.display = "none";
-            submitBtn.disabled = false;
-        }
-    }
+    
     
     $('#addUserExperienceDateDebut, #addUserExperienceDateFin').on('change keyup', function() {
         var startDate = new Date($('#addUserExperienceDateDebut').val());

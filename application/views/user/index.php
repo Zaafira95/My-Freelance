@@ -721,14 +721,14 @@ if($totalInfos == 1 ){
                         foreach ($experiences as $experience) {
                             if ($experienceCount < 3) {
                         ?>
-                                <div class="flex items-center mt-2 mb-2 p-2 rounded-lg shadow">
+                                <div class=" items-center mt-2 mb-2 p-2 rounded-lg shadow">
                                     <div class="mr-2 mt-2">
-                                        <p class="w-10 h-10 rounded-full bg-secondary text-white text-center flex items-center justify-center mr-4" style="font-size:1rem;">💼</p>
+                                        <h3 class="text-lg font-medium"><?= $experience->experienceJob ?></h3>
                                     </div>
                                     <div>
-                                        <h3 class="text-lg font-medium"><?= $experience->experienceJob ?></h3>
+                                        
                                         <p class="text-sm text-gray-500"><?= $experience->experienceCompany ?></p>
-                                        <p class="text-sm text-gray-500"><?= $experience->experienceJob ?></p>
+                                        
                                     </div>
                                 </div>
                         <?php

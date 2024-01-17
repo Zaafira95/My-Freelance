@@ -38,10 +38,6 @@ include(APPPATH . 'views/layouts/user/header.php' );
     border-radius: 4px;
 }
 
-
-
-
-
 </style>
 
 <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
@@ -366,7 +362,7 @@ foreach ($experiences as $index => $experience) {
                     </button>
                 </div>
                 <!-- Modal body -->
-                <form action="<?=base_url("user/updateUserExperience/".$experience->idExperience)?>" method="post" enctype="multipart/form-data">
+                <form id="updateUserExperience-form" action="<?=base_url("user/updateUserExperience/".$experience->idExperience)?>" method="post" enctype="multipart/form-data">
                     <div>
                         <label for="userExperienceJob" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Nom de l'experience</label>
                         <input type="text" id="userExperienceJob" name="userExperienceJob" value="<?=$experience->experienceJob?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Titre">
@@ -374,18 +370,18 @@ foreach ($experiences as $index => $experience) {
                         <input type="text" id="userExperienceCompany" name="userExperienceCompany" value="<?=$experience->experienceCompany?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Entreprise">
 
                         <label for="userExperienceDateDebut" class="w-full text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Date de début</label>
-                        <input type="date" id="userExperienceDateDebut" name="userExperienceDateDebut" value="<?=$experience->experienceDateDebut?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <input type="date" id="updateUserExperienceDateDebut<?=$index?>" name="userExperienceDateDebut" value="<?=$experience->experienceDateDebut?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onkeyup="validateDates('updateUserExperienceDateDebut<?=$index?>', 'updateUserExperienceDateFin<?=$index?>', 'errorUpdateUserExperienceDate<?=$index?>', 'userExperienceSubmit<?=$index?>')">
 
                         <label for="userExperienceDateFin" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Date de fin</label>
-                        <input type="date" id="userExperienceDateFin" name="userExperienceDateFin" value="<?=$experience->experienceDateFin?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        
+                        <input type="date" id="updateUserExperienceDateFin<?=$index?>" name="userExperienceDateFin" value="<?=$experience->experienceDateFin?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onkeyup="validateDates('updateUserExperienceDateDebut<?=$index?>', 'updateUserExperienceDateFin<?=$index?>', 'errorUpdateUserExperienceDate<?=$index?>', 'userExperienceSubmit<?=$index?>')">
+                        <p id="errorUpdateUserExperienceDate<?=$index?>" class="text-red-500" style="display:none;">La date de fin doit être postérieure à la date de début</p>
+
                         <label for="userExperienceDescription" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Description</label>
                         <textarea id="userExperienceDescription" name="userExperienceDescription" rows="3" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><?=$experience->experienceDescription?></textarea>
                     </div>
                     <!-- Rest of the form fields for the experience -->
                     <div class="mt-6 mb-6 bg-white rounded-lg dark:bg-gray-800 text-black">
-                    <label for="userExperienceSkills" class="text-2xl lg:text-lg block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Vos compétences</label>
-
+                        <label for="userExperienceSkills" class="text-2xl lg:text-lg block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Vos compétences</label>
                         <div id="experience-skills-container-<?=$index?>">
                         <?php foreach ($experienceSkills[$experience->idExperience] as $experienceSkill): ?>
                             <div class="flex flex-1 mb-4 skill-row">
@@ -416,7 +412,7 @@ foreach ($experiences as $index => $experience) {
 
                     <div class="flex items-center justify-between mt-4">
                         <div>
-                            <button type="submit" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                            <button type="submit" id="userExperienceSubmit<?=$index?>" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                 Valider
                             </button>
                             <button type="button" data-modal-toggle="updateUserExperience<?=$index?>" class="text-2xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
@@ -464,7 +460,7 @@ foreach ($experiences as $index => $experience) {
                 </button>
             </div>
             <!-- Modal body -->
-            <form action="<?=base_url("user/addUserExperience")?>" method="post" enctype="multipart/form-data">
+            <form id="addUserExperience-form" action="<?=base_url("user/addUserExperience")?>" method="post" enctype="multipart/form-data">
                 <div>
                     <label for="userExperienceJob" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Nom de l'experience</label>
                     <input type="text" id="userExperienceJob" name="userExperienceJob" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Titre" required>
@@ -472,11 +468,12 @@ foreach ($experiences as $index => $experience) {
                     <input type="text" id="userExperienceCompany" name="userExperienceCompany" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Entreprise" required>
 
                     <label for="userExperienceDateDebut" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Date de début</label>
-                    <input type="date" id="userExperienceDateDebut" name="userExperienceDateDebut" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                    <input type="date" id="addUserExperienceDateDebut" name="userExperienceDateDebut" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
 
                     <label for="userExperienceDateFin" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Date de fin</label>
-                    <input type="date" id="userExperienceDateFin" name="userExperienceDateFin" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                    
+                    <input type="date" id="addUserExperienceDateFin" name="userExperienceDateFin" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                    <p id="errorAddUserExperienceDate" class="mt-2 text-red-500" style="display:none;">La date de fin doit être postérieure à la date de début</p>
+
                     <label for="userExperienceDescription" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Description</label>
                     <textarea id="userExperienceDescription" name="userExperienceDescription" rows="3" class="text-2xl lg:text-basebg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
 
@@ -1243,7 +1240,7 @@ if($totalInfos == 1 ){
                                 </div>
                                 <div class="display inline">
                                     <p class="mt-2 mb-2 text-2xl lg:text-base">Aucune compétences et expertises renseignées.</p>
-                                    <button id="addUserSkills" data-modal-toggle="addUserSkills" class="text-2xl lg:text-base bg-primary text-white px-4 py-2 mt-2 rounded-full">Ajouter vos compténces</button>
+                                    <button id="addUserSkills" data-modal-toggle="addUserSkills" class="text-2xl lg:text-base py-2 px-4 bg-primary text-white rounded-lg">Ajouter vos compténces</button>
                                 </div>
                                 <?php } ?>
                                 
@@ -1280,7 +1277,6 @@ if($totalInfos == 1 ){
                             </div>
                         </div>
                         <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-
                             <h2 class="text-3xl lg:text-xl font-bold mb-4">Expériences</h2>
                             <?php
                             if (is_array($experiences) && !empty($experiences)) {
@@ -1371,7 +1367,7 @@ if($totalInfos == 1 ){
                                                 </div>
                                                     
                                             <?php endforeach; ?>
-                                                                                        
+                                            </div>                                        
                                         </div>
 
                                         <?php
@@ -1387,17 +1383,25 @@ if($totalInfos == 1 ){
                                         break;
                                     }
                                 }
+                                if ($experienceCount < 3) {
                             ?>
 
-                            <?php } else { ?>
+                                <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
+                                    <button id="addUserExperience" data-modal-toggle="addUserExperience" class="text-3xl lg:text-base py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            <?php 
+                                }
+                            } else { ?>
                                 <p class="mt-2 mb-2 text-2xl lg:text-base">Aucune expérience disponible.</p>
-                                <button id="addUserExperience" data-modal-toggle="addUserExperience" class="text-2xl lg:text-base bg-primary text-white px-4 py-2 mt-2 rounded-full">Ajouter une expérience</button>
+                                <button id="addUserExperience" data-modal-toggle="addUserExperience" class="text-2xl lg:text-base py-2 px-4 bg-primary text-white rounded-lg">Ajouter une expérience</button>
+                                <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
+                                    <button id="addUserExperience" data-modal-toggle="addUserExperience" class="text-3xl lg:text-base py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
                             <?php } ?>
-                            <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
-                                <button id="addUserExperience" data-modal-toggle="addUserExperience" class="text-3xl lg:text-base py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
                         </div> 
                         <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                             <h2 class="text-3xl lg:text-xl font-bold mb-4">Portfolio & Réalisations </h2>
@@ -1457,6 +1461,7 @@ if($totalInfos == 1 ){
 <script src="<?php echo base_url('/node_modules/intl-tel-input/build/js/intlTelInput.min.js'); ?>"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+        
         var base_url = '<?php echo base_url(); ?>';
         var input = document.querySelector("#userTelephone");
         var iti = window.intlTelInput(input, {
@@ -1476,10 +1481,6 @@ if($totalInfos == 1 ){
         var phoneNumber = iti.getNumber();
     });
 
-</script>
-
-
-<script>
 
     $(document).ready(function() {
 
@@ -1549,9 +1550,9 @@ if($totalInfos == 1 ){
             itemSelectText: '',
             placeholder: true, // Ajoutez cette ligne pour activer le placeholder
             placeholderValue: 'Sélectionnez votre expertise', // Texte du placeholder
+*/
 
-
-    });*/
+    });
     
     $(document).ready(function(){
         $('#search-input-job').on('keyup', function(){
@@ -1563,6 +1564,7 @@ if($totalInfos == 1 ){
                     $('#jobs-list').append(`<div class="text-2xl lg:text-base job-item" data-id="${job.jobId}">${job.jobName}</div>`);
                 });
             });
+        })
 
 
         $(document).on('click', '.job-item', function(){
@@ -1573,9 +1575,8 @@ if($totalInfos == 1 ){
                 $('#selected-jobs').append(`<div class="text-2xl lg:text-base selected-job" data-id="${jobId}">${jobName}</div>`);
             }
         });
-
-        
     });
+
     document.addEventListener('DOMContentLoaded', function() {
         const arrow = document.getElementById('skillsArrow');
         const skillsContainer = document.querySelector('.skills-container');
@@ -1770,9 +1771,6 @@ if($totalInfos == 1 ){
         }
     }
 
-</script>
-
-<script>
 document.addEventListener('DOMContentLoaded', function() {
     var errorMessageJobType = document.getElementById('errorMessageJobType');
     var form = document.getElementById('userPreferenceForm');
@@ -1792,8 +1790,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-</script>
-<script>
     function showModal(modalId) {
         const modal = document.getElementById(modalId);
         modal.classList.remove('hidden');
@@ -1953,6 +1949,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Afficher la taille maximale autorisée dans le div #fileSizeInfo
         $("#fileSizeInfo").text("La taille maximale autorisée est " + maxSizeInMB + " Mo.");
+    });
+
+    
+    
+    $('#addUserExperienceDateDebut, #addUserExperienceDateFin').on('change keyup', function() {
+        var startDate = new Date($('#addUserExperienceDateDebut').val());
+        var endDate = new Date($('#addUserExperienceDateFin').val());
+        var errorMessage = $('#errorAddUserExperienceDate');
+
+        if (startDate && endDate && startDate > endDate) {
+            errorMessage.show();
+        } else {
+            errorMessage.hide();
+        }
+    });
+
+    $('#addUserExperience-form').on('submit', function(event) {
+        var startDate = new Date($('#addUserExperienceDateDebut').val());
+        var endDate = new Date($('#addUserExperienceDateFin').val());
+
+        if (startDate && endDate && startDate > endDate) {
+            $('#errorAddUserExperienceDate').show();
+            event.preventDefault(); // Empêcher la soumission du formulaire
+        }
     });
 
 

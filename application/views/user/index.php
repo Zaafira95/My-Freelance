@@ -721,14 +721,14 @@ if($totalInfos == 1 ){
                         foreach ($experiences as $experience) {
                             if ($experienceCount < 3) {
                         ?>
-                                <div class="flex items-center mt-2 mb-2">
+                                <div class=" items-center mt-2 mb-2 p-2 rounded-lg shadow">
                                     <div class="mr-2 mt-2">
-                                        <p class="w-10 h-10 rounded-full bg-secondary text-white text-center flex items-center justify-center mr-4" style="font-size:1rem;">💼</p>
+                                        <h3 class="text-lg font-medium"><?= $experience->experienceJob ?></h3>
                                     </div>
                                     <div>
-                                        <h3 class="text-lg font-medium"><?= $experience->experienceJob ?></h3>
+                                        
                                         <p class="text-sm text-gray-500"><?= $experience->experienceCompany ?></p>
-                                        <p class="text-sm text-gray-500"><?= $experience->experienceJob ?></p>
+                                        
                                     </div>
                                 </div>
                         <?php
@@ -739,8 +739,8 @@ if($totalInfos == 1 ){
                         }
                         ?>
                     <?php } else { ?>
-                        <p class="mt-2 mb-2"> Aucune expérience disponible. </p>
-                        <button class="bg-primary text-white px-4 py-2 mt-2 rounded-full">Ajouter une expérience</button>
+                        <p class="mt-2 mb-4"> Aucune expérience disponible. </p>
+                        <a href="<?php echo base_url('User/profil');?>" class="text-2xl lg:text-base py-2 px-4 bg-primary text-white rounded-lg">Ajouter une expérience</a>
                     <?php } ?>
                 </div>
 
@@ -778,8 +778,8 @@ if($totalInfos == 1 ){
                     } else {
 
                     ?>
-                        <p class="mt-2 mb-2"> Aucune compétences et expertises renseignées. </p>
-                        <button class="bg-primary text-white px-4 py-2 mt-2 rounded-full">Ajouter une compétence</button>
+                        <p class="mt-2 mb-4"> Aucune compétences et expertises renseignées. </p>
+                        <a href="<?php echo base_url('User/profil');?>" class="text-2xl lg:text-base py-2 px-4 bg-primary text-white rounded-lg">Ajouter une compétence</a>
                     <?php } ?>
                 </div>
 

@@ -173,6 +173,9 @@ class User extends CI_Controller {
         $userId = $this->session->userdata('userId');
         $this->load->model('User_model');
         $user = $this->User_model->get_UserData($userId);
+        if ($user->userCompanyId != 0) {
+            redirect('company');
+        }
         $data['user'] = $user;
 
          // Récupérer le job de l'utilisateur connecté avec le job id

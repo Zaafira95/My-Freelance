@@ -874,6 +874,9 @@ class Company extends CI_Controller {
         }
         $data['user'] = $user;
 
+        $company = $this->Company_model->getCompanyData($userId);
+        $data['company'] = $company;
+
         $groups = $this->Company_model->getWhatsAppGroups();
     
         $data['groups'] = $groups;

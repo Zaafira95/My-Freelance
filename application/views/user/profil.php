@@ -126,6 +126,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                     </div>
                                 </div>
                             </div>
+                            <p id="avatarErrorMessage" class="text-red-500 text-base mt-2 hidden">La taille de l'image doit être iinférieur à 2048 Ko</p>
                             <span id="file-name" class="hidden  text-gray-500 mt-4 dark:text-white"></span>
                             <!-- Delete user profile picture -->
                             <?php
@@ -1150,7 +1151,7 @@ if($totalInfos == 1 ){
                                                             </div>
                                                         </a>
                                                     </div>
-                                                        <button id="extra-avis-button" class="text-primary text-2xl lg:text-base mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">
+                                                        <button id="more-avis-button" class="text-primary text-2xl lg:text-base mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">
                                                             Voir plus
                                                         </button>
                                                         <button id="less-avis-button" class="hidden text-primary text-2xl lg:text-base mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">
@@ -1603,21 +1604,21 @@ if($totalInfos == 1 ){
         }
 
         const moreAvis = document.getElementById("more-avis");
-        const extraAvisButton = document.getElementById("extra-avis-button");
+        const moreAvisButton = document.getElementById("more-avis-button");
         const lessAvisButton = document.getElementById("less-avis-button");
 
         // Ajout d'un gestionnaire d'événement pour le bouton "Voir plus"
-        extraAvisButton.addEventListener("click", function() {
+        moreAvisButton.addEventListener("click", function() {
             moreAvis.classList.remove("hidden"); // Afficher le contenu
             lessAvisButton.classList.remove("hidden"); // Afficher le bouton "Voir moins"
-            extraAvisButton.classList.add("hidden"); // Masquer le bouton "Voir plus"
+            moreAvisButton.classList.add("hidden"); // Masquer le bouton "Voir plus"
         });
 
         // Ajout d'un gestionnaire d'événement pour le bouton "Voir moins"
         lessAvisButton.addEventListener("click", function() {
             moreAvis.classList.add("hidden"); // Masquer le contenu
             lessAvisButton.classList.add("hidden"); // Masquer le bouton "Voir moins"
-            extraAvisButton.classList.remove("hidden"); // Afficher le bouton "Voir plus"
+            moreAvisButton.classList.remove("hidden"); // Afficher le bouton "Voir plus"
         });
         
     });
@@ -1764,12 +1765,24 @@ if($totalInfos == 1 ){
         document.getElementById('updateUserData').click();
     });
 
+    // Zaafira 18/01/2024 : correction fonction showfile
     function showFileName(input) {
+        const MAX_SIZE = 2048; // Taille maximale en Ko
         const avatarImageElement = document.getElementById("avatar-image");
+        const avatarErrorMessage = document.getElementById("avatarErrorMessage");
         if (input.files && input.files[0]) {
+            const fileSize = input.files[0].size / 1024; // Taille en Ko
+            if (fileSize > MAX_SIZE) {
+                // Afficher un message d'erreur
+                avatarErrorMessage.classList.remove("hidden");
+                return; // Arrêter l'exécution si le fichier est trop grand
+            }
+
             var reader = new FileReader();
             reader.onload = function(e) {
                 avatarImageElement.src = e.target.result;
+                avatarErrorMessage.classList.add("hidden");
+
             };
             reader.readAsDataURL(input.files[0]);
         }

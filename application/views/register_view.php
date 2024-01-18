@@ -202,10 +202,11 @@
                                                             <i class="fas fa-plus text-primary cursor-pointer"></i>
                                                         </div>
                                                     </label>
-                                                    <input type="file" id="avatar-upload" name="avatar-upload" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'avatar-image')">
+                                                    <input type="file" id="avatar-upload" name="avatar-upload" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'avatar-image', 'avatarErrorMessage')">
                                                 </div>
                                             </div>
                                         </div>
+                                        <p id="avatarErrorMessage" class="text-red-500 text-base mt-2 hidden">La taille de l'image doit être inférieur à 2048 Ko</p>
                                         <span id="file-name" class="hidden text-lg text-gray-500 mt-4 dark:text-white"></span>
                                     </div>
                                     <div>
@@ -362,7 +363,7 @@
                                                         <i class="fas fa-plus text-primary cursor-pointer"></i>
                                                     </div>
                                                 </label>
-                                                <input type="file" id="banner-upload" name="banner-upload" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'banner-image')">
+                                                <input type="file" id="banner-upload" name="banner-upload" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'banner-image', 'logoBannerErrorMessage')">
                                             </div>
                                         </div>
                                         <div class="">
@@ -374,11 +375,12 @@
                                                             <i class="fas fa-plus text-primary cursor-pointer"></i>
                                                         </div>
                                                     </label>
-                                                    <input type="file" id="companyLogo" name="companyLogo" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'logo-image')">
+                                                    <input type="file" id="companyLogo" name="companyLogo" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'logo-image', 'logoBannerErrorMessage')">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <p id="logoBannerErrorMessage" class="text-red-500 text-base mt-2 hidden">La taille de l'image doit être inférieur à 2048 Ko</p>
                                     <div>
                                         <input type="text" name="companyName" id="companyName" placeholder="Nom de votre entreprise *" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" >
                                     </div>
@@ -532,7 +534,7 @@
                                         <div class="photos-container w-full h-full flex grid grid-cols-2 gap-2 items-center justify-center">
                                             <div class="new-photo-div relative flex justify-center">
                                                 <img id="company-image-1" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class=" h-32 max-w-xs rounded-lg" alt="Image de l'entreprise" style="max-width:100%;">
-                                                <input type="file" id="photo-upload-1" name="photo-upload[]" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'company-image-1')">
+                                                <input type="file" id="photo-upload-1" name="photo-upload[]" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'company-image-1', 'photosErrorMessage')">
                                                 <div class="absolute right-0 top-0 flex text-gray-500 hover:text-gray-800 rounded-lg pt-2 pr-4">
                                                     <label for="photo-upload-1" class="cursor-pointer">
                                                         <i class="fas fa-pen"></i>
@@ -544,7 +546,7 @@
                                             </div>
                                             <div class="new-photo-div relative flex justify-center">
                                                 <img id="company-image-2" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class=" h-32 max-w-xs rounded-lg" alt="Image de l'entreprise" style="max-width:100%;">
-                                                <input type="file" id="photo-upload-2" name="photo-upload[]" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'company-image-2')">
+                                                <input type="file" id="photo-upload-2" name="photo-upload[]" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'company-image-2', 'photosErrorMessage')">
                                                 <div class="absolute right-0 top-0 flex text-gray-500 hover:text-gray-800 rounded-lg pt-2 pr-4">
                                                     <label for="photo-upload-2" class="cursor-pointer">
                                                         <i class="fas fa-pen"></i>
@@ -556,7 +558,7 @@
                                             </div>
                                             <div class="new-photo-div relative flex justify-center">
                                                 <img id="company-image-3" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class=" h-32 max-w-xs rounded-lg" alt="Image de l'entreprise" style="max-width:100%;">
-                                                <input type="file" id="photo-upload-3" name="photo-upload[]" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'company-image-3')">
+                                                <input type="file" id="photo-upload-3" name="photo-upload[]" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'company-image-3', 'photosErrorMessage')">
                                                 <div class="absolute right-0 top-0 flex text-gray-500 hover:text-gray-800 rounded-lg pt-2 pr-4">
                                                     <label for="photo-upload-3" class="cursor-pointer">
                                                         <i class="fas fa-pen"></i>
@@ -568,7 +570,7 @@
                                             </div>
                                             <div class="new-photo-div relative flex justify-center">
                                                 <img id="company-image-4" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class=" h-32 max-w-xs rounded-lg" alt="Image de l'entreprise" style="max-width:100%;">
-                                                <input type="file" id="photo-upload-4" name="photo-upload[]" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'company-image-4')">
+                                                <input type="file" id="photo-upload-4" name="photo-upload[]" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'company-image-4', 'photosErrorMessage')">
                                                 <div class="absolute right-0 top-0 flex text-gray-500 hover:text-gray-800 rounded-lg pt-2 pr-4">
                                                     <label for="photo-upload-4" class="cursor-pointer">
                                                         <i class="fas fa-pen"></i>
@@ -579,6 +581,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <p id="photosErrorMessage" class="text-red-500 text-base mt-2 hidden">La taille de l'image doit être inférieur à 2048 Ko</p>
                                     </div>
                                     <!-- submit -->                                        
                                     <div class="flex justify-between">
@@ -845,12 +848,23 @@
         }
     }*/
 
-    function showFileName(input, elementId) {
+    function showFileName(input, elementId, errorMessageId) {
+        const MAX_SIZE = 2048; // Taille maximale en Ko
         let imageElement = document.getElementById(elementId);
+        let errorMessage = document.getElementById(errorMessageId);
         if (input.files && input.files[0]) {
+            const fileSize = input.files[0].size / 1024; // Taille en Ko
+            if (fileSize > MAX_SIZE) {
+            // Afficher un message d'erreur
+            errorMessage.classList.remove("hidden");
+            return; // Arrêter l'exécution si le fichier est trop grand
+        }
+
             var reader = new FileReader();
             reader.onload = function(e) {
                 imageElement.src = e.target.result;
+                errorMessage.classList.add("hidden");
+
             };
             reader.readAsDataURL(input.files[0]);
         }

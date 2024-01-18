@@ -11,7 +11,7 @@ include(APPPATH . 'views/layouts/user/header.php');
 <style>
     html,
     body {
-        height: 85vh;
+        height: 100vh;
     }
     #cities-list {
     max-height: 200px; /* ou toute autre valeur appropriée */

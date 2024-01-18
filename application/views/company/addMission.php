@@ -46,7 +46,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
                         <p class="text-lg font-bold mt-4"> Localisation de la mission </p>
                         <div class="flex flex-1 mt-4">
                             <input type="text" name="missionLocation" id="citySearch" placeholder="Cherchez votre ville" class="border p-2 rounded-lg w-full text-black">
-                                <div id="cities-list" class="absolute z-10 mt-2 w-full rounded bg-white max-h-64 overflow-y-auto text-black"></div>
+                                <div id="cities-list" class="absolute z-10 mt-10 w-full rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                             </div>
                         
                             <p class="text-lg font-bold mt-4"> Durée de la mission </p>

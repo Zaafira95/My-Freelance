@@ -606,7 +606,7 @@ else if ($user->userType == "sales"){
                         <div class="lg:w-500px h-full flex items-start justify-center" style="width:500px;">
                             <div class="flex items-center">
                                 <div class="mr-4">
-                                    <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="w-10 h-10 rounded-full">
+                                    <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="w-16 h-16 lg:w-10 rounded-full">
                                 </div>
                                 <div class="w-3/4 mr-4">
                                     <h2 class="font-bold text-3xl lg:text-lg"><?=$companyMission->missionName?></h2>

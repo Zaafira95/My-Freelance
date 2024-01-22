@@ -465,7 +465,7 @@ if($totalInfos == 1 ){
                                         } else {
                                     ?>
                                     <a href="<?php echo base_url('user/addToFavorite/'.$mission->idMission);?>">
-                                        <i class="far fa-heart text-3xl lg:text-xl text-red-800"></i>
+                                        <i class="fas fa-heart text-3xl lg:text-xl text-red-800"></i>
                                     </a>
                                     <?php
                                         }

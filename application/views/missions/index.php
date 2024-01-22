@@ -174,7 +174,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                         <!-- <button class="w-1/5 bg-white text-primary rounded-lg px-4 py-2">Rechercher</button> -->
                     </div>
                 </div>
-                <h3 class="text-2xl font-medium mt-4" id="result-section">Pour vous :</h3>
+                <h3 class="text-5xl lg:text-2xl font-medium mt-4 mb-4" id="result-section">Pour vous :</h3>
                 <div class="flex flex-wrap" id="missions-section">
                     <?php
                         function isFavorite($missionId, $favoriteMissions) {
@@ -209,13 +209,13 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                     <div class="mr-4">
                                     <?php foreach ($missionCompany[$mission->idMission] as $company) : ?>
                                             <?php if (is_object($company)) : ?>
-                                        <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="w-10 h-10 rounded-full">
+                                        <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="w-16 h-16 lg:w-10 rounded-full">
                                             <?php endif; ?>
                                         <?php endforeach; ?>
                                     </div>
                                     <div class="w-3/4 mr-4">
-                                        <h2 class="font-bold text-lg"><?=$mission->missionName?></h2>
-                                        <p>
+                                        <h2 class="text-3xl lg:text-lg font-bold"><?=$mission->missionName?></h2>
+                                        <p class="text-3xl lg:text-base">
                                         <?php foreach ($missionCompany[$mission->idMission] as $company) : ?>
                                             <?php if (is_object($company)) : ?>
                                                 <!-- <span class="mr-2"> • <?= $company->companyName ?></span> -->
@@ -291,8 +291,8 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                     </div>
                                 </div>
                                 <div class="flex items-center justify-between">
-                                    <div class="mt-4">
-                                        <p class="font-light mt-4 mb-4">
+                                    <div class="mt-4 text-3xl lg:text-base">
+                                        <p class="font-normal text-3xl lg:text-base mt-4 mb-4">
                                             <?php 
                                             // limit missionDescription to 270 caracteres and add '...' at the end
                                             $mission->missionDescription = strlen($mission->missionDescription) > 270 ? substr($mission->missionDescription,0,270)."..." : $mission->missionDescription;    
@@ -334,8 +334,8 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                                         break;
                                                 }
                                             ?>
-                                            <div class="skill-item" data-level="<?=$level?>">
-                                                <span class="dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                                            <div class="text-3xl lg:text-base skill-item" data-level="<?=$level?>">
+                                                <span class="text-3xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
                                                 <div class="skill-level"><?=$level?></div>
                                             </div>
                                         <?php endforeach; ?>
@@ -347,13 +347,13 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                     if(isFavorite($mission->idMission, $favoriteMissions)){
                                         ?>
                                         <a href="<?php echo base_url('user/removeFromFavorite/'.$mission->idMission);?>">
-                                            <i class="fas fa-heart text-xl text-red-800"></i>
+                                            <i class="fas fa-heart text-3xl lg:text-xl text-red-800"></i>
                                         </a>
                                         <?php
                                     } else {
                                         ?>
                                         <a href="<?php echo base_url('user/addToFavorite/'.$mission->idMission);?>">
-                                            <i class="far fa-heart text-xl text-red-800"></i>
+                                            <i class="far fa-heart text-3xl lg:text-xl text-red-800"></i>
                                         </a>
                                         <?php
                                     }
@@ -365,8 +365,8 @@ include(APPPATH . 'views/layouts/user/header.php' );
                     <?php endforeach; ?>
                     </div>
                     <div id="no-mission-found">
-                        <p class="text-xl mt-6 text-left">Aucune mission n'a été trouvée.</p>
-                        <h3 class="text-2xl font-medium mt-10" id="result-section">Autres missions :</h3>
+                        <p class="text-3xl lg:text-lg mt-6 text-left">Aucune mission n'a été trouvée.</p>
+                        <h3 class="text-5xl lg:text-2xl font-medium mt-10" id="result-section">Autres missions :</h3>
                         <?php foreach($missions as $mission): ?>
                         <?php
                         $dataMissionSkills = [];
@@ -385,18 +385,18 @@ include(APPPATH . 'views/layouts/user/header.php' );
                             data-mission-tjm="<?=$mission->missionTJM?>" 
                             data-mission-localisation="<?=strtolower($mission->missionLocalisation)?>"
                             data-mission-skills="<?=$dataMissionSkillsString?>"> <!-- Utilisez implode pour combiner les compétences en une chaîne -->
-                            <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative " data-mission-name="<?=strtolower($mission->missionName)?>" data-mission-type="<?=strtolower($mission->missionType)?>" data-mission-deroulement="<?=strtolower($mission->missionDeroulement)?>" data-mission-duree="<?=strtolower($mission->missionDuration)?>" data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" data-mission-tjm="<?=$mission->missionTJM?>" data-mission-localisation="<?=$mission->missionLocalisation?>" data-mission-skills="<?=$dataMissionSkillsString?>">
+                            <div class="mb-12 bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative " data-mission-name="<?=strtolower($mission->missionName)?>" data-mission-type="<?=strtolower($mission->missionType)?>" data-mission-deroulement="<?=strtolower($mission->missionDeroulement)?>" data-mission-duree="<?=strtolower($mission->missionDuration)?>" data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" data-mission-tjm="<?=$mission->missionTJM?>" data-mission-localisation="<?=$mission->missionLocalisation?>" data-mission-skills="<?=$dataMissionSkillsString?>">
                                 <div class="flex items-center">
                                     <div class="mr-4">
                                         <?php foreach ($missionCompany[$mission->idMission] as $company) : ?>
                                             <?php if (is_object($company)) : ?>
-                                            <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="w-10 h-10 rounded-full">
+                                            <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="w-16 h-16 lg:w-10 rounded-full">
                                             <?php endif; ?>
                                         <?php endforeach; ?>
                                     </div>
                                     <div class="w-3/4 mr-4">
-                                        <h2 class="font-bold text-lg"><?=$mission->missionName?></h2>
-                                        <p>
+                                        <h2 class="text-3xl lg:text-lg font-bold "><?=$mission->missionName?></h2>
+                                        <p class="text-3xl lg:text-base">
                                         <?php foreach ($missionCompany[$mission->idMission] as $company) : ?>
                                             <?php if (is_object($company)) : ?>
                                                 <!-- <span class="mr-2"> • <?= $company->companyName ?></span> -->
@@ -471,9 +471,9 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                         </p>
                                     </div>
                                 </div>
-                                <div class="flex items-center justify-between">
+                                <div class="text-3xl lg:text-base flex items-center justify-between">
                                     <div class="mt-4">
-                                        <p class="font-light mt-4 mb-4">
+                                        <p class="font-normal mt-4 mb-4 text-3xl lg:text-base">
                                             <?php 
                                             // limit missionDescription to 270 caracteres and add '...' at the end
                                             $mission->missionDescription = strlen($mission->missionDescription) > 270 ? substr($mission->missionDescription,0,270)."..." : $mission->missionDescription;    
@@ -516,7 +516,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                                 }
                                             ?>
                                             <div class="skill-item" data-level="<?=$level?>">
-                                                <span class="dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                                                <span class="text-3xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
                                                 <div class="skill-level"><?=$level?></div>
                                             </div>
                                         <?php endforeach; ?>
@@ -528,13 +528,13 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                     if(isFavorite($mission->idMission, $favoriteMissions)){
                                         ?>
                                         <a href="<?php echo base_url('user/removeFromFavorite/'.$mission->idMission);?>">
-                                            <i class="fas fa-heart text-xl text-red-800"></i>
+                                            <i class="fas fa-heart text-3xl lg:text-xl text-red-800"></i>
                                         </a>
                                         <?php
                                     } else {
                                         ?>
                                         <a href="<?php echo base_url('user/addToFavorite/'.$mission->idMission);?>">
-                                            <i class="far fa-heart text-xl text-red-800"></i>
+                                            <i class="far fa-heart text-3xl lg:text-xl text-red-800"></i>
                                         </a>
                                         <?php
                                     }

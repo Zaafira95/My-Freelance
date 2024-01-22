@@ -160,9 +160,7 @@ class User extends CI_Controller {
         $this->User_model->updateUserAvailability($userId, $userAvailability, $userJobTimePartielOrFullTime);
         $this->session->set_flashdata('message', 'Votre disponibilité a bien été mise à jour !');
         $this->session->set_flashdata('status', 'success');
-        // Recharger la page actuelle
         redirect($_SERVER['HTTP_REFERER']);
-        
     }
 
     

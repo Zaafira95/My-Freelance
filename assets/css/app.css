@@ -3964,6 +3964,14 @@ body.dark {
     height: 1.25rem;
   }
 
+  .lg\:h-full {
+    height: 100%;
+  }
+
+  .lg\:h-90{
+    height: 90%;
+  }
+
 
 
   .lg\:flex-row {

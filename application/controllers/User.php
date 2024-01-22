@@ -377,6 +377,9 @@ class User extends CI_Controller {
         $userExperienceDateDebut = $this->input->post('userExperienceDateDebut');
         $userExperienceDateFin = $this->input->post('userExperienceDateFin');
         
+        // $updateUserExperienceDateFinToday = $this->input->post('userEtranger');
+        // $userExperienceDateFin = $updateUserExperienceDateFinToday == 'on' ? "Aujourd'hui" : $userExperienceDateFin;
+        
         $this->User_model->updateUserExperience($experienceId, $userId, $userExperienceJob, $userExperienceCompany, $userExperienceDescription, $userExperienceDateDebut, $userExperienceDateFin);
         $skills = $this->input->post("skillsAll");
         $levels = $this->input->post("skillsLevel");
@@ -1142,13 +1145,32 @@ class User extends CI_Controller {
         $this->load->view('companies/view', $data);
     }
     
+    public function updateUserDataSettings(){
+        $this->load->model('User_model');
+        $userId = $this->session->userdata('userId');
+        $userFirstName = $this->input->post('userFirstName');
+        $userLastName = $this->input->post('userLastName');
+        $userTelephone = $this->input->post('userTelephone');
+
+        $this->User_model->updateUserDataSettings($userId, $userFirstName, $userLastName, $userTelephone);
+        $this->session->set_flashdata('message', 'Vos informations personnelles ont bien été mises à jour !');
+        $this->session->set_flashdata('status', 'success');
+        redirect($_SERVER['HTTP_REFERER']);
+    }
     
-    
-    
-    
-    
-    
-    
+    public function updateUserPassword(){
+        $this->load->model('User_model');
+        $userId = $this->session->userdata('userId');
+        $userPassword = $this->input->post('userPassword');
+        // hash password
+        $userPassword = password_hash($userPassword, PASSWORD_DEFAULT);
+
+        $this->User_model->updateUserPassword($userId, $userPassword);
+        $this->session->set_flashdata('message', 'Votre mot de passe a bien été mis à jour !');
+        $this->session->set_flashdata('status', 'success');
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
 }
 
 /*test*/

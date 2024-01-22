@@ -375,6 +375,11 @@ foreach ($experiences as $index => $experience) {
 
                         <label for="userExperienceDateFin" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Date de fin</label>
                         <input type="date" id="updateUserExperienceDateFin<?=$index?>" name="userExperienceDateFin" value="<?=$experience->experienceDateFin?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onkeyup="validateDates('updateUserExperienceDateDebut<?=$index?>', 'updateUserExperienceDateFin<?=$index?>', 'errorUpdateUserExperienceDate<?=$index?>', 'userExperienceSubmit<?=$index?>')">
+                                                
+                        <div class="flex items-center mt-2">
+                            <input type="checkbox" id="updateUserExperienceDateFinToday<?=$index?>" name="updateUserExperienceDateFinToday">
+                            <label class="text-2xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Aujourd'hui</label>
+                        </div>
                         <p id="errorUpdateUserExperienceDate<?=$index?>" class="text-red-500" style="display:none;">La date de fin doit être postérieure à la date de début</p>
 
                         <label for="userExperienceDescription" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Description</label>
@@ -1967,8 +1972,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Afficher la taille maximale autorisée dans le div #fileSizeInfo
         $("#fileSizeInfo").text("La taille maximale autorisée est " + maxSizeInMB + " Mo.");
     });
-
-    
     
     $('#addUserExperienceDateDebut, #addUserExperienceDateFin').on('change keyup', function() {
         var startDate = new Date($('#addUserExperienceDateDebut').val());
@@ -1990,6 +1993,22 @@ document.addEventListener('DOMContentLoaded', function() {
             $('#errorAddUserExperienceDate').show();
             event.preventDefault(); // Empêcher la soumission du formulaire
         }
+    });
+
+    function validateDates(updateUserExperienceDateDebut, updateUserExperienceDateFin, errorUpdateUserExperienceDate, userExperienceSubmit) {
+        var startDate = new Date(document.getElementById(updateUserExperienceDateDebut).value);
+        var endDate = new Date(document.getElementById(updateUserExperienceDateFin).value);
+
+    }
+
+    $('#updateUserExperienceDateFinToday').change(function() {
+        if ($(this).is(':checked')) {
+            $('#updateUserExperienceDateFin').val('');
+        }
+    });
+    
+    $('#updateUserExperienceDateFin').on('input', function() {
+        $('#updateUserExperienceDateFinToday').prop('checked', false);
     });
 
 

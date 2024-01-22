@@ -9,7 +9,60 @@ include(APPPATH . 'views/layouts/user/header.php' );
 
 <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
 <link href="<?php echo base_url('assets/css/app.css');?>" rel="stylesheet">
+<link href="<?php echo base_url('/node_modules/choices.js/public/assets/styles/choices.min.css');?>" rel="stylesheet" type="text/css">
 
+
+<style>
+        /* Barre de progression */
+        .password-strength-meter {
+            height: 10px;
+            background-color: #f3f3f3;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        .password-strength-meter-fill {
+            height: 100%;
+            transition: width 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .password-strength-weak {
+            background-color: #ff4d4f;
+            border-radius: 5px;
+        }
+
+        .password-strength-medium {
+            background-color: #ff7f50;
+            border-radius: 5px;
+        }
+
+        .password-strength-strong {
+            background-color: #52c41a;
+            border-radius: 5px;
+        }
+
+        /* Couleur du texte */
+        .password-strength-weak-text {
+            color: #ff4d4f;
+        }
+
+        .password-strength-medium-text {
+            color: #ff7f50;
+        }
+
+        .password-strength-strong-text {
+            color: #52c41a;
+        }
+
+        .image-rotation {
+            transition: opacity 0.5s ease;
+            opacity: 0;
+        }
+
+       
+    </style>
 </head>
 
 <div id="updateProductModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
@@ -76,7 +129,7 @@ if ($totalCount > 0) {
                             <img src="<?php echo base_url($user->userAvatarPath); ?>" class="w-40 h-40 rounded-full" alt="Photo de profil">
                         </div>
                         <div class="ml-4">
-                            <div class="flex" id="user-data">
+                            <div class="flex">
                                 <h1 class="text-5xl font-bold" id="userFirstName"><?=$user->userFirstName?></h1>
                                     <?php 
                                     // capitalize user last name
@@ -120,19 +173,17 @@ if ($totalCount > 0) {
             </div>
             <div class="flex flex-1">
                 <div class="rounded-lg h-full w-1/3 mb-4 mr-4 dark:text-white">
-                    <div class="relative flex grid-cols-2 items-center overflow-hidden bg-white h-full rounded-lg mb-4 dark:bg-gray-800 py-4 px-4">
-                        <ul>
-                            <li> <a href="#user-data" class="p-8 text-lg w-full">Informations personnelles</a></li>
-                            <li> <a href="#user-job" class="p-8 text-lg w-full">Informations professionnelles</a></li>
-                            <li> <a href="#user-preference" class="p-8 text-lg w-full">Préférences</a></li>
-                            <li> <a href="#rating" class="p-8 text-lg w-full">Avis</a></li>
+                    <div class="relative flex grid-cols-2 items-center overflow-hidden bg-white h-full w-full rounded-lg mb-4 dark:bg-gray-800 py-8 px-4">
+                        <ul class=" w-full">
+                            <li class="tab-item mb-8 w-full"> <a href="#user-data" class="tab-link px-6 text-lg font-bold w-full"><i class="fas fa-user mr-4"></i>Informations personnelles</a></li>
+                            <li class="tab-item mb-8"> <a href="#user-password" class="tab-link px-6 text-lg w-full"><i class="fas fa-key mr-4"></i>Mot de passe</a></li>                            
                         </ul>
                     </div>
                 </div>
                 <div class="rounded-lg h-full w-2/3 mb-4 dark:text-white">
-                    <div class="relative flex grid-cols-2 items-center overflow-hidden bg-white rounded-lg mb-4 dark:bg-gray-800 py-4 px-4">
-                        <div id="user-data" class="space-y-4 md:space-y-6 w-2/3">
-                            <form method="post" action="<?php echo base_url('register/registerUser'); ?>" enctype="multipart/form-data">
+                    <div class="form-container relative flex grid-cols-2 items-center overflow-hidden bg-white rounded-lg mb-4 dark:bg-gray-800 py-4 px-4">
+                        <div id="user-data" class="px-6 space-y-4 md:space-y-6 w-2/3">
+                            <form method="post" action="<?php echo base_url('user/updateUserDataSettings'); ?>" enctype="multipart/form-data">
                                 <label for="userFirstName" class="block font-medium text-gray-900 dark:text-white">Votre prénom *</label>
                                 <input type="text" name="userFirstName" id="userFirstName" value="<?=$user->userFirstName?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>
 
@@ -140,55 +191,39 @@ if ($totalCount > 0) {
                                 <input type="text" name="userLastName" id="userLastName" value="<?=$user->userLastName?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>
 
                                 <label for="userTelephone" class="block font-medium text-gray-900 dark:text-white">Votre numéro de téléphone *</label>
-                                <input type="text" name="userTelephone" id="userTelephone" value="<?=$user->userTelephone?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>                                
-                                <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                <input type="text" name="userTelephone" id="userTelephone" value="<?=$user->userTelephone?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>    
+
+                                <label for="userEmail" class="block font-medium text-gray-900 dark:text-white">Votre email *</label>
+                                <input type="email" name="userEmail" id="userEmail" value="<?=$user->userEmail?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" disabled>    
+
+                                <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 mt-4 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                     Valider
                                 </button>
                             </form>
                         </div>
-                        <div id="user-job" class="space-y-4 md:space-y-6 w-2/3 hidden">
-                        <form method="post" action="<?php echo base_url('register/registerUser'); ?>" enctype="multipart/form-data">
-                                <label for="userFirstName" class="block font-medium text-gray-900 dark:text-white">Votre prénom *</label>
-                                <input type="text" name="userFirstName" id="userFirstName" value="<?=$user->userFirstName?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>                                
-                                <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                                    Valider
-                                </button>
-                            </form>
-                        </div>
-                        
-                        <div id="user-preference" class="space-y-4 md:space-y-6 w-2/3 hidden">
-                        <form method="post" action="<?php echo base_url('register/registerUser'); ?>" enctype="multipart/form-data">
-                                <label for="userFirstName" class="block font-medium text-gray-900 dark:text-white">Votre prénom *</label>
-                                <input type="text" name="userFirstName" id="userFirstName" value="<?=$user->userFirstName?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>
+                        <div id="user-password" class="px-6 space-y-4 md:space-y-6 w-2/3 hidden">
+                            <form method="post" action="<?php echo base_url('user/updateUserPassword'); ?>" enctype="multipart/form-data">
 
-                                <label for="userLastName" class="block font-medium text-gray-900 dark:text-white">Votre nom *</label>
-                                <input type="text" name="userLastName" id="userLastName" value="<?=$user->userLastName?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>
+                            <label for="userPassword" class="block font-medium text-gray-900 dark:text-white">Saisissez votre nouveau mot de passe *</label>
+                            <input type="password" name="userPassword" id="userPassword" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required oninput="checkPasswordStrength(this.value)"> 
+                            <label for="confirmPassword" class="block font-medium text-gray-900 dark:text-white">Confirmez votre nouveau mot de passe *</label>
+                            <input type="password" name="confirmPassword" id="confirmPassword" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required  oninput="checkPasswordMatch()"> 
 
-                                <label for="userTelephone" class="block font-medium text-gray-900 dark:text-white">Votre numéro de téléphone *</label>
-                                <input type="text" name="userTelephone" id="userTelephone" value="<?=$user->userTelephone?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>
+                            <div>
+                                <p id="confirmPasswordError" class="text-red-500"></p>
+                            </div>
 
+                            <div class="password-strength-meter">
+                                <div class="password-strength-meter-fill"></div>
+                            </div>
+                            <p id="passwordError" class="text-red-500"></p>
+                            <div>
+                                <input type="checkbox" id="togglePasswordCheckbox" class="form-checkbox text-primary rounded">
+                                <label for="togglePasswordCheckbox" class="text-sm font-medium text-gray-900 dark:text-white">Afficher le mot de passe</label>
+                            </div>
                                 <!-- Autres champs d'informations personnelles -->
                                 
-                                <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                                    Valider
-                                </button>
-                            </form>
-                        </div>
-                        
-                        <div id="rating" class="space-y-4 md:space-y-6 w-2/3 hidden">
-                            <form method="post" action="<?php echo base_url('register/registerUser'); ?>" enctype="multipart/form-data">
-                                <label for="userFirstName" class="block font-medium text-gray-900 dark:text-white">Votre prénom *</label>
-                                <input type="text" name="userFirstName" id="userFirstName" value="<?=$user->userFirstName?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>
-
-                                <label for="userLastName" class="block font-medium text-gray-900 dark:text-white">Votre nom *</label>
-                                <input type="text" name="userLastName" id="userLastName" value="<?=$user->userLastName?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>
-
-                                <label for="userTelephone" class="block font-medium text-gray-900 dark:text-white">Votre numéro de téléphone *</label>
-                                <input type="text" name="userTelephone" id="userTelephone" value="<?=$user->userTelephone?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>
-
-                                <!-- Autres champs d'informations personnelles -->
-                                
-                                <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                <button id="passwordSubmit" type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 mt-4 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                     Valider
                                 </button>
                             </form>
@@ -206,18 +241,153 @@ if ($totalCount > 0) {
 <!-- Script JS -->
 
 <script src="<?php echo base_url('assets/js/app.js'); ?>"></script>
-<script>
-    $(document).ready(function () {
-        // Cacher tous les formulaires sauf le premier au chargement de la page
-        $(".relative > div:not(:first-child)").hide();
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-        // Gérer le changement d'onglet lorsque l'utilisateur clique sur un lien d'onglet
-        $("ul li a").click(function (event) {
-            event.preventDefault();
-            var target = $(this).attr("href");
-            $(".relative > div").hide();
-            $(target).fadeIn();
-        });
+<script>
+$(document).ready(function () {
+
+    // Cacher tous les formulaires sauf le premier au chargement de la page
+    $(".form-container > div:not(:first-child)").hide();
+
+    // Gérer le changement d'onglet lorsque l'utilisateur clique sur un lien d'onglet
+    $(".tab-link").click(function (event) {
+        event.preventDefault();
+        var target = $(this).attr("href");
+        $(".form-container > div").hide();
+        $(target).fadeIn();
+
+        // Supprimer la classe "text-gray-400" de tous les liens avec la classe "tab-link"
+        $(".tab-link").removeClass("font-bold");
+        // Ajouter la classe "text-gray-400" à l'élément cliqué
+        $(this).addClass("font-bold");
+
+        // Mettre à jour l'URL sans recharger la page
+        history.pushState(null, null, target);
     });
+
+    // Gérer le retour en arrière du navigateur
+    window.addEventListener('popstate', function (event) {
+        // Récupérer l'ancien état de l'URL et afficher la section correspondante
+        var target = window.location.hash;
+        $(".form-container > div").hide();
+        $(target).fadeIn();
+
+        // Rétablir la classe "text-gray-400" à tous les liens avec la classe "tab-link"
+        $(".tab-link").addClass("text-gray-400");
+        // Ajouter la classe "text-gray-400" à l'élément correspondant à l'onglet actif
+        $("a[href='" + target + "']").removeClass("text-gray-400");
+    });
+});
+
+
+function checkPasswordStrength(userPassword) {
+    var strength = 0;
+
+    if (userPassword.length >= 8) {
+        // Vérifier si le mot de passe contient au moins une lettre minuscule
+        if (/[a-z]/.test(userPassword)) {
+            strength += 1;
+        }
+
+        // Vérifier si le mot de passe contient au moins une lettre majuscule
+        if (/[A-Z]/.test(userPassword)) {
+            strength += 1;
+        }
+
+        // Vérifier si le mot de passe contient au moins un chiffre
+        if (/\d/.test(userPassword)) {
+            strength += 1;
+        }
+
+        // Vérifier si le mot de passe contient au moins un caractère spécial
+        if (/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(userPassword)) {
+            strength += 1;
+        }
+    }
+
+    // Mettre à jour la barre de progression
+    var passwordStrengthMeterFill = document.querySelector('.password-strength-meter-fill');
+    var passwordStrengthMeter = document.querySelector('.password-strength-meter');
+    passwordStrengthMeterFill.style.width = (strength * 25) + '%';
+
+    // Mettre à jour la couleur de la barre de progression
+    passwordStrengthMeterFill.classList.remove('password-strength-weak', 'password-strength-medium', 'password-strength-strong');
+    if (strength === 0) {
+        passwordStrengthMeterFill.classList.add('password-strength-weak');
+    } else if (strength === 1 || strength === 2) {
+        passwordStrengthMeterFill.classList.add('password-strength-medium');
+    } else if (strength >= 3) {
+        passwordStrengthMeterFill.classList.add('password-strength-strong');
+    }
+
+    // Mettre à jour le texte de la force du mot de passe
+    var passwordError = document.getElementById('passwordError');
+    if (strength === 0) {
+        passwordError.textContent = 'Mot de passe faible';
+        passwordError.classList.remove('password-strength-medium-text', 'password-strength-strong-text');
+        passwordError.classList.add('password-strength-weak-text');
+    } else if (strength === 1 || strength === 2) {
+        passwordError.textContent = 'Mot de passe moyen';
+        passwordError.classList.remove('password-strength-weak-text', 'password-strength-strong-text');
+        passwordError.classList.add('password-strength-medium-text');
+    } else if (strength >= 3) {
+        passwordError.textContent = 'Mot de passe fort';
+        passwordError.classList.remove('password-strength-weak-text', 'password-strength-medium-text');
+        passwordError.classList.add('password-strength-strong-text');
+    }
+
+    if (strength >=3){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function checkPasswordMatch() {
+    var passwordInput = document.getElementById('userPassword');
+    var confirmPasswordInput = document.getElementById('confirmPassword');
+    var confirmPasswordError = document.getElementById('confirmPasswordError');
+
+    var password = passwordInput.value;
+    var confirmPassword = confirmPasswordInput.value;
+
+    if (password === confirmPassword) {
+        document.getElementById("passwordSubmit").removeAttribute("disabled");
+        confirmPasswordInput.classList.remove('border-red-500');
+        confirmPasswordError.textContent = '';
+        return true;
+    } else {
+        document.getElementById("passwordSubmit").setAttribute("disabled", "true");
+        confirmPasswordInput.classList.add('border-red-500');
+        confirmPasswordError.textContent = "Les mots de passe ne correspondent pas";
+        return false;
+    }
+}
+
+const togglePasswordCheckbox = document.getElementById('togglePasswordCheckbox');
+const passwordInput = document.getElementById('userPassword');
+const confirmPasswordInput = document.getElementById('confirmPassword');
+
+togglePasswordCheckbox.addEventListener('change', function () {
+    if (togglePasswordCheckbox.checked) {
+        passwordInput.setAttribute('type', 'text');
+        confirmPasswordInput.setAttribute('type', 'text');
+    } else {
+        passwordInput.setAttribute('type', 'password');
+        confirmPasswordInput.setAttribute('type', 'password');
+    }
+});
+
+
+function showModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.classList.remove('hidden');
+    }
+
+    function hideModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.classList.add('hidden');
+    }
+
 </script>
 

@@ -567,5 +567,19 @@ class User_model extends CI_Model {
             $query = $this->db->get();
             return $query->row();
         }
+
+        public function updateUserDataSettings($userId, $userFirstName, $userLastName, $userTelephone){
+            $this->db->set('userFirstName', $userFirstName);
+            $this->db->set('userLastName', $userLastName);
+            $this->db->set('userTelephone', $userTelephone);
+            $this->db->where('userId', $userId);
+            $this->db->update('Users');
+        }
+
+        public function updateUserPassword($userId, $userPassword){
+            $this->db->set('userPassword', $userPassword);
+            $this->db->where('userId', $userId);
+            $this->db->update('Users');
+        }
         
 }

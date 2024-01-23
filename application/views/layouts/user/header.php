@@ -42,14 +42,14 @@
                 if($user->userIsAvailable == 1){
             ?>
                 <div style="padding-top: 0.2em; padding-bottom: 0.2rem" class="flex items-center space-x-1 bg-green-100 text-green-800 text-2xl lg:text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-300 dark:text-green-900">
-                    <div class="w-3 h-3 lg:h-2 lg:w-2 bg-green-500 rounded-full dark:bg-green-700"></div>
+                    <div class="w-2 h-2 lg:h-2 lg:w-2 bg-green-500 rounded-full dark:bg-green-700"></div>
                     <div>Disponibilité confirmée</div>
                 </div>
             <?php
                 } else {
             ?>
                 <div style="padding-top: 0.2em; padding-bottom: 0.2rem" class="flex items-center space-x-1 bg-red-100 text-red-800 text-2xl lg:text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-300 dark:text-red-900">
-                    <div class="w-3 h-3 lg:h-2 lg:w-2 bg-red-500 rounded-full dark:bg-red-700"></div>
+                    <div class="w-2 h-2 lg:h-2 lg:w-2 bg-red-500 rounded-full dark:bg-red-700"></div>
                     <div>Non Disponible</div>
                 </div>
             <?php
@@ -85,7 +85,7 @@
                             <i class="far fa-heart"></i>
                             <span>Favoris</span>
                         </a>
-                        <a href="#" class="text-2xl lg:text-base items-center space-x-2 block rounded-md px-4 py-4 text-gray-400 dark:text-gray-400 hover:bg-secondary dark:hover:text-white hover:text-gray-900 dark:hover:bg-primary">
+                        <a href="<?php echo base_url('user/settings');?>" class="text-2xl lg:text-base items-center space-x-2 block rounded-md px-4 py-4 text-gray-400 dark:text-gray-400 hover:bg-secondary dark:hover:text-white hover:text-gray-900 dark:hover:bg-primary">
                             <i class="fas fa-cog"></i>
                             <span>Paramètres</span>
                         </a>

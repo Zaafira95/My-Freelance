@@ -136,8 +136,8 @@ if($totalInfos == 1 ){
                         <div class="flex items-center mt-2">
                             <i class="text-3xl lg:text-base fa fa-map-marker-alt mr-3"></i>    
                             <div class="relative city-search-container w-full">
-                                <input type="text" id="citySearch" value="<?=$user->userVille?>" placeholder="Cherchez votre ville" class="text-3xl lg:text-lg border p-2 rounded-lg w-full text-black">
-                                <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
+                                <input type="text" id="citySearch" value="<?=$user->userVille?>" placeholder="Cherchez votre ville" class="text-3xl lg:text-lg border p-2 rounded-lg w-full text-black" onkeypress="return preventNumberInput(event)">
+                                <div id="cities-list" class="text-3xl lg:text-lg absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                             </div>
                         </div>
                     <h4 class="text-3xl lg:text-lg font-medium mt-4">Type de poste</h4>
@@ -312,7 +312,7 @@ if($totalInfos == 1 ){
 
                                     <!-- Div informations clés mission -->
                                     <div class="w-3/4 mr-4">
-                                        <h2 class="text-3xl lg:text-lg font-bold "><?=$mission->missionName?></h2>
+                                        <h2 class="text-3xl lg:text-lg font-bold"><?=$mission->missionName?></h2>
                                         <p class="text-3xl lg:text-base">
                                             <span class="mr-2"> 
                                                 • TJM : <?=$mission->missionTJM?> €
@@ -795,6 +795,14 @@ if($totalInfos == 1 ){
     $('#showFilterButton').click(function() {
         $('#FilterMission').toggleClass('hidden');
     });
+
+    function preventNumberInput(e) {
+        var charCode = (e.which) ? e.which : e.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return true;
+        }
+        return false;
+    }
 
 
     $(document).ready(function() {

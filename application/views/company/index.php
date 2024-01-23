@@ -12,102 +12,107 @@ include(APPPATH . 'views/layouts/company/header.php');
 <link href="<?php echo base_url('/node_modules/choices.js/public/assets/styles/choices.min.css');?>" rel="stylesheet" type="text/css">
 
 
-<div class="px-4 lg:px-6 py-6 h-90 overflow-y-auto no-scrollbar">
-    <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl h-full">
-        <div class="w-full flex gap-6 h-full mb-3">
-            <div class="w-1/4 sticky top-0">
-                <div class="bg-white rounded-lg h-full overflow-y-auto no-scrollbar mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                    <h3 class="text-xl font-medium mt-2">Filtre</h3>
-                    <h4 class="text-lg font-medium mt-4">Localisation</h4>
+<div class="px-8 py-6 lg:px-4 lg:py-6 h-90 overflow-y-auto no-scrollbar ">
+    <div class="justify-between items-center mx-auto max-w-screen-xl h-full">
+        <div class="lg:flex gap-6 h-full mb-3">
+            <div class="w-full lg:w-1/4 md:block md:sticky md:top-0">
+                <div class="text-right mb-4 lg:hidden">
+                    <button id="showFilterButton" class="text-4xl text-primary border p-2 border-primary  rounded-lg 2 hover:bg-primary-900 hover:text-white">
+                        <i class="fas fa-sliders-h"></i>
+                    </button>
+                </div>
+                <div class="hidden lg:block bg-white rounded-lg h-full overflow-y-auto no-scrollbar lg:no-shadow shadow-lg mb-8 lg:mb-4 p-4 dark:bg-gray-800 dark:text-white" id="FilterMission">
+                <h3 class="text-3xl lg:text-lg font-medium mt-2">Filtre</h3>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Localisation</h4>
                         <div class="flex items-center mt-2">
-                            <i class="fa fa-map-marker-alt mr-3"></i>    
+                            <i class="text-3xl lg:text-base fa fa-map-marker-alt mr-3"></i>    
                             <div class="relative city-search-container w-full">
-                                <input type="text" id="citySearch" placeholder="Cherchez votre ville" class="border p-2 rounded-lg w-full text-black" onkeypress="return preventNumberInput(event)">
-                                    <div id="cities-list" class="absolute z-10 mt-2 w-full rounded bg-white max-h-64 overflow-y-auto text-black"></div>
+                                <input type="text" id="citySearch" value="<?=$user->userVille?>" placeholder="Cherchez votre ville" class="text-3xl lg:text-lg border p-2 rounded-lg w-full text-black" onkeypress="return preventNumberInput(event)">
+                                <div id="cities-list" class="text-3xl lg:text-lg absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                             </div>
                         </div>
-                    <h4 class="text-lg font-medium mt-4">Type de poste</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Type de poste</h4>
                     <div class="mt-2">
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="temps-plein">
-                            <span class="ml-2">Temps plein</span>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="temps-plein">
+                            <span class="ml-2 text-3xl lg:text-base">Temps plein</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="temps-partiel">
-                            <span class="ml-2">Temps partiel</span>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="temps-partiel">
+                            <span class="ml-2 text-3xl lg:text-base">Temps partiel</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="remote">
-                            <span class="ml-2">Remote</span>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="remote">
+                            <span class="ml-2 text-3xl lg:text-base">Remote</span>
                         </label>
                     </div>
-                    <h4 class="text-lg font-medium mt-4">Niveau d'expérience</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Niveau d'expérience</h4>
                     <div class="mt-2">
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="junior">
-                            <span class="ml-2">Junior (1 à 2 ans)</span>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="junior">
+                            <span class="ml-2 text-3xl lg:text-base">Junior (1 à 2 ans)</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="intermediaire">
-                            <span class="ml-2">Intermédiaire (3 à 5 ans)</span>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="intermediaire">
+                            <span class="ml-2 text-3xl lg:text-base">Intermédiaire (3 à 5 ans)</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="expert">
-                            <span class="ml-2">Expert (+ 5 ans)</span>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="expert">
+                            <span class="ml-2 text-3xl lg:text-base">Expert (+ 5 ans)</span>
                         </label>
                     </div>
-                    <h4 class="text-lg font-medium mt-4">Disponibilité</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Disponibilité</h4>
                     <div class="mt-2">
                         <label class="flex items-center">
-                        <input type="checkbox" class="form-checkbox mr-2" id="available">
-                            <span class="ml-2">Disponible</span>
+                        <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="available">
+                            <span class="ml-2 text-3xl lg:text-base">Disponible</span>
                         </label>
                         <label class="flex items-center">
-                        <input type="checkbox" class="form-checkbox mr-2" id="unavailable">
-                            <span class="ml-2">Non disponible</span>
+                        <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="unavailable">
+                            <span class="ml-2 text-3xl lg:text-base">Non disponible</span>
                         </label>
                     </div>
-                    <h4 class="text-lg font-medium mt-4">TJM</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">TJM</h4>
                     <div class="mt-2 mr-3">
                         <div id="tjm-slider" class="w-full mt-2"></div>
                         <div class="flex justify-between mt-2">
-                            <span id="tjm-min" class="text-sm">300€</span>
-                            <span id="tjm-max" class="text-sm">1200€</span>
+                            <span id="tjm-min" class="text-3xl lg:text-base">300€</span>
+                            <span id="tjm-max" class="text-3xl lg:text-base">1200€</span>
                         </div>
                     </div>
                 
-                    <h4 class="text-lg font-medium mt-4">Compétences</h4>
-                    <div class="w-full max-w-xs mx-auto mt-5 text-black">
-                        <select id="skillsAll" name="skillsAll[]" multiple class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Compétences</h4>
+                    <div class="w-full mx-auto mt-5 text-black">
+                        <select id="skillsAll" name="skillsAll[]" multiple class="text-3xl lg:text-base mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             <?php foreach ($skillsAll as $skill): ?>
                                 <option class="text-black" value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <h4 class="text-lg font-medium mt-4">Métiers</h4>
-                    <div class="w-full max-w-xs mx-auto mt-5 text-black">
-                        <select id="jobsAll" name="jobsAll[]" multiple class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Métiers</h4>
+                    <div class="w-full mx-auto mt-5 text-black">
+                        <select id="jobsAll" name="jobsAll[]" multiple class="text-3xl lg:text-base mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             <?php foreach ($jobsAll as $job): ?>
                                 <option class="text-black" value="<?= $job['jobId'] ?>"><?= $job['jobName'] ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="flex justify-between mt-6">
-                        <button id="resetFiltersButton" class="text-primary border border-primary px-4 py-1 rounded-lg 2 hover:bg-primary-900 hover:text-white">Effacer</button>
+                        <button id="resetFiltersButton" class="text-3xl lg:text-base text-primary border border-primary px-4 py-1 rounded-lg 2 hover:bg-primary-900 hover:text-white">Effacer</button>
                     </div>
                 </div>
                 
             </div>
-            <div class="w-1/2 overflow-y-auto no-scrollbar">
+            <div class="w-full lg:w-6/12 h-full overflow-y-auto no-scrollbar">
                 <div class="bg-primary rounded-lg h-20vh p-4 text-white">
-                    <p class="font-bold">Hello, <?=$user->userFirstName?></p>
-                    <p class="font-normal mt-2 mb-2">Découvrez la manière la plus rapide et efficace de trouver votre freelance.</p>
+                    <p class="text-3xl lg:text-lg font-bold">Hello, <?=$user->userFirstName?></p>
+                    <p class="text-3xl lg:text-base mt-2 mb-2">Découvrez la manière la plus rapide et efficace de trouver votre freelance.</p>
                     <div class="flex w-full">
-                        <input type="text" id="search-input" class="w-full bg-white bg-opacity-20 rounded-lg p-2 placeholder-white mr-2 text-center" placeholder="Ecrivez le nom du freelance que vous recherchez..." />
+                        <input type="text" id="search-input" class="text-3xl lg:text-base w-full bg-white bg-opacity-20 rounded-lg p-2 placeholder-white mr-2 text-center" placeholder="Ecrivez le nom du freelance que vous recherchez..." />
                         <!-- <button class="w-1/5 bg-white text-primary rounded-lg px-4 py-2">Rechercher</button> -->
                     </div>
                 </div>
-                <h3 class="text-2xl font-medium mt-4" id="result-section">Pour vous :</h3>
+                <h3 class="text-5xl lg:text-2xl font-medium mt-4" id="result-section">Pour vous :</h3>
                 <div class="flex flex-wrap" id="freelancers-section">
 
                     <?php foreach($freelancers as $freelancer): ?>
@@ -130,29 +135,29 @@ include(APPPATH . 'views/layouts/company/header.php');
                             data-freelancer-skills="<?= implode(',', $freelancerSkillsArray) ?>">
                                 <div class="flex items-center">
                                     <div class="mr-4">
-                                    <?php 
-                                        if($freelancer->userAvatarPath == null){
-                                            $freelancer->userAvatarPath = 'assets/img/default-avatar.png';
-                                        }
-                                    ?>
-                                        <img src="<?php echo base_url($freelancer->userAvatarPath); ?>" alt="Avatar" class="w-10 h-10 rounded-full">
+                                        <?php 
+                                            if($freelancer->userAvatarPath == null){
+                                                $freelancer->userAvatarPath = 'assets/img/default-avatar.png';
+                                            }
+                                        ?>
+                                        <img src="<?php echo base_url($freelancer->userAvatarPath); ?>" alt="Avatar" class="w-16 h-16 lg:w-10 rounded-full">
                                     </div>
                                    
                                     <div class="w-3/4 mr-4">
                                         <div class="flex flex-1 mb-1">
-                                            <h2 class="font-bold text-lg mr-2 "><?=$freelancer->userFirstName.' '.$freelancer->userLastName?> </h2>
+                                            <h2 class="text-3xl lg:text-lg font-bold mr-4"><?=$freelancer->userFirstName.' '.$freelancer->userLastName?> </h2>
                                             <?php
                                                 if($freelancer->userIsAvailable == 1){
                                             ?>
-                                            <div class="flex items-center space-x-1 bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-300 dark:text-green-900">
-                                                <div style="width: 0.5rem; height: 0.5rem" class="bg-green-500 rounded-full dark:bg-green-700"></div>
+                                            <div class="flex items-center space-x-1 bg-green-100 text-green-800 text-xl lg:text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-300 dark:text-green-900">
+                                                <div class="w-2 h-2 lg:h-2 lg:w-2 bg-green-500 rounded-full dark:bg-green-700"></div>
                                                 <div>Disponible</div>
                                             </div>
                                             <?php
                                                 } else {
                                             ?>
-                                                <div class="flex items-center space-x-1 bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-300 dark:text-red-900">
-                                                    <div style="width: 0.5rem; height: 0.5rem" class="bg-red-500 rounded-full dark:bg-red-700"></div>
+                                                <div class="flex items-center space-x-1 bg-red-100 text-red-800 text-xl lg:text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-300 dark:text-red-900">
+                                                    <div class="w-2 h-2 lg:h-2 lg:w-2 bg-red-500 rounded-full dark:bg-red-700"></div>
                                                     <div>Non Disponible</div>
                                                 </div>
                                             <?php
@@ -160,55 +165,55 @@ include(APPPATH . 'views/layouts/company/header.php');
                                             ?> 
                                         </div>
                                         
-                                        <p>
-                                        <?php foreach ($freelancer_job[$freelancer->userId] as $job): ?>
-                                            <span class="mr-2"><?=$job->jobName?></span>
-                                        <?php endforeach; ?>
-                                            <span class="mr-2"> • TJM : <?=$freelancer->userTJM?> €</span>
-                                            <span class="mr-2"> •
-                                            <?php
-                                            if ($freelancer->userJobTimePartielOrFullTime == "temps-plein"){
-                                                $freelancer->userJobTimePartielOrFullTime = "Temps Plein";
-                                            }
-                                            elseif ($freelancer->userJobTimePartielOrFullTime == "temps-partiel"){
-                                                $freelancer->userJobTimePartielOrFullTime = "Temps Partiel";
-                                            }
-                                            elseif ($freelancer->userJobTimePartielOrFullTime == "remote"){
-                                                $freelancer->userJobTimePartielOrFullTime = "Remote";
-                                            }                                            
-                                            ?>
-                                            <?=$freelancer->userJobTimePartielOrFullTime?> 
-                                            </span>
+                                        <p class="text-3xl lg:text-base">
+                                            <?php foreach ($freelancer_job[$freelancer->userId] as $job): ?>
+                                                <span class="mr-2"><?=$job->jobName?></span>
+                                            <?php endforeach; ?>
+                                                <span class="mr-2"> • TJM : <?=$freelancer->userTJM?> €</span>
+                                                <span class="mr-2"> •
+                                                <?php
+                                                if ($freelancer->userJobTimePartielOrFullTime == "temps-plein"){
+                                                    $freelancer->userJobTimePartielOrFullTime = "Temps Plein";
+                                                }
+                                                elseif ($freelancer->userJobTimePartielOrFullTime == "temps-partiel"){
+                                                    $freelancer->userJobTimePartielOrFullTime = "Temps Partiel";
+                                                }
+                                                elseif ($freelancer->userJobTimePartielOrFullTime == "remote"){
+                                                    $freelancer->userJobTimePartielOrFullTime = "Remote";
+                                                }                                            
+                                                ?>
+                                                <?=$freelancer->userJobTimePartielOrFullTime?> 
+                                                </span>
 
-                                            <?php
-                                            if($freelancer->userRemote == 1){
-                                            ?>
-                                            <span class="mr-2"> • Remote </span>
-                                            <?php
-                                            }
-                                            ?>
-                                            <span class="mr-2"> • <?=$freelancer->userVille?></span>
-                                            <span class="mr-2"> •
-                                            <?php
-                                                if ($freelancer->userExperienceYear == "junior"){
-                                                    $freelancer->userExperienceYear = "Junior";
+                                                <?php
+                                                if($freelancer->userRemote == 1){
+                                                ?>
+                                                <span class="mr-2"> • Remote </span>
+                                                <?php
                                                 }
-                                                elseif ($freelancer->userExperienceYear == "intermediaire"){
-                                                    $freelancer->userExperienceYear = "Intermédiaire";
-                                                }
-                                                elseif ($freelancer->userExperienceYear == "expert"){
-                                                    $freelancer->userExperienceYear = "Expert";
-                                                }
-                                            ?>
-                                            <?=$freelancer->userExperienceYear?>
-                                        </span>
+                                                ?>
+                                                <span class="mr-2"> • <?=$freelancer->userVille?></span>
+                                                <span class="mr-2"> •
+                                                <?php
+                                                    if ($freelancer->userExperienceYear == "junior"){
+                                                        $freelancer->userExperienceYear = "Junior";
+                                                    }
+                                                    elseif ($freelancer->userExperienceYear == "intermediaire"){
+                                                        $freelancer->userExperienceYear = "Intermédiaire";
+                                                    }
+                                                    elseif ($freelancer->userExperienceYear == "expert"){
+                                                        $freelancer->userExperienceYear = "Expert";
+                                                    }
+                                                ?>
+                                                <?=$freelancer->userExperienceYear?>
+                                            </span>
 
                                         </p>
                                     </div>
                                 </div>
                                 <div class="flex items-center justify-between">
-                                    <div class="mt-4">
-                                        <p class="font-light mt-4 mb-4">
+                                    <div class="text-3xl lg:text-base mt-4">
+                                        <p class="text-3xl lg:text-base font-light mt-4 mb-4">
                                             <?php 
                                             // limit missionDescription to 270 caracteres and add '...' at the end
                                             $freelancer->userBio = strlen($freelancer->userBio) > 270 ? substr($freelancer->userBio,0,270)."..." : $freelancer->userBio;    
@@ -217,7 +222,6 @@ include(APPPATH . 'views/layouts/company/header.php');
                                         </p>
                                     </div>
                                 </div>
-                                
                                 <div class="skills-container mb-4">
                                     <?php
                                     if (is_array($freelancer_skills[$freelancer->userId]) && !empty($freelancer_skills[$freelancer->userId])) {
@@ -250,7 +254,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                                         }
                                     ?>
                                         <div class="skill-item" data-level="<?=$level?>">
-                                            <span class="dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                                            <span class="text-3xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
                                             <div class="skill-level"><?=$level?></div>
                                         </div>
                                     <?php
@@ -263,9 +267,9 @@ include(APPPATH . 'views/layouts/company/header.php');
                         </a>
                     <?php endforeach; ?>
                     </div>
-                    <p class="text-xl mt-10 hidden text-left" id="no-freelancer-found">Aucun freelance n'a été trouvée.</p>
+                        <p class="text-3xl lg:text-xl mt-10 hidden text-left" id="no-freelancer-found">Aucun freelance n'a été trouvée.</p>
                     </div>
-                    <div class="w-1/4 sticky top-0">
+                    <div class="hidden lg:block lg:w-1/4 sticky top-0 h-full overflow-y-auto no-scrollbar">
                         <div class="bg-white rounded-lg h-22vh p-4 dark:bg-gray-800 dark:text-white">
                             <div class="flex flex-col items-center mb-4">
                             <a class="flex flex-col items-center" href="<?=base_url('company/my_company')?>">
@@ -334,6 +338,11 @@ include(APPPATH . 'views/layouts/company/header.php');
 <script src="<?php echo base_url('/node_modules/choices.js/public/assets/scripts/choices.min.js'); ?>"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+
+     // When you click on showFilterButton the filter block appears in mobile version
+     $('#showFilterButton').click(function() {
+        $('#FilterMission').toggleClass('hidden');
+    });
 
     function preventNumberInput(e) {
         var charCode = (e.which) ? e.which : e.keyCode;

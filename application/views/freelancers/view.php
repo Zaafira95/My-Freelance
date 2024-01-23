@@ -268,7 +268,7 @@ if ($totalCount > 0) {
                     
 
                 </div>
-                <div class="flex gap-6 mb-3 mt-6">
+                <div class="lg:flex gap-6 mb-3 mt-6">
                     <div class="w-1/4 sticky top-0">
                         <div class="w-full">
                             <div class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">

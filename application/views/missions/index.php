@@ -67,7 +67,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                             <i class="text-3xl lg:text-base fa fa-map-marker-alt mr-3"></i>    
                             <div class="relative city-search-container w-full">
                                 <input type="text" id="citySearch" value="<?=$user->userVille?>" placeholder="Cherchez votre ville" class="text-3xl lg:text-lg border p-2 rounded-lg w-full text-black">
-                                <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
+                                <div id="cities-list" class="text-3xl lg:text-lg absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                             </div>
                         </div>
                     <h4 class="text-3xl lg:text-lg font-medium mt-4">Type de poste</h4>

@@ -209,7 +209,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                 <?php foreach ($companyPhotos as $companyPhoto): ?>
                         <div class="rounded-lg flex items-center justify-center mb-2">
                             <div class="relative w-full h-full flex items-center justify-center">
-                                <img id="company-image-<?= $companyPhoto->idCompanyPhotos ?>" src="<?= base_url($companyPhoto->companyPhotosPath) ?>" class="w-full h-full rounded-lg" alt="Image de l'entreprise" style="width:100%;">
+                                <img id="company-image-<?= $companyPhoto->idCompanyPhotos ?>" src="<?= base_url($companyPhoto->companyPhotosPath) ?>" class="rounded-lg" alt="Image de l'entreprise">
                                 <div class="absolute right-0 top-0 rounded-lg pt-4 pr-4">
                                     <label for="photo-upload-<?= $companyPhoto->idCompanyPhotos ?>" class="py-2.5 px-2.5 text-gray-400 hover:text-gray-900 bg-transparent rounded-lg ml-auto inline-flex items-center">
                                         <div class="cursor-pointer">
@@ -272,7 +272,7 @@ include(APPPATH . 'views/layouts/company/header.php');
             <form action="<?= base_url("company/addCompanyPhotos") ?>" method="post" enctype="multipart/form-data">
                 <div class="rounded-lg flex flex-wrap items-center justify-center mb-4">
                     <div class="w-full h-full flex items-center justify-center">
-                        <img id="company-image" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class=" max-h-64 max-w-xs rounded-lg" alt="Image de l'entreprise" style="width:100%;">
+                        <img id="company-image" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class=" max-h-64 max-w-xs rounded-lg" alt="Image de l'entreprise">
                     </div>
                     <div class="flex items-center justify-center w-full">
                         <p id="photosAddErrorMessage" class="text-red-500 text-base mt-2 hidden">La taille de l'image doit être inférieur à 2048 Ko</p>

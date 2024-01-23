@@ -270,14 +270,20 @@ class User extends CI_Controller {
 
         $jobId = $this->User_model->getJobId($userJobName);
 
-        // var_dump($jobId);die;
-
         // Vérifier si un fichier a été téléchargé
         if ($_FILES['avatar-upload']['name']) {
             // Créer un dossier pour chaque utilisateur avec son ID
             $userAvatarPath = 'assets/img/user/' . $userId . '/';
             if (!is_dir($userAvatarPath)) {
                 mkdir($userAvatarPath, 0777, true);
+            }
+
+            // Récupérer le chemin de l'avatar de l'utilisateur à partir de la base de données
+            $existinguUerAvatarPath = $this->User_model->getAvatarPath($userId);
+
+            // Vérifier si le fichier existe et le supprimer
+            if (file_exists($existinguUerAvatarPath)) {
+                unlink($existinguUerAvatarPath); // Supprimer le fichier
             }
     
             $config['upload_path'] = $userAvatarPath;
@@ -386,6 +392,7 @@ class User extends CI_Controller {
         
         // Bouclez à travers les compétences et les niveaux associés
         $this->User_model->deleteUserExperienceSkills($experienceId);
+        if(!empty($skills)){
             for ($i = 0; $i < count($skills); $i++) {
                 $skillId = $skills[$i];
                 $level = $levels[$i];
@@ -393,7 +400,7 @@ class User extends CI_Controller {
                 // Ajoutez les compétences de mission à la table missionSkills
                 $this->User_model->updateUserExperienceSkills($experienceId, $skillId, $level);
             }
-
+        }
         $this->session->set_flashdata('message', 'Votre expérience a bien été mise à jour !');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
@@ -412,9 +419,9 @@ class User extends CI_Controller {
         $skills = $this->input->post("skillsAll");
         $levels = $this->input->post("skillsLevel");
         
-         
         // Bouclez à travers les compétences et les niveaux associés
-        $this->User_model->deleteUserExperienceSkills($experienceId);
+        //$this->User_model->deleteUserExperienceSkills($experienceId);
+        if(!empty($skills)){
             for ($i = 0; $i < count($skills); $i++) {
                 $skillId = $skills[$i];
                 $level = $levels[$i];
@@ -422,6 +429,7 @@ class User extends CI_Controller {
                 // Ajoutez les compétences de mission à la table missionSkills
                 $this->User_model->updateUserExperienceSkills($experienceId, $skillId, $level);
             }
+        }
         $this->session->set_flashdata('message', 'Votre expérience a bien été ajoutée !');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);

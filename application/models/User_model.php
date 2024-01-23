@@ -342,7 +342,7 @@ class User_model extends CI_Model {
         }
 
         public function getAvatarPath($userId){
-            $this->db->select('Useravatarpath');
+            $this->db->select('userAvatarPath');
             $this->db->from('Users');
             $this->db->where('userId', $userId);
             $query = $this->db->get();
@@ -581,5 +581,5 @@ class User_model extends CI_Model {
             $this->db->where('userId', $userId);
             $this->db->update('Users');
         }
-        
+
 }

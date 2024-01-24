@@ -202,8 +202,12 @@ if ($totalCount > 0) {
                             </form>
                         </div>
                         <div id="user-password" class="px-6 space-y-4 md:space-y-6 w-2/3 hidden">
-                            <form method="post" action="<?php echo base_url('user/updateUserPassword'); ?>" enctype="multipart/form-data">
+                            <form id="updatePassword-form" method="post" action="<?php echo base_url('user/updateUserPassword'); ?>" enctype="multipart/form-data">
 
+                            <label for="userCurrentPassword" class="block font-medium text-gray-900 dark:text-white">Saisissez votre mot de passe actuel *</label>
+                            <input type="password" name="userCurrentPassword" id="userCurrentPassword" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" oninput="checkCurrentPassword(this.value)" required> 
+                            <p id="currentPasswordError" class="text-red-500"></p>
+                            
                             <label for="userPassword" class="block font-medium text-gray-900 dark:text-white">Saisissez votre nouveau mot de passe *</label>
                             <input type="password" name="userPassword" id="userPassword" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required oninput="checkPasswordStrength(this.value)"> 
                             <label for="confirmPassword" class="block font-medium text-gray-900 dark:text-white">Confirmez votre nouveau mot de passe *</label>
@@ -380,14 +384,55 @@ togglePasswordCheckbox.addEventListener('change', function () {
 
 
 function showModal(modalId) {
-        const modal = document.getElementById(modalId);
-        modal.classList.remove('hidden');
+    const modal = document.getElementById(modalId);
+    modal.classList.remove('hidden');
+}
+
+function hideModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.classList.add('hidden');
+}
+
+
+function checkCurrentPassword(password) {
+    var passwordInput = document.getElementById('userCurrentPassword');
+    var passwordError = document.getElementById('currentPasswordError');
+
+    // Vérifiez si le mot de passe est vide
+    if (password.trim() === '') {
+        passwordInput.classList.remove('border-red-500');
+        passwordError.textContent = '';
+        return;
     }
 
-    function hideModal(modalId) {
-        const modal = document.getElementById(modalId);
-        modal.classList.add('hidden');
+    // Envoie d'une requête AJAX pour vérifier le mot de passe
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '<?php echo base_url('user/checkCurrentPassword'); ?>', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+                if (response.status === 'error') {
+                    passwordInput.classList.add('border-red-500');
+                    passwordError.textContent = response.message;
+                } else {
+                    passwordInput.classList.remove('border-red-500');
+                    passwordError.textContent = '';
+                }
+            }
+        }
+    };
+    xhr.send('userCurrentPassword=' + password);
+}
+
+$('#updatePassword-form').on('submit', function(event) {
+    var passwordError = document.getElementById('currentPasswordError');
+
+    if (passwordError.textContent != '') {
+        event.preventDefault(); // Empêcher la soumission du formulaire
     }
+});
 
 </script>
 

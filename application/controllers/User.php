@@ -165,10 +165,6 @@ class User extends CI_Controller {
         
     }
 
-    
-
-   
-
     public function profil(){
         $userId = $this->session->userdata('userId');
         $this->load->model('User_model');
@@ -1177,6 +1173,18 @@ class User extends CI_Controller {
         $this->session->set_flashdata('message', 'Votre mot de passe a bien été mis à jour !');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    public function checkCurrentPassword(){
+        $this->load->model('User_model');
+        $currentPassword = $this->input->post('userCurrentPassword');
+        if ($this->User_model->checkPassword($this->session->userdata('userId'), $currentPassword)) {
+            // Mot de passe correct
+            echo json_encode(array('status' => 'success', 'message' => ''));
+        } else {
+            // Mot de passe incorrect
+            echo json_encode(array('status' => 'error', 'message' => 'Mot de passe incorrect'));
+        }
     }
 
 }

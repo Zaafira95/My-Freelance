@@ -117,13 +117,13 @@ foreach ($ratedUsers as $rating) {
                     <div class="rounded-lg lg:h-full lg:w-1/2 mb-4 lg:mr-4 dark:text-white">
                         <div class="relative lg:flex grid-cols-2 items-center overflow-hidden bg-white lg:h-full w-full rounded-lg mb-4 dark:bg-gray-800 py-8 px-4">
                             <ul class="w-full">
-                                <li class="tab-item mb-8 w-full flex"> <a href="#user-data" class="tab-link px-2 text-3xl lg:text-lg font-bold text-primary w-full"><i class="fas fa-user mr-4"></i>Informations personnelles</a></li>
+                                <li class="tab-item mb-8 w-full flex"> <a href="#user-data" class="tab-link px-2 text-3xl lg:text-lg font-bold text-primary w-full"><i class="far fa-user mr-4"></i>Informations personnelles</a></li>
 
-                                <li class="tab-item mb-8 w-full flex"> <a href="#company-data" class="tab-link px-2 text-3xl lg:text-lg w-full"><i class="fas fa-building mr-4"></i>Informations professionnelles</a></li>
+                                <li class="tab-item mb-8 w-full flex"> <a href="#company-data" class="tab-link px-2 text-3xl lg:text-lg w-full"><i class="far fa-building mr-4"></i>Informations professionnelles</a></li>
 
-                                <li class="tab-item mb-8 w-full flex"> <a href="#user-password" class="tab-link px-2 text-3xl lg:text-lg w-full"><i class="fas fa-key mr-4"></i>Mot de passe</a></li>
+                                <li class="tab-item mb-8 w-full flex"> <a href="#user-password" class="tab-link px-2 text-3xl lg:text-lg w-full"><i class="far fa-eye mr-4"></i>Mot de passe</a></li>
                                 
-                                <li class="tab-item"> <a href="#rating" class="tab-link px-2 text-3xl lg:text-lg w-full"><i class="fas fa-star mr-4"></i>Avis</a></li>
+                                <li class="tab-item"> <a href="#rating" class="tab-link px-2 text-3xl lg:text-lg w-full"><i class="far fa-star mr-4"></i>Avis</a></li>
                             </ul>
                         </div>
                     </div>

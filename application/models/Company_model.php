@@ -437,14 +437,14 @@ class Company_model extends CI_Model {
     }
     
     public function getLogoPath($companyId) {
-        $this->db->select('Companylogopath');
+        $this->db->select('companyLogoPath');
         $this->db->where('idCompany', $companyId);
         $query = $this->db->get('Company');
         return $query->row()->companyLogoPath;
     }
     
     public function getBannerPath($companyId) {
-        $this->db->select('Companybannerpath');
+        $this->db->select('companyBannerPath');
         $this->db->where('idCompany', $companyId);
         $query = $this->db->get('Company');
         return $query->row()->companyBannerPath;
@@ -471,7 +471,7 @@ class Company_model extends CI_Model {
     }
     
     public function getPhotoPath($id){
-        $this->db->select('Companyphotospath');
+        $this->db->select('companyPhotosPath');
         $this->db->where('idCompanyPhotos', $id);
         $query = $this->db->get('CompanyPhotos');
         return $query->row()->companyPhotosPath;
@@ -503,5 +503,18 @@ class Company_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function checkPassword($userId, $password){
+        $this->db->where('userId', $userId);
+        $query = $this->db->get('users');
+    
+        if ($query->num_rows() == 1) {
+            $userData = $query->row();
+            return password_verify($password, $userData->userPassword);
+        }
+        return false;
+    }
+
+    
 }
 ?>

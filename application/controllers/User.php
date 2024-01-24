@@ -165,10 +165,6 @@ class User extends CI_Controller {
         
     }
 
-    
-
-   
-
     public function profil(){
         $userId = $this->session->userdata('userId');
         $this->load->model('User_model');
@@ -270,14 +266,20 @@ class User extends CI_Controller {
 
         $jobId = $this->User_model->getJobId($userJobName);
 
-        // var_dump($jobId);die;
-
         // Vérifier si un fichier a été téléchargé
         if ($_FILES['avatar-upload']['name']) {
             // Créer un dossier pour chaque utilisateur avec son ID
             $userAvatarPath = 'assets/img/user/' . $userId . '/';
             if (!is_dir($userAvatarPath)) {
                 mkdir($userAvatarPath, 0777, true);
+            }
+
+            // Récupérer le chemin de l'avatar de l'utilisateur à partir de la base de données
+            $existinguUerAvatarPath = $this->User_model->getAvatarPath($userId);
+
+            // Vérifier si le fichier existe et le supprimer
+            if (file_exists($existinguUerAvatarPath)) {
+                unlink($existinguUerAvatarPath); // Supprimer le fichier
             }
     
             $config['upload_path'] = $userAvatarPath;
@@ -377,12 +379,16 @@ class User extends CI_Controller {
         $userExperienceDateDebut = $this->input->post('userExperienceDateDebut');
         $userExperienceDateFin = $this->input->post('userExperienceDateFin');
         
+        // $updateUserExperienceDateFinToday = $this->input->post('userEtranger');
+        // $userExperienceDateFin = $updateUserExperienceDateFinToday == 'on' ? "Aujourd'hui" : $userExperienceDateFin;
+        
         $this->User_model->updateUserExperience($experienceId, $userId, $userExperienceJob, $userExperienceCompany, $userExperienceDescription, $userExperienceDateDebut, $userExperienceDateFin);
         $skills = $this->input->post("skillsAll");
         $levels = $this->input->post("skillsLevel");
         
         // Bouclez à travers les compétences et les niveaux associés
         $this->User_model->deleteUserExperienceSkills($experienceId);
+        if(!empty($skills)){
             for ($i = 0; $i < count($skills); $i++) {
                 $skillId = $skills[$i];
                 $level = $levels[$i];
@@ -390,7 +396,7 @@ class User extends CI_Controller {
                 // Ajoutez les compétences de mission à la table missionSkills
                 $this->User_model->updateUserExperienceSkills($experienceId, $skillId, $level);
             }
-
+        }
         $this->session->set_flashdata('message', 'Votre expérience a bien été mise à jour !');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
@@ -409,9 +415,9 @@ class User extends CI_Controller {
         $skills = $this->input->post("skillsAll");
         $levels = $this->input->post("skillsLevel");
         
-         
         // Bouclez à travers les compétences et les niveaux associés
-        $this->User_model->deleteUserExperienceSkills($experienceId);
+        //$this->User_model->deleteUserExperienceSkills($experienceId);
+        if(!empty($skills)){
             for ($i = 0; $i < count($skills); $i++) {
                 $skillId = $skills[$i];
                 $level = $levels[$i];
@@ -419,6 +425,7 @@ class User extends CI_Controller {
                 // Ajoutez les compétences de mission à la table missionSkills
                 $this->User_model->updateUserExperienceSkills($experienceId, $skillId, $level);
             }
+        }
         $this->session->set_flashdata('message', 'Votre expérience a bien été ajoutée !');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
@@ -1142,13 +1149,44 @@ class User extends CI_Controller {
         $this->load->view('companies/view', $data);
     }
     
+    public function updateUserDataSettings(){
+        $this->load->model('User_model');
+        $userId = $this->session->userdata('userId');
+        $userFirstName = $this->input->post('userFirstName');
+        $userLastName = $this->input->post('userLastName');
+        $userTelephone = $this->input->post('userTelephone');
+
+        $this->User_model->updateUserDataSettings($userId, $userFirstName, $userLastName, $userTelephone);
+        $this->session->set_flashdata('message', 'Vos informations personnelles ont bien été mises à jour !');
+        $this->session->set_flashdata('status', 'success');
+        redirect($_SERVER['HTTP_REFERER']);
+    }
     
-    
-    
-    
-    
-    
-    
+    public function updateUserPassword(){
+        $this->load->model('User_model');
+        $userId = $this->session->userdata('userId');
+        $userPassword = $this->input->post('userPassword');
+        // hash password
+        $userPassword = password_hash($userPassword, PASSWORD_DEFAULT);
+
+        $this->User_model->updateUserPassword($userId, $userPassword);
+        $this->session->set_flashdata('message', 'Votre mot de passe a bien été mis à jour !');
+        $this->session->set_flashdata('status', 'success');
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    public function checkCurrentPassword(){
+        $this->load->model('User_model');
+        $currentPassword = $this->input->post('userCurrentPassword');
+        if ($this->User_model->checkPassword($this->session->userdata('userId'), $currentPassword)) {
+            // Mot de passe correct
+            echo json_encode(array('status' => 'success', 'message' => ''));
+        } else {
+            // Mot de passe incorrect
+            echo json_encode(array('status' => 'error', 'message' => 'Mot de passe incorrect'));
+        }
+    }
+
 }
 
 /*test*/

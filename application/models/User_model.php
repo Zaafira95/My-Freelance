@@ -342,7 +342,7 @@ class User_model extends CI_Model {
         }
 
         public function getAvatarPath($userId){
-            $this->db->select('Useravatarpath');
+            $this->db->select('userAvatarPath');
             $this->db->from('Users');
             $this->db->where('userId', $userId);
             $query = $this->db->get();
@@ -567,5 +567,30 @@ class User_model extends CI_Model {
             $query = $this->db->get();
             return $query->row();
         }
+
+        public function updateUserDataSettings($userId, $userFirstName, $userLastName, $userTelephone){
+            $this->db->set('userFirstName', $userFirstName);
+            $this->db->set('userLastName', $userLastName);
+            $this->db->set('userTelephone', $userTelephone);
+            $this->db->where('userId', $userId);
+            $this->db->update('Users');
+        }
+
+        public function updateUserPassword($userId, $userPassword){
+            $this->db->set('userPassword', $userPassword);
+            $this->db->where('userId', $userId);
+            $this->db->update('Users');
+        }
+
+        public function checkPassword($userId, $password){
+            $this->db->where('userId', $userId);
+            $query = $this->db->get('users');
         
+            if ($query->num_rows() == 1) {
+                $userData = $query->row();
+                return password_verify($password, $userData->userPassword);
+            }
+            return false;
+        }
+
 }

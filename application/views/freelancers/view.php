@@ -673,7 +673,12 @@ if ($totalCount > 0) {
                                                         );
 
                                                         $dateDebut = strtr($dateDebut, $months);
-                                                        $dateFin = strtr($dateFin, $months);
+                                                        if($experience->experienceDateFin == NULL) {
+                                                            $dateFin = "Aujourd'hui";
+                                                        }
+                                                        else {
+                                                            $dateFin = strtr($dateFin, $months);
+                                                        }                                                        
                                                         ?>
                                                         <p class=""><?= $dateDebut.' - '. $dateFin?></p>
                                                     </div>

@@ -189,7 +189,7 @@ class Company_model extends CI_Model {
 
 
     public function getJobWithId($companyJobs){
-        $this->db->select('Missionname');
+        $this->db->select('missionName');
         $this->db->from('Mission');
         $this->db->where('idMission', $companyJobs);
         $query = $this->db->get();
@@ -197,7 +197,7 @@ class Company_model extends CI_Model {
     }
 
     public function getTjm($companyJobs){
-        $this->db->select('Missiontjm');
+        $this->db->select('missionTjm');
         $this->db->from('Mission');
         $this->db->where('idMission', $companyJobs);
         $query = $this->db->get();
@@ -205,7 +205,7 @@ class Company_model extends CI_Model {
     }
 
     public function getUserTelephone($freelancerId){
-        $this->db->select('Usertelephone');
+        $this->db->select('userTelephone');
         $this->db->from('Users');
         $this->db->where('userId', $freelancerId);
         $query = $this->db->get();

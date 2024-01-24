@@ -8,10 +8,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
     <title><?=$user->userFirstName.' '.$user->userLastName.' '.ucfirst($user->userType)?>  - Café Crème Community </title>
 
 <style>
-    html,
-    body {
-        height: 100vh;
-    }
+  
     .file-thumbnail-img {
     max-width: 100%;
     height: auto;

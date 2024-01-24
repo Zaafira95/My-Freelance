@@ -3882,6 +3882,11 @@ body.dark {
     order: 2;
   }
 
+
+  .lg\:ml-4{
+    margin-left: 1rem;
+  }
+  
   .lg\:ml-6 {
     margin-left: 1.5rem;
   }
@@ -3910,6 +3915,10 @@ body.dark {
     width: 75%;
   }
 
+  .lg\:w-2\/4 {
+    width: 50%;
+  }
+
   .lg\:w-5\/12 {
     width: 41.666667%;
   }
@@ -3920,6 +3929,10 @@ body.dark {
 
   .lg\:w-auto {
     width: auto;
+  }
+
+  .lg\:w-2\/3 {
+    width: 66.666667%;
   }
 
   .lg\:w-full {
@@ -4148,6 +4161,10 @@ body.dark {
 
   .lg\:mt-5 {
     margin-top: 1.25rem;
+  }
+
+  .lg\:mr-4{
+    margin-right: 1rem;
   }
 
   .lg\:right-4 {

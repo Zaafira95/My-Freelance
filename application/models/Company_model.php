@@ -503,5 +503,18 @@ class Company_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function checkPassword($userId, $password){
+        $this->db->where('userId', $userId);
+        $query = $this->db->get('users');
+    
+        if ($query->num_rows() == 1) {
+            $userData = $query->row();
+            return password_verify($password, $userData->userPassword);
+        }
+        return false;
+    }
+
+    
 }
 ?>

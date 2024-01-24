@@ -896,5 +896,19 @@ class Company extends CI_Controller {
     
         $this->load->view('company/whatsapp', $data);
     }
+
+    public function checkCurrentPassword(){
+        $this->load->model('Company_model');
+        $currentPassword = $this->input->post('userCurrentPassword');
+        if ($this->Company_model->checkPassword($this->session->userdata('userId'), $currentPassword)) {
+            // Mot de passe correct
+            echo json_encode(array('status' => 'success', 'message' => ''));
+        } else {
+            // Mot de passe incorrect
+            echo json_encode(array('status' => 'error', 'message' => 'Mot de passe incorrect'));
+        }
+    }
+    
+
 }
 ?>

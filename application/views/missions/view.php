@@ -595,7 +595,6 @@ else if ($user->userType == "sales"){
                             </div>
                         </div>
                     </div> 
-             
             </div>
             <h2 class="font-bold text-4xl lg:text-xl mt-2 mb-4">Les autres offres proposés par <?=$company->companyName?></h2>
             <div class="overflow-x-auto flex pb-4 no-scrollbar">
@@ -643,97 +642,99 @@ else if ($user->userType == "sales"){
                                         <?=$companyMission->missionType?> 
                                         </span>
 
-                                        <span class="mr-2"> • 
-                                        <?php
 
-                                        if ($companyMission->missionDeroulement == "teletravail"){
-                                            $companyMission->missionDeroulement = "Télétravail";
-                                        }
-                                        elseif ($companyMission->missionDeroulement == "site"){
-                                            $companyMission->missionDeroulement = "Sur site";
-                                        }
-                                        elseif ($companyMission->missionDeroulement == "hybride"){
-                                            $companyMission->missionDeroulement = "Hybride";
-                                        }                                            
-                                        ?>
-                                        <?=$companyMission->missionDeroulement?>
-                                        </span>
-
-                                        <span class="mr-2"> • <?=$companyMission->missionLocalisation?></span>
-
-                                        <span class="mr-2"> •
-                                        <?php
-                                        if ($companyMission->missionExpertise == "junior"){
-                                            $companyMission->missionExpertise = "Junior";
-                                        }
-                                        elseif ($companyMission->missionExpertise == "intermediaire"){
-                                            $companyMission->missionExpertise = "Intermédiaire";
-                                        }
-                                        elseif ($companyMission->missionExpertise == "expert"){
-                                            $companyMission->missionExpertise = "Expert";
-                                        }
-                                                                            
-                                        ?>
-                                        <?=$companyMission->missionExpertise?>
-                                        </span>
-
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <div class="mt-4">
-                                    <div class="font-light mt-4 mb-4 overflow-hidden text-2xl lg:text-base" style="max-height : 6em">
-                                        <?php 
-                                        // limit missionDescription to 270 characters and add '...' at the end
-                                        $companyMission->missionDescription = strlen($companyMission->missionDescription) > 270 ? substr($companyMission->missionDescription,0,270)."..." : $companyMission->missionDescription;    
-                                        ?>
-                                        <?=$companyMission->missionDescription?>
-                                    </div>
-                                    <?php if (isset($missionSkills[$companyMission->idMission])) : ?>
-                                        <div class="skills-container mb-4">
-                                        <?php foreach ($missionSkills[$companyMission->idMission] as $skill) : ?>
+                                            <span class="mr-2"> • 
                                             <?php
-                                                // Déterminer le niveau en fonction de la valeur de missionSkillsExperience
-                                                $level = '';
-                                                $color = '';
-                                                switch ($skill->missionSkillsExperience) {
-                                                    case 1:
-                                                        $level = 'Junior';
-                                                        $color = '#BEE3F8'; // Couleur pour le niveau junior
-                                                        $textdark = "text-black";
-                                                        $text = "text-black";
-                                                        
-                                                        break;
-                                                    case 2:
-                                                        $level = 'Intermédiaire';
-                                                        $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
-                                                        $textdark = "text-white";
-                                                        $text = "text-black";
-                                                        break;
-                                                    /*case 3:
-                                                        $level = 'Confirmé';
-                                                        $color = '#3182CE'; // Couleur pour le niveau confirmé
-                                                        $textdark = "text-white";
-                                                        $text = "text-white";
-                                                        break;*/
-                                                    case 3:
-                                                        $level = 'Expert';
-                                                        $color = '#2C5282'; // Couleur pour le niveau expert
-                                                        $textdark = "text-white";
-                                                        $text = "text-white";
-                                                        break;
-                                                    default:
-                                                        $level = 'N/A'; // Si la valeur de missionSkillsExperience n'est pas valide, afficher "N/A"
-                                                        break;
-                                                }
+
+                                            if ($companyMission->missionDeroulement == "teletravail"){
+                                                $companyMission->missionDeroulement = "Télétravail";
+                                            }
+                                            elseif ($companyMission->missionDeroulement == "site"){
+                                                $companyMission->missionDeroulement = "Sur site";
+                                            }
+                                            elseif ($companyMission->missionDeroulement == "hybride"){
+                                                $companyMission->missionDeroulement = "Hybride";
+                                            }                                            
                                             ?>
-                                            <div class="skill-item" data-level="<?=$level?>">
-                                                <span class="text-2xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 mt-2 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
-                                                <div class="skill-level"><?=$level?></div>
-                                            </div>
-                                        <?php endforeach; ?>
+                                            <?=$companyMission->missionDeroulement?>
+                                            </span>
+
+                                            <span class="mr-2"> • <?=$companyMission->missionLocalisation?></span>
+
+                                            <span class="mr-2"> •
+                                            <?php
+                                            if ($companyMission->missionExpertise == "junior"){
+                                                $companyMission->missionExpertise = "Junior";
+                                            }
+                                            elseif ($companyMission->missionExpertise == "intermediaire"){
+                                                $companyMission->missionExpertise = "Intermédiaire";
+                                            }
+                                            elseif ($companyMission->missionExpertise == "expert"){
+                                                $companyMission->missionExpertise = "Expert";
+                                            }
+                                                                                
+                                            ?>
+                                            <?=$companyMission->missionExpertise?>
+                                            </span>
+
+                                        </p>
                                     </div>
-                                    <?php endif; ?>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="mt-4">
+                                        <div class="font-light mt-4 mb-4 overflow-hidden text-2xl lg:text-base" style="max-height : 6em">
+                                            <?php 
+                                            // limit missionDescription to 270 characters and add '...' at the end
+                                            $companyMission->missionDescription = strlen($companyMission->missionDescription) > 270 ? substr($companyMission->missionDescription,0,270)."..." : $companyMission->missionDescription;    
+                                            ?>
+                                            <?=$companyMission->missionDescription?>
+                                        </div>
+                                        <?php if (isset($missionSkills[$companyMission->idMission])) : ?>
+                                            <div class="skills-container mb-4">
+                                            <?php foreach ($missionSkills[$companyMission->idMission] as $skill) : ?>
+                                                <?php
+                                                    // Déterminer le niveau en fonction de la valeur de missionSkillsExperience
+                                                    $level = '';
+                                                    $color = '';
+                                                    switch ($skill->missionSkillsExperience) {
+                                                        case 1:
+                                                            $level = 'Junior';
+                                                            $color = '#BEE3F8'; // Couleur pour le niveau junior
+                                                            $textdark = "text-black";
+                                                            $text = "text-black";
+                                                            
+                                                            break;
+                                                        case 2:
+                                                            $level = 'Intermédiaire';
+                                                            $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
+                                                            $textdark = "text-white";
+                                                            $text = "text-black";
+                                                            break;
+                                                        /*case 3:
+                                                            $level = 'Confirmé';
+                                                            $color = '#3182CE'; // Couleur pour le niveau confirmé
+                                                            $textdark = "text-white";
+                                                            $text = "text-white";
+                                                            break;*/
+                                                        case 3:
+                                                            $level = 'Expert';
+                                                            $color = '#2C5282'; // Couleur pour le niveau expert
+                                                            $textdark = "text-white";
+                                                            $text = "text-white";
+                                                            break;
+                                                        default:
+                                                            $level = 'N/A'; // Si la valeur de missionSkillsExperience n'est pas valide, afficher "N/A"
+                                                            break;
+                                                    }
+                                                ?>
+                                                <div class="skill-item" data-level="<?=$level?>">
+                                                    <span class="text-2xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 mt-2 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                                                    <div class="skill-level"><?=$level?></div>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
                             </div>
                             <div class="absolute top-0 right-4 mt-4 mb-4 z-9">
@@ -744,8 +745,21 @@ else if ($user->userType == "sales"){
                                         <a href="<?php echo base_url('user/removeFromFavorite/'.$companyMission->idMission);?>">
                                             <i class="fas fa-heart text-3xl lg:text-xl text-red-800"></i>
                                         </a>
+
                                         <?php
-                                    } else {
+                                        if(isFavorite($companyMission->idMission, $favoriteMissions)){
+                                            ?>
+                                            <a href="<?php echo base_url('user/removeFromFavorite/'.$companyMission->idMission);?>">
+                                                <i class="fas fa-heart text-xl text-red-800"></i>
+                                            </a>
+                                            <?php
+                                        } else {
+                                            ?>
+                                            <a href="<?php echo base_url('user/addToFavorite/'.$companyMission->idMission);?>">
+                                                <i class="far fa-heart text-xl text-red-800"></i>
+                                            </a>
+                                            <?php
+                                        }
                                         ?>
                                         <a href="<?php echo base_url('user/addToFavorite/'.$companyMission->idMission);?>">
                                             <i class="far fa-heart text-3xl lg:text-xl text-red-800"></i>
@@ -762,13 +776,14 @@ else if ($user->userType == "sales"){
                                     </button>
                                 </a>
                                 <?php } ?>
+
                             </div>
-                        </div>
-                        </div>
-                    </a>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-            </div>
+                            </div>
+                        </a>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
+            <?php } ?>
 
             <div>
             </div>

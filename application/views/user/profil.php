@@ -35,10 +35,6 @@ include(APPPATH . 'views/layouts/user/header.php' );
     border-radius: 4px;
 }
 
-
-
-
-
 </style>
 
 <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
@@ -127,6 +123,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                     </div>
                                 </div>
                             </div>
+                            <p id="avatarErrorMessage" class="text-red-500 text-base mt-2 hidden">La taille de l'image doit être iinférieur à 2048 Ko</p>
                             <span id="file-name" class="hidden  text-gray-500 mt-4 dark:text-white"></span>
                             <!-- Delete user profile picture -->
                             <?php
@@ -217,20 +214,42 @@ include(APPPATH . 'views/layouts/user/header.php' );
                 <div>
                     <label for="name" class="text-2xl lg:text-base block mb-2  font-medium text-gray-900 dark:text-white">Êtes-vous disponible pour travailler dès maintenant ?</label>
                     <label class="text-2xl lg:text-base text-gray-500 mr-3 dark:text-gray-400">Non</label>
-                    <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description" <?php echo $checkboxChecked; ?> class="text-2xl lg:text-base relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-green-200">
+                    <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description-preference" <?php echo $checkboxChecked; ?> onchange="displayAvailibilityOptionsPreference()" class="text-2xl lg:text-base relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-green-200">
                     <label class="text-2xl lg:text-base text-gray-500 ml-3 dark:text-gray-400">Oui</label>
-                    <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="text-2xl lg:text-base bg-gray-50 border mt-2 border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option value="temps-plein" 
-                            <?php if ($user->userJobTimePartielOrFullTime === "temps-plein") {
-                                echo ' selected';
-                            } ?>> Temps Plein 
-                        </option>
-                        <option value="temps-partiel" 
-                            <?php if ($user->userJobTimePartielOrFullTime === "temps-partiel") {
-                                echo ' selected';
-                            } ?>> Temps Partiel 
-                        </option>
-                    </select>
+                    <div id="isAvailaibleOptionsPreference" style="display: <?php echo $checkboxChecked == 'checked' ? "block" : "none" ?>" class=" mt-4 mb-2">
+                        <label for="name" class="block mb-2 font-medium text-gray-900 dark:text-white">Combien de jours par semaine êtes-vous disponible ?</label>
+                        <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="bg-gray-50 border mt-2 border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option value="temps-plein" 
+                                <?php if ($user->userJobTimePartielOrFullTime === "temps-plein") {
+                                    echo ' selected';
+                                } ?>> Temps Plein 
+                            </option>
+                            <option value="temps-partiel" 
+                                <?php if ($user->userJobTimePartielOrFullTime === "temps-partiel") {
+                                    echo ' selected';
+                                } ?>> Temps Partiel 
+                            </option>
+                        </select>
+                    </div>
+                    <div id="isNotAvailaibleOptionsPreference" style="display: <?php echo $checkboxChecked == '' ? "block" : "none" ?>" class="mt-4 mb-2">
+                        <label for="dateFinIndisponibilitePreference" class="block mb-2 font-medium text-gray-900 dark:text-white">Quand serez-vous à nouveau disponible ?</label>
+                        <div class="flex flex-1 mt-2">
+                            <div class="flex items-center mr-6">
+                                <input type="radio" id="1mois" value="1" name="finIndisponibiliteDuree" class="finIndisponibiliteBtnPreference w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="1mois" class="ml-2 font-medium text-gray-900 dark:text-white">Dans 1 mois</label>
+                            </div>
+                            <div class="flex items-center mr-6">
+                                <input type="radio" id="3mois" value="3" name="finIndisponibiliteDuree" class="finIndisponibiliteBtnPreference w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="3mois" class="ml-2 font-medium text-gray-900 dark:text-white">Dans 3 mois</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="6mois" value="6" name="finIndisponibiliteDuree" class="finIndisponibiliteBtnPreference w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="6mois" class="ml-2 font-medium text-gray-900 dark:text-white">Dans 6 mois</label>
+                            </div>
+                        </div>
+                        <input type="date" id="dateFinIndisponibilitePreference" value="<?= $user->userDateFinIndisponibilite ?>" name="dateFinIndisponibilite" class="w-full mt-2 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <p id="errorDateFinIndisponibilitePreference" class="mt-2 text-red-500" style="display:none;">Veuilllez renseigner une date</p>
+                    </div>
 
                     <label for="userJobType" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Type de poste</label>
                     
@@ -250,14 +269,13 @@ include(APPPATH . 'views/layouts/user/header.php' );
                     </div>
                     <p id="errorMessageJobType" class="text-2xl lg:text-base text-red-500" style="display:none;">Veuillez choisir un type de poste</p>
                     <label for="userVille" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Localisation</label>
-                    <!--<input type="text" name="userVille" id="userVille" value="<?=$user->userVille?>" class="text-2xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Ville">-->
-                    <div id="step3-freelance-city">    
+                    <div>    
                         <div class="relative city-search-container w-full mr-4">
-                            <input type="text" id="citySearch" name="userVille" placeholder="Cherchez votre ville" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" >
+                            <input type="text" id="citySearch" name="userVille" placeholder="Cherchez votre ville" value="<?php echo $user->userVille != 'Etranger' ? $user->userVille : "" ?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" >
                                 <div id="cities-list" class="text-2xl lg:text-base absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                         </div>
                         <div class="flex items-center mt-2">
-                            <input type="checkbox" id="userEtranger" name="userEtranger">
+                            <input type="checkbox" id="userEtranger" name="userEtranger" <?php echo $user->userVille === 'Etranger' ? 'checked' : "" ?>>
                             <label class="text-2xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Étranger</label>
                         </div>
                     </div>
@@ -348,7 +366,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
 <?php
 foreach ($experiences as $index => $experience) {
 ?>
-    <div id="updateUserExperience<?=$index?>" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-30 right-0 left-0 z-50 justify-center items-center w-full md:inset-0">
+    <div id="updateUserExperience<?=$index?>" tabindex="-1" aria-hidden="true" class=" hidden overflow-y-auto overflow-x-hidden fixed top-30 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
         <div class="relative p-4 w-80 lg:w-60 h-90 overflow-y-auto no-scrollbar">
             <!-- Modal content -->
             <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
@@ -363,7 +381,7 @@ foreach ($experiences as $index => $experience) {
                     </button>
                 </div>
                 <!-- Modal body -->
-                <form action="<?=base_url("user/updateUserExperience/".$experience->idExperience)?>" method="post" enctype="multipart/form-data">
+                <form id="updateUserExperience-form" action="<?=base_url("user/updateUserExperience/".$experience->idExperience)?>" method="post" enctype="multipart/form-data">
                     <div>
                         <label for="userExperienceJob" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Nom de l'experience</label>
                         <input type="text" id="userExperienceJob" name="userExperienceJob" value="<?=$experience->experienceJob?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Titre">
@@ -371,18 +389,23 @@ foreach ($experiences as $index => $experience) {
                         <input type="text" id="userExperienceCompany" name="userExperienceCompany" value="<?=$experience->experienceCompany?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Entreprise">
 
                         <label for="userExperienceDateDebut" class="w-full text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Date de début</label>
-                        <input type="date" id="userExperienceDateDebut" name="userExperienceDateDebut" value="<?=$experience->experienceDateDebut?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <input type="date" id="updateUserExperienceDateDebut<?=$index?>" name="userExperienceDateDebut" value="<?=$experience->experienceDateDebut?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onkeyup="validateDates('updateUserExperienceDateDebut<?=$index?>', 'updateUserExperienceDateFin<?=$index?>', 'errorUpdateUserExperienceDate<?=$index?>', 'userExperienceSubmit<?=$index?>')">
 
                         <label for="userExperienceDateFin" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Date de fin</label>
-                        <input type="date" id="userExperienceDateFin" name="userExperienceDateFin" value="<?=$experience->experienceDateFin?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        
+                        <input type="date" id="updateUserExperienceDateFin<?=$index?>" name="userExperienceDateFin" value="<?=$experience->experienceDateFin?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onkeyup="validateDates('updateUserExperienceDateDebut<?=$index?>', 'updateUserExperienceDateFin<?=$index?>', 'errorUpdateUserExperienceDate<?=$index?>', 'userExperienceSubmit<?=$index?>'), resetCheckbox('updateUserExperienceDateFinToday<?=$index?>')">
+                                                
+                        <div class="flex items-center mt-2">
+                            <input type="checkbox" id="updateUserExperienceDateFinToday<?=$index?>" name="updateUserExperienceDateFinToday" <?= ($experience->experienceDateFin == '0000-00-00') ? 'checked' : '' ?> onclick="resetDateFin('updateUserExperienceDateFin<?=$index?>', 'updateUserExperienceDateFinToday<?=$index?>')">
+                            <label class="text-2xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Aujourd'hui</label>
+                        </div>
+                        <p id="errorUpdateUserExperienceDate<?=$index?>" class="text-red-500" style="display:none;">La date de fin doit être postérieure à la date de début</p>
+
                         <label for="userExperienceDescription" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Description</label>
                         <textarea id="userExperienceDescription" name="userExperienceDescription" rows="3" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><?=$experience->experienceDescription?></textarea>
                     </div>
                     <!-- Rest of the form fields for the experience -->
                     <div class="mt-6 mb-6 bg-white rounded-lg dark:bg-gray-800 text-black">
-                    <label for="userExperienceSkills" class="text-2xl lg:text-lg block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Vos compétences</label>
-
+                        <label for="userExperienceSkills" class="text-2xl lg:text-lg block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Vos compétences</label>
                         <div id="experience-skills-container-<?=$index?>">
                         <?php foreach ($experienceSkills[$experience->idExperience] as $experienceSkill): ?>
                             <div class="flex flex-1 mb-4 skill-row">
@@ -413,7 +436,7 @@ foreach ($experiences as $index => $experience) {
 
                     <div class="flex items-center justify-between mt-4">
                         <div>
-                            <button type="submit" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                            <button type="submit" id="userExperienceSubmit<?=$index?>" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                 Valider
                             </button>
                             <button type="button" data-modal-toggle="updateUserExperience<?=$index?>" class="text-2xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
@@ -461,7 +484,7 @@ foreach ($experiences as $index => $experience) {
                 </button>
             </div>
             <!-- Modal body -->
-            <form action="<?=base_url("user/addUserExperience")?>" method="post" enctype="multipart/form-data">
+            <form id="addUserExperience-form" action="<?=base_url("user/addUserExperience")?>" method="post" enctype="multipart/form-data">
                 <div>
                     <label for="userExperienceJob" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Nom de l'experience</label>
                     <input type="text" id="userExperienceJob" name="userExperienceJob" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Titre" required>
@@ -469,11 +492,17 @@ foreach ($experiences as $index => $experience) {
                     <input type="text" id="userExperienceCompany" name="userExperienceCompany" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Entreprise" required>
 
                     <label for="userExperienceDateDebut" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Date de début</label>
-                    <input type="date" id="userExperienceDateDebut" name="userExperienceDateDebut" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                    <input type="date" id="addUserExperienceDateDebut" name="userExperienceDateDebut" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
 
                     <label for="userExperienceDateFin" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Date de fin</label>
-                    <input type="date" id="userExperienceDateFin" name="userExperienceDateFin" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                    
+                    <input type="date" id="addUserExperienceDateFin" name="userExperienceDateFin" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
+                                                                   
+                    <div class="flex items-center mt-2">
+                        <input type="checkbox" id="updateUserExperienceDateFinToday" name="updateUserExperienceDateFinToday">
+                        <label class="text-2xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Aujourd'hui</label>
+                    </div>
+                    <p id="errorAddUserExperienceDate" class="mt-2 text-red-500" style="display:none;">La date de fin doit être postérieure à la date de début</p>
+
                     <label for="userExperienceDescription" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Description</label>
                     <textarea id="userExperienceDescription" name="userExperienceDescription" rows="3" class="text-2xl lg:text-basebg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
 
@@ -895,8 +924,12 @@ if($totalInfos == 1 ){
                                                 <p class="font-bold text-3xl lg:text-lg">Dispo. <?=$user->userJobTimePartielOrFullTime?> </p>
                                             <?php
                                                 }else{
+                                                    
+                                                    $dateFinIndisponibilite = new DateTime($user->userDateFinIndisponibilite);
+                                                   
+                                                    $dateFinIndisponibilite = $dateFinIndisponibilite->format('d/m/Y');
                                             ?>
-                                                <p class="font-bold text-3xl lg:text-lg">Indispo. <?=$user->userJobTimePartielOrFullTime?> </p>
+                                                <p class="font-bold text-3xl lg:text-lg">Indispo. jusqu'au <?=$dateFinIndisponibilite?> </p>
                                             <?php
                                                 }
                                             ?>
@@ -1150,7 +1183,7 @@ if($totalInfos == 1 ){
                                                             </div>
                                                         </a>
                                                     </div>
-                                                        <button id="extra-avis-button" class="text-primary text-2xl lg:text-base mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">
+                                                        <button id="more-avis-button" class="text-primary text-2xl lg:text-base mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">
                                                             Voir plus
                                                         </button>
                                                         <button id="less-avis-button" class="hidden text-primary text-2xl lg:text-base mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">
@@ -1240,7 +1273,7 @@ if($totalInfos == 1 ){
                                 </div>
                                 <div class="display inline">
                                     <p class="mt-2 mb-2 text-2xl lg:text-base">Aucune compétences et expertises renseignées.</p>
-                                    <button id="addUserSkills" data-modal-toggle="addUserSkills" class="text-2xl lg:text-base bg-primary text-white px-4 py-2 mt-2 rounded-full">Ajouter vos compténces</button>
+                                    <button id="addUserSkills" data-modal-toggle="addUserSkills" class="text-2xl lg:text-base py-2 px-4 bg-primary text-white rounded-lg">Ajouter vos compténces</button>
                                 </div>
                                 <?php } ?>
                                 
@@ -1277,7 +1310,6 @@ if($totalInfos == 1 ){
                             </div>
                         </div>
                         <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-
                             <h2 class="text-3xl lg:text-xl font-bold mb-4">Expériences</h2>
                             <?php
                             if (is_array($experiences) && !empty($experiences)) {
@@ -1313,7 +1345,12 @@ if($totalInfos == 1 ){
                                                     );
 
                                                     $dateDebut = strtr($dateDebut, $months);
-                                                    $dateFin = strtr($dateFin, $months);
+                                                    if($experience->experienceDateFin == NULL || $experience->experienceDateFin == "0000-00-00") {
+                                                        $dateFin = "Aujourd'hui";
+                                                    }
+                                                    else {
+                                                        $dateFin = strtr($dateFin, $months);
+                                                    }
                                                     ?>
 
                                                     <p class="text-2xl lg:text-base"><?= $dateDebut.' - '. $dateFin?></p>
@@ -1368,7 +1405,7 @@ if($totalInfos == 1 ){
                                                 </div>
                                                     
                                             <?php endforeach; ?>
-                                                                                        
+                                            </div>                                        
                                         </div>
 
                                         <?php
@@ -1384,17 +1421,25 @@ if($totalInfos == 1 ){
                                         break;
                                     }
                                 }
+                                if ($experienceCount < 3) {
                             ?>
 
-                            <?php } else { ?>
+                                <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
+                                    <button id="addUserExperience" data-modal-toggle="addUserExperience" class="text-3xl lg:text-base py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            <?php 
+                                }
+                            } else { ?>
                                 <p class="mt-2 mb-2 text-2xl lg:text-base">Aucune expérience disponible.</p>
-                                <button id="addUserExperience" data-modal-toggle="addUserExperience" class="text-2xl lg:text-base bg-primary text-white px-4 py-2 mt-2 rounded-full">Ajouter une expérience</button>
+                                <button id="addUserExperience" data-modal-toggle="addUserExperience" class="text-2xl lg:text-base py-2 px-4 bg-primary text-white rounded-lg">Ajouter une expérience</button>
+                                <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
+                                    <button id="addUserExperience" data-modal-toggle="addUserExperience" class="text-3xl lg:text-base py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
                             <?php } ?>
-                            <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
-                                <button id="addUserExperience" data-modal-toggle="addUserExperience" class="text-3xl lg:text-base py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
                         </div> 
                         <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                             <h2 class="text-3xl lg:text-xl font-bold mb-4">Portfolio & Réalisations </h2>
@@ -1454,6 +1499,7 @@ if($totalInfos == 1 ){
 <script src="<?php echo base_url('/node_modules/intl-tel-input/build/js/intlTelInput.min.js'); ?>"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+        
         var base_url = '<?php echo base_url(); ?>';
         var input = document.querySelector("#userTelephone");
         var iti = window.intlTelInput(input, {
@@ -1473,10 +1519,6 @@ if($totalInfos == 1 ){
         var phoneNumber = iti.getNumber();
     });
 
-</script>
-
-
-<script>
 
     $(document).ready(function() {
 
@@ -1484,7 +1526,7 @@ if($totalInfos == 1 ){
         $('#citySearch').on('keyup', function() {
             let term = $(this).val();
             if(term.length > 2) { // Recherche après 2 caractères
-                $.post('user/search_cities', { term: term }, function(data) {
+                $.post('search_cities', { term: term }, function(data) {
                     let cities = JSON.parse(data);
                     if(cities.length > 0) {
                         // Ajoutez la classe .has-border si des résultats sont retournés
@@ -1546,9 +1588,9 @@ if($totalInfos == 1 ){
             itemSelectText: '',
             placeholder: true, // Ajoutez cette ligne pour activer le placeholder
             placeholderValue: 'Sélectionnez votre expertise', // Texte du placeholder
+*/
 
-
-    });*/
+    });
     
     $(document).ready(function(){
         $('#search-input-job').on('keyup', function(){
@@ -1560,6 +1602,7 @@ if($totalInfos == 1 ){
                     $('#jobs-list').append(`<div class="text-2xl lg:text-base job-item" data-id="${job.jobId}">${job.jobName}</div>`);
                 });
             });
+        })
 
 
         $(document).on('click', '.job-item', function(){
@@ -1570,9 +1613,8 @@ if($totalInfos == 1 ){
                 $('#selected-jobs').append(`<div class="text-2xl lg:text-base selected-job" data-id="${jobId}">${jobName}</div>`);
             }
         });
-
-        
     });
+
     document.addEventListener('DOMContentLoaded', function() {
         const arrow = document.getElementById('skillsArrow');
         const skillsContainer = document.querySelector('.skills-container');
@@ -1599,26 +1641,107 @@ if($totalInfos == 1 ){
         }
 
         const moreAvis = document.getElementById("more-avis");
-        const extraAvisButton = document.getElementById("extra-avis-button");
+        const moreAvisButton = document.getElementById("more-avis-button");
         const lessAvisButton = document.getElementById("less-avis-button");
 
         // Ajout d'un gestionnaire d'événement pour le bouton "Voir plus"
-        extraAvisButton.addEventListener("click", function() {
+        moreAvisButton.addEventListener("click", function() {
             moreAvis.classList.remove("hidden"); // Afficher le contenu
             lessAvisButton.classList.remove("hidden"); // Afficher le bouton "Voir moins"
-            extraAvisButton.classList.add("hidden"); // Masquer le bouton "Voir plus"
+            moreAvisButton.classList.add("hidden"); // Masquer le bouton "Voir plus"
         });
 
         // Ajout d'un gestionnaire d'événement pour le bouton "Voir moins"
         lessAvisButton.addEventListener("click", function() {
             moreAvis.classList.add("hidden"); // Masquer le contenu
             lessAvisButton.classList.add("hidden"); // Masquer le bouton "Voir moins"
-            extraAvisButton.classList.remove("hidden"); // Afficher le bouton "Voir plus"
+            moreAvisButton.classList.remove("hidden"); // Afficher le bouton "Voir plus"
         });
         
     });
 
+    /* Zaafira 17/01/2024 : Correction fonctions onclick add-skill-btn et add-experience-skill-btn */
+    $(document).ready(function() {
+        $('#add-skill-btn').on('click', function() {
+            const newSkillRow = `
+                <div class="flex flex-1 mb-4 skill-row">
+                    <div class="w-3/4 mr-2">
+                        <select class="p-2 border rounded-lg w-full new-skill-select" name="skillsAll[]" id="skillsAll" required>
+                            <option value="">Sélectionnez une compétence</option>
+                            <?php foreach ($skillsAll as $skill): ?>
+                                <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="w-1/4">
+                        <select class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="skillsLevel[]" required>
+                            <option value="1">Junior</option>
+                            <option value="2">Intermédiaire</option>
+                            <option value="3">Expert</option>
+                        </select>
+                    </div>
+                </div>
+            `;
+            $('#skills-container').append(newSkillRow);
+            // Désinitialiser les instances Choices existantes
+            $('.new-skill-select').each(function() {
+                const choicesInstance = this.choices;
+                if (choicesInstance) {
+                    choicesInstance.destroy();
+                }
+            });
+            // Réinitialiser les instances Choices
+            $('.new-skill-select').each(function() {
+                new Choices(this, {
+                    /* options spécifiques à Choices */
+                });
+            });
+        });
 
+        
+        // Utilisez une classe pour cibler les boutons "Ajouter une compétence"
+        $('.add-experience-skill-btn').on('click', function() {
+            const container = $(this).data('container'); // Récupérer le conteneur correspondant à ce bouton
+
+            const newSkillRow2 = `
+                <div class="flex flex-1 mb-4 skill-row">
+                    <div class="w-3/4 mr-2 text-black">
+                        <select name="skillsAll[]" class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
+                            <option value="">Sélectionnez une compétence</option>
+                            <?php foreach ($skillsAll as $skill): ?>
+                                <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="w-1/4">
+                        <select name="skillsLevel[]" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <option value="1">Junior</option>
+                            <option value="2">Intermédiaire</option>
+                            <option value="3">Expert</option>
+                        </select>
+                    </div>
+                    <button type="button" class="text-red-600 hover:text-red-900 focus:outline-none ml-4 delete-skill-row">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `;
+            $('#' + container).append(newSkillRow2);
+
+            // Désinitialiser les instances Choices existantes
+            $('.new-skill-select').each(function() {
+                const choicesInstance2 = this.choices;
+                if (choicesInstance2) {
+                    choicesInstance2.destroy();
+                }
+            });
+            // Réinitialiser les instances Choices
+            $('.new-skill-select').each(function() {
+                new Choices(this, {
+                    /* options spécifiques à Choices */
+                });
+            });
+        });
+    });
 
     $(document).ready(function() {
         const skillsChoices = new Choices('#skillsAll', {
@@ -1667,83 +1790,6 @@ if($totalInfos == 1 ){
                 $('#skills-list').empty();
             }
         });
-        $('#add-skill-btn').on('click', function() {
-            const newSkillRow = `
-                <div class="flex flex-1 mb-4 skill-row">
-                    <div class="w-3/4 mr-2">
-                        <select class="p-2 border rounded-lg w-full new-skill-select" name="skillsAll[]" id="skillsAll" required>
-                            <option value="">Sélectionnez une compétence</option>
-                            <?php foreach ($skillsAll as $skill): ?>
-                                <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="w-1/4">
-                        <select class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="skillsLevel[]" required>
-                            <option value="1">Junior</option>
-                            <option value="2">Intermédiaire</option>
-                            <option value="3">Expert</option>
-                        </select>
-                    </div>
-                </div>
-            `;
-            $('#skills-container').append(newSkillRow);
-            // Désinitialiser les instances Choices existantes
-            $('.new-skill-select').each(function() {
-                const choicesInstance = this.choices;
-                if (choicesInstance) {
-                    choicesInstance.destroy();
-                }
-            });
-            // Réinitialiser les instances Choices
-            $('.new-skill-select').each(function() {
-                new Choices(this, {
-                    /* options spécifiques à Choices */
-                });
-            });
-        });
-        // Utilisez une classe pour cibler les boutons "Ajouter une compétence"
-        $('.add-experience-skill-btn').on('click', function() {
-            const container = $(this).data('container'); // Récupérer le conteneur correspondant à ce bouton
-
-            const newSkillRow2 = `
-                <div class="flex flex-1 mb-4 skill-row">
-                    <div class="w-3/4 mr-2 text-black">
-                        <select name="skillsAll[]" class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-                            <option value="">Sélectionnez une compétence</option>
-                            <?php foreach ($skillsAll as $skill): ?>
-                                <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="w-1/4">
-                        <select name="skillsLevel[]" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                            <option value="1">Junior</option>
-                            <option value="2">Intermédiaire</option>
-                            <option value="3">Expert</option>
-                        </select>
-                    </div>
-                    <button type="button" class="text-red-600 hover:text-red-900 focus:outline-none ml-4 delete-skill-row">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </div>
-            `;
-            $('#' + container).append(newSkillRow2);
-
-            // Désinitialiser les instances Choices existantes
-            $('.new-skill-select').each(function() {
-                const choicesInstance2 = this.choices;
-                if (choicesInstance2) {
-                    choicesInstance2.destroy();
-                }
-            });
-            // Réinitialiser les instances Choices
-            $('.new-skill-select').each(function() {
-                new Choices(this, {
-                    /* options spécifiques à Choices */
-                });
-            });
-        });
 
         $(document).on('click', '.delete-skill-row', function() {
             // Supprimez le parent .skill-row
@@ -1756,20 +1802,29 @@ if($totalInfos == 1 ){
         document.getElementById('updateUserData').click();
     });
 
+    // Zaafira 18/01/2024 : correction fonction showfile
     function showFileName(input) {
+        const MAX_SIZE = 2048; // Taille maximale en Ko
         const avatarImageElement = document.getElementById("avatar-image");
+        const avatarErrorMessage = document.getElementById("avatarErrorMessage");
         if (input.files && input.files[0]) {
+            const fileSize = input.files[0].size / 1024; // Taille en Ko
+            if (fileSize > MAX_SIZE) {
+                // Afficher un message d'erreur
+                avatarErrorMessage.classList.remove("hidden");
+                return; // Arrêter l'exécution si le fichier est trop grand
+            }
+
             var reader = new FileReader();
             reader.onload = function(e) {
                 avatarImageElement.src = e.target.result;
+                avatarErrorMessage.classList.add("hidden");
+
             };
             reader.readAsDataURL(input.files[0]);
         }
     }
 
-</script>
-
-<script>
 document.addEventListener('DOMContentLoaded', function() {
     var errorMessageJobType = document.getElementById('errorMessageJobType');
     var form = document.getElementById('userPreferenceForm');
@@ -1789,8 +1844,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-</script>
-<script>
     function showModal(modalId) {
         const modal = document.getElementById(modalId);
         modal.classList.remove('hidden');
@@ -1951,6 +2004,185 @@ document.addEventListener('DOMContentLoaded', function() {
         // Afficher la taille maximale autorisée dans le div #fileSizeInfo
         $("#fileSizeInfo").text("La taille maximale autorisée est " + maxSizeInMB + " Mo.");
     });
+    
+    $('#addUserExperienceDateDebut, #addUserExperienceDateFin').on('change keyup', function() {
+        var startDate = new Date($('#addUserExperienceDateDebut').val());
+        var endDate = new Date($('#addUserExperienceDateFin').val());
+        var errorMessage = $('#errorAddUserExperienceDate');
+
+        if (startDate && endDate && startDate > endDate) {
+            errorMessage.show();
+        } else {
+            errorMessage.hide();
+        }
+    });
+
+    $('#addUserExperience-form').on('submit', function(event) {
+        var startDate = new Date($('#addUserExperienceDateDebut').val());
+        var endDate = new Date($('#addUserExperienceDateFin').val());
+        var todayCheckbox = $('#updateUserExperienceDateFinToday').prop('checked');
+
+        if (startDate && endDate && startDate > endDate) {
+            $('#errorAddUserExperienceDate').show();
+            event.preventDefault(); // Empêcher la soumission du formulaire
+        }
+        else if (!todayCheckbox && startDate){
+
+            event.preventDefault(); // Empêcher la soumission du formulaire
+        }
+    });
+
+    function validateDates(updateUserExperienceDateDebut, updateUserExperienceDateFin, errorUpdateUserExperienceDate, userExperienceSubmit) {
+        var startDate = new Date(document.getElementById(updateUserExperienceDateDebut).value);
+        var endDate = new Date(document.getElementById(updateUserExperienceDateFin).value);
+
+    }
+
+    $('#updateUserExperienceDateFinToday').change(function() {
+        if ($(this).is(':checked')) {
+            $('#updateUserExperienceDateFin').val('');
+        }
+    });
+    
+    $('#updateUserExperienceDateFin').on('input', function() {
+        $('#updateUserExperienceDateFinToday').prop('checked', false);
+    });
+
+    function resetCheckbox(updateUserExperienceDateFinToday) {
+        var todayCheckbox = document.getElementById(updateUserExperienceDateFinToday);
+
+        todayCheckbox.checked = false;
+
+    }
+
+    function resetDateFin(updateUserExperienceDateFin, updateUserExperienceDateFinToday) {
+        var endDate = document.getElementById(updateUserExperienceDateFin);
+        var todayCheckbox = document.getElementById(updateUserExperienceDateFinToday);
+
+        if(todayCheckbox.checked) {
+            endDate.value='';
+        }
+    }
 
 
+    $(document).ready(function(){ 
+        $(document).on('change', 'input[name="finIndisponibiliteDuree"]', function() {
+            const selectedDuration = $(this).val();
+            const dateInput = document.getElementById('dateFinIndisponibilitePreference');
+
+            if (selectedDuration === '1') {
+                const endDate = new Date();
+                endDate.setMonth(endDate.getMonth() + 1);
+                const endDateString = endDate.toISOString().split('T')[0];
+                dateInput.value = endDateString;
+            } else if (selectedDuration === '3') {
+                const endDate = new Date();
+                endDate.setMonth(endDate.getMonth() + 3);
+                const endDateString = endDate.toISOString().split('T')[0];
+                dateInput.value = endDateString;
+            } else if (selectedDuration === '6') {
+                const endDate = new Date();
+                endDate.setMonth(endDate.getMonth() + 6);
+                const endDateString = endDate.toISOString().split('T')[0];
+                dateInput.value = endDateString;
+            } else {
+                dateInput.value = '';
+            }
+        });
+
+        $('#userPreferenceForm').on('submit', function(event) {
+            var dateInput = document.getElementById('dateFinIndisponibilitePreference');
+            var checkBox = document.getElementById('hs-basic-with-description-preference');
+
+            if (!checkBox.checked && dateInput.value == '') {
+                $('#errorDateFinIndisponibilitePreference').show();
+                event.preventDefault(); // Empêcher la soumission du formulaire
+            }
+        });
+
+    });
+
+    function displayAvailibilityOptionsPreference() {
+        var checkBox = document.getElementById('hs-basic-with-description-preference');
+        var isAvailableDiv = document.getElementById('isAvailaibleOptionsPreference');
+        var isNotAvailableDiv = document.getElementById('isNotAvailaibleOptionsPreference');
+        var radioButtons = document.getElementsByClassName('finIndisponibiliteBtnPreference');
+        var dateInput = document.getElementById('dateFinIndisponibilitePreference');
+        var errorMessage = document.getElementById('errorDateFinIndisponibilitePreference');
+
+        if (checkBox.checked) {
+            isAvailableDiv.style.display = 'block';
+            isNotAvailableDiv.style.display = 'none';
+            errorMessage.style.display = 'none';
+            for (var i = 0; i < radioButtons.length; i++) {
+                radioButtons[i].checked = false;
+            }
+            dateInput.value = '';
+        } else {
+            isAvailableDiv.style.display = 'none';
+            isNotAvailableDiv.style.display = 'block';
+        }
+    }
+
+
+$(document).ready(function(){ 
+
+    $(document).on('change', 'input[name="finIndisponibiliteDuree"]', function() {
+        const selectedDuration = $(this).val();
+        const dateInput = document.getElementById('dateFinIndisponibilite');
+
+        if (selectedDuration === '1') {
+            const endDate = new Date();
+            endDate.setMonth(endDate.getMonth() + 1);
+            const endDateString = endDate.toISOString().split('T')[0];
+            dateInput.value = endDateString;
+        } else if (selectedDuration === '3') {
+            const endDate = new Date();
+            endDate.setMonth(endDate.getMonth() + 3);
+            const endDateString = endDate.toISOString().split('T')[0];
+            dateInput.value = endDateString;
+        } else if (selectedDuration === '6') {
+            const endDate = new Date();
+            endDate.setMonth(endDate.getMonth() + 6);
+            const endDateString = endDate.toISOString().split('T')[0];
+            dateInput.value = endDateString;
+        } else {
+            dateInput.value = '';
+        }
+    });
+
+    $('#userAvailabilityForm').on('submit', function(event) {
+        var dateInput = document.getElementById('dateFinIndisponibilite');
+        var checkBox = document.getElementById('hs-basic-with-description');
+
+        if (!checkBox.checked && dateInput.value == '') {
+            $('#errorDateFinIndisponibilite').show();
+            event.preventDefault(); // Empêcher la soumission du formulaire
+        }
+    });
+
+});
+
+function displayAvailibilityOptions() {
+    var checkBox = document.getElementById('hs-basic-with-description');
+
+    var isAvailableDiv = document.getElementById('isAvailaibleOptions');
+    var isNotAvailableDiv = document.getElementById('isNotAvailaibleOptions');
+    var radioButtons = document.getElementsByClassName('finIndisponibiliteBtn');
+    var dateInput = document.getElementById('dateFinIndisponibilite');
+    var errorMessage = document.getElementById('errorDateFinIndisponibilite');
+
+    if (checkBox.checked) {
+        isAvailableDiv.style.display = 'block';
+        isNotAvailableDiv.style.display = 'none';
+        errorMessage.style.display = 'none';
+        for (var i = 0; i < radioButtons.length; i++) {
+            radioButtons[i].checked = false;
+        }
+        dateInput.value = '';
+    } else {
+        isAvailableDiv.style.display = 'none';
+        isNotAvailableDiv.style.display = 'block';
+    }
+}
 </script>

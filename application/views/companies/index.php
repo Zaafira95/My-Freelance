@@ -9,7 +9,6 @@ include(APPPATH . 'views/layouts/user/header.php');
     <title> Café Crème Community </title>
 
 <style>
-   
     #cities-list {
     max-height: 200px; /* ou toute autre valeur appropriée */
     overflow-y: auto;

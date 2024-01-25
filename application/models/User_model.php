@@ -49,9 +49,11 @@ class User_model extends CI_Model {
         $this->db->update('Users');
     }
 
-    public function updateUserAvailability($userId, $userAvailability, $userJobTimePartielOrFullTime){
+    //Zaafira 25/07/2024
+    public function updateUserAvailability($userId, $userAvailability, $userJobTimePartielOrFullTime, $dateFinIndisponibilite){
         $this->db->set('userIsAvailable', $userAvailability);
         $this->db->set('userJobTimePartielOrFullTime', $userJobTimePartielOrFullTime);
+        $this->db->set('userDateFinIndisponibilite', $dateFinIndisponibilite);
         $this->db->where('userId', $userId);
         $this->db->update('Users');
     }
@@ -184,12 +186,14 @@ class User_model extends CI_Model {
             $this->db->update('UserJob');
         }
 
-        public function updateUserPreference($userId, $userIsAvailable, $jobTypeString, $userVille, $userJobTime, $userJobTimePartielOrFullTime){
+        //Zaafira 25/01/2024
+        public function updateUserPreference($userId, $userIsAvailable, $jobTypeString, $userVille, $userJobTime, $userJobTimePartielOrFullTime, $dateFinIndisponibilite){
             $this->db->set('userIsAvailable', $userIsAvailable);
             $this->db->set('userJobType', $jobTypeString);
             $this->db->set('userVille', $userVille);
             $this->db->set('userJobTime', $userJobTime);
             $this->db->set('userJobTimePartielOrFullTime', $userJobTimePartielOrFullTime);
+            $this->db->set('userDateFinIndisponibilite', $dateFinIndisponibilite);
             $this->db->where('userId', $userId);
             $this->db->update('Users');
         }
@@ -272,7 +276,7 @@ class User_model extends CI_Model {
         // // get job id from job name
 
         public function getJobId($jobName) {
-            $this->db->select('Jobid');
+            $this->db->select('jobId');
             $this->db->from('Job');
             $this->db->where('jobName', $jobName);
             $query = $this->db->get();
@@ -342,7 +346,7 @@ class User_model extends CI_Model {
         }
 
         public function getAvatarPath($userId){
-            $this->db->select('Useravatarpath');
+            $this->db->select('userAvatarPath');
             $this->db->from('Users');
             $this->db->where('userId', $userId);
             $query = $this->db->get();
@@ -567,5 +571,30 @@ class User_model extends CI_Model {
             $query = $this->db->get();
             return $query->row();
         }
+
+        public function updateUserDataSettings($userId, $userFirstName, $userLastName, $userTelephone){
+            $this->db->set('userFirstName', $userFirstName);
+            $this->db->set('userLastName', $userLastName);
+            $this->db->set('userTelephone', $userTelephone);
+            $this->db->where('userId', $userId);
+            $this->db->update('Users');
+        }
+
+        public function updateUserPassword($userId, $userPassword){
+            $this->db->set('userPassword', $userPassword);
+            $this->db->where('userId', $userId);
+            $this->db->update('Users');
+        }
+
+        public function checkPassword($userId, $password){
+            $this->db->where('userId', $userId);
+            $query = $this->db->get('users');
         
+            if ($query->num_rows() == 1) {
+                $userData = $query->row();
+                return password_verify($password, $userData->userPassword);
+            }
+            return false;
+        }
+
 }

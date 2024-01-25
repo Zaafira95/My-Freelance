@@ -68,16 +68,50 @@ if ($banner->bannerStatus == "active"){ ?>
                 </button>
             </div>
             <!-- Modal body -->
-            <form action="<?=base_url("user/updateAvailability")?>" method="post">
 
-                    <div class="mt-4 mb-4">
-                        <label for="name" class="text-2xl lg:text-base block mb-2  font-medium text-gray-900 dark:text-white">Êtes-vous disponible pour travailler dès maintenant ?</label>
-                        <label class="text-2xl lg:text-base text-gray-500 mr-3 dark:text-gray-400">Non</label>
-                        <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description" <?php echo $checkboxChecked; ?> class="text-2xl lg:text-base relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-green-200">
-                        <label class="text-2xl lg:text-base text-gray-500 ml-3 dark:text-gray-400">Oui</label>
+            <form id="userAvailabilityForm" action="<?=base_url("user/updateAvailability")?>" method="post">
+                    <div>
+                        <label for="name" class="block mb-2 font-medium text-gray-900 dark:text-white">Êtes-vous disponible pour travailler dès maintenant ?</label>
+                        <label class="text-gray-500 mr-3 dark:text-gray-400">Non</label>
+                        <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description" <?php echo $checkboxChecked; ?> onchange="displayAvailibilityOptions()" class="relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-green-200">
+                        <label class="text-gray-500 ml-3 dark:text-gray-400">Oui</label>
+                        <div id="isAvailaibleOptions" style="display: <?php echo $checkboxChecked == 'checked' ? "block" : "none" ?>">
+                            <label for="name" class="block mb-2 mt-6 font-medium text-gray-900 dark:text-white">Combien de jours par semaine êtes-vous disponible ?</label>
+                            <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="bg-gray-50 border mt-4 border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option value="temps-plein" 
+                                    <?php if ($user->userJobTimePartielOrFullTime === "temps-plein") {
+                                        echo ' selected';
+                                    } ?>> Temps Plein 
+                                </option>
+                                <option value="temps-partiel" 
+                                    <?php if ($user->userJobTimePartielOrFullTime === "temps-partiel") {
+                                        echo ' selected';
+                                    } ?>> Temps Partiel 
+                                </option>
+                            </select>
+                        </div>
+                        <div id="isNotAvailaibleOptions" style="display: <?php echo $checkboxChecked == '' ? "block" : "none" ?>">
+                            <label for="dateFinIndisponibilite" class="block mb-2 mt-6 font-medium text-gray-900 dark:text-white">Quand serez-vous à nouveau disponible ?</label>
+                            <div class="flex flex-1 mt-4">
+                                <div class="flex items-center mr-6">
+                                    <input type="radio" id="1mois" value="1" name="finIndisponibiliteDuree" class="finIndisponibiliteBtn w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="1mois" class="ml-2 font-medium text-gray-900 dark:text-white">Dans 1 mois</label>
+                                </div>
+                                <div class="flex items-center mr-6">
+                                    <input type="radio" id="3mois" value="3" name="finIndisponibiliteDuree" class="finIndisponibiliteBtn w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="3mois" class="ml-2 font-medium text-gray-900 dark:text-white">Dans 3 mois</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="radio" id="6mois" value="6" name="finIndisponibiliteDuree" class="finIndisponibiliteBtn w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="6mois" class="ml-2 font-medium text-gray-900 dark:text-white">Dans 6 mois</label>
+                                </div>
+                            </div>
+                            <input type="date" id="dateFinIndisponibilite" value="<?= $user->userDateFinIndisponibilite ?>" name="dateFinIndisponibilite" class="w-full mt-4 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <p id="errorDateFinIndisponibilite" class="mt-2 text-red-500" style="display:none;">Veuilllez renseigner une date</p>
+                        </div>
                     </div>
-                <div class="flex items-center space-x-4 mt-4">
-                    <button type="submit" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                <div class="flex items-center space-x-4 mt-8">
+                    <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                         Valider
                     </button>
                     <button type="button" data-modal-toggle="updateProductModal" class="text-2xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
@@ -715,14 +749,14 @@ if($totalInfos == 1 ){
                         foreach ($experiences as $experience) {
                             if ($experienceCount < 3) {
                         ?>
-                                <div class="flex items-center mt-2 mb-2">
+                                <div class=" items-center mt-2 mb-2 p-2 rounded-lg shadow">
                                     <div class="mr-2 mt-2">
-                                        <p class="w-10 h-10 rounded-full bg-secondary text-white text-center flex items-center justify-center mr-4" style="font-size:1rem;">💼</p>
+                                        <h3 class="text-lg font-medium"><?= $experience->experienceJob ?></h3>
                                     </div>
                                     <div>
-                                        <h3 class="text-lg font-medium"><?= $experience->experienceJob ?></h3>
+                                        
                                         <p class="text-sm text-gray-500"><?= $experience->experienceCompany ?></p>
-                                        <p class="text-sm text-gray-500"><?= $experience->experienceJob ?></p>
+                                        
                                     </div>
                                 </div>
                         <?php
@@ -733,8 +767,8 @@ if($totalInfos == 1 ){
                         }
                         ?>
                     <?php } else { ?>
-                        <p class="mt-2 mb-2"> Aucune expérience disponible. </p>
-                        <button class="bg-primary text-white px-4 py-2 mt-2 rounded-full">Ajouter une expérience</button>
+                        <p class="mt-2 mb-4"> Aucune expérience disponible. </p>
+                        <a href="<?php echo base_url('User/profil');?>" class="text-2xl lg:text-base py-2 px-4 bg-primary text-white rounded-lg">Ajouter une expérience</a>
                     <?php } ?>
                 </div>
 
@@ -772,8 +806,8 @@ if($totalInfos == 1 ){
                     } else {
 
                     ?>
-                        <p class="mt-2 mb-2"> Aucune compétences et expertises renseignées. </p>
-                        <button class="bg-primary text-white px-4 py-2 mt-2 rounded-full">Ajouter une compétence</button>
+                        <p class="mt-2 mb-4"> Aucune compétences et expertises renseignées. </p>
+                        <a href="<?php echo base_url('User/profil');?>" class="text-2xl lg:text-base py-2 px-4 bg-primary text-white rounded-lg">Ajouter une compétence</a>
                     <?php } ?>
                 </div>
 
@@ -849,8 +883,6 @@ if($totalInfos == 1 ){
         });
 
     });
-
-
 
     //Script selection des compétences
     const skillsChoices = new Choices('#skillsAll', {
@@ -1115,8 +1147,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // Filtre par mode de deroulement
             let matchesDeroulement = true;
-            console.log("1", deroulementFilters);
-            console.log("1", deroulementFilters);
             if (deroulementFilters.length > 0) {
                 matchesDeroulement = deroulementFilters.some(function(filter) {
                     return (
@@ -1141,8 +1171,6 @@ document.addEventListener("DOMContentLoaded", function() {
             // Filtre par compétences
             if (selectedSkills.length > 0) {
                 const missionSkills = missionSkillsAttr.split(','); // Divise la chaîne en un tableau d'IDs de compétences
-                console.log("1 :",missionSkills);
-                console.log("2 :",selectedSkills);
                 const matchesSkills = selectedSkills.some(function(selectedSkill) {
                     return missionSkills.includes(selectedSkill);
                 });
@@ -1165,5 +1193,66 @@ document.addEventListener("DOMContentLoaded", function() {
 
     filterMissions();
 });
+
+$(document).ready(function(){ 
+
+    $(document).on('change', 'input[name="finIndisponibiliteDuree"]', function() {
+        const selectedDuration = $(this).val();
+        const dateInput = document.getElementById('dateFinIndisponibilite');
+
+        if (selectedDuration === '1') {
+            const endDate = new Date();
+            endDate.setMonth(endDate.getMonth() + 1);
+            const endDateString = endDate.toISOString().split('T')[0];
+            dateInput.value = endDateString;
+        } else if (selectedDuration === '3') {
+            const endDate = new Date();
+            endDate.setMonth(endDate.getMonth() + 3);
+            const endDateString = endDate.toISOString().split('T')[0];
+            dateInput.value = endDateString;
+        } else if (selectedDuration === '6') {
+            const endDate = new Date();
+            endDate.setMonth(endDate.getMonth() + 6);
+            const endDateString = endDate.toISOString().split('T')[0];
+            dateInput.value = endDateString;
+        } else {
+            dateInput.value = '';
+        }
+    });
+    
+    $('#userAvailabilityForm').on('submit', function(event) {
+        var dateInput = document.getElementById('dateFinIndisponibilite');
+        var checkBox = document.getElementById('hs-basic-with-description');
+
+        if (!checkBox.checked && dateInput.value == '') {
+            $('#errorDateFinIndisponibilite').show();
+            event.preventDefault(); // Empêcher la soumission du formulaire
+        }
+    });
+
+});
+
+function displayAvailibilityOptions() {
+    var checkBox = document.getElementById('hs-basic-with-description');
+
+    var isAvailableDiv = document.getElementById('isAvailaibleOptions');
+    var isNotAvailableDiv = document.getElementById('isNotAvailaibleOptions');
+    var radioButtons = document.getElementsByClassName('finIndisponibiliteBtn');
+    var dateInput = document.getElementById('dateFinIndisponibilite');
+    var errorMessage = document.getElementById('errorDateFinIndisponibilite');
+
+    if (checkBox.checked) {
+        isAvailableDiv.style.display = 'block';
+        isNotAvailableDiv.style.display = 'none';
+        errorMessage.style.display = 'none';
+        for (var i = 0; i < radioButtons.length; i++) {
+            radioButtons[i].checked = false;
+        }
+        dateInput.value = '';
+    } else {
+        isAvailableDiv.style.display = 'none';
+        isNotAvailableDiv.style.display = 'block';
+    }
+}
 
 </script>

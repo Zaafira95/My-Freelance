@@ -224,3 +224,68 @@ include(APPPATH . 'views/layouts/user/header.php');
 </div>
 
 <script src="<?php echo base_url('assets/js/app.js'); ?>"></script>
+
+<script>
+
+$(document).ready(function(){ 
+
+    $(document).on('change', 'input[name="finIndisponibiliteDuree"]', function() {
+        const selectedDuration = $(this).val();
+        const dateInput = document.getElementById('dateFinIndisponibilite');
+
+        if (selectedDuration === '1') {
+            const endDate = new Date();
+            endDate.setMonth(endDate.getMonth() + 1);
+            const endDateString = endDate.toISOString().split('T')[0];
+            dateInput.value = endDateString;
+        } else if (selectedDuration === '3') {
+            const endDate = new Date();
+            endDate.setMonth(endDate.getMonth() + 3);
+            const endDateString = endDate.toISOString().split('T')[0];
+            dateInput.value = endDateString;
+        } else if (selectedDuration === '6') {
+            const endDate = new Date();
+            endDate.setMonth(endDate.getMonth() + 6);
+            const endDateString = endDate.toISOString().split('T')[0];
+            dateInput.value = endDateString;
+        } else {
+            dateInput.value = '';
+        }
+    });
+
+    $('#userAvailabilityForm').on('submit', function(event) {
+        var dateInput = document.getElementById('dateFinIndisponibilite');
+        var checkBox = document.getElementById('hs-basic-with-description');
+
+        if (!checkBox.checked && dateInput.value == '') {
+            $('#errorDateFinIndisponibilite').show();
+            event.preventDefault(); // Empêcher la soumission du formulaire
+        }
+    });
+
+});
+
+function displayAvailibilityOptions() {
+    var checkBox = document.getElementById('hs-basic-with-description');
+
+    var isAvailableDiv = document.getElementById('isAvailaibleOptions');
+    var isNotAvailableDiv = document.getElementById('isNotAvailaibleOptions');
+    var radioButtons = document.getElementsByClassName('finIndisponibiliteBtn');
+    var dateInput = document.getElementById('dateFinIndisponibilite');
+    var errorMessage = document.getElementById('errorDateFinIndisponibilite');
+
+    if (checkBox.checked) {
+        isAvailableDiv.style.display = 'block';
+        isNotAvailableDiv.style.display = 'none';
+        errorMessage.style.display = 'none';
+        for (var i = 0; i < radioButtons.length; i++) {
+            radioButtons[i].checked = false;
+        }
+        dateInput.value = '';
+    } else {
+        isAvailableDiv.style.display = 'none';
+        isNotAvailableDiv.style.display = 'block';
+    }
+}
+    
+</script>

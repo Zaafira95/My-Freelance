@@ -72,16 +72,15 @@ include(APPPATH . 'views/layouts/company/header.php' );
                 <div class="flex items-center">                    
                 <label for="ratingStars" class="text-2xl lg:text-base block mr-4 font-medium text-gray-900 dark:text-white">Votre note : </label>
 
-                <img src="<?php echo base_url('assets/img/light-star.svg'); ?>" class="star w-8 h-8 lg:w-6 lg:h-6" onclick="setRating(1)">
+                <img src="<?php echo base_url('assets/img/fill-star.svg'); ?>" class="star w-8 h-8 lg:w-6 lg:h-6" onclick="setRating(1)">
                 <img src="<?php echo base_url('assets/img/light-star.svg'); ?>" class="star w-8 h-8 lg:w-6 lg:h-6" onclick="setRating(2)">
                 <img src="<?php echo base_url('assets/img/light-star.svg'); ?>" class="star w-8 h-8 lg:w-6 lg:h-6" onclick="setRating(3)">
                 <img src="<?php echo base_url('assets/img/light-star.svg'); ?>" class="star w-8 h-8 lg:w-6 lg:h-6" onclick="setRating(4)">
                 <img src="<?php echo base_url('assets/img/light-star.svg'); ?>" class="star w-8 h-8 lg:w-6 lg:h-6" onclick="setRating(5)">
                 </div>
 
-                <input type="text" name="ratingStars" id="ratingStars" value="0" class="text-2xl lg:text-base hidden mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-
-                    
+                <input type="text" name="ratingStars" id="ratingStars" value="1" class="text-2xl lg:text-base hidden mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+    
                     <label for="ratingComment" class="text-2xl lg:text-base block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Votre commentaire</label>
                         <textarea id="ratingComment" name="ratingComment" rows="6" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"> </textarea>
 
@@ -249,8 +248,8 @@ if ($totalCount > 0) {
                                     </button>
                                 <?php } ?>
                             </div>
-                        <!-- Whatsapp -->
-                        <div class="flex flex-wrap items-center">
+                            <!-- Whatsapp -->
+                            <div class="flex flex-wrap items-center">
                                 <!-- Whatsapp -->
                             <!-- <a href="https://wa.me/<?=$freelancer->userTelephone?>?text=Bonjour%20<?=$freelancer->userFirstName?>%20!%20Je%20suis%20intéressé%20par%20votre%20profil%20sur%20Café%20Crème%20Community%20!%20" target="_blank"> -->
                             
@@ -264,17 +263,17 @@ if ($totalCount > 0) {
                                 </button>
                             <!-- </a> -->
                                 <p class="mb-2 mt-1 text-2xl lg:text-base font-medium inline-block px-4 py-2.5 rounded-full bg-primary text-white transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"><?=$freelancer->userTJM?> € / Jour</p>
+
                             </div>
                         </div>
                     </div>
-                    
-
                 </div>
                 <div class="lg:flex gap-6 mb-3 mt-6">
                     <div class="w-full lg:w-1/4 lg:sticky lg:top-0">
                         <div class="lg:w-full">
                             <div class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                                 <h2 class="text-3xl lg:text-xl font-bold mb-4"> Préférences </h2> 
+
                                 <div class="flex grid-cols-2 items-center mb-4">
                                     <?php
                                     // user is available or not
@@ -282,6 +281,7 @@ if ($totalCount > 0) {
                                     ?>
                                         <div>
                                             <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-secondary text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">👍🏻</p>
+
                                         </div>
                                     <?php
                                     }else
@@ -289,6 +289,7 @@ if ($totalCount > 0) {
                                     ?>
                                     <div>
                                         <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-red-400 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">👎🏻</p>
+
                                     </div>
                                     <?php
                                     }
@@ -301,8 +302,13 @@ if ($totalCount > 0) {
                                             <p class="font-bold text-3xl lg:text-lg">Dispo. <?=$freelancer->userJobTimePartielOrFullTime?> </p>
                                         <?php
                                             }else{
+                                          
+                                                $dateFinIndisponibilite = new DateTime($freelancer->userDateFinIndisponibilite);
+                                               
+                                                $dateFinIndisponibilite = $dateFinIndisponibilite->format('d/m/Y');
                                         ?>
-                                            <p class="font-bold text-3xl lg:text-lg">Indispo. <?=$freelancer->userJobTimePartielOrFullTime?> </p>
+                                            <p class="font-bold text-3xl lg:text-lg">Indispo. jusqu'au <?=$dateFinIndisponibilite?> </p>
+
                                         <?php
                                             }
                                         ?>
@@ -315,6 +321,7 @@ if ($totalCount > 0) {
                                     ?>
                                         <div>
                                             <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-pink-300 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">✈️</p>
+
                                         </div>
                                     <?php
                                     }else
@@ -323,12 +330,14 @@ if ($totalCount > 0) {
                                     ?>
                                     <div>
                                         <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-pink-300 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">✈️</p>
+
                                     </div>
                                     <?php
                                         }else{
                                     ?>
                                     <div>
                                         <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-green-400 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">👨🏻‍💻</p>
+
                                     </div>
                                     <?php
                                     } }
@@ -347,6 +356,7 @@ if ($totalCount > 0) {
                                                 }else if($freelancer->userJobType == "Physique"){
                                             ?>
                                                 <p class="font-bold text-3xl lg:text-xl">Physique</p>
+
                                             <?php
                                                 }
                                             ?>
@@ -363,6 +373,7 @@ if ($totalCount > 0) {
                                         
                                             <p class="font-bold text-3xl lg:text-xl"><?=$freelancer->userVille?></p>
                                         
+
                                     </div>
                                 </div>
                                 <div class="flex grid-cols-2 items-center mb-4">
@@ -375,6 +386,7 @@ if ($totalCount > 0) {
                                         
                                         <p class="font-bold text-3xl lg:text-xl"><?=$freelancer->userJobTime?></p>
                                         
+
                                     </div>
                                 </div>
                             </div>
@@ -383,7 +395,6 @@ if ($totalCount > 0) {
                                 <div class="flex flex-col mt-2 mb-2 w-full">
                                     <?php
                                     // mail link
-
                                     if (isset($freelancer->userEmail)){
                                     ?>
                                     <a href="mailto:<?=$freelancer->userEmail?>" title="Envoyer un mail" class="flex-shrink-0 mr-2">
@@ -394,6 +405,7 @@ if ($totalCount > 0) {
                                                 <div>
                                                     <p class="text-3xl lg:text-base ml-4"><?=$freelancer->userEmail?></p>
                                                 </div>
+
                                         </div>
                                     </a>
                                     <?php
@@ -410,6 +422,7 @@ if ($totalCount > 0) {
                                                 <div>
                                                     <p class="text-3xl lg:text-base ml-4">Portfolio</p>
                                                 </div>
+
                                         </div>
                                     </a>
                                     <?php
@@ -424,6 +437,7 @@ if ($totalCount > 0) {
                                                 <div>
                                                     <p class="text-3xl lg:text-base ml-4">Linkedin</p>
                                                 </div>
+
                                         </div>
                                     </a>
                                     <?php
@@ -438,6 +452,7 @@ if ($totalCount > 0) {
                                                 <div>
                                                     <p class="text-3xl lg:text-base ml-4">Github</p>
                                                 </div>
+
                                         </div>
                                     </a>
                                     <?php
@@ -452,6 +467,7 @@ if ($totalCount > 0) {
                                                 <div>
                                                     <p class="text-3xl lg:text-base ml-4">Dribbble</p>
                                                 </div>
+
                                         </div>
                                     </a>
                                     <?php 
@@ -465,11 +481,13 @@ if ($totalCount > 0) {
                                                 <div>
                                                     <p class="text-3xl lg:text-base ml-4">Behance</p>
                                                 </div>
+
                                             </div>
-                                        </a>
+                                        </div>
+                                    </a>
                                     <?php endif; ?>
                                 </div>
-                               
+
                             </div>
                             <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white" id="rating">
                                 <h2 class="text-3xl lg:text-xl font-bold mb-4"> Avis </h2> 
@@ -481,6 +499,39 @@ if ($totalCount > 0) {
                                             foreach ($raterUser as $rating) {
                                                 if ($ratingsCount < 3) {
                                                 ?>
+                                                    <div class="items-center mb-4 mt-4">
+                                                        <div class="flex items-center">
+                                                            <div class="w-10 h-10" style="font-size:1rem;">
+                                                                <img src="<?=base_url($rating->companyLogoPath)?>" class="w-10 h-10 rounded-full flex items-center justify-center" alt="User Photo">
+                                                            </div>
+                                                            <div class="ml-4">
+                                                                <p class="text "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
+                                                                <p class="text mt-1  text-gray-400"><?= $rating->companyName?></p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex items-center mt-4 mb-4">
+                                                            <div class="flex items-center">
+                                                                <?php for ($i = 1; $i <= 5; $i++) { ?>
+                                                                    <?php if ($i <= $rating->ratingStars) { ?>
+                                                                        <img src="<?php echo base_url('assets/img/fill-star.svg'); ?>" class="w-4 h-4">
+                                                                    <?php } else { ?>
+                                                                        <img src="<?php echo base_url('assets/img/light-star.svg'); ?>" class="w-4 h-4">
+                                                                    <?php } ?>
+                                                                <?php } ?>
+                                                            </div>
+                                                            <p class="text text-sm text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
+                                                        </div>  
+                                                        <div>
+                                                            <p class="text"><?= '"'.$rating->ratingComment.'"'?></p>
+                                                        </div>
+                                                    </div>
+                                                <?php
+                                                $ratingsCount++;
+                                                } else {
+                                                    //break; // Arrêter la boucle si le nombre d'avis atteint 3
+                                                    //echo $ratingsCount;
+                                                    ?>
+                                                    <div id="more-avis" class="hidden">
                                                         <div class="items-center mb-4 mt-4">
                                                             <div class="flex items-center">
                                                                 <div class="w-10 h-10" style="font-size:1rem;">
@@ -502,6 +553,7 @@ if ($totalCount > 0) {
                                                                     <?php } ?>
                                                                 </div>
                                                                 <p class="text text-2xl lg:text-base text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
+
 
                                                             </div>  
                                                             <div>
@@ -551,9 +603,9 @@ if ($totalCount > 0) {
                                                         <button id="less-avis-button" class="hidden text-primary text-2xl lg:text-base mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">
                                                             Voir moins
                                                         </button>
+
                                                 <?php    
                                                 }
-                                                
                                             }
                                         }
                                         else {
@@ -561,9 +613,7 @@ if ($totalCount > 0) {
                                                 <p class="mt-2 mb-2 text-2xl lg:text-base"> Aucun avis pour le moment. </p>
                                              <?php
                                         }
-                                        ?>
-
-
+                                    ?>
                                     </div>
                             </div>
                         </div>
@@ -579,7 +629,6 @@ if ($totalCount > 0) {
                                     Compétences
                                     <i class="fas fa-chevron-down ml-2" id="skillsArrow" style='font-size:0.75rem;' data-order="asc"></i>
                                 </h2>
-
                                 <div class="skills-container mb-4">
                                     <?php
                                     if (is_array($skills) && !empty($skills)) {
@@ -724,19 +773,62 @@ if ($totalCount > 0) {
                                                     </div>
                                                 <?php endforeach; ?>
                                                 </div> 
+
                                             </div>
+                                            <p class="text-lg text-gray-500 mb-4 mt-4 ml-2 mr-4 dark:text-white"><?= $experience->experienceDescription ?></p>
+                                            <div class="skills-container mb-4">
                                             <?php
-                                            if ($experienceCount < 2) {
-                                            ?>
-                                                <hr>
-                                            <?php
-                                            }
+                                                $dataExperienceSkills = [];
+                                                foreach ($experienceSkills[$experience->idExperience] as $skill):
+                                                    $dataExperienceSkills[] = $skill->skillName;
+                                                $dataExperienceSkillsString = implode(',', $dataExperienceSkills);
+                                            
+                                                    // Déterminer le niveau en fonction de la valeur de missionSkillsExperience
+                                                    $level = '';
+                                                    $color = '';
+                                                    switch ($skill->experienceSkillsExpertise) {
+                                                        case 1:
+                                                            $level = 'Junior';
+                                                            $color = '#BEE3F8'; // Couleur pour le niveau junior
+                                                            $textdark = "text-black";
+                                                            $text = "text-black";
+                                                            
+                                                            break;
+                                                        case 2:
+                                                            $level = 'Intermédiaire';
+                                                            $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
+                                                            $textdark = "text-white";
+                                                            $text = "text-black";
+                                                            break;
+                                                        case 3:
+                                                            $level = 'Expert';
+                                                            $color = '#2C5282'; // Couleur pour le niveau expert
+                                                            $textdark = "text-white";
+                                                            $text = "text-white";
+                                                            break;
+                                                        default:
+                                                            $level = 'N/A'; // Si la valeur de missionSkillsExperience n'est pas valide, afficher "N/A"
+                                                            break;
+                                                    }
+                                                ?>
+                                                <div class="skill-item" data-level="<?=$level?>">
+                                                    <span class="dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                                                    <div class="skill-level"><?=$level?></div>
+                                                </div>
+                                            <?php endforeach; ?>
+                                            </div> 
+                                        </div>
+                                        <?php
+                                        if ($experienceCount < 2) {
                                         ?>
-                                    <?php
-                                            $experienceCount++;
-                                        } else {
-                                            break;
+                                            <hr>
+                                        <?php
                                         }
+                                        ?>
+                                <?php
+                                        $experienceCount++;
+                                    } else {
+                                        break;
                                     }
                                 ?>
                                 <?php }?>
@@ -750,21 +842,20 @@ if ($totalCount > 0) {
                                                 <h3 class="text-2xl lg:text-base font-medium"><?= $attachment->attachmentName ?></h3>
                                                 <div class="pdf-thumbnail overflow-hidden z-10 mb-2" style="max-height: 14rem" data-pdf="<?= base_url($attachment->attachmentPath) ?>">
                                                     <div class="absolute top-0 right-0  mr-4 mt-4 flex space-x-4 z-20">
+
                                                     <a href="<?= base_url($attachment->attachmentPath) ?>" download class="download-icon text-gray-400 hover:text-gray-900" onclick="event.stopPropagation();">
                                                         <i class="fas fa-download"></i>
                                                     </a>
-                                                    </div>
                                                 </div>
-                                                
                                             </div>
-                                        <?php } ?>
-                                    </div>
-
+                                            
+                                        </div>
+                                    <?php } ?>
+                                </div>
                             <?php } else { ?>
                                 <p class="text-2xl lg:text-base mt-2 mb-2">Aucune pièce jointe disponible.</p>
                             <?php } ?>
 
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -772,6 +863,7 @@ if ($totalCount > 0) {
         </div>
     </div>
 </div>
+
 <script src="<?php echo base_url('assets/js/app.js'); ?>"></script>
 <script src="<?php echo base_url('assets/js/pdf.js'); ?>"></script>
 <script src="<?php echo base_url('/node_modules/choices.js/public/assets/scripts/choices.min.js'); ?>"></script>

@@ -558,13 +558,23 @@ class Company extends CI_Controller {
         $companyName = $this->input->post('companyName');
         $companySlogan = $this->input->post('companySlogan');
         $companySecteur = $this->input->post('secteursAll');
+
         $companyLocalisation = $this->input->post('companyLocalisation');
+        $companyEtranger = $this->input->post('companyEtranger');
+        $companyLocalisation = $companyEtranger == 'on' ? "Etranger" : $companyLocalisation;
+
         $userLinkedinLink = $this->input->post('userLinkedinLink');
         $userTelephone = $this->input->post('userTelephone');
         $company = $this->Company_model->getCompanyData($userId);
         $companyId = $company->idCompany;
         $companySecteur = implode(',', $companySecteur);
     
+
+        $configBanner = [
+            'upload_path' => 'assets/img/company/' . $companyId . '/banner/',
+            'allowed_types' => 'jpg|jpeg|png',
+            'max_size' => 2048
+        ];
         // Vérifier si un fichier a été téléchargé
         if ($_FILES['banner-upload']['name']) {
             // Créer un dossier pour chaque utilisateur avec son ID
@@ -582,10 +592,10 @@ class Company extends CI_Controller {
                 }
             }
     
-            $config['upload_path'] = $companyBannerPath;
-            $config['allowed_types'] = 'jpg|jpeg|png';
-            $config['max_size'] = 2048; // Taille maximale du fichier en kilo-octets
-            $this->load->library('upload', $config);
+            // $config['upload_path'] = $companyBannerPath;
+            // $config['allowed_types'] = 'jpg|jpeg|png';
+            // $config['max_size'] = 2048; // Taille maximale du fichier en kilo-octets
+            $this->load->library('upload', $configBanner);
     
             if (!$this->upload->do_upload('banner-upload')) {
                 // Erreur lors du téléchargement du fichier
@@ -607,6 +617,11 @@ class Company extends CI_Controller {
             }
         }
     
+        $configLogo = [
+            'upload_path' => 'assets/img/company/' . $companyId . '/logo/',
+            'allowed_types' => 'jpg|jpeg|png',
+            'max_size' => 2048
+        ];
         // Vérifier si un fichier a été téléchargé
         if ($_FILES['logo-upload']['name']) {
             // Créer un dossier pour chaque utilisateur avec son ID
@@ -624,10 +639,12 @@ class Company extends CI_Controller {
                 }
             }
 
-            $config['upload_path'] = $companyLogoPath;
-            $config['allowed_types'] = 'jpg|jpeg|png';
-            $config['max_size'] = 2048; // Taille maximale du fichier en kilo-octets
-            $this->load->library('upload', $config);
+            // $config['upload_path'] = $companyLogoPath;
+            // $config['allowed_types'] = 'jpg|jpeg|png';
+            // $config['max_size'] = 2048; // Taille maximale du fichier en kilo-octets
+            //$this->load->library('upload', $configLogo);
+
+            $this->upload->initialize($configLogo);
     
             if (!$this->upload->do_upload('logo-upload')) {
                 // Erreur lors du téléchargement du fichier
@@ -876,6 +893,9 @@ class Company extends CI_Controller {
         }
         $data['user'] = $user;
 
+        $company = $this->Company_model->getCompanyData($userId);
+        $data['company'] = $company;
+
         $groups = $this->Company_model->getWhatsAppGroups();
 
         $company = $this->Company_model->getCompanyData($userId);
@@ -885,5 +905,19 @@ class Company extends CI_Controller {
     
         $this->load->view('company/whatsapp', $data);
     }
+
+    public function checkCurrentPassword(){
+        $this->load->model('Company_model');
+        $currentPassword = $this->input->post('userCurrentPassword');
+        if ($this->Company_model->checkPassword($this->session->userdata('userId'), $currentPassword)) {
+            // Mot de passe correct
+            echo json_encode(array('status' => 'success', 'message' => ''));
+        } else {
+            // Mot de passe incorrect
+            echo json_encode(array('status' => 'error', 'message' => 'Mot de passe incorrect'));
+        }
+    }
+    
+
 }
 ?>

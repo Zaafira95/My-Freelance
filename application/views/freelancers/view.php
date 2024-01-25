@@ -297,8 +297,12 @@ if ($totalCount > 0) {
                                             <p class="font-bold text-lg">Dispo. <?=$freelancer->userJobTimePartielOrFullTime?> </p>
                                         <?php
                                             }else{
+                                                    
+                                                $dateFinIndisponibilite = new DateTime($freelancer->userDateFinIndisponibilite);
+                                               
+                                                $dateFinIndisponibilite = $dateFinIndisponibilite->format('d/m/Y');
                                         ?>
-                                            <p class="font-bold text-lg">Indispo. <?=$freelancer->userJobTimePartielOrFullTime?> </p>
+                                            <p class="font-bold text-lg">Indispo. jusqu'au <?=$dateFinIndisponibilite?> </p>
                                         <?php
                                             }
                                         ?>

@@ -68,7 +68,7 @@ if ($banner->bannerStatus == "active"){ ?>
                 </button>
             </div>
             <!-- Modal body -->
-            <form action="<?=base_url("user/updateAvailability")?>" method="post">
+            <form id="userAvailabilityForm" action="<?=base_url("user/updateAvailability")?>" method="post">
                     <div>
                         <label for="name" class="block mb-2 font-medium text-gray-900 dark:text-white">Êtes-vous disponible pour travailler dès maintenant ?</label>
                         <label class="text-gray-500 mr-3 dark:text-gray-400">Non</label>
@@ -108,7 +108,7 @@ if ($banner->bannerStatus == "active"){ ?>
                             <input type="date" id="dateFinIndisponibilite" value="<?= $user->userDateFinIndisponibilite ?>" name="dateFinIndisponibilite" class="w-full mt-4 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
                     </div>
-                <div class="flex items-center space-x-4 mt-4">
+                <div class="flex items-center space-x-4 mt-8">
                     <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                         Valider
                     </button>
@@ -859,30 +859,6 @@ if($totalInfos == 1 ){
             }
         });
 
-        $(document).on('change', 'input[name="finIndisponibiliteDuree"]', function() {
-            const selectedDuration = $(this).val();
-            const dateInput = document.getElementById('dateFinIndisponibilite');
-
-            if (selectedDuration === '1') {
-                const endDate = new Date();
-                endDate.setMonth(endDate.getMonth() + 1);
-                const endDateString = endDate.toISOString().split('T')[0];
-                dateInput.value = endDateString;
-            } else if (selectedDuration === '3') {
-                const endDate = new Date();
-                endDate.setMonth(endDate.getMonth() + 3);
-                const endDateString = endDate.toISOString().split('T')[0];
-                dateInput.value = endDateString;
-            } else if (selectedDuration === '6') {
-                const endDate = new Date();
-                endDate.setMonth(endDate.getMonth() + 6);
-                const endDateString = endDate.toISOString().split('T')[0];
-                dateInput.value = endDateString;
-            } else {
-                dateInput.value = '';
-            }
-        });
-
     });
 
     //Script selection des compétences
@@ -1195,6 +1171,42 @@ document.addEventListener("DOMContentLoaded", function() {
     filterMissions();
 });
 
+$(document).ready(function(){ 
+
+    $(document).on('change', 'input[name="finIndisponibiliteDuree"]', function() {
+        const selectedDuration = $(this).val();
+        const dateInput = document.getElementById('dateFinIndisponibilite');
+
+        if (selectedDuration === '1') {
+            const endDate = new Date();
+            endDate.setMonth(endDate.getMonth() + 1);
+            const endDateString = endDate.toISOString().split('T')[0];
+            dateInput.value = endDateString;
+        } else if (selectedDuration === '3') {
+            const endDate = new Date();
+            endDate.setMonth(endDate.getMonth() + 3);
+            const endDateString = endDate.toISOString().split('T')[0];
+            dateInput.value = endDateString;
+        } else if (selectedDuration === '6') {
+            const endDate = new Date();
+            endDate.setMonth(endDate.getMonth() + 6);
+            const endDateString = endDate.toISOString().split('T')[0];
+            dateInput.value = endDateString;
+        } else {
+            dateInput.value = '';
+        }
+    });
+    
+    $('#userAvailabilityForm').on('submit', function(event) {
+        var dateInput = document.getElementById('dateFinIndisponibilite');
+        var checkBox = document.getElementById('hs-basic-with-description');
+
+        if (!checkBox.checked && dateInput.value == '') {
+            event.preventDefault(); // Empêcher la soumission du formulaire
+        }
+    });
+
+});
 
 function displayAvailibilityOptions() {
     var checkBox = document.getElementById('hs-basic-with-description');

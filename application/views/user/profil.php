@@ -217,20 +217,41 @@ include(APPPATH . 'views/layouts/user/header.php' );
                 <div>
                     <label for="name" class="text-2xl lg:text-base block mb-2  font-medium text-gray-900 dark:text-white">Êtes-vous disponible pour travailler dès maintenant ?</label>
                     <label class="text-2xl lg:text-base text-gray-500 mr-3 dark:text-gray-400">Non</label>
-                    <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description" <?php echo $checkboxChecked; ?> class="text-2xl lg:text-base relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-green-200">
+                    <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description-preference" <?php echo $checkboxChecked; ?> onchange="displayAvailibilityOptions()" class="text-2xl lg:text-base relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-green-200">
                     <label class="text-2xl lg:text-base text-gray-500 ml-3 dark:text-gray-400">Oui</label>
-                    <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="text-2xl lg:text-base bg-gray-50 border mt-2 border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option value="temps-plein" 
-                            <?php if ($user->userJobTimePartielOrFullTime === "temps-plein") {
-                                echo ' selected';
-                            } ?>> Temps Plein 
-                        </option>
-                        <option value="temps-partiel" 
-                            <?php if ($user->userJobTimePartielOrFullTime === "temps-partiel") {
-                                echo ' selected';
-                            } ?>> Temps Partiel 
-                        </option>
-                    </select>
+                    <div id="isAvailaibleOptionsPreference" style="display: <?php echo $checkboxChecked == 'checked' ? "block" : "none" ?>" class=" mt-4 mb-2">
+                        <label for="name" class="block mb-2 font-medium text-gray-900 dark:text-white">Combien de jours par semaine êtes-vous disponible ?</label>
+                        <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="bg-gray-50 border mt-2 border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option value="temps-plein" 
+                                <?php if ($user->userJobTimePartielOrFullTime === "temps-plein") {
+                                    echo ' selected';
+                                } ?>> Temps Plein 
+                            </option>
+                            <option value="temps-partiel" 
+                                <?php if ($user->userJobTimePartielOrFullTime === "temps-partiel") {
+                                    echo ' selected';
+                                } ?>> Temps Partiel 
+                            </option>
+                        </select>
+                    </div>
+                    <div id="isNotAvailaibleOptionsPreference" style="display: <?php echo $checkboxChecked == '' ? "block" : "none" ?>" class="mt-4 mb-2">
+                        <label for="dateFinIndisponibilitePreference" class="block mb-2 font-medium text-gray-900 dark:text-white">Quand serez-vous à nouveau disponible ?</label>
+                        <div class="flex flex-1 mt-2">
+                            <div class="flex items-center mr-6">
+                                <input type="radio" id="1mois" value="1" name="finIndisponibiliteDuree" class="finIndisponibiliteBtnPreference w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="1mois" class="ml-2 font-medium text-gray-900 dark:text-white">Dans 1 mois</label>
+                            </div>
+                            <div class="flex items-center mr-6">
+                                <input type="radio" id="3mois" value="3" name="finIndisponibiliteDuree" class="finIndisponibiliteBtnPreference w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="3mois" class="ml-2 font-medium text-gray-900 dark:text-white">Dans 3 mois</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="6mois" value="6" name="finIndisponibiliteDuree" class="finIndisponibiliteBtnPreference w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <label for="6mois" class="ml-2 font-medium text-gray-900 dark:text-white">Dans 6 mois</label>
+                            </div>
+                        </div>
+                        <input type="date" id="dateFinIndisponibilitePreference" value="<?= $user->userDateFinIndisponibilite ?>" name="dateFinIndisponibilite" class="w-full mt-2 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    </div>
 
                     <label for="userJobType" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Type de poste</label>
                     
@@ -250,7 +271,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                     </div>
                     <p id="errorMessageJobType" class="text-2xl lg:text-base text-red-500" style="display:none;">Veuillez choisir un type de poste</p>
                     <label for="userVille" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Localisation</label>
-                    <div id="step3-freelance-city">    
+                    <div>    
                         <div class="relative city-search-container w-full mr-4">
                             <input type="text" id="citySearch" name="userVille" placeholder="Cherchez votre ville" value="<?php echo $user->userVille != 'Etranger' ? $user->userVille : "" ?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" >
                                 <div id="cities-list" class="text-2xl lg:text-base absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
@@ -905,8 +926,12 @@ if($totalInfos == 1 ){
                                                 <p class="font-bold text-3xl lg:text-lg">Dispo. <?=$user->userJobTimePartielOrFullTime?> </p>
                                             <?php
                                                 }else{
+                                                    
+                                                    $dateFinIndisponibilite = new DateTime($user->userDateFinIndisponibilite);
+                                                   
+                                                    $dateFinIndisponibilite = $dateFinIndisponibilite->format('d/m/Y');
                                             ?>
-                                                <p class="font-bold text-3xl lg:text-lg">Indispo. <?=$user->userJobTimePartielOrFullTime?> </p>
+                                                <p class="font-bold text-3xl lg:text-lg">Indispo. jusqu'au <?=$dateFinIndisponibilite?> </p>
                                             <?php
                                                 }
                                             ?>
@@ -2039,8 +2064,65 @@ document.addEventListener('DOMContentLoaded', function() {
         if(todayCheckbox.checked) {
             endDate.value='';
         }
-
     }
 
+
+    $(document).ready(function(){ 
+        $(document).on('change', 'input[name="finIndisponibiliteDuree"]', function() {
+            const selectedDuration = $(this).val();
+            const dateInput = document.getElementById('dateFinIndisponibilitePreference');
+
+            if (selectedDuration === '1') {
+                const endDate = new Date();
+                endDate.setMonth(endDate.getMonth() + 1);
+                const endDateString = endDate.toISOString().split('T')[0];
+                dateInput.value = endDateString;
+            } else if (selectedDuration === '3') {
+                const endDate = new Date();
+                endDate.setMonth(endDate.getMonth() + 3);
+                const endDateString = endDate.toISOString().split('T')[0];
+                dateInput.value = endDateString;
+            } else if (selectedDuration === '6') {
+                const endDate = new Date();
+                endDate.setMonth(endDate.getMonth() + 6);
+                const endDateString = endDate.toISOString().split('T')[0];
+                dateInput.value = endDateString;
+            } else {
+                dateInput.value = '';
+            }
+        });
+
+        $('#userPreferenceForm').on('submit', function(event) {
+            var dateInput = document.getElementById('dateFinIndisponibilitePreference');
+            var checkBox = document.getElementById('hs-basic-with-description-preference');
+
+            if (!checkBox.checked && dateInput.value == '') {
+                event.preventDefault(); // Empêcher la soumission du formulaire
+            }
+        });
+
+    });
+
+    function displayAvailibilityOptions() {
+        var checkBox = document.getElementById('hs-basic-with-description-preference');
+        var isAvailableDiv = document.getElementById('isAvailaibleOptionsPreference');
+        var isNotAvailableDiv = document.getElementById('isNotAvailaibleOptionsPreference');
+        var radioButtons = document.getElementsByClassName('finIndisponibiliteBtnPreference');
+        var dateInput = document.getElementById('dateFinIndisponibilitePreference');
+
+        if (checkBox.checked) {
+            console.log("test");
+
+            isAvailableDiv.style.display = 'block';
+            isNotAvailableDiv.style.display = 'none';
+            for (var i = 0; i < radioButtons.length; i++) {
+                radioButtons[i].checked = false;
+            }
+            dateInput.value = '';
+        } else {
+            isAvailableDiv.style.display = 'none';
+            isNotAvailableDiv.style.display = 'block';
+        }
+    }
 
 </script>

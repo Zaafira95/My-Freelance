@@ -351,8 +351,9 @@ class User extends CI_Controller {
         $userJobTime = $this->input->post('userJobTime');
 
         $userJobTimePartielOrFullTime = $this->input->post('userJobTimePartielOrFullTime');
+        $dateFinIndisponibilite = $this->input->post('dateFinIndisponibilite');
 
-        $this->User_model->updateUserPreference($userId, $userIsAvailable, $userJobType, $userVille, $userJobTime, $userJobTimePartielOrFullTime);
+        $this->User_model->updateUserPreference($userId, $userIsAvailable, $userJobType, $userVille, $userJobTime, $userJobTimePartielOrFullTime, $dateFinIndisponibilite);
         $this->session->set_flashdata('message', 'Vos préférences ont bien été mises à jour !');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);

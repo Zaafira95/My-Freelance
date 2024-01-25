@@ -49,9 +49,10 @@ class User_model extends CI_Model {
         $this->db->update('Users');
     }
 
-    public function updateUserAvailability($userId, $userAvailability, $userJobTimePartielOrFullTime){
+    public function updateUserAvailability($userId, $userAvailability, $userJobTimePartielOrFullTime, $dateFinIndisponibilite){
         $this->db->set('userIsAvailable', $userAvailability);
         $this->db->set('userJobTimePartielOrFullTime', $userJobTimePartielOrFullTime);
+        $this->db->set('userDateFinIndisponibilite', $dateFinIndisponibilite);
         $this->db->where('userId', $userId);
         $this->db->update('Users');
     }

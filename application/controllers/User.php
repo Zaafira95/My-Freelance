@@ -144,6 +144,7 @@ class User extends CI_Controller {
         }
     }
 
+    // Zaafira 24/01/2024 : modification fonction updateAvailability
     public function updateAvailability(){
         $userId = $this->session->userdata('userId');
         $userAvailability = $this->input->post('userIsAvailable');
@@ -154,10 +155,10 @@ class User extends CI_Controller {
         }
 
         $userJobTimePartielOrFullTime = $this->input->post('userJobTimePartielOrFullTime');
-
+        $dateFinIndisponibilite = $this->input->post('dateFinIndisponibilite');
 
         $this->load->model('User_model');
-        $this->User_model->updateUserAvailability($userId, $userAvailability, $userJobTimePartielOrFullTime);
+        $this->User_model->updateUserAvailability($userId, $userAvailability, $userJobTimePartielOrFullTime, $dateFinIndisponibilite);
         $this->session->set_flashdata('message', 'Votre disponibilité a bien été mise à jour !');
         $this->session->set_flashdata('status', 'success');
         // Recharger la page actuelle

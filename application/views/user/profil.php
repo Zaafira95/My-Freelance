@@ -250,7 +250,6 @@ include(APPPATH . 'views/layouts/user/header.php' );
                     </div>
                     <p id="errorMessageJobType" class="text-2xl lg:text-base text-red-500" style="display:none;">Veuillez choisir un type de poste</p>
                     <label for="userVille" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Localisation</label>
-                    <!--<input type="text" name="userVille" id="userVille" value="<?=$user->userVille?>" class="text-2xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Ville">-->
                     <div id="step3-freelance-city">    
                         <div class="relative city-search-container w-full mr-4">
                             <input type="text" id="citySearch" name="userVille" placeholder="Cherchez votre ville" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" >

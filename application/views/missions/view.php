@@ -596,8 +596,9 @@ else if ($user->userType == "sales"){
                         </div>
                     </div> 
             </div>
-            <h2 class="font-bold text-4xl lg:text-xl mt-2 mb-4">Les autres offres proposés par <?=$company->companyName?></h2>
-            <div class="overflow-x-auto flex pb-4 no-scrollbar">
+            <?php if(count($companyMissions) >= 2) { ?>
+                <h2 class="font-bold text-4xl lg:text-xl mt-2 mb-4">Les autres offres proposés par <?=$company->companyName?></h2>
+                <div class="overflow-x-auto flex pb-4 no-scrollbar">
                 <?php foreach($companyMissions as $companyMission): ?>
                     <?php if ($companyMission->idMission !== $mission->idMission): ?>
                     <a href="<?=base_url('user/missionView/'.$companyMission->idMission)?>">

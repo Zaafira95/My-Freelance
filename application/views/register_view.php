@@ -7,9 +7,9 @@
 
     <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
     <style>
-        body {
+        /* body {
             background-color: #ffffff;
-        }
+        } */
         /* Barre de progression */
         .password-strength-meter {
             height: 10px;
@@ -71,7 +71,7 @@
         <div class="container h-full px-6 mx-auto max-w-screen-xl">
             <div class="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between">
                 <!-- Left column container with background-->
-                <div class="mb-12 md:mb-0 md:w-8/12 lg:w-6/12">
+                <div class="hidden lg:block md:w-8/12 lg:w-6/12">
                     <img
                     src="<?php echo base_url('assets/img/cc-1.png');?>"
                     class="w-full image-rotation"
@@ -79,60 +79,60 @@
                 </div>
 
                 <!-- Right column container with form -->
-                <div class="md:w-8/12 lg:ml-6 lg:w-5/12">
-                    <div class="flex flex-col justify-start px-6 py-6 mx-auto md:h-screen">
-                        <a href="#" class="flex mb-6 text-2xl font-semibold text-gray-900">
-                            <img class="w-50 mr-2" src="<?php echo base_url('assets/img/logo.svg');?>" alt="Café Crème Community" id="logoLogin">
+                <div class="w-full lg:ml-6 lg:w-5/12">
+                    <div class="flex flex-col justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+                        <a href="<?php echo base_url('/')?>" class="flex mb-6 text-2xl font-semibold text-gray-900">
+                            <img class="w-60 lg:justify-start lg:m-0 lg:w-40 mr-2" src="<?php echo base_url('assets/img/logo.svg');?>" alt="Café Crème Community" id="logoLogin">
                         </a>
                         
-                        <div id="step1" style="display:block">
-                            <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
+                        <div id="step1" style="display:block;">
+                            <div class="w-full bg-white rounded-lg shadow md:mt-0 xl:p-0 dark:bg-gray-800 dark:text-white h-100 py-12 lg:py-1 overflow-y-auto no-scrollbar">
                                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                                    <h1 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                                    <h1 class="text-5xl lg:text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 dark:text-white">
                                         Créez votre compte
                                     </h1>
-                                    <p class="text-dark mb-2 dark:text-white">
+                                    <p class="text-3xl lg:text-base text-dark mb-2 dark:text-white">
                                         Inscrivez-vous maintenant et commencez à découvrir les opportunités qui vous attendent.
                                     </p>
                                     <form id="register-form" class="space-y-4 md:space-y-6" method="post" action="<?php echo base_url('register/registerUser'); ?>" onsubmit="showLoader();" enctype="multipart/form-data">
                                         <div>
-                                            <input type="email" name="userEmail" id="userEmail" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre email *" oninput="checkEmailAvailability(this.value)" required>
+                                            <input type="email" name="userEmail" id="userEmail" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre email *" oninput="checkEmailAvailability(this.value)" required>
                                             <p id="emailError" class="text-red-500"></p>
                                         </div>
                                         <div>
-                                            <input type="password" name="userPassword" id="userPassword" placeholder="Saisissez votre mot de passe *" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5" required oninput="checkPasswordStrength(this.value)">
+                                            <input type="password" name="userPassword" id="userPassword" placeholder="Saisissez votre mot de passe *" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5" required oninput="checkPasswordStrength(this.value)">
                                         </div>
                                         <div>
-                                            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirmez votre mot de passe *" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5" required oninput="checkPasswordMatch()">
-                                            <p id="confirmPasswordError" class="text-red-500"></p>
+                                            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirmez votre mot de passe *" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5" required oninput="checkPasswordMatch()">
+                                            <p id="confirmPasswordError" class="text-3xl lg:text-base text-red-500"></p>
                                         </div>
                                         <div class="password-strength-meter">
                                             <div class="password-strength-meter-fill"></div>
                                         </div>
-                                        <p id="passwordError" class="text-red-500"></p>
+                                        <p id="passwordError" class="text-3xl lg:text-base text-red-500"></p>
                                         <div>
-                                            <input type="checkbox" id="togglePasswordCheckbox" class="form-checkbox text-primary rounded">
-                                            <label for="togglePasswordCheckbox" class="text-lg font-medium text-gray-900 dark:text-white">Afficher le mot de passe</label>
+                                            <input type="checkbox" id="togglePasswordCheckbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox text-primary rounded">
+                                            <label for="togglePasswordCheckbox" class="text-3xl lg:text-base font-medium text-gray-900 dark:text-white">Afficher le mot de passe</label>
                                         </div>
                                         <!-- error message -->
-                                        <p id="errorMessage1" class="text-red-500" style="display:none;">Un ou plusieurs champs non pas été remplies</p>
+                                        <p id="errorMessage1" class="text-3xl lg:text-base text-red-500" style="display:none;">Un ou plusieurs champs non pas été remplies</p>
                                         <!-- button for next step -->
-                                        <button type="button" class="w-full text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep2()">Suivant</button>
-                                        <p class="text-lg font-light text-gray-500 dark:text-white">
-                                            Vous avez déjà un compte ? <a href="<?=base_url('login')?>" class="font-medium text-primary hover:underline">Connectez-vous</a>
+                                        <button type="button" class="text-3xl lg:text-base w-full text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep2()">Suivant</button>
+                                        <p class="text-3xl lg:text-base font-light text-gray-500 dark:text-white">
+                                            Vous avez déjà un compte ? <a href="<?=base_url('login')?>" class="text-3xl lg:text-base font-medium text-primary hover:underline">Connectez-vous</a>
                                         </p>
                                 </div>
                             </div>
                         </div>
                         <div id="step2" style="display: none;">
-                            <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
+                            <div class="w-full bg-white rounded-lg shadow md:mt-0  dark:bg-gray-800 dark:text-white h-100 py-12 lg:py-1 overflow-y-auto no-scrollbar">
                                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                     <div class="flex items-center">
-                                        <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white" style="width: 60%;">
+                                        <h2 class="text-5xl lg:text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900  dark:text-white" style="width: 60%;">
                                         Je suis un :
                                         </h2>
                                         <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
-                                            <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
+                                            <div class="text-3xl lg:text-base font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4">
                                                 1/5
                                             </div>
                                             <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
@@ -140,23 +140,23 @@
                                         </div>
                                     </div>
                                     <div class="block-container flex flex-col items-center">
-                                        <ul class="w-full col-6 md:col-cols-2">
-                                            <li class="h-48 flex flex-col items-center overflow-hidden mb-4">
+                                        <ul class="w-full">
+                                            <li class="h-auto lg:h-48 w-full flex flex-col items-center overflow-hidden mb-4">
                                                 <input type="radio" id="userTypeFreelance" name="userType" value="freelance" class="hidden peer" required>
                                                 <label for="userTypeFreelance" class="h-full inline-flex flex-col items-center justify-center w-full pt-5 text-black bg-white border hover:bg-primary border-black rounded-lg cursor-pointer dark:hover:bg-primary dark:border-white dark:peer-checked:text-blue-500 peer-checked:bg-primary peer-checked:text-white hover:text-gray-600 dark:text-gray-400 dark:bg-gray-800 mb-4" onclick="handleClick(this)" onmouseover="changeTextColor(this, true)" onmouseout="changeTextColor(this, false)">
                                                     <div class="flex flex-col items-center">
-                                                    <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight md:text-2xl dark:text-white">Freelance</h2>
+                                                    <h2 class="text-5xl lg:text-2xl font-bold mb-2 leading-tight tracking-tight  dark:text-white">Freelance</h2>
                                                         <div class="flex flex-col items-center">
                                                             <img src="<?=base_url('assets/img/person.png')?>" alt="Freelance Image" style="width:35%;">
                                                         </div>
                                                     </div>
                                                 </label>
                                             </li>
-                                            <li class="h-48 flex flex-col items-center overflow-hidden">
+                                            <li class="h-auto lg:h-48 w-full flex flex-col items-center overflow-hidden">
                                                 <input type="radio" id="userTypeESN" name="userType" value="sales" class="hidden peer" required>
                                                 <label for="userTypeESN" class="h-full inline-flex flex-col items-center justify-center w-full pt-5 text-black bg-white border hover:bg-primary border-black rounded-lg cursor-pointer dark:hover:bg-primary dark:border-white dark:peer-checked:text-blue-500 peer-checked:bg-primary peer-checked:text-white hover:text-gray-600 dark:text-gray-400 dark:bg-gray-800 mb-4" onclick="handleClick(this)" onmouseover="changeTextColor(this, true)" onmouseout="changeTextColor(this, false)">
                                                     <div class="flex flex-col items-center">
-                                                        <h2 class="text-2xl font-bold mt-4 mb-2 leading-tight tracking-tight md:text-2xl dark:text-white">ESN / Sales</h2>
+                                                        <h2 class="text-5xl lg:text-2xl font-bold mt-4 mb-2 leading-tight tracking-tight dark:text-white">ESN / Sales</h2>
                                                         <div class="flex flex-col items-center">
                                                             <img src="<?=base_url('assets/img/esn.png')?>" alt="ESN Image" style="width:35%;">
                                                         </div>
@@ -165,25 +165,25 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <p id="errorUserType" class="text-red-500" style="display:none;">Veuillez choisir votre type de profil</p>
+                                    <p id="errorUserType" class="text-3xl lg:text-base text-red-500" style="display:none;">Veuillez choisir votre type de profil</p>
                                     <div class="flex justify-between pl-4 pr-4">
                                         <!-- button for previous step -->
-                                        <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep1()">Retour</button>
+                                        <button type="button" class="text-3xl lg:text-base w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep1()">Retour</button>
                                         <!-- button for next step -->
-                                        <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep3()">Suivant</button>
+                                        <button type="button" class="text-3xl lg:text-base w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep3()">Suivant</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div id="step3-freelance" style="display:none;">
-                            <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
+                            <div class="w-full bg-white rounded-lg shadow md:mt-0 dark:bg-gray-800 dark:text-white h-100 py-12 lg:py-1 overflow-y-auto no-scrollbar">
                                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                     <div class="flex items-center">
-                                        <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white" style="width: 60%;">
+                                        <h2 class="text-5xl lg:text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 dark:text-white" style="width: 60%;">
                                         Présentes toi
                                         </h2>
                                         <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
-                                            <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
+                                            <div class="text-3xl lg:text-base font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4">
                                                 2/5
                                             </div>
                                             <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
@@ -210,41 +210,41 @@
                                         <span id="file-name" class="hidden text-lg text-gray-500 mt-4 dark:text-white"></span>
                                     </div>
                                     <div>
-                                        <input type="text" name="userFirstName" id="userFirstName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre prénom *" >
+                                        <input type="text" name="userFirstName" id="userFirstName" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre prénom *" >
                                     </div>
                                     <div>
-                                        <input type="text" name="userLastName" id="userLastName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre nom *" >
+                                        <input type="text" name="userLastName" id="userLastName" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre nom *" >
                                     </div>
                                     <div>
-                                        <input type="number" name="userTelephone" id="userTelephone" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre numéro de téléphone *" >
+                                        <input type="number" name="userTelephone" id="userTelephone" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre numéro de téléphone *" >
                                     </div>
                                     <div class="relative city-search-container w-full mr-4">
-                                        <input type="text" id="citySearch" name="userVille" placeholder="Cherchez votre ville" class="citySearch bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" >
-                                            <div id="cities-list" class="cities-list absolute z-10 mt-2 w-full rounded bg-white max-h-64 overflow-y-auto text-black"></div>
+                                        <input type="text" id="citySearch" name="userVille" placeholder="Cherchez votre ville" class="text-3xl lg:text-base citySearch bg-gray-50 border border-gray-300 text-gray-900  rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" >
+                                            <div id="cities-list" class="text-3xl lg:text-base cities-list absolute z-10 mt-2 w-full rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                                     </div>
                                     <div class="flex items-center mt-2">
-                                        <input type="checkbox" id="userEtranger" name="userEtranger">
-                                        <label class="ml-2 text-gray-500 dark:text-gray-400">Étranger</label>
+                                        <input type="checkbox" id="userEtranger" name="userEtranger" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox text-primary rounded mr-2">
+                                        <label class="text-3xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Étranger</label>
                                     </div>
-                                    <p id="errorMessage-step3-freelance" class="text-red-500 text-lg mt-2 hidden">Veuillez remplir tous les champs correctement</p>
+                                    <p id="errorMessage-step3-freelance" class="text-3xl lg:text-base text-red-500 mt-2 hidden">Veuillez remplir tous les champs correctement</p>
                                     <div class="flex justify-between">
                                         <!-- button for previous step -->
-                                        <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep2()">Retour</button>
+                                        <button type="button" class="text-3xl lg:text-base w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg  px-5 py-2.5 text-center" id="previousButton" onclick="goToStep2()">Retour</button>
                                         <!-- button for next step -->
-                                        <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep4_freelance()">Suivant</button>
+                                        <button type="button" class="text-3xl lg:text-base w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg  px-5 py-2.5 text-center" id="nextButton" onclick="goToStep4_freelance()">Suivant</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div id="step3-esn" style="display:none;">
-                            <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
+                            <div class="w-full bg-white rounded-lg shadow md:mt-0 xl:p-0 dark:bg-gray-800 dark:text-white py-12 lg:py-1 overflow-y-auto no-scrollbar">
                                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                     <div class="flex items-center">
-                                        <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white" style="width: 60%;">
+                                        <h2 class="text-5xl lg:text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 dark:text-white" style="width: 60%;">
                                         Présentes toi
                                         </h2>
                                         <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
-                                            <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
+                                            <div class="text-3xl lg:text-base font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4">
                                                 2/5
                                             </div>
                                             <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
@@ -252,33 +252,33 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <input type="text" name="companyUserFirstName" id="companyUserFirstName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre prénom *" >
+                                        <input type="text" name="companyUserFirstName" id="companyUserFirstName" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre prénom *" >
                                     </div>
                                     <div>
-                                        <input type="text" name="companyUserLastName" id="companyUserLastName" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre nom *" >
+                                        <input type="text" name="companyUserLastName" id="companyUserLastName" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre nom *" >
                                     </div>
                                     <div>
-                                        <input type="number" name="companyUserTelephone" id="companyUserTelephone" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre numéro de téléphone *" >
+                                        <input type="number" name="companyUserTelephone" id="companyUserTelephone" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre numéro de téléphone *" >
                                     </div>
-                                    <p id="errorMessage-step3-esn" class="text-red-500 text-lg mt-2 hidden">Veuillez remplir tous les champs correctement</p>
+                                    <p id="errorMessage-step3-esn" class="text-3xl lg:text-base text-red-500  mt-2 hidden">Veuillez remplir tous les champs correctement</p>
                                     <div class="flex justify-between">
                                         <!-- button for previous step -->
-                                        <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep2()">Retour</button>
+                                        <button type="button" class="text-3xl lg:text-base w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep2()">Retour</button>
                                         <!-- button for next step -->
-                                        <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep4_esn()">Suivant</button>
+                                        <button type="button" class="text-3xl lg:text-base w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep4_esn()">Suivant</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div id="step4-freelance" style="display: none;">
-                            <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
+                            <div class="w-full bg-white rounded-lg shadow md:mt-0 dark:bg-gray-800 dark:text-white py-12 lg:py-1 overflow-y-auto no-scrollbar">
                                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                     <div class="flex items-center">
-                                        <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white" style="width: 60%;">
+                                        <h2 class="text-5xl lg:text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 dark:text-white" style="width: 60%;">
                                         Tes Préférences
                                         </h2>
                                         <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
-                                            <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
+                                            <div class="text-3xl lg:text-base  font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4">
                                                 3/5
                                             </div>
                                             <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
@@ -286,66 +286,66 @@
                                         </div>
                                     </div>
                                     <div class="relative job-search-container w-full">
-                                        <input type="text" id="jobSearch" name="userJob" placeholder="Cherchez votre métier" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500">
-                                            <div id="jobs-list" class="absolute z-10 mt-2 w-full rounded bg-white max-h-64 overflow-y-auto text-black"></div>
+                                        <input type="text" id="jobSearch" name="userJob" placeholder="Cherchez votre métier" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500">
+                                            <div id="jobs-list" class="text-3xl lg:text-base absolute z-10 mt-2 w-full rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                                     </div>
                                     <div>
-                                        <input type="number" name="userTJM" id="userTJM" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre TJM € *" min="100" >
+                                        <input type="number" name="userTJM" id="userTJM" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre TJM € *" min="100" >
                                     </div>
                                     <div>
-                                        <label for="userJobType" class="block mb-2 font-medium text-gray-900 dark:text-white">Type de poste</label>
+                                        <label for="userJobType" class="text-3xl lg:text-base block mb-2 font-medium text-gray-900 dark:text-white">Type de poste</label>
                                         <div class="flex flex-1 gap-2 mb-3">
                                             <div class="flex items-center px-2 border border-gray-200 rounded dark:border-gray-700 w-full">
-                                                <input id="teletravail" type="radio" value="Remote" name="userJobType" class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" >
-                                                <label for="teletravail" class="py-4 ml-2  font-medium text-lg text-gray-500 dark:text-white">Télétravail</label>
+                                                <input id="teletravail" type="radio" value="Remote" name="userJobType" class="w-6 h-6 lg:w-3 lg:h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" >
+                                                <label for="teletravail" class="text-3xl lg:text-base py-4 ml-2  font-medium  text-gray-500 dark:text-white">Télétravail</label>
                                             </div>
                                             <div class="flex items-center px-2 border border-gray-200 rounded dark:border-gray-700 w-full">
-                                                <input id="hybride" type="radio" value="Hybride" name="userJobType" class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                                <label for="hybride" class="py-4 ml-2  font-medium text-lg text-gray-500 dark:text-white">Hybride</label>
+                                                <input id="hybride" type="radio" value="Hybride" name="userJobType" class="w-6 h-6 lg:w-3 lg:h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                <label for="hybride" class="text-3xl lg:text-base py-4 ml-2  font-medium  text-gray-500 dark:text-white">Hybride</label>
                                             </div>
                                             <div class="flex items-center px-2 border border-gray-200 rounded dark:border-gray-700 w-full">
-                                                <input id="sur-site" type="radio" value="Physique" name="userJobType" class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                                <label for="sur-site" class="py-4 ml-2  font-medium text-lg text-gray-500 dark:text-white">Physique</label>
+                                                <input id="sur-site" type="radio" value="Physique" name="userJobType" class="w-6 h-6 lg:w-3 lg:h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                <label for="sur-site" class="text-3xl lg:text-base py-4 ml-2  font-medium  text-gray-500 dark:text-white">Physique</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div>
-                                        <label for="userExpertise" class="block mb-2 font-medium text-gray-900 dark:text-white">Votre expertise *</label>
-                                        <select id="userExpertise" name="userExpertise" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-lg text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
-                                            <option class="dark:text-black" value="junior">Junior (1 à 2 ans)</option>
-                                            <option class="dark:text-black" value="intermediaire">Intermédiaire (3 à 5 ans)</option>
-                                            <option class="dark:text-black" value="expert">Expert (+ 5 ans)</option>
+                                        <label for="userExpertise" class="text-3xl lg:text-base block mb-2 font-medium text-gray-900 dark:text-white">Votre expertise *</label>
+                                        <select id="userExpertise" name="userExpertise" class="text-3xl lg:text-base font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
+                                            <option class="text-3xl lg:text-base dark:text-black" value="junior">Junior (1 à 2 ans)</option>
+                                            <option class="text-3xl lg:text-base dark:text-black" value="intermediaire">Intermédiaire (3 à 5 ans)</option>
+                                            <option class="text-3xl lg:text-base dark:text-black" value="expert">Expert (+ 5 ans)</option>
                                         </select>
                                     </div>
                                     <div>
-                                        <label for="userJobTime" class="block mb-2 font-medium text-gray-900 dark:text-white">Durée de la mission</label>
-                                        <select id="userJobTime" name="userJobTime" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-lg text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
-                                            <option class="dark:text-black" value="Courte Durée">Courte Durée</option>
-                                            <option class="dark:text-black" value="Longue Durée">Longue Durée</option>
-                                            <option class="dark:text-black" value="expert">Durée indéfinie</option>
+                                        <label for="userJobTime" class="text-3xl lg:text-base block mb-2 font-medium text-gray-900 dark:text-white">Durée de la mission</label>
+                                        <select id="userJobTime" name="userJobTime" class="text-3xl lg:text-base font-medium mb-2 bg-gray-50 border border-gray-300  text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
+                                            <option class="text-3xl lg:text-base dark:text-black" value="Courte Durée">Courte Durée</option>
+                                            <option class="text-3xl lg:text-base dark:text-black" value="Longue Durée">Longue Durée</option>
+                                            <option class="text-3xl lg:text-base dark:text-black" value="expert">Durée indéfinie</option>
                                         </select>
                                     </div>
-                                    <p id="errorMessage-step4-freelance" class="text-red-500 text-lg mt-2 hidden">Veuillez remplir tous les champs correctement</p>
-                                    <p id="tjmErrorMessage" class="text-red-500 text-lg mt-2 hidden">Le TJM doit être supérieur à 100</p>
+                                    <p id="errorMessage-step4-freelance" class="text-red-500 text-3xl lg:text-base mt-2 hidden">Veuillez remplir tous les champs correctement</p>
+                                    <p id="tjmErrorMessage" class="text-red-500 text-3xl lg:text-base mt-2 hidden">Le TJM doit être supérieur à 100</p>
 
                                     <div class="flex justify-between">
                                         <!-- button for previous step -->
-                                        <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep3()">Retour</button>
+                                        <button type="button" class="text-3xl lg:text-base w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg  px-5 py-2.5 text-center" id="previousButton" onclick="goToStep3()">Retour</button>
                                         <!-- button for next step -->
-                                        <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep5_freelance()">Suivant</button>
+                                        <button type="button" class="text-3xl lg:text-base w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg  px-5 py-2.5 text-center" id="nextButton" onclick="goToStep5_freelance()">Suivant</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div id="step4-esn" style="display: none;">
-                            <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
+                        <div id="step4-esn" style="display:none;">
+                            <div class="w-full bg-white rounded-lg shadow md:mt-0 xl:p-0 dark:bg-gray-800 dark:text-white py-12 lg:py-1 overflow-y-auto no-scrollbar">
                                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                     <div class="flex items-center">
-                                        <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white" style="width: 60%;">
+                                        <h2 class="text-5xl lg:text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900  dark:text-white" style="width: 60%;">
                                         Présentes ton ESN
                                         </h2>
                                         <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
-                                            <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
+                                            <div class="text-3xl lg:text-base font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4">
                                                 3/5
                                             </div>
                                             <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
@@ -353,7 +353,7 @@
                                         </div>
                                     </div>
                                     <div class="bg-white dark:bg-gray-800 relative rounded-lg w-full h-auto mb-8">
-                                        <div class="bg-white dark:bg-gray-800 rounded-lg w-full h-32 flex items-center justify-center">
+                                        <div class="bg-white dark:bg-gray-800 rounded-lg w-full h-40 lg:h-32 flex items-center justify-center">
                                             <div class="bg-white dark:bg-gray-800 w-full h-full flex items-center justify-center">
                                                 <img id="banner-image" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class="object-cover w-full h-full rounded-lg dark:bg-gray-800" alt="Image de l'entreprise">
                                             </div>
@@ -367,7 +367,7 @@
                                             </div>
                                         </div>
                                         <div class="">
-                                            <div class="relative rounded-full border-10 w-20 h-20 flex items-center justify-center" style="margin-top:-50px;">
+                                            <div class="relative rounded-full border-10 w-32 h-32 lg:w-20 lg:h-20 flex items-center justify-center" style="margin-top:-50px;">
                                                 <img id="logo-image" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class="object-cover w-full h-full rounded-full ring-8 ring-white dark:ring-gray-800" alt="Image de l'entreprise">
                                                 <div class="absolute w-8 h-8 text-center bottom-0 right-0 bg-white rounded-full">
                                                     <label for="companyLogo">
@@ -382,22 +382,23 @@
                                     </div>
                                     <p id="logoBannerErrorMessage" class="text-red-500 text-base mt-2 hidden">La taille de l'image doit être inférieur à 2048 Ko</p>
                                     <div>
-                                        <input type="text" name="companyName" id="companyName" placeholder="Nom de votre entreprise *" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" >
+                                        <input type="text" name="companyName" id="companyName" placeholder="Nom de votre entreprise *" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" >
                                     </div>
                                     <div>
-                                        <input type="text" name="companySlogan" id="companySlogan" placeholder="Votre slogan *" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" >
+                                        <input type="text" name="companySlogan" id="companySlogan" placeholder="Votre slogan *" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" >
                                     </div>
                                     <div>    
                                         <div class="relative city-search-container w-full mr-4">
-                                            <input type="text" id="companyCitySearch" name="companyVille" placeholder="Saisissez votre localisation *" class=" citySearch bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500">
-                                                <div id="cities-list" class="cities-list absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
+                                            <input type="text" id="companyCitySearch" name="companyVille" placeholder="Saisissez votre localisation *" class=" text-3xl lg:text-base citySearch bg-gray-50 border border-gray-300 text-gray-900  rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500">
+                                                <div id="cities-list" class="text-3xl lg:text-base cities-list absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                                         </div>
                                         <div class="flex items-center mt-2">
-                                            <input type="checkbox" id="companyEtranger" name="companyEtranger">
-                                            <label class="ml-2 text-gray-500 dark:text-gray-400">Étranger</label>
+                                            <input type="checkbox" id="companyEtranger" name="companyEtranger" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox text-primary rounded mr-2">
+                                            <label class="text-3xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Étranger</label>
                                         </div>
                                     </div>
                                     <div class="relative secteur-search-container w-full">
+
                                         <select id="companySecteur" name="companySecteur" class="text-2xl lg:text-base font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                             <option value="">Sélectionnez un secteur</option>
                                             <?php foreach ($secteursAll as $secteur): ?>
@@ -405,40 +406,27 @@
                                                 <?= $secteur['secteurName'] ?></option>
                                             <?php endforeach; ?>
                                         </select>
-                                        <!--
-                                            <input type="text" id="secteurSearch" name="companySecteur" placeholder="Sélectionnez votre secteur d'activité" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500">
-                                            <div id="secteurs-list" class="absolute z-10 mt-2 w-full rounded bg-white max-h-64 overflow-y-auto text-black"></div>
-                                        -->
                                     </div>
-                                    <!--<div class="w-full text-black mb-1">
-                                        <select id="secteursAll" name="secteursAll[]"  class=" mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                            <option value="">Sélectionnez un secteur</option>
-                                            <?php foreach ($secteursAll as $secteur): ?>
-                                                <option class="dark:text-black" value="<?= $secteur['secteurName'] ?>">
-                                                <?= $secteur['secteurName'] ?></option>
-                                            <?php endforeach; ?>
-                                        </select> 
-                                    </div>-->
-                                    <p id="errorMessage-step4-esn" class="text-red-500 text-lg mt-2 hidden">Veuillez remplir tous les champs correctement</p>
-                                    <p id="logoErrorMessage" class="text-red-500 text-lg mt-2 hidden">Veuillez fournir votre logo</p>
+                                    <p id="errorMessage-step4-esn" class="text-3xl lg:text-base text-red-500  mt-2 hidden">Veuillez remplir tous les champs correctement</p>
+                                    <p id="logoErrorMessage" class="text-3xl lg:text-base text-red-500  mt-2 hidden">Veuillez fournir votre logo</p>
                                     <div class="flex justify-between">
                                         <!-- button for previous step -->
-                                        <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep3()">Retour</button>
+                                        <button type="button" class="text-3xl lg:text-base w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg  px-5 py-2.5 text-center" id="previousButton" onclick="goToStep3()">Retour</button>
                                         <!-- button for next step -->
-                                        <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep5_esn()">Suivant</button>
+                                        <button type="button" class="text-3xl lg:text-base w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep5_esn()">Suivant</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div id="step5-freelance" style="display:none; height:80%;">
-                            <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
+                            <div class="w-full bg-white rounded-lg shadow md:mt-0 xl:p-0 dark:bg-gray-800 dark:text-white py-12 lg:py-1 overflow-y-auto no-scrollbar">
                                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                     <div class="flex items-center">
-                                        <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white" style="width: 60%;">
+                                        <h2 class="text-5xl lg:text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900  dark:text-white" style="width: 60%;">
                                         Tes Expertises
                                         </h2>
                                         <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
-                                            <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
+                                            <div class="text-3xl lg:text-base font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4">
                                                 4/5
                                             </div>
                                             <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
@@ -446,40 +434,41 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <label for="userBio" class="block mb-2 font-medium text-gray-900 dark:text-white">À propos de toi</label>
+                                        <label for="userBio" class="text-3xl lg:text-base block mb-2 font-medium text-gray-900 dark:text-white">À propos de toi</label>
                                         <div>
-                                            <textarea id="userBio" name="userBio" rows="2" class="bg-gray-50 border border-gray-300 text-lg text-gray-500  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                                            <textarea id="userBio" name="userBio" rows="6" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-500  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
                                         </div>
                                     </div>
-                                    <div class="flex items-center">
-                                        <p class="text-lg text-gray-500 mr-3 dark:text-gray-400">Êtes-vous disponible à travailler dès maintenant ?</p>
-                                        <label class="text-lg text-gray-500 mr-3 dark:text-gray-400">Non</label>
+                                    <div class="lg:flex items-center">
+                                        <p class="text-3xl lg:text-base text-gray-500 mr-3 dark:text-gray-400">Êtes-vous disponible à travailler dès maintenant ?</p>
+                                        <label class="text-3xl lg:text-base text-gray-500 mr-3 dark:text-gray-400">Non</label>
                                         <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description" class="relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400">
-                                        <label class="text-lg text-gray-500 ml-3 dark:text-gray-400">Oui</label>
+                                        <label class="text-3xl lg:text-base text-gray-500 ml-3 dark:text-gray-400">Oui</label>
                                     </div>
-                                    <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="font-medium mb-2 bg-gray-50 border border-gray-300 text-lg text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
-                                        <option class="dark:text-black" value="temps-plein">Temps plein</option>
-                                        <option class="dark:text-black" value="temps-partiel">Temps partiel</option>
+                                    <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="text-3xl lg:text-base font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
+                                        <option class="text-3xl lg:text-base dark:text-black" value="temps-plein">Temps plein</option>
+                                        <option class="text-3xl lg:text-base dark:text-black" value="temps-partiel">Temps partiel</option>
                                     </select>
-                                    <p id="errorMessage-step5-freelance" class="text-red-500 text-lg mt-2 hidden">Veuillez remplir tous les champs correctement</p>
+                                    <p id="errorMessage-step5-freelance" class="text-3xl lg:text-base text-red-500  mt-2 hidden">Veuillez remplir tous les champs correctement</p>
                                     <div class="flex justify-between">
                                         <!-- button for previous step -->
-                                        <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep4_freelance()">Retour</button>
+                                        <button type="button" class="text-3xl lg:text-base w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep4_freelance()">Retour</button>
                                         <!-- button for next step -->
-                                        <button id="submitFreelanceBtn" type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton">S'inscrire</button>
+                                        <button id="submitFreelanceBtn" type="button" class="text-3xl lg:text-base w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center" >S'inscrire</button>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div id="step5-esn" style="display:none; height:80%;">
-                            <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:text-white">
+                            <div class="w-full bg-white rounded-lg shadow  dark:bg-gray-800 dark:text-white py-12 lg:py-1 overflow-y-auto no-scrollbar">
                                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                     <div class="flex items-center">
-                                        <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white" style="width: 60%;">
+                                        <h2 class="text-5xl lg:text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 dark:text-white" style="width: 60%;">
                                         À propos de votre entreprise
                                         </h2>
                                         <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
-                                            <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
+                                            <div class="text-3xl lg:text-base font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4">
                                                 4/5
                                             </div>
                                             <div class="absolute inset-0 bg-secondary rounded-md" style="width: 100%;"></div>
@@ -487,15 +476,17 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <label for="companyDescription" class="block mb-2 font-medium text-gray-900 dark:text-white">Description de l'entreprise</label>
+                                        <label for="companyDescription" class="text-3xl lg:text-base block mb-2 font-medium text-gray-900 dark:text-white">Description de l'entreprise</label>
                                         <div>
-                                            <textarea id="companyDescription" name="companyDescription" rows="4" class="bg-gray-50 border border-gray-300 text-lg text-gray-500  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                                            <textarea id="companyDescription" name="companyDescription" rows="4" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-500  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+
                                         </div>
                                     </div>
                                     <div>
-                                        <label for="companyAvantages" class="block mb-2 font-medium text-gray-900 dark:text-white">Vos avantages</label>
+                                        <label for="companyAvantages" class="text-3xl lg:text-base block mb-2 font-medium text-gray-900 dark:text-white">Vos avantages</label>
                                         <div>
-                                            <textarea id="companyAvantages" name="companyAvantages" rows="4" class="bg-gray-50 border border-gray-300 text-lg text-gray-500  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+
+                                            <textarea id="companyAvantages" name="companyAvantages" rows="4" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-500  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
                                         </div>
                                     </div> 
                                     <p id="errorMessage-step5-esn" class="text-red-500 text-lg mt-2 hidden">Veuillez remplir tous les champs correctement</p>
@@ -524,16 +515,11 @@
                                         </div>
                                     </div>              
                                     <div class="relative rounded-lg flex flex-wrap mb-4">
-                                        <!--
-                                        <div class="absolute top-0 right-0 flex hover:text-gray-800">
-                                            <button id="add-photo-btn" type="button" class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
-                                                <i class="fas fa-plus"></i>
-                                            </button>
-                                        </div>
-                                        -->
-                                        <div class="photos-container w-full h-full flex grid grid-cols-2 gap-2 items-center justify-center">
+
+                                        <div class="photos-container w-full h-full  grid grid-cols-2 gap-2 items-center justify-center">
                                             <div class="new-photo-div relative flex justify-center">
-                                                <img id="company-image-1" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class=" h-32 max-w-xs rounded-lg" alt="Image de l'entreprise" style="max-width:100%;">
+
+                                                <img id="company-image-1" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class=" h-32 rounded-lg" alt="Image de l'entreprise" style="max-width:100%;">
                                                 <input type="file" id="photo-upload-1" name="photo-upload[]" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'company-image-1', 'photosErrorMessage')">
                                                 <div class="absolute right-0 top-0 flex text-gray-500 hover:text-gray-800 rounded-lg pt-2 pr-4">
                                                     <label for="photo-upload-1" class="cursor-pointer">
@@ -545,7 +531,8 @@
                                                 </div>
                                             </div>
                                             <div class="new-photo-div relative flex justify-center">
-                                                <img id="company-image-2" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class=" h-32 max-w-xs rounded-lg" alt="Image de l'entreprise" style="max-width:100%;">
+
+                                                <img id="company-image-2" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class=" h-32 rounded-lg" alt="Image de l'entreprise" style="max-width:100%;">
                                                 <input type="file" id="photo-upload-2" name="photo-upload[]" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'company-image-2', 'photosErrorMessage')">
                                                 <div class="absolute right-0 top-0 flex text-gray-500 hover:text-gray-800 rounded-lg pt-2 pr-4">
                                                     <label for="photo-upload-2" class="cursor-pointer">
@@ -557,7 +544,8 @@
                                                 </div>
                                             </div>
                                             <div class="new-photo-div relative flex justify-center">
-                                                <img id="company-image-3" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class=" h-32 max-w-xs rounded-lg" alt="Image de l'entreprise" style="max-width:100%;">
+
+                                                <img id="company-image-3" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class=" h-32 rounded-lg" alt="Image de l'entreprise" style="max-width:100%;">
                                                 <input type="file" id="photo-upload-3" name="photo-upload[]" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'company-image-3', 'photosErrorMessage')">
                                                 <div class="absolute right-0 top-0 flex text-gray-500 hover:text-gray-800 rounded-lg pt-2 pr-4">
                                                     <label for="photo-upload-3" class="cursor-pointer">
@@ -569,7 +557,8 @@
                                                 </div>
                                             </div>
                                             <div class="new-photo-div relative flex justify-center">
-                                                <img id="company-image-4" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class=" h-32 max-w-xs rounded-lg" alt="Image de l'entreprise" style="max-width:100%;">
+
+                                                <img id="company-image-4" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class=" h-32 rounded-lg" alt="Image de l'entreprise" style="max-width:100%;">
                                                 <input type="file" id="photo-upload-4" name="photo-upload[]" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'company-image-4', 'photosErrorMessage')">
                                                 <div class="absolute right-0 top-0 flex text-gray-500 hover:text-gray-800 rounded-lg pt-2 pr-4">
                                                     <label for="photo-upload-4" class="cursor-pointer">
@@ -583,6 +572,7 @@
                                         </div>
                                         <p id="photosErrorMessage" class="text-red-500 text-base mt-2 hidden">La taille de l'image doit être inférieur à 2048 Ko</p>
                                     </div>
+
                                     <!-- submit -->                                        
                                     <div class="flex justify-between">
                                         <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep5_esn()">Retour</button>

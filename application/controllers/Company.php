@@ -886,6 +886,8 @@ class Company extends CI_Controller {
         $userId = $this->session->userdata('userId');
         $this->load->model('Company_model');
         $user = $this->Company_model->get_UserData($userId);
+
+
         if ($user->userCompanyId == 0) {
             redirect('login'); 
         }
@@ -895,6 +897,9 @@ class Company extends CI_Controller {
         $data['company'] = $company;
 
         $groups = $this->Company_model->getWhatsAppGroups();
+
+        $company = $this->Company_model->getCompanyData($userId);
+        $data['company'] = $company;
     
         $data['groups'] = $groups;
     

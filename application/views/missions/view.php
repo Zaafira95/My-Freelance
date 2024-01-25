@@ -596,54 +596,52 @@ else if ($user->userType == "sales"){
                         </div>
                     </div> 
             </div>
-            <?php
-            if(is_array($companyMissions) && count($companyMissions) >= 2){
-            ?>
-                <h2 class="font-bold text-4xl lg:text-xl mt-2 mb-4">Les autres offres proposés par <?=$company->companyName?></h2>
-                <div class="overflow-x-auto flex pb-4 no-scrollbar">
-                    <?php foreach($companyMissions as $companyMission): ?>
-                        <?php if ($companyMission->idMission !== $mission->idMission): ?>
-                        <a href="<?=base_url('user/missionView/'.$companyMission->idMission)?>">
-                            <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative mr-4">
-                            <div class="w-full h-full flex items-start justify-center" style="width:500px;">
-                                <div class="flex items-center">
-                                    <div class="mr-4">
-                                        <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="w-10 h-10 rounded-full">
-                                    </div>
-                                    <div class="w-3/4 mr-4">
-                                        <h2 class="font-bold text-3xl lg:text-lg"><?=$companyMission->missionName?></h2>
-                                        <p class="text-2xl lg:text-base">
-                                            <span class="mr-2"> • TJM : <?=$companyMission->missionTJM?> €</span>
-                                            
-                                            <span class="mr-2"> •
-                                            <?php
-                                            if ($companyMission->missionDuration == "courte"){
-                                                $companyMission->missionDuration = "Courte durée";
-                                            }
-                                            elseif ($companyMission->missionDuration == "longue"){
-                                                $companyMission->missionDuration = "Longue durée";
-                                            }
-                                            elseif ($companyMission->missionDuration == "indefinie"){
-                                                $companyMission->missionDuration = "Durée indéfinie";
-                                            }                                            
-                                            ?>
-                                            <?=$companyMission->missionDuration?> 
-                                            </span>
-                                            
-                                            <span class="mr-2"> •
-                                            <?php
-                                            if ($companyMission->missionType == "temps-plein"){
-                                                $companyMission->missionType = "Temps Plein";
-                                            }
-                                            elseif ($companyMission->missionType == "temps-partiel"){
-                                                $companyMission->missionType = "Temps Partiel";
-                                            }
-                                            elseif ($companyMission->missionType == "remote"){
-                                                $companyMission->missionType = "Remote";
-                                            }                                            
-                                            ?>
-                                            <?=$companyMission->missionType?> 
-                                            </span>
+            <h2 class="font-bold text-4xl lg:text-xl mt-2 mb-4">Les autres offres proposés par <?=$company->companyName?></h2>
+            <div class="overflow-x-auto flex pb-4 no-scrollbar">
+                <?php foreach($companyMissions as $companyMission): ?>
+                    <?php if ($companyMission->idMission !== $mission->idMission): ?>
+                    <a href="<?=base_url('user/missionView/'.$companyMission->idMission)?>">
+                        <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative mr-4">
+                        <div class="lg:w-500px h-full flex items-start justify-center" style="width:500px;">
+                            <div class="flex items-center">
+                                <div class="mr-4">
+                                    <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="w-16 h-16 lg:w-10 rounded-full">
+                                </div>
+                                <div class="w-3/4 mr-4">
+                                    <h2 class="font-bold text-3xl lg:text-lg"><?=$companyMission->missionName?></h2>
+                                    <p class="text-2xl lg:text-base">
+                                        <span class="mr-2"> • TJM : <?=$companyMission->missionTJM?> €</span>
+                                        
+                                        <span class="mr-2"> •
+                                        <?php
+                                        if ($companyMission->missionDuration == "courte"){
+                                            $companyMission->missionDuration = "Courte durée";
+                                        }
+                                        elseif ($companyMission->missionDuration == "longue"){
+                                            $companyMission->missionDuration = "Longue durée";
+                                        }
+                                        elseif ($companyMission->missionDuration == "indefinie"){
+                                            $companyMission->missionDuration = "Durée indéfinie";
+                                        }                                            
+                                        ?>
+                                        <?=$companyMission->missionDuration?> 
+                                        </span>
+                                        
+                                        <span class="mr-2"> •
+                                        <?php
+                                        if ($companyMission->missionType == "temps-plein"){
+                                            $companyMission->missionType = "Temps Plein";
+                                        }
+                                        elseif ($companyMission->missionType == "temps-partiel"){
+                                            $companyMission->missionType = "Temps Partiel";
+                                        }
+                                        elseif ($companyMission->missionType == "remote"){
+                                            $companyMission->missionType = "Remote";
+                                        }                                            
+                                        ?>
+                                        <?=$companyMission->missionType?> 
+                                        </span>
+
 
                                             <span class="mr-2"> • 
                                             <?php
@@ -738,8 +736,16 @@ else if ($user->userType == "sales"){
                                         <?php endif; ?>
                                     </div>
                                 </div>
-                                <div class="absolute top-0 right-4 mt-4 mb-4 z-9">
-                                    <?php if($user->userType == 'freelance') { ?>
+                            </div>
+                            <div class="absolute top-0 right-4 mt-4 mb-4 z-9">
+                                <?php if($user->userType == 'freelance') { ?>
+                                    <?php
+                                    if(isFavorite($companyMission->idMission, $favoriteMissions)){
+                                        ?>
+                                        <a href="<?php echo base_url('user/removeFromFavorite/'.$companyMission->idMission);?>">
+                                            <i class="fas fa-heart text-3xl lg:text-xl text-red-800"></i>
+                                        </a>
+
                                         <?php
                                         if(isFavorite($companyMission->idMission, $favoriteMissions)){
                                             ?>
@@ -755,16 +761,22 @@ else if ($user->userType == "sales"){
                                             <?php
                                         }
                                         ?>
-                                    <?php } ?>
+                                        <a href="<?php echo base_url('user/addToFavorite/'.$companyMission->idMission);?>">
+                                            <i class="far fa-heart text-3xl lg:text-xl text-red-800"></i>
+                                        </a>
+                                        <?php
+                                    }
+                                    ?>
+                                <?php } ?>
 
-                                    <?php if($user->userType == 'sales') { ?>
-                                    <a href="<?php echo base_url('company/missionEdit/'.$companyMission->idMission);?>">
-                                        <button class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
-                                            <i class="fas fa-pen fa-fw"></i>
-                                        </button>
-                                    </a>
-                                    <?php } ?>
-                                </div>
+                                <?php if($user->userType == 'sales') { ?>
+                                <a href="<?php echo base_url('company/missionEdit/'.$companyMission->idMission);?>">
+                                    <button class="py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
+                                        <i class="fas fa-pen fa-fw"></i>
+                                    </button>
+                                </a>
+                                <?php } ?>
+
                             </div>
                             </div>
                         </a>

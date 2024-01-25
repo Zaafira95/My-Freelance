@@ -54,20 +54,21 @@ if ($banner->bannerStatus == "active"){ ?>
 <?php } ?>
 
 <div id="updateProductModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
-    <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+    <div class="relative p-4 w-80 lg:w-60 h-full md:h-auto">
         <!-- Modal content -->
         <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
             <!-- Modal header -->
             <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
                     Votre disponibilité
                 </h3>
-                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateProductModal">
-                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateProductModal">
+                    <svg aria-hidden="true" class="w-8 h-8 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     <span class="sr-only">Fermer</span>
                 </button>
             </div>
             <!-- Modal body -->
+
             <form id="userAvailabilityForm" action="<?=base_url("user/updateAvailability")?>" method="post">
                     <div>
                         <label for="name" class="block mb-2 font-medium text-gray-900 dark:text-white">Êtes-vous disponible pour travailler dès maintenant ?</label>
@@ -113,7 +114,7 @@ if ($banner->bannerStatus == "active"){ ?>
                     <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                         Valider
                     </button>
-                    <button type="button" data-modal-toggle="updateProductModal" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                    <button type="button" data-modal-toggle="updateProductModal" class="text-2xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
                         Annuler
                     </button>
                 </div>
@@ -157,87 +158,93 @@ if($totalInfos == 1 ){
         <div class="lg:flex gap-6 h-full mb-3">
             <!-- Bloc Filtre -->
             <div class=" w-full lg:w-1/4 md:block md:sticky md:top-0">
-                <div class="hidden lg:block bg-white rounded-lg h-full overflow-y-auto no-scrollbar mb-4 p-4 dark:bg-gray-800 dark:text-white">
+                <!-- Button to show filer block on mobile -->
+                <div class="text-right mb-4 lg:hidden">
+                    <button id="showFilterButton" class="text-4xl text-primary border p-2 border-primary  rounded-lg 2 hover:bg-primary-900 hover:text-white">
+                        <i class="fas fa-sliders-h"></i>
+                    </button>
+                </div>
+                <div class="hidden lg:block bg-white rounded-lg h-full overflow-y-auto no-scrollbar lg:no-shadow shadow-lg mb-8 lg:mb-4 p-4 dark:bg-gray-800 dark:text-white" id="FilterMission">
                     <h3 class="text-3xl lg:text-lg font-medium mt-2">Filtre</h3>
                     <h4 class="text-3xl lg:text-lg font-medium mt-4">Localisation</h4>
                         <div class="flex items-center mt-2">
-                            <i class="fa fa-map-marker-alt mr-3"></i>    
+                            <i class="text-3xl lg:text-base fa fa-map-marker-alt mr-3"></i>    
                             <div class="relative city-search-container w-full">
-                                <input type="text" id="citySearch" value="<?=$user->userVille?>" placeholder="Cherchez votre ville" class="text-2xl lg:text-lg border p-2 rounded-lg w-full text-black">
-                                <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
+                                <input type="text" id="citySearch" value="<?=$user->userVille?>" placeholder="Cherchez votre ville" class="text-3xl lg:text-lg border p-2 rounded-lg w-full text-black" onkeypress="return preventNumberInput(event)">
+                                <div id="cities-list" class="text-3xl lg:text-lg absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                             </div>
                         </div>
                     <h4 class="text-3xl lg:text-lg font-medium mt-4">Type de poste</h4>
                     <div class="mt-2">
                         <label class="flex items-center ">
-                            <input type="checkbox" class="form-checkbox mr-2" id="temps-plein" <?= ($user->userJobTimePartielOrFullTime == 'temps-plein') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-2xl lg:text-base">Temps plein</span>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="temps-plein" <?= ($user->userJobTimePartielOrFullTime == 'temps-plein') ? 'checked' : '' ?>>
+                            <span class="ml-2 text-3xl lg:text-base">Temps plein</span>
                         </label>
                         <label class="flex items-center text-xl lg:text-base">
-                            <input type="checkbox" class="form-checkbox mr-2" id="temps-partiel" <?= ($user->userJobTimePartielOrFullTime == 'temps-partiel') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-2xl lg:text-base">Temps partiel</span>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="temps-partiel" <?= ($user->userJobTimePartielOrFullTime == 'temps-partiel') ? 'checked' : '' ?>>
+                            <span class="ml-2 text-3xl lg:text-base">Temps partiel</span>
                         </label>
                     </div>
-                    <h4 class="text-2xl lg:text-lg font-medium mt-4">Durée de la mission</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Durée de la mission</h4>
                     <div class="mt-2">
                         <label class="flex items-center text-xl lg:text-base">
-                            <input type="checkbox" class="form-checkbox mr-2" id="courte" <?= ($user->userJobTime == 'Courte Durée') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-2xl lg:text-base">Courte durée</span>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="courte" <?= ($user->userJobTime == 'Courte Durée') ? 'checked' : '' ?>>
+                            <span class="ml-2 text-3xl lg:text-base">Courte durée</span>
                         </label>
                         <label class="flex items-center text-xl lg:text-base">
-                            <input type="checkbox" class="form-checkbox mr-2" id="longue" <?= ($user->userJobTime == 'Longue Durée') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-2xl lg:text-base">Longue durée</span>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="longue" <?= ($user->userJobTime == 'Longue Durée') ? 'checked' : '' ?>>
+                            <span class="ml-2 text-3xl lg:text-base">Longue durée</span>
                         </label>
                         <label class="flex items-center text-xl lg:text-base">
-                            <input type="checkbox" class="form-checkbox mr-2" id="indefinie" <?= ($user->userJobTime == 'Durée indéfinie') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-2xl lg:text-base">Durée indéfinie</span>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="indefinie" <?= ($user->userJobTime == 'Durée indéfinie') ? 'checked' : '' ?>>
+                            <span class="ml-2 text-3xl lg:text-base">Durée indéfinie</span>
                         </label>
                     </div>
-                    <h4 class="text-2xl lg:text-lg font-medium mt-4">Mode de déroulement</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Mode de déroulement</h4>
                     <div class="mt-2">
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="site" <?= ($user->userJobType === 'Physique') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-xl lg:text-base">Sur site</span>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="site" <?= ($user->userJobType === 'Physique') ? 'checked' : '' ?>>
+                            <span class="ml-2 text-3xl lg:text-base">Sur site</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="teletravail" <?= ($user->userJobType === 'Remote') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-xl lg:text-base">Télétravail</span>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="teletravail" <?= ($user->userJobType === 'Remote') ? 'checked' : '' ?>>
+                            <span class="ml-2 text-3xl lg:text-base">Télétravail</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="form-checkbox mr-2" id="hybride" <?= ($user->userJobType === 'Hybride') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-xl lg:text-base">Hybride</span>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="hybride" <?= ($user->userJobType === 'Hybride') ? 'checked' : '' ?>>
+                            <span class="ml-2 text-3xl lg:text-base">Hybride</span>
                         </label>
                     </div>
-                    <h4 class="text-2xl lg:text-lg font-medium mt-4">Niveau d'expérience</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Niveau d'expérience</h4>
                     <div class="mt-2">
                         <label class="flex items-center text-xl lg:text-base">
-                            <input type="checkbox" class="form-checkbox mr-2" id="junior" <?= ($user->userExperienceYear === 'junior') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-2xl lg:text-base">Junior (1 à 2 ans)</span>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="junior" <?= ($user->userExperienceYear === 'junior') ? 'checked' : '' ?>>
+                            <span class="ml-2 text-3xl lg:text-base">Junior (1 à 2 ans)</span>
                         </label>
                         <label class="flex items-center text-xl lg:text-base">
-                            <input type="checkbox" class="form-checkbox mr-2" id="intermediaire" <?= ($user->userExperienceYear === 'intermediaire') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-2xl lg:text-base">Intermédiaire (3 à 5 ans)</span>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="intermediaire" <?= ($user->userExperienceYear === 'intermediaire') ? 'checked' : '' ?>>
+                            <span class="ml-2 text-3xl lg:text-base">Intermédiaire (3 à 5 ans)</span>
                         </label>
                         <label class="flex items-center text-xl lg:text-base">
-                            <input type="checkbox" class="form-checkbox mr-2" id="expert" <?= ($user->userExperienceYear === 'expert') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-2xl lg:text-base">Expert (+ 5 ans)</span>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="expert" <?= ($user->userExperienceYear === 'expert') ? 'checked' : '' ?>>
+                            <span class="ml-2 text-3xl lg:text-base">Expert (+ 5 ans)</span>
                         </label>
                     </div>
-                    <h4 class="text-2xl lg:text-lg font-medium mt-4">TJM</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">TJM</h4>
                     <div class="mt-2 mr-3">
                         <div id="tjm-slider" class="w-full mt-2"></div>
                         <div class="flex justify-between mt-2">
-                            <span id="tjm-min" class="text-2xl lg:text-base">300€</span>
-                            <span id="tjm-max" class="text-2xl lg:text-base">1200€</span>
+                            <span id="tjm-min" class="text-3xl lg:text-base">300€</span>
+                            <span id="tjm-max" class="text-3xl lg:text-base">1200€</span>
                         </div>
                     </div>
                 
-                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Compétences</h4>
+                    <h4 class="text-3xl lg:text-base font-medium mt-4">Compétences</h4>
                     <div class="w-full mx-auto mt-5 text-black">
                         <!-- <label for="skillsAll" class="block text-sm font-medium text-gray-700">Sélectionnez vos compétences</label> -->
-                        <select id="skillsAll" name="skillsAll[]" multiple class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <select id="skillsAll" name="skillsAll[]" multiple class="text-3xl lg:text-base mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
                             <?php foreach ($skillsAll as $skill): ?>
-                                <option class="text-black" value="<?= $skill['skillId'] ?>" 
+                                <option class="text-3xl lg:text-base text-black" value="<?= $skill['skillId'] ?>" 
                                     <?php if (!empty($skills)): ?>
                                         <?php foreach ($skills as $userSkill): ?>
                                             <?= ($userSkill->skillId == $skill['skillId']) ? 'selected' : '' ?>
@@ -248,7 +255,7 @@ if($totalInfos == 1 ){
                         </select>
                     </div>
                     <div class="flex justify-between mt-6">
-                        <button id="resetFiltersButton" class="text-primary border border-primary px-4 py-1 rounded-lg 2 hover:bg-primary-900 hover:text-white">Effacer</button>
+                        <button id="resetFiltersButton" class="text-3xl lg:text-base text-primary border border-primary px-4 py-1 rounded-lg 2 hover:bg-primary-900 hover:text-white">Effacer</button>
                     </div>
 
                     
@@ -268,15 +275,15 @@ if($totalInfos == 1 ){
                 <!-- Barre de recherche -->
                 <div class="bg-primary rounded-lg h-20vh p-4 text-white">
                     <p class="text-3xl lg:text-lg font-bold">Hello, <?=$user->userFirstName?></p>
-                    <p class="text-2xl lg:text-base mt-2 mb-2">Découvrez la manière la plus rapide et efficace de décrocher une mission.</p>
+                    <p class="text-3xl lg:text-base mt-2 mb-2">Découvrez la manière la plus rapide et efficace de décrocher une mission.</p>
                     <div class="flex w-full">
-                        <input type="text" id="search-input" class="text-2xl lg:text-base w-full bg-white bg-opacity-20 rounded-lg p-2 placeholder-white mr-2 text-center" placeholder="Ecrivez le nom du poste que vous recherchez..." />
+                        <input type="text" id="search-input" class="text-3xl lg:text-base w-full bg-white bg-opacity-20 rounded-lg p-2 placeholder-white mr-2 text-center" placeholder="Ecrivez le nom du poste que vous recherchez..." />
                         <!-- <button class="w-1/5 bg-white text-primary rounded-lg px-4 py-2">Rechercher</button> -->
                     </div>
                 </div>
                 <!-- Fin Barre de recherche -->
                 <!-- Début section pour vous -->
-                <h3 class="text-3xl lg:text-lg font-medium mt-4" id="result-section">Pour vous :</h3>
+                <h3 class="text-5xl lg:text-2xl font-medium mt-4 mb-4" id="result-section">Pour vous :</h3>
                 <!-- Début section contenant toutes les missions -->
                 <div class="flex flex-wrap" id="missions-section">
                     <!-- Fonction ajouter favoris -->
@@ -339,8 +346,8 @@ if($totalInfos == 1 ){
 
                                     <!-- Div informations clés mission -->
                                     <div class="w-3/4 mr-4">
-                                        <h2 class="text-3xl lg:text-lg font-bold "><?=$mission->missionName?></h2>
-                                        <p class="text-2xl lg:text-base">
+                                        <h2 class="text-3xl lg:text-lg font-bold"><?=$mission->missionName?></h2>
+                                        <p class="text-3xl lg:text-base">
                                             <span class="mr-2"> 
                                                 • TJM : <?=$mission->missionTJM?> €
                                             </span>
@@ -419,10 +426,10 @@ if($totalInfos == 1 ){
                                 <!-- Div Flex description + compétences mission -->                
                                 <div class="flex items-center justify-between">
                                     <!-- Div description + compétences mission -->
-                                    <div class="mt-4 text-2xl lg:text-base">
+                                    <div class="mt-4 text-3xl lg:text-base">
                                         
                                         <!-- Description mission -->
-                                        <p class="font-normal text-2xl lg:text-base mt-4 mb-4">
+                                        <p class="font-normal text-3xl lg:text-base mt-4 mb-4">
 
                                             <?php 
                                             // limit missionDescription to 270 caracteres and add '...' at the end
@@ -467,8 +474,8 @@ if($totalInfos == 1 ){
                                                             break;
                                                     }
                                                 ?>
-                                                <div class="text-2xl lg:text-base skill-item" data-level="<?=$level?>">
-                                                    <span class="text-2xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                                                <div class="text-3xl lg:text-base skill-item" data-level="<?=$level?>">
+                                                    <span class="text-3xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
                                                     <div class="skill-level"><?=$level?></div>
                                                 </div>
                                             <?php endforeach; ?>
@@ -492,7 +499,7 @@ if($totalInfos == 1 ){
                                         } else {
                                     ?>
                                     <a href="<?php echo base_url('user/addToFavorite/'.$mission->idMission);?>">
-                                        <i class="far fa-heart text-3xl lg:text-xl text-red-800"></i>
+                                        <i class="fas fa-heart text-3xl lg:text-xl text-red-800"></i>
                                     </a>
                                     <?php
                                         }
@@ -509,8 +516,8 @@ if($totalInfos == 1 ){
                 <!-- Fin section contenant toutes les missions -->
                 <!-- Début section aucune mission trouvée -->
                 <div id="no-mission-found">
-                    <p class="text-2xl lg:text-base mt-6 text-left">Aucune mission n'a été trouvée.</p>
-                    <h3 class="text-3xl lg:text-lg font-medium mt-10" id="result-section">Autres missions :</h3>
+                    <p class="text-3xl lg:text-lg mt-6 text-left">Aucune mission n'a été trouvée.</p>
+                    <h3 class="text-5xl lg:text-2xl font-medium mt-10" id="result-section">Autres missions :</h3>
                     <?php 
                         foreach($missionsPerso as $mission):
                             $dataMissionSkills = [];
@@ -541,7 +548,7 @@ if($totalInfos == 1 ){
                                 </div>
                                 <div class="w-3/4 mr-4">
                                     <h2 class="text-3xl lg:text-lg font-bold "><?=$mission->missionName?></h2>
-                                    <p class="text-2xl lg:text-base">
+                                    <p class="text-3xl lg:text-base">
                                         <span class="mr-2">
                                             • TJM : <?=$mission->missionTJM?> €
                                         </span>
@@ -617,9 +624,9 @@ if($totalInfos == 1 ){
                             <!-- Fin div en tête -->
 
                             <!-- Div Flex description + compétences mission -->
-                            <div class="text-2xl lg:text-base flex items-center justify-between">
+                            <div class="text-3xl lg:text-base flex items-center justify-between">
                                 <div class="mt-4">
-                                    <p class="font-normal mt-4 mb-4 text-2xl lg:text-base">
+                                    <p class="font-normal mt-4 mb-4 text-3xl lg:text-base">
                                         <?php 
                                         // limit missionDescription to 270 caracteres and add '...' at the end
                                         $mission->missionDescription = strlen($mission->missionDescription) > 270 ? substr($mission->missionDescription,0,270)."..." : $mission->missionDescription;    
@@ -661,7 +668,7 @@ if($totalInfos == 1 ){
                                                 }
                                             ?>
                                             <div class="skill-item" data-level="<?=$level?>">
-                                                <span class="text-2xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                                                <span class="text-3xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
                                                 <div class="skill-level"><?=$level?></div>
                                             </div>
                                         <?php endforeach; ?>
@@ -817,6 +824,21 @@ if($totalInfos == 1 ){
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
+
+    // When you click on showFilterButton the filter block appears in mobile version
+    $('#showFilterButton').click(function() {
+        $('#FilterMission').toggleClass('hidden');
+    });
+
+    function preventNumberInput(e) {
+        var charCode = (e.which) ? e.which : e.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return true;
+        }
+        return false;
+    }
+
+
     $(document).ready(function() {
     
         $('#citySearch').on('keyup', function() {
@@ -879,7 +901,7 @@ if($totalInfos == 1 ){
                 let skills = JSON.parse(data);
                 $('#skills-list').empty();
                 skills.forEach(function(skill){
-                    $('#skills-list').append(`<div class="skill-item" data-id="${skill.skillId}">${skill.skillName}</div>`);
+                    $('#skills-list').append(`<div class="text-3xl lg:text-base skill-item" data-id="${skill.skillId}">${skill.skillName}</div>`);
                 });
             });
         });
@@ -889,7 +911,7 @@ if($totalInfos == 1 ){
             let skillName = $(this).text();
             // Vérifiez si la compétence est déjà sélectionnée
             if (!$(`#selected-skills .selected-skill[data-id="${skillId}"]`).length) {
-                $('#selected-skills').append(`<div class="selected-skill" data-id="${skillId}">${skillName}</div>`);
+                $('#selected-skills').append(`<div class="text-3xl lg:text-base selected-skill" data-id="${skillId}">${skillName}</div>`);
             }
         });
     });

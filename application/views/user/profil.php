@@ -8,10 +8,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
     <title><?=$user->userFirstName.' '.$user->userLastName.' '.ucfirst($user->userType)?>  - Café Crème Community </title>
 
 <style>
-    html,
-    body {
-        height: 100vh;
-    }
+  
     .file-thumbnail-img {
     max-width: 100%;
     height: auto;
@@ -51,7 +48,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
 
 
 <div id="updateProductModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
-    <div class="relative p-4 w-80 lg:w-60 h-full md:h-auto">
+    <div class="relative p-4 w-80 lg:w-60 h-90 overflow-y-auto no-scrollbar">
         <!-- Modal content -->
         <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
             <!-- Modal header -->
@@ -89,7 +86,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
 <!-- User Data Modal -->
 
 <div id="updateUserData" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
-    <div class="relative p-8 lg:p-4 w-80 lg:w-60 h-full md:h-auto">
+    <div class="relative p-4 w-80 lg:w-60 h-90 overflow-y-auto no-scrollbar">
         <!-- Modal content -->
         <div class="relative p-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
             <!-- Modal header -->

@@ -106,6 +106,7 @@ if ($banner->bannerStatus == "active"){ ?>
                                 </div>
                             </div>
                             <input type="date" id="dateFinIndisponibilite" value="<?= $user->userDateFinIndisponibilite ?>" name="dateFinIndisponibilite" class="w-full mt-4 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <p id="errorDateFinIndisponibilite" class="mt-2 text-red-500" style="display:none;">Veuilllez renseigner une date</p>
                         </div>
                     </div>
                 <div class="flex items-center space-x-4 mt-8">
@@ -1202,6 +1203,7 @@ $(document).ready(function(){
         var checkBox = document.getElementById('hs-basic-with-description');
 
         if (!checkBox.checked && dateInput.value == '') {
+            $('#errorDateFinIndisponibilite').show();
             event.preventDefault(); // Empêcher la soumission du formulaire
         }
     });
@@ -1215,10 +1217,12 @@ function displayAvailibilityOptions() {
     var isNotAvailableDiv = document.getElementById('isNotAvailaibleOptions');
     var radioButtons = document.getElementsByClassName('finIndisponibiliteBtn');
     var dateInput = document.getElementById('dateFinIndisponibilite');
+    var errorMessage = document.getElementById('errorDateFinIndisponibilite');
 
     if (checkBox.checked) {
         isAvailableDiv.style.display = 'block';
         isNotAvailableDiv.style.display = 'none';
+        errorMessage.style.display = 'none';
         for (var i = 0; i < radioButtons.length; i++) {
             radioButtons[i].checked = false;
         }

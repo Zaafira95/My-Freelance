@@ -1741,6 +1741,11 @@ if($totalInfos == 1 ){
                 });
             });
         });
+        
+        $(document).on('click', '.delete-skill-row', function() {
+            // Supprimez le parent .skill-row
+            $(this).closest('.skill-row').remove();
+        });
     });
 
     $(document).ready(function() {
@@ -1791,10 +1796,6 @@ if($totalInfos == 1 ){
             }
         });
 
-        $(document).on('click', '.delete-skill-row', function() {
-            // Supprimez le parent .skill-row
-            $(this).closest('.skill-row').remove();
-        });
     });
 
 
@@ -2027,7 +2028,6 @@ document.addEventListener('DOMContentLoaded', function() {
             event.preventDefault(); // Empêcher la soumission du formulaire
         }
         else if (!todayCheckbox && startDate){
-
             event.preventDefault(); // Empêcher la soumission du formulaire
         }
     });
@@ -2044,7 +2044,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    $('#updateUserExperienceDateFin').on('input', function() {
+    $('#updateUserExperienceDateFin').on('change', function() {
         $('#updateUserExperienceDateFinToday').prop('checked', false);
     });
 

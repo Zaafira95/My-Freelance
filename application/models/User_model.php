@@ -49,9 +49,11 @@ class User_model extends CI_Model {
         $this->db->update('Users');
     }
 
-    public function updateUserAvailability($userId, $userAvailability, $userJobTimePartielOrFullTime){
+    //Zaafira 25/07/2024
+    public function updateUserAvailability($userId, $userAvailability, $userJobTimePartielOrFullTime, $dateFinIndisponibilite){
         $this->db->set('userIsAvailable', $userAvailability);
         $this->db->set('userJobTimePartielOrFullTime', $userJobTimePartielOrFullTime);
+        $this->db->set('userDateFinIndisponibilite', $dateFinIndisponibilite);
         $this->db->where('userId', $userId);
         $this->db->update('Users');
     }
@@ -184,12 +186,14 @@ class User_model extends CI_Model {
             $this->db->update('UserJob');
         }
 
-        public function updateUserPreference($userId, $userIsAvailable, $jobTypeString, $userVille, $userJobTime, $userJobTimePartielOrFullTime){
+        //Zaafira 25/01/2024
+        public function updateUserPreference($userId, $userIsAvailable, $jobTypeString, $userVille, $userJobTime, $userJobTimePartielOrFullTime, $dateFinIndisponibilite){
             $this->db->set('userIsAvailable', $userIsAvailable);
             $this->db->set('userJobType', $jobTypeString);
             $this->db->set('userVille', $userVille);
             $this->db->set('userJobTime', $userJobTime);
             $this->db->set('userJobTimePartielOrFullTime', $userJobTimePartielOrFullTime);
+            $this->db->set('userDateFinIndisponibilite', $dateFinIndisponibilite);
             $this->db->where('userId', $userId);
             $this->db->update('Users');
         }

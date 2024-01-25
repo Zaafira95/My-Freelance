@@ -558,7 +558,11 @@ class Company extends CI_Controller {
         $companyName = $this->input->post('companyName');
         $companySlogan = $this->input->post('companySlogan');
         $companySecteur = $this->input->post('secteursAll');
+
         $companyLocalisation = $this->input->post('companyLocalisation');
+        $companyEtranger = $this->input->post('companyEtranger');
+        $companyLocalisation = $companyEtranger == 'on' ? "Etranger" : $companyLocalisation;
+
         $userLinkedinLink = $this->input->post('userLinkedinLink');
         $userTelephone = $this->input->post('userTelephone');
         $company = $this->Company_model->getCompanyData($userId);

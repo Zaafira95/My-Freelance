@@ -144,6 +144,7 @@ class User extends CI_Controller {
         }
     }
 
+    // Zaafira 24/01/2024 : modification fonction updateAvailability
     public function updateAvailability(){
         $userId = $this->session->userdata('userId');
         $userAvailability = $this->input->post('userIsAvailable');
@@ -154,10 +155,10 @@ class User extends CI_Controller {
         }
 
         $userJobTimePartielOrFullTime = $this->input->post('userJobTimePartielOrFullTime');
-
+        $dateFinIndisponibilite = $this->input->post('dateFinIndisponibilite');
 
         $this->load->model('User_model');
-        $this->User_model->updateUserAvailability($userId, $userAvailability, $userJobTimePartielOrFullTime);
+        $this->User_model->updateUserAvailability($userId, $userAvailability, $userJobTimePartielOrFullTime, $dateFinIndisponibilite);
         $this->session->set_flashdata('message', 'Votre disponibilité a bien été mise à jour !');
         $this->session->set_flashdata('status', 'success');
         // Recharger la page actuelle
@@ -343,11 +344,16 @@ class User extends CI_Controller {
         }*/
         //$jobTypeString = implode(',', $userJobType);
         $userVille = $this->input->post('userVille');
+        
+        $userEtranger = $this->input->post('userEtranger');
+        $userVille = $userEtranger == 'on' ? "Etranger" : $userVille;
+
         $userJobTime = $this->input->post('userJobTime');
 
         $userJobTimePartielOrFullTime = $this->input->post('userJobTimePartielOrFullTime');
+        $dateFinIndisponibilite = $this->input->post('dateFinIndisponibilite');
 
-        $this->User_model->updateUserPreference($userId, $userIsAvailable, $userJobType, $userVille, $userJobTime, $userJobTimePartielOrFullTime);
+        $this->User_model->updateUserPreference($userId, $userIsAvailable, $userJobType, $userVille, $userJobTime, $userJobTimePartielOrFullTime, $dateFinIndisponibilite);
         $this->session->set_flashdata('message', 'Vos préférences ont bien été mises à jour !');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);

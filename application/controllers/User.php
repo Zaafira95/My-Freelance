@@ -344,6 +344,10 @@ class User extends CI_Controller {
         }*/
         //$jobTypeString = implode(',', $userJobType);
         $userVille = $this->input->post('userVille');
+        
+        $userEtranger = $this->input->post('userEtranger');
+        $userVille = $userEtranger == 'on' ? "Etranger" : $userVille;
+
         $userJobTime = $this->input->post('userJobTime');
 
         $userJobTimePartielOrFullTime = $this->input->post('userJobTimePartielOrFullTime');

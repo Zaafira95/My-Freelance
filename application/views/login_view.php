@@ -53,7 +53,7 @@
             </a>
             <div class="p-6 w-full bg-white rounded-lg shadow md:mt-0 xl:p-0 dark:bg-gray-800 dark:text-white lg:p-0">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                <h1 class="text-5xl lg:text-lg font-bold mb-2 leading-tight tracking-tight text-gray-900 dark:text-white">
+                <h1 class="text-5xl lg:text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 dark:text-white">
                       Connectez-vous
                   </h1>
                   <p class="text-3xl lg:text-base text-dark mb-2 dark:text-white">

@@ -4,4 +4,6 @@ Zaafira le 25/01/2024 14h20 :
     - Forcer le nombre d'étoile à 1 sur l'ajout d'un avis
 
 
-
+Kassim le 26/01/2024 14h45:
+- Branch : Fix
+    - Taille du texte compétences dans la page Mission/view

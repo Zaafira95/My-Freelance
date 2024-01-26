@@ -398,7 +398,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const missionName = mission.getAttribute("data-mission-name");
             const missionLocalisation = mission.getAttribute("data-company-localisation").toLowerCase();
             const missionSkillsAttr = mission.getAttribute("data-company-secteur");
-            console.log("secteur :",missionSkillsAttr);
+            // console.log("secteur :",missionSkillsAttr);
 
             let showMission = true;
 
@@ -410,8 +410,8 @@ document.addEventListener("DOMContentLoaded", function() {
             // Filtre par compétences
             if (selectedSkills.length > 0) {
                 //const missionSkills = missionSkillsAttr.split(','); // Divise la chaîne en un tableau d'IDs de compétences
-                console.log("1 :",missionSkillsAttr);
-                console.log("2 :",selectedSkills);
+                // console.log("1 :",missionSkillsAttr);
+                // console.log("2 :",selectedSkills);
                 const matchesSkills = selectedSkills.some(function(selectedSkill) {
                     return missionSkillsAttr.includes(selectedSkill);
                 });

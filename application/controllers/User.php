@@ -18,7 +18,6 @@ class User extends CI_Controller {
         // Récupérer le job de l'utilisateur connecté avec le job id
         $jobUser = $this->User_model->getUserJob($userId);
         $data['jobUser'] = $jobUser;
-        // var_dump($data['job']);die;
         // Récupérer l'expérience de l'utilisateur connecté avec l'expérience id
         $experiences = $this->User_model->getUserExperience($userId);
         $data['experiences'] = $experiences;
@@ -97,7 +96,7 @@ class User extends CI_Controller {
 
         $this->load->view('user/index', $data);
         } else {
-            echo "Erreur 1 lors de la récupération des informations de l'utilisateur";
+            // echo "Erreur 1 lors de la récupération des informations de l'utilisateur";
         }
     }
 
@@ -126,7 +125,7 @@ class User extends CI_Controller {
         if (!$this->upload->do_upload('avatar')) {
             // Erreur lors du téléchargement du fichier
             $error = $this->upload->display_errors();
-            echo "Erreur lors du téléchargement de l'avatar";
+            // echo "Erreur lors du téléchargement de l'avatar";
             // Gérez l'erreur en conséquence
         } else {
             // Téléchargement du fichier réussi
@@ -140,7 +139,7 @@ class User extends CI_Controller {
             $this->load->model('User_model');
             $this->User_model->updateAvatarPath($userId, $relative_path);
     
-            echo "Avatar téléchargé avec succès";
+            // echo "Avatar téléchargé avec succès";
         }
     }
 
@@ -290,7 +289,7 @@ class User extends CI_Controller {
             if (!$this->upload->do_upload('avatar-upload')) {
                 // Erreur lors du téléchargement du fichier
                 $error = $this->upload->display_errors();
-                echo "Erreur lors du téléchargement de l'avatar";
+                // echo "Erreur lors du téléchargement de l'avatar";
                 // Gérez l'erreur en conséquence
             } else {
                 // Téléchargement du fichier réussi
@@ -301,7 +300,7 @@ class User extends CI_Controller {
                 // Mettre à jour le chemin de l'avatar de l'utilisateur dans la base de données
                 $this->User_model->updateAvatarPath($userId, $userAvatarPath);
     
-                echo "Avatar téléchargé avec succès";
+                // echo "Avatar téléchargé avec succès";
             }
         }
        
@@ -434,7 +433,6 @@ class User extends CI_Controller {
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
 
-        // var_dump($userExperienceJob);die;
 
     }
     
@@ -722,7 +720,6 @@ class User extends CI_Controller {
         // Construire le texte d'entrée pour l'API GPT-3
         $texte_entree = "Je suis un freelance et je suis intéressé par une mission, génère en français un message professinnel pour exprimer mon intérêt pour la mission dont le descriptif est le suivant : " . $mission . " Et voici mes compétences : " . $profil_freelance;
     
-        var_dump($texte_entree);
 
         echo '<br><br>';
 
@@ -780,7 +777,6 @@ class User extends CI_Controller {
     public function afficher_message($missionId) {
         $message_genere = $this->generer_message($missionId);
         $data['message_genere'] = $message_genere;
-        var_dump($message_genere);
     }
 
     // Fonction pour convertir un tableau en chaîne de caractères
@@ -827,7 +823,6 @@ class User extends CI_Controller {
             echo "Erreur cURL : " . $erreur_curl;
         } else {
             curl_close($ch);
-            var_dump($resultat);
         }
 
     }

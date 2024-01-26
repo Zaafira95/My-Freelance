@@ -380,7 +380,7 @@ else if ($user->userType == "sales"){
                                                 }
                                             ?>
                                             <div class="skill-item" data-level="<?=$level?>">
-                                                <span class="text-2xl lg:text-lg dark:<?=$textdark?> inline-block px-4 py-1 mt-2 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                                                <span class="text-2xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 mt-2 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
                                                 <div class="skill-level"><?=$level?></div>
                                             </div>
                                         <?php endforeach; ?>

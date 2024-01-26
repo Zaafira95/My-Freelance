@@ -913,7 +913,7 @@
 
     function selectChoice(choice) {
         document.getElementById("userType").value = choice;
-        console.log(document.getElementById("userType").value);
+        // console.log(document.getElementById("userType").value);
     }
 
     function changeTextColor(element, isActive) {

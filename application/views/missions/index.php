@@ -872,8 +872,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // Filtre par mode de deroulement
             let matchesDeroulement = true;
-            console.log("1", deroulementFilters);
-            console.log("1", deroulementFilters);
+            // console.log("1", deroulementFilters);
+            // console.log("1", deroulementFilters);
             if (deroulementFilters.length > 0) {
                 matchesDeroulement = deroulementFilters.some(function(filter) {
                     return (
@@ -898,8 +898,8 @@ document.addEventListener("DOMContentLoaded", function() {
             // Filtre par compétences
             if (selectedSkills.length > 0) {
                 const missionSkills = missionSkillsAttr.split(','); // Divise la chaîne en un tableau d'IDs de compétences
-                console.log("1 :",missionSkills);
-                console.log("2 :",selectedSkills);
+                // console.log("1 :",missionSkills);
+                // console.log("2 :",selectedSkills);
                 const matchesSkills = selectedSkills.some(function(selectedSkill) {
                     return missionSkills.includes(selectedSkill);
                 });

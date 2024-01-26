@@ -450,7 +450,7 @@ class User extends CI_Controller {
 
     public function addUserAttachment(){
         $config['upload_path'] = 'assets/attachments/';
-        $config['allowed_types'] = 'pdf|jpg|jpeg|png';
+        $config['allowed_types'] = 'pdf';
         $config['max_size'] = 2048; // Taille maximale du fichier en kilo-octets
     
         $this->load->library('upload', $config);

@@ -551,9 +551,9 @@ foreach ($experiences as $index => $experience) {
             <form action="<?= base_url("user/addUserAttachment") ?>" method="post" enctype="multipart/form-data">
                 <div>
                     <label for="userAttachmentFile" class="text-2xl lg:text-base block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Pièce jointe</label>
-                    <input type="file" id="userAttachmentFile" name="userAttachmentFile" accept=".pdf, .png, .jpeg, .jpg" class="hidden" data-max-size="2048">
+                    <input type="file" id="userAttachmentFile" name="userAttachmentFile" accept=".pdf" class="hidden" data-max-size="2048">
                     <label for="userAttachmentFile" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 cursor-pointer">
-                        <span class="filename">Choisir un fichier</span>
+                        <span class="filename">Choisir un fichier PDF</span>
                     </label>
                     <div id="fileSizeInfo" class="text-2xl lg:text-sm text-gray-500 mt-1">La taille maximale autorisée est 2 Mo.</div>
                 </div>
@@ -1911,42 +1911,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (fileExtension === 'pdf') {
             // Afficher la miniature PDF
             loadPdfThumbnail(fileUrl, container);
-        } else if (fileExtension === 'png' || fileExtension === 'jpeg' || fileExtension === 'jpg') {
-            // Afficher la miniature d'image
-            loadImageThumbnail(fileUrl, container);
         } else {
             // Gérer d'autres types de fichiers ici
             // Par exemple, afficher une icône générique pour les types de fichiers inconnus
             displayGenericThumbnail(container);
         }
-    }
-
-    function loadImageThumbnail(imageUrl, container) {
-        var img = new Image();
-        img.src = imageUrl;
-        img.classList.add('file-thumbnail-img');
-        container.appendChild(img);
-
-        // Gérer le clic sur la miniature pour afficher le fichier complet (image)
-        container.addEventListener('click', function () {
-            // Afficher l'image complète dans une boîte de dialogue
-            var fullImageContainer = document.createElement('div');
-            fullImageContainer.classList.add('full-image-container');
-
-            var fullImg = new Image();
-            fullImg.src = imageUrl;
-
-            fullImageContainer.appendChild(fullImg);
-            fullImageContainer.style.display = 'block';
-            document.body.appendChild(fullImageContainer);
-
-            // Gérer le clic en dehors de la boîte de dialogue pour la fermer
-            fullImageContainer.addEventListener('click', function (event) {
-                if (event.target === fullImageContainer) {
-                    fullImageContainer.style.display = 'none';
-                }
-            });
-        });
     }
 
     function displayGenericThumbnail(container) {
@@ -1973,15 +1942,6 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             filenameSpan.textContent = 'Choisir un fichier';
         }
-    });
-
-    $(document).ready(function () {
-        // Récupérer la taille maximale autorisée depuis l'attribut data-max-size
-        var maxSizeInBytes = $("#userAttachmentFile").data("max-size");
-        var maxSizeInMB = maxSizeInBytes / (1024 * 1024);
-
-        // Afficher la taille maximale autorisée dans le div #fileSizeInfo
-        $("#fileSizeInfo").text("La taille maximale autorisée est " + maxSizeInMB + " Mo.");
     });
     
     $('#addUserExperienceDateDebut, #addUserExperienceDateFin').on('change keyup', function() {

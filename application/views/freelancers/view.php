@@ -297,7 +297,19 @@ if ($totalCount > 0) {
                                         <?php
                                         if($freelancer->userIsAvailable == 1){
                                         ?>
-                                            <p class="font-bold text-3xl lg:text-lg">Dispo. <?=$freelancer->userJobTimePartielOrFullTime?> </p>
+                                            <p class="font-bold text-3xl lg:text-lg">Dispo. 
+                                                <?php
+                                                    if($freelancer->userJobTimePartielOrFullTime == "temps-plein"){
+                                                ?>
+                                                    Temps Plein
+                                                <?php
+                                                    }else{
+                                                ?>
+                                                    Temps Partiel
+                                                <?php
+                                                    }
+                                                ?>
+                                            </p>
                                         <?php
                                             }else{
                                           
@@ -647,134 +659,136 @@ if ($totalCount > 0) {
                                 </div> 
                             </div>
                         </div>
-
-                            <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                                <h2 class="text-3xl lg:text-xl font-bold mb-4">Expériences</h2>
-                                <?php
-                                if (is_array($experiences) && !empty($experiences)) {
-                                    $experienceCount = 0;
-                                    foreach ($experiences as $index => $experience) {
-                                        if ($experienceCount < 3) {
-                                ?>
-                                    <div class="mb-4 mt-4">
-                                        <div class="flex items-center mt-2 mb-2">
-                                            <div class="mr-2 mt-2">
-                                                <p class="w-20 h-20 rounded-full bg-secondary text-white text-center flex items-center justify-center mr-4" style="font-size:2rem;">💼</p>
-                                            </div>
-                                            <div>
-                                                <h3 class="text-3xl lg:text-lg font-medium"><?= $experience->experienceJob?></h3>
-                                                <h3 class="text-3xl lg:text-lg font-medium"><?= $experience->experienceCompany?></h3>
-                                                <?php
-                                                setlocale(LC_TIME, 'fr_FR.utf8');
-                                                $dateDebut = strftime('%d %B %Y', strtotime($experience->experienceDateDebut));
-                                                $dateFin = strftime('%d %B %Y', strtotime($experience->experienceDateFin));
-                                                $months = array(
-                                                    'January' => 'Janvier',
-                                                    'February' => 'Février',
-                                                    'March' => 'Mars',
-                                                    'April' => 'Avril',
-                                                    'May' => 'Mai',
-                                                    'June' => 'Juin',
-                                                    'July' => 'Juillet',
-                                                    'August' => 'Août',
-                                                    'September' => 'Septembre',
-                                                    'October' => 'Octobre',
-                                                    'November' => 'Novembre',
-                                                    'December' => 'Décembre'
-                                                );
-
-                                                $dateDebut = strtr($dateDebut, $months);
-                                                $dateFin = strtr($dateFin, $months);
-                                                ?>
-                                                <p class="text-2xl lg:text-base"><?= $dateDebut.' - '. $dateFin?></p>
-                                            </div>
-                                        </div>
-
-                                        <p class="text-2xl lg:text-base text-gray-500 mb-4 mt-4 ml-2 mr-4 dark:text-white"><?= $experience->experienceDescription ?></p>
-                                        <div class="skills-container mb-4">
-                                        <?php
-                                            $dataExperienceSkills = [];
-                                            foreach ($experienceSkills[$experience->idExperience] as $skill):
-                                                $dataExperienceSkills[] = $skill->skillName;
-                                            $dataExperienceSkillsString = implode(',', $dataExperienceSkills);
-                                        
-                                                // Déterminer le niveau en fonction de la valeur de missionSkillsExperience
-                                                $level = '';
-                                                $color = '';
-                                                switch ($skill->experienceSkillsExpertise) {
-                                                    case 1:
-                                                        $level = 'Junior';
-                                                        $color = '#BEE3F8'; // Couleur pour le niveau junior
-                                                        $textdark = "text-black";
-                                                        $text = "text-black";
-                                                        
-                                                        break;
-                                                    case 2:
-                                                        $level = 'Intermédiaire';
-                                                        $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
-                                                        $textdark = "text-white";
-                                                        $text = "text-black";
-                                                        break;
-                                                    case 3:
-                                                        $level = 'Expert';
-                                                        $color = '#2C5282'; // Couleur pour le niveau expert
-                                                        $textdark = "text-white";
-                                                        $text = "text-white";
-                                                        break;
-                                                    default:
-                                                        $level = 'N/A'; // Si la valeur de missionSkillsExperience n'est pas valide, afficher "N/A"
-                                                        break;
-                                                }
-                                            ?>
-                                            <div class="skill-item" data-level="<?=$level?>">
-                                                <span class="text-2xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
-                                                <div class="skill-level"><?=$level?></div>
-                                            </div>
-                                        <?php endforeach; ?>
-                                        </div> 
-                                    </div>
-                                <?php
-                                    if ($experienceCount < 2) {
-                                ?>
-                                    <hr>
-                                <?php
-                                }
-                                ?>
-                                <?php
-                                        $experienceCount++;
-                                    } else {
-                                        break;
-                                    }
-                                ?>
-                                <?php 
-                                    }
-                                }
-                                ?>
-                            </div>
-                            <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                                <h2 class="text-3xl lg:text-xl font-bold mb-4">Portfolio & Réalisations </h2>
-                                <?php if (is_array($attachments) && !empty($attachments)) { ?>
-                                    <div class="grid grid-cols-4 gap-8">
-                                        <?php foreach ($attachments as $index => $attachment) { ?>
-                                            <div class="relative flex justify-center items-center border border-1 p-2 mr-4 mb-4 rounded-lg bg-white">
-                                                <h3 class="text-2xl lg:text-base font-medium"><?= $attachment->attachmentName ?></h3>
-                                                <div class="pdf-thumbnail overflow-hidden z-10 mb-2" style="max-height: 14rem" data-pdf="<?= base_url($attachment->attachmentPath) ?>">
-                                                    <div class="absolute top-0 right-0  mr-4 mt-4 flex space-x-4 z-20">
-                                                    <a href="<?= base_url($attachment->attachmentPath) ?>" download class="download-icon text-gray-400 hover:text-gray-900" onclick="event.stopPropagation();">
-                                                        <i class="fas fa-download"></i>
-                                                    </a>
-                                                    </div>
+                        <!-- Début section expérience -->
+                        <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
+                            <h2 class="text-3xl lg:text-xl font-bold mb-4">Expériences</h2>
+                            <?php
+                            if (is_array($experiences) && !empty($experiences)) {
+                                $experienceCount = 0;
+                                foreach ($experiences as $index => $experience) {
+                                    if ($experienceCount < 3) {
+                                    ?>
+                                        <div class="mb-4 mt-4">
+                                            <div class="flex items-center mt-2 mb-2">
+                                                <div class="mr-2 mt-2">
+                                                    <p class="w-20 h-20 rounded-full bg-secondary text-white text-center flex items-center justify-center mr-4" style="font-size:2rem;">💼</p>
                                                 </div>
-                                                
+                                                <div>
+                                                    <h3 class="text-3xl lg:text-lg font-medium"><?= $experience->experienceJob?></h3>
+                                                    <h3 class="text-3xl lg:text-lg font-medium"><?= $experience->experienceCompany?></h3>
+                                                    <?php
+                                                    setlocale(LC_TIME, 'fr_FR.utf8');
+                                                    $dateDebut = strftime('%d %B %Y', strtotime($experience->experienceDateDebut));
+                                                    $dateFin = strftime('%d %B %Y', strtotime($experience->experienceDateFin));
+                                                    $months = array(
+                                                        'January' => 'Janvier',
+                                                        'February' => 'Février',
+                                                        'March' => 'Mars',
+                                                        'April' => 'Avril',
+                                                        'May' => 'Mai',
+                                                        'June' => 'Juin',
+                                                        'July' => 'Juillet',
+                                                        'August' => 'Août',
+                                                        'September' => 'Septembre',
+                                                        'October' => 'Octobre',
+                                                        'November' => 'Novembre',
+                                                        'December' => 'Décembre'
+                                                    );
+
+                                                    $dateDebut = strtr($dateDebut, $months);
+                                                    $dateFin = strtr($dateFin, $months);
+                                                    ?>
+                                                    <p class="text-2xl lg:text-base"><?= $dateDebut.' - '. $dateFin?></p>
+                                                </div>
                                             </div>
-                                        <?php } ?>
-                                    </div>
+                                            <p class="text-2xl lg:text-base text-gray-500 mb-4 mt-4 ml-2 mr-4 dark:text-white"><?= $experience->experienceDescription ?></p>
+                                            <div class="skills-container mb-4">
+                                                <?php
+                                                    $dataExperienceSkills = [];
+                                                    foreach ($experienceSkills[$experience->idExperience] as $skill):
+                                                        $dataExperienceSkills[] = $skill->skillName;
+                                                        $dataExperienceSkillsString = implode(',', $dataExperienceSkills);
+                                                
+                                                        // Déterminer le niveau en fonction de la valeur de missionSkillsExperience
+                                                        $level = '';
+                                                        $color = '';
+                                                        switch ($skill->experienceSkillsExpertise) {
+                                                            case 1:
+                                                                $level = 'Junior';
+                                                                $color = '#BEE3F8'; // Couleur pour le niveau junior
+                                                                $textdark = "text-black";
+                                                                $text = "text-black";
+                                                                
+                                                                break;
+                                                            case 2:
+                                                                $level = 'Intermédiaire';
+                                                                $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
+                                                                $textdark = "text-white";
+                                                                $text = "text-black";
+                                                                break;
+                                                            case 3:
+                                                                $level = 'Expert';
+                                                                $color = '#2C5282'; // Couleur pour le niveau expert
+                                                                $textdark = "text-white";
+                                                                $text = "text-white";
+                                                                break;
+                                                            default:
+                                                                $level = 'N/A'; // Si la valeur de missionSkillsExperience n'est pas valide, afficher "N/A"
+                                                                break;
+                                                        }
+                                                        ?>
+                                                    <div class="skill-item" data-level="<?=$level?>">
+                                                        <span class="text-2xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                                                        <div class="skill-level"><?=$level?></div>
+                                                    </div>
+                                                <?php
+                                                    endforeach; 
+                                                ?>
+                                            </div> 
+                                        </div>
+                                        
+                                    <?php
+                                        if ($experienceCount < 2) {
+                                    ?>
+                                        <hr>
+                                    <?php
+                                    }
+                                    ?>
+                            <?php
+                                    $experienceCount++;
+                                } else {
+                                    break;
+                                }
+                            ?>
+                            <?php 
+                                }
+                            }
+                            ?>
+                        </div>
+                        <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
+                            <h2 class="text-3xl lg:text-xl font-bold mb-4">Portfolio & Réalisations </h2>
+                            <?php if (is_array($attachments) && !empty($attachments)) { ?>
+                                <div class="grid grid-cols-4 gap-8">
+                                    <?php foreach ($attachments as $index => $attachment) { ?>
+                                        <div class="relative flex justify-center items-center border border-1 p-2 mr-4 mb-4 rounded-lg bg-white">
+                                            <h3 class="text-2xl lg:text-base font-medium"><?= $attachment->attachmentName ?></h3>
+                                            <div class="pdf-thumbnail overflow-hidden z-10 mb-2" style="max-height: 14rem" data-pdf="<?= base_url($attachment->attachmentPath) ?>">
+                                                <div class="absolute top-0 right-0  mr-4 mt-4 flex space-x-4 z-20">
+                                                <a href="<?= base_url($attachment->attachmentPath) ?>" download class="download-icon text-gray-400 hover:text-gray-900" onclick="event.stopPropagation();">
+                                                    <i class="fas fa-download"></i>
+                                                </a>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    <?php } ?>
+                                </div>
 
-                            <?php } else { ?>
-                                <p class="text-2xl lg:text-base mt-2 mb-2">Aucune pièce jointe disponible.</p>
-                            <?php } ?>
+                        <?php } else { ?>
+                            <p class="text-2xl lg:text-base mt-2 mb-2">Aucune pièce jointe disponible.</p>
+                        <?php } ?>
 
-                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -63,7 +63,7 @@
 </head>
 <body>
     <?php if ($this->session->flashdata('message')) : ?>
-        <div class="flashdata <?php echo $this->session->flashdata('status') === 'error' ? 'error' : 'success'; ?>">
+        <div class="text-2xl lg:text-base flashdata <?php echo $this->session->flashdata('status') === 'error' ? 'error' : 'success'; ?>">
             <?php echo $this->session->flashdata('message'); ?>
         </div>
     <?php endif; ?>
@@ -84,7 +84,6 @@
                         <a href="<?php echo base_url('/')?>" class="flex mb-6 text-2xl font-semibold text-gray-900">
                             <img class="w-60 lg:justify-start lg:m-0 lg:w-40 mr-2" src="<?php echo base_url('assets/img/logo.svg');?>" alt="Café Crème Community" id="logoLogin">
                         </a>
-                        
                         <div id="step1" style="display:block;">
                             <div class="w-full bg-white rounded-lg shadow md:mt-0 xl:p-0 dark:bg-gray-800 dark:text-white h-100 py-12 lg:py-1 overflow-y-auto no-scrollbar">
                                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -97,7 +96,7 @@
                                     <form id="register-form" class="space-y-4 md:space-y-6" method="post" action="<?php echo base_url('register/registerUser'); ?>" onsubmit="showLoader();" enctype="multipart/form-data">
                                         <div>
                                             <input type="email" name="userEmail" id="userEmail" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre email *" oninput="checkEmailAvailability(this.value)" required>
-                                            <p id="emailError" class="text-red-500"></p>
+                                            <p id="emailError" class="text-3xl lg:text-base text-red-500"></p>
                                         </div>
                                         <div>
                                             <input type="password" name="userPassword" id="userPassword" placeholder="Saisissez votre mot de passe *" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5" required oninput="checkPasswordStrength(this.value)">
@@ -206,7 +205,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <p id="avatarErrorMessage" class="text-red-500 text-base mt-2 hidden">La taille de l'image doit être inférieur à 2048 Ko</p>
+                                        <p id="avatarErrorMessage" class="text-3xl lg:text-base text-red-500 mt-2 hidden">La taille de l'image doit être inférieur à 2048 Ko</p>
                                         <span id="file-name" class="hidden text-lg text-gray-500 mt-4 dark:text-white"></span>
                                     </div>
                                     <div>
@@ -380,7 +379,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <p id="logoBannerErrorMessage" class="text-red-500 text-base mt-2 hidden">La taille de l'image doit être inférieur à 2048 Ko</p>
+                                    <p id="logoBannerErrorMessage" class="text-red-500 text-2xl lg:text-base mt-2 hidden">La taille de l'image doit être inférieur à 2048 Ko</p>
                                     <div>
                                         <input type="text" name="companyName" id="companyName" placeholder="Nom de votre entreprise *" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" >
                                     </div>
@@ -433,13 +432,53 @@
                                             <div class="absolute inset-0 bg-primary rounded-md" style="width: 80%;"></div>
                                         </div>
                                     </div>
+                                    <!-- Début Bio -->
                                     <div>
                                         <label for="userBio" class="text-3xl lg:text-base block mb-2 font-medium text-gray-900 dark:text-white">À propos de toi</label>
                                         <div>
                                             <textarea id="userBio" name="userBio" rows="6" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-500  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
                                         </div>
                                     </div>
-                                    <div class="lg:flex items-center">
+                                    <!-- Fin Bio -->
+
+
+                                    <!-- Début disponibilité -->
+
+                                    <div>
+                                        <label for="name" class="text-2xl lg:text-base block mb-2 font-medium text-gray-900 dark:text-white">Êtes-vous disponible pour travailler dès maintenant ?</label>
+                                        <label class="text-2xl lg:text-base text-gray-500 mr-3 dark:text-gray-400">Non</label>
+                                        <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description"  onchange="displayAvailibilityOptions()" class="relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-green-200" checked>
+                                        <label class="text-2xl lg:text-base text-gray-500 ml-3 dark:text-gray-400">Oui</label>
+                                        <div id="isAvailaibleOptions" style="display: block;">
+                                            <label for="name" class="text-2xl lg:text-base block mb-2 mt-6 font-medium text-gray-900 dark:text-white">Combien de jours par semaine êtes-vous disponible ?</label>
+                                            <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="text-2xl lg:text-base bg-gray-50 border mt-4 border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                <option value="temps-plein"> Temps Plein  </option>
+                                                <option value="temps-partiel"> Temps Partiel  </option>
+                                            </select>
+                                        </div>
+                                        <div id="isNotAvailaibleOptions" style="display:none;">
+                                            <label for="dateFinIndisponibilite" class="text-2xl lg:text-base block mb-2 mt-6 font-medium text-gray-900 dark:text-white">Quand serez-vous à nouveau disponible ?</label>
+                                            <div class="flex flex-1 mt-4">
+                                                <div class="flex items-center mr-6">
+                                                    <input type="radio" id="1mois" value="1" name="finIndisponibiliteDuree" class="text-2xl lg:text-base finIndisponibiliteBtn w-6 h-6 lg:w-4 lg:h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                    <label for="1mois" class="text-2xl lg:text-base ml-2 font-medium text-gray-900 dark:text-white">Dans 1 mois</label>
+                                                </div>
+                                                <div class="flex items-center mr-6">
+                                                    <input type="radio" id="3mois" value="3" name="finIndisponibiliteDuree" class="text-2xl lg:text-base finIndisponibiliteBtn w-6 h-6 lg:w-4 lg:h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                    <label for="3mois" class="text-2xl lg:text-base ml-2 font-medium text-gray-900 dark:text-white">Dans 3 mois</label>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <input type="radio" id="6mois" value="6" name="finIndisponibiliteDuree" class="text-2xl lg:text-base finIndisponibiliteBtn w-6 h-6 lg:w-4 lg:h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                    <label for="6mois" class="text-2xl lg:text-base ml-2 font-medium text-gray-900 dark:text-white">Dans 6 mois</label>
+                                                </div>
+                                            </div>
+                                            <input type="date" id="dateFinIndisponibilite" value="" name="dateFinIndisponibilite" class="text-2xl lg:text-base w-full mt-4 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            
+                                            <p id="errorDateFinIndisponibilite" class="text-2xl lg:text-base mt-2 text-red-500" style="display:none;">Veuilllez renseigner une date</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- <div class="lg:flex items-center">
                                         <p class="text-3xl lg:text-base text-gray-500 mr-3 dark:text-gray-400">Êtes-vous disponible à travailler dès maintenant ?</p>
                                         <label class="text-3xl lg:text-base text-gray-500 mr-3 dark:text-gray-400">Non</label>
                                         <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description" class="relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400">
@@ -448,8 +487,17 @@
                                     <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="text-3xl lg:text-base font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
                                         <option class="text-3xl lg:text-base dark:text-black" value="temps-plein">Temps plein</option>
                                         <option class="text-3xl lg:text-base dark:text-black" value="temps-partiel">Temps partiel</option>
-                                    </select>
+                                    </select> -->
+
+                                    <!-- Fin disponibilité -->
+
+
+
+
+                                    <!-- Message d'erreur -->
                                     <p id="errorMessage-step5-freelance" class="text-3xl lg:text-base text-red-500  mt-2 hidden">Veuillez remplir tous les champs correctement</p>
+
+                                    <!-- Div des boutons -->
                                     <div class="flex justify-between">
                                         <!-- button for previous step -->
                                         <button type="button" class="text-3xl lg:text-base w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep4_freelance()">Retour</button>
@@ -457,6 +505,7 @@
                                         <button id="submitFreelanceBtn" type="button" class="text-3xl lg:text-base w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center" >S'inscrire</button>
 
                                     </div>
+                                    <!-- Fin div des boutons -->
                                 </div>
                             </div>
                         </div>
@@ -489,7 +538,7 @@
                                             <textarea id="companyAvantages" name="companyAvantages" rows="4" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-500  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
                                         </div>
                                     </div> 
-                                    <p id="errorMessage-step5-esn" class="text-red-500 text-lg mt-2 hidden">Veuillez remplir tous les champs correctement</p>
+                                    <p id="errorMessage-step5-esn" class="text-red-500 text-2xl lg:text-base mt-2 hidden">Veuillez remplir tous les champs correctement</p>
                                     <div class="flex justify-between">
                                         <!-- button for previous step -->
                                         <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep4_esn()">Retour</button>
@@ -570,7 +619,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <p id="photosErrorMessage" class="text-red-500 text-base mt-2 hidden">La taille de l'image doit être inférieur à 2048 Ko</p>
+                                        <p id="photosErrorMessage" class="text-red-500 text-2xl lg:text-base mt-2 hidden">La taille de l'image doit être inférieur à 2048 Ko</p>
                                     </div>
 
                                     <!-- submit -->                                        
@@ -1313,6 +1362,67 @@
                 step5.style.display = 'none';
                 step6.style.display = 'block';
                 submitEsnBtn.setAttribute('type', 'submit');
+            }
+        }
+
+        $(document).ready(function(){ 
+
+        $(document).on('change', 'input[name="finIndisponibiliteDuree"]', function() {
+            const selectedDuration = $(this).val();
+            const dateInput = document.getElementById('dateFinIndisponibilite');
+
+            if (selectedDuration === '1') {
+                const endDate = new Date();
+                endDate.setMonth(endDate.getMonth() + 1);
+                const endDateString = endDate.toISOString().split('T')[0];
+                dateInput.value = endDateString;
+            } else if (selectedDuration === '3') {
+                const endDate = new Date();
+                endDate.setMonth(endDate.getMonth() + 3);
+                const endDateString = endDate.toISOString().split('T')[0];
+                dateInput.value = endDateString;
+            } else if (selectedDuration === '6') {
+                const endDate = new Date();
+                endDate.setMonth(endDate.getMonth() + 6);
+                const endDateString = endDate.toISOString().split('T')[0];
+                dateInput.value = endDateString;
+            } else {
+                dateInput.value = '';
+            }
+        });
+
+        $('#userAvailabilityForm').on('submit', function(event) {
+            var dateInput = document.getElementById('dateFinIndisponibilite');
+            var checkBox = document.getElementById('hs-basic-with-description');
+
+            if (!checkBox.checked && dateInput.value == '') {
+                $('#errorDateFinIndisponibilite').show();
+                event.preventDefault(); // Empêcher la soumission du formulaire
+            }
+        });
+
+        });
+
+        function displayAvailibilityOptions() {
+            var checkBox = document.getElementById('hs-basic-with-description');
+
+            var isAvailableDiv = document.getElementById('isAvailaibleOptions');
+            var isNotAvailableDiv = document.getElementById('isNotAvailaibleOptions');
+            var radioButtons = document.getElementsByClassName('finIndisponibiliteBtn');
+            var dateInput = document.getElementById('dateFinIndisponibilite');
+            var errorMessage = document.getElementById('errorDateFinIndisponibilite');
+
+            if (checkBox.checked) {
+                isAvailableDiv.style.display = 'block';
+                isNotAvailableDiv.style.display = 'none';
+                errorMessage.style.display = 'none';
+                for (var i = 0; i < radioButtons.length; i++) {
+                    radioButtons[i].checked = false;
+                }
+                dateInput.value = '';
+            } else {
+                isAvailableDiv.style.display = 'none';
+                isNotAvailableDiv.style.display = 'block';
             }
         }
 

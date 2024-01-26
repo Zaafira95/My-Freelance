@@ -191,9 +191,9 @@ foreach ($ratedUsers as $rating) {
                                 <div class="password-strength-meter">
                                     <div class="password-strength-meter-fill"></div>
                                 </div>
-                                <p id="passwordError" class="text-red-500"></p>
+                                <p id="passwordError" class="text-2xl lg:text-base text-red-500"></p>
                                 <div>
-                                    <input type="checkbox" id="togglePasswordCheckbox" class="form-checkbox text-primary rounded">
+                                    <input type="checkbox" id="togglePasswordCheckbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox text-primary rounded mr-2">
                                     <label for="togglePasswordCheckbox" class="text-2xl lg:text-base font-medium text-gray-900 dark:text-white">Afficher le mot de passe</label>
                                 </div>
                                     <!-- Autres champs d'informations personnelles -->

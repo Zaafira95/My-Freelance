@@ -98,7 +98,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                         </select>
                     </div>
                     <div class="flex justify-between mt-6">
-                        <button id="resetFiltersButton" class="text-3xl lg:text-base text-primary border border-primary px-4 py-1 rounded-lg 2 hover:bg-primary-900 hover:text-white">Effacer</button>
+                        <button id="resetFiltersButton" class="text-3xl lg:text-base text-primary border border-primary px-4 py-1 rounded-full 2 hover:bg-primary-900 hover:text-white">Effacer</button>
                     </div>
                 </div>
                 
@@ -287,9 +287,9 @@ include(APPPATH . 'views/layouts/company/header.php');
                                 <div class="flex items-center mt-1">
                                     <p class="font-light"><?=$company->companyName?></p>
                                 </div>
-                                <a href="<?php echo base_url('company/my_company');?>" class="text-primary mt-2 px-4 py-1 rounded 2">Modifier mon entreprise</a>
-                                <a href="<?php echo base_url('Company/missionAdd');?>" class="mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 bg-primary-700 text-white">Ajouter une offre</a>
-                                <a href="<?php echo base_url('Company/logout');?>" class="text-red-600 mt-2 hover:text-red-900">Déconnexion</a>
+                                <a href="<?php echo base_url('company/my_company');?>" class="text-primary mt-2 px-4 py-1 rounded-full">Modifier mon entreprise</a>
+                                <a href="<?php echo base_url('Company/missionAdd');?>" class="mt-2  px-4 py-1 rounded-full hover:bg-primary-900 bg-primary-700 text-white">Ajouter une offre</a>
+                                <a href="<?php echo base_url('Company/logout');?>" class="text-red-800 mt-2 hover:text-red-900">Déconnexion</a>
     
                             </div>
                         </div>

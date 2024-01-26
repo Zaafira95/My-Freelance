@@ -85,7 +85,7 @@ class Register_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function RegisterUser($userEmail, $userPassword, $userType, $userFirstName, $userLastName, $userVille, $userTelephone, $userJobId, $userTJM, $userJobType, $userExpertise, $userJobTime, $userBio, $userIsAvailable, $userJobTimePartielOrFullTime){
+    public function RegisterUser($userEmail, $userPassword, $userType, $userFirstName, $userLastName, $userVille, $userTelephone, $userJobId, $userTJM, $userJobType, $userExpertise, $userJobTime, $userBio, $userIsAvailable, $userJobTimePartielOrFullTime, $dateFinIndisponibilite){
         $data = array(
             'userEmail' => $userEmail,
             'userPassword' => $userPassword,
@@ -100,7 +100,8 @@ class Register_model extends CI_Model {
             'userJobTime' => $userJobTime,
             'userBio' => $userBio,
             'userIsAvailable' => $userIsAvailable,
-            'userJobTimePartielOrFullTime' => $userJobTimePartielOrFullTime
+            'userJobTimePartielOrFullTime' => $userJobTimePartielOrFullTime,
+            'userDateFinIndisponibilite' => $dateFinIndisponibilite
         );
         $this->db->insert('users', $data);
 

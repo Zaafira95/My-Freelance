@@ -98,7 +98,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                         </select>
                     </div>
                     <div class="flex justify-between mt-6">
-                        <button id="resetFiltersButton" class="text-3xl lg:text-base text-primary border border-primary px-4 py-1 rounded-lg 2 hover:bg-primary-900 hover:text-white">Effacer</button>
+                        <button id="resetFiltersButton" class="text-3xl lg:text-base text-primary border border-primary px-4 py-1 rounded-full 2 hover:bg-primary-900 hover:text-white">Effacer</button>
                     </div>
                 </div>
                 

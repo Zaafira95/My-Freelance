@@ -744,13 +744,13 @@ else if ($user->userType == "sales"){
                                         if(isFavorite($companyMission->idMission, $favoriteMissions)){
                                             ?>
                                             <a href="<?php echo base_url('user/removeFromFavorite/'.$companyMission->idMission);?>">
-                                                <i class="fas fa-heart text-xl text-red-800"></i>
+                                                <i class="fas fa-heart text-3xl lg:text-xl text-red-800"></i>
                                             </a>
                                             <?php
                                         } else {
                                             ?>
                                             <a href="<?php echo base_url('user/addToFavorite/'.$companyMission->idMission);?>">
-                                                <i class="far fa-heart text-xl text-red-800"></i>
+                                                <i class="far fa-heart text-3xl lg:text-xl text-red-800"></i>
                                             </a>
                                             <?php
                                         }

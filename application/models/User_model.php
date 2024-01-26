@@ -526,7 +526,7 @@ class User_model extends CI_Model {
         }
 
         public function getSkillIdByName($skillName) {
-            $this->db->select('Skillid');
+            $this->db->select('skillId');
             $this->db->from('Skills');
             $this->db->where('skillName', $skillName);
             $query = $this->db->get();

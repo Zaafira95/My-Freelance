@@ -1231,15 +1231,16 @@ if($totalInfos == 1 ){
                                             break;
                                     }
                                 ?>
-                                   
+                                <div class="skill-item" data-level="<?=$level?>">
+                                    <span class="text-2xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                                    <div class="skill-level"><?=$level?></div>
+                                </div>
+                                
                                 <?php
                                 }
                                 
                                 ?>
-                                 <div class="skill-item" data-level="<?=$level?>">
-                                        <span class="text-2xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
-                                        <div class="skill-level"><?=$level?></div>
-                                    </div>
+                                 
                                 
                                 <?php
                                     } else {

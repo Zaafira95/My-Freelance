@@ -1065,6 +1065,7 @@ class User extends CI_Controller {
             $skillLevel = $skillsLevel[$index];
             $this->User_model->editUserSkills($userId, $skillId, $skillLevel);
         }
+
     
         $this->session->set_flashdata('message', 'Vos compétences ont bien été mises à jour !');
         $this->session->set_flashdata('status', 'success');

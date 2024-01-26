@@ -354,13 +354,13 @@ foreach ($experiences as $index => $experience) {
                         <input type="text" id="userExperienceCompany" name="userExperienceCompany" value="<?=$experience->experienceCompany?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Entreprise">
 
                         <label for="userExperienceDateDebut" class="w-full text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Date de début</label>
-                        <input type="date" id="updateUserExperienceDateDebut<?=$index?>" name="userExperienceDateDebut" value="<?=$experience->experienceDateDebut?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onkeyup="validateDates('updateUserExperienceDateDebut<?=$index?>', 'updateUserExperienceDateFin<?=$index?>', 'errorUpdateUserExperienceDate<?=$index?>', 'userExperienceSubmit<?=$index?>')">
+                        <input type="date" id="updateUserExperienceDateDebut<?=$index?>" name="userExperienceDateDebut" value="<?=$experience->experienceDateDebut?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" oninput="validateDates('updateUserExperienceDateDebut<?=$index?>', 'updateUserExperienceDateFin<?=$index?>', 'errorUpdateUserExperienceDate<?=$index?>', 'userExperienceSubmit<?=$index?>')">
 
                         <label for="userExperienceDateFin" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Date de fin</label>
-                        <input type="date" id="updateUserExperienceDateFin<?=$index?>" name="userExperienceDateFin" value="<?=$experience->experienceDateFin?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onkeyup="validateDates('updateUserExperienceDateDebut<?=$index?>', 'updateUserExperienceDateFin<?=$index?>', 'errorUpdateUserExperienceDate<?=$index?>', 'userExperienceSubmit<?=$index?>'), resetCheckbox('updateUserExperienceDateFinToday<?=$index?>')">
+                        <input type="date" id="updateUserExperienceDateFin<?=$index?>" name="userExperienceDateFin" value="<?=$experience->experienceDateFin?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" oninput="validateDates('updateUserExperienceDateDebut<?=$index?>', 'updateUserExperienceDateFin<?=$index?>', 'errorUpdateUserExperienceDate<?=$index?>', 'userExperienceSubmit<?=$index?>'), resetCheckbox('updateUserExperienceDateFinToday<?=$index?>')">
                                                 
                         <div class="flex items-center mt-2">
-                            <input type="checkbox" id="updateUserExperienceDateFinToday<?=$index?>" name="updateUserExperienceDateFinToday" <?= ($experience->experienceDateFin == '0000-00-00') ? 'checked' : '' ?> onclick="resetDateFin('updateUserExperienceDateFin<?=$index?>', 'updateUserExperienceDateFinToday<?=$index?>')">
+                            <input type="checkbox" id="updateUserExperienceDateFinToday<?=$index?>" name="updateUserExperienceDateFinToday" <?= ($experience->experienceDateFin == '0000-00-00') ? 'checked' : '' ?> onclick="resetDateFin('updateUserExperienceDateFin<?=$index?>', 'updateUserExperienceDateFinToday<?=$index?>', 'errorUpdateUserExperienceDate<?=$index?>', 'userExperienceSubmit<?=$index?>')">
                             <label class="text-2xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Aujourd'hui</label>
                         </div>
                         <p id="errorUpdateUserExperienceDate<?=$index?>" class="text-red-500" style="display:none;">La date de fin doit être postérieure à la date de début</p>
@@ -463,7 +463,7 @@ foreach ($experiences as $index => $experience) {
                     <input type="date" id="addUserExperienceDateFin" name="userExperienceDateFin" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
                                                                    
                     <div class="flex items-center mt-2">
-                        <input type="checkbox" id="updateUserExperienceDateFinToday" name="updateUserExperienceDateFinToday">
+                        <input type="checkbox" id="addUserExperienceDateFinToday" name="addUserExperienceDateFinToday">
                         <label class="text-2xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Aujourd'hui</label>
                     </div>
                     <p id="errorAddUserExperienceDate" class="mt-2 text-red-500" style="display:none;">La date de fin doit être postérieure à la date de début</p>
@@ -1999,32 +1999,42 @@ document.addEventListener('DOMContentLoaded', function() {
     $('#addUserExperience-form').on('submit', function(event) {
         var startDate = new Date($('#addUserExperienceDateDebut').val());
         var endDate = new Date($('#addUserExperienceDateFin').val());
-        var todayCheckbox = $('#updateUserExperienceDateFinToday').prop('checked');
+        var endDateValue = $('#addUserExperienceDateFin').val();
+        var todayCheckbox = $('#addUserExperienceDateFinToday').prop('checked');
 
         if (startDate && endDate && startDate > endDate) {
             $('#errorAddUserExperienceDate').show();
             event.preventDefault(); // Empêcher la soumission du formulaire
         }
-        else if (!todayCheckbox && startDate){
+        else if (!todayCheckbox && endDateValue == ""){
             event.preventDefault(); // Empêcher la soumission du formulaire
         }
     });
 
-    function validateDates(updateUserExperienceDateDebut, updateUserExperienceDateFin, errorUpdateUserExperienceDate, userExperienceSubmit) {
-        var startDate = new Date(document.getElementById(updateUserExperienceDateDebut).value);
-        var endDate = new Date(document.getElementById(updateUserExperienceDateFin).value);
-
-    }
-
-    $('#updateUserExperienceDateFinToday').change(function() {
+    $('#addUserExperienceDateFinToday').change(function() {
         if ($(this).is(':checked')) {
-            $('#updateUserExperienceDateFin').val('');
+            $('#addUserExperienceDateFin').val('');
+            $('#errorAddUserExperienceDate').hide();
         }
     });
     
-    $('#updateUserExperienceDateFin').on('change', function() {
-        $('#updateUserExperienceDateFinToday').prop('checked', false);
+    $('#addUserExperienceDateFin').on('input', function() {
+        $('#addUserExperienceDateFinToday').prop('checked', false);
     });
+
+    function validateDates(updateUserExperienceDateDebut, updateUserExperienceDateFin, errorUpdateUserExperienceDate, experienceFormButton) {
+        var startDate = new Date(document.getElementById(updateUserExperienceDateDebut).value);
+        var endDate = new Date(document.getElementById(updateUserExperienceDateFin).value);
+        var errorMessage = document.getElementById(errorUpdateUserExperienceDate);
+
+        if (startDate && endDate && startDate > endDate) {
+            errorMessage.style.display = 'block';
+            document.getElementById(experienceFormButton).disabled = true;
+        } else {
+            errorMessage.style.display = 'none';
+            document.getElementById(experienceFormButton).disabled = false;
+        }
+    }
 
     function resetCheckbox(updateUserExperienceDateFinToday) {
         var todayCheckbox = document.getElementById(updateUserExperienceDateFinToday);
@@ -2033,12 +2043,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     }
 
-    function resetDateFin(updateUserExperienceDateFin, updateUserExperienceDateFinToday) {
+    function resetDateFin(updateUserExperienceDateFin, updateUserExperienceDateFinToday, errorUpdateUserExperienceDate, experienceFormButton) {
         var endDate = document.getElementById(updateUserExperienceDateFin);
         var todayCheckbox = document.getElementById(updateUserExperienceDateFinToday);
+        var errorMessage = document.getElementById(errorUpdateUserExperienceDate);
 
         if(todayCheckbox.checked) {
             endDate.value='';
+            errorMessage.style.display = 'none';
+            document.getElementById(experienceFormButton).disabled = false;
         }
     }
 

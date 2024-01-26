@@ -656,133 +656,90 @@ if ($totalCount > 0) {
                                     foreach ($experiences as $index => $experience) {
                                         if ($experienceCount < 3) {
                                 ?>
-                                            <div class="mb-4 mt-4">
-                                                <div class="flex items-center mt-2 mb-2">
-                                                    <div class="mr-2 mt-2">
-                                                        <p class="w-20 h-20 rounded-full bg-secondary text-white text-center flex items-center justify-center mr-4" style="font-size:2rem;">💼</p>
-                                                    </div>
-                                                    <div>
-                                                        <h3 class="text-3xl lg:text-lg font-medium"><?= $experience->experienceJob?></h3>
-                                                        <h3 class="text-3xl lg:text-lg font-medium"><?= $experience->experienceCompany?></h3>
-                                                        <?php
-                                                        setlocale(LC_TIME, 'fr_FR.utf8');
-                                                        $dateDebut = strftime('%d %B %Y', strtotime($experience->experienceDateDebut));
-                                                        $dateFin = strftime('%d %B %Y', strtotime($experience->experienceDateFin));
-                                                        $months = array(
-                                                            'January' => 'Janvier',
-                                                            'February' => 'Février',
-                                                            'March' => 'Mars',
-                                                            'April' => 'Avril',
-                                                            'May' => 'Mai',
-                                                            'June' => 'Juin',
-                                                            'July' => 'Juillet',
-                                                            'August' => 'Août',
-                                                            'September' => 'Septembre',
-                                                            'October' => 'Octobre',
-                                                            'November' => 'Novembre',
-                                                            'December' => 'Décembre'
-                                                        );
-
-                                                        $dateDebut = strtr($dateDebut, $months);
-                                                        $dateFin = strtr($dateFin, $months);
-                                                        ?>
-                                                        <p class="text-2xl lg:text-base"><?= $dateDebut.' - '. $dateFin?></p>
-                                                    </div>
-                                                </div>
-
-                                                <p class="text-2xl lg:text-base text-gray-500 mb-4 mt-4 ml-2 mr-4 dark:text-white"><?= $experience->experienceDescription ?></p>
-                                                <div class="skills-container mb-4">
-                                                <?php
-                                                    $dataExperienceSkills = [];
-                                                    foreach ($experienceSkills[$experience->idExperience] as $skill):
-                                                        $dataExperienceSkills[] = $skill->skillName;
-                                                    $dataExperienceSkillsString = implode(',', $dataExperienceSkills);
-                                                
-                                                        // Déterminer le niveau en fonction de la valeur de missionSkillsExperience
-                                                        $level = '';
-                                                        $color = '';
-                                                        switch ($skill->experienceSkillsExpertise) {
-                                                            case 1:
-                                                                $level = 'Junior';
-                                                                $color = '#BEE3F8'; // Couleur pour le niveau junior
-                                                                $textdark = "text-black";
-                                                                $text = "text-black";
-                                                                
-                                                                break;
-                                                            case 2:
-                                                                $level = 'Intermédiaire';
-                                                                $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
-                                                                $textdark = "text-white";
-                                                                $text = "text-black";
-                                                                break;
-                                                            case 3:
-                                                                $level = 'Expert';
-                                                                $color = '#2C5282'; // Couleur pour le niveau expert
-                                                                $textdark = "text-white";
-                                                                $text = "text-white";
-                                                                break;
-                                                            default:
-                                                                $level = 'N/A'; // Si la valeur de missionSkillsExperience n'est pas valide, afficher "N/A"
-                                                                break;
-                                                        }
-                                                    ?>
-                                                    <div class="skill-item" data-level="<?=$level?>">
-                                                        <span class="text-2xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
-                                                        <div class="skill-level"><?=$level?></div>
-                                                    </div>
-                                                <?php endforeach; ?>
-                                                </div> 
-
+                                    <div class="mb-4 mt-4">
+                                        <div class="flex items-center mt-2 mb-2">
+                                            <div class="mr-2 mt-2">
+                                                <p class="w-20 h-20 rounded-full bg-secondary text-white text-center flex items-center justify-center mr-4" style="font-size:2rem;">💼</p>
                                             </div>
-                                            <p class="text-lg text-gray-500 mb-4 mt-4 ml-2 mr-4 dark:text-white"><?= $experience->experienceDescription ?></p>
-                                            <div class="skills-container mb-4">
-                                            <?php
-                                                $dataExperienceSkills = [];
-                                                foreach ($experienceSkills[$experience->idExperience] as $skill):
-                                                    $dataExperienceSkills[] = $skill->skillName;
-                                                $dataExperienceSkillsString = implode(',', $dataExperienceSkills);
-                                            
-                                                    // Déterminer le niveau en fonction de la valeur de missionSkillsExperience
-                                                    $level = '';
-                                                    $color = '';
-                                                    switch ($skill->experienceSkillsExpertise) {
-                                                        case 1:
-                                                            $level = 'Junior';
-                                                            $color = '#BEE3F8'; // Couleur pour le niveau junior
-                                                            $textdark = "text-black";
-                                                            $text = "text-black";
-                                                            
-                                                            break;
-                                                        case 2:
-                                                            $level = 'Intermédiaire';
-                                                            $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
-                                                            $textdark = "text-white";
-                                                            $text = "text-black";
-                                                            break;
-                                                        case 3:
-                                                            $level = 'Expert';
-                                                            $color = '#2C5282'; // Couleur pour le niveau expert
-                                                            $textdark = "text-white";
-                                                            $text = "text-white";
-                                                            break;
-                                                        default:
-                                                            $level = 'N/A'; // Si la valeur de missionSkillsExperience n'est pas valide, afficher "N/A"
-                                                            break;
-                                                    }
+                                            <div>
+                                                <h3 class="text-3xl lg:text-lg font-medium"><?= $experience->experienceJob?></h3>
+                                                <h3 class="text-3xl lg:text-lg font-medium"><?= $experience->experienceCompany?></h3>
+                                                <?php
+                                                setlocale(LC_TIME, 'fr_FR.utf8');
+                                                $dateDebut = strftime('%d %B %Y', strtotime($experience->experienceDateDebut));
+                                                $dateFin = strftime('%d %B %Y', strtotime($experience->experienceDateFin));
+                                                $months = array(
+                                                    'January' => 'Janvier',
+                                                    'February' => 'Février',
+                                                    'March' => 'Mars',
+                                                    'April' => 'Avril',
+                                                    'May' => 'Mai',
+                                                    'June' => 'Juin',
+                                                    'July' => 'Juillet',
+                                                    'August' => 'Août',
+                                                    'September' => 'Septembre',
+                                                    'October' => 'Octobre',
+                                                    'November' => 'Novembre',
+                                                    'December' => 'Décembre'
+                                                );
+
+                                                $dateDebut = strtr($dateDebut, $months);
+                                                $dateFin = strtr($dateFin, $months);
                                                 ?>
-                                                <div class="skill-item" data-level="<?=$level?>">
-                                                    <span class="dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
-                                                    <div class="skill-level"><?=$level?></div>
-                                                </div>
-                                            <?php endforeach; ?>
-                                            </div> 
+                                                <p class="text-2xl lg:text-base"><?= $dateDebut.' - '. $dateFin?></p>
+                                            </div>
+                                        </div>
+
+                                        <p class="text-2xl lg:text-base text-gray-500 mb-4 mt-4 ml-2 mr-4 dark:text-white"><?= $experience->experienceDescription ?></p>
+                                        <div class="skills-container mb-4">
                                         <?php
-                                            if ($experienceCount < 2) {
-                                        ?>
-                                            <hr>
-                                        <?php
-                                        }
-                                        ?>
+                                            $dataExperienceSkills = [];
+                                            foreach ($experienceSkills[$experience->idExperience] as $skill):
+                                                $dataExperienceSkills[] = $skill->skillName;
+                                            $dataExperienceSkillsString = implode(',', $dataExperienceSkills);
+                                        
+                                                // Déterminer le niveau en fonction de la valeur de missionSkillsExperience
+                                                $level = '';
+                                                $color = '';
+                                                switch ($skill->experienceSkillsExpertise) {
+                                                    case 1:
+                                                        $level = 'Junior';
+                                                        $color = '#BEE3F8'; // Couleur pour le niveau junior
+                                                        $textdark = "text-black";
+                                                        $text = "text-black";
+                                                        
+                                                        break;
+                                                    case 2:
+                                                        $level = 'Intermédiaire';
+                                                        $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
+                                                        $textdark = "text-white";
+                                                        $text = "text-black";
+                                                        break;
+                                                    case 3:
+                                                        $level = 'Expert';
+                                                        $color = '#2C5282'; // Couleur pour le niveau expert
+                                                        $textdark = "text-white";
+                                                        $text = "text-white";
+                                                        break;
+                                                    default:
+                                                        $level = 'N/A'; // Si la valeur de missionSkillsExperience n'est pas valide, afficher "N/A"
+                                                        break;
+                                                }
+                                            ?>
+                                            <div class="skill-item" data-level="<?=$level?>">
+                                                <span class="text-2xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                                                <div class="skill-level"><?=$level?></div>
+                                            </div>
+                                        <?php endforeach; ?>
+                                        </div> 
+                                    </div>
+                                <?php
+                                    if ($experienceCount < 2) {
+                                ?>
+                                    <hr>
+                                <?php
+                                }
+                                ?>
                                 <?php
                                         $experienceCount++;
                                     } else {

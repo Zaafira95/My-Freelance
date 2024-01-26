@@ -297,7 +297,19 @@ if ($totalCount > 0) {
                                         <?php
                                         if($freelancer->userIsAvailable == 1){
                                         ?>
-                                            <p class="font-bold text-3xl lg:text-lg">Dispo. <?=$freelancer->userJobTimePartielOrFullTime?> </p>
+                                            <p class="font-bold text-3xl lg:text-lg">Dispo. 
+                                                <?php
+                                                    if($freelancer->userJobTimePartielOrFullTime == "temps-plein"){
+                                                ?>
+                                                    Temps Plein
+                                                <?php
+                                                    }else{
+                                                ?>
+                                                    Temps Partiel
+                                                <?php
+                                                    }
+                                                ?>
+                                            </p>
                                         <?php
                                             }else{
                                           

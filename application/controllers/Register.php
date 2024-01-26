@@ -92,8 +92,10 @@ class Register extends CI_Controller {
                 $userIsAvailable = 0;
             }
             $userJobTimePartielOrFullTime = $this->input->post('userJobTimePartielOrFullTime');
+            $dateFinIndisponibilite = $this->input->post('dateFinIndisponibilite');
 
-            $result = $this->Register_model->registerUser($userEmail, $userPassword, $userType, $userFirstName, $userLastName, $userVille, $userTelephone, $userJobId, $userTJM, $userJobType, $userExpertise, $userJobTime, $userBio, $userIsAvailable, $userJobTimePartielOrFullTime);
+
+            $result = $this->Register_model->registerUser($userEmail, $userPassword, $userType, $userFirstName, $userLastName, $userVille, $userTelephone, $userJobId, $userTJM, $userJobType, $userExpertise, $userJobTime, $userBio, $userIsAvailable, $userJobTimePartielOrFullTime, $dateFinIndisponibilite);
 
             if ($result !== false) {
                 $userId = $result;

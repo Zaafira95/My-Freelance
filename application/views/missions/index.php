@@ -151,7 +151,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                         </select>
                     </div>
                     <div class="flex justify-between mt-6">
-                        <button id="resetFiltersButton" class="text-3xl lg:text-base text-primary border border-primary px-4 py-1 rounded-lg 2 hover:bg-primary-900 hover:text-white">Effacer</button>
+                        <button id="resetFiltersButton" class="text-3xl lg:text-base text-primary border border-primary px-4 py-1 rounded-full 2 hover:bg-primary-900 hover:text-white">Effacer</button>
                     </div>
 
                     
@@ -921,5 +921,66 @@ document.addEventListener("DOMContentLoaded", function() {
 
     filterMissions();
 });
+
+$(document).ready(function(){ 
+
+$(document).on('change', 'input[name="finIndisponibiliteDuree"]', function() {
+    const selectedDuration = $(this).val();
+    const dateInput = document.getElementById('dateFinIndisponibilite');
+
+    if (selectedDuration === '1') {
+        const endDate = new Date();
+        endDate.setMonth(endDate.getMonth() + 1);
+        const endDateString = endDate.toISOString().split('T')[0];
+        dateInput.value = endDateString;
+    } else if (selectedDuration === '3') {
+        const endDate = new Date();
+        endDate.setMonth(endDate.getMonth() + 3);
+        const endDateString = endDate.toISOString().split('T')[0];
+        dateInput.value = endDateString;
+    } else if (selectedDuration === '6') {
+        const endDate = new Date();
+        endDate.setMonth(endDate.getMonth() + 6);
+        const endDateString = endDate.toISOString().split('T')[0];
+        dateInput.value = endDateString;
+    } else {
+        dateInput.value = '';
+    }
+});
+
+$('#userAvailabilityForm').on('submit', function(event) {
+    var dateInput = document.getElementById('dateFinIndisponibilite');
+    var checkBox = document.getElementById('hs-basic-with-description');
+
+    if (!checkBox.checked && dateInput.value == '') {
+        $('#errorDateFinIndisponibilite').show();
+        event.preventDefault(); // Empêcher la soumission du formulaire
+    }
+});
+
+});
+
+function displayAvailibilityOptions() {
+var checkBox = document.getElementById('hs-basic-with-description');
+
+var isAvailableDiv = document.getElementById('isAvailaibleOptions');
+var isNotAvailableDiv = document.getElementById('isNotAvailaibleOptions');
+var radioButtons = document.getElementsByClassName('finIndisponibiliteBtn');
+var dateInput = document.getElementById('dateFinIndisponibilite');
+var errorMessage = document.getElementById('errorDateFinIndisponibilite');
+
+if (checkBox.checked) {
+    isAvailableDiv.style.display = 'block';
+    isNotAvailableDiv.style.display = 'none';
+    errorMessage.style.display = 'none';
+    for (var i = 0; i < radioButtons.length; i++) {
+        radioButtons[i].checked = false;
+    }
+    dateInput.value = '';
+} else {
+    isAvailableDiv.style.display = 'none';
+    isNotAvailableDiv.style.display = 'block';
+}
+}
 
 </script>

@@ -65,40 +65,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
     </style>
 </head>
 
-<div id="updateProductModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
-    <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
-        <!-- Modal content -->
-        <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
-            <!-- Modal header -->
-            <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                    Votre disponibilité
-                </h3>
-                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateProductModal">
-                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                    <span class="sr-only">Fermer</span>
-                </button>
-            </div>
-            <!-- Modal body -->
-            <form action="<?=base_url("user/updateAvailability")?>" method="post">
-                    <div>
-                        <label for="name" class="block mb-2  font-medium text-gray-900 dark:text-white">Êtes-vous disponible pour travailler dès maintenant ?</label>
-                        <label class=" text-gray-500 mr-3 dark:text-gray-400">Non</label>
-                        <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description" <?php echo $checkboxChecked; ?> class="relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-green-200">
-                        <label class=" text-gray-500 ml-3 dark:text-gray-400">Oui</label>
-                    </div>
-                <div class="flex items-center space-x-4 mt-4">
-                    <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                        Valider
-                    </button>
-                    <button type="button" data-modal-toggle="updateProductModal" class="text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
-                        Annuler
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+
 <div class="absolute hidden top-0 right-4 mt-4 mb-4">
     <svg id="heart" class="w-5 h-5 text-red-600 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 30" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.879c-2.484-4.375-12-1.82-12 4.879 0 5.572 5.126 7.664 12 14.121 6.874-6.457 12-8.549 12-14.121 0-6.699-9.516-9.254-12-4.879z"/>
@@ -138,7 +105,7 @@ if ($totalCount > 0) {
                                     ?>
                                     <h1 class="text-5xl font-bold ml-2" id="userLastName"><?=$userLastName?></h1>
                             </div>
-                            <p class="text-lg text-black-500 font-bold"><?=$job->jobName?></p>
+                            <p class="text-3xl lg:text-2xl text-black-500 font-bold"><?=$job->jobName?></p>
                             <div class="flex items-center mb-4">
                                 <?php for ($i = 1; $i <= 5; $i++) { ?>
                                 <?php if ($i <= $averageStars) { ?>
@@ -148,7 +115,7 @@ if ($totalCount > 0) {
                                 <?php } ?>
                                 <?php } ?>
                                 <a href="#rating">
-                                    <p class="ml-2"><?=round($averageStars, 1).' ( '.$ratingCount.' avis )'?></p>
+                                    <p class="ml-2 text-2xl lg:text-base"><?=round($averageStars, 1).' ( '.$ratingCount.' avis )'?></p>
                                 </a>
                             </div>
                         <!-- Whatsapp -->
@@ -171,63 +138,63 @@ if ($totalCount > 0) {
                     </div>
                 </div>
             </div>
-            <div class="flex flex-1">
-                <div class="rounded-lg h-full w-1/3 mb-4 mr-4 dark:text-white">
-                    <div class="relative flex grid-cols-2 items-center overflow-hidden bg-white h-full w-full rounded-lg mb-4 dark:bg-gray-800 py-8 px-4">
-                        <ul class=" w-full">
-                            <li class="tab-item mb-8 w-full"> <a href="#user-data" class="tab-link px-6 text-lg font-bold w-full"><i class="fas fa-user mr-4"></i>Informations personnelles</a></li>
-                            <li class="tab-item mb-8"> <a href="#user-password" class="tab-link px-6 text-lg w-full"><i class="fas fa-key mr-4"></i>Mot de passe</a></li>                            
+            <div class="lg:flex flex-1">
+                    <div class="rounded-lg lg:h-full lg:w-1/2 mb-4 lg:mr-4 dark:text-white">
+                        <div class="relative lg:flex grid-cols-2 items-center overflow-hidden bg-white lg:h-full w-full rounded-lg mb-4 dark:bg-gray-800 py-8 px-4">
+                            <ul class="w-full">
+                            <li class="tab-item mb-8 w-full flex"> <a href="#user-data" class="tab-link px-6 text-3xl lg:text-lg font-bold w-full text-primary"><i class="far fa-user mr-4"></i>Informations personnelles</a></li>
+                            <li class="tab-item mb-8 w-full flex"> <a href="#user-password" class="tab-link px-6 text-3xl lg:text-lg w-full"><i class="far fa-eye mr-4"></i>Mot de passe</a></li>                            
                         </ul>
                     </div>
                 </div>
-                <div class="rounded-lg h-full w-2/3 mb-4 dark:text-white">
+                <div class="rounded-lg lg:h-full lg:w-3/4 mb-4 dark:text-white">
                     <div class="form-container relative flex grid-cols-2 items-center overflow-hidden bg-white rounded-lg mb-4 dark:bg-gray-800 py-4 px-4">
-                        <div id="user-data" class="px-6 space-y-4 md:space-y-6 w-2/3">
+                        <div id="user-data" class="px-6 space-y-4 md:space-y-6 w-full">
                             <form method="post" action="<?php echo base_url('user/updateUserDataSettings'); ?>" enctype="multipart/form-data">
-                                <label for="userFirstName" class="block font-medium text-gray-900 dark:text-white">Votre prénom *</label>
-                                <input type="text" name="userFirstName" id="userFirstName" value="<?=$user->userFirstName?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>
+                                <label for="userFirstName" class="text-2xl lg:text-base block font-medium text-gray-900 dark:text-white">Votre prénom *</label>
+                                <input type="text" name="userFirstName" id="userFirstName" value="<?=$user->userFirstName?>" class="text-2xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>
 
-                                <label for="userLastName" class="block font-medium text-gray-900 dark:text-white">Votre nom *</label>
-                                <input type="text" name="userLastName" id="userLastName" value="<?=$user->userLastName?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>
+                                <label for="userLastName" class="text-2xl lg:text-base block font-medium text-gray-900 dark:text-white">Votre nom *</label>
+                                <input type="text" name="userLastName" id="userLastName" value="<?=$user->userLastName?>" class="text-2xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>
 
-                                <label for="userTelephone" class="block font-medium text-gray-900 dark:text-white">Votre numéro de téléphone *</label>
-                                <input type="text" name="userTelephone" id="userTelephone" value="<?=$user->userTelephone?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>    
+                                <label for="userTelephone" class="text-2xl lg:text-base block font-medium text-gray-900 dark:text-white">Votre numéro de téléphone *</label>
+                                <input type="text" name="userTelephone" id="userTelephone" value="<?=$user->userTelephone?>" class="text-2xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>    
 
-                                <label for="userEmail" class="block font-medium text-gray-900 dark:text-white">Votre email *</label>
-                                <input type="email" name="userEmail" id="userEmail" value="<?=$user->userEmail?>" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" disabled>    
+                                <label for="userEmail" class="text-2xl lg:text-base block font-medium text-gray-900 dark:text-white">Votre email *</label>
+                                <input type="email" name="userEmail" id="userEmail" value="<?=$user->userEmail?>" class="text-2xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" disabled>    
 
-                                <button type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 mt-4 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                <button type="submit" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 mt-4 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                     Valider
                                 </button>
                             </form>
                         </div>
-                        <div id="user-password" class="px-6 space-y-4 md:space-y-6 w-2/3 hidden">
+                        <div id="user-password" class="px-6 space-y-4 md:space-y-6 6 w-full h-full hidden">
                             <form id="updatePassword-form" method="post" action="<?php echo base_url('user/updateUserPassword'); ?>" enctype="multipart/form-data">
 
-                            <label for="userCurrentPassword" class="block font-medium text-gray-900 dark:text-white">Saisissez votre mot de passe actuel *</label>
-                            <input type="password" name="userCurrentPassword" id="userCurrentPassword" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" oninput="checkCurrentPassword(this.value)" required> 
-                            <p id="currentPasswordError" class="text-red-500"></p>
+                            <label for="userCurrentPassword" class="text-2xl lg:text-base block font-medium text-gray-900 dark:text-white">Saisissez votre mot de passe actuel *</label>
+                            <input type="password" name="userCurrentPassword" id="userCurrentPassword" class="text-2xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" oninput="checkCurrentPassword(this.value)" required> 
+                            <p id="currentPasswordError" class="text-2xl lg:text-base text-red-500"></p>
                             
-                            <label for="userPassword" class="block font-medium text-gray-900 dark:text-white">Saisissez votre nouveau mot de passe *</label>
-                            <input type="password" name="userPassword" id="userPassword" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required oninput="checkPasswordStrength(this.value)"> 
-                            <label for="confirmPassword" class="block font-medium text-gray-900 dark:text-white">Confirmez votre nouveau mot de passe *</label>
-                            <input type="password" name="confirmPassword" id="confirmPassword" class="w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required  oninput="checkPasswordMatch()"> 
+                            <label for="userPassword" class="text-2xl lg:text-base block font-medium text-gray-900 dark:text-white">Saisissez votre nouveau mot de passe *</label>
+                            <input type="password" name="userPassword" id="userPassword" class="text-2xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required oninput="checkPasswordStrength(this.value)"> 
+                            <label for="confirmPassword" class="text-2xl lg:text-base block font-medium text-gray-900 dark:text-white">Confirmez votre nouveau mot de passe *</label>
+                            <input type="password" name="confirmPassword" id="confirmPassword" class="text-2xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required  oninput="checkPasswordMatch()"> 
 
                             <div>
-                                <p id="confirmPasswordError" class="text-red-500"></p>
+                                <p id="confirmPasswordError" class="text-2xl lg:text-base text-red-500"></p>
                             </div>
 
                             <div class="password-strength-meter">
                                 <div class="password-strength-meter-fill"></div>
                             </div>
-                            <p id="passwordError" class="text-red-500"></p>
+                            <p id="passwordError" class="text-2xl lg:text-base text-red-500"></p>
                             <div>
-                                <input type="checkbox" id="togglePasswordCheckbox" class="form-checkbox text-primary rounded">
-                                <label for="togglePasswordCheckbox" class="text-sm font-medium text-gray-900 dark:text-white">Afficher le mot de passe</label>
+                                <input type="checkbox" id="togglePasswordCheckbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox text-primary rounded mr-2">
+                                <label for="togglePasswordCheckbox" class="text-2xl lg:text-base font-medium text-gray-900 dark:text-white">Afficher le mot de passe</label>
                             </div>
                                 <!-- Autres champs d'informations personnelles -->
                                 
-                                <button id="passwordSubmit" type="submit" class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 mt-4 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                <button id="passwordSubmit" type="submit" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 mt-4 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                     Valider
                                 </button>
                             </form>
@@ -261,9 +228,9 @@ $(document).ready(function () {
         $(target).fadeIn();
 
         // Supprimer la classe "text-gray-400" de tous les liens avec la classe "tab-link"
-        $(".tab-link").removeClass("font-bold");
+        $(".tab-link").removeClass("font-bold text-primary");
         // Ajouter la classe "text-gray-400" à l'élément cliqué
-        $(this).addClass("font-bold");
+        $(this).addClass("font-bold text-primary");
 
         // Mettre à jour l'URL sans recharger la page
         history.pushState(null, null, target);

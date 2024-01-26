@@ -267,7 +267,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                         </a>
                     <?php endforeach; ?>
                     </div>
-                        <p class="text-3xl lg:text-xl mt-10 hidden text-left" id="no-freelancer-found">Aucun freelance n'a été trouvée.</p>
+                        <p class="text-4xl lg:text-xl mt-10 hidden text-left" id="no-freelancer-found">Aucun freelance n'a été trouvée.</p>
                     </div>
                 </div>
             </div>

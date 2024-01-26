@@ -115,7 +115,7 @@ if ($totalCount > 0) {
                                 <?php } ?>
                                 <?php } ?>
                                 <a href="#rating">
-                                    <p class="ml-2 text-2xl lg:text-base"><?=round($averageStars, 1).' ( '.$ratingCount.' avis )'?></p>
+                                    <p class="ml-2 text-3xl lg:text-base"><?=round($averageStars, 1).' ( '.$ratingCount.' avis )'?></p>
                                 </a>
                             </div>
                         <!-- Whatsapp -->
@@ -151,19 +151,19 @@ if ($totalCount > 0) {
                     <div class="form-container relative flex grid-cols-2 items-center overflow-hidden bg-white rounded-lg mb-4 dark:bg-gray-800 py-4 px-4">
                         <div id="user-data" class="px-6 space-y-4 md:space-y-6 w-full">
                             <form method="post" action="<?php echo base_url('user/updateUserDataSettings'); ?>" enctype="multipart/form-data">
-                                <label for="userFirstName" class="text-2xl lg:text-base block font-medium text-gray-900 dark:text-white">Votre prénom *</label>
-                                <input type="text" name="userFirstName" id="userFirstName" value="<?=$user->userFirstName?>" class="text-2xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>
+                                <label for="userFirstName" class="text-3xl lg:text-base block font-medium text-gray-900 dark:text-white">Votre prénom *</label>
+                                <input type="text" name="userFirstName" id="userFirstName" value="<?=$user->userFirstName?>" class="text-3xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>
 
-                                <label for="userLastName" class="text-2xl lg:text-base block font-medium text-gray-900 dark:text-white">Votre nom *</label>
-                                <input type="text" name="userLastName" id="userLastName" value="<?=$user->userLastName?>" class="text-2xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>
+                                <label for="userLastName" class="text-3xl lg:text-base block font-medium text-gray-900 dark:text-white">Votre nom *</label>
+                                <input type="text" name="userLastName" id="userLastName" value="<?=$user->userLastName?>" class="text-3xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>
 
-                                <label for="userTelephone" class="text-2xl lg:text-base block font-medium text-gray-900 dark:text-white">Votre numéro de téléphone *</label>
-                                <input type="text" name="userTelephone" id="userTelephone" value="<?=$user->userTelephone?>" class="text-2xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>    
+                                <label for="userTelephone" class="text-3xl lg:text-base block font-medium text-gray-900 dark:text-white">Votre numéro de téléphone *</label>
+                                <input type="text" name="userTelephone" id="userTelephone" value="<?=$user->userTelephone?>" class="text-3xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>    
 
-                                <label for="userEmail" class="text-2xl lg:text-base block font-medium text-gray-900 dark:text-white">Votre email *</label>
-                                <input type="email" name="userEmail" id="userEmail" value="<?=$user->userEmail?>" class="text-2xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" disabled>    
+                                <label for="userEmail" class="text-3xl lg:text-base block font-medium text-gray-900 dark:text-white">Votre email *</label>
+                                <input type="email" name="userEmail" id="userEmail" value="<?=$user->userEmail?>" class="text-3xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" disabled>    
 
-                                <button type="submit" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 mt-4 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                <button type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 mt-4 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                     Valider
                                 </button>
                             </form>
@@ -171,30 +171,30 @@ if ($totalCount > 0) {
                         <div id="user-password" class="px-6 space-y-4 md:space-y-6 6 w-full h-full hidden">
                             <form id="updatePassword-form" method="post" action="<?php echo base_url('user/updateUserPassword'); ?>" enctype="multipart/form-data">
 
-                            <label for="userCurrentPassword" class="text-2xl lg:text-base block font-medium text-gray-900 dark:text-white">Saisissez votre mot de passe actuel *</label>
-                            <input type="password" name="userCurrentPassword" id="userCurrentPassword" class="text-2xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" oninput="checkCurrentPassword(this.value)" required> 
-                            <p id="currentPasswordError" class="text-2xl lg:text-base text-red-500"></p>
+                            <label for="userCurrentPassword" class="text-3xl lg:text-base block font-medium text-gray-900 dark:text-white">Saisissez votre mot de passe actuel *</label>
+                            <input type="password" name="userCurrentPassword" id="userCurrentPassword" class="text-3xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" oninput="checkCurrentPassword(this.value)" required> 
+                            <p id="currentPasswordError" class="text-3xl lg:text-base text-red-500"></p>
                             
-                            <label for="userPassword" class="text-2xl lg:text-base block font-medium text-gray-900 dark:text-white">Saisissez votre nouveau mot de passe *</label>
-                            <input type="password" name="userPassword" id="userPassword" class="text-2xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required oninput="checkPasswordStrength(this.value)"> 
-                            <label for="confirmPassword" class="text-2xl lg:text-base block font-medium text-gray-900 dark:text-white">Confirmez votre nouveau mot de passe *</label>
-                            <input type="password" name="confirmPassword" id="confirmPassword" class="text-2xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required  oninput="checkPasswordMatch()"> 
+                            <label for="userPassword" class="text-3xl lg:text-base block font-medium text-gray-900 dark:text-white">Saisissez votre nouveau mot de passe *</label>
+                            <input type="password" name="userPassword" id="userPassword" class="text-3xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required oninput="checkPasswordStrength(this.value)"> 
+                            <label for="confirmPassword" class="text-3xl lg:text-base block font-medium text-gray-900 dark:text-white">Confirmez votre nouveau mot de passe *</label>
+                            <input type="password" name="confirmPassword" id="confirmPassword" class="text-3xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required  oninput="checkPasswordMatch()"> 
 
                             <div>
-                                <p id="confirmPasswordError" class="text-2xl lg:text-base text-red-500"></p>
+                                <p id="confirmPasswordError" class="text-3xl lg:text-base text-red-500"></p>
                             </div>
 
                             <div class="password-strength-meter">
                                 <div class="password-strength-meter-fill"></div>
                             </div>
-                            <p id="passwordError" class="text-2xl lg:text-base text-red-500"></p>
+                            <p id="passwordError" class="text-3xl lg:text-base text-red-500"></p>
                             <div>
                                 <input type="checkbox" id="togglePasswordCheckbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox text-primary rounded mr-2">
-                                <label for="togglePasswordCheckbox" class="text-2xl lg:text-base font-medium text-gray-900 dark:text-white">Afficher le mot de passe</label>
+                                <label for="togglePasswordCheckbox" class="text-3xl lg:text-base font-medium text-gray-900 dark:text-white">Afficher le mot de passe</label>
                             </div>
                                 <!-- Autres champs d'informations personnelles -->
                                 
-                                <button id="passwordSubmit" type="submit" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 mt-4 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                <button id="passwordSubmit" type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 mt-4 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                     Valider
                                 </button>
                             </form>

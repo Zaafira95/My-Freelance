@@ -37,16 +37,16 @@ else if ($user->userType == "sales"){
             <!-- Modal body -->
             <form action="<?=base_url("user/updateAvailability")?>" method="post">
                     <div class="mt-4 mb-4">
-                        <label for="name" class="text-2xl lg:text-base block mb-2  font-medium text-gray-900 dark:text-white">Êtes-vous disponible pour travailler dès maintenant ?</label>
-                        <label class="text-2xl lg:text-base text-gray-500 mr-3 dark:text-gray-400">Non</label>
-                        <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description" <?php echo $checkboxChecked; ?> class="text-2xl lg:text-base relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-green-200">
-                        <label class="text-2xl lg:text-base text-gray-500 ml-3 dark:text-gray-400">Oui</label>
+                        <label for="name" class="text-3xl lg:text-base block mb-2  font-medium text-gray-900 dark:text-white">Êtes-vous disponible pour travailler dès maintenant ?</label>
+                        <label class="text-3xl lg:text-base text-gray-500 mr-3 dark:text-gray-400">Non</label>
+                        <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description" <?php echo $checkboxChecked; ?> class="text-3xl lg:text-base relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-green-200">
+                        <label class="text-3xl lg:text-base text-gray-500 ml-3 dark:text-gray-400">Oui</label>
                     </div>
                 <div class="flex items-center space-x-4 mt-4">
-                    <button type="submit" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                    <button type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                         Valider
                     </button>
-                    <button type="button" data-modal-toggle="updateProductModal" class="text-2xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                    <button type="button" data-modal-toggle="updateProductModal" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
                         Annuler
                     </button>
                 </div>
@@ -87,8 +87,8 @@ else if ($user->userType == "sales"){
             <!-- Modal body -->
             <form action="#" method="post" id="userPreferenceForm" enctype="multipart/form-data">
                 <div>
-                    <label for="message" class="text-2xl lg:text-base block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Choisissez un message prédéfini</label>
-                    <select id="message" name="message" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onchange="updateTextarea()">
+                    <label for="message" class="text-3xl lg:text-base block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Choisissez un message prédéfini</label>
+                    <select id="message" name="message" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onchange="updateTextarea()">
                         <option value="">Sélectionnez un message</option>
                         <!-- <?php foreach ($messageExamples as $message) { ?>
                             <option value="<?php echo $message->messageExamplesContent; ?>"><?php echo $message->messageExamplesContent; ?></option>
@@ -102,14 +102,14 @@ else if ($user->userType == "sales"){
                     </select>
                 </div>
                 <div id="customMessageWrapper" class="hidden">
-                    <label for="customMessage" class="text-2xl lg:text-base block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Personnalisez votre message</label>
-                    <textarea id="customMessage" name="customMessage" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-32 resize-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                    <label for="customMessage" class="text-3xl lg:text-base block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Personnalisez votre message</label>
+                    <textarea id="customMessage" name="customMessage" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-32 resize-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
                 </div>
                 <div class="flex items-center space-x-4 mt-8">
-                    <button type="button" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" onclick="sendMessageOnWhatsApp()">
+                    <button type="button" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" onclick="sendMessageOnWhatsApp()">
                         Envoyer
                     </button>
-                    <button type="button" data-modal-toggle="sendMessage" class="text-2xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                    <button type="button" data-modal-toggle="sendMessage" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
                         Annuler
                     </button>
                 </div>
@@ -156,7 +156,7 @@ else if ($user->userType == "sales"){
                                 <div class="lg:flex flex-col items-end justify-end">
                                     <?php if($user->userType == 'sales') { ?>
                                         <a href="<?php echo base_url('company/missionEdit/'.$mission->idMission);?>">
-                                            <button class="text-2xl lg:text-base ml-4 text-primary hover:text-blue-600" type="button">
+                                            <button class="text-3xl lg:text-base ml-4 text-primary hover:text-blue-600" type="button">
                                                 <p>Modifier cette mission</p>
                                             </button>   
                                         </a>                                     
@@ -164,14 +164,14 @@ else if ($user->userType == "sales"){
                                     
                                     <?php foreach ($companyUser as $companyContact) : ?>
                                         <div class="hidden lg:flex mb-2  items-center justify-end">
-                                            <span class="text-2xl lg:text-base text-md mr-2">Contact </span>
+                                            <span class="text-3xl lg:text-base text-md mr-2">Contact </span>
                                             
-                                            <div class="text-2xl lg:text-base mr-2 flex p-1 text-primary border-primary border-1 rounded-full hover:bg-primary hover:text-white">
+                                            <div class="text-3xl lg:text-base mr-2 flex p-1 text-primary border-primary border-1 rounded-full hover:bg-primary hover:text-white">
                                             <a href="https://wa.me/<?=$companyContact->userTelephone?>?text=Bonjour%20<?=$companyContact->userFirstName?>%20!%20Je%20suis%20intéressé%20par%20votre%20offre%20de%20mission%20sur%20Café%20Crème%20Community%20!%20" target="_blank">
                                                     <i class="fab fa-whatsapp"></i>
                                                 </a>
                                             </div>
-                                            <div class="text-2xl lg:text-base mr-2 flex p-1 text-red-800 border-red-800 border-1 rounded-full hover:bg-red-900 hover:text-white">
+                                            <div class="text-3xl lg:text-base mr-2 flex p-1 text-red-800 border-red-800 border-1 rounded-full hover:bg-red-900 hover:text-white">
                                                 <a href="mailto:<?=$companyContact->userEmail?>" target="_blank">
                                                 <i class="fas fa-envelope"></i>
                                                 </a>
@@ -185,31 +185,31 @@ else if ($user->userType == "sales"){
                                     <div>
                                         <?php if($user->userType == 'freelance') { ?>
                                             
-                                            <button class="text-2xl lg:text-base px-4 py-2 rounded-full bg-primary text-white mr-2 hover:bg-blue-700" id="sendMessage" data-modal-toggle="sendMessage">Postuler maintenant</button>
+                                            <button class="text-3xl lg:text-base px-4 py-2 rounded-full bg-primary text-white mr-2 hover:bg-blue-700" id="sendMessage" data-modal-toggle="sendMessage">Postuler maintenant</button>
                                             <?php
                                             if(isFavorite($mission->idMission, $favoriteMissions)){
                                             ?>
                                                 <a href="<?php echo base_url('user/removeFromFavorite/'.$mission->idMission);?>">
-                                                    <button class="text-2xl lg:text-base px-4 py-2 rounded-full bg-white border-1 border-red-800 text-red-800 hover:text-white mr-2 hover:bg-red-900"><i class="fas fa-heart"></i> Enregistrée</button>
+                                                    <button class="text-3xl lg:text-base px-4 py-2 rounded-full bg-white border-1 border-red-800 text-red-800 hover:text-white mr-2 hover:bg-red-900"><i class="fas fa-heart"></i> Enregistrée</button>
                                                 </a>    
                                             <?php
                                                 }
                                                 else{
                                             ?>
                                                 <a href="<?php echo base_url('user/addToFavorite/'.$mission->idMission);?>">
-                                                    <button class="text-2xl lg:text-base px-4 py-2 rounded-full bg-white border-1 text-red-800 hover:text-red-900 mr-2 hover:bg-white-700"><i class="far fa-heart"></i> Enregistrer</button>
+                                                    <button class="text-3xl lg:text-base px-4 py-2 rounded-full bg-white border-1 text-red-800 hover:text-red-900 mr-2 hover:bg-white-700"><i class="far fa-heart"></i> Enregistrer</button>
                                                 </a>
                                             <?php
                                                 }
                                             ?>
                                         <?php } ?>
 
-                                        <!-- <button id="generate-pdf-btn" class="text-2xl lg:text-base bg-primary mb-4 hover:bg-blue-700 text-white py-2 px-4 rounded-full">
+                                        <!-- <button id="generate-pdf-btn" class="text-3xl lg:text-base bg-primary mb-4 hover:bg-blue-700 text-white py-2 px-4 rounded-full">
                                             PDF
                                         </button> -->
                                         <!-- <?php if($user->userType == 'freelance') { ?>
                                         <a href="<?=base_url('user/companyView/'.$company->idCompany)?>">
-                                            <button class="text-2xl lg:text-base border border-primary text-primary mb-4 py-2 px-4 rounded-full">
+                                            <button class="text-3xl lg:text-base border border-primary text-primary mb-4 py-2 px-4 rounded-full">
                                                 Voir l'entreprise 
                                             </button>
                                         </a>
@@ -227,7 +227,7 @@ else if ($user->userType == "sales"){
                         <div class="w-full lg:w-1/4 sticky top-0"  id="left-side-content">
                             <div class="w-full">
                                 <div class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                                    <h2 class="text-3xl lg:text-xl font-bold mb-4">Informations clés</h2> 
+                                    <h2 class="text-4xl lg:text-xl font-bold mb-4">Informations clés</h2> 
 
                                         <div class="flex grid-cols-2 items-center mb-4">
                                             <?php
@@ -235,7 +235,7 @@ else if ($user->userType == "sales"){
                                             if($mission->missionDeroulement == "hybride"){
                                             ?>
                                                 <div>
-                                                    <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-pink-300 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">✈️</p>
+                                                    <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-pink-300 text-white text-center text-4xl lg:text-xl flex items-center justify-center mr-4 pt-2">✈️</p>
                                                 </div>
                                             <?php
                                             }else
@@ -243,13 +243,13 @@ else if ($user->userType == "sales"){
                                                 if ($mission->missionDeroulement == "teletravail"){
                                             ?>
                                             <div>
-                                                <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-pink-300 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">✈️</p>
+                                                <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-pink-300 text-white text-center text-4xl lg:text-xl flex items-center justify-center mr-4 pt-2">✈️</p>
                                             </div>
                                             <?php
                                                 }else{
                                             ?>
                                             <div>
-                                                <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-pink-300 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">👨🏻‍💻</p>
+                                                <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-pink-300 text-white text-center text-4xl lg:text-xl flex items-center justify-center mr-4 pt-2">👨🏻‍💻</p>
                                             </div>
                                             <?php
                                             } }
@@ -275,7 +275,7 @@ else if ($user->userType == "sales"){
                                         </div>
                                         <div class="flex grid-cols-2 items-center mb-4">
                                             <div>
-                                                <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-green-400 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">🕐</p>
+                                                <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-green-400 text-white text-center text-4xl lg:text-xl flex items-center justify-center mr-4 pt-2">🕐</p>
                                             </div>
                                             
                                             <div>
@@ -294,7 +294,7 @@ else if ($user->userType == "sales"){
                                         </div>
                                         <div class="flex grid-cols-2 items-center mb-4">
                                             <div>
-                                                <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-orange-400 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">📍</p>
+                                                <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-orange-400 text-white text-center text-4xl lg:text-xl flex items-center justify-center mr-4 pt-2">📍</p>
                                             </div>
                                             
                                             <div>
@@ -305,7 +305,7 @@ else if ($user->userType == "sales"){
                                         </div>
                                         <div class="flex grid-cols-2 items-center mb-4">
                                             <div>
-                                                <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-indigo-300 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">⏳</p>
+                                                <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-indigo-300 text-white text-center text-4xl lg:text-xl flex items-center justify-center mr-4 pt-2">⏳</p>
                                             </div>
                                             
                                             <div>
@@ -327,7 +327,7 @@ else if ($user->userType == "sales"){
                                         </div>
                                         <div class="flex grid-cols-2 items-center mb-4">
                                             <div>
-                                                <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-red-400 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4">📅</p>
+                                                <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-red-400 text-white text-center text-4xl lg:text-xl flex items-center justify-center mr-4">📅</p>
                                             </div>
                                             
                                             <div>
@@ -348,7 +348,7 @@ else if ($user->userType == "sales"){
                                         </div>
                                 </div>
                                 <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                                    <h2 class="text-3xl lg:text-xl font-bold mb-4"> Compétences requises </h2> 
+                                    <h2 class="text-4xl lg:text-xl font-bold mb-4"> Compétences requises </h2> 
                                     <div class="skills-container mb-6">
                                         <?php foreach ($missionSkills[$mission->idMission] as $skill) : ?>
                                             <?php
@@ -380,7 +380,7 @@ else if ($user->userType == "sales"){
                                                 }
                                             ?>
                                             <div class="skill-item" data-level="<?=$level?>">
-                                                <span class="text-2xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 mt-2 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                                                <span class="text-3xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 mt-2 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
                                                 <div class="skill-level"><?=$level?></div>
                                             </div>
                                         <?php endforeach; ?>
@@ -610,7 +610,7 @@ else if ($user->userType == "sales"){
                                     </div>
                                     <div class="w-3/4 mr-4">
                                         <h2 class="font-bold text-3xl lg:text-lg"><?=$companyMission->missionName?></h2>
-                                        <p class="text-2xl lg:text-base">
+                                        <p class="text-3xl lg:text-base">
                                             <span class="mr-2"> • TJM : <?=$companyMission->missionTJM?> €</span>
                                             
                                             <span class="mr-2"> •
@@ -683,7 +683,7 @@ else if ($user->userType == "sales"){
                                     </div>
                                     <div class="flex items-center justify-between">
                                         <div class="mt-4">
-                                            <div class="font-light mt-4 mb-4 overflow-hidden text-2xl lg:text-base" style="max-height : 6em">
+                                            <div class="font-light mt-4 mb-4 overflow-hidden text-3xl lg:text-base" style="max-height : 6em">
                                                 <?php 
                                                 // limit missionDescription to 270 characters and add '...' at the end
                                                 $companyMission->missionDescription = strlen($companyMission->missionDescription) > 270 ? substr($companyMission->missionDescription,0,270)."..." : $companyMission->missionDescription;    
@@ -729,7 +729,7 @@ else if ($user->userType == "sales"){
                                                         }
                                                     ?>
                                                     <div class="skill-item" data-level="<?=$level?>">
-                                                        <span class="text-2xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 mt-2 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                                                        <span class="text-3xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 mt-2 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
                                                         <div class="skill-level"><?=$level?></div>
                                                     </div>
                                                 <?php endforeach; ?>
@@ -744,13 +744,13 @@ else if ($user->userType == "sales"){
                                         if(isFavorite($companyMission->idMission, $favoriteMissions)){
                                             ?>
                                             <a href="<?php echo base_url('user/removeFromFavorite/'.$companyMission->idMission);?>">
-                                                <i class="fas fa-heart text-3xl lg:text-xl text-red-800"></i>
+                                                <i class="fas fa-heart text-4xl lg:text-xl text-red-800"></i>
                                             </a>
                                             <?php
                                         } else {
                                             ?>
                                             <a href="<?php echo base_url('user/addToFavorite/'.$companyMission->idMission);?>">
-                                                <i class="far fa-heart text-3xl lg:text-xl text-red-800"></i>
+                                                <i class="far fa-heart text-4xl lg:text-xl text-red-800"></i>
                                             </a>
                                             <?php
                                         }

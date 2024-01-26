@@ -13,7 +13,7 @@
 
 <!-- Main modal -->
 <?php if ($this->session->flashdata('message')) : ?>
-    <div class="text-2xl lg:text-base flashdata <?php echo $this->session->flashdata('status') === 'error' ? 'error' : 'success'; ?>">
+    <div class="text-3xl lg:text-base flashdata <?php echo $this->session->flashdata('status') === 'error' ? 'error' : 'success'; ?>">
         <?php echo $this->session->flashdata('message'); ?>
     </div>
     <script>
@@ -56,16 +56,16 @@
                     </div>
                     <!-- Dropdown Menu -->
                     <div id="dropdown" class=" absolute right-0 mt-2 w-64 lg:w-48 bg-white dark:bg-gray-800 rounded-md overflow-hidden shadow-xl z-10 hidden">
-                        <a href="<?php echo base_url('company/my_company');?>" class="text-2xl lg:text-base items-center space-x-2 block rounded-md px-4 py-4 text-gray-400 dark:text-gray-400 hover:bg-secondary dark:hover:text-white hover:text-gray-900 dark:hover:bg-primary">
+                        <a href="<?php echo base_url('company/my_company');?>" class="text-3xl lg:text-base items-center space-x-2 block rounded-md px-4 py-4 text-gray-400 dark:text-gray-400 hover:bg-secondary dark:hover:text-white hover:text-gray-900 dark:hover:bg-primary">
                             <i class="fas fa-user-circle"></i>
                             <span>Mon entreprise</span>
                         </a>
-                        <a href="<?php echo base_url('company/settings');?>" class="text-2xl lg:text-base items-center space-x-2 block rounded-md px-4 py-4 text-gray-400 dark:text-gray-400 hover:bg-secondary dark:hover:text-white hover:text-gray-900 dark:hover:bg-primary">
+                        <a href="<?php echo base_url('company/settings');?>" class="text-3xl lg:text-base items-center space-x-2 block rounded-md px-4 py-4 text-gray-400 dark:text-gray-400 hover:bg-secondary dark:hover:text-white hover:text-gray-900 dark:hover:bg-primary">
                             <i class="fas fa-cog"></i>
                             <span>Paramètres</span>
                         </a>
                        
-                        <a href="<?php echo base_url('company/logout');?>" class="text-2xl lg:text-base items-center space-x-2 block rounded-md px-4 py-4 text-red-600 dark:text-red-900 dark:hover:text-white hover:text-white hover:bg-red-900">
+                        <a href="<?php echo base_url('company/logout');?>" class="text-3xl lg:text-base items-center space-x-2 block rounded-md px-4 py-4 text-red-600 dark:text-red-900 dark:hover:text-white hover:text-white hover:bg-red-900">
                             <i class="fas fa-sign-out-alt"></i>
                             <span>Déconnexion</span>
                         </a>

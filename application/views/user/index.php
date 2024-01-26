@@ -425,13 +425,13 @@ if($totalInfos == 1 ){
                                         if(isFavorite($mission->idMission, $favoriteMissions)){
                                     ?>
                                     <a href="<?php echo base_url('user/removeFromFavorite/'.$mission->idMission);?>">
-                                        <i class="fas fa-heart text-3xl lg:text-xl text-red-800"></i>
+                                        <i class="fas fa-heart text-4xl lg:text-xl text-red-800"></i>
                                     </a>
                                     <?php
                                         } else {
                                     ?>
                                     <a href="<?php echo base_url('user/addToFavorite/'.$mission->idMission);?>">
-                                        <i class="fas fa-heart text-3xl lg:text-xl text-red-800"></i>
+                                        <i class="fas fa-heart text-4xl lg:text-xl text-red-800"></i>
                                     </a>
                                     <?php
                                         }
@@ -615,13 +615,13 @@ if($totalInfos == 1 ){
                                 if(isFavorite($mission->idMission, $favoriteMissions)){
                                     ?>
                                     <a href="<?php echo base_url('user/removeFromFavorite/'.$mission->idMission);?>">
-                                        <i class="fas fa-heart text-3xl lg:text-xl text-red-800"></i>
+                                        <i class="fas fa-heart text-4xl lg:text-xl text-red-800"></i>
                                     </a>
                                     <?php
                                 } else {
                                     ?>
                                     <a href="<?php echo base_url('user/addToFavorite/'.$mission->idMission);?>">
-                                        <i class="far fa-heart text-3xl lg:text-xl text-red-800"></i>
+                                        <i class="far fa-heart text-4xl lg:text-xl text-red-800"></i>
                                     </a>
                                     <?php
                                 }
@@ -700,7 +700,7 @@ if($totalInfos == 1 ){
                         ?>
                     <?php } else { ?>
                         <p class="mt-2 mb-4"> Aucune expérience disponible. </p>
-                        <a href="<?php echo base_url('User/profil');?>" class="text-2xl lg:text-base py-2 px-4 bg-primary text-white rounded-full">Ajouter une expérience</a>
+                        <a href="<?php echo base_url('User/profil');?>" class="text-3xl lg:text-base py-2 px-4 bg-primary text-white rounded-full">Ajouter une expérience</a>
                     <?php } ?>
                 </div>
 
@@ -739,7 +739,7 @@ if($totalInfos == 1 ){
 
                     ?>
                         <p class="mt-2 mb-4"> Aucune compétences et expertises renseignées. </p>
-                        <a href="<?php echo base_url('User/profil');?>" class="text-2xl lg:text-base py-2 px-4 bg-primary text-white rounded-full">Ajouter une compétence</a>
+                        <a href="<?php echo base_url('User/profil');?>" class="text-3xl lg:text-base py-2 px-4 bg-primary text-white rounded-full">Ajouter une compétence</a>
                     <?php } ?>
                 </div>
 

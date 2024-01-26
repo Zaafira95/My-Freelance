@@ -269,7 +269,7 @@ if($totalInfos == 1 ){
                                         <!-- Logo entreprise --> 
                                         <?php foreach ($missionCompany[$mission->idMission] as $company) : ?>
                                             <?php if (is_object($company)) : ?>
-                                            <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="w-16 h-16 lg:w-10 rounded-full">
+                                            <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="object-cover w-16 h-16 lg:w-10 rounded-full">
                                             <?php endif; ?>
                                         <?php endforeach; ?>
                                         <!-- Fin logo entreprise -->
@@ -474,7 +474,7 @@ if($totalInfos == 1 ){
                                 <div class="mr-4">
                                     <?php foreach ($missionCompany[$mission->idMission] as $company) : ?>
                                         <?php if (is_object($company)) : ?>
-                                            <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="w-16 h-16 lg:w-10 rounded-full">
+                                            <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="object-cover w-16 h-16 lg:w-10 rounded-full">
                                         <?php endif; ?>
                                     <?php endforeach; ?>
                                 </div>
@@ -648,7 +648,7 @@ if($totalInfos == 1 ){
                                 $user->userAvatarPath = 'assets/img/default-avatar.png';
                             }
                             ?>
-                            <img src="<?php echo base_url($user->userAvatarPath); ?>" alt="Avatar" class="w-20 h-20 p-0.5 rounded-full ring-2 ring-primary">
+                            <img src="<?php echo base_url($user->userAvatarPath); ?>" alt="Avatar" class="object-cover w-20 h-20 p-0.5 rounded-full ring-2 ring-primary">
                         </div>
 
                             <h3 class="text-lg font-medium mt-2"><?=$user->userFirstName .' '. $user->userLastName?></h3>

@@ -16,3 +16,6 @@ Kassim le 26/01/2024 15h50:
 - Branch : Fix
     - Ajustement de l'icône coeur dans Mission view
     
+Kassim le 26/01/2024 18h40:
+- Branch : Fix
+    - Arranger les images : photos de profil, photos entreprise etc

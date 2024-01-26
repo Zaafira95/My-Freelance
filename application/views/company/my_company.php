@@ -428,7 +428,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                                 $imageCount++; ?>
                                 <div class="rounded-lg flex items-center justify-center">
                                     <div class="w-full h-full flex items-center justify-center" style="width:500px; height:500px;">
-                                        <img src="<?=base_url($companyPhoto->companyPhotosPath)?>" class="w-full h-full rounded-lg" alt="Image de l'entreprise" style="width:100%;">
+                                        <img src="<?=base_url($companyPhoto->companyPhotosPath)?>" class="object-cover w-full h-full rounded-lg" alt="Image de l'entreprise" style="width:100%;">
                                     </div>
                                 </div>
                             <?php endforeach; ?>

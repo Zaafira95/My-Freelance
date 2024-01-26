@@ -93,7 +93,7 @@ if ($totalCount > 0) {
                 <div class="relative flex grid-cols-2 items-center overflow-hidden bg-white rounded-lg mb-4 dark:bg-gray-800 py-4 px-4">
                 <div class="flex flex-1">
                         <div>
-                            <img src="<?php echo base_url($user->userAvatarPath); ?>" class="w-40 h-40 rounded-full" alt="Photo de profil">
+                            <img src="<?php echo base_url($user->userAvatarPath); ?>" class="object-cover w-40 h-40 rounded-full" alt="Photo de profil">
                         </div>
                         <div class="ml-4">
                             <div class="flex">

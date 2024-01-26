@@ -35,7 +35,7 @@ class Gpt3 extends CI_Controller {
 
         // Affichez le message généré à l'utilisateur
         // Vous pouvez le passer à votre vue pour l'afficher
-        echo $message_genere;
+        // echo $message_genere;
     }
 }
 ?>

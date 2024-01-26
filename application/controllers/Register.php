@@ -117,7 +117,7 @@ class Register extends CI_Controller {
                     if (!$this->upload->do_upload('avatar-upload')) {
                         // Erreur lors du téléchargement du fichier
                         $error = $this->upload->display_errors();
-                        echo "Erreur lors du téléchargement de l'avatar";
+                        // echo "Erreur lors du téléchargement de l'avatar";
                         // Gérez l'erreur en conséquence
                     } else {
                         // Téléchargement du fichier réussi
@@ -174,7 +174,7 @@ class Register extends CI_Controller {
                 if (!$this->upload->do_upload('banner-upload')) {
                     // Erreur lors du téléchargement du fichier
                     $error = $this->upload->display_errors();
-                    echo "Erreur lors du téléchargement de l'image";
+                    // echo "Erreur lors du téléchargement de l'image";
                     // Gérez l'erreur en conséquence
                 } else {
                     // Téléchargement du fichier réussi
@@ -205,7 +205,7 @@ class Register extends CI_Controller {
                 if (!$this->upload->do_upload('companyLogo')) {
                     // Erreur lors du téléchargement du fichier
                     $error = $this->upload->display_errors();
-                    echo "Erreur lors du téléchargement de l'image";
+                    // echo "Erreur lors du téléchargement de l'image";
                 } else {
                     // Téléchargement du fichier réussi
                     // Récupérer les informations sur le fichier téléchargé
@@ -246,7 +246,7 @@ class Register extends CI_Controller {
                         if (!$this->upload->do_upload('singleFile')) {
                             // Erreur lors du téléchargement du fichier
                             $error = $this->upload->display_errors();
-                            echo "Erreur lors du téléchargement de l'image : " . $error;
+                            // echo "Erreur lors du téléchargement de l'image : " . $error;
                             // Gérez l'erreur en conséquence
                         } else {
                             // Téléchargement du fichier réussi

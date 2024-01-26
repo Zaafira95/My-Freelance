@@ -56,7 +56,7 @@ class Company extends CI_Controller {
             $this->load->view('company/index', $data);
         }
         else {
-            echo "Erreur 1 lors de la récupération des informations de l'utilisateur";
+            // echo "Erreur 1 lors de la récupération des informations de l'utilisateur";
         }
     }
 
@@ -600,7 +600,7 @@ class Company extends CI_Controller {
             if (!$this->upload->do_upload('banner-upload')) {
                 // Erreur lors du téléchargement du fichier
                 $error = $this->upload->display_errors();
-                echo "Erreur lors du téléchargement de l'image";
+                // echo "Erreur lors du téléchargement de l'image";
                 // Gérez l'erreur en conséquence
             } else {
                 // Téléchargement du fichier réussi
@@ -613,7 +613,7 @@ class Company extends CI_Controller {
                 // Mettre à jour le chemin de l'avatar de l'utilisateur dans la base de données
                 $this->Company_model->updateBannerPath($companyId, $companyBannerPath);
     
-                echo "Image téléchargée avec succès";
+                // echo "Image téléchargée avec succès";
             }
         }
     
@@ -649,7 +649,7 @@ class Company extends CI_Controller {
             if (!$this->upload->do_upload('logo-upload')) {
                 // Erreur lors du téléchargement du fichier
                 $error = $this->upload->display_errors();
-                echo "Erreur lors du téléchargement de l'image";
+                // echo "Erreur lors du téléchargement de l'image";
                 // Gérez l'erreur en conséquence
             } else {
                 // Téléchargement du fichier réussi
@@ -661,7 +661,7 @@ class Company extends CI_Controller {
                 // Mettre à jour le chemin de l'avatar de l'utilisateur dans la base de données
                 $this->Company_model->updateLogoPath($companyId, $companyLogoPath);
     
-                echo "Image téléchargée avec succès";
+                // echo "Image téléchargée avec succès";
             }
         }
 
@@ -702,7 +702,7 @@ class Company extends CI_Controller {
                 if (!$this->upload->do_upload($photoNameInput)) {
                     // Erreur lors du téléchargement du fichier
                     $error = $this->upload->display_errors();
-                    echo "Erreur lors du téléchargement de l'image";
+                    // echo "Erreur lors du téléchargement de l'image";
                     // Gérez l'erreur en conséquence
                 } else {
                     // Téléchargement du fichier réussi
@@ -767,7 +767,7 @@ class Company extends CI_Controller {
             if (!$this->upload->do_upload('photo-upload')) {
                 // Erreur lors du téléchargement du fichier
                 $error = $this->upload->display_errors();
-                echo "Erreur lors du téléchargement de l'image";
+                // echo "Erreur lors du téléchargement de l'image";
                 // Gérez l'erreur en conséquence
             } else {
                 // Téléchargement du fichier réussi
@@ -779,7 +779,7 @@ class Company extends CI_Controller {
                 // Insérer le nouveau chemin de l'image dans la table 'companyphotos'
                 $this->Company_model->insertPhotoPath($companyId, $companyPhotoPath);
     
-                echo "Image téléchargée avec succès";
+                // echo "Image téléchargée avec succès";
             }
         }
     

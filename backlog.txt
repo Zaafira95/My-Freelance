@@ -12,3 +12,6 @@ Kassim le 26/01/2024 15h40:
 - Branch : Fix
     - Retirer les console.log, echo, var_dump etc
     
+Zaafira le 26/01/2024 15h40:
+- Branch : Portfolio 
+    - Autoriser que les PDF pour le Portfolio

@@ -276,9 +276,19 @@ class Register extends CI_Controller {
             $this->email->subject('Activation de votre compte Café Crème Community');
 
             // Lien d'activation
-            $activationLink = "http://localhost:8888/CC-WebApp/login?token=$activationToken";
+            $activationLink = base_url() . 'login?token=' . $activationToken;
 
-            $this->email->message("Veuillez cliquer sur ce lien pour activer votre compte : $activationLink");
+             // Données à passer à la vue
+            $data = [
+                'activationLink' => $activationLink,
+                // autres données si nécessaire
+            ];
+
+            // Lien d'activation
+            $body = $this->load->view('email/register_email', $data, TRUE);
+
+            $this->email->set_mailtype("html");
+            $this->email->message($body);
 
             if ($this->email->send()) {
                 //$this->session->set_flashdata('message', 'Vous êtes bien enregistré. Connectez-vous pour accéder à votre compte.');
@@ -287,7 +297,7 @@ class Register extends CI_Controller {
                 $this->load->view('login_view');
             } else {
                 // Erreur lors de l'enregistrement
-                $this->session->set_flashdata('message', 'Erreur lors de l\'enregistrement. Veuillez réessayer.');
+                $this->session->set_flashdata('message', 'Erreur lors de l\'envoi du mail. Veuillez réessayer.');
                 $this->session->set_flashdata('status', 'error');
                 $this->load->view('register_view');
             }

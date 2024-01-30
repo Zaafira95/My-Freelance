@@ -10,7 +10,7 @@ class Login_model extends CI_Model {
         $user = $query->row();
 
         if ($user) {
-            if (password_verify($userPassword, $user->userPassword)) {
+            if (password_verify($userPassword, $user->userPassword) && ($user->userIsActive == 1)) {
                 return $user;
             }
         }
@@ -28,6 +28,22 @@ class Login_model extends CI_Model {
         $this->db->where('userId', $userId);
         $query = $this->db->get('users');
         return $query->row();
+    }
+
+    public function activateAccount($activationToken) {
+        $this->db->where('userActivationToken', $activationToken);
+        $query = $this->db->get('users');
+
+        if ($query->num_rows() == 1) {
+            $user = $query->row();
+            $this->db->where('userId', $user->userId);
+            $this->db->update('users', ['userIsActive' => 1, 'userActivationToken' => NULL]);
+
+            if ($this->db->affected_rows() > 0) {
+                return true;
+            }
+        }
+        return false;
     }
 }
 ?>

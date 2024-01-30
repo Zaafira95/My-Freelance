@@ -66,6 +66,9 @@ class Register extends CI_Controller {
         // hash password
         $userPassword = password_hash($userPassword, PASSWORD_DEFAULT);
 
+        // Génération d'un token unique
+        $activationToken = bin2hex(random_bytes(16));
+
         $userType = $this->input->post('userType');
 
         if($userType == 'freelance'){  
@@ -95,7 +98,7 @@ class Register extends CI_Controller {
             $dateFinIndisponibilite = $this->input->post('dateFinIndisponibilite');
 
 
-            $result = $this->Register_model->registerUser($userEmail, $userPassword, $userType, $userFirstName, $userLastName, $userVille, $userTelephone, $userJobId, $userTJM, $userJobType, $userExpertise, $userJobTime, $userBio, $userIsAvailable, $userJobTimePartielOrFullTime, $dateFinIndisponibilite);
+            $result = $this->Register_model->registerUser($userEmail, $userPassword, $userType, $userFirstName, $userLastName, $userVille, $userTelephone, $userJobId, $userTJM, $userJobType, $userExpertise, $userJobTime, $userBio, $userIsAvailable, $userJobTimePartielOrFullTime, $dateFinIndisponibilite, $activationToken);
 
             if ($result !== false) {
                 $userId = $result;
@@ -149,7 +152,7 @@ class Register extends CI_Controller {
 
             $result = $this->Register_model->registerCompany($userEmail, $userPassword, $userType, 
             $companyUserFirstName, $companyUserLastName, $companyUserTelephone, $companyName, $companyVille, 
-            $companySlogan, $companySecteur, $companyDescription, $companyAvantages);
+            $companySlogan, $companySecteur, $companyDescription, $companyAvantages, $activationToken);
 
             $companyId = $result;
 
@@ -266,10 +269,39 @@ class Register extends CI_Controller {
 
         if ($result) {
             // Enregistrement réussi
-            $this->session->set_flashdata('message', 'Vous êtes bien enregistré. Connectez-vous pour accéder à votre compte.');
-            $this->session->set_flashdata('status', 'success');
+
+            $this->load->library('email');
+            $this->email->from('no-reply@cafe-creme.agency', 'Café Crème Community');
+            $this->email->to($userEmail); // Assurez-vous d'utiliser l'email de l'utilisateur
+            $this->email->subject('Activation de votre compte Café Crème Community');
+
+            // Lien d'activation
+            $activationLink = base_url() . 'login?token=' . $activationToken;
+
+             // Données à passer à la vue
+            $data = [
+                'activationLink' => $activationLink,
+                // autres données si nécessaire
+            ];
+
+            // Lien d'activation
+            $body = $this->load->view('email/register_email', $data, TRUE);
+
+            $this->email->set_mailtype("html");
+            $this->email->message($body);
+
+            if ($this->email->send()) {
+                //$this->session->set_flashdata('message', 'Vous êtes bien enregistré. Connectez-vous pour accéder à votre compte.');
+                $this->session->set_flashdata('message', 'Un mail vous a été envoyé pour activer votre compte.');
+                $this->session->set_flashdata('status', 'success');
                 $this->load->view('login_view');
-            
+            } else {
+                // Erreur lors de l'enregistrement
+                $this->session->set_flashdata('message', 'Erreur lors de l\'envoi du mail. Veuillez réessayer.');
+                $this->session->set_flashdata('status', 'error');
+                $this->load->view('register_view');
+            }
+
         } else {
             // Erreur lors de l'enregistrement
             $this->session->set_flashdata('message', 'Erreur lors de l\'enregistrement. Veuillez réessayer.');

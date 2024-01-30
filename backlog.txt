@@ -25,3 +25,7 @@ Kassim le 30/01/2024 17h50:
 - Branch : Fix
     - Push with all modifications to merge with main and mails
 
+
+Zaafira le 26/01/2024 15h40:
+- Branch : Portfolio 
+    - Autoriser que les PDF pour le Portfolio

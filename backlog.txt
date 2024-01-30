@@ -19,3 +19,9 @@ Kassim le 26/01/2024 15h50:
 Kassim le 26/01/2024 18h40:
 - Branch : Fix
     - Arranger les images : photos de profil, photos entreprise etc
+
+
+Kassim le 30/01/2024 17h50:
+- Branch : Fix
+    - Push with all modifications to merge with main and mails
+

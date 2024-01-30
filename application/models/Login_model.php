@@ -29,5 +29,19 @@ class Login_model extends CI_Model {
         $query = $this->db->get('users');
         return $query->row();
     }
+
+    public function savePasswordToken($userEmail, $resetPasswordToken) {
+        $this->db->where('userEmail', $userEmail);
+        $query = $this->db->get('users');
+        $user = $query->row();
+
+        if($user) {
+            $this->db->set('userResetPasswordToken', $resetPasswordToken);
+            $this->db->where('userId', $user->userId);
+            $this->db->update('users');
+        }
+        
+        return false;
+    }
 }
 ?>

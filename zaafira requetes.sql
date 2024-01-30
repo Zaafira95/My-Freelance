@@ -1,1 +1,3 @@
-ALTER TABLE `users` ADD `userDateFinIndisponibilite` DATE NULL DEFAULT NULL AFTER `userCompanyId`;
+/* reset password token */
+
+ALTER TABLE `users` ADD `userResetPasswordToken` VARCHAR(255) NULL DEFAULT NULL AFTER `userIsActive`;

@@ -54,6 +54,30 @@ class Login extends CI_Controller {
         }
     }
     
+    public function forgot_password() {
+        if ($this->session->userdata('userId')) {
+            redirect('user');
+        }
+        $this->load->view('login_view');
+    }
+    
+    public function forgotPassword() {
+        $userEmail = $this->input->post('userEmail');
+        $resetPasswordToken =  bin2hex(random_bytes(16));
+
+        if($this->Login_model->savePasswordToken($userEmail, $resetPasswordToken)) {
+            //send email
+            $this->session->set_flashdata('message', 'Un lien de réinitialisation vous a été envoyé.');
+            $this->session->set_flashdata('status', 'success');
+            $this->load->view('login');
+        }
+        else {
+            $this->session->set_flashdata('message', 'Cette adresse mail n\'a pas de compte');
+            $this->session->set_flashdata('status', 'error');
+            $this->load->view('forgot_password_view'); 
+        }
+        
+    }
 
     public function send_email()
 {

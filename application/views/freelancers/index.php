@@ -140,7 +140,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                                                 $freelancer->userAvatarPath = 'assets/img/default-avatar.png';
                                             }
                                         ?>
-                                        <img src="<?php echo base_url($freelancer->userAvatarPath); ?>" alt="Avatar" class="w-16 h-16 lg:w-10 rounded-full">
+                                        <img src="<?php echo base_url($freelancer->userAvatarPath); ?>" alt="Avatar" class="object-cover w-16 h-16 lg:w-10 rounded-full">
                                     </div>
                                    
                                     <div class="w-3/4 mr-4">
@@ -267,7 +267,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                         </a>
                     <?php endforeach; ?>
                     </div>
-                        <p class="text-3xl lg:text-xl mt-10 hidden text-left" id="no-freelancer-found">Aucun freelance n'a été trouvée.</p>
+                        <p class="text-4xl lg:text-xl mt-10 hidden text-left" id="no-freelancer-found">Aucun freelance n'a été trouvée.</p>
                     </div>
                 </div>
             </div>

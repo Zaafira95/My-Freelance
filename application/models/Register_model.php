@@ -196,7 +196,9 @@ class Register_model extends CI_Model {
     }
     
     public function get_all_secteurs() {
+        $this->db->order_by('secteurName', 'ASC');
         $query = $this->db->get('secteurs'); // Remplacez 'skills' par le nom exact de votre table de compétences si ce n'est pas le cas.
+        // order by secteurName asc
         return $query->result_array();
     }
 

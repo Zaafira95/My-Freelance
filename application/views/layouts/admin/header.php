@@ -31,7 +31,7 @@
     <nav class="bg-white px-4 lg:px-6 py-6 dark:bg-gray-800">
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
             <a href="<?php echo base_url('/');?>" class="flex items-center">
-                <img src="<?php echo base_url('assets/img/logo.svg');?>" class="mr-3 h-8 sm:h-9" id="logo" alt="Café Crème Community"/>
+                <img src="<?php echo base_url('assets/img/logo.svg');?>" class="object-cover mr-3 h-8 sm:h-9" id="logo" alt="Café Crème Community"/>
                 <!-- <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span> -->
             </a>
             <div class="flex items-center lg:order-2">
@@ -48,7 +48,7 @@
                 <div class="relative">
                     <!-- Avatar avec une bordure primary de 3px -->
                     <div class="rounded-full border-10 border-primary cursor-pointer" onclick="toggleDropdown()">
-                        <img src="<?php echo base_url($user->userAvatarPath); ?>" alt="Avatar" class="w-10 h-10 p-0.5 rounded-full ring-2 ring-primary">
+                        <img src="<?php echo base_url($user->userAvatarPath); ?>" alt="Avatar" class="object-cover w-10 h-10 p-0.5 rounded-full ring-2 ring-primary">
                     </div>
                     <!-- Dropdown Menu -->
                     <div id="dropdown" class=" absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md overflow-hidden shadow-xl z-10 hidden">

@@ -117,16 +117,25 @@ class Login extends CI_Controller {
     }
 
     public function resetPassword() {
+        $token = $_GET['token'] ?? '';
         $this->load->model('Login_model');
         $userEmail = $this->input->post('userEmail');
         $userPassword = $this->input->post('userPassword');
         // hash password
         $userPassword = password_hash($userPassword, PASSWORD_DEFAULT);
+        $realUserEmail = $this->Login_model->checkResetPasswordToken($token);
 
-        $this->Login_model->resetUserPassword($userEmail, $userPassword);
-        $this->session->set_flashdata('message', 'Votre mot de passe a bien été mis à jour !');
-        $this->session->set_flashdata('status', 'success');
-        $this->load->view('login_view');
+        // Vérifier que l'email n'a pas été modifiée
+        if($realUserEmail == $userEmail){
+            $this->Login_model->resetUserPassword($userEmail, $userPassword);
+            $this->session->set_flashdata('message', 'Votre mot de passe a bien été mis à jour !');
+            $this->session->set_flashdata('status', 'success');
+            $this->load->view('login_view');
+        } else {
+            $this->session->set_flashdata('message', 'Une erreur s\'est produite. Veuillez réessayer.');
+            $this->session->set_flashdata('status', 'error');
+            redirect($_SERVER['HTTP_REFERER']); 
+        }
     }
 
 }

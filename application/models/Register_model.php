@@ -85,7 +85,7 @@ class Register_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function RegisterUser($userEmail, $userPassword, $userType, $userFirstName, $userLastName, $userVille, $userTelephone, $userJobId, $userTJM, $userJobType, $userExpertise, $userJobTime, $userBio, $userIsAvailable, $userJobTimePartielOrFullTime, $dateFinIndisponibilite){
+    public function registerUser($userEmail, $userPassword, $userType, $userFirstName, $userLastName, $userVille, $userTelephone, $userJobId, $userTJM, $userJobType, $userExpertise, $userJobTime, $userBio, $userIsAvailable, $userJobTimePartielOrFullTime, $dateFinIndisponibilite, $activationToken){
         $data = array(
             'userEmail' => $userEmail,
             'userPassword' => $userPassword,
@@ -101,7 +101,8 @@ class Register_model extends CI_Model {
             'userBio' => $userBio,
             'userIsAvailable' => $userIsAvailable,
             'userJobTimePartielOrFullTime' => $userJobTimePartielOrFullTime,
-            'userDateFinIndisponibilite' => $dateFinIndisponibilite
+            'userDateFinIndisponibilite' => $dateFinIndisponibilite, 
+            'userActivationToken' => $activationToken
         );
         $this->db->insert('users', $data);
 
@@ -127,7 +128,7 @@ class Register_model extends CI_Model {
     
     public function registerCompany($userEmail, $userPassword, $userType, 
     $companyUserFirstName, $companyUserLastName, $companyUserTelephone, $companyName, $companyVille, 
-    $companySlogan, $companySecteur, $companyDescription, $companyAvantages){
+    $companySlogan, $companySecteur, $companyDescription, $companyAvantages, $activationToken){
         
         $data = array(
             'userEmail' => $userEmail,
@@ -135,7 +136,8 @@ class Register_model extends CI_Model {
             'userType' => $userType,
             'userFirstName' => $companyUserFirstName,
             'userLastName' => $companyUserLastName,
-            'userTelephone' => $companyUserTelephone
+            'userTelephone' => $companyUserTelephone,
+            'userActivationToken' => $activationToken
         );
         $this->db->insert('users', $data);
 
@@ -194,7 +196,9 @@ class Register_model extends CI_Model {
     }
     
     public function get_all_secteurs() {
+        $this->db->order_by('secteurName', 'ASC');
         $query = $this->db->get('secteurs'); // Remplacez 'skills' par le nom exact de votre table de compétences si ce n'est pas le cas.
+        // order by secteurName asc
         return $query->result_array();
     }
 

@@ -70,7 +70,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
             <form action="<?=base_url("company/addRating/".$freelancer->userId)?>" method="post" enctype="multipart/form-data">
                 <div>
                 <div class="flex items-center">                    
-                <label for="ratingStars" class="text-2xl lg:text-base block mr-4 font-medium text-gray-900 dark:text-white">Votre note : </label>
+                <label for="ratingStars" class="text-3xl lg:text-base block mr-4 font-medium text-gray-900 dark:text-white">Votre note : </label>
 
                 <img src="<?php echo base_url('assets/img/fill-star.svg'); ?>" class="star w-8 h-8 lg:w-6 lg:h-6" onclick="setRating(1)">
                 <img src="<?php echo base_url('assets/img/light-star.svg'); ?>" class="star w-8 h-8 lg:w-6 lg:h-6" onclick="setRating(2)">
@@ -79,17 +79,17 @@ include(APPPATH . 'views/layouts/company/header.php' );
                 <img src="<?php echo base_url('assets/img/light-star.svg'); ?>" class="star w-8 h-8 lg:w-6 lg:h-6" onclick="setRating(5)">
                 </div>
 
-                <input type="text" name="ratingStars" id="ratingStars" value="1" class="text-2xl lg:text-base hidden mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                <input type="text" name="ratingStars" id="ratingStars" value="1" class="text-3xl lg:text-base hidden mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
     
-                    <label for="ratingComment" class="text-2xl lg:text-base block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Votre commentaire</label>
-                        <textarea id="ratingComment" name="ratingComment" rows="6" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"> </textarea>
+                    <label for="ratingComment" class="text-3xl lg:text-base block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Votre commentaire</label>
+                        <textarea id="ratingComment" name="ratingComment" rows="6" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"> </textarea>
 
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
-                    <button type="submit" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                    <button type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                         Valider
                     </button>
-                    <button type="button" data-modal-toggle="addRating" class="text-2xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                    <button type="button" data-modal-toggle="addRating" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
                         Annuler
                     </button>
                 </div>
@@ -116,27 +116,27 @@ include(APPPATH . 'views/layouts/company/header.php' );
             </div>
             <form action="<?= base_url("company/sendMessage/".$freelancer->userId) ?>" method="post" id="sendMessage" enctype="multipart/form-data">
                 <div>
-                    <label for="name" class="text-2xl lg:text-base block mb-2 font-medium text-gray-900 dark:text-white">Souhaitez-vous contacter ce freelance pour l'une de vos missions ?</label>
-                    <label class="text-2xl lg:text-base text-gray-500 mr-3 dark:text-gray-400">Non</label>
+                    <label for="name" class="text-3xl lg:text-base block mb-2 font-medium text-gray-900 dark:text-white">Souhaitez-vous contacter ce freelance pour l'une de vos missions ?</label>
+                    <label class="text-3xl lg:text-base text-gray-500 mr-3 dark:text-gray-400">Non</label>
                     <input type="checkbox" name="contactOrNot" id="hs-basic-with-description" class="relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-green-200">
-                    <label class="text-2xl lg:text-base text-gray-500 ml-3 dark:text-gray-400">Oui</label>
-                    <label for="companyJobs" id="labelCompanyJobs" class="text-2xl lg:text-base hidden mt-4 mb-2 font-medium text-gray-900 dark:text-white" id="companyJobsLabel">Sélectionnez votre mission</label>
-                    <select id="companyJobsSelect" name="companyJobs" class="text-2xl lg:text-base hidden mb-2 bg-gray-50 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"> <!-- Utilisez la classe hidden pour masquer par défaut -->
+                    <label class="text-3xl lg:text-base text-gray-500 ml-3 dark:text-gray-400">Oui</label>
+                    <label for="companyJobs" id="labelCompanyJobs" class="text-3xl lg:text-base hidden mt-4 mb-2 font-medium text-gray-900 dark:text-white" id="companyJobsLabel">Sélectionnez votre mission</label>
+                    <select id="companyJobsSelect" name="companyJobs" class="text-3xl lg:text-base hidden mb-2 bg-gray-50 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"> <!-- Utilisez la classe hidden pour masquer par défaut -->
                         <?php foreach ($job_for_company as $mission): ?>
                             <option value="<?= $mission->idMission ?>"><?= $mission->missionName.' - '.$mission->missionTJM.'€'?></option>
                         <?php endforeach; ?>
                     </select>
-                    <label for="message" id="labelMessage" class="text-2xl lg:text-base hidden mt-4 mb-2 font-medium text-gray-900 dark:text-white">Votre message</label>
-                    <textarea name="companyMessage" id="companyMessage" cols="20" rows="5" class="text-2xl lg:text-base hidden bg-gray-50 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                    <label for="message" id="labelMessage" class="text-3xl lg:text-base hidden mt-4 mb-2 font-medium text-gray-900 dark:text-white">Votre message</label>
+                    <textarea name="companyMessage" id="companyMessage" cols="20" rows="5" class="text-3xl lg:text-base hidden bg-gray-50 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
                     
-                    <label for="message" id="labelMessageDefault" class="text-2xl lg:text-base block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Votre message</label>
-                    <textarea name="companyMessageDefault" id="companyMessageDefault" cols="20" rows="5" class="text-2xl lg:text-base block bg-gray-50 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                    <label for="message" id="labelMessageDefault" class="text-3xl lg:text-base block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Votre message</label>
+                    <textarea name="companyMessageDefault" id="companyMessageDefault" cols="20" rows="5" class="text-3xl lg:text-base block bg-gray-50 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
-                <button type="submit" id="validerButton" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                <button type="submit" id="validerButton" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                     Valider
                 </button>
-                <button type="button" data-modal-toggle="sendMessage" class="text-2xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                <button type="button" data-modal-toggle="sendMessage" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
                     Annuler
                 </button>
                 </div>
@@ -177,7 +177,7 @@ if ($totalCount > 0) {
                 <div class="relative flex grid-cols-2 items-center overflow-hidden bg-white rounded-lg mb-4 dark:bg-gray-800 py-4 px-4">
                     <div class="flex flex-1">
                         <div>
-                            <img src="<?php echo base_url($freelancer->userAvatarPath); ?>" class="w-40 h-40 rounded-full" alt="Photo de profil">
+                            <img src="<?php echo base_url($freelancer->userAvatarPath); ?>" class="object-cover w-40 h-40 rounded-full" alt="Photo de profil">
                         </div>
                         <div class="ml-4">
                             <div class="flex">
@@ -236,12 +236,12 @@ if ($totalCount > 0) {
                                 <?php } ?>
                                 <?php } ?>
                                 <a href="#rating">
-                                    <p class="ml-2 text-2xl lg:text-base"><?=round($averageStars, 1).' ( '.$ratingCount.' avis )'?> </p>
+                                    <p class="ml-2 text-3xl lg:text-base"><?=round($averageStars, 1).' ( '.$ratingCount.' avis )'?> </p>
                                 </a>
                                 <?php
                                 if($ratingCountForAUser == 0){
                                 ?>
-                                    <button id="addRating" data-modal-toggle="addRating" class="text-2xl lg:text-base ml-4 text-primary hover:underline" type="button">
+                                    <button id="addRating" data-modal-toggle="addRating" class="text-3xl lg:text-base ml-4 text-primary hover:underline" type="button">
                                         <p>Laisser un avis</p>
                                     </button>
                                 <?php } ?>
@@ -254,13 +254,13 @@ if ($totalCount > 0) {
                             <button id="sendMessage" data-modal-toggle="sendMessage" type="button" data-te-ripple-init data-te-ripple-color="light"
                                 class="mb-2 mt-1 mr-4 inline-flex items-center rounded-full px-6 py-2.5 leading-normal text-white  transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
                                 style="background-color: #25D366">
-                                <span class="mr-2 text-2xl lg:text-base font-medium">Contacter</span>
+                                <span class="mr-2 text-3xl lg:text-base font-medium">Contacter</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
                                 </svg>
                                 </button>
                             <!-- </a> -->
-                                <p class="mb-2 mt-1 text-2xl lg:text-base font-medium inline-block px-4 py-2.5 rounded-full bg-primary text-white transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"><?=$freelancer->userTJM?> € / Jour</p>
+                                <p class="mb-2 mt-1 text-3xl lg:text-base font-medium inline-block px-4 py-2.5 rounded-full bg-primary text-white transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"><?=$freelancer->userTJM?> € / Jour</p>
 
                             </div>
                         </div>
@@ -270,7 +270,7 @@ if ($totalCount > 0) {
                     <div class="w-full lg:w-1/4 lg:sticky lg:top-0">
                         <div class="lg:w-full">
                             <div class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                                <h2 class="text-3xl lg:text-xl font-bold mb-4"> Préférences </h2> 
+                                <h2 class="text-4xl lg:text-xl font-bold mb-4"> Préférences </h2> 
 
                                 <div class="flex grid-cols-2 items-center mb-4">
                                     <?php
@@ -278,7 +278,7 @@ if ($totalCount > 0) {
                                     if($freelancer->userIsAvailable == 1){
                                     ?>
                                         <div>
-                                            <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-secondary text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">👍🏻</p>
+                                            <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-secondary text-white text-center text-4xl lg:text-xl flex items-center justify-center mr-4 pt-2">👍🏻</p>
 
                                         </div>
                                     <?php
@@ -286,7 +286,7 @@ if ($totalCount > 0) {
                                     {
                                     ?>
                                     <div>
-                                        <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-red-400 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">👎🏻</p>
+                                        <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-red-400 text-white text-center text-4xl lg:text-xl flex items-center justify-center mr-4 pt-2">👎🏻</p>
 
                                     </div>
                                     <?php
@@ -330,7 +330,7 @@ if ($totalCount > 0) {
                                     if($freelancer->userJobType == "Hybride"){
                                     ?>
                                         <div>
-                                            <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-pink-300 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">✈️</p>
+                                            <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-pink-300 text-white text-center text-4xl lg:text-xl flex items-center justify-center mr-4 pt-2">✈️</p>
 
                                         </div>
                                     <?php
@@ -339,14 +339,14 @@ if ($totalCount > 0) {
                                         if ($freelancer->userJobType == "Remote"){
                                     ?>
                                     <div>
-                                        <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-pink-300 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">✈️</p>
+                                        <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-pink-300 text-white text-center text-4xl lg:text-xl flex items-center justify-center mr-4 pt-2">✈️</p>
 
                                     </div>
                                     <?php
                                         }else{
                                     ?>
                                     <div>
-                                        <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-green-400 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">👨🏻‍💻</p>
+                                        <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-green-400 text-white text-center text-4xl lg:text-xl flex items-center justify-center mr-4 pt-2">👨🏻‍💻</p>
 
                                     </div>
                                     <?php
@@ -357,15 +357,15 @@ if ($totalCount > 0) {
                                         <?php
                                             if($freelancer->userJobType == "Hybride"){
                                             ?>
-                                                <p class="font-bold text-3xl lg:text-xl">Hybride</p>
+                                                <p class="font-bold text-4xl lg:text-xl">Hybride</p>
                                             <?php
                                                 }else if($freelancer->userJobType == "Remote"){
                                             ?>
-                                                <p class="font-bold text-3xl lg:text-xl">Télétravail</p>
+                                                <p class="font-bold text-4xl lg:text-xl">Télétravail</p>
                                             <?php
                                                 }else if($freelancer->userJobType == "Physique"){
                                             ?>
-                                                <p class="font-bold text-3xl lg:text-xl">Physique</p>
+                                                <p class="font-bold text-4xl lg:text-xl">Physique</p>
 
                                             <?php
                                                 }
@@ -375,33 +375,33 @@ if ($totalCount > 0) {
                                 </div>
                                 <div class="flex grid-cols-2 items-center mb-4">
                                     <div>
-                                        <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-orange-400 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">📍</p>
+                                        <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-orange-400 text-white text-center text-4xl lg:text-xl flex items-center justify-center mr-4 pt-2">📍</p>
                                     </div>
                                     
                                     <div>
                                         <p class="text text-2xl lg:text-lg">Localisation</p>
                                         
-                                            <p class="font-bold text-3xl lg:text-xl"><?=$freelancer->userVille?></p>
+                                            <p class="font-bold text-4xl lg:text-xl"><?=$freelancer->userVille?></p>
                                         
 
                                     </div>
                                 </div>
                                 <div class="flex grid-cols-2 items-center mb-4">
                                     <div>
-                                        <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-indigo-300 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">⏳</p>
+                                        <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-indigo-300 text-white text-center text-4xl lg:text-xl flex items-center justify-center mr-4 pt-2">⏳</p>
                                     </div>
                                     
                                     <div>
                                         <p class="text text-2xl lg:text-lg">Durée de la mission</p>
                                         
-                                        <p class="font-bold text-3xl lg:text-xl"><?=$freelancer->userJobTime?></p>
+                                        <p class="font-bold text-4xl lg:text-xl"><?=$freelancer->userJobTime?></p>
                                         
 
                                     </div>
                                 </div>
                             </div>
                             <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                                <h2 class="text-3xl lg:text-xl font-bold mb-4"> Liens utiles </h2> 
+                                <h2 class="text-4xl lg:text-xl font-bold mb-4"> Liens utiles </h2> 
                                 <div class="flex flex-col mt-2 mb-2 w-full">
                                     <?php
                                     // mail link
@@ -499,7 +499,7 @@ if ($totalCount > 0) {
 
                             </div>
                             <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white" id="rating">
-                                <h2 class="text-3xl lg:text-xl font-bold mb-4"> Avis </h2> 
+                                <h2 class="text-4xl lg:text-xl font-bold mb-4"> Avis </h2> 
                                     <div class="flex flex-col mt-2 mb-2 w-full">
                                         <?php
                                             if (is_array($raterUser) && !empty($raterUser)) {
@@ -547,8 +547,8 @@ if ($totalCount > 0) {
                                                                             <img src="<?=base_url($rating->companyLogoPath)?>" class="w-10 h-10 rounded-full flex items-center justify-center" alt="User Photo">
                                                                         </div>
                                                                         <div class="ml-4">
-                                                                            <p class="text text-2xl lg:text-base "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
-                                                                            <p class="text text-2xl lg:text-base  mt-1  text-gray-400"><?= $rating->companyName?></p>
+                                                                            <p class="text text-3xl lg:text-base "><?= $rating->userFirstName.' '.$rating->userLastName?></p>
+                                                                            <p class="text text-3xl lg:text-base  mt-1  text-gray-400"><?= $rating->companyName?></p>
                                                                         </div>
                                                                     </div>
                                                                     <div class="flex items-center mt-4 mb-4">
@@ -561,19 +561,19 @@ if ($totalCount > 0) {
                                                                                 <?php } ?>
                                                                             <?php } ?>
                                                                         </div>
-                                                                        <p class="text text-2xl lg:text-base text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
+                                                                        <p class="text text-3xl lg:text-base text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
 
                                                                     </div>  
                                                                     <div>
-                                                                        <p class="text text-2xl lg:text-base"><?= '"'.$rating->ratingComment.'"'?></p>
+                                                                        <p class="text text-3xl lg:text-base"><?= '"'.$rating->ratingComment.'"'?></p>
                                                                     </div>
                                                                 </div>
                                                             
                                                         </div>
-                                                            <button id="extra-avis-button" class="text-primary text-2xl lg:text-base mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">
+                                                            <button id="extra-avis-button" class="text-primary text-3xl lg:text-base mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">
                                                                 Voir plus
                                                             </button>
-                                                            <button id="less-avis-button" class="hidden text-primary text-2xl lg:text-base mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">
+                                                            <button id="less-avis-button" class="hidden text-primary text-3xl lg:text-base mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">
                                                                 Voir moins
                                                             </button>
 
@@ -583,7 +583,7 @@ if ($totalCount > 0) {
                                             }
                                             else {
                                                 ?>
-                                                    <p class="mt-2 mb-2 text-2xl lg:text-base"> Aucun avis pour le moment. </p>
+                                                    <p class="mt-2 mb-2 text-3xl lg:text-base"> Aucun avis pour le moment. </p>
                                                 <?php
                                             }
                                         ?>
@@ -593,12 +593,12 @@ if ($totalCount > 0) {
                     </div>
                     <div class="w-full lg:w-3/4 sticky top-0">
                         <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                            <h2 class="text-3xl lg:text-xl font-bold mb-4">À propos de moi</h2>
-                            <p class="text-2xl lg:text-base text-gray-500 mb-4 mt-4 dark:text-white"><?= $user->userBio ?></p>
+                            <h2 class="text-4xl lg:text-xl font-bold mb-4">À propos de moi</h2>
+                            <p class="text-3xl lg:text-base text-gray-500 mb-4 mt-4 dark:text-white"><?= $user->userBio ?></p>
                         </div>
                         <div class="w-full">
                             <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                                <h2 class="text-3xl lg:text-xl font-bold mb-4 flex items-center cursor-pointer" id="skillsTitle">
+                                <h2 class="text-4xl lg:text-xl font-bold mb-4 flex items-center cursor-pointer" id="skillsTitle">
                                     Compétences
                                     <i class="fas fa-chevron-down ml-2" id="skillsArrow" style='font-size:0.75rem;' data-order="asc"></i>
                                 </h2>
@@ -634,7 +634,7 @@ if ($totalCount > 0) {
                                         }
                                     ?>
                                         <div class="skill-item" data-level="<?=$level?>">
-                                            <span class="text-2xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                                            <span class="text-3xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
                                             <div class="skill-level"><?=$level?></div>
                                         </div>
                                     <?php
@@ -646,22 +646,22 @@ if ($totalCount > 0) {
                                 <div class="flex justify-end gap-4" id="legendeskills">
                                     <div class="flex items-center gap-2">
                                         <div class="w-3 h-3 mr-1 rounded-full" style="background-color: #BEE3F8;"></div>
-                                        <span class="text-gray-600 mr-2 text-2xl lg:text-base dark:text-white">Junior</span>
+                                        <span class="text-gray-600 mr-2 text-3xl lg:text-base dark:text-white">Junior</span>
                                     </div>
                                     <div class="flex items-center gap-2">
                                         <div class="w-3 h-3 mr-1 rounded-full" style="background-color: #63B3ED;"></div>
-                                        <span class="text-gray-600 mr-2 text-2xl lg:text-base dark:text-white">Intermédiaire</span>
+                                        <span class="text-gray-600 mr-2 text-3xl lg:text-base dark:text-white">Intermédiaire</span>
                                     </div>
                                     <div class="flex items-center gap-2">
                                         <div class="w-3 h-3 mr-1 rounded-full" style="background-color: #2C5282;"></div>
-                                        <span class="text-gray-600 mr-2 text-2xl lg:text-base dark:text-white">Expert</span>
+                                        <span class="text-gray-600 mr-2 text-3xl lg:text-base dark:text-white">Expert</span>
                                     </div>
                                 </div> 
                             </div>
                         </div>
                         <!-- Début section expérience -->
                         <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                            <h2 class="text-3xl lg:text-xl font-bold mb-4">Expériences</h2>
+                            <h2 class="text-4xl lg:text-xl font-bold mb-4">Expériences</h2>
                             <?php
                             if (is_array($experiences) && !empty($experiences)) {
                                 $experienceCount = 0;
@@ -698,10 +698,10 @@ if ($totalCount > 0) {
                                                     $dateDebut = strtr($dateDebut, $months);
                                                     $dateFin = strtr($dateFin, $months);
                                                     ?>
-                                                    <p class="text-2xl lg:text-base"><?= $dateDebut.' - '. $dateFin?></p>
+                                                    <p class="text-3xl lg:text-base"><?= $dateDebut.' - '. $dateFin?></p>
                                                 </div>
                                             </div>
-                                            <p class="text-2xl lg:text-base text-gray-500 mb-4 mt-4 ml-2 mr-4 dark:text-white"><?= $experience->experienceDescription ?></p>
+                                            <p class="text-3xl lg:text-base text-gray-500 mb-4 mt-4 ml-2 mr-4 dark:text-white"><?= $experience->experienceDescription ?></p>
                                             <div class="skills-container mb-4">
                                                 <?php
                                                     $dataExperienceSkills = [];
@@ -738,7 +738,7 @@ if ($totalCount > 0) {
                                                         }
                                                         ?>
                                                     <div class="skill-item" data-level="<?=$level?>">
-                                                        <span class="text-2xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                                                        <span class="text-3xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
                                                         <div class="skill-level"><?=$level?></div>
                                                     </div>
                                                 <?php
@@ -766,12 +766,12 @@ if ($totalCount > 0) {
                             ?>
                         </div>
                         <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                            <h2 class="text-3xl lg:text-xl font-bold mb-4">Portfolio & Réalisations </h2>
+                            <h2 class="text-4xl lg:text-xl font-bold mb-4">Portfolio & Réalisations </h2>
                             <?php if (is_array($attachments) && !empty($attachments)) { ?>
                                 <div class="grid grid-cols-4 gap-8">
                                     <?php foreach ($attachments as $index => $attachment) { ?>
                                         <div class="relative flex justify-center items-center border border-1 p-2 mr-4 mb-4 rounded-lg bg-white">
-                                            <h3 class="text-2xl lg:text-base font-medium"><?= $attachment->attachmentName ?></h3>
+                                            <h3 class="text-3xl lg:text-base font-medium"><?= $attachment->attachmentName ?></h3>
                                             <div class="pdf-thumbnail overflow-hidden z-10 mb-2" style="max-height: 14rem" data-pdf="<?= base_url($attachment->attachmentPath) ?>">
                                                 <div class="absolute top-0 right-0  mr-4 mt-4 flex space-x-4 z-20">
                                                 <a href="<?= base_url($attachment->attachmentPath) ?>" download class="download-icon text-gray-400 hover:text-gray-900" onclick="event.stopPropagation();">
@@ -785,7 +785,7 @@ if ($totalCount > 0) {
                                 </div>
 
                         <?php } else { ?>
-                            <p class="text-2xl lg:text-base mt-2 mb-2">Aucune pièce jointe disponible.</p>
+                            <p class="text-3xl lg:text-base mt-2 mb-2">Aucune pièce jointe disponible.</p>
                         <?php } ?>
 
                         </div>

@@ -34,10 +34,10 @@ include(APPPATH . 'views/layouts/company/header.php' );
                                 <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white"><?= $group->whatsAppGroupName?></h3>
 
                                 <!-- Description du groupe -->
-                                <p class="text-2xl lg:text-base text-gray-600 mb-4 dark:text-white"><?= $group->whatsAppGroupDescription?></p>
+                                <p class="text-3xl lg:text-base text-gray-600 mb-4 dark:text-white"><?= $group->whatsAppGroupDescription?></p>
 
                                 <!-- Bouton pour rejoindre le groupe -->
-                                <a href="<?= $group->whatsAppGroupLink?>" class="text-2xl lg:text-base block w-full text-center bg-primary hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-full hover:shadow-md transition duration-300 dark:text-white">Rejoindre</a>
+                                <a href="<?= $group->whatsAppGroupLink?>" class="text-3xl lg:text-base block w-full text-center bg-primary hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-full hover:shadow-md transition duration-300 dark:text-white">Rejoindre</a>
                             </div>
                             <?php $count++; ?>
                         <?php endforeach; ?>

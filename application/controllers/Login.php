@@ -11,6 +11,15 @@ class Login extends CI_Controller {
         if ($this->session->userdata('userId')) {
             redirect('user');
         }
+
+        $token = $_GET['token'] ?? '';
+
+        if ($this->Login_model->activateAccount($token)) {
+            $this->session->set_flashdata('message', 'Votre compte activé. Connectez-vous pour accéder à votre compte.');
+            $this->session->set_flashdata('status', 'success');
+            $this->load->view('login_view');
+        }        
+
         $this->load->view('login_view');
     }
 
@@ -28,7 +37,6 @@ class Login extends CI_Controller {
             // Récupérer toutes les informations de l'utilisateur
             $userData = $this->Login_model->getUserData($user->userId);
 
-            // Redirection administateur
 
             if ($userData->userType == 'admin') {
                 $this->session->set_flashdata('message', 'Vous êtes connecté avec succès.');
@@ -46,6 +54,8 @@ class Login extends CI_Controller {
                 $this->session->set_flashdata('status', 'success');
                 redirect('user'); 
             }
+
+            
         } 
         else {
             $this->session->set_flashdata('message', 'Identifiant invalide ou mot de passe incorrect. Veuillez réessayer');

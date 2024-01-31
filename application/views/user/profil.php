@@ -94,17 +94,17 @@ include(APPPATH . 'views/layouts/user/header.php' );
                             <?php
                                 if ($user->userAvatarPath !=='assets/img/default-avatar.png') {
                                     ?>
-                                    <a href="#" onclick="showModal('deleteAvatarConfirmationModal');" class="text-2xl lg:text-base text-red-600 hover:text-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:text-red-500 dark:hover:text-white dark:focus:ring-red-900" data-modal-toggle="deleteUserAvatar">
+                                    <a href="#" onclick="showModal('deleteAvatarConfirmationModal');" class="text-3xl lg:text-base text-red-600 hover:text-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:text-red-500 dark:hover:text-white dark:focus:ring-red-900" data-modal-toggle="deleteUserAvatar">
                                         Supprimer l'avatar
                                     </a>
                                     <div id="deleteAvatarConfirmationModal" class="hidden fixed inset-0 flex items-center justify-center z-50">
                                         <div class="fixed inset-0 bg-black opacity-50"></div>
                                         <div class="relative bg-gray-50 rounded-lg shadow p-6 border border-gray-800 dark:bg-gray-800 sm:p-5">
                                             <h3 class="text-3xl lg:text-lg font-semibold mb-4">Confirmation de suppression</h3>
-                                            <p class="text-2xl lg:text-base text-gray-700 dark:text-white mb-6">Êtes-vous sûr de vouloir supprimer votre photo de profil ?</p>
+                                            <p class="text-3xl lg:text-base text-gray-700 dark:text-white mb-6">Êtes-vous sûr de vouloir supprimer votre photo de profil ?</p>
                                             <div class="flex justify-end">
-                                                <button type="button" onclick="hideModal('deleteAvatarConfirmationModal');" class="text-2xl lg:text-base text-gray-600 inline-flex items-center hover:text-white hover:bg-gray-800 border-gray-600  focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500  dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">Annuler</button>
-                                                <a href="<?php echo base_url('user/deleteProfilPicture/'.$user->userId);?>" class="text-2xl lg:text-base text-red-800 inline-flex items-center hover:text-white hover:bg-red-900 border-red-900  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500  dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Supprimer</a>
+                                                <button type="button" onclick="hideModal('deleteAvatarConfirmationModal');" class="text-3xl lg:text-base text-gray-600 inline-flex items-center hover:text-white hover:bg-gray-800 border-gray-600  focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500  dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">Annuler</button>
+                                                <a href="<?php echo base_url('user/deleteProfilPicture/'.$user->userId);?>" class="text-3xl lg:text-base text-red-800 inline-flex items-center hover:text-white hover:bg-red-900 border-red-900  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500  dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Supprimer</a>
                                             </div>
                                         </div>
                                     </div>
@@ -114,28 +114,28 @@ include(APPPATH . 'views/layouts/user/header.php' );
 
                         </div>
 
-                    <label for="userFirstName" class="text-2xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Votre prénom *</label>
-                        <input type="text" name="userFirstName" id="userFirstName" value="<?=$user->userFirstName?>" class="text-2xl lg:text-base mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                    <label for="userLastName" class="text-2xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Votre nom *</label>
-                        <input type="text" name="userLastName" id="userLastName" value="<?=$user->userLastName?>" class="text-2xl lg:text-base mb-2 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                    <label for="userJobName" class="text-2xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Votre métier *</label>
+                    <label for="userFirstName" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Votre prénom *</label>
+                        <input type="text" name="userFirstName" id="userFirstName" value="<?=$user->userFirstName?>" class="text-3xl lg:text-base mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                    <label for="userLastName" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Votre nom *</label>
+                        <input type="text" name="userLastName" id="userLastName" value="<?=$user->userLastName?>" class="text-3xl lg:text-base mb-2 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                    <label for="userJobName" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Votre métier *</label>
                         <div class="w-full text-black bg-blue-500">    
-                            <select id="jobsAll" name="jobsAll[]"  style="font-size:1rem;" class="text-2xl lg:text-base font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <select id="jobsAll" name="jobsAll[]"  style="font-size:1rem;" class="text-3xl lg:text-base font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                                 <?php foreach ($jobsAll as $joba): ?>
-                                    <option class="text-2xl lg:text-base dark:text-black" value="<?= $joba['jobName']?>"
+                                    <option class="text-3xl lg:text-base dark:text-black" value="<?= $joba['jobName']?>"
                                         <?= ($job->jobName == $joba['jobName']) ? 'selected' : '' ?>>
                                     <?= $joba['jobName'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                    <label for="userExpertise" class="text-2xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Votre expertise *</label>
-                        <select id="userExpertise" name="userExpertise" class="text-2xl lg:text-base font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                            <option class="text-2xl lg:text-base dark:text-black" value="junior">Junior (1 à 2 ans)</option>
-                            <option class="text-2xl lg:text-base dark:text-black" value="intermediaire">Intermédiaire (3 à 5 ans)</option>
-                            <option class="text-2xl lg:text-base dark:text-black" value="expert">Expert (+ 5 ans)</option>
+                    <label for="userExpertise" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Votre expertise *</label>
+                        <select id="userExpertise" name="userExpertise" class="text-3xl lg:text-base font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <option class="text-3xl lg:text-base dark:text-black" value="junior">Junior (1 à 2 ans)</option>
+                            <option class="text-3xl lg:text-base dark:text-black" value="intermediaire">Intermédiaire (3 à 5 ans)</option>
+                            <option class="text-3xl lg:text-base dark:text-black" value="expert">Expert (+ 5 ans)</option>
                         </select>
-                    <label for="userTJM" class="text-2xl lg:text-base block mb-1 mt-2 font-medium text-gray-900 dark:text-white">Votre TJM *</label>
-                        <input type="number" name="userTJM" id="userTJM" value="<?=$user->userTJM?>" class="text-2xl lg:text-base mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" min="100" required>
+                    <label for="userTJM" class="text-3xl lg:text-base block mb-1 mt-2 font-medium text-gray-900 dark:text-white">Votre TJM *</label>
+                        <input type="number" name="userTJM" id="userTJM" value="<?=$user->userTJM?>" class="text-3xl lg:text-base mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" min="100" required>
                     <!-- <label for="userTelephone" class="block mb-1  font-medium text-gray-900 dark:text-white">Votre téléphone *</label>
                         <input type="text" name="userTelephone" id="userTelephone" value="<?=$user->userTelephone?>" class="mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" min="100" required> -->
                     
@@ -143,14 +143,14 @@ include(APPPATH . 'views/layouts/user/header.php' );
                         <input type="tel" name="userTelephone" id="userTelephone" value="<?=$user->userTelephone?>" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                         <div id="selected-country-code"></div> -->
 
-                        <p id="errorMessageUserData" class="text-2xl lg:text-base text-red-500  mt-2 hidden">Veuillez remplir tous les champs correctement</p>
-                        <p id="tjmErrorMessage" class="text-2xl lg:text-base text-red-500  mt-2 hidden">Le TJM doit être supérieur à 100</p>
+                        <p id="errorMessageUserData" class="text-3xl lg:text-base text-red-500  mt-2 hidden">Veuillez remplir tous les champs correctement</p>
+                        <p id="tjmErrorMessage" class="text-3xl lg:text-base text-red-500  mt-2 hidden">Le TJM doit être supérieur à 100</p>
                     </div>
                 <div class="flex items-center space-x-4 mt-4">
-                    <button type="submit" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                    <button type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                         Valider
                     </button>
-                    <button type="button" data-modal-toggle="updateUserData" class="text-2xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                    <button type="button" data-modal-toggle="updateUserData" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
                         Annuler
                     </button>
                 </div>
@@ -177,10 +177,10 @@ include(APPPATH . 'views/layouts/user/header.php' );
             <!-- Modal body -->
             <form action="<?=base_url("user/updateUserPreference")?>" method="post" id ="userPreferenceForm" enctype="multipart/form-data">
                 <div>
-                    <label for="name" class="text-2xl lg:text-base block mb-2  font-medium text-gray-900 dark:text-white">Êtes-vous disponible pour travailler dès maintenant ?</label>
-                    <label class="text-2xl lg:text-base text-gray-500 mr-3 dark:text-gray-400">Non</label>
-                    <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description-preference" <?php echo $checkboxChecked; ?> onchange="displayAvailibilityOptionsPreference()" class="text-2xl lg:text-base relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-green-200">
-                    <label class="text-2xl lg:text-base text-gray-500 ml-3 dark:text-gray-400">Oui</label>
+                    <label for="name" class="text-3xl lg:text-base block mb-2  font-medium text-gray-900 dark:text-white">Êtes-vous disponible pour travailler dès maintenant ?</label>
+                    <label class="text-3xl lg:text-base text-gray-500 mr-3 dark:text-gray-400">Non</label>
+                    <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description-preference" <?php echo $checkboxChecked; ?> onchange="displayAvailibilityOptionsPreference()" class="text-3xl lg:text-base relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-green-200">
+                    <label class="text-3xl lg:text-base text-gray-500 ml-3 dark:text-gray-400">Oui</label>
                     <div id="isAvailaibleOptionsPreference" style="display: <?php echo $checkboxChecked == 'checked' ? "block" : "none" ?>" class=" mt-4 mb-2">
                         <label for="name" class="block mb-2 font-medium text-gray-900 dark:text-white">Combien de jours par semaine êtes-vous disponible ?</label>
                         <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="bg-gray-50 border mt-2 border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -216,36 +216,36 @@ include(APPPATH . 'views/layouts/user/header.php' );
                         <p id="errorDateFinIndisponibilitePreference" class="mt-2 text-red-500" style="display:none;">Veuilllez renseigner une date</p>
                     </div>
 
-                    <label for="userJobType" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Type de poste</label>
+                    <label for="userJobType" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Type de poste</label>
                     
                     <div class="flex flex-1 gap-6 mb-3">
                         <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700 w-full mr-4">
-                            <input id="teletravail" type="radio" value="Remote" name="userJobType" class="text-2xl lg:text-base w-6 h-6 lg:w-4 lg:h-4  text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" <?php echo ($user->userJobType === 'Remote') ? 'checked' : ''; ?> required>
-                            <label for="teletravail" class="text-2xl lg:text-base py-4 ml-2  font-medium text-gray-900 dark:text-white">Télétravail</label>
+                            <input id="teletravail" type="radio" value="Remote" name="userJobType" class="text-3xl lg:text-base w-6 h-6 lg:w-4 lg:h-4  text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" <?php echo ($user->userJobType === 'Remote') ? 'checked' : ''; ?> required>
+                            <label for="teletravail" class="text-3xl lg:text-base py-4 ml-2  font-medium text-gray-900 dark:text-white">Télétravail</label>
                         </div>
                         <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700 w-full mr-4">
-                            <input id="hybride" type="radio" value="Hybride" name="userJobType" class="text-2xl lg:text-base w-6 h-6 lg:w-4 lg:h-4  text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" <?php echo ($user->userJobType === 'Hybride') ? 'checked' : ''; ?>>
-                            <label for="hybride" class="text-2xl lg:text-base py-4 ml-2  font-medium text-gray-900 dark:text-white">Hybride</label>
+                            <input id="hybride" type="radio" value="Hybride" name="userJobType" class="text-3xl lg:text-base w-6 h-6 lg:w-4 lg:h-4  text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" <?php echo ($user->userJobType === 'Hybride') ? 'checked' : ''; ?>>
+                            <label for="hybride" class="text-3xl lg:text-base py-4 ml-2  font-medium text-gray-900 dark:text-white">Hybride</label>
                         </div>
                         <div class="flex items-center pl-4 border  border-gray-200 rounded dark:border-gray-700 w-full mr-4">
-                            <input id="sur-site" type="radio" value="Physique" name="userJobType" class="text-2xl lg:text-base w-6 h-6 lg:w-4 lg:h-4  text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" <?php echo ($user->userJobType === 'Physique') ? 'checked' : ''; ?>>
-                            <label for="sur-site" class="text-2xl lg:text-base py-4 ml-2  font-medium text-gray-900 dark:text-white">Physique</label>
+                            <input id="sur-site" type="radio" value="Physique" name="userJobType" class="text-3xl lg:text-base w-6 h-6 lg:w-4 lg:h-4  text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" <?php echo ($user->userJobType === 'Physique') ? 'checked' : ''; ?>>
+                            <label for="sur-site" class="text-3xl lg:text-base py-4 ml-2  font-medium text-gray-900 dark:text-white">Physique</label>
                         </div>
                     </div>
-                    <p id="errorMessageJobType" class="text-2xl lg:text-base text-red-500" style="display:none;">Veuillez choisir un type de poste</p>
-                    <label for="userVille" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Localisation</label>
+                    <p id="errorMessageJobType" class="text-3xl lg:text-base text-red-500" style="display:none;">Veuillez choisir un type de poste</p>
+                    <label for="userVille" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Localisation</label>
                     <div>    
                         <div class="relative city-search-container w-full mr-4">
-                            <input type="text" id="citySearch" name="userVille" placeholder="Cherchez votre ville" value="<?php echo $user->userVille != 'Etranger' ? $user->userVille : "" ?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" >
-                                <div id="cities-list" class="text-2xl lg:text-base absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
+                            <input type="text" id="citySearch" name="userVille" placeholder="Cherchez votre ville" value="<?php echo $user->userVille != 'Etranger' ? $user->userVille : "" ?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" >
+                                <div id="cities-list" class="text-3xl lg:text-base absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                         </div>
                         <div class="flex items-center mt-2">
                             <input type="checkbox" id="userEtranger" name="userEtranger" <?php echo $user->userVille === 'Etranger' ? 'checked' : "" ?>>
-                            <label class="text-2xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Étranger</label>
+                            <label class="text-3xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Étranger</label>
                         </div>
                     </div>
-                    <label for="userJobTime" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Durée de la mission</label>
-                    <select id="userJobTime" name="userJobTime" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <label for="userJobTime" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Durée de la mission</label>
+                    <select id="userJobTime" name="userJobTime" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                         <?php
                         $jobTimeOptions = ['Courte Durée', 'Longue Durée', 'Durée indéfinie'];
@@ -261,14 +261,14 @@ include(APPPATH . 'views/layouts/user/header.php' );
 
 
                 
-                    <p id="errorMessageUserData" class="text-2xl lg:text-base text-red-500  mt-2 hidden">Veuillez remplir tous les champs correctement</p>
-                    <p id="tjmErrorMessage" class="text-2xl lg:text-base text-red-500  mt-2 hidden">Le TJM doit être supérieur à 100</p>
+                    <p id="errorMessageUserData" class="text-3xl lg:text-base text-red-500  mt-2 hidden">Veuillez remplir tous les champs correctement</p>
+                    <p id="tjmErrorMessage" class="text-3xl lg:text-base text-red-500  mt-2 hidden">Le TJM doit être supérieur à 100</p>
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
-                    <button type="submit" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                    <button type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                         Valider
                     </button>
-                    <button type="button" data-modal-toggle="updateUserPreference" class="text-2xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                    <button type="button" data-modal-toggle="updateUserPreference" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
                         Annuler
                     </button>
                 </div>
@@ -295,30 +295,30 @@ include(APPPATH . 'views/layouts/user/header.php' );
             <!-- Modal body -->
             <form action="<?=base_url("user/updateUserLinks")?>" method="post" enctype="multipart/form-data">
                 <div>
-                    <label for="userEmail" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Email</label>
-                    <input type="email" id="userEmail" name="userEmail" value="<?=$user->userEmail?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 cursor-not-allowed" placeholder="Email" disabled>
+                    <label for="userEmail" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Email</label>
+                    <input type="email" id="userEmail" name="userEmail" value="<?=$user->userEmail?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 cursor-not-allowed" placeholder="Email" disabled>
 
-                    <label for="userPortfolioLink" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Portfolio</label>
-                    <input type="text" id="userPortfolioLink" name="userPortfolioLink" value="<?=$user->userPortfolioLink?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Portfolio">
+                    <label for="userPortfolioLink" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Portfolio</label>
+                    <input type="text" id="userPortfolioLink" name="userPortfolioLink" value="<?=$user->userPortfolioLink?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Portfolio">
 
-                    <label for="userLinkedinLink" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Linkedin</label>
-                    <input type="text" id="userLinkedinLink" name="userLinkedinLink" value="<?=$user->userLinkedinLink?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Linkedin">
+                    <label for="userLinkedinLink" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Linkedin</label>
+                    <input type="text" id="userLinkedinLink" name="userLinkedinLink" value="<?=$user->userLinkedinLink?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Linkedin">
 
-                    <label for="userGithubLink" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Github</label>
-                    <input type="text" id="userGithubLink" name="userGithubLink" value="<?=$user->userGithubLink?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Github">
+                    <label for="userGithubLink" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Github</label>
+                    <input type="text" id="userGithubLink" name="userGithubLink" value="<?=$user->userGithubLink?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Github">
                     
-                    <label for="userDribbleLink" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Dribbble</label>
-                    <input type="text" id="userDribbleLink" name="userDribbleLink" value="<?=$user->userDribbleLink?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Dribbble">
+                    <label for="userDribbleLink" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Dribbble</label>
+                    <input type="text" id="userDribbleLink" name="userDribbleLink" value="<?=$user->userDribbleLink?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Dribbble">
 
-                    <label for="userBehanceLink" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Behance</label>
-                    <input type="text" id="userBehanceLink" name="userBehanceLink" value="<?=$user->userBehanceLink?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Behance">
+                    <label for="userBehanceLink" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Behance</label>
+                    <input type="text" id="userBehanceLink" name="userBehanceLink" value="<?=$user->userBehanceLink?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Behance">
 
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
-                    <button type="submit" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                    <button type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                         Valider
                     </button>
-                    <button type="button" data-modal-toggle="updateUserLinks" class="text-2xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                    <button type="button" data-modal-toggle="updateUserLinks" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
                         Annuler
                     </button>
                 </div>
@@ -348,25 +348,25 @@ foreach ($experiences as $index => $experience) {
                 <!-- Modal body -->
                 <form id="updateUserExperience-form" action="<?=base_url("user/updateUserExperience/".$experience->idExperience)?>" method="post" enctype="multipart/form-data">
                     <div>
-                        <label for="userExperienceJob" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Nom de l'experience</label>
-                        <input type="text" id="userExperienceJob" name="userExperienceJob" value="<?=$experience->experienceJob?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Titre">
-                        <label for="userExperienceCompany" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Nom de l'entreprise</label>
-                        <input type="text" id="userExperienceCompany" name="userExperienceCompany" value="<?=$experience->experienceCompany?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Entreprise">
+                        <label for="userExperienceJob" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Nom de l'experience</label>
+                        <input type="text" id="userExperienceJob" name="userExperienceJob" value="<?=$experience->experienceJob?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Titre">
+                        <label for="userExperienceCompany" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Nom de l'entreprise</label>
+                        <input type="text" id="userExperienceCompany" name="userExperienceCompany" value="<?=$experience->experienceCompany?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Entreprise">
 
-                        <label for="userExperienceDateDebut" class="w-full text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Date de début</label>
-                        <input type="date" id="updateUserExperienceDateDebut<?=$index?>" name="userExperienceDateDebut" value="<?=$experience->experienceDateDebut?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" oninput="validateDates('updateUserExperienceDateDebut<?=$index?>', 'updateUserExperienceDateFin<?=$index?>', 'errorUpdateUserExperienceDate<?=$index?>', 'userExperienceSubmit<?=$index?>')">
+                        <label for="userExperienceDateDebut" class="w-full text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Date de début</label>
+                        <input type="date" id="updateUserExperienceDateDebut<?=$index?>" name="userExperienceDateDebut" value="<?=$experience->experienceDateDebut?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" oninput="validateDates('updateUserExperienceDateDebut<?=$index?>', 'updateUserExperienceDateFin<?=$index?>', 'errorUpdateUserExperienceDate<?=$index?>', 'userExperienceSubmit<?=$index?>')">
 
-                        <label for="userExperienceDateFin" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Date de fin</label>
-                        <input type="date" id="updateUserExperienceDateFin<?=$index?>" name="userExperienceDateFin" value="<?=$experience->experienceDateFin?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" oninput="validateDates('updateUserExperienceDateDebut<?=$index?>', 'updateUserExperienceDateFin<?=$index?>', 'errorUpdateUserExperienceDate<?=$index?>', 'userExperienceSubmit<?=$index?>'), resetCheckbox('updateUserExperienceDateFinToday<?=$index?>')">
+                        <label for="userExperienceDateFin" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Date de fin</label>
+                        <input type="date" id="updateUserExperienceDateFin<?=$index?>" name="userExperienceDateFin" value="<?=$experience->experienceDateFin?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" oninput="validateDates('updateUserExperienceDateDebut<?=$index?>', 'updateUserExperienceDateFin<?=$index?>', 'errorUpdateUserExperienceDate<?=$index?>', 'userExperienceSubmit<?=$index?>'), resetCheckbox('updateUserExperienceDateFinToday<?=$index?>')">
                                                 
                         <div class="flex items-center mt-2">
                             <input type="checkbox" id="updateUserExperienceDateFinToday<?=$index?>" name="updateUserExperienceDateFinToday" <?= ($experience->experienceDateFin == '0000-00-00') ? 'checked' : '' ?> onclick="resetDateFin('updateUserExperienceDateFin<?=$index?>', 'updateUserExperienceDateFinToday<?=$index?>', 'errorUpdateUserExperienceDate<?=$index?>', 'userExperienceSubmit<?=$index?>')">
-                            <label class="text-2xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Aujourd'hui</label>
+                            <label class="text-3xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Aujourd'hui</label>
                         </div>
                         <p id="errorUpdateUserExperienceDate<?=$index?>" class="text-red-500" style="display:none;">La date de fin doit être postérieure à la date de début</p>
 
-                        <label for="userExperienceDescription" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Description</label>
-                        <textarea id="userExperienceDescription" name="userExperienceDescription" rows="3" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><?=$experience->experienceDescription?></textarea>
+                        <label for="userExperienceDescription" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Description</label>
+                        <textarea id="userExperienceDescription" name="userExperienceDescription" rows="3" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><?=$experience->experienceDescription?></textarea>
                     </div>
                     <!-- Rest of the form fields for the experience -->
                     <div class="mt-6 mb-6 bg-white rounded-lg dark:bg-gray-800 text-black">
@@ -374,9 +374,9 @@ foreach ($experiences as $index => $experience) {
                         <div id="experience-skills-container-<?=$index?>">
                         <?php foreach ($experienceSkills[$experience->idExperience] as $experienceSkill): ?>
                             <div class="flex flex-1 mb-4 skill-row">
-                                <div class="text-2xl lg:text-base w-3/4 mr-2 text-black">
+                                <div class="text-3xl lg:text-base w-3/4 mr-2 text-black">
                                     <!--<select id="skillsAll" name="skillsAll[]"  class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>-->
-                                    <select id="skillsAll2" name="skillsAll[]"  class="text-2xl lg:text-base new-skill-select bg-white border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                    <select id="skillsAll2" name="skillsAll[]"  class="text-3xl lg:text-base new-skill-select bg-white border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                                         <option value="">Sélectionnez une compétence</option>
                                         <?php foreach ($skillsAll as $skill): ?>
                                             <option value="<?= $skill['skillId'] ?>" <?= ($experienceSkill->experienceSkills_skillId == $skill['skillId']) ? 'selected' : '' ?>><?= $skill['skillName'] ?></option>
@@ -384,7 +384,7 @@ foreach ($experiences as $index => $experience) {
                                     </select>
                                 </div>
                                 <div class="w-1/4">
-                                    <select name="skillsLevel[]" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                    <select name="skillsLevel[]" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                                         <option value="1" <?= ($experienceSkill->experienceSkillsExpertise == 1) ? 'selected' : '' ?>>Junior</option>
                                         <option value="2" <?= ($experienceSkill->experienceSkillsExpertise == 2) ? 'selected' : '' ?>>Intermédiaire</option>
                                         <option value="3" <?= ($experienceSkill->experienceSkillsExpertise == 3) ? 'selected' : '' ?>>Expert</option>
@@ -396,19 +396,19 @@ foreach ($experiences as $index => $experience) {
                             </div>
                         <?php endforeach; ?>
                         </div>
-                        <button id="add-experience-skill-btn" type="button" class="text-2xl lg:text-base add-experience-skill-btn py-2 px-4 bg-primary text-white rounded-lg" data-container="experience-skills-container-<?=$index?>">Ajouter une compétence</button>
+                        <button id="add-experience-skill-btn" type="button" class="text-3xl lg:text-base add-experience-skill-btn py-2 px-4 bg-primary text-white rounded-lg" data-container="experience-skills-container-<?=$index?>">Ajouter une compétence</button>
                     </div>
 
                     <div class="flex items-center justify-between mt-4">
                         <div>
-                            <button type="submit" id="userExperienceSubmit<?=$index?>" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                            <button type="submit" id="userExperienceSubmit<?=$index?>" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                 Valider
                             </button>
-                            <button type="button" data-modal-toggle="updateUserExperience<?=$index?>" class="text-2xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                            <button type="button" data-modal-toggle="updateUserExperience<?=$index?>" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
                                 Annuler
                             </button>
                         </div>
-                        <a href="#" onclick="showModal('deleteConfirmationModal<?=$index?>');" class="text-2xl lg:text-base text-red-600 inline-flex items-center hover:text-white hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                        <a href="#" onclick="showModal('deleteConfirmationModal<?=$index?>');" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
                             <i class="fa fa-trash mr-2"></i> Supprimer
                         </a>
                     </div>
@@ -416,7 +416,7 @@ foreach ($experiences as $index => $experience) {
                         <div class="fixed inset-0 bg-black opacity-50"></div>
                         <div class="relative bg-gray-50 rounded-lg shadow p-6 border border-gray-800 dark:bg-gray-800 sm:p-5">
                             <h3 class="text-2xl lg:text-lg font-semibold mb-4">Confirmation de suppression</h3>
-                            <p class="text-2xl lg:text-base text-gray-700 dark:text-white mb-6">Êtes-vous sûr de vouloir supprimer cette expérience ?</p>
+                            <p class="text-3xl lg:text-base text-gray-700 dark:text-white mb-6">Êtes-vous sûr de vouloir supprimer cette expérience ?</p>
                             <div class="flex justify-end">
                                 <button type="button" onclick="hideModal('deleteConfirmationModal<?=$index?>');" class="text-gray-600 inline-flex items-center hover:text-white hover:bg-gray-800 border-gray-600  focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500  dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">Annuler</button>
                                 <a href="<?= base_url("user/deleteUserExperience/".$experience->idExperience) ?>" class="text-red-800 inline-flex items-center hover:text-white hover:bg-red-900 border-red-900  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500  dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Supprimer</a>
@@ -451,40 +451,40 @@ foreach ($experiences as $index => $experience) {
             <!-- Modal body -->
             <form id="addUserExperience-form" action="<?=base_url("user/addUserExperience")?>" method="post" enctype="multipart/form-data">
                 <div>
-                    <label for="userExperienceJob" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Nom de l'experience</label>
-                    <input type="text" id="userExperienceJob" name="userExperienceJob" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Titre" required>
-                    <label for="userExperienceCompany" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Nom de l'entreprise</label>
-                    <input type="text" id="userExperienceCompany" name="userExperienceCompany" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Entreprise" required>
+                    <label for="userExperienceJob" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Nom de l'experience</label>
+                    <input type="text" id="userExperienceJob" name="userExperienceJob" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Titre" required>
+                    <label for="userExperienceCompany" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Nom de l'entreprise</label>
+                    <input type="text" id="userExperienceCompany" name="userExperienceCompany" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Entreprise" required>
 
-                    <label for="userExperienceDateDebut" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Date de début</label>
-                    <input type="date" id="addUserExperienceDateDebut" name="userExperienceDateDebut" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                    <label for="userExperienceDateDebut" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Date de début</label>
+                    <input type="date" id="addUserExperienceDateDebut" name="userExperienceDateDebut" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
 
-                    <label for="userExperienceDateFin" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Date de fin</label>
-                    <input type="date" id="addUserExperienceDateFin" name="userExperienceDateFin" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
+                    <label for="userExperienceDateFin" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Date de fin</label>
+                    <input type="date" id="addUserExperienceDateFin" name="userExperienceDateFin" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
                                                                    
                     <div class="flex items-center mt-2">
                         <input type="checkbox" id="addUserExperienceDateFinToday" name="addUserExperienceDateFinToday">
-                        <label class="text-2xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Aujourd'hui</label>
+                        <label class="text-3xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Aujourd'hui</label>
                     </div>
                     <p id="errorAddUserExperienceDate" class="mt-2 text-red-500" style="display:none;">La date de fin doit être postérieure à la date de début</p>
 
-                    <label for="userExperienceDescription" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Description</label>
-                    <textarea id="userExperienceDescription" name="userExperienceDescription" rows="3" class="text-2xl lg:text-basebg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
+                    <label for="userExperienceDescription" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Description</label>
+                    <textarea id="userExperienceDescription" name="userExperienceDescription" rows="3" class="text-3xl lg:text-basebg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
 
                 </div>
                 <div class="mt-6 mb-6 bg-white rounded-lg dark:bg-gray-800 text-black">
-                    <label for="userExperienceSkills" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Vos compétences</label>
+                    <label for="userExperienceSkills" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Vos compétences</label>
 
                     <div id="experience-skills-container">
 
                     </div>
-                    <button id="add-experience-skill-btn" type="button" class="text-2xl lg:text-base add-experience-skill-btn py-2 px-4 bg-primary text-white rounded-lg" data-container="experience-skills-container">Ajouter une compétence</button>
+                    <button id="add-experience-skill-btn" type="button" class="text-3xl lg:text-base add-experience-skill-btn py-2 px-4 bg-primary text-white rounded-lg" data-container="experience-skills-container">Ajouter une compétence</button>
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
-                    <button type="submit" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                    <button type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                         Valider
                     </button>
-                    <button type="button" data-modal-toggle="addUserExperience" class="text-2xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                    <button type="button" data-modal-toggle="addUserExperience" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
                         Annuler
                     </button>
                 </div>
@@ -514,16 +514,16 @@ foreach ($experiences as $index => $experience) {
                     foreach ($skills as $index => $skill) {
                     ?> 
 
-                    <label for="userSkill<?=$index?>" class="text-2xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Compétence</label>
-                    <input type="text" id="userSkill<?=$index?>" name="userSkill<?=$index?>" value="<?=$skill->skillName?>" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-3/4 p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Compétence">
+                    <label for="userSkill<?=$index?>" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Compétence</label>
+                    <input type="text" id="userSkill<?=$index?>" name="userSkill<?=$index?>" value="<?=$skill->skillName?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-3/4 p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Compétence">
 
                     <?php } ?>
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
-                    <button type="submit" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                    <button type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                         Valider
                     </button>
-                    <button type="button" data-modal-toggle="updateUserSkills" class="text-2xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                    <button type="button" data-modal-toggle="updateUserSkills" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
                         Annuler
                     </button>
                 </div>
@@ -550,18 +550,19 @@ foreach ($experiences as $index => $experience) {
             <!-- Modal body -->
             <form action="<?= base_url("user/addUserAttachment") ?>" method="post" enctype="multipart/form-data">
                 <div>
-                    <label for="userAttachmentFile" class="text-2xl lg:text-base block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Pièce jointe</label>
-                    <input type="file" id="userAttachmentFile" name="userAttachmentFile" accept=".pdf" class="hidden" data-max-size="2048">
-                    <label for="userAttachmentFile" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 cursor-pointer">
-                        <span class="filename">Choisir un fichier PDF</span>
+                    <label for="userAttachmentFile" class="text-3xl lg:text-base block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Pièce jointe</label>
+                    <input type="file" id="userAttachmentFile" name="userAttachmentFile" accept=".pdf, .png, .jpeg, .jpg" class="hidden" data-max-size="2048">
+                    <label for="userAttachmentFile" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 cursor-pointer">
+                        <span class="filename">Choisir un fichier</span>
+
                     </label>
                     <div id="fileSizeInfo" class="text-2xl lg:text-sm text-gray-500 mt-1">La taille maximale autorisée est 2 Mo.</div>
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
-                    <button type="submit" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                    <button type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                         Valider
                     </button>
-                    <button type="button" data-modal-toggle="addUserAttachment" class="text-2xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                    <button type="button" data-modal-toggle="addUserAttachment" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
                         Annuler
                     </button>
                 </div>
@@ -593,7 +594,7 @@ foreach ($experiences as $index => $experience) {
                 <div id="skills-container">
                     <div class="flex flex-1 mb-4 skill-row">
                         <div class="w-3/4 mr-2">
-                        <select id="skillsAll" name="skillsAll[]"  class="text-2xl lg:text-base new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <select id="skillsAll" name="skillsAll[]"  class="text-3xl lg:text-base new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option value="">Sélectionnez une compétence</option>
                                 <?php foreach ($skillsAll as $skill): ?>
                                     <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
@@ -601,7 +602,7 @@ foreach ($experiences as $index => $experience) {
                             </select>
                         </div>
                         <div class="w-1/4">
-                            <select class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="skillsLevel[]" required>
+                            <select class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="skillsLevel[]" required>
                                 <option value="1">Junior</option>
                                 <option value="2">Intermédiaire</option>
                                 <option value="3">Expert</option>
@@ -609,13 +610,13 @@ foreach ($experiences as $index => $experience) {
                         </div>
                     </div>
                 </div>
-                <button id="add-skill-btn" type="button" class="text-2xl lg:text-base py-2 px-4 bg-primary text-white rounded-lg">Ajouter une compétence</button>
+                <button id="add-skill-btn" type="button" class="text-3xl lg:text-base py-2 px-4 bg-primary text-white rounded-lg">Ajouter une compétence</button>
             </div>
                 <div class="flex items-center space-x-4 mt-4">
-                    <button type="submit" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                    <button type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                         Valider
                     </button>
-                    <button type="button" data-modal-toggle="addUserSkills" class="text-2xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                    <button type="button" data-modal-toggle="addUserSkills" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
                         Annuler
                     </button>
                 </div>
@@ -640,23 +641,23 @@ foreach ($experiences as $index => $experience) {
                 </button>
             </div>
             <form action="<?= base_url("user/editUserSkills") ?>" method="post" enctype="multipart/form-data">
-                <div class="text-2xl lg:text-base p-4 bg-white rounded-lg dark:bg-gray-800 text-black">
+                <div class="text-3xl lg:text-base p-4 bg-white rounded-lg dark:bg-gray-800 text-black">
                     <div>
                     <?php 
                     $index = 0;
                     foreach ($skills as $skill): ?>
                         <div class="flex flex-1 mb-4 skill-row items-center">
                             <div class="w-3/4 mr-2">
-                            <input type="text" name="skillsName[<?=$index?>]" id="skillName" value="<?=$skill->skillName?>" readonly class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <input type="text" name="skillsName[<?=$index?>]" id="skillName" value="<?=$skill->skillName?>" readonly class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
                             <div class="w-1/4 flex items-center justify-between">
-                                <select class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-4/5 p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="skillsLevel[]" id="skillLevel" required>
+                                <select class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-4/5 p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="skillsLevel[]" id="skillLevel" required>
                                     <option value="1" <?= ($skill->userSkillsExperience == 1) ? 'selected' : '' ?>>Junior</option>
                                     <option value="2" <?= ($skill->userSkillsExperience == 2) ? 'selected' : '' ?>>Intermédiaire</option>
                                     <option value="3" <?= ($skill->userSkillsExperience == 3) ? 'selected' : '' ?>>Expert</option>
                                 </select>
                                 <a href="<?=base_url('user/deleteUserSkill/'.$skill->skillId)?>">
-                                    <button type="button" class="text-2xl lg:text-base text-red-600 hover:text-red-900 focus:outline-none ml-4">
+                                    <button type="button" class="text-3xl lg:text-base text-red-600 hover:text-red-900 focus:outline-none ml-4">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </a>
@@ -669,10 +670,10 @@ foreach ($experiences as $index => $experience) {
                     </div>
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
-                    <button type="submit" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                    <button type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                         Valider
                     </button>
-                    <button type="button" data-modal-toggle="editUserSkills" class="text-2xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                    <button type="button" data-modal-toggle="editUserSkills" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
                         Annuler
                     </button>
                 </div>
@@ -701,14 +702,14 @@ foreach ($experiences as $index => $experience) {
                 <div>
 
                     <!--<label for="companyDescription" class="block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Description</label>-->
-                    <textarea id="userBio" name="userBio" rows="6" class="text-2xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><?=$user->userBio?></textarea>
+                    <textarea id="userBio" name="userBio" rows="6" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><?=$user->userBio?></textarea>
 
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
-                    <button type="submit" class="text-2xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                    <button type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                         Valider
                     </button>
-                    <button type="button" data-modal-toggle="editUserBio" class="text-2xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                    <button type="button" data-modal-toggle="editUserBio" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
                         Annuler
                     </button>
                 </div>
@@ -786,7 +787,7 @@ if($totalInfos == 1 ){
                 <div class="relative flex grid-cols-2 items-center overflow-hidden bg-white rounded-lg mb-4 dark:bg-gray-800 py-4 px-4">
                     <div class="flex flex-1">
                         <div>
-                            <img src="<?php echo base_url($user->userAvatarPath); ?>" class="w-40 h-40 rounded-full" alt="Photo de profil">
+                            <img src="<?php echo base_url($user->userAvatarPath); ?>" class="object-cover w-40 h-40 rounded-full" alt="Photo de profil">
                         </div>
                         <div class="ml-4">
                             <div class="flex" id="user-data">
@@ -822,7 +823,7 @@ if($totalInfos == 1 ){
                                 <?php } ?>
                                 <?php } ?>
                                 <a href="#rating">
-                                    <p class="ml-2 text-2xl lg:text-base"><?=round($averageStars, 1).' ( '.$ratingCount.' avis )'?></p>
+                                    <p class="ml-2 text-3xl lg:text-base"><?=round($averageStars, 1).' ( '.$ratingCount.' avis )'?></p>
                                 </a>
                             </div>
                         <!-- Whatsapp -->
@@ -836,7 +837,7 @@ if($totalInfos == 1 ){
                                 <a href="https://wa.me/<?=$user->userTelephone?>?text=Bonjour%20<?=$user->userFirstName?>%20!%20Je%20suis%20intéressé%20par%20votre%20profil%20sur%20Café%20Crème%20Community%20!%20" target="_blank">
                                 
                                 <button type="button" data-te-ripple-init data-te-ripple-color="light"
-                                    class="font-medium text-2xl lg:text-base mb-2 mr-4 inline-flex items-center rounded-full px-6 py-2.5 leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
+                                    class="font-medium text-3xl lg:text-base mb-2 mr-4 inline-flex items-center rounded-full px-6 py-2.5 leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
                                     style="background-color: #25D366">
                                     <span class="mr-2">Contacter</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
@@ -848,7 +849,7 @@ if($totalInfos == 1 ){
                                 }
                             ?>
 
-                                <p class="font-medium text-2xl lg:text-base mb-2 mt-2 inline-block px-4 py-2.5 rounded-full bg-primary text-white"><?=$user->userTJM?> € / Jour</p>
+                                <p class="font-medium text-3xl lg:text-base mb-2 mt-2 inline-block px-4 py-2.5 rounded-full bg-primary text-white"><?=$user->userTJM?> € / Jour</p>
                             </div>
                         </div>
                     </div>
@@ -862,21 +863,21 @@ if($totalInfos == 1 ){
                     <div class="w-full lg:w-1/4 lg:sticky lg:top-0">
                         <div class="lg:w-full">
                             <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                                <h2 class="text-3xl lg:text-xl font-bold mb-4"> Préférences </h2> 
+                                <h2 class="text-4xl lg:text-xl font-bold mb-4"> Préférences </h2> 
                                     <div class="flex grid-cols-2 items-center mb-4">
                                         <?php
                                         // user is available or not
                                         if($user->userIsAvailable == 1){
                                         ?>
                                             <div>
-                                                <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-secondary text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">👍🏻</p>
+                                                <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-secondary text-white text-center text-4xl lg:text-xl flex items-center justify-center mr-4 pt-2">👍🏻</p>
                                             </div>
                                         <?php
                                         }else
                                         {
                                         ?>
                                         <div>
-                                            <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-red-400 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">👎🏻</p>
+                                            <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-red-400 text-white text-center text-4xl lg:text-xl flex items-center justify-center mr-4 pt-2">👎🏻</p>
                                         </div>
                                         <?php
                                         }
@@ -917,7 +918,7 @@ if($totalInfos == 1 ){
                                         if($user->userJobType == "Hybride"){
                                         ?>
                                             <div>
-                                                <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-pink-300 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">✈️</p>
+                                                <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-pink-300 text-white text-center text-4xl lg:text-xl flex items-center justify-center mr-4 pt-2">✈️</p>
                                             </div>
                                         <?php
                                         }else
@@ -925,13 +926,13 @@ if($totalInfos == 1 ){
                                             if ($user->userJobType == "Remote"){
                                         ?>
                                         <div>
-                                            <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-pink-300 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">✈️</p>
+                                            <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-pink-300 text-white text-center text-4xl lg:text-xl flex items-center justify-center mr-4 pt-2">✈️</p>
                                         </div>
                                         <?php
                                             }else{
                                         ?>
                                         <div>
-                                            <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-green-400 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">👨🏻‍💻</p>
+                                            <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-green-400 text-white text-center text-4xl lg:text-xl flex items-center justify-center mr-4 pt-2">👨🏻‍💻</p>
                                         </div>
                                         <?php
                                         } }
@@ -941,15 +942,15 @@ if($totalInfos == 1 ){
                                             <?php
                                                 if($user->userJobType == "Hybride"){
                                                 ?>
-                                                    <p class="font-bold text-3xl lg:text-xl">Hybride</p>
+                                                    <p class="font-bold text-4xl lg:text-xl">Hybride</p>
                                                 <?php
                                                     }else if($user->userJobType == "Remote"){
                                                 ?>
-                                                    <p class="font-bold text-3xl lg:text-xl">Télétravail</p>
+                                                    <p class="font-bold text-4xl lg:text-xl">Télétravail</p>
                                                 <?php
                                                     }else if($user->userJobType == "Physique"){
                                                 ?>
-                                                    <p class="font-bold text-3xl lg:text-xl">Physique</p>
+                                                    <p class="font-bold text-4xl lg:text-xl">Physique</p>
                                                 <?php
                                                     }
                                                 ?>
@@ -958,25 +959,25 @@ if($totalInfos == 1 ){
                                     </div>
                                     <div class="flex grid-cols-2 items-center mb-4">
                                         <div>
-                                            <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-orange-400 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">📍</p>
+                                            <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-orange-400 text-white text-center text-4xl lg:text-xl flex items-center justify-center mr-4 pt-2">📍</p>
                                         </div>
                                         
                                         <div>
                                             <p class="text text-2xl lg:text-lg">Localisation</p>
                                             
-                                                <p class="font-bold text-3xl lg:text-xl"><?=$user->userVille?></p>
+                                                <p class="font-bold text-4xl lg:text-xl"><?=$user->userVille?></p>
                                             
                                         </div>
                                     </div>
                                     <div class="flex grid-cols-2 items-center mb-4">
                                         <div>
-                                            <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-indigo-300 text-white text-center text-3xl lg:text-xl flex items-center justify-center mr-4 pt-2">⏳</p>
+                                            <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-indigo-300 text-white text-center text-4xl lg:text-xl flex items-center justify-center mr-4 pt-2">⏳</p>
                                         </div>
                                         
                                         <div>
                                             <p class="text text-2xl lg:text-lg">Durée de la mission</p>
                                             
-                                            <p class="font-bold text-3xl lg:text-xl"><?=$user->userJobTime?></p>
+                                            <p class="font-bold text-4xl lg:text-xl"><?=$user->userJobTime?></p>
                                             
                                         </div>
                                     </div>
@@ -987,7 +988,7 @@ if($totalInfos == 1 ){
                                     </div>
                             </div>
                             <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                                <h2 class="text-3xl lg:text-xl font-bold mb-4"> Liens utiles </h2> 
+                                <h2 class="text-4xl lg:text-xl font-bold mb-4"> Liens utiles </h2> 
                                 <div class="flex flex-col mt-2 mb-2 w-full">
                                     <?php
                                     // mail link
@@ -1084,7 +1085,7 @@ if($totalInfos == 1 ){
                                     </div>
                             </div>
                             <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white" id="rating">
-                                <h2 class="text-3xl lg:text-xl font-bold mb-4"> Avis </h2> 
+                                <h2 class="text-4xl lg:text-xl font-bold mb-4"> Avis </h2> 
                                     <div class="flex flex-col mt-2 mb-2 w-full">
                                     <div class="flex-1"></div>
                                     <?php
@@ -1100,8 +1101,8 @@ if($totalInfos == 1 ){
                                                                     <img src="<?=base_url($rating->companyLogoPath)?>" class="w-10 h-10 rounded-full flex items-center justify-center" alt="User Photo">
                                                                 </div>
                                                                 <div class="ml-4">
-                                                                    <p class="text text-2xl lg:text-base"><?= $rating->userFirstName.' '.$rating->userLastName?></p>
-                                                                    <p class="text text-2xl lg:text-base mt-1  text-gray-400"><?= $rating->companyName?></p>
+                                                                    <p class="text text-3xl lg:text-base"><?= $rating->userFirstName.' '.$rating->userLastName?></p>
+                                                                    <p class="text text-3xl lg:text-base mt-1  text-gray-400"><?= $rating->companyName?></p>
                                                                 </div>
                                                             </div>
                                                             <div class="flex items-center mt-4 mb-4">
@@ -1114,11 +1115,11 @@ if($totalInfos == 1 ){
                                                                         <?php } ?>
                                                                     <?php } ?>
                                                                 </div>
-                                                                <p class="text text-2xl lg:text-base text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
+                                                                <p class="text text-3xl lg:text-base text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
 
                                                             </div>  
                                                             <div>
-                                                                <p class="text-2xl lg:text-base"><?= '"'.$rating->ratingComment.'"'?></p>
+                                                                <p class="text-3xl lg:text-base"><?= '"'.$rating->ratingComment.'"'?></p>
                                                             </div>
                                                         </div>
                                                     </a>
@@ -1136,8 +1137,8 @@ if($totalInfos == 1 ){
                                                                         <img src="<?=base_url($rating->companyLogoPath)?>" class="w-10 h-10 rounded-full flex items-center justify-center" alt="User Photo">
                                                                     </div>
                                                                     <div class="ml-4">
-                                                                        <p class="text text-2xl lg:text-base"><?= $rating->userFirstName.' '.$rating->userLastName?></p>
-                                                                        <p class="text text-2xl lg:text-base mt-1  text-gray-400"><?= $rating->companyName?></p>
+                                                                        <p class="text text-3xl lg:text-base"><?= $rating->userFirstName.' '.$rating->userLastName?></p>
+                                                                        <p class="text text-3xl lg:text-base mt-1  text-gray-400"><?= $rating->companyName?></p>
                                                                     </div>
                                                                 </div>
                                                                 <div class="flex items-center mt-4 mb-4">
@@ -1150,19 +1151,19 @@ if($totalInfos == 1 ){
                                                                             <?php } ?>
                                                                         <?php } ?>
                                                                     </div>
-                                                                    <p class="text text-2xl lg:text-base text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
+                                                                    <p class="text text-3xl lg:text-base text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
 
                                                                 </div>  
                                                                 <div>
-                                                                    <p class="text text-2xl lg:text-base"><?= '"'.$rating->ratingComment.'"'?></p>
+                                                                    <p class="text text-3xl lg:text-base"><?= '"'.$rating->ratingComment.'"'?></p>
                                                                 </div>
                                                             </div>
                                                         </a>
                                                     </div>
-                                                        <button id="more-avis-button" class="text-primary text-2xl lg:text-base mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">
+                                                        <button id="more-avis-button" class="text-primary text-3xl lg:text-base mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">
                                                             Voir plus
                                                         </button>
-                                                        <button id="less-avis-button" class="hidden text-primary text-2xl lg:text-base mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">
+                                                        <button id="less-avis-button" class="hidden text-primary text-3xl lg:text-base mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">
                                                             Voir moins
                                                         </button>
                                                 <?php 
@@ -1174,7 +1175,7 @@ if($totalInfos == 1 ){
                                         }
                                         else {
                                             ?>
-                                                <p class="mt-2 mb-2 text-2xl lg:text-base"> Aucun avis pour le moment. </p>
+                                                <p class="mt-2 mb-2 text-3xl lg:text-base"> Aucun avis pour le moment. </p>
                                              <?php
                                         }
                                         ?>
@@ -1186,8 +1187,8 @@ if($totalInfos == 1 ){
                     </div>
                     <div class="w-full lg:w-3/4 sticky top-0">
                         <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                            <h2 class="text-3xl lg:text-xl font-bold mb-4">À propos de moi</h2>
-                            <p class="text-2xl lg:text-base text-gray-500 mb-4 mt-4 dark:text-white"><?= $user->userBio ?></p>
+                            <h2 class="text-4xl lg:text-xl font-bold mb-4">À propos de moi</h2>
+                            <p class="text-3xl lg:text-base text-gray-500 mb-4 mt-4 dark:text-white"><?= $user->userBio ?></p>
                             <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
                                 <button id="editUserBio" data-modal-toggle="editUserBio" class="text-3xl lg:text-base py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white ml-2" type="button">
                                     <i class="fas fa-pen fa-fw"></i>
@@ -1195,7 +1196,7 @@ if($totalInfos == 1 ){
                             </div>
                         </div>
                         <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                            <h2 class="text-3xl lg:text-xl font-bold mb-4 flex items-center cursor-pointer" id="skillsTitle">
+                            <h2 class="text-4xl lg:text-xl font-bold mb-4 flex items-center cursor-pointer" id="skillsTitle">
                                 Compétences
                                 <i class="fas fa-chevron-down ml-2" id="skillsArrow" style='font-size:0.75rem;' data-order="asc"></i>
                             </h2>
@@ -1231,15 +1232,16 @@ if($totalInfos == 1 ){
                                             break;
                                     }
                                 ?>
-                                   
+                                <div class="skill-item" data-level="<?=$level?>">
+                                    <span class="text-3xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                                    <div class="skill-level"><?=$level?></div>
+                                </div>
+                                
                                 <?php
                                 }
                                 
                                 ?>
-                                 <div class="skill-item" data-level="<?=$level?>">
-                                        <span class="text-2xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
-                                        <div class="skill-level"><?=$level?></div>
-                                    </div>
+                                 
                                 
                                 <?php
                                     } else {
@@ -1250,8 +1252,8 @@ if($totalInfos == 1 ){
                                     </button>
                                 </div>
                                 <div class="display inline">
-                                    <p class="mt-2 mb-2 text-2xl lg:text-base">Aucune compétences et expertises renseignées.</p>
-                                    <button id="addUserSkills" data-modal-toggle="addUserSkills" class="text-2xl lg:text-base py-2 px-4 bg-primary text-white rounded-full">Ajouter vos compténces</button>
+                                    <p class="mt-2 mb-2 text-3xl lg:text-base">Aucune compétences et expertises renseignées.</p>
+                                    <button id="addUserSkills" data-modal-toggle="addUserSkills" class="text-3xl lg:text-base py-2 px-4 bg-primary text-white rounded-full">Ajouter vos compténces</button>
                                 </div>
                                 <?php } ?>
                                 
@@ -1275,20 +1277,20 @@ if($totalInfos == 1 ){
                             <div class="flex justify-end gap-4" id="legendeskills">
                                 <div class="flex items-center gap-2">
                                     <div class="w-3 h-3 mr-1 rounded-full" style="background-color: #BEE3F8;"></div>
-                                    <span class="text-gray-600 mr-2 text-2xl lg:text-base dark:text-white">Junior</span>
+                                    <span class="text-gray-600 mr-2 text-3xl lg:text-base dark:text-white">Junior</span>
                                 </div>
                                 <div class="flex items-center gap-2">
                                     <div class="w-3 h-3 mr-1 rounded-full" style="background-color: #63B3ED;"></div>
-                                    <span class="text-gray-600 mr-2 text-2xl lg:text-base dark:text-white">Intermédiaire</span>
+                                    <span class="text-gray-600 mr-2 text-3xl lg:text-base dark:text-white">Intermédiaire</span>
                                 </div>
                                 <div class="flex items-center gap-2">
                                     <div class="w-3 h-3 mr-1 rounded-full" style="background-color: #2C5282;"></div>
-                                    <span class="text-gray-600 mr-2 text-2xl lg:text-base dark:text-white">Expert</span>
+                                    <span class="text-gray-600 mr-2 text-3xl lg:text-base dark:text-white">Expert</span>
                                 </div>
                             </div>
                         </div>
                         <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                            <h2 class="text-3xl lg:text-xl font-bold mb-4">Expériences</h2>
+                            <h2 class="text-4xl lg:text-xl font-bold mb-4">Expériences</h2>
                             <?php
                             if (is_array($experiences) && !empty($experiences)) {
                                 $experienceCount = 0;
@@ -1331,7 +1333,7 @@ if($totalInfos == 1 ){
                                                     }
                                                     ?>
 
-                                                    <p class="text-2xl lg:text-base"><?= $dateDebut.' - '. $dateFin?></p>
+                                                    <p class="text-3xl lg:text-base"><?= $dateDebut.' - '. $dateFin?></p>
                                                 </div>
                                                 
                                                 <div class="ml-auto mr-4">
@@ -1341,7 +1343,7 @@ if($totalInfos == 1 ){
                                                 </div>
                                             </div>
 
-                                            <p class="text-2xl lg:text-base text-gray-500 mb-6 mt-4 ml-2 mr-4 dark:text-white"><?= $experience->experienceDescription ?></p>
+                                            <p class="text-3xl lg:text-base text-gray-500 mb-6 mt-4 ml-2 mr-4 dark:text-white"><?= $experience->experienceDescription ?></p>
                                             <div class="skills-container mb-4">
                                             <?php
                                                 $dataExperienceSkills = [];
@@ -1378,7 +1380,7 @@ if($totalInfos == 1 ){
                                                     }
                                                 ?>
                                                 <div class="skill-item" data-level="<?=$level?>">
-                                                    <span class="text-2xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
+                                                    <span class="text-3xl lg:text-base dark:<?=$textdark?> inline-block px-4 py-1 rounded-full <?=$text?>" style="background-color:<?=$color?>;"><?=$skill->skillName?></span>
                                                     <div class="skill-level"><?=$level?></div>
                                                 </div>
                                                     
@@ -1410,8 +1412,8 @@ if($totalInfos == 1 ){
                             <?php 
                                 }
                             } else { ?>
-                                <p class="mt-2 mb-2 text-2xl lg:text-base">Aucune expérience disponible.</p>
-                                <button id="addUserExperience" data-modal-toggle="addUserExperience" class="text-2xl lg:text-base py-2 px-4 bg-primary text-white rounded-full">Ajouter une expérience</button>
+                                <p class="mt-2 mb-2 text-3xl lg:text-base">Aucune expérience disponible.</p>
+                                <button id="addUserExperience" data-modal-toggle="addUserExperience" class="text-3xl lg:text-base py-2 px-4 bg-primary text-white rounded-full">Ajouter une expérience</button>
                                 <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
                                     <button id="addUserExperience" data-modal-toggle="addUserExperience" class="text-3xl lg:text-base py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
                                         <i class="fas fa-plus"></i>
@@ -1420,12 +1422,12 @@ if($totalInfos == 1 ){
                             <?php } ?>
                         </div> 
                         <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                            <h2 class="text-3xl lg:text-xl font-bold mb-4">Portfolio & Réalisations </h2>
+                            <h2 class="text-4xl lg:text-xl font-bold mb-4">Portfolio & Réalisations </h2>
                             <?php if (is_array($attachments) && !empty($attachments)) { ?>
                                 <div class="grid grid-cols-4 gap-8">
                                     <?php foreach ($attachments as $index => $attachment) { ?>
                                         <div class="relative flex justify-center items-center border border-1 p-2 mr-4 mb-4 rounded-lg bg-white">
-                                            <h3 class="text-2xl lg:text-base font-medium"><?= $attachment->attachmentName ?></h3>
+                                            <h3 class="text-3xl lg:text-base font-medium"><?= $attachment->attachmentName ?></h3>
                                             <div class="pdf-thumbnail overflow-hidden z-10 mb-2" style="max-height: 14rem" data-pdf="<?= base_url($attachment->attachmentPath) ?>">
                                                 <div class="absolute top-0 right-0 mr-4 mt-4 flex space-x-4 z-20">
                                                 <a href="<?= base_url($attachment->attachmentPath) ?>" download class="download-icon text-gray-400 hover:text-gray-900" onclick="event.stopPropagation();">
@@ -1455,7 +1457,7 @@ if($totalInfos == 1 ){
 
 
                             <?php } else { ?>
-                                <p class="text-2xl lg:text-base mt-2 mb-2">Aucune pièce jointe disponible.</p>
+                                <p class="text-3xl lg:text-base mt-2 mb-2">Aucune pièce jointe disponible.</p>
                             <?php } ?>
                             <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
                                 <button id="addUserAttachment" data-modal-toggle="addUserAttachment" class="text-3xl lg:text-base py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
@@ -1577,7 +1579,7 @@ if($totalInfos == 1 ){
                 let jobs = JSON.parse(data);
                 $('#jobs-list').empty();
                 jobs.forEach(function(job){
-                    $('#jobs-list').append(`<div class="text-2xl lg:text-base job-item" data-id="${job.jobId}">${job.jobName}</div>`);
+                    $('#jobs-list').append(`<div class="text-3xl lg:text-base job-item" data-id="${job.jobId}">${job.jobName}</div>`);
                 });
             });
         })
@@ -1588,7 +1590,7 @@ if($totalInfos == 1 ){
             let jobName = $(this).text();
             // Vérifiez si la compétence est déjà sélectionnée
             if (!$(`#selected-jobs .selected-job[data-id="${jobId}"]`).length) {
-                $('#selected-jobs').append(`<div class="text-2xl lg:text-base selected-job" data-id="${jobId}">${jobName}</div>`);
+                $('#selected-jobs').append(`<div class="text-3xl lg:text-base selected-job" data-id="${jobId}">${jobName}</div>`);
             }
         });
     });

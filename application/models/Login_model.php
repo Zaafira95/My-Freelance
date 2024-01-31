@@ -30,7 +30,45 @@ class Login_model extends CI_Model {
         return $query->row();
     }
 
-    public function activateAccount($activationToken) {
+    public function savePasswordToken($userEmail, $resetPasswordToken) {
+        $this->db->where('userEmail', $userEmail);
+        $query = $this->db->get('users');
+        $user = $query->row();
+
+        if($user) {
+            $this->db->set('userResetPasswordToken', $resetPasswordToken);
+            $this->db->where('userId', $user->userId);
+            $this->db->update('users');
+            return true;
+        }
+        
+        return false;
+    }
+
+    public function checkResetPasswordToken($token) {
+        $this->db->where('userResetPasswordToken', $token);
+        $query = $this->db->get('users');
+
+        if ($query->num_rows() == 1) {
+            $user = $query->row();
+            $this->db->where('userId', $user->userId);
+            $this->db->set('userResetPasswordToken', NULL);
+            $this->db->update('users');
+
+            if ($this->db->affected_rows() > 0) {
+                return $user->userEmail;
+            }
+        }
+        return false;
+    }
+    
+    public function resetUserPassword($userEmail, $userPassword){
+        $this->db->set('userPassword', $userPassword);
+        $this->db->where('userEmail', $userEmail);
+        $this->db->update('Users');
+    }
+  
+  public function activateAccount($activationToken) {
         $this->db->where('userActivationToken', $activationToken);
         $query = $this->db->get('users');
 
@@ -45,5 +83,7 @@ class Login_model extends CI_Model {
         }
         return false;
     }
-}
+  
+  
+
 ?>

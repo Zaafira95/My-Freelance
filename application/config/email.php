@@ -11,4 +11,3 @@ $config = Array(
   'smtp_crypto' => 'tls'
 
 );
-

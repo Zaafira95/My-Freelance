@@ -125,7 +125,7 @@ class Login extends CI_Controller {
         $userPassword = password_hash($userPassword, PASSWORD_DEFAULT);
         $realUserEmail = $this->Login_model->checkResetPasswordToken($token);
 
-        // Vérifier que l'email n'a pas été modifiée
+        // Vérifier que l'email n'a pas été modifié
         if($realUserEmail == $userEmail){
             $this->Login_model->resetUserPassword($userEmail, $userPassword);
             $this->session->set_flashdata('message', 'Votre mot de passe a bien été mis à jour !');

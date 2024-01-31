@@ -26,7 +26,6 @@ class User extends CI_Controller {
         $skills = $this->User_model->getUserSkillsAll($user->userId);
         $data['skills'] = $skills;
 
-
         // Récupérer toutes les missions
         $missions = $this->User_model->getAllMission();
         $data['missions'] = $missions;
@@ -74,27 +73,20 @@ class User extends CI_Controller {
 
         $data['jobsAll'] = $this->User_model->get_all_jobs();
         
-        // $data['citiesAll'] = "paris";
         $userData = $this->User_model->getUserData($user->userId);
 
         $banner = $this->User_model->getBanner();
 		$data['banner'] = $banner;
 
-
-
         if ($user) {
 
             if ($userData->userCompanyId != 0) {
                 redirect('company');
-                // $this->session->set_flashdata('message', 'Vous êtes connecté avec succès. Vous avez une entreprise associée.');
-                // $this->session->set_flashdata('status', 'success');
             } else {
-                
+                $data['user'] = $user;
+                $this->load->view('user/index', $data);
             }
 
-            $data['user'] = $user;
-
-        $this->load->view('user/index', $data);
         } else {
             // echo "Erreur 1 lors de la récupération des informations de l'utilisateur";
         }

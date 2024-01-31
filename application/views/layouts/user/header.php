@@ -7,6 +7,13 @@
     if($user->userAvatarPath == null){
         $user->userAvatarPath = 'assets/img/default-avatar.png';
     }
+
+    // Verify user Date Fin Indisponibilité
+    $today = date("Y-m-d");
+    $todayTimestamp = strtotime($today);
+    $datePlus15Jours = date('Y-m-d', strtotime($user->userDateFinIndisponibilite. ' + 14 days'));
+    $datePlus15JoursTimestamp = strtotime($datePlus15Jours);
+    
 ?>
 <!-- Modal toggle -->
 
@@ -197,6 +204,43 @@
     </nav>
 </header>
 
+<!-- component -->
+<div id="availabilityWarning-modal" class="<?php echo (($today >= $user->userDateFinIndisponibilite)) ? '' : 'hidden' ?> fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 py-10" style="z-index:100">
+    <div class="relative p-4 w-80 lg:w-60 h-full md:h-auto" style="width:40%">
+            <!-- Modal content -->
+            <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+                <!-- Modal header -->
+                <div class="flex justify-start items-start pb-4 mb-4 sm:mb-5">
+                    <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10 mr-4">
+                        <svg class="h-8 w-8 text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                        </svg>
+                    </div>      
+                    <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
+                        Votre période d'indisponibilité est dépassée. Veuillez mettre à jour votre disponibilité.
+                    </h3>
+                </div>
+                <!-- Modal body -->
+                <div class="flex items-center space-x-4 mt-8">
+                    <button type="button" data-modal-toggle="updateProductModal" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" onclick="closeAvailabilityWarning()">
+                        Mettre à jour
+                    </button>
+                    <?php 
+                        if($todayTimestamp < $datePlus15JoursTimestamp) {
+                    ?>
+                            <button type="button" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900" onclick="closeAvailabilityWarning()">
+                                Plus tard
+                            </button>
+                    <?php 
+                        }
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div id="updateProductModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
     <div class="relative p-4 w-80 lg:w-60 h-full md:h-auto">
         <!-- Modal content -->
@@ -206,7 +250,7 @@
                 <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
                     Votre disponibilité
                 </h3>
-                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateProductModal">
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateProductModal">
                     <svg aria-hidden="true" class="w-8 h-8 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     <span class="sr-only">Fermer</span>
                 </button>
@@ -270,12 +314,62 @@
 
 <script src="<?php echo base_url('node_modules/flowbite/dist/flowbite.min.js'); ?>"></script>
 <script>
-        try {
-            function toggleDropdown() {
-                var dropdown = document.getElementById('dropdown');
-                dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
-            }
-        } catch (error) {
-            console.error("An error occurred while toggling the dropdown: ", error);
+    try {
+        function toggleDropdown() {
+            var dropdown = document.getElementById('dropdown');
+            dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
         }
+    } catch (error) {
+        console.error("An error occurred while toggling the dropdown: ", error);
+    }
+
+    // Fonctions pour désactiver et réactiver le clic droit
+    function disableRightClick() {
+        document.addEventListener('contextmenu', preventDefaultHandler, false);
+    }
+
+    function enableRightClick() {
+        document.removeEventListener('contextmenu', preventDefaultHandler, false);
+    }
+
+    function preventDefaultHandler(e) {
+        e.preventDefault();
+    }
+
+    
+    // Fonctions pour désactiver et réactiver les raccourcis clavier
+    function disableInspectShortcuts() {
+        document.addEventListener('keydown', disableInspectShortcutsHandler, false);
+    }
+
+    function enableInspectShortcuts() {
+        document.removeEventListener('keydown', disableInspectShortcutsHandler, false);
+    }
+
+    function disableInspectShortcutsHandler(e) {
+        if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C')) || (e.metaKey && e.altKey && e.key === 'I')) {
+            e.preventDefault();
+        }
+    }
+
+    // Fonction pour fermer le modal et réactiver les fonctionnalités
+    function closeAvailabilityWarning() {
+        var modal = document.getElementById('availabilityWarning-modal');
+        if (modal) {
+            modal.style.display = 'none';
+            enableRightClick();
+            enableInspectShortcuts();
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Vérifiez si le modal est ouvert
+        var modal = document.getElementById('availabilityWarning-modal'); 
+        if (!modal.classList.contains('hidden')) {
+            document.addEventListener('contextmenu', disableRightClick, false);
+            document.addEventListener('keydown', disableInspectShortcuts, false);
+        }
+    });
+
+
     </script>

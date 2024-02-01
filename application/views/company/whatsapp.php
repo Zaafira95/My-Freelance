@@ -22,7 +22,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
                     Rejoignez les groupes de la plus grande communauté de freelance en France
                 </h1>
                 <div class="items-center overflow-hidden py-4 px-4">
-                    <<div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
                         <!-- Remplacez les informations de chaque groupe avec vos propres données -->
                         <?php $count = 0; ?>
                         <?php foreach ($groups as $group) : ?>

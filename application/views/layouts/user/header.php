@@ -7,6 +7,13 @@
     if($user->userAvatarPath == null){
         $user->userAvatarPath = 'assets/img/default-avatar.png';
     }
+
+    // Verify user Date Fin Indisponibilité
+    $today = date("Y-m-d");
+    $todayTimestamp = strtotime($today);
+    $datePlus15Jours = date('Y-m-d', strtotime($user->userDateFinIndisponibilite. ' + 14 days'));
+    $datePlus15JoursTimestamp = strtotime($datePlus15Jours);
+    
 ?>
 <!-- Modal toggle -->
 
@@ -36,26 +43,26 @@
             </a>
             <div class="flex items-center lg:order-2">
             <div class="flex justify-center">
-                <button id="updateProductButton" data-modal-toggle="updateProductModal" class="block" type="button">
-            <?php
-                // check user availability
-                if($user->userIsAvailable == 1){
-            ?>
-                <div style="padding-top: 0.2em; padding-bottom: 0.2rem" class="flex items-center space-x-1 bg-green-100 text-green-800 text-2xl lg:text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-300 dark:text-green-900">
-                    <div class="w-2 h-2 lg:h-2 lg:w-2 bg-green-500 rounded-full dark:bg-green-700"></div>
-                    <div>Disponibilité confirmée</div>
-                </div>
-            <?php
-                } else {
-            ?>
-                <div style="padding-top: 0.2em; padding-bottom: 0.2rem" class="flex items-center space-x-1 bg-red-100 text-red-800 text-2xl lg:text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-300 dark:text-red-900">
-                    <div class="w-2 h-2 lg:h-2 lg:w-2 bg-red-500 rounded-full dark:bg-red-700"></div>
-                    <div>Non Disponible</div>
-                </div>
-            <?php
-                }
-            ?> 
-            </button>
+                <button type="button" class="block" onclick="openTheModalUpdate()">
+                    <?php
+                        // check user availability
+                        if($user->userIsAvailable == 1){
+                    ?>
+                        <div style="padding-top: 0.2em; padding-bottom: 0.2rem" class="flex items-center space-x-1 bg-green-100 text-green-800 text-2xl lg:text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-300 dark:text-green-900">
+                            <div class="w-2 h-2 lg:h-2 lg:w-2 bg-green-500 rounded-full dark:bg-green-700"></div>
+                            <div>Disponibilité confirmée</div>
+                        </div>
+                    <?php
+                        } else {
+                    ?>
+                        <div style="padding-top: 0.2em; padding-bottom: 0.2rem" class="flex items-center space-x-1 bg-red-100 text-red-800 text-2xl lg:text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-300 dark:text-red-900">
+                            <div class="w-2 h-2 lg:h-2 lg:w-2 bg-red-500 rounded-full dark:bg-red-700"></div>
+                            <div>Non Disponible</div>
+                        </div>
+                    <?php
+                        }
+                    ?> 
+                </button>
             </div>
             <div class="mr-4 ml-4">
             <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
@@ -197,7 +204,82 @@
     </nav>
 </header>
 
-<div id="updateProductModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
+<!-- component -->
+
+<div id="availabilityWarning-modal" class="<?php echo (($today >= $user->userDateFinIndisponibilite && $user->userIsAvailable == 0)) ? '' : 'hidden' ?> fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 py-10" style="z-index:100">
+    <div class="relative p-4 w-80 lg:w-60 h-full md:h-auto">
+            <!-- Modal content -->
+            <div class="relative p-4 justify-start items-start bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+                <!-- Modal header -->
+                <div class="flex justify-start items-start pb-4 mb-2 text-left">
+                    <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100  mr-4">
+                        <svg class="h-8 w-8 text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div>      
+                            <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
+                                Votre période d'indisponibilité est dépassée. Veuillez mettre à jour votre disponibilité.
+                            </h3>
+                            <?php   
+                                if($todayTimestamp >= $datePlus15JoursTimestamp) {?>
+                                    <p class="text-3xl lg:text-base text-gray-500 dark:text-gray-400 mt-1">
+                                        Vous n'aurez plus accès aux missions tant que vous n'aurez pas mis à jour votre disponibilité.
+                                    </p>
+                                <?php
+                                    } else {
+                                ?>
+                                <p class="text-3xl lg:text-base text-gray-500 dark:text-gray-400 mt-1">
+                                    Vous n'aurez plus accès aux missions dans 
+                                    <?php
+                                    // Compter le nombre de jours restant, sachant que la date de fin d'indisponibilité est dépassée et que l'utilisateur a 15 jours pour mettre à jour sa disponibilité
+                                    $dateFinIndisponibilite = new DateTime($user->userDateFinIndisponibilite);
+                                    $dateFinIndisponibiliteTimestamp = strtotime($dateFinIndisponibilite->format('Y-m-d'));
+                                    $dateFinIndisponibilitePlus15Jours = date('Y-m-d', strtotime($dateFinIndisponibilite->format('Y-m-d'). ' + 14 days'));
+                                    $dateFinIndisponibilitePlus15JoursTimestamp = strtotime($dateFinIndisponibilitePlus15Jours);
+                                    $today = date("Y-m-d");
+                                    $todayTimestamp = strtotime($today);
+                                    $diff = $dateFinIndisponibilitePlus15JoursTimestamp - $todayTimestamp;
+                                    $diff = round($diff / (60 * 60 * 24));
+                                    echo $diff;
+                                    // Si le nombre de jours restant est égal à 1, on affiche "jour" au singulier, sinon on affiche "jours" au pluriel
+                                    if($diff == 1) {
+                                        echo " jour";
+                                    } else {
+                                        echo " jours";
+                                    }
+                                    ?>
+                                     tant que vous n'aurez pas mis à jour votre disponibilité.
+                                </p>
+                            <?php
+                                }
+                            ?>  
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal body -->
+                <div class="flex items-center space-x-4 mt-4">
+                    <button type="button"  class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" onclick="closeAvailabilityWarning()">
+                        Mettre à jour
+                    </button>
+                    <?php 
+                        if($todayTimestamp < $datePlus15JoursTimestamp) {
+                    ?>
+                            <button type="button" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900" onclick="closeAvailabilityWarningWithoutOpenUpdate()">
+                                Plus tard
+                            </button>
+                    <?php 
+                        }
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="updateProductModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden right-0 z-50 md:inset-0 h-modal md:h-full fixed left-0 top-0  h-full w-full items-center justify-center bg-black bg-opacity-50 py-10">
     <div class="relative p-4 w-80 lg:w-60 h-full md:h-auto">
         <!-- Modal content -->
         <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
@@ -206,10 +288,16 @@
                 <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
                     Votre disponibilité
                 </h3>
-                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateProductModal">
+                <?php 
+                    if($todayTimestamp < $datePlus15JoursTimestamp) {
+                ?>
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" onclick="closeUpdateModal()">
                     <svg aria-hidden="true" class="w-8 h-8 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     <span class="sr-only">Fermer</span>
                 </button>
+                <?php 
+                    }
+                ?>
             </div>
             <!-- Modal body -->
 
@@ -259,9 +347,16 @@
                     <button type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                         Valider
                     </button>
-                    <button type="button" data-modal-toggle="updateProductModal" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
+                    <?php 
+                        if($todayTimestamp < $datePlus15JoursTimestamp) {
+                    ?>
+                    <button type="button" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900" onclick="closeUpdateModal()">
                         Annuler
                     </button>
+                    <?php 
+                        }
+                    ?>
+
                 </div>
             </form>
         </div>
@@ -270,12 +365,95 @@
 
 <script src="<?php echo base_url('node_modules/flowbite/dist/flowbite.min.js'); ?>"></script>
 <script>
-        try {
-            function toggleDropdown() {
-                var dropdown = document.getElementById('dropdown');
-                dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
-            }
-        } catch (error) {
-            console.error("An error occurred while toggling the dropdown: ", error);
+    try {
+        function toggleDropdown() {
+            var dropdown = document.getElementById('dropdown');
+            dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
         }
+    } catch (error) {
+        console.error("An error occurred while toggling the dropdown: ", error);
+    }
+
+    // Fonctions pour désactiver et réactiver le clic droit
+    function disableRightClick() {
+        document.addEventListener('contextmenu', preventDefaultHandler, false);
+    }
+
+    function enableRightClick() {
+        document.removeEventListener('contextmenu', preventDefaultHandler, false);
+    }
+
+    function preventDefaultHandler(e) {
+        e.preventDefault();
+    }
+
+    
+    // Fonctions pour désactiver et réactiver les raccourcis clavier
+    function disableInspectShortcuts() {
+        document.addEventListener('keydown', disableInspectShortcutsHandler, false);
+    }
+
+    function enableInspectShortcuts() {
+        document.removeEventListener('keydown', disableInspectShortcutsHandler, false);
+    }
+
+    function disableInspectShortcutsHandler(e) {
+        if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'C')) || (e.metaKey && e.altKey && e.key === 'I')) {
+            e.preventDefault();
+        }
+    }
+
+    // Fonction pour fermer le modal et réactiver les fonctionnalités
+    function closeAvailabilityWarning() {
+        var modal = document.getElementById('availabilityWarning-modal');
+        var modalUpdateProduct = document.getElementById('updateProductModal');
+        if (modal) {
+            modal.style.display = 'none';
+            modalUpdateProduct.style.display = 'flex';
+            enableRightClick();
+            enableInspectShortcuts();
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Vérifiez si le modal est ouvert
+        var modal = document.getElementById('availabilityWarning-modal'); 
+        if (!modal.classList.contains('hidden')) {
+            document.addEventListener('contextmenu', disableRightClick, false);
+            document.addEventListener('keydown', disableInspectShortcuts, false);
+        }
+    });
+
+    function closeAvailabilityWarningWithoutOpenUpdate(){
+        var modal = document.getElementById('availabilityWarning-modal');
+        var modalUpdateProduct = document.getElementById('updateProductModal');
+        if (modal) {
+            modal.style.display = 'none';
+            modalUpdateProduct.style.display = 'none';
+            enableRightClick();
+            enableInspectShortcuts();
+        }
+    }
+    
+    function closeUpdateModal() {
+        var modal = document.getElementById('updateProductModal');
+        if (modal) {
+            modal.style.display = 'none';
+            enableRightClick();
+            enableInspectShortcuts();
+        }
+    }
+
+    function openTheModalUpdate() {
+        var modal = document.getElementById('updateProductModal');
+        if (modal) {
+            modal.style.display = 'flex';
+            disableRightClick();
+            disableInspectShortcuts();
+        }
+    }
+
+    
+
+
     </script>

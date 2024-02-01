@@ -28,7 +28,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                         <div class="flex items-center mt-2">
                             <i class="text-3xl lg:text-base fa fa-map-marker-alt mr-3"></i>    
                             <div class="relative city-search-container w-full">
-                                <input type="text" id="citySearch" value="<?=$user->userVille?>" placeholder="Cherchez votre ville" class="text-3xl lg:text-lg border p-2 rounded-lg w-full text-black" onkeypress="return preventNumberInput(event)">
+                                <input type="text" id="citySearch" placeholder="Cherchez votre ville" class="text-3xl lg:text-lg border p-2 rounded-lg w-full text-black" onkeypress="return preventNumberInput(event)">
                                 <div id="cities-list" class="text-3xl lg:text-lg absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                             </div>
                         </div>
@@ -122,7 +122,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                             <?php $freelancerSkillsArray[] = $skill->skillId; ?>
                         <?php endforeach; ?>
                         <a href="<?=base_url('company/freelancerView/'.$freelancer->userId)?>" 
-                            class=" ">                            
+                            class="w-full">                            
                             <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative freelancer-item" 
                             data-freelancer-firstname="<?=strtolower($freelancer->userFirstName)?>" 
                             data-freelancer-lastname="<?=strtolower($freelancer->userLastName)?>" 
@@ -451,7 +451,7 @@ include(APPPATH . 'views/layouts/company/header.php');
         var min = document.getElementById('tjm-min');
         var max = document.getElementById('tjm-max');
         noUiSlider.create(slider, {
-            start: [500, 950],
+            start: [300, 1200],
             connect: true,
             range: {
             'min': 300,

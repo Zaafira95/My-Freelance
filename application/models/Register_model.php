@@ -6,7 +6,7 @@ class Register_model extends CI_Model {
 
     public function checkEmailExists($email){
         $this->db->where('userEmail', $email);
-        $query = $this->db->get('users');
+        $query = $this->db->get('Users');
         return $query->num_rows() > 0;
     }
 

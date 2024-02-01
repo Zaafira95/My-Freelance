@@ -597,4 +597,20 @@ class User_model extends CI_Model {
             return false;
         }
 
+        // Kassim le 31/01/2021 : Requete pour récupérer getWelcomeMail($userId)
+
+        public function getWelcomeMail($userId){
+            $this->db->select('userWelcomeMail');
+            $this->db->from('users');
+            $this->db->where('userId', $userId);
+            $query = $this->db->get();
+            return $query->row();
+        }
+
+        public function updateWelcomeMail($userId){
+            $this->db->set('userWelcomeMail', 'True');
+            $this->db->where('userId', $userId);
+            $this->db->update('Users');
+        }
+
 }

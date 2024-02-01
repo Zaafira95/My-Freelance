@@ -29,3 +29,7 @@ Kassim le 30/01/2024 17h50:
 Zaafira le 26/01/2024 15h40:
 - Branch : Portfolio 
     - Autoriser que les PDF pour le Portfolio
+
+Kassim le 01/02/2024 19:17:
+- Branch : Mail/view
+    - Mail View and fixes

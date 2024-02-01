@@ -4,6 +4,8 @@
     <title>Réinitialisez votre mot de passe | Café Crème Community</title>
     <link href="<?php echo base_url('assets/css/app.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
+    <link rel="icon" href="<?php echo base_url('assets/img/Favicon.ico'); ?>" type="image/x-icon">
+
     <style>
         /* body {
             background-color: #ffffff;

@@ -15,6 +15,7 @@ class Login extends CI_Controller {
         $token = $_GET['token'] ?? '';
 
         if ($this->Login_model->activateAccount($token)) {
+            
             $this->session->set_flashdata('message', 'Votre compte activé. Connectez-vous pour accéder à votre compte.');
             $this->session->set_flashdata('status', 'success');
             $this->load->view('login_view');
@@ -36,8 +37,6 @@ class Login extends CI_Controller {
     
             // Récupérer toutes les informations de l'utilisateur
             $userData = $this->Login_model->getUserData($user->userId);
-
-
             if ($userData->userType == 'admin') {
                 $this->session->set_flashdata('message', 'Vous êtes connecté avec succès.');
                 $this->session->set_flashdata('status', 'success');
@@ -79,19 +78,14 @@ class Login extends CI_Controller {
             //send email
             $this->load->library('email');
             $this->email->from('no-reply@cafe-creme.agency', 'Café Crème Community');
-            $this->email->to($userEmail); 
-            $this->email->subject('Réinitialisation de votre mot de passe');
-
-            // Lien d'activation
+            $this->email->to($userEmail); // Assurez-vous d'utiliser l'email de l'utilisateur
+            $this->email->subject('Réinitialisation de votre mot de passe Café Crème Community');
             $resetPasswordLink = base_url() . 'login/reset_password?token=' . $resetPasswordToken;
-
-            // // Données à passer à la vue
-            // $data = [
-            //     'resetPasswordLink' => $resetPasswordLink,
-            // ];
-            // $body = $this->load->view('email/reset_email', $data, TRUE);
-            // $this->email->set_mailtype("html");
-            $this->email->message($resetPasswordLink);
+            $data['resetPasswordLink'] = $resetPasswordLink;
+            $body = $this->load->view('email/reset_password', $data, TRUE);
+            $this->email->set_mailtype("html");
+            $this->email->message($body);
+            
 
             if ($this->email->send()) {
                 $this->session->set_flashdata('message', 'Un lien de réinitialisation vous a été envoyé.');

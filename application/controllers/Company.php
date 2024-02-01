@@ -15,6 +15,8 @@ class Company extends CI_Controller {
         $this->load->model('Company_model');
         $user = $this->User_model->get_UserData($userId);
 
+        
+
         if ($user->userCompanyId == 0) {
             redirect('login'); 
         }
@@ -53,6 +55,7 @@ class Company extends CI_Controller {
 
         if ($user) {
             $data['user'] = $user;
+            // Si user est autre que sales renvoyé vers la page connexion
             $this->load->view('company/index', $data);
         }
         else {
@@ -73,6 +76,7 @@ class Company extends CI_Controller {
             redirect('login'); 
         }
         $data['user'] = $user;
+
 
         $this->load->model('Company_model');
         $freelancer = $this->Company_model->get_freelancer($id);
@@ -130,6 +134,13 @@ class Company extends CI_Controller {
         $ratingCountForAUser = $this->Company_model->getRatingCountByCompanyForAUser($id, $userId);
         $data['ratingCountForAUser'] = $ratingCountForAUser;
 
+
+        // Vérifiez si l'utilisateur existe 
+        if (!$freelancer) {
+            redirect('login');
+        }
+        
+
         $this->load->view('freelancers/view', $data);
     }
 
@@ -183,10 +194,6 @@ class Company extends CI_Controller {
     }
 
 
-    public function mycompany(){
-
-        $this->load->view('company/mycompany');
-    }
 
     public function missionAdd(){
         $userId = $this->session->userdata('userId');
@@ -242,6 +249,10 @@ class Company extends CI_Controller {
         $data['citiesAll'] = $this->Company_model->get_all_cities();
 
         $data['skillsAll'] = $this->Company_model->get_all_skills();
+
+        if ($user->userCompanyId != $mission->missionCompanyId) {
+            redirect('login'); 
+        }
 
         $this->load->view('company/editMission', $data);
     }
@@ -377,12 +388,36 @@ class Company extends CI_Controller {
     }
 
     public function deleteMission($missionId){
-        $this->load->model('Company_model');
 
-        $this->Company_model->deleteMission($missionId);
-        $this->session->set_flashdata('message', 'Votre mission a bien été supprimée !');
-        $this->session->set_flashdata('status', 'success');
-        redirect('company/my_company');
+        $userId = $this->session->userdata('userId');
+        $this->load->model('User_model');
+        $this->load->model('Company_model');
+        $user = $this->User_model->get_UserData($userId);
+        $mission = $this->Company_model->getMissionById($missionId);
+
+
+        
+
+        if ($user->userCompanyId == 0) {
+            redirect('login'); 
+        }
+        else {
+
+            $this->load->model('Company_model');
+
+            if ($user->userCompanyId != $mission->missionCompanyId) {
+                redirect('login'); 
+            }
+
+            $this->Company_model->deleteMission($missionId);
+            $this->session->set_flashdata('message', 'Votre mission a bien été supprimée !');
+            $this->session->set_flashdata('status', 'success');
+            redirect('company/my_company');
+
+        }
+
+        
+       
     }
 
     public function my_company(){
@@ -428,11 +463,15 @@ class Company extends CI_Controller {
 
 
     public function missionView($missionId){
+
+
         $userId = $this->session->userdata('userId');
         $this->load->model('Company_model');
         $user = $this->Company_model->get_UserData($userId);
         $data['user'] = $user;
        
+        
+        
 
         $mission = $this->Company_model->getMissionById($missionId);
         $data['mission'] = $mission;
@@ -475,6 +514,17 @@ class Company extends CI_Controller {
         $isMissionFavorite = false;
 
         $data['isMissionFavorite'] = $isMissionFavorite;
+
+        // Check if this mission is the mission of the company otherwise redirect to login
+        if ($user->userCompanyId != $mission->missionCompanyId) {
+            redirect('login'); 
+        }
+
+        // Vérifiez si la mission existe
+        if (!$mission) {
+            redirect('login');
+        }
+
 
 
         $this->load->view('missions/view', $data);
@@ -827,6 +877,8 @@ class Company extends CI_Controller {
 
         $data['secteursAll'] = $this->Company_model->get_all_secteurs();
         $data['jobsAll'] = $this->Company_model->get_all_jobs();
+
+        
 
         $this->load->view('company/settings', $data);
     }

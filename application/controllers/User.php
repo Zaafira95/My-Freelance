@@ -536,25 +536,7 @@ class User extends CI_Controller {
         $skills = $this->User_model->getUserSkills($user->userId);
         $data['skills'] = $skills;
 
-        // Récupérer toutes les missions
-        $missions = $this->User_model->getAllMission();
-        $data['missions'] = $missions;
-
-        // Récupérer les skills de chaque mission
-        $missionSkills = array();
-        foreach ($missions as $mission) {
-            $idMission = $mission->idMission;
-            $missionSkills[$idMission] = $this->User_model->getMissionSkills($idMission);
-        }
-        $data['missionSkills'] = $missionSkills;
-
-        // Récupérer les infos de l'entreprise par mission
-        $missionCompany = array();
-        foreach ($missions as $mission) {
-            $idMission = $mission->idMission;
-            $missionCompany[$idMission] = $this->User_model->getCompanyMission($idMission);
-        }
-        $data['missionCompany'] = $missionCompany;
+        
 
 
        // $ratings = $this->User_model->getRatingsByUser($userId);
@@ -600,6 +582,9 @@ class User extends CI_Controller {
         } else {
             $checkboxChecked = '';
         }
+
+        // vérifier si la mission existe 
+        
 
         $data['checkboxChecked'] = $checkboxChecked;
 
@@ -650,6 +635,11 @@ class User extends CI_Controller {
         $data['jobsAll'] = $this->User_model->get_all_jobs();
 
 
+        if(!$mission){
+            redirect('login');
+        }
+
+
         $this->load->view('missions/view', $data);
 
     }
@@ -660,6 +650,10 @@ class User extends CI_Controller {
         $user = $this->User_model->get_UserData($userId);
         $data['user'] = $user;
         $isAvailable = $user->userIsAvailable ;
+
+        if ($user->userCompanyId != 0) {
+            redirect('company');
+        }
         
         // Cocher la case appropriée en fonction de la valeur récupérée
         if ($isAvailable == 1) {
@@ -697,80 +691,9 @@ class User extends CI_Controller {
         $this->load->view('missions/index', $data);
     }
 
-    public function generer_message($missionId) {
-
-        $this->load->model('User_model');
-        // Récupérer la description de la mission et les compétences du freelance
-        $missionDescription = $this->User_model->getMissionDescription($missionId);
-        $userId = $this->session->userdata('userId');
-        $userSkills = $this->User_model->getUserSkills($userId);
+   
     
-        // Convertir les tableaux en chaînes de caractères
-        $mission = is_array($missionDescription) ? $this->convertirTableauEnChaine($missionDescription) : $missionDescription;
-        $profil_freelance = is_array($userSkills) ? $this->convertirTableauEnChaine($userSkills) : $userSkills;
-    
-        // Construire le texte d'entrée pour l'API GPT-3
-        $texte_entree = "Je suis un freelance et je suis intéressé par une mission, génère en français un message professinnel pour exprimer mon intérêt pour la mission dont le descriptif est le suivant : " . $mission . " Et voici mes compétences : " . $profil_freelance;
-    
-
-        echo '<br><br>';
-
-        echo 'Résultat : <br><br>';
-
-        // Effectuer l'appel à l'API GPT-3 via cURL
-        $url = 'https://api.openai.com/v1/engines/text-davinci-002/completions';
-        $headers = array(
-            'Authorization: Bearer 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',
-            'Content-Type: application/json',
-        );
-        $data = array(
-            'prompt' => $texte_entree,
-            'temperature' => 1,
-            'max_tokens' => 300,
-        );
-    
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    
-        $resultat = curl_exec($ch);
-    
-        if ($resultat === false) {
-            // Gérer l'erreur de requête cURL
-            $erreur_curl = curl_error($ch);
-            curl_close($ch);
-            return "Erreur cURL : " . $erreur_curl;
-        }
-    
-        curl_close($ch);
-    
-        // Décoder la réponse JSON
-        $resultat_decode = json_decode($resultat, true);
-    
-        // Vérifier si 'choices' est présent dans la réponse
-        if (isset($resultat_decode['choices']) && is_array($resultat_decode['choices']) && count($resultat_decode['choices']) > 0) {
-            // Récupérer le message généré à partir de la réponse de l'API
-            $message_genere = $resultat_decode['choices'][0]['text'];
-            // Afficher le message généré
-            echo $message_genere;
-            // Retourner la réponse de l'API
-            return $resultat;
-        } else {
-            // En cas d'erreur, retourner un message d'erreur ou une chaîne vide
-            return "Erreur lors de la génération du message.";
-        }
-
-    }
-    
-    
-    public function afficher_message($missionId) {
-        $message_genere = $this->generer_message($missionId);
-        $data['message_genere'] = $message_genere;
-    }
-
+   
     // Fonction pour convertir un tableau en chaîne de caractères
     private function convertirTableauEnChaine($tableau) {
         $chaine = '';
@@ -784,40 +707,7 @@ class User extends CI_Controller {
         return rtrim($chaine, ', '); // Supprimer la virgule finale
     }
 
-    public function test_api(){
-        $api_key = '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';
-        $texte_entree = "Un freelance exprime son intérêt pour la mission : Test de l'API GPT-3.";
-
-        $url = 'https://api.openai.com/v1/engines/text-davinci-002/completions';
-        $headers = array(
-            'Authorization: Bearer ' . $api_key,
-            'Content-Type: application/json',
-        );
-        $data = array(
-            'prompt' => $texte_entree,
-            'temperature' => 0.7,
-            'max_tokens' => 100,
-        );
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-        $resultat = curl_exec($ch);
-
-        if ($resultat === false) {
-            // Gérer l'erreur de requête cURL
-            $erreur_curl = curl_error($ch);
-            curl_close($ch);
-            echo "Erreur cURL : " . $erreur_curl;
-        } else {
-            curl_close($ch);
-        }
-
-    }
+  
 
     public function whatsapp() {
         $userId = $this->session->userdata('userId');
@@ -841,62 +731,7 @@ class User extends CI_Controller {
         $this->load->view('user/whatsapp', $data);
     }
 
-    public function addWhatsAppGroup() {
-        // Vérifier si la requête est une requête POST
-        if ($this->input->server('REQUEST_METHOD') == 'POST') {
-            // Récupérer les données du formulaire
-            $whatsAppGroupName = $this->input->post('whatsAppGroupName');
-            $whatsAppGroupDescription = $this->input->post('whatsAppGroupDescription');
-            $whatsAppGroupLink = $this->input->post('whatsAppGroupLink');
-    
-            $defaultImagePath = FCPATH . 'assets/img/Logo-whatsapp.png';
-    
-            $image = imagecreatefrompng($defaultImagePath);
-    
-            // Définir la couleur du texte (rouge dans cet exemple)
-            $textColor = imagecolorallocate($image, 254, 252, 241);
-        
-            // Définir la taille et l'angle du texte
-            $fontSize = 50;
-            $angle = 0;
-            
-            // Calculer la largeur du texte
-            $textBox = imagettfbbox($fontSize, $angle, FCPATH . 'assets/fonts/CabinetGrotesk-Bold.ttf', $whatsAppGroupName);
-            $textWidth = abs($textBox[2] - $textBox[0]);
-            
-            // Calculer la position x pour centrer le texte
-            $imageWidth = imagesx($image);
-            $x = ($imageWidth - $textWidth) / 2;
-            
-            // Définir la position y
-            $y = 771;
-        
-            // Ajouter le filigrane (le nom du groupe)
-            imagettftext($image, $fontSize, $angle, $x, $y, $textColor, FCPATH . 'assets/fonts/CabinetGrotesk-Bold.ttf', $whatsAppGroupName);
-        
-            // Enregistrer l'image avec le filigrane
-            $watermarkedImagePath = 'assets/img/' . $whatsAppGroupName . '.png';
-            imagepng($image, FCPATH . $watermarkedImagePath);
-        
-            // Libérer la mémoire
-            imagedestroy($image);
-    
-            $whatsAppGroupImage = $watermarkedImagePath; // Vous devrez gérer le téléchargement de l'image séparément
-    
-            // Charger le modèle
-            $this->load->model('User_model');
-    
-            // Appeler la fonction pour insérer le groupe dans la base de données
-            $this->User_model->insertWhatsAppGroup($whatsAppGroupName, $whatsAppGroupDescription, $whatsAppGroupLink, $whatsAppGroupImage);
-    
-            // Rediriger l'utilisateur vers la page de confirmation
-            redirect('user/whatsapp');
-    
-        } else {
-            // Charger la vue du formulaire d'ajout de groupe
-            $this->load->view('user/add_whatsapp_group');
-        }
-    }
+   
 
     public function isMissionFavorite($missionId){
         $userId = $this->session->userdata('userId');
@@ -940,6 +775,11 @@ class User extends CI_Controller {
         $user = $this->User_model->get_UserData($userId);
         $data['user'] = $user;
         $isAvailable = $user->userIsAvailable ;
+
+        if ($user->userCompanyId != 0) {
+            redirect('company');
+        }
+        
         
         // Cocher la case appropriée en fonction de la valeur récupérée
         if ($isAvailable == 1) {
@@ -1078,6 +918,10 @@ class User extends CI_Controller {
         $user = $this->User_model->get_UserData($userId);
         $data['user'] = $user;
         $isAvailable = $user->userIsAvailable;
+
+        if ($user->userCompanyId != 0) {
+            redirect('company');
+        }
     
         // Cocher la case appropriée en fonction de la valeur récupérée
         if ($isAvailable == 1) {
@@ -1102,6 +946,11 @@ class User extends CI_Controller {
         $user = $this->User_model->get_UserData($userId);
         $data['user'] = $user;
         $isAvailable = $user->userIsAvailable ;
+
+
+        if ($user->userCompanyId != 0) {
+            redirect('company');
+        }
         
         // Cocher la case appropriée en fonction de la valeur récupérée
         if ($isAvailable == 1) {
@@ -1180,6 +1029,4 @@ class User extends CI_Controller {
     }
 
 }
-
-/*test*/
 ?>

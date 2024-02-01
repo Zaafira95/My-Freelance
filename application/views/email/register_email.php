@@ -1,10 +1,21 @@
 <html>
 <head>
-    <title> Création de compte </title>
+    <title> Activation de votre compte Café Crème Community </title>
+
 
 <style>
+    
+    @import url('https://fonts.googleapis.com/css?family=Poppins');
+
+
     body {
-        font-family: 'Cabinet Grotesk', sans-serif;
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+        background-color: #FFFFFF;
+    }
+
+    div {
+        font-family: 'Poppins', sans-serif;
         font-size: 14px;
     }
 </style>
@@ -14,19 +25,27 @@
 
 <div style="background-color:#FFFFFF;margin:0px auto;max-width:800px; padding:2rem; margin-left:auto; margin-right:auto;">
     <!-- Logo centered in a 600px container (adjustment can be made as needed) -->
-    <div style="text-align:center;">
-            <img src="https://uploads-ssl.webflow.com/636a2ecc04b5b050d3f252f9/65b920d2b1180ca9828c6e9c_CC-Logo-Prod.png" alt="Café Crème Community" width="600" style="width:200px;margin-top:20px; margin-bottom:40px;display:block; margin-left:auto; margin-right:auto;">
-    </div>
     <!-- Main content area -->
     <!-- Activate your account title -->
     <div style="max-width:600px;margin-left:auto; margin-right:auto;">
-        <h1 style="font-size: 24px; font-weight: 600; color: #000000; margin: 20px; padding: 0; text-align: center;">Activation de votre compte Café Crème Community</h1>
+
+        <img src="https://uploads-ssl.webflow.com/636a2ecc04b5b050d3f252f9/65b920d2b1180ca9828c6e9c_CC-Logo-Prod.png" alt="Café Crème Community" width="600" style="width:200px;margin-top:20px; margin-bottom:40px;display:block; margin-left:0px; margin-right:auto;">
+
+        <h1 style="font-size: 24px; font-weight: 600; color: #000000; margin-top: 20px; margin-bottom: 20px; padding: 0; text-align: left;">Activation de votre compte Café Crème Community
+</h1>
 
         <!-- Activate your account text -->
-        <p style="font-size: 16px; font-weight: 400; color: #000000; margin: 0; padding: 0; text-align: center;">Bonjour, vous venez de créer un compte sur Café Crème Community. Pour activer votre compte, veuillez cliquer sur le lien ci-dessous.</p>
+        <p style="font-size: 16px; font-weight: 400; color: #000000; margin: 0; padding: 0; text-align: left;">Bonjour, vous venez de créer un compte sur Café Crème Community. Pour activer votre compte, veuillez cliquer sur le lien ci-dessous.</p>
+
 
         <!-- Activate your account button -->
-        <a href="<?php echo $activationLink; ?>" style="background-color: #3971FA; border-radius:40px; color: #ffffff; display: block; font-size: 16px; font-weight: 600; line-height: 1.5; margin: 0 auto; margin-top: 24px; max-width: 320px; padding: 12px 24px; text-align: center; text-decoration: none; width: 100%;">Activer mon compte</a>
+        <a href="<?php echo $activationLink; ?>" style="background-color: #3971FA; border-radius:40px; color: #ffffff; display: block; font-size: 16px; font-weight: 600; line-height: 1.5; margin-bottom:24px; margin-top: 24px; margin-left:auto; margin-right:auto; max-width: 320px; padding: 12px 24px; text-align: center; text-decoration: none; width: 100%;">Activer mon compte</a>
+
+
+
+        <p style="font-size: 14px; font-weight: 200; color: #000000; margin-top: 20px; padding: 0; text-align: left;">A bientôt, <br> L'équipe Café Crème Community ☕️</p>
+
+
     </div>  
     <!-- Footer -->
     <div style="border-top: 1px solid #E5E5E5; margin-top: 40px; padding-top:20px;">

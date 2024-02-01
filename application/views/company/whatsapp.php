@@ -34,11 +34,21 @@ include(APPPATH . 'views/layouts/company/header.php' );
                                 <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white"><?= $group->whatsAppGroupName?></h3>
 
                                 <!-- Description du groupe -->
-                                <p class="text-3xl lg:text-base text-gray-600 mb-4 dark:text-white"><?= $group->whatsAppGroupDescription?></p>
+                                <!-- <p class="text-3xl lg:text-base text-gray-600 mb-4 dark:text-white"><?= $group->whatsAppGroupDescription?></p> -->
 
                                 <!-- Bouton pour rejoindre le groupe -->
-                                <a href="<?= $group->whatsAppGroupLink?>" class="text-3xl lg:text-base block w-full text-center bg-primary hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-full hover:shadow-md transition duration-300 dark:text-white">Rejoindre</a>
-                            </div>
+                                <!-- Si le groupe est plein, afficher un bouton grisé écrit Complet -->
+                                <?php if ($group->whatsAppGroupIsFull == 1){?>
+                                    <a href="#" class="mt-4 text-3xl lg:text-base block w-full text-center bg-gray-300 text-white font-semibold px-4 py-2 rounded-full hover:shadow-md transition duration-300 dark:text-white cursor-not-allowed">Complet</a>
+                                <?php
+                                }
+                                else {
+                                ?>
+                                    <a href="<?= $group->whatsAppGroupLink?>" class="mt-4 text-3xl lg:text-base block w-full text-center bg-primary hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-full hover:shadow-md transition duration-300 dark:text-white">Rejoindre</a>
+                                <?php
+                                }
+                                ?>                            
+                                </div>
                             <?php $count++; ?>
                         <?php endforeach; ?>
                     </div>

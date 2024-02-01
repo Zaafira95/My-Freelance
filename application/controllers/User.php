@@ -94,6 +94,37 @@ class User extends CI_Controller {
 
             $data['user'] = $user;
 
+
+        // Si le userLoginCount est égal à 1, affichez un message de bienvenue
+        // welcome_mail = false
+        // 
+
+        $welcome_mail = $user->userWelcomeMail;
+
+        if ($user->userLoginCount == 1 && $welcome_mail == "False") {
+
+            $this->load->library('email');
+            $this->email->from('no-reply@cafe-creme.agency', 'Café Crème Community');
+            $this->email->to($user->userEmail); // Assurez-vous d'utiliser l'email de l'utilisateur
+            $this->email->subject('Bienvenue chez Café Crème Community 👋🏻');
+            $profileComplete = base_url();
+            $data['profileComplete'] = $profileComplete;
+            $data['userFirstName'] = $user->userFirstName;
+            $data['userLastName'] = $user->userLastName;
+            $body = $this->load->view('email/welcome_email', $data, TRUE);
+            $this->email->set_mailtype("html");
+            $this->email->message($body);
+            
+
+            $this->email->send();
+
+            $this->load->model('User_model');
+            $this->User_model->updateWelcomeMail($userId);
+           
+           
+        }
+        
+
         $this->load->view('user/index', $data);
         } else {
             // echo "Erreur 1 lors de la récupération des informations de l'utilisateur";

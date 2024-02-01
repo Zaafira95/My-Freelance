@@ -15,6 +15,8 @@ class Company_model extends CI_Model {
         $this->db->from('Users');
         $this->db->where('userCompanyId', 0);
         $this->db->where('userType', 'freelance');
+        // trier par disponibilité (userIsAvailable = 1 pour les freelances disponibles)
+        $this->db->order_by('userIsAvailable', 'DESC');
         $query = $this->db->get();
         return $query->result();
     }

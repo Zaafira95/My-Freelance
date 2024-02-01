@@ -215,7 +215,7 @@ if($totalInfos == 1 ){
                 </div>
                 <!-- Fin Barre de recherche -->
                 <!-- Début section pour vous -->
-                <h3 class="text-5xl lg:text-2xl font-medium mt-4 mb-4" id="result-section">Pour vous :</h3>
+                <h3 class="text-5xl lg:text-2xl font-medium mt-4 mb-4" id="result-section">Pour vous :</h3> 
                 <!-- Début section contenant toutes les missions -->
                 <div class="flex flex-wrap" id="missions-section">
                     <!-- Fonction ajouter favoris -->

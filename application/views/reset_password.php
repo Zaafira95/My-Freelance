@@ -160,12 +160,15 @@
     });
     const togglePasswordCheckbox = document.getElementById('togglePasswordCheckbox');
     const passwordInput = document.getElementById('userPassword');
+    const confirmPasswordInput = document.getElementById('confirmPassword');
 
     togglePasswordCheckbox.addEventListener('change', function () {
         if (togglePasswordCheckbox.checked) {
         passwordInput.setAttribute('type', 'text');
+        confirmPasswordInput.setAttribute('type', 'text');
         } else {
         passwordInput.setAttribute('type', 'password');
+        confirmPasswordInput.setAttribute('type', 'password');
         }
     });
 

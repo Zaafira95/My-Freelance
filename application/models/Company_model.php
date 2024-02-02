@@ -412,14 +412,16 @@ class Company_model extends CI_Model {
         $this->db->update('Company');
     }    
 
-    public function updateCompanyData($companyId, $companyName, $companySlogan, $companySecteur, $companyLocalisation, $userId, $userLinkedinLink){
+    public function updateCompanyData($companyId, $companyName, $companySlogan, $companySecteur, $companyLocalisation, $userId, $userLinkedinLink, $userTelephone, $companyWebsite){
         $this->db->set('companyName', $companyName);
         $this->db->set('companySlogan', $companySlogan);
         $this->db->set('companySecteur', $companySecteur);
         $this->db->set('companyLocalisation', $companyLocalisation);
+        $this->db->set('companyWebsite', $companyWebsite);
         $this->db->where('idCompany', $companyId);
         $this->db->update('Company');
         
+        $this->db->set('userTelephone', $userTelephone);
         $this->db->set('userLinkedinLink', $userLinkedinLink);
         $this->db->where('userId', $userId);
         $this->db->update('Users');

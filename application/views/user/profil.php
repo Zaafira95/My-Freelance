@@ -299,19 +299,19 @@ include(APPPATH . 'views/layouts/user/header.php' );
                     <input type="email" id="userEmail" name="userEmail" value="<?=$user->userEmail?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 cursor-not-allowed" placeholder="Email" disabled>
 
                     <label for="userPortfolioLink" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Portfolio</label>
-                    <input type="text" id="userPortfolioLink" name="userPortfolioLink" value="<?=$user->userPortfolioLink?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Portfolio">
+                    <input type="text" id="userPortfolioLink" name="userPortfolioLink" value="<?=$user->userPortfolioLink?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Portfolio" onblur="checkPortfolioLink()">
 
                     <label for="userLinkedinLink" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Linkedin</label>
-                    <input type="text" id="userLinkedinLink" name="userLinkedinLink" value="<?=$user->userLinkedinLink?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Linkedin">
+                    <input type="text" id="userLinkedinLink" name="userLinkedinLink" value="<?=$user->userLinkedinLink?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Linkedin" onblur="checkLinkedinLink()">
 
                     <label for="userGithubLink" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Github</label>
-                    <input type="text" id="userGithubLink" name="userGithubLink" value="<?=$user->userGithubLink?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Github">
+                    <input type="text" id="userGithubLink" name="userGithubLink" value="<?=$user->userGithubLink?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Github" onblur="checkGithubLink()">
                     
                     <label for="userDribbleLink" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Dribbble</label>
-                    <input type="text" id="userDribbleLink" name="userDribbleLink" value="<?=$user->userDribbleLink?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Dribbble">
+                    <input type="text" id="userDribbleLink" name="userDribbleLink" value="<?=$user->userDribbleLink?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Dribbble" onblur="checkDribbbleLink()">
 
                     <label for="userBehanceLink" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Behance</label>
-                    <input type="text" id="userBehanceLink" name="userBehanceLink" value="<?=$user->userBehanceLink?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Behance">
+                    <input type="text" id="userBehanceLink" name="userBehanceLink" value="<?=$user->userBehanceLink?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Behance" onblur="checkBehanceLink()">
 
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
@@ -1253,7 +1253,7 @@ if($totalInfos == 1 ){
                                 </div>
                                 <div class="display inline">
                                     <p class="mt-2 mb-2 text-3xl lg:text-base">Aucune compétences et expertises renseignées.</p>
-                                    <button id="addUserSkills" data-modal-toggle="addUserSkills" class="text-3xl lg:text-base py-2 px-4 bg-primary text-white rounded-full">Ajouter vos compténces</button>
+                                    <button id="addUserSkills" data-modal-toggle="addUserSkills" class="text-3xl lg:text-base py-2 px-4 bg-primary text-white rounded-full">Ajouter vos compétences</button>
                                 </div>
                                 <?php } ?>
                                 
@@ -2138,4 +2138,54 @@ function displayAvailibilityOptions() {
         isNotAvailableDiv.style.display = 'block';
     }
 }
+
+    function checkPortfolioLink() {
+        let portfolioLink = document.getElementById('userPortfolioLink');
+        let portfolioLinkValue = portfolioLink.value;
+        if (portfolioLinkValue !== '') {
+            if (!portfolioLinkValue.startsWith('https://') && !portfolioLinkValue.startsWith('http://')) {
+                portfolioLink.value = 'https://' + portfolioLinkValue;
+            }
+        }
+    }
+
+    function checkLinkedinLink() {
+        let linkedinLink = document.getElementById('userLinkedinLink');
+        let linkedinLinkValue = linkedinLink.value;
+        if (linkedinLinkValue !== '') {
+            if (!linkedinLinkValue.startsWith('https://') && !linkedinLinkValue.startsWith('http://')) {
+                linkedinLink.value = 'https://' + linkedinLinkValue;
+            }
+        }
+    }
+
+    function checkGithubLink() {
+        let githubLink = document.getElementById('userGithubLink');
+        let githubLinkValue = githubLink.value;
+        if (githubLinkValue !== '') {
+            if (!githubLinkValue.startsWith('https://') && !githubLinkValue.startsWith('http://')) {
+                githubLink.value = 'https://' + githubLinkValue;
+            }
+        }
+    }
+
+    function checkDribbbleLink() {
+        let dribbbleLink = document.getElementById('userDribbbleLink');
+        let dribbbleLinkValue = dribbbleLink.value;
+        if (dribbbleLinkValue !== '') {
+            if (!dribbbleLinkValue.startsWith('https://') && !dribbbleLinkValue.startsWith('http://')) {
+                dribbbleLink.value = 'https://' + dribbbleLinkValue;
+            }
+        }
+    }
+
+    function checkBehanceLink() {
+        let behanceLink = document.getElementById('userBehanceLink');
+        let behanceLinkValue = behanceLink.value;
+        if (behanceLinkValue !== '') {
+            if (!behanceLinkValue.startsWith('https://') && !behanceLinkValue.startsWith('http://')) {
+                behanceLink.value = 'https://' + behanceLinkValue;
+            }
+        }
+    }
 </script>

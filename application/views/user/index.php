@@ -220,6 +220,7 @@ if($totalInfos == 1 ){
                 <div class="flex flex-wrap" id="missions-section">
                     <!-- Fonction ajouter favoris -->
                     <?php
+                    if (!function_exists('isFavorite')) {
                         function isFavorite($missionId, $favoriteMissions) {
                             foreach ($favoriteMissions as $favoriteMission) {
                                 if ($favoriteMission->idMissionSavedMission == $missionId) {
@@ -228,6 +229,7 @@ if($totalInfos == 1 ){
                             }
                             return false;
                         }
+                    }
                     ?>
                     <!-- Fin Fonction ajouter favoris -->
 

@@ -39,3 +39,7 @@ Zaafira le 02/02/2024 15h47:
     - Display logo-light when dark mode is on
     - Add of company webSite link in company page
     - Chech if reset password link is expired
+    
+Kassim le 02/02/2024 15h50:
+- Branch : Main
+    - Fix isFavoriteMission, separate freelancers and companies welcome mail, add launch mail for members

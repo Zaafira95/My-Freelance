@@ -73,8 +73,9 @@ class Login extends CI_Controller {
     public function forgotPassword() {
         $userEmail = $this->input->post('userEmail');
         $resetPasswordToken =  bin2hex(random_bytes(16));
+        $expirationDate = date('Y-m-d H:i:s', strtotime('+24 hours')); // 24 heures à partir de maintenant
 
-        if($this->Login_model->savePasswordToken($userEmail, $resetPasswordToken)) {
+        if($this->Login_model->savePasswordToken($userEmail, $resetPasswordToken, $expirationDate)) {
             //send email
             $this->load->library('email');
             $this->email->from('no-reply@cafe-creme.agency', 'Café Crème Community');
@@ -106,8 +107,17 @@ class Login extends CI_Controller {
         $token = $_GET['token'] ?? '';
         $this->load->model('Login_model');
         $userEmail = $this->Login_model->checkResetPasswordToken($token);
+        $tokenExpirationDate = $this->Login_model->getResetPasswordTokenExpirationDate($token);
         $data['userEmail'] = $userEmail; 
-        $this->load->view('reset_password', $data);
+        $currentDateTime = date('Y-m-d H:i:s');
+        if($currentDateTime > $tokenExpirationDate) {
+            $this->session->set_flashdata('message', 'Votre lien de réinitialisation a expiré. Veuillez réessayer.');
+            $this->session->set_flashdata('status', 'error');
+            $this->load->view('login_view');
+        }
+        else{
+            $this->load->view('reset_password', $data);
+        }
     }
 
     public function resetPassword() {

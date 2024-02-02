@@ -33,3 +33,9 @@ Zaafira le 26/01/2024 15h40:
 Kassim le 01/02/2024 19:17:
 - Branch : Mail/view
     - Mail View and fixes
+
+Zaafira le 02/02/2024 15h47:
+- Branch resetpassword/logo
+    - Display logo-light when dark mode is on
+    - Add of company webSite link in company page
+    - Chech if reset password link is expired

@@ -75,7 +75,6 @@
         </div>
     </div>
 </section>
-<script src="<?php echo base_url('assets/js/app.js'); ?>"></script>
 
     <script>
 
@@ -106,16 +105,7 @@
         // Cacher le loader une fois le chargement de la page terminé
         document.getElementById('loaderOverlay').style.display = 'none';
     });
-    const togglePasswordCheckbox = document.getElementById('togglePasswordCheckbox');
-    const passwordInput = document.getElementById('userPassword');
 
-    togglePasswordCheckbox.addEventListener('change', function () {
-        if (togglePasswordCheckbox.checked) {
-        passwordInput.setAttribute('type', 'text');
-        } else {
-        passwordInput.setAttribute('type', 'password');
-        }
-    });
 
     // Dark mode
 
@@ -127,8 +117,10 @@
     function updateBodyTheme() {
       if (localStorage.getItem('color-theme') === 'dark' || (!localStorage.getItem('color-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         body.classList.add('dark');
+      console.log('test 2');
       } else {
         body.classList.remove('dark');
+      console.log('test 3');
       }
     }
 
@@ -137,9 +129,11 @@
       if (localStorage.getItem('color-theme') === 'dark' || (!localStorage.getItem('color-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         // Chemin vers le logo sombre
         logoImg.src = base_url + 'assets/img/logo-light.svg';
+      console.log('test 4');
       } else {
         // Chemin vers le logo clair
         logoImg.src = base_url + 'assets/img/logo.svg';
+      console.log('test 5');
       }
     }
 
@@ -147,6 +141,7 @@
     window.addEventListener('DOMContentLoaded', function() {
       updateBodyTheme();
       updateLogoTheme();
+      console.log('test 1');
     });
 
     // Écouter les changements de préférence du système de couleur

@@ -58,9 +58,18 @@ include(APPPATH . 'views/layouts/user/header.php');
                             </button>
                         </a>
                         <?php
+                        if (isset($company->companyWebsite) && !empty($company->companyWebsite)){
+                            ?>
+                                <a href="<?=$company->companyWebsite?>" title="Visiter le site" class="flex-shrink-0 mr-4" target="_blank">
+                                    <div>
+                                        <img src="<?=base_url('assets/img/logo-link/portfolio.png')?>" alt="Logo Website" class="h-10 transition-transform transform hover:scale-110">
+                                    </div>
+                                </a>
+                            <?php
+                            }
                         if (isset($company->userEmail) && !empty($company->userEmail)){
                         ?>
-                            <a href="mailto:<?=$company->userEmail?>" title="Envoyer un mail" class="flex-shrink-0 mr-4">
+                            <a href="mailto:<?=$company->userEmail?>" title="Envoyer un mail" class="flex-shrink-0 mr-4" >
                                 <div>
                                     <img src="<?=base_url('assets/img/logo-link/mail.png')?>" alt="Logo Mail" class="h-10 transition-transform transform hover:scale-110">
                                 </div>
@@ -69,7 +78,7 @@ include(APPPATH . 'views/layouts/user/header.php');
                         }
                         if (isset($company->userLinkedinLink) && !empty($company->userLinkedinLink)){
                         ?>
-                            <a href="<?=$company->userLinkedinLink?>" title="Visiter le linkedin" class="flex-shrink-0 mr-2">
+                            <a href="<?=$company->userLinkedinLink?>" title="Visiter le linkedin" class="flex-shrink-0 mr-2" target="_blank">
                                 <div>
                                     <img src="<?=base_url('assets/img/logo-link/linkedin.png')?>" alt="Logo Linkedin" class="h-10 transition-transform transform hover:scale-110">
                                 </div>

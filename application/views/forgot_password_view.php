@@ -75,7 +75,6 @@
         </div>
     </div>
 </section>
-<script src="<?php echo base_url('assets/js/app.js'); ?>"></script>
 
     <script>
 
@@ -106,16 +105,7 @@
         // Cacher le loader une fois le chargement de la page terminé
         document.getElementById('loaderOverlay').style.display = 'none';
     });
-    const togglePasswordCheckbox = document.getElementById('togglePasswordCheckbox');
-    const passwordInput = document.getElementById('userPassword');
 
-    togglePasswordCheckbox.addEventListener('change', function () {
-        if (togglePasswordCheckbox.checked) {
-        passwordInput.setAttribute('type', 'text');
-        } else {
-        passwordInput.setAttribute('type', 'password');
-        }
-    });
 
     // Dark mode
 

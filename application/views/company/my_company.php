@@ -74,13 +74,13 @@ include(APPPATH . 'views/layouts/company/header.php');
 
                 <div>
                     <label for="companyName" class="text-3xl lg:text-base block mb-1 font-medium text-gray-900 dark:text-white">Nom *</label>
-                        <input type="text" name="companyName" id="companyName" value="<?=$company->companyName?>" class="text-3xl lg:text-base mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                        <input type="text" name="companyName" id="companyName" value="<?=$company->companyName?>" class="text-3xl lg:text-base mb-4 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                     
                     <label for="companySlogan" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Slogan *</label>
-                        <input type="text" name="companySlogan" id="companySlogan" value="<?=$company->companySlogan?>" class="text-3xl lg:text-base mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                        <input type="text" name="companySlogan" id="companySlogan" value="<?=$company->companySlogan?>" class="text-3xl lg:text-base mb-4 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                     
                     <label for="companySecteur" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Secteur d'activité *</label>
-                    <div class="text-3xl lg:text-base w-full text-black mb-1">
+                    <div class="text-3xl lg:text-base w-full text-black mb-4">
                         <select id="secteursAll" name="secteursAll[]"  class="text-3xl lg:text-base  mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             <option value="">Sélectionnez un secteur</option>
                             <?php foreach ($secteursAll as $secteur): ?>
@@ -91,23 +91,26 @@ include(APPPATH . 'views/layouts/company/header.php');
                         </select> 
                     </div>                    
                     <label for="companyCity" class="text-3xl lg:text-base block mb-1 font-medium text-gray-900 dark:text-white">Localisation *</label>
-                    <div class="relative city-search-container w-full mb-1">
+                    <div class="relative city-search-container w-full mb-4">
                         <input type="text" id="citySearch" name="companyLocalisation" value="<?=$company->companyLocalisation?>" placeholder="Cherchez votre ville" class="text-3xl lg:text-base border p-2 rounded-lg w-full text-black">
                             <div id="cities-list" class="text-3xl lg:text-base absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                     </div>
-                    <div class="flex items-center mt-1">
+                    <div class="flex items-center mb-4">
                             <input type="checkbox" id="companyEtranger" name="companyEtranger" <?php echo $company->companyLocalisation === 'Etranger' ? 'checked' : "" ?>>
                             <label class="text-3xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Étranger</label>
                      </div>
                     <label for="userLinkedinLink" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Lien LinkedIn</label>
-                        <input type="text" name="userLinkedinLink" id="userLinkedinLink" value="<?=$user->userLinkedinLink?>" class="text-3xl lg:text-base mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <input type="text" name="userLinkedinLink" id="userLinkedinLink" value="<?=$user->userLinkedinLink?>" class="text-3xl lg:text-base mb-4 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onblur="checkLinkedinLink()">
 
+
+                    <label for="companyWebsite" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Lien du site internet</label>
+                        <input type="text" name="companyWebsite" id="companyWebsite" value="<?=$company->companyWebsite?>" class="text-3xl lg:text-base mb-4 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onblur="checkWebsiteLink()">
                     
                     <label for="userTelephone" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Numéro de téléphone</label>
-                        <input type="number" name="userTelephone" id="userTelephone" value="<?=$user->userTelephone?>" class="text-3xl lg:text-base mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <input type="number" name="userTelephone" id="userTelephone" value="<?=$user->userTelephone?>" class="text-3xl lg:text-base mb-4 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     
                 </div>
-                <div class="flex items-center space-x-4 mt-4">
+                <div class="flex items-center space-x-4 mt-6">
                     <button type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                         Valider
                     </button>
@@ -351,6 +354,15 @@ include(APPPATH . 'views/layouts/company/header.php');
                                 </button>
                             </a>
                         <?php
+                        if (isset($company->companyWebsite) && !empty($company->companyWebsite)){
+                        ?>
+                            <a href="<?=$company->companyWebsite?>" title="Visiter le site" class="flex-shrink-0 mr-4" target="_blank">
+                                <div>
+                                    <img src="<?=base_url('assets/img/logo-link/portfolio.png')?>" alt="Logo Website" class="h-10 transition-transform transform hover:scale-110">
+                                </div>
+                            </a>
+                        <?php
+                        }
                         if (isset($user->userEmail) && !empty($user->userEmail)){
                         ?>
                             <a href="mailto:<?=$user->userEmail?>" title="Envoyer un mail" class="flex-shrink-0 mr-4">
@@ -362,7 +374,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                         }
                         if (isset($user->userLinkedinLink) && !empty($user->userLinkedinLink)){
                         ?>
-                            <a href="<?=$user->userLinkedinLink?>" title="Visiter le linkedin" class="flex-shrink-0 mr-2">
+                            <a href="<?=$user->userLinkedinLink?>" title="Visiter le linkedin" class="flex-shrink-0 mr-2" target="_blank">
                                 <div>
                                     <img src="<?=base_url('assets/img/logo-link/linkedin.png')?>" alt="Logo Linkedin" class="h-10 transition-transform transform hover:scale-110">
                                 </div>
@@ -783,4 +795,28 @@ include(APPPATH . 'views/layouts/company/header.php');
         modal.classList.add('hidden');
     }
     
+    // function to check on input of userLinkedinLink if there is https:// or http:// in the url after the user leaves the input and give me the html
+    function checkLinkedinLink() {
+        let linkedinLink = document.getElementById('userLinkedinLink');
+        let linkedinLinkValue = linkedinLink.value;
+        if (linkedinLinkValue !== '') {
+            if (!linkedinLinkValue.startsWith('https://') && !linkedinLinkValue.startsWith('http://')) {
+                linkedinLink.value = 'https://' + linkedinLinkValue;
+            }
+        }
+    }
+    
+    function checkWebsiteLink(){
+        let websiteLink = document.getElementById('companyWebsite');
+        let websiteLinkValue = websiteLink.value;
+        if (websiteLinkValue !== '') {
+            if (!websiteLinkValue.startsWith('https://') && !websiteLinkValue.startsWith('http://')) {
+                websiteLink.value = 'https://' + websiteLinkValue;
+            }
+        }   
+    }
+
+    
+    
+  
 </script>

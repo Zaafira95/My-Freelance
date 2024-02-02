@@ -30,13 +30,14 @@ class Login_model extends CI_Model {
         return $query->row();
     }
 
-    public function savePasswordToken($userEmail, $resetPasswordToken) {
+    public function savePasswordToken($userEmail, $resetPasswordToken, $expirationDate) {
         $this->db->where('userEmail', $userEmail);
         $query = $this->db->get('Users');
         $user = $query->row();
 
         if($user) {
             $this->db->set('userResetPasswordToken', $resetPasswordToken);
+            $this->db->set('userResetPasswordTokenExpirationDate', $expirationDate);
             $this->db->where('userId', $user->userId);
             $this->db->update('Users');
             return true;
@@ -55,6 +56,17 @@ class Login_model extends CI_Model {
                 return $user->userEmail;
             }
             return $user->userEmail;
+        }
+        return false;
+    }
+
+    function getResetPasswordTokenExpirationDate($token){
+        $this->db->where('userResetPasswordToken', $token);
+        $query = $this->db->get('Users');
+
+        if ($query->num_rows() == 1) {
+            $user = $query->row();
+            return $user->userResetPasswordTokenExpirationDate;
         }
         return false;
     }

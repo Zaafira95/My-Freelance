@@ -257,7 +257,6 @@ foreach ($ratedUsers as $rating) {
                                         }
                                     }
                                     if (is_array($ratedUsersWaiting) && !empty($ratedUsersWaiting)){ ?>
-                                        <hr>
                                         <?php 
                                         foreach ($ratedUsersWaiting as $rating) {
                                         ?>

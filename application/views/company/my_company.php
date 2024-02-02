@@ -100,10 +100,11 @@ include(APPPATH . 'views/layouts/company/header.php');
                             <label class="text-3xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Étranger</label>
                      </div>
                     <label for="userLinkedinLink" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Lien LinkedIn</label>
-                        <input type="text" name="userLinkedinLink" id="userLinkedinLink" value="<?=$user->userLinkedinLink?>" class="text-3xl lg:text-base mb-4 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <input type="text" name="userLinkedinLink" id="userLinkedinLink" value="<?=$user->userLinkedinLink?>" class="text-3xl lg:text-base mb-4 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onblur="checkLinkedinLink()">
+
 
                     <label for="companyWebsite" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Lien du site internet</label>
-                        <input type="text" name="companyWebsite" id="companyWebsite" value="<?=$company->companyWebsite?>" class="text-3xl lg:text-base mb-4 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <input type="text" name="companyWebsite" id="companyWebsite" value="<?=$company->companyWebsite?>" class="text-3xl lg:text-base mb-4 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onblur="checkWebsiteLink()">
                     
                     <label for="userTelephone" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Numéro de téléphone</label>
                         <input type="number" name="userTelephone" id="userTelephone" value="<?=$user->userTelephone?>" class="text-3xl lg:text-base mb-4 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -355,9 +356,9 @@ include(APPPATH . 'views/layouts/company/header.php');
                         <?php
                         if (isset($company->companyWebsite) && !empty($company->companyWebsite)){
                         ?>
-                            <a href="<?=$company->companyWebsite?>" title="Visiter le site" class="flex-shrink-0 mr-4">
+                            <a href="<?=$company->companyWebsite?>" title="Visiter le site" class="flex-shrink-0 mr-4" target="_blank">
                                 <div>
-                                    <img src="<?=base_url('assets/img/logo-link/portfolio.png')?>" alt="Logo Mail" class="h-10 transition-transform transform hover:scale-110">
+                                    <img src="<?=base_url('assets/img/logo-link/portfolio.png')?>" alt="Logo Website" class="h-10 transition-transform transform hover:scale-110">
                                 </div>
                             </a>
                         <?php
@@ -373,7 +374,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                         }
                         if (isset($user->userLinkedinLink) && !empty($user->userLinkedinLink)){
                         ?>
-                            <a href="<?=$user->userLinkedinLink?>" title="Visiter le linkedin" class="flex-shrink-0 mr-2">
+                            <a href="<?=$user->userLinkedinLink?>" title="Visiter le linkedin" class="flex-shrink-0 mr-2" target="_blank">
                                 <div>
                                     <img src="<?=base_url('assets/img/logo-link/linkedin.png')?>" alt="Logo Linkedin" class="h-10 transition-transform transform hover:scale-110">
                                 </div>
@@ -794,4 +795,28 @@ include(APPPATH . 'views/layouts/company/header.php');
         modal.classList.add('hidden');
     }
     
+    // function to check on input of userLinkedinLink if there is https:// or http:// in the url after the user leaves the input and give me the html
+    function checkLinkedinLink() {
+        let linkedinLink = document.getElementById('userLinkedinLink');
+        let linkedinLinkValue = linkedinLink.value;
+        if (linkedinLinkValue !== '') {
+            if (!linkedinLinkValue.startsWith('https://') && !linkedinLinkValue.startsWith('http://')) {
+                linkedinLink.value = 'https://' + linkedinLinkValue;
+            }
+        }
+    }
+    
+    function checkWebsiteLink(){
+        let websiteLink = document.getElementById('companyWebsite');
+        let websiteLinkValue = websiteLink.value;
+        if (websiteLinkValue !== '') {
+            if (!websiteLinkValue.startsWith('https://') && !websiteLinkValue.startsWith('http://')) {
+                websiteLink.value = 'https://' + websiteLinkValue;
+            }
+        }   
+    }
+
+    
+    
+  
 </script>

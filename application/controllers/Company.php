@@ -55,6 +55,30 @@ class Company extends CI_Controller {
 
         if ($user) {
             $data['user'] = $user;
+
+            $welcome_mail = $user->userWelcomeMail;
+
+            if ($user->userLoginCount == 1 && $welcome_mail == "False") {
+
+                $this->load->library('email');
+                $this->email->from('no-reply@cafe-creme.agency', 'Café Crème Community');
+                $this->email->to($user->userEmail); // Assurez-vous d'utiliser l'email de l'utilisateur
+                $this->email->subject('Bienvenue chez Café Crème Community 👋🏻');
+                $mailLink = base_url();
+                $data['mailLink'] = $mailLink;
+                // $data['userFirstName'] = $user->userFirstName;
+                // $data['userLastName'] = $user->userLastName;
+                $data['companyName'] = $company->companyName;
+                
+                $body = $this->load->view('email/welcome_email_company', $data, TRUE);
+                $this->email->set_mailtype("html");
+                $this->email->message($body);
+                $this->email->send();
+                $this->load->model('User_model');
+                $this->User_model->updateWelcomeMail($userId);
+            }
+
+
             // Si user est autre que sales renvoyé vers la page connexion
             $this->load->view('company/index', $data);
         }

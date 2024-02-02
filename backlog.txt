@@ -33,3 +33,7 @@ Zaafira le 26/01/2024 15h40:
 Kassim le 01/02/2024 19:17:
 - Branch : Mail/view
     - Mail View and fixes
+
+Kassim le 02/02/2024 15h50:
+- Branch : Main
+    - Fix isFavoriteMission, separate freelancers and companies welcome mail, add launch mail for members

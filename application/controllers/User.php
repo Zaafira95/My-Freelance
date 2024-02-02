@@ -86,43 +86,32 @@ class User extends CI_Controller {
                 $data['user'] = $user;
                 $this->load->view('user/index', $data);
             }
-
             $data['user'] = $user;
+            $welcome_mail = $user->userWelcomeMail;
 
+            if ($user->userLoginCount == 1 && $welcome_mail == "False") {
 
-        // Si le userLoginCount est égal à 1, affichez un message de bienvenue
-        // welcome_mail = false
-        // 
-
-        $welcome_mail = $user->userWelcomeMail;
-
-        if ($user->userLoginCount == 1 && $welcome_mail == "False") {
-
-            $this->load->library('email');
-            $this->email->from('no-reply@cafe-creme.agency', 'Café Crème Community');
-            $this->email->to($user->userEmail); // Assurez-vous d'utiliser l'email de l'utilisateur
-            $this->email->subject('Bienvenue chez Café Crème Community 👋🏻');
-            $profileComplete = base_url();
-            $data['profileComplete'] = $profileComplete;
-            $data['userFirstName'] = $user->userFirstName;
-            $data['userLastName'] = $user->userLastName;
-            $body = $this->load->view('email/welcome_email', $data, TRUE);
-            $this->email->set_mailtype("html");
-            $this->email->message($body);
-            
-
-            $this->email->send();
-
-            $this->load->model('User_model');
-            $this->User_model->updateWelcomeMail($userId);
-           
-           
-        }
+                $this->load->library('email');
+                $this->email->from('no-reply@cafe-creme.agency', 'Café Crème Community');
+                $this->email->to($user->userEmail); // Assurez-vous d'utiliser l'email de l'utilisateur
+                $this->email->subject('Bienvenue chez Café Crème Community 👋🏻');
+                $profileComplete = base_url();
+                $data['profileComplete'] = $profileComplete;
+                $data['userFirstName'] = $user->userFirstName;
+                $data['userLastName'] = $user->userLastName;
+                $body = $this->load->view('email/welcome_email_freelance', $data, TRUE);
+                $this->email->set_mailtype("html");
+                $this->email->message($body);
+                $this->email->send();
+                $this->load->model('User_model');
+                $this->User_model->updateWelcomeMail($userId);
+            }
         
 
-        $this->load->view('user/index', $data);
+            $this->load->view('user/index', $data);
 
-        } else {
+        }
+        else {
             // echo "Erreur 1 lors de la récupération des informations de l'utilisateur";
         }
     }
@@ -1060,6 +1049,45 @@ class User extends CI_Controller {
         } else {
             // Mot de passe incorrect
             echo json_encode(array('status' => 'error', 'message' => 'Mot de passe incorrect'));
+        }
+    }
+
+    public function sendWelcomeMail(){
+        // tableau members avec email, nom, prénom de chaque membres
+        $members = array(
+            array('email' => 'kassim@cafe-creme.agency', 'firstName' => 'Kassim', 'lastName' => 'Mohamed'),
+            array('email' => 'zaafira@cafe-creme.agency', 'firstName' => 'Zaafira', 'lastName' => 'Abou'),
+            array('email' => 'mohamed@cafe-creme.agency', 'firstName' => 'Mohamed', 'lastName' => 'Beghdadi'),
+            array('email' => 'luqman@cafe-creme.agency', 'firstName' => 'Luqman', 'lastName ' => 'Nizari'),
+            array('email' => 'fayaz@cafe-creme.agency', 'firstName' => 'Fayaz', 'lastName' => 'Mohamad'),
+            array('email' => 'nassir@cafe-creme.agency', 'firstName' => 'Nassir', 'lastName' => 'Mouhamad'),
+            array('email' => 'ihaconseils@gmail.com', 'firstName' => 'Imrane', 'lastName' => 'Haniff'),
+            array('email' => 'radhia@cafe-creme.agency', 'firstName' => 'Radhia', 'lastName' => 'Necer'),
+            array('email' => 'thanzile22@gmail.com', 'firstName' => 'Thanzile', 'lastName' => 'Shahul Hameed'),
+            array('email' => 'a.traore@garden-it.com' , 'firstName' => 'Aminata', 'lastName' => 'Traore'),
+            array('email' => 'a.mouhamad@garden-it.com', 'firstName' => 'Adil', 'lastName' => 'Mouhamad'),
+            array('email' => 'i.kebe@garden-it.com', 'firstName' => 'Ibrahim', 'lastName' => 'Kebe'),
+        );
+
+        foreach ($members as $member) {
+            // récupérer les infos de chaque membre
+            $memberEmail = $member['email'];
+            $memberFirstName = $member['firstName'];
+            $memberLastName = $member['lastName'];
+
+
+            $this->load->library('email');
+            $this->email->from('no-reply@cafe-creme.agency', 'Café Crème Community');
+            $this->email->to($memberEmail); // Assurez-vous d'utiliser l'email de l'utilisateur
+            $this->email->subject('Bienvenue chez Café Crème Community 👋🏻');
+            $mailLink = base_url();
+            $data['mailLink'] = $mailLink;
+            $data['memberFirstName'] = $memberFirstName;
+            $data['memberLastName'] = $memberLastName;
+            $body = $this->load->view('email/welcome_email_members', $data, TRUE);
+            $this->email->set_mailtype("html");
+            $this->email->message($body);
+            $this->email->send();
         }
     }
 

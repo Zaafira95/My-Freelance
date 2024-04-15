@@ -75,10 +75,11 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'cafecrqapp.mysql.db',
-	'username' => 'cafecrqapp',
-	'password' => 'CafeCreme2024',
-	'database' => 'cafecrqapp',
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => 'root',
+	'port' => '8889',
+	'database' => 'cafecreme',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

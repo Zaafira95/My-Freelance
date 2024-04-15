@@ -4,7 +4,6 @@ class Company_model extends CI_Model {
         parent::__construct();
     }
 
-    
     public function getUserData($userId) {
         $this->db->where('userId', $userId);
         $query = $this->db->get('Users');

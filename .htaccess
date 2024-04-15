@@ -1,12 +1,4 @@
-### Active le module de réecriture d'URL
-RewriteEngine on
-### Indique explicitement la racine du site
-RewriteBase /
-### Empêche la redirection automatique vers la page d'accueil
+RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
-### Exclut les URL correspondants à un fichier réel
 RewriteCond %{REQUEST_FILENAME} !-d
-### Toutes les URL qui ne correspondent pas a ces masques sont reecrites.
-RewriteCond $1 !^(index.php|assets|robots.txt|sitemap.xml)
-### Toutes les autres URL vont etre redirigées vers le fichier index.php
-RewriteRule ^(.*)$ index.php?/$1 [L]
+RewriteRule ^(.*)$ index.php/$1 [L]

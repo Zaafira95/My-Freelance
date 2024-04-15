@@ -22,7 +22,7 @@
 // });
 
 // Dark mode
-var base_urlpreprod = "https://community.cafe-creme.cc/";
+var base_urlpreprod = "http://localhost:8888/CC-WebApp/";
 var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
 var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
 var themeToggleBtn = document.getElementById('theme-toggle');

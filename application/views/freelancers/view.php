@@ -535,9 +535,13 @@ if ($totalCount > 0) {
                                                                 </div>
                                                                 <p class="text-3xl lg:text-base text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
                                                             </div>  
-                                                            <div>
-                                                                <p class="text-3xl lg:text-base"><?= '"'.$rating->ratingComment.'"'?></p>
-                                                            </div>
+                                                            <?php 
+                                                            if (isset($rating->ratingComment) && ($rating->ratingComment != " ")): 
+                                                            ?>
+                                                                <div>
+                                                                    <p class="text-3xl lg:text-base"><?= '"'.$rating->ratingComment.'"'?></p>
+                                                                </div>
+                                                            <?php endif; ?>
                                                         </div>
                                                     <?php
                                                     $ratingsCount++;
@@ -569,10 +573,14 @@ if ($totalCount > 0) {
                                                                         </div>
                                                                         <p class="text-3xl lg:text-base text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
 
-                                                                    </div>  
-                                                                    <div>
-                                                                        <p class="text-3xl lg:text-base"><?= '"'.$rating->ratingComment.'"'?></p>
-                                                                    </div>
+                                                                    </div> 
+                                                                    <?php 
+                                                                    if (isset($rating->ratingComment) && ($rating->ratingComment != " ")): 
+                                                                    ?>
+                                                                        <div>
+                                                                            <p class="text-3xl lg:text-base"><?= '"'.$rating->ratingComment.'"'?></p>
+                                                                        </div>
+                                                                    <?php endif; ?>
                                                                 </div>
                                                             
                                                         </div>

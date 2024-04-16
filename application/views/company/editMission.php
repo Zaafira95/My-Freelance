@@ -57,7 +57,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
                     <form id="missionForm" action="<?=base_url("company/editMission/".$mission->idMission)?>" method="post" enctype="multipart/form-data">
                         <div class="flex flex-1 mt-4">
                             <input type="text" name="missionName" placeholder= "Titre de la mission" value="<?= $mission->missionName ?>" class="text-3xl lg:text-base mr-3 w-full block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
-                            <input type="number" name="missionTJM" placeholder="TJM €" value="<?= $mission->missionTJM ?>" class="text-3xl lg:text-base block mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
+                            <input type="number" name="missionTJM" placeholder="TJM €" value="<?= $mission->missionTJM ?>" min="100" class="text-3xl lg:text-base block mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
                         </div>
 
                         <div class="w-full text-black">

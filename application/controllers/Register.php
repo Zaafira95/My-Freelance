@@ -294,7 +294,7 @@ class Register extends CI_Controller {
                 //$this->session->set_flashdata('message', 'Vous êtes bien enregistré. Connectez-vous pour accéder à votre compte.');
                 $this->session->set_flashdata('message', 'Un mail vous a été envoyé pour activer votre compte.');
                 $this->session->set_flashdata('status', 'success');
-                $this->load->view('login_view');
+                redirect('login');
             } else {
                 // Erreur lors de l'enregistrement
                 $this->session->set_flashdata('message', 'Erreur lors de l\'envoi du mail. Veuillez réessayer.');

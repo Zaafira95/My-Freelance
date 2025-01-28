@@ -5,7 +5,7 @@ $currentPage = 'profil';
 include(APPPATH . 'views/layouts/user/header.php' );
 ?>
 <head>
-    <title><?=$user->userFirstName.' '.$user->userLastName.' '.ucfirst($user->userType)?>  - Café Crème Community </title>
+    <title><?=$user->userFirstName.' '.$user->userLastName.' '.ucfirst($user->userType)?>  - My Freelance </title>
 
 <style>
   

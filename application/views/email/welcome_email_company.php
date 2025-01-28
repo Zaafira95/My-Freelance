@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title> Bienvenue chez Café Crème Community </title>
+    <title> Bienvenue chez My Freelance </title>
 
 
 <style>
@@ -29,9 +29,9 @@
     <!-- Activate your account title -->
     <div style="max-width:600px;margin-left:auto; margin-right:auto;">
 
-        <img src="https://uploads-ssl.webflow.com/636a2ecc04b5b050d3f252f9/65b920d2b1180ca9828c6e9c_CC-Logo-Prod.png" alt="Café Crème Community" width="600" style="width:200px;margin-top:20px; margin-bottom:40px;display:block; margin-left:0px; margin-right:auto;">
+        <img src="https://uploads-ssl.webflow.com/636a2ecc04b5b050d3f252f9/65b920d2b1180ca9828c6e9c_CC-Logo-Prod.png" alt="My Freelance" width="600" style="width:200px;margin-top:20px; margin-bottom:40px;display:block; margin-left:0px; margin-right:auto;">
 
-        <h1 style="font-size: 24px; font-weight: 600; color: #000000; margin-top: 20px; margin-bottom: 20px; padding: 0; text-align: left;">Bienvenue chez Café Crème Community 👋🏻 </h1>
+        <h1 style="font-size: 24px; font-weight: 600; color: #000000; margin-top: 20px; margin-bottom: 20px; padding: 0; text-align: left;">Bienvenue chez My Freelance 👋🏻 </h1>
 
         <p style="font-size: 14px; font-weight: 400; color: #000000; margin-top: 20px; padding: 0; text-align: left;">Hello <?php echo $companyName?>, nous sommes ravis de vous accueillir parmi nous !</p>
         
@@ -45,14 +45,14 @@
 
 
 
-        <p style="font-size: 14px; font-weight: 200; color: #000000; margin-top: 20px; padding: 0; text-align: left;">A bientôt, <br> L'équipe Café Crème Community ☕️</p>
+        <p style="font-size: 14px; font-weight: 200; color: #000000; margin-top: 20px; padding: 0; text-align: left;">A bientôt, <br> L'équipe My Freelance ☕️</p>
 
 
     </div>  
     <!-- Footer -->
     <div style="border-top: 1px solid #E5E5E5; margin-top: 40px; padding-top:20px;">
-        <p style="font-size: 14px; font-weight: 100; color: #000000; margin: 0; padding: 0; text-align: center;">Café Crème Community</p>
-        <p style="font-size: 14px; font-weight: 100; color: #000000; margin: 0; padding: 0; text-align: center;">© 2024 Café Crème Community. Tous droits réservés.</p>
+        <p style="font-size: 14px; font-weight: 100; color: #000000; margin: 0; padding: 0; text-align: center;">My Freelance</p>
+        <p style="font-size: 14px; font-weight: 100; color: #000000; margin: 0; padding: 0; text-align: center;">© 2024 My Freelance. Tous droits réservés.</p>
         <!-- Logo instagram, youtube and linkedin -->
         <div style="text-align:center; margin-top:20px;">
             <a href="https://www.instagram.com/cafecreme_agency" style="margin-right: 10px;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1200px-Instagram_icon.png" alt="Instagram" width="30" style="width:30px;"></a>

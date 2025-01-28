@@ -11,7 +11,7 @@ else if ($user->userType == "sales"){
 }
 ?>
 <head>
-    <title><?=$mission->missionName?> | <?=$company->companyName?> | Café Crème Community </title>
+    <title><?=$mission->missionName?> | <?=$company->companyName?> | My Freelance </title>
 
 <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
 <link href="<?php echo base_url('assets/css/app.css');?>" rel="stylesheet">
@@ -59,8 +59,8 @@ else if ($user->userType == "sales"){
                         <!-- <?php foreach ($messageExamples as $message) { ?>
                             <option value="<?php echo $message->messageExamplesContent; ?>"><?php echo $message->messageExamplesContent; ?></option>
                         <?php } ?> -->
-                        <option value="Bonjour, je suis intéressé par votre offre de mission (<?=$mission->missionName?>) sur Café Crème Community ! Je suis disponible dès maintenant.">
-                            Bonjour, je suis intéressé par votre offre de mission (<?=$mission->missionName?>) sur Café Crème Community ! Je suis disponible dès maintenant.
+                        <option value="Bonjour, je suis intéressé par votre offre de mission (<?=$mission->missionName?>) sur My Freelance ! Je suis disponible dès maintenant.">
+                            Bonjour, je suis intéressé par votre offre de mission (<?=$mission->missionName?>) sur My Freelance ! Je suis disponible dès maintenant.
                         </option>
                         <option value="Hello, votre mission (<?=$mission->missionName?>) m'intéresse ! Je suis disponible dès maintenant.">
                             Hello, votre mission (<?=$mission->missionName?>) m'intéresse ! Je suis disponible dès maintenant.

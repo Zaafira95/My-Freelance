@@ -484,17 +484,10 @@ function checkPasswordMatch() {
     var confirmPassword = confirmPasswordInput.value;
 
     if (password === confirmPassword) {
-        // document.getElementById("passwordSubmit").removeAttribute("disabled");
+        document.getElementById("passwordSubmit").removeAttribute("disabled");
         confirmPasswordInput.classList.remove('border-red-500');
         confirmPasswordError.textContent = '';
-        
-        // Vérifier si l'élément confirmPasswordError a la classe 'border-red-500'
-        var currentPasswordInput = document.getElementById("userCurrentPassword");
-        if (!currentPasswordInput.classList.contains('border-red-500')) {
-            document.getElementById("passwordSubmit").removeAttribute("disabled");
-            return true;
-        }
-        return false;
+        return true;
     } else {
         document.getElementById("passwordSubmit").setAttribute("disabled", "true");
         confirmPasswordInput.classList.add('border-red-500');
@@ -554,16 +547,9 @@ function checkCurrentPassword(password) {
                 if (response.status === 'error') {
                     passwordInput.classList.add('border-red-500');
                     passwordError.textContent = response.message;
-                    document.getElementById("passwordSubmit").setAttribute("disabled", "true");
                 } else {
                     passwordInput.classList.remove('border-red-500');
                     passwordError.textContent = '';
-
-                    // Vérifier si l'élément confirmPasswordError a la classe 'border-red-500'
-                    var confirmPasswordInput = document.getElementById("confirmPassword");
-                    if (!confirmPasswordInput.classList.contains('border-red-500')) {
-                        document.getElementById("passwordSubmit").removeAttribute("disabled");
-                    }
                 }
             }
         }

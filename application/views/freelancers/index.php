@@ -22,7 +22,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                     </button>
                 </div>
                 <div class="hidden lg:block bg-white rounded-lg lg:h-full lg:overflow-y-auto no-scrollbar lg:no-shadow shadow-lg mb-8 lg:mb-4 p-4 dark:bg-gray-800 dark:text-white" id="FilterMission">
-                    <h3 class="text-3xl lg:text-lg font-medium mt-2">Filtre</h3>
+                <h3 class="text-3xl lg:text-lg font-medium mt-2">Filtre</h3>
                     <h4 class="text-3xl lg:text-lg font-medium mt-4">Localisation</h4>
                         <div class="flex items-center mt-2">
                             <i class="text-3xl lg:text-base fa fa-map-marker-alt mr-3"></i>    
@@ -237,7 +237,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                                                 $textdark = "text-black";
                                                 break;
                                             case 2:
-                                                $level = 'Intermediate';
+                                                $level = 'Intermédiaire';
                                                 $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
                                                 $text = "text-black";
                                                 $textdark = "text-white";

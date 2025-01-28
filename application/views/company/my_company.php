@@ -595,7 +595,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                                                                         
                                                                         break;
                                                                     case 2:
-                                                                        $level = 'Intermediate';
+                                                                        $level = 'Intermédiaire';
                                                                         $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
                                                                         $textdark = "text-white";
                                                                         $text = "text-black";

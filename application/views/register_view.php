@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Inscription | My Freelance - Rejoignez la plus grande communauté de freelances</title>
+    <title>Inscription | Café Crème Community - Rejoignez la plus grande communauté de freelances</title>
     <link href="<?php echo base_url('assets/css/app.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('/node_modules/choices.js/public/assets/styles/choices.min.css');?>" rel="stylesheet" type="text/css">
     <link rel="icon" href="<?php echo base_url('assets/img/Favicon.ico'); ?>" type="image/x-icon">
@@ -86,7 +86,7 @@
                 <div class="w-full lg:ml-6 lg:w-5/12">
                     <div class="flex flex-col justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                         <a href="<?php echo base_url('/')?>" class="flex mb-6 text-2xl font-semibold text-gray-900">
-                            <img class="w-60 lg:justify-start lg:m-0 lg:w-40 mr-2" src="<?php echo base_url('assets/img/logo.svg');?>" alt="My Freelance" id="logoLogin">
+                            <img class="w-60 lg:justify-start lg:m-0 lg:w-40 mr-2" src="<?php echo base_url('assets/img/logo.svg');?>" alt="Café Crème Community" id="logoLogin">
                         </a>
                         <div id="step1" style="display:block;">
                             <div class="w-full bg-white rounded-lg shadow md:mt-0 xl:p-0 dark:bg-gray-800 dark:text-white h-100 py-12 lg:py-1 overflow-y-auto no-scrollbar">

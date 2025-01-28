@@ -535,13 +535,9 @@ if ($totalCount > 0) {
                                                                 </div>
                                                                 <p class="text-3xl lg:text-base text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
                                                             </div>  
-                                                            <?php 
-                                                            if (isset($rating->ratingComment) && ($rating->ratingComment != " ")): 
-                                                            ?>
-                                                                <div>
-                                                                    <p class="text-3xl lg:text-base"><?= '"'.$rating->ratingComment.'"'?></p>
-                                                                </div>
-                                                            <?php endif; ?>
+                                                            <div>
+                                                                <p class="text-3xl lg:text-base"><?= '"'.$rating->ratingComment.'"'?></p>
+                                                            </div>
                                                         </div>
                                                     <?php
                                                     $ratingsCount++;
@@ -573,14 +569,10 @@ if ($totalCount > 0) {
                                                                         </div>
                                                                         <p class="text-3xl lg:text-base text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
 
-                                                                    </div> 
-                                                                    <?php 
-                                                                    if (isset($rating->ratingComment) && ($rating->ratingComment != " ")): 
-                                                                    ?>
-                                                                        <div>
-                                                                            <p class="text-3xl lg:text-base"><?= '"'.$rating->ratingComment.'"'?></p>
-                                                                        </div>
-                                                                    <?php endif; ?>
+                                                                    </div>  
+                                                                    <div>
+                                                                        <p class="text-3xl lg:text-base"><?= '"'.$rating->ratingComment.'"'?></p>
+                                                                    </div>
                                                                 </div>
                                                             
                                                         </div>
@@ -630,7 +622,7 @@ if ($totalCount > 0) {
                                                 $textdark = "text-black";
                                                 break;
                                             case 2:
-                                                $level = 'Intermediate';
+                                                $level = 'Intermédiaire';
                                                 $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
                                                 $text = "text-black";
                                                 $textdark = "text-white";
@@ -747,7 +739,7 @@ if ($totalCount > 0) {
                                                                 
                                                                 break;
                                                             case 2:
-                                                                $level = 'Intermediate';
+                                                                $level = 'Intermédiaire';
                                                                 $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
                                                                 $textdark = "text-white";
                                                                 $text = "text-black";

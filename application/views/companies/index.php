@@ -6,7 +6,7 @@ $currentPage = 'companies';
 include(APPPATH . 'views/layouts/user/header.php');
 ?>
 <head>
-    <title> My Freelance </title>
+    <title> Café Crème Community </title>
 
 <style>
     #cities-list {
@@ -43,7 +43,7 @@ if ($banner->bannerStatus == "active"){ ?>
             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
             </svg>
-            <span class="sr-only">Close</span>
+            <span class="sr-only">Fermer</span>
         </button>
     </div>
 </div>
@@ -67,8 +67,8 @@ if ($banner->bannerStatus == "active"){ ?>
                     </button>
                 </div>
                 <div class="hidden lg:block bg-white rounded-lg lg:h-full lg:overflow-y-auto no-scrollbar lg:no-shadow shadow-lg mb-8 lg:mb-4 p-4 dark:bg-gray-800 dark:text-white" id="FilterMission">
-                    <h3 class="text-3xl lg:text-lg font-medium mt-2">Filters</h3>
-                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Location</h4>
+                    <h3 class="text-3xl lg:text-lg font-medium mt-2">Filtre</h3>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Localisation</h4>
                         <div class="flex items-center mt-2">
                             <i class="fa fa-map-marker-alt mr-3"></i>    
                             <div class="relative city-search-container w-full">
@@ -114,7 +114,7 @@ if ($banner->bannerStatus == "active"){ ?>
                 <div class="flex flex-wrap" id="companies-section">
                     <?php foreach($companies as $company): ?>
                         <a href="<?=base_url('user/companyView/'.$company->idCompany)?>" 
-                            class="company-item" 
+                            class="company-item w-full" 
                             data-company-name="<?=strtolower($company->companyName)?>"
                             data-company-localisation="<?=strtolower($company->companyLocalisation)?>"
                             data-company-secteur="<?=$company->secteurId?>"> 
@@ -154,7 +154,7 @@ if ($banner->bannerStatus == "active"){ ?>
                         <h3 class="text-5xl lg:text-2xl font-medium mt-10" id="result-section">Autres entreprises :</h3>
                         <?php foreach($companies as $company): ?>
                             <a href="<?=base_url('user/companyView/'.$company->idCompany)?>" 
-                                class="" > 
+                                class="w-full" > 
                                 <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative">
                                     <div class="flex items-center">
                                         <div class="mr-4">

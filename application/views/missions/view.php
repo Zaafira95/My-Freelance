@@ -329,7 +329,7 @@ else if ($user->userType == "sales"){
                                                         $text = "text-black";
                                                         break;
                                                     case 2:
-                                                        $level = 'Intermediate';
+                                                        $level = 'Intermédiaire';
                                                         $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
                                                         $textdark = "text-white";
                                                         $text = "text-black";
@@ -509,7 +509,7 @@ else if ($user->userType == "sales"){
                                                         $text = "text-black";
                                                         break;
                                                     case 2:
-                                                        $level = 'Intermediate';
+                                                        $level = 'Intermédiaire';
                                                         $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
                                                         $textdark = "text-white";
                                                         $text = "text-black";
@@ -676,7 +676,7 @@ else if ($user->userType == "sales"){
                                                                 
                                                                 break;
                                                             case 2:
-                                                                $level = 'Intermediate';
+                                                                $level = 'Intermédiaire';
                                                                 $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
                                                                 $textdark = "text-white";
                                                                 $text = "text-black";

@@ -271,9 +271,9 @@ class Register extends CI_Controller {
             // Enregistrement réussi
 
             $this->load->library('email');
-            $this->email->from('no-reply@cafe-creme.agency', 'Café Crème Community');
+            $this->email->from('no-reply@cafe-creme.agency', 'My Freelance');
             $this->email->to($userEmail); // Assurez-vous d'utiliser l'email de l'utilisateur
-            $this->email->subject('Activation de votre compte Café Crème Community');
+            $this->email->subject('Activation de votre compte My Freelance');
 
             // Lien d'activation
             $activationLink = base_url() . 'login?token=' . $activationToken;

@@ -630,7 +630,7 @@ if ($totalCount > 0) {
                                                 $textdark = "text-black";
                                                 break;
                                             case 2:
-                                                $level = 'Intermédiaire';
+                                                $level = 'Intermediate';
                                                 $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
                                                 $text = "text-black";
                                                 $textdark = "text-white";
@@ -747,7 +747,7 @@ if ($totalCount > 0) {
                                                                 
                                                                 break;
                                                             case 2:
-                                                                $level = 'Intermédiaire';
+                                                                $level = 'Intermediate';
                                                                 $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
                                                                 $textdark = "text-white";
                                                                 $text = "text-black";

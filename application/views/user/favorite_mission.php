@@ -34,13 +34,13 @@ include(APPPATH . 'views/layouts/user/header.php');
         <div class="flex h-full w-full mb-3">
             <div class="rounded-lg h-full w-full mb-4 dark:text-white">
                 <h1 class="text-5xl lg:text-2xl font-semibold text-gray-900 dark:text-white">
-                    Vos missions favorites
+                    Your favorite missions
                 </h1>
                 <div class="flex flex-wrap justify-start">
                     <?php if(empty($missions)): ?>
                         <div class="flex flex-col items-start">
-                            <p class="text-gray-500 dark:text-gray-400">Vous n'avez pas encore de missions favorites.</p>
-                            <a href="<?=base_url('user/mission')?>" class="bg-primary text-white px-4 py-2 mt-2 rounded-full">Parcourir les missions</a>
+                            <p class="text-gray-500 dark:text-gray-400">You don't have any favorite missions yet.</p>
+                            <a href="<?=base_url('user/mission')?>" class="bg-primary text-white px-4 py-2 mt-2 rounded-full">Browse missions</a>
                         </div>
                     <?php else: ?>
                         <?php foreach($missions as $mission): ?>
@@ -62,16 +62,16 @@ include(APPPATH . 'views/layouts/user/header.php');
                                                     <!-- <span class="mr-2"> • <?= $company->companyName ?></span> -->
                                                 <?php endif; ?>
                                             <?php endforeach; ?>
-                                                <span class="mr-2"> • TJM : <?=$mission->missionTJM?> €</span>
+                                                <span class="mr-2"> • Daily rate: <?=$mission->missionTJM?> €</span>
                                                 <span class="mr-2"> •
 
                                                 <?php
 
                                                 if ($mission->missionType == "temps-plein"){
-                                                    $mission->missionType = "Temps Plein";
+                                                    $mission->missionType = "Full-time";
                                                 }
                                                 elseif ($mission->missionType == "temps-partiel"){
-                                                    $mission->missionType = "Temps Partiel";
+                                                    $mission->missionType = "Part-time";
                                                 }
                                                 elseif ($mission->missionType == "remote"){
                                                     $mission->missionType = "Remote";
@@ -89,7 +89,7 @@ include(APPPATH . 'views/layouts/user/header.php');
                                                     $mission->missionExpertise = "Junior";
                                                 }
                                                 elseif ($mission->missionExpertise == "intermediaire"){
-                                                    $mission->missionExpertise = "Intermédiaire";
+                                                    $mission->missionExpertise = "Intermediate";
                                                 }
                                                 elseif ($mission->missionExpertise == "expert"){
                                                     $mission->missionExpertise = "Expert";
@@ -131,7 +131,7 @@ include(APPPATH . 'views/layouts/user/header.php');
                                                             
                                                             break;
                                                         case 2:
-                                                            $level = 'Intermédiaire';
+                                                            $level = 'Intermediate';
                                                             $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
                                                             $textdark = "text-white";
                                                             $text = "text-black";

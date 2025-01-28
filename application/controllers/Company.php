@@ -61,9 +61,9 @@ class Company extends CI_Controller {
             if ($user->userLoginCount == 1 && $welcome_mail == "False") {
 
                 $this->load->library('email');
-                $this->email->from('no-reply@cafe-creme.agency', 'Café Crème Community');
+                $this->email->from('no-reply@cafe-creme.agency', 'My Freelance');
                 $this->email->to($user->userEmail); // Assurez-vous d'utiliser l'email de l'utilisateur
-                $this->email->subject('Bienvenue chez Café Crème Community 👋🏻');
+                $this->email->subject('Bienvenue chez My Freelance 👋🏻');
                 $mailLink = base_url();
                 $data['mailLink'] = $mailLink;
                 // $data['userFirstName'] = $user->userFirstName;

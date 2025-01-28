@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Connectez-vous | Café Crème Community</title>
+    <title>Connectez-vous | My Freelance</title>
     <link href="<?php echo base_url('assets/css/app.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
     <link rel="icon" href="<?php echo base_url('assets/img/Favicon.ico'); ?>" type="image/x-icon">
@@ -51,7 +51,7 @@
       <div class="w-full lg:ml-6 lg:w-5/12">
       <div class="flex flex-col justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
             <a href="#" class="flex mb-6 text-2xl font-semibold text-gray-900">
-                <img class="w-60 lg:justify-start lg:m-0 lg:w-40 mr-2" src="<?php echo base_url('assets/img/logo.svg');?>" alt="Café Crème Community" id="logoLogin">
+                <img class="w-60 lg:justify-start lg:m-0 lg:w-40 mr-2" src="<?php echo base_url('assets/img/logo.svg');?>" alt="My Freelance" id="logoLogin">
             </a>
             <div class="p-6 w-full bg-white rounded-lg shadow md:mt-0 xl:p-0 dark:bg-gray-800 dark:text-white lg:p-0">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">

@@ -50,14 +50,14 @@
                     ?>
                         <div style="padding-top: 0.2em; padding-bottom: 0.2rem" class="flex items-center space-x-1 bg-green-100 text-green-800 text-2xl lg:text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-300 dark:text-green-900">
                             <div class="w-2 h-2 lg:h-2 lg:w-2 bg-green-500 rounded-full dark:bg-green-700"></div>
-                            <div>Availability confirmed</div>
+                            <div>Disponibilité confirmée</div>
                         </div>
                     <?php
                         } else {
                     ?>
                         <div style="padding-top: 0.2em; padding-bottom: 0.2rem" class="flex items-center space-x-1 bg-red-100 text-red-800 text-2xl lg:text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-300 dark:text-red-900">
                             <div class="w-2 h-2 lg:h-2 lg:w-2 bg-red-500 rounded-full dark:bg-red-700"></div>
-                            <div>Not Available</div>
+                            <div>Non Disponible</div>
                         </div>
                     <?php
                         }
@@ -86,20 +86,20 @@
                     <div id="dropdown" class=" absolute right-0 mt-2 w-64 lg:w-48 bg-white dark:bg-gray-800 rounded-md overflow-hidden shadow-xl z-10 hidden">
                         <a href="<?php echo base_url('user/profil');?>" class="text-3xl lg:text-base items-center space-x-2 block rounded-md px-4 py-4 text-gray-400 dark:text-gray-400 hover:bg-secondary dark:hover:text-white hover:text-gray-900 dark:hover:bg-primary">
                             <i class="fas fa-user-circle"></i>
-                            <span>My Profile</span>
+                            <span>Mon Profil</span>
                         </a>
                         <a href="<?php echo base_url('User/favoriteMission');?>" class="text-3xl lg:text-base items-center space-x-2 block rounded-md px-4 py-4 text-gray-400 dark:text-gray-400 hover:bg-secondary dark:hover:text-white hover:text-gray-900 dark:hover:bg-primary">
                             <i class="far fa-heart"></i>
-                            <span>Favorites</span>
+                            <span>Favoris</span>
                         </a>
                         <a href="<?php echo base_url('user/settings');?>" class="text-3xl lg:text-base items-center space-x-2 block rounded-md px-4 py-4 text-gray-400 dark:text-gray-400 hover:bg-secondary dark:hover:text-white hover:text-gray-900 dark:hover:bg-primary">
                             <i class="fas fa-cog"></i>
-                            <span>Settings</span>
+                            <span>Paramètres</span>
                         </a>
                        
                         <a href="<?php echo base_url('user/logout');?>" class="text-3xl lg:text-base items-center space-x-2 block rounded-md px-4 py-4 text-red-600 dark:text-red-900 dark:hover:text-white hover:text-white hover:bg-red-900">
                             <i class="fas fa-sign-out-alt"></i>
-                            <span>Logout</span>
+                            <span>Déconnexion</span>
                         </a>
                     </div>
 
@@ -148,11 +148,11 @@
                         <?php 
                             if ($currentPage == 'companies'){
                         ?>
-                            <a href="<?php echo base_url('user/companies');?>" class="text-3xl lg:text-base block py-2 pr-4 pl-3 text-primary  border-b lg:bg-transparent lg:text-primary lg:p-0 lg:border-b-2 border-primary dark:text-primary">Companies</a>
+                            <a href="<?php echo base_url('user/companies');?>" class="text-3xl lg:text-base block py-2 pr-4 pl-3 text-primary  border-b lg:bg-transparent lg:text-primary lg:p-0 lg:border-b-2 border-primary dark:text-primary">Entreprises</a>
                         <?php
                             } else {
                         ?>
-                            <a href="<?php echo base_url('user/companies');?>" class="text-3xl lg:text-base block py-2 pr-4 pl-3 text-black border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-400 lg:p-0 dark:text-white">Companies</a>
+                            <a href="<?php echo base_url('user/companies');?>" class="text-3xl lg:text-base block py-2 pr-4 pl-3 text-black border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-400 lg:p-0 dark:text-white">Entreprises</a>
                         <?php
                             }
                         ?>
@@ -161,11 +161,11 @@
                         <?php 
                             if ($currentPage == 'profil'){
                         ?>
-                            <a href="<?php echo base_url('user/profil');?>" class="text-3xl lg:text-base block py-2 pr-4 pl-3 text-primary  border-b lg:bg-transparent lg:text-primary lg:p-0 lg:border-b-2 border-primary dark:text-primary">Profile</a>
+                            <a href="<?php echo base_url('user/profil');?>" class="text-3xl lg:text-base block py-2 pr-4 pl-3 text-primary  border-b lg:bg-transparent lg:text-primary lg:p-0 lg:border-b-2 border-primary dark:text-primary">Profil</a>
                         <?php
                             } else {
                         ?>
-                            <a href="<?php echo base_url('user/profil');?>" class="text-3xl lg:text-base block py-2 pr-4 pl-3 text-black border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-400 lg:p-0 dark:text-white">Profile</a>
+                            <a href="<?php echo base_url('user/profil');?>" class="text-3xl lg:text-base block py-2 pr-4 pl-3 text-black border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-400 lg:p-0 dark:text-white">Profil</a>
                         <?php
                             }
                         ?>
@@ -174,11 +174,11 @@
                         <?php 
                             if ($currentPage == 'whatsapp'){
                         ?>
-                            <a href="<?php echo base_url('user/whatsapp');?>" class="text-3xl lg:text-base block py-2 pr-4 pl-3 text-primary  border-b lg:bg-transparent lg:text-primary lg:p-0 lg:border-b-2 border-primary dark:text-primary">Community</a>
+                            <a href="<?php echo base_url('user/whatsapp');?>" class="text-3xl lg:text-base block py-2 pr-4 pl-3 text-primary  border-b lg:bg-transparent lg:text-primary lg:p-0 lg:border-b-2 border-primary dark:text-primary">Communauté</a>
                         <?php
                             } else {
                         ?>
-                            <a href="<?php echo base_url('user/whatsapp');?>" class="text-3xl lg:text-base block py-2 pr-4 pl-3 text-black border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-400 lg:p-0 dark:text-white">Community</a>
+                            <a href="<?php echo base_url('user/whatsapp');?>" class="text-3xl lg:text-base block py-2 pr-4 pl-3 text-black border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-400 lg:p-0 dark:text-white">Communauté</a>
                         <?php
                             }
                         ?>
@@ -187,11 +187,11 @@
                         <?php 
                             if ($currentPage == 'settings'){
                         ?>
-                            <a href="<?php echo base_url('user/settings');?>" class="text-3xl lg:text-base block py-2 pr-4 pl-3 text-primary  border-b lg:bg-transparent lg:text-primary lg:p-0 lg:border-b-2 border-primary dark:text-primary">Settings</a>
+                            <a href="<?php echo base_url('user/settings');?>" class="text-3xl lg:text-base block py-2 pr-4 pl-3 text-primary  border-b lg:bg-transparent lg:text-primary lg:p-0 lg:border-b-2 border-primary dark:text-primary">Paramètres</a>
                         <?php
                             } else {
                         ?>
-                            <a href="<?php echo base_url('user/settings');?>" class="text-3xl lg:text-base block py-2 pr-4 pl-3 text-black border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-400 lg:p-0 dark:text-white">Settings</a>
+                            <a href="<?php echo base_url('user/settings');?>" class="text-3xl lg:text-base block py-2 pr-4 pl-3 text-black border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-400 lg:p-0 dark:text-white">Paramètres</a>
                         <?php
                             }
                         ?>
@@ -220,18 +220,18 @@
                     <div>
                         <div>      
                             <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
-                                Your unavailability period has ended. Please update your availability.
+                                Votre période d'indisponibilité est dépassée. Veuillez mettre à jour votre disponibilité.
                             </h3>
                             <?php   
                                 if($todayTimestamp >= $datePlus15JoursTimestamp) {?>
                                     <p class="text-3xl lg:text-base text-gray-500 dark:text-gray-400 mt-1">
-                                        You will no longer have access to missions until you update your availability.
+                                        Vous n'aurez plus accès aux missions tant que vous n'aurez pas mis à jour votre disponibilité.
                                     </p>
                                 <?php
                                     } else {
                                 ?>
                                 <p class="text-3xl lg:text-base text-gray-500 dark:text-gray-400 mt-1">
-                                    You will no longer have access to missions in  
+                                    Vous n'aurez plus accès aux missions dans 
                                     <?php
                                     // Compter le nombre de jours restant, sachant que la date de fin d'indisponibilité est dépassée et que l'utilisateur a 15 jours pour mettre à jour sa disponibilité
                                     $dateFinIndisponibilite = new DateTime($user->userDateFinIndisponibilite);
@@ -245,12 +245,12 @@
                                     echo $diff;
                                     // Si le nombre de jours restant est égal à 1, on affiche "jour" au singulier, sinon on affiche "jours" au pluriel
                                     if($diff == 1) {
-                                        echo " day";
+                                        echo " jour";
                                     } else {
-                                        echo " days";
+                                        echo " jours";
                                     }
                                     ?>
-                                     unless you update your availability.
+                                     tant que vous n'aurez pas mis à jour votre disponibilité.
                                 </p>
                             <?php
                                 }
@@ -261,13 +261,13 @@
                 <!-- Modal body -->
                 <div class="flex items-center space-x-4 mt-4">
                     <button type="button"  class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" onclick="closeAvailabilityWarning()">
-                        Update
+                        Mettre à jour
                     </button>
                     <?php 
                         if($todayTimestamp < $datePlus15JoursTimestamp) {
                     ?>
                             <button type="button" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900" onclick="closeAvailabilityWarningWithoutOpenUpdate()">
-                                Later
+                                Plus tard
                             </button>
                     <?php 
                         }

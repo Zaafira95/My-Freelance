@@ -92,9 +92,9 @@ class User extends CI_Controller {
             if ($user->userLoginCount == 1 && $welcome_mail == "False") {
 
                 $this->load->library('email');
-                $this->email->from('no-reply@cafe-creme.agency', 'My Freelance');
+                $this->email->from('no-reply@cafe-creme.agency', 'Café Crème Community');
                 $this->email->to($user->userEmail); // Assurez-vous d'utiliser l'email de l'utilisateur
-                $this->email->subject('Bienvenue chez My Freelance 👋🏻');
+                $this->email->subject('Bienvenue chez Café Crème Community 👋🏻');
                 $profileComplete = base_url();
                 $data['profileComplete'] = $profileComplete;
                 $data['userFirstName'] = $user->userFirstName;
@@ -1096,9 +1096,9 @@ class User extends CI_Controller {
 
 
             $this->load->library('email');
-            $this->email->from('no-reply@cafe-creme.agency', 'My Freelance');
+            $this->email->from('no-reply@cafe-creme.agency', 'Café Crème Community');
             $this->email->to($memberEmail); // Assurez-vous d'utiliser l'email de l'utilisateur
-            $this->email->subject('Bienvenue chez My Freelance 👋🏻');
+            $this->email->subject('Bienvenue chez Café Crème Community 👋🏻');
             $mailLink = base_url();
             $data['mailLink'] = $mailLink;
             $data['memberFirstName'] = $memberFirstName;

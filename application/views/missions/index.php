@@ -20,79 +20,79 @@ include(APPPATH . 'views/layouts/user/header.php' );
     <div class="justify-between items-center mx-auto max-w-screen-xl h-full">
         <div class="lg:flex gap-6 h-full mb-3">
             <div class=" w-full lg:w-1/4 md:block md:top-0 z-10">
-                <!-- Button to show filter block on mobile -->
+                <!-- Button to show filer block on mobile -->
                 <div class="relative text-right mb-4 lg:hidden">
                     <button id="showFilterButton" class="relative text-4xl text-primary border p-2 border-primary  rounded-lg 2 hover:bg-primary-900 hover:text-white">
                         <i class="fas fa-sliders-h"></i>
                     </button>
                 </div>
-                <div class="hidden lg:block bg-white rounded-lg lg:h-full overflow-y-auto no-scrollbar lg:no-shadow shadow-lg mb-8 lg:mb-4 p-4 dark:bg-gray-800 dark:text-white" id="FilterMission">
-                    <h3 class="text-3xl lg:text-lg font-medium mt-2">Filters</h3>
-                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Location</h4>
+                <div class="hidden lg:block bg-white rounded-lg lg:h-full lg:overflow-y-auto no-scrollbar lg:no-shadow shadow-lg mb-8 lg:mb-4 p-4 dark:bg-gray-800 dark:text-white" id="FilterMission">
+                    <h3 class="text-3xl lg:text-lg font-medium mt-2">Filtre</h3>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Localisation</h4>
                         <div class="flex items-center mt-2">
                             <i class="text-3xl lg:text-base fa fa-map-marker-alt mr-3"></i>    
                             <div class="relative city-search-container w-full">
-                                <input type="text" id="citySearch" value="<?=$user->userVille?>" placeholder="Search your city" class="text-3xl lg:text-lg border p-2 rounded-lg w-full text-black">
+                                <input type="text" id="citySearch" value="<?=$user->userVille?>" placeholder="Cherchez votre ville" class="text-3xl lg:text-lg border p-2 rounded-lg w-full text-black">
                                 <div id="cities-list" class="text-3xl lg:text-lg absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                             </div>
                         </div>
-                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Job Type</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Type de poste</h4>
                     <div class="mt-2">
                         <label class="flex items-center ">
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="temps-plein" <?= ($user->userJobTimePartielOrFullTime == 'temps-plein') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-3xl lg:text-base">Full-time</span>
+                            <span class="ml-2 text-3xl lg:text-base">Temps plein</span>
                         </label>
                         <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="temps-partiel" <?= ($user->userJobTimePartielOrFullTime == 'temps-partiel') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-3xl lg:text-base">Part-time</span>
+                            <span class="ml-2 text-3xl lg:text-base">Temps partiel</span>
                         </label>
                     </div>
-                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Mission Duration</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Durée de la mission</h4>
                     <div class="mt-2">
                         <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="courte" <?= ($user->userJobTime == 'Courte Durée') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-3xl lg:text-base">Short-term</span>
+                            <span class="ml-2 text-3xl lg:text-base">Courte durée</span>
                         </label>
                         <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="longue" <?= ($user->userJobTime == 'Longue Durée') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-3xl lg:text-base">Long-term</span>
+                            <span class="ml-2 text-3xl lg:text-base">Longue durée</span>
                         </label>
                         <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="indefinie" <?= ($user->userJobTime == 'Durée indéfinie') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-3xl lg:text-base">Indefinite duration</span>
+                            <span class="ml-2 text-3xl lg:text-base">Durée indéfinie</span>
                         </label>
                     </div>
-                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Work Mode</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Mode de déroulement</h4>
                     <div class="mt-2">
                         <label class="flex items-center">
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="site" <?= ($user->userJobType === 'Physique') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-3xl lg:text-base">On-site</span>
+                            <span class="ml-2 text-3xl lg:text-base">Sur site</span>
                         </label>
                         <label class="flex items-center">
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="teletravail" <?= ($user->userJobType === 'Remote') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-3xl lg:text-base">Remote</span>
+                            <span class="ml-2 text-3xl lg:text-base">Télétravail</span>
                         </label>
                         <label class="flex items-center">
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="hybride" <?= ($user->userJobType === 'Hybride') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-3xl lg:text-base">Hybrid</span>
+                            <span class="ml-2 text-3xl lg:text-base">Hybride</span>
                         </label>
                     </div>
-                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Experience Level</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Niveau d'expérience</h4>
                     <div class="mt-2">
                         <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="junior" <?= ($user->userExperienceYear === 'junior') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-3xl lg:text-base">Junior (1 to 2 years)</span>
+                            <span class="ml-2 text-3xl lg:text-base">Junior (1 à 2 ans)</span>
                         </label>
                         <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="intermediaire" <?= ($user->userExperienceYear === 'intermediaire') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-3xl lg:text-base">Intermediate (3 to 5 years)</span>
+                            <span class="ml-2 text-3xl lg:text-base">Intermédiaire (3 à 5 ans)</span>
                         </label>
                         <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="expert" <?= ($user->userExperienceYear === 'expert') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-3xl lg:text-base">Expert (5+ years)</span>
+                            <span class="ml-2 text-3xl lg:text-base">Expert (+ 5 ans)</span>
                         </label>
                     </div>
-                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Daily Rate</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">TJM</h4>
                     <div class="mt-2 mr-3">
                         <div id="tjm-slider" class="w-full mt-2"></div>
                         <div class="flex justify-between mt-2">
@@ -101,7 +101,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                         </div>
                     </div>
                 
-                    <h4 class="text-3xl lg:text-base font-medium mt-4">Skills</h4>
+                    <h4 class="text-3xl lg:text-base font-medium mt-4">Compétences</h4>
                     <div class="w-full mx-auto mt-5 text-black">
                         <!-- <label for="skillsAll" class="block text-sm font-medium text-gray-700">Sélectionnez vos compétences</label> -->
                         <select id="skillsAll" name="skillsAll[]" multiple class="text-3xl lg:text-base mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
@@ -116,7 +116,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Jobs</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Métiers</h4>
                     <div class="w-full mx-auto mt-5 text-black">
                         <select id="jobsAll" name="jobsAll[]" multiple class="text-3xl lg:text-base mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             <?php foreach ($jobsAll as $job): ?>
@@ -138,17 +138,17 @@ include(APPPATH . 'views/layouts/user/header.php' );
                 </div>
                 
             </div>
-            <div class="w-full overflow-y-auto no-scrollbar">
+            <div class="w-full lg:overflow-y-auto no-scrollbar">
                 <!-- Barre de recherche -->
                 <div class="bg-primary rounded-lg h-20vh p-4 text-white">
                     <p class="text-3xl lg:text-lg font-bold">Hello, <?=$user->userFirstName?></p>
-                    <p class="text-3xl lg:text-base mt-2 mb-2">Discover the fastest and most effective way to land a job.</p>
+                    <p class="text-3xl lg:text-base mt-2 mb-2">Découvrez la manière la plus rapide et efficace de décrocher une mission.</p>
                     <div class="flex w-full">
-                        <input type="text" id="search-input" class="text-3xl lg:text-base w-full bg-white bg-opacity-20 rounded-lg p-2 placeholder-white mr-2 text-center" placeholder="Type the job title you are looking for..." />
+                        <input type="text" id="search-input" class="text-3xl lg:text-base w-full bg-white bg-opacity-20 rounded-lg p-2 placeholder-white mr-2 text-center" placeholder="Ecrivez le nom du poste que vous recherchez..." />
                         <!-- <button class="w-1/5 bg-white text-primary rounded-lg px-4 py-2">Rechercher</button> -->
                     </div>
                 </div>
-                <h3 class="text-5xl lg:text-2xl font-medium mt-4 mb-4" id="result-section">For you :</h3>
+                <h3 class="text-5xl lg:text-2xl font-medium mt-4 mb-4" id="result-section">Pour vous :</h3>
                 <div class="flex flex-wrap" id="missions-section">
                     <?php
                         function isFavorite($missionId, $favoriteMissions) {
@@ -199,18 +199,18 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                             <span class="mr-2"> 
                                                 •   <?= $mission->jobName?>
                                             </span>
-                                            <span class="mr-2"> • Daily rate: <?=$mission->missionTJM?> €</span>
+                                            <span class="mr-2"> • TJM : <?=$mission->missionTJM?> €</span>
                                             
                                             <span class="mr-2"> •
                                             <?php
                                             if ($mission->missionDuration == "courte"){
-                                                $mission->missionDuration = "Short-term";
+                                                $mission->missionDuration = "Courte durée";
                                             }
                                             elseif ($mission->missionDuration == "longue"){
-                                                $mission->missionDuration = "Long-term";
+                                                $mission->missionDuration = "Longue durée";
                                             }
                                             elseif ($mission->missionDuration == "indefinie"){
-                                                $mission->missionDuration = "Indefinite duration";
+                                                $mission->missionDuration = "Durée indéfinie";
                                             }                                            
                                             ?>
                                             <?=$mission->missionDuration?> 
@@ -219,10 +219,10 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                             <span class="mr-2"> •
                                             <?php
                                             if ($mission->missionType == "temps-plein"){
-                                                $mission->missionType = "Full-time";
+                                                $mission->missionType = "Temps Plein";
                                             }
                                             elseif ($mission->missionType == "temps-partiel"){
-                                                $mission->missionType = "Part-time";
+                                                $mission->missionType = "Temps Partiel";
                                             }
                                             elseif ($mission->missionType == "remote"){
                                                 $mission->missionType = "Remote";
@@ -235,13 +235,13 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                             <?php
 
                                             if ($mission->missionDeroulement == "teletravail"){
-                                                $mission->missionDeroulement = "Full remote";
+                                                $mission->missionDeroulement = "Télétravail";
                                             }
                                             elseif ($mission->missionDeroulement == "site"){
-                                                $mission->missionDeroulement = "On site";
+                                                $mission->missionDeroulement = "Sur site";
                                             }
                                             elseif ($mission->missionDeroulement == "hybride"){
-                                                $mission->missionDeroulement = "Hybrid";
+                                                $mission->missionDeroulement = "Hybride";
                                             }                                            
                                             ?>
                                             <?=$mission->missionDeroulement?>
@@ -295,7 +295,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                                         
                                                         break;
                                                     case 2:
-                                                        $level = 'Intermediate';
+                                                        $level = 'Intermédiaire';
                                                         $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
                                                         $textdark = "text-white";
                                                         $text = "text-black";
@@ -353,8 +353,8 @@ include(APPPATH . 'views/layouts/user/header.php' );
                     <?php endforeach; ?>
                     </div>
                     <div id="no-mission-found">
-                        <p class="text-3xl lg:text-lg mt-6 text-left">No missions found.</p>
-                        <h3 class="text-5xl lg:text-2xl font-medium mt-10" id="result-section">Other missions:</h3>
+                        <p class="text-3xl lg:text-lg mt-6 text-left">Aucune mission n'a été trouvée.</p>
+                        <h3 class="text-5xl lg:text-2xl font-medium mt-10" id="result-section">Autres missions :</h3>
                         <?php foreach($missions as $mission): ?>
                         <?php
                         $dataMissionSkills = [];
@@ -394,18 +394,18 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                             <span class="mr-2"> 
                                                 •   <?= $mission->jobName?>
                                             </span>
-                                            <span class="mr-2"> • Daily rate: <?=$mission->missionTJM?> €</span>
+                                            <span class="mr-2"> • TJM : <?=$mission->missionTJM?> €</span>
                                             
                                             <span class="mr-2"> •
                                             <?php
                                             if ($mission->missionDuration == "courte"){
-                                                $mission->missionDuration = "Short-term";
+                                                $mission->missionDuration = "Courte durée";
                                             }
                                             elseif ($mission->missionDuration == "longue"){
-                                                $mission->missionDuration = "Long-term";
+                                                $mission->missionDuration = "Longue durée";
                                             }
                                             elseif ($mission->missionDuration == "indefinie"){
-                                                $mission->missionDuration = "Indefinite duration";
+                                                $mission->missionDuration = "Durée indéfinie";
                                             }                                            
                                             ?>
                                             <?=$mission->missionDuration?> 
@@ -414,10 +414,10 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                             <span class="mr-2"> •
                                             <?php
                                             if ($mission->missionType == "temps-plein"){
-                                                $mission->missionType = "Full-time";
+                                                $mission->missionType = "Temps Plein";
                                             }
                                             elseif ($mission->missionType == "temps-partiel"){
-                                                $mission->missionType = "Part-time";
+                                                $mission->missionType = "Temps Partiel";
                                             }
                                             elseif ($mission->missionType == "remote"){
                                                 $mission->missionType = "Remote";
@@ -430,13 +430,13 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                             <?php
 
                                             if ($mission->missionDeroulement == "teletravail"){
-                                                $mission->missionDeroulement = "Full remote";
+                                                $mission->missionDeroulement = "Télétravail";
                                             }
                                             elseif ($mission->missionDeroulement == "site"){
-                                                $mission->missionDeroulement = "On site";
+                                                $mission->missionDeroulement = "Sur site";
                                             }
                                             elseif ($mission->missionDeroulement == "hybride"){
-                                                $mission->missionDeroulement = "Hybrid";
+                                                $mission->missionDeroulement = "Hybride";
                                             }                                            
                                             ?>
                                             <?=$mission->missionDeroulement?>
@@ -450,7 +450,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                                 $mission->missionExpertise = "Junior";
                                             }
                                             elseif ($mission->missionExpertise == "intermediaire"){
-                                                $mission->missionExpertise = "Intermediate";
+                                                $mission->missionExpertise = "Intermédiaire";
                                             }
                                             elseif ($mission->missionExpertise == "expert"){
                                                 $mission->missionExpertise = "Expert";
@@ -490,7 +490,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                                         
                                                         break;
                                                     case 2:
-                                                        $level = 'Intermediate';
+                                                        $level = 'Intermédiaire';
                                                         $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
                                                         $textdark = "text-white";
                                                         $text = "text-black";

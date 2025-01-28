@@ -1583,7 +1583,7 @@ if($totalInfos == 1 ){
             removeItemButton: true,
             itemSelectText: '',
             placeholder: true, // Ajoutez cette ligne pour activer le placeholder
-            placeholderValue: 'Sélectionnez votre métier', // Texte du placeholder
+            placeholderValue: 'Select your job', // Texte du placeholder
 
         });
 
@@ -1672,7 +1672,7 @@ if($totalInfos == 1 ){
                 <div class="flex flex-1 mb-4 skill-row">
                     <div class="w-3/4 mr-2">
                         <select class="p-2 border rounded-lg w-full new-skill-select" name="skillsAll[]" id="skillsAll" required>
-                            <option value="">Sélectionnez une compétence</option>
+                            <option value="">Select skill</option>
                             <?php foreach ($skillsAll as $skill): ?>
                                 <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
                             <?php endforeach; ?>
@@ -1715,7 +1715,7 @@ if($totalInfos == 1 ){
                 <div class="flex flex-1 mb-4 skill-row">
                     <div class="w-3/4 mr-2 text-black">
                         <select name="skillsAll[]" class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-                            <option value="">Sélectionnez une compétence</option>
+                            <option value="">Select skill</option>
                             <?php foreach ($skillsAll as $skill): ?>
                                 <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
                             <?php endforeach; ?>
@@ -1762,7 +1762,7 @@ if($totalInfos == 1 ){
             removeItemButton: true,
             itemSelectText: '',
             placeholder: true,
-            placeholderValue: 'Sélectionnez des compétences',
+            placeholderValue: 'Select your skills',
         });
 
         const skillsChoices2 = new Choices('#skillsAll2', {
@@ -1770,7 +1770,7 @@ if($totalInfos == 1 ){
             removeItemButton: true,
             itemSelectText: '',
             placeholder: true,
-            placeholderValue: 'Sélectionnez des compétences',
+            placeholderValue: 'Select your skills',
         });
 
         $('#search-input-skill').on('keyup', function(){

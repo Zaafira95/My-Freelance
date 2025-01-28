@@ -5,7 +5,7 @@ $currentPage = 'freelancers';
 include(APPPATH . 'views/layouts/company/header.php' );
 ?>
 <head>
-    <title><?=$freelancer->userFirstName.' '.$freelancer->userLastName.' '.ucfirst($freelancer->userType)?>  - Café Crème Community </title>
+    <title><?=$freelancer->userFirstName.' '.$freelancer->userLastName.' '.ucfirst($freelancer->userType)?>  - My Freelance </title>
 
 <style>
     

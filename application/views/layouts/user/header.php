@@ -38,7 +38,7 @@
     <nav class="bg-white py-6 px-12 lg:px-6 lg:py-6 dark:bg-gray-800">
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
             <a href="<?php echo base_url('/');?>" class="flex items-center">
-                <img src="<?php echo base_url('assets/img/logo.svg');?>" class="object-cover mr-3 h-16 lg:h-9" id="logo" alt="Café Crème Community"/>
+                <img src="<?php echo base_url('assets/img/logo.svg');?>" class="object-cover mr-3 h-16 lg:h-9" id="logo" alt="My Freelance"/>
                 <!-- <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span> -->
             </a>
             <div class="flex items-center lg:order-2">
@@ -286,14 +286,14 @@
             <!-- Modal header -->
             <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                 <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
-                    Votre disponibilité
+                Your availability
                 </h3>
                 <?php 
                     if($todayTimestamp < $datePlus15JoursTimestamp) {
                 ?>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" onclick="closeUpdateModal()">
                     <svg aria-hidden="true" class="w-8 h-8 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                    <span class="sr-only">Fermer</span>
+                    <span class="sr-only">Close</span>
                 </button>
                 <?php 
                     }
@@ -303,55 +303,55 @@
 
             <form id="userAvailabilityForm" action="<?=base_url("user/updateAvailability")?>" method="post">
                 <div>
-                    <label for="name" class="text-3xl lg:text-base block mb-2 font-medium text-gray-900 dark:text-white">Êtes-vous disponible pour travailler dès maintenant ?</label>
-                    <label class="text-3xl lg:text-base text-gray-500 mr-3 dark:text-gray-400">Non</label>
+                    <label for="name" class="text-3xl lg:text-base block mb-2 font-medium text-gray-900 dark:text-white">Are you available to work right now?</label>
+                    <label class="text-3xl lg:text-base text-gray-500 mr-3 dark:text-gray-400">No</label>
                     <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description" <?php echo $checkboxChecked; ?> onchange="displayAvailibilityOptions()" class="relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-green-200">
-                    <label class="text-3xl lg:text-base text-gray-500 ml-3 dark:text-gray-400">Oui</label>
+                    <label class="text-3xl lg:text-base text-gray-500 ml-3 dark:text-gray-400">Yes</label>
                     <div id="isAvailaibleOptions" style="display: <?php echo $checkboxChecked == 'checked' ? "block" : "none" ?>">
-                        <label for="name" class="text-3xl lg:text-base block mb-2 mt-6 font-medium text-gray-900 dark:text-white">Combien de jours par semaine êtes-vous disponible ?</label>
+                        <label for="name" class="text-3xl lg:text-base block mb-2 mt-6 font-medium text-gray-900 dark:text-white">How many days per week are you available?</label>
                         <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="text-3xl lg:text-base bg-gray-50 border mt-4 border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option value="temps-plein" 
                                 <?php if ($user->userJobTimePartielOrFullTime === "temps-plein") {
                                     echo ' selected';
-                                } ?>> Temps Plein 
+                                } ?>> Full-time
                             </option>
                             <option value="temps-partiel" 
                                 <?php if ($user->userJobTimePartielOrFullTime === "temps-partiel") {
                                     echo ' selected';
-                                } ?>> Temps Partiel 
+                                } ?>> Part-time
                             </option>
                         </select>
                     </div>
                     <div id="isNotAvailaibleOptions" style="display: <?php echo $checkboxChecked == '' ? "block" : "none" ?>">
-                        <label for="dateFinIndisponibilite" class="text-3xl lg:text-base block mb-2 mt-6 font-medium text-gray-900 dark:text-white">Quand serez-vous à nouveau disponible ?</label>
+                        <label for="dateFinIndisponibilite" class="text-3xl lg:text-base block mb-2 mt-6 font-medium text-gray-900 dark:text-white">When will you be available again?</label>
                         <div class="flex flex-1 mt-4">
                             <div class="flex items-center mr-6">
                                 <input type="radio" id="1mois" value="1" name="finIndisponibiliteDuree" class="text-3xl lg:text-base finIndisponibiliteBtn w-6 h-6 lg:w-4 lg:h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                <label for="1mois" class="text-3xl lg:text-base ml-2 font-medium text-gray-900 dark:text-white">Dans 1 mois</label>
+                                <label for="1mois" class="text-3xl lg:text-base ml-2 font-medium text-gray-900 dark:text-white">In 1 month</label>
                             </div>
                             <div class="flex items-center mr-6">
                                 <input type="radio" id="3mois" value="3" name="finIndisponibiliteDuree" class="text-3xl lg:text-base finIndisponibiliteBtn w-6 h-6 lg:w-4 lg:h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                <label for="3mois" class="text-3xl lg:text-base ml-2 font-medium text-gray-900 dark:text-white">Dans 3 mois</label>
+                                <label for="3mois" class="text-3xl lg:text-base ml-2 font-medium text-gray-900 dark:text-white">In 3 months</label>
                             </div>
                             <div class="flex items-center">
                                 <input type="radio" id="6mois" value="6" name="finIndisponibiliteDuree" class="text-3xl lg:text-base finIndisponibiliteBtn w-6 h-6 lg:w-4 lg:h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                <label for="6mois" class="text-3xl lg:text-base ml-2 font-medium text-gray-900 dark:text-white">Dans 6 mois</label>
+                                <label for="6mois" class="text-3xl lg:text-base ml-2 font-medium text-gray-900 dark:text-white">In 6 months</label>
                             </div>
                         </div>
                         <input type="date" id="dateFinIndisponibilite" value="<?= $user->userDateFinIndisponibilite ?>" name="dateFinIndisponibilite" class="text-3xl lg:text-base w-full mt-4 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         
-                        <p id="errorDateFinIndisponibilite" class="text-3xl lg:text-base mt-2 text-red-500" style="display:none;">Veuilllez renseigner une date</p>
+                        <p id="errorDateFinIndisponibilite" class="text-3xl lg:text-base mt-2 text-red-500" style="display:none;">Please provide a date</p>
                     </div>
                 </div>
                 <div class="flex items-center space-x-4 mt-8">
                     <button type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                        Valider
+                        Confirm
                     </button>
                     <?php 
                         if($todayTimestamp < $datePlus15JoursTimestamp) {
                     ?>
                     <button type="button" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900" onclick="closeUpdateModal()">
-                        Annuler
+                        Cancel
                     </button>
                     <?php 
                         }
@@ -474,7 +474,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                         // Crée et affiche un message d'erreur pour ce champ
                         const message = document.createElement('div');
-                        message.textContent = 'Ce champ est obligatoire';
+                        message.textContent = 'This field is required';
                         message.className = 'message-erreur text-red-600 text-3xl lg:text-base mt-4'; // Utilisez cette classe pour styliser le message d'erreur
                         input.parentNode.insertBefore(message, input.nextSibling);
                         input.classList.add('erreur');

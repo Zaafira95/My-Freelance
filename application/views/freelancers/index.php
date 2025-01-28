@@ -5,7 +5,7 @@ $currentPage = 'freelancers';
 // Header Call
 include(APPPATH . 'views/layouts/company/header.php');
 ?>
-    <title> Café Crème Community </title>
+    <title> My Freelance </title>
 
 <link rel="stylesheet" href="<?php echo base_url('assets/css/nouislider.min.css');?>">
 <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">

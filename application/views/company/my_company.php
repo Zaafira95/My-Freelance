@@ -11,7 +11,7 @@ include(APPPATH . 'views/layouts/company/header.php');
     <link href="<?php echo base_url('/node_modules/choices.js/public/assets/styles/choices.min.css');?>" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="<?php echo base_url('/node_modules/intl-tel-input/build/css/intlTelInput.min.css');?>">
 
-    <title><?=$company->companyName?> - Café Crème Community </title>
+    <title><?=$company->companyName?> - My Freelance </title>
 
     <style>
     .ql-container {

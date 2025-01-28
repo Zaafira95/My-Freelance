@@ -6,7 +6,7 @@ $currentPage = 'dashboard';
 include(APPPATH . 'views/layouts/admin/header.php');
 ?>
 <head>
-    <title> Dashboard Administateur - Café Crème Community </title>
+    <title> Dashboard Administateur - My Freelance </title>
 
 <style>
     html,

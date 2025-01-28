@@ -72,11 +72,11 @@ if ($banner->bannerStatus == "active"){ ?>
                         <div class="flex items-center mt-2">
                             <i class="fa fa-map-marker-alt mr-3"></i>    
                             <div class="relative city-search-container w-full">
-                                <input type="text" id="citySearch" value="<?=$user->userVille?>" placeholder="Cherchez votre ville" class="text-3xl lg:text-lg border p-2 rounded-lg w-full text-black">
+                                <input type="text" id="citySearch" value="<?=$user->userVille?>" placeholder="Search your city" class="text-3xl lg:text-lg border p-2 rounded-lg w-full text-black">
                                     <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                             </div>
                         </div>
-                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Secteurs d'activité</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Activity sectors</h4>
                     <div class="w-full mx-auto mt-5 text-black">
                         <!-- <label for="skillsAll" class="block text-sm font-medium text-gray-700">Sélectionnez vos compétences</label> -->
                         <select id="secteursAll" name="secteursAll[]" multiple class="text-3xl lg:text-base mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
@@ -87,7 +87,7 @@ if ($banner->bannerStatus == "active"){ ?>
                         </select>
                     </div>
                     <div class="flex justify-between mt-6">
-                        <button id="resetFiltersButton" class="text-3xl lg:text-base text-primary border border-primary px-4 py-1 rounded-full 2 hover:bg-primary-900 hover:text-white">Effacer</button>
+                        <button id="resetFiltersButton" class="text-3xl lg:text-base text-primary border border-primary px-4 py-1 rounded-full 2 hover:bg-primary-900 hover:text-white">Reset</button>
                     </div>
 
                     
@@ -103,14 +103,14 @@ if ($banner->bannerStatus == "active"){ ?>
             <div class="w-full lg:overflow-y-auto no-scrollbar">
                 <div class="bg-primary rounded-lg h-20vh p-4 text-white">
                     <p class="text-3xl lg:text-lg font-bold">Hello, <?=$user->userFirstName?></p>
-                    <p class="text-3xl lg:text-base font-normal mt-2 mb-2">Découvrez les entreprises</p>
+                    <p class="text-3xl lg:text-base font-normal mt-2 mb-2">Discover companies</p>
 
                     <div class="flex w-full">
-                        <input type="text" id="search-input" class="text-3xl lg:text-base w-full bg-white bg-opacity-20 rounded-lg p-2 placeholder-white mr-2 text-center" placeholder="Ecrivez le nom de l'entreprise que vous recherchez..." />
+                        <input type="text" id="search-input" class="text-3xl lg:text-base w-full bg-white bg-opacity-20 rounded-lg p-2 placeholder-white mr-2 text-center" placeholder="Enter the name of the company you are looking for..." />
                         <!-- <button class="w-1/5 bg-white text-primary rounded-lg px-4 py-2">Rechercher</button> -->
                     </div>
                 </div>
-                <h3 class="text-5xl lg:text-2xl font-medium mt-4 mb-4" id="result-section">Pour vous :</h3>
+                <h3 class="text-5xl lg:text-2xl font-medium mt-4 mb-4" id="result-section">For you:</h3>
                 <div class="flex flex-wrap" id="companies-section">
                     <?php foreach($companies as $company): ?>
                         <a href="<?=base_url('user/companyView/'.$company->idCompany)?>" 
@@ -118,7 +118,7 @@ if ($banner->bannerStatus == "active"){ ?>
                             data-company-name="<?=strtolower($company->companyName)?>"
                             data-company-localisation="<?=strtolower($company->companyLocalisation)?>"
                             data-company-secteur="<?=$company->secteurId?>"> 
-                            <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative company-item" data-company-name="<?=strtolower($company->companyName)?>" data-company-localisation="<?=$company->companyLocalisation?>" data-company-secteur="<?=$company->secteurId?>">
+                            <div class="bg-white rounded-lg w-full h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative company-item" data-company-name="<?=strtolower($company->companyName)?>" data-company-localisation="<?=$company->companyLocalisation?>" data-company-secteur="<?=$company->secteurId?>">
                                 <div class="flex items-center">
                                     <div class="mr-4">
                                         <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="object-cover w-16 h-16 lg:w-10 rounded-full">
@@ -144,14 +144,13 @@ if ($banner->bannerStatus == "active"){ ?>
                                         </p>
                                     </div>
                                 </div>
-
                             </div>
                         </a>
                     <?php endforeach; ?>
                     </div>
                     <div id="no-company-found">
-                        <p class="text-3xl lg:text-lg mt-6 text-left">Aucune entreprise n'a été trouvée.</p>
-                        <h3 class="text-5xl lg:text-2xl font-medium mt-10" id="result-section">Autres entreprises :</h3>
+                        <p class="text-3xl lg:text-lg mt-6 text-left">No companies were found.</p>
+                        <h3 class="text-5xl lg:text-2xl font-medium mt-10" id="result-section">Other companies:</h3>
                         <?php foreach($companies as $company): ?>
                             <a href="<?=base_url('user/companyView/'.$company->idCompany)?>" 
                                 class="w-full" > 
@@ -260,7 +259,7 @@ if ($banner->bannerStatus == "active"){ ?>
         removeItemButton: true,
         itemSelectText: '',
         placeholder: true, // Ajoutez cette ligne pour activer le placeholder
-        placeholderValue: 'Sélectionnez des secteurs', // Texte du placeholder
+        placeholderValue: 'Select sectors', // Texte du placeholder
 
     });
     

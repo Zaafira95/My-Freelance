@@ -5,7 +5,7 @@ $currentPage = 'profil';
 include(APPPATH . 'views/layouts/user/header.php' );
 ?>
 <head>
-    <title><?=$user->userFirstName.' '.$user->userLastName.' '.ucfirst($user->userType)?>  - Café Crème Community </title>
+    <title><?=$user->userFirstName.' '.$user->userLastName.' '.ucfirst($user->userType)?>  - My Freelance </title>
 
 <style>
   
@@ -788,7 +788,7 @@ if($totalInfos == 1 ){
                 <div class="relative flex grid-cols-2 items-center overflow-hidden bg-white rounded-lg mb-4 dark:bg-gray-800 py-4 px-4">
                     <div class="flex flex-1">
                         <div>
-                            <img src="<?php echo base_url($user->userAvatarPath); ?>" class="object-cover w-40 h-40 rounded-full" alt="Photo de profil">
+                            <img src="<?php echo base_url($user->userAvatarPath); ?>" class="object-cover w-40 h-40 rounded-full" alt="Profile photo">
                         </div>
                         <div class="ml-4">
                             <div class="flex" id="user-data">
@@ -850,7 +850,7 @@ if($totalInfos == 1 ){
                                 }
                             ?>
 
-                                <p class="font-medium text-3xl lg:text-base mb-2 mt-2 inline-block px-4 py-2.5 rounded-full bg-primary text-white"><?=$user->userTJM?> € / day</p>
+                                <p class="font-medium text-3xl lg:text-base mb-2 mt-2 inline-block px-4 py-2.5 rounded-full bg-primary text-white"><?=$user->userTJM?> AED / day</p>
                             </div>
                         </div>
                     </div>

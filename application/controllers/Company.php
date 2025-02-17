@@ -203,7 +203,7 @@ class Company extends CI_Controller {
 
 
         if ($contactOrNot == 'on') {
-            $outputMessage = $companyMessage . "\n\n Nom de la mission : " . $job->missionName .  "\n\n TJM : " . $missionTjm . "€ \n\n Nom de l'entreprise : " .$company->companyName ;
+            $outputMessage = $companyMessage . "\n\n Nom de la mission : " . $job->missionName .  "\n\n TJM : " . $missionTjm . "AED \n\n Nom de l'entreprise : " .$company->companyName ;
         } else {
             $outputMessage = $companyMessageDefault . "\n\n Nom de l'entreprise : " .$company->companyName ;
         }

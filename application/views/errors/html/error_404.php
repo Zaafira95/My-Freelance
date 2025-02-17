@@ -39,8 +39,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <img src="<?php echo base_url('assets/img/loader.gif');?>" alt="404" class="w-60 mx-auto">
         <div class="rounded-lg bg-white p-8">
             <h1 class="mb-4 text-4xl font-bold">404</h1>
-            <p class="text-gray-600">Oups ! La page que vous recherchez est introuvable.</p>
-            <a href="<?php echo base_url('/');?>" class="mt-4 inline-block rounded bg-primary px-4 py-2 font-semibold text-white hover:bg-blue-600"> Retour à l'accueil </a>
+            <p class="text-gray-600">Oups ! The page you are looking for cannot be found..</p>
+            <a href="<?php echo base_url('/');?>" class="mt-4 inline-block rounded bg-primary px-4 py-2 font-semibold text-white hover:bg-blue-600"> Back to homepage </a>
         </div>
     </div>
 </div>

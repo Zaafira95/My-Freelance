@@ -5,7 +5,7 @@ $currentPage = 'freelancers';
 include(APPPATH . 'views/layouts/company/header.php' );
 ?>
 <head>
-    <title><?=$freelancer->userFirstName.' '.$freelancer->userLastName.' '.ucfirst($freelancer->userType)?>  - Café Crème Community </title>
+    <title><?=$freelancer->userFirstName.' '.$freelancer->userLastName.' '.ucfirst($freelancer->userType)?>  - My Freelance </title>
 
 <style>
     
@@ -126,7 +126,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
                         <label for="companyJobs" id="labelCompanyJobs" class="text-3xl lg:text-base hidden mt-4 mb-2 font-medium text-gray-900 dark:text-white" id="companyJobsLabel">Sélectionnez votre mission</label>
                         <select id="companyJobsSelect" name="companyJobs" class="text-3xl lg:text-base hidden mb-2 bg-gray-50 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"> <!-- Utilisez la classe hidden pour masquer par défaut -->
                             <?php foreach ($job_for_company as $mission): ?>
-                                <option value="<?= $mission->idMission ?>"><?= $mission->missionName.' - '.$mission->missionTJM.'€'?></option>
+                                <option value="<?= $mission->idMission ?>"><?= $mission->missionName.' - '.$mission->missionTJM.'AED'?></option>
                             <?php endforeach; ?>
                         </select>
                     <?php 
@@ -266,7 +266,7 @@ if ($totalCount > 0) {
                                 </svg>
                                 </button>
                             <!-- </a> -->
-                                <p class="mb-2 mt-1 text-3xl lg:text-base font-medium inline-block px-4 py-2.5 rounded-full bg-primary text-white transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"><?=$freelancer->userTJM?> € / Jour</p>
+                                <p class="mb-2 mt-1 text-3xl lg:text-base font-medium inline-block px-4 py-2.5 rounded-full bg-primary text-white transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"><?=$freelancer->userTJM?> AED / Jour</p>
 
                             </div>
                         </div>

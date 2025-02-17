@@ -6,7 +6,7 @@ $currentPage = 'dashboard';
 include(APPPATH . 'views/layouts/user/header.php');
 ?>
 <head>
-    <title> Café Crème Community </title>
+    <title> My Freelance </title>
 
 <style>
     html,
@@ -166,8 +166,8 @@ if($totalInfos == 1 ){
                     <div class="mt-2 mr-3">
                         <div id="tjm-slider" class="w-full mt-2"></div>
                         <div class="flex justify-between mt-2">
-                            <span id="tjm-min" class="text-3xl lg:text-base">300€</span>
-                            <span id="tjm-max" class="text-3xl lg:text-base">1200€</span>
+                            <span id="tjm-min" class="text-3xl lg:text-base">300AED</span>
+                            <span id="tjm-max" class="text-3xl lg:text-base">1200AED</span>
                         </div>
                     </div>
                 
@@ -299,7 +299,7 @@ if($totalInfos == 1 ){
                                             </span>
 
                                             <span class="mr-2"> 
-                                                • Daily rate : <?=$mission->missionTJM?> €
+                                                • Daily rate : <?=$mission->missionTJM?> AED
                                             </span>
                                             
                                             <span class="mr-2"> •
@@ -517,7 +517,7 @@ if($totalInfos == 1 ){
                                         </span>
                                         
                                         <span class="mr-2">
-                                            • Daily rate: <?=$mission->missionTJM?> €
+                                            • Daily rate: <?=$mission->missionTJM?> AED
                                         </span>
                                         
                                         <span class="mr-2"> •
@@ -702,7 +702,7 @@ if($totalInfos == 1 ){
                     </a>
                         <div class="items-center mt-1">
                             <p class="font-light text-center"><?=$jobUser->jobName?></p>
-                            <p class="font-light text-center"><?=$user->userTJM . ' €'?></p>
+                            <p class="font-light text-center"><?=$user->userTJM . ' AED'?></p>
                         </div>
                       <?php
                         if ($tauxCompletion != 100){
@@ -926,10 +926,10 @@ if($totalInfos == 1 ){
         step: 10, // Ajout de la propriété step pour les tranches de 10
         format: {
         to: function(value) {
-            return parseInt(value) + '€';
+            return parseInt(value) + 'AED';
         },
         from: function(value) {
-            return value.replace('€', '');
+            return value.replace('AED', '');
         }
         }
     });

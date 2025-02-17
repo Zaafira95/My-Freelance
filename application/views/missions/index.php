@@ -5,7 +5,7 @@ $currentPage = 'missions';
 include(APPPATH . 'views/layouts/user/header.php' );
 ?>
 <head>
-    <title>Nos Missions | Café Crème Community </title>
+    <title>Nos Missions | My Freelance </title>
 
 <link rel="stylesheet" href="<?php echo base_url('assets/css/nouislider.min.css');?>">
 <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
@@ -96,8 +96,8 @@ include(APPPATH . 'views/layouts/user/header.php' );
                     <div class="mt-2 mr-3">
                         <div id="tjm-slider" class="w-full mt-2"></div>
                         <div class="flex justify-between mt-2">
-                            <span id="tjm-min" class="text-3xl lg:text-base">300€</span>
-                            <span id="tjm-max" class="text-3xl lg:text-base">1200€</span>
+                            <span id="tjm-min" class="text-3xl lg:text-base">300AED</span>
+                            <span id="tjm-max" class="text-3xl lg:text-base">1200AED</span>
                         </div>
                     </div>
                 
@@ -199,7 +199,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                             <span class="mr-2"> 
                                                 •   <?= $mission->jobName?>
                                             </span>
-                                            <span class="mr-2"> • Daily rate: <?=$mission->missionTJM?> €</span>
+                                            <span class="mr-2"> • Daily rate: <?=$mission->missionTJM?> AED</span>
                                             
                                             <span class="mr-2"> •
                                             <?php
@@ -394,7 +394,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                             <span class="mr-2"> 
                                                 •   <?= $mission->jobName?>
                                             </span>
-                                            <span class="mr-2"> • Daily rate: <?=$mission->missionTJM?> €</span>
+                                            <span class="mr-2"> • Daily rate: <?=$mission->missionTJM?> AED</span>
                                             
                                             <span class="mr-2"> •
                                             <?php
@@ -674,10 +674,10 @@ include(APPPATH . 'views/layouts/user/header.php' );
         step: 10, // Ajout de la propriété step pour les tranches de 10
         format: {
         to: function(value) {
-            return parseInt(value) + '€';
+            return parseInt(value) + 'AED';
         },
         from: function(value) {
-            return value.replace('€', '');
+            return value.replace('AED', '');
         }
         }
     });

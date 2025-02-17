@@ -5,7 +5,7 @@ $currentPage = 'settings';
 include(APPPATH . 'views/layouts/company/header.php' );
 ?>
 <head>
-    <title><?='Paramètres '.$company->companyName?>  - Café Crème Community </title>
+    <title><?='Paramètres '.$company->companyName?>  - My Freelance </title>
 
 <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
 <link href="<?php echo base_url('assets/css/app.css');?>" rel="stylesheet">

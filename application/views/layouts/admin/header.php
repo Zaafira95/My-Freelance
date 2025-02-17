@@ -31,7 +31,7 @@
     <nav class="bg-white px-4 lg:px-6 py-6 dark:bg-gray-800">
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
             <a href="<?php echo base_url('/');?>" class="flex items-center">
-                <img src="<?php echo base_url('assets/img/logo.svg');?>" class="object-cover mr-3 h-8 sm:h-9" id="logo" alt="Café Crème Community"/>
+                <img src="<?php echo base_url('assets/img/logo.svg');?>" class="object-cover mr-3 h-8 sm:h-9" id="logo" alt="My Freelance"/>
                 <!-- <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span> -->
             </a>
             <div class="flex items-center lg:order-2">

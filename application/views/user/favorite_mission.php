@@ -5,7 +5,7 @@ $currentPage = 'missions';
 include(APPPATH . 'views/layouts/user/header.php');
 
 ?>
-    <title> Vos missions favorites - Café Crème Community </title>
+    <title> Vos missions favorites - My Freelance </title>
 <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
 <link href="<?php echo base_url('assets/css/app.css');?>" rel="stylesheet">
 
@@ -62,7 +62,7 @@ include(APPPATH . 'views/layouts/user/header.php');
                                                     <!-- <span class="mr-2"> • <?= $company->companyName ?></span> -->
                                                 <?php endif; ?>
                                             <?php endforeach; ?>
-                                                <span class="mr-2"> • Daily rate: <?=$mission->missionTJM?> €</span>
+                                                <span class="mr-2"> • Daily rate: <?=$mission->missionTJM?> AED</span>
                                                 <span class="mr-2"> •
 
                                                 <?php

@@ -6,7 +6,7 @@ $currentPage = 'dashboard';
 include(APPPATH . 'views/layouts/admin/header.php');
 ?>
 <head>
-    <title> Dashboard Administateur - Café Crème Community </title>
+    <title> Dashboard Administateur - My Freelance </title>
 
 <style>
     html,
@@ -110,13 +110,13 @@ if ($banner->bannerStatus == "active"){ ?>
                                 <h5 class="inline-flex items-center text-gray-500 dark:text-gray-400 leading-none font-normal mb-2">ESN
                             
                                 </h5>
-                                <p class="text-gray-900 dark:text-white text-2xl leading-none font-bold">42,3k €</p>
+                                <p class="text-gray-900 dark:text-white text-2xl leading-none font-bold">42,3k AED</p>
                             </div>
                             <div>
                                 <h5 class="inline-flex items-center text-gray-500 dark:text-gray-400 leading-none font-normal mb-2">Freelances
                              
                                 </h5>
-                                <p class="text-gray-900 dark:text-white text-2xl leading-none font-bold">12,7k €</p>
+                                <p class="text-gray-900 dark:text-white text-2xl leading-none font-bold">12,7k AED</p>
                             </div>
                             </div>
                             <div>                            
@@ -174,7 +174,7 @@ if ($banner->bannerStatus == "active"){ ?>
                                             </div>
                                             
                                             <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                <?= $freelancer->userTJM?> €/j
+                                                <?= $freelancer->userTJM?> AED/j
                                             </div>
                                         </div>
                                     </li>
@@ -270,7 +270,7 @@ if ($banner->bannerStatus == "active"){ ?>
                                             </div>
                                             
                                             <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                <?= $freelancer->userTJM?> €/j
+                                                <?= $freelancer->userTJM?> AED/j
                                             </div>
                                         </div>
                                     </li>
@@ -331,7 +331,7 @@ if ($banner->bannerStatus == "active"){ ?>
                                             </div>
                                             
                                             <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                <?= $freelancer->userTJM?> €/j
+                                                <?= $freelancer->userTJM?> AED/j
                                             </div>
                                         </div>
                                     </li>

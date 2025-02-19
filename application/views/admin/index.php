@@ -151,14 +151,14 @@ if ($banner->bannerStatus == "active"){ ?>
                                                         ?>
                                                         <div class="flex items-center space-x-1 bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-300 dark:text-green-900">
                                                             <div style="width: 0.5rem; height: 0.5rem" class="bg-green-500 rounded-full dark:bg-green-700"></div>
-                                                            <div>Disponible</div>
+                                                            <div>Available</div>
                                                         </div>
                                                         <?php
                                                             } else {
                                                         ?>
                                                             <div class="flex items-center space-x-1 bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-300 dark:text-red-900">
                                                                 <div style="width: 0.5rem; height: 0.5rem" class="bg-red-500 rounded-full dark:bg-red-700"></div>
-                                                                <div>Non Disponible</div>
+                                                                <div>Unvailable</div>
                                                             </div>
                                                         <?php
                                                             }

@@ -95,7 +95,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                 if ($user->userAvatarPath !=='assets/img/default-avatar.png') {
                                     ?>
                                     <a href="#" onclick="showModal('deleteAvatarConfirmationModal');" class="text-3xl lg:text-base text-red-600 hover:text-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:text-red-500 dark:hover:text-white dark:focus:ring-red-900" data-modal-toggle="deleteUserAvatar">
-                                        Supprimer l'avatar
+                                        Delete profile picture
                                     </a>
                                     <div id="deleteAvatarConfirmationModal" class="hidden fixed inset-0 flex items-center justify-center z-50">
                                         <div class="fixed inset-0 bg-black opacity-50"></div>
@@ -227,7 +227,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                         </div>
                         <div class="flex items-center pl-4 border  border-gray-200 rounded dark:border-gray-700 w-full mr-4">
                             <input id="sur-site" type="radio" value="Physique" name="userJobType" class="text-3xl lg:text-base w-6 h-6 lg:w-4 lg:h-4  text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" <?php echo ($user->userJobType === 'Physique') ? 'checked' : ''; ?>>
-                            <label for="sur-site" class="text-3xl lg:text-base py-4 ml-2  font-medium text-gray-900 dark:text-white">On-site</label>
+                            <label for="sur-site" class="text-3xl lg:text-base py-4 ml-2  font-medium text-gray-900 dark:text-white">On site</label>
                         </div>
                     </div>
                     <p id="errorMessageJobType" class="text-3xl lg:text-base text-red-500" style="display:none;">Please choose a job type</p>
@@ -336,7 +336,7 @@ foreach ($experiences as $index => $experience) {
                 <!-- Modal header -->
                 <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                     <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
-                        <?='Expérience: '.$experience->experienceJob?>
+                        <?='Experience: '.$experience->experienceJob?>
                     </h3>
                     <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateUserExperience<?=$index?>">
                         <svg aria-hidden="true" class="w-8 h-8 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
@@ -1762,7 +1762,7 @@ if($totalInfos == 1 ){
             removeItemButton: true,
             itemSelectText: '',
             placeholder: true,
-            placeholderValue: 'Sélectionnez des compétences',
+            placeholderValue: 'Select Skills',
         });
 
         const skillsChoices2 = new Choices('#skillsAll2', {
@@ -1770,7 +1770,7 @@ if($totalInfos == 1 ){
             removeItemButton: true,
             itemSelectText: '',
             placeholder: true,
-            placeholderValue: 'Sélectionnez des compétences',
+            placeholderValue: 'Select Skills',
         });
 
         $('#search-input-skill').on('keyup', function(){

@@ -76,7 +76,7 @@ if ($banner->bannerStatus == "active"){ ?>
                                     <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                             </div>
                         </div>
-                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Secteurs d'activité</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Sectors</h4>
                     <div class="w-full mx-auto mt-5 text-black">
                         <!-- <label for="skillsAll" class="block text-sm font-medium text-gray-700">Sélectionnez vos compétences</label> -->
                         <select id="secteursAll" name="secteursAll[]" multiple class="text-3xl lg:text-base mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
@@ -87,7 +87,7 @@ if ($banner->bannerStatus == "active"){ ?>
                         </select>
                     </div>
                     <div class="flex justify-between mt-6">
-                        <button id="resetFiltersButton" class="text-3xl lg:text-base text-primary border border-primary px-4 py-1 rounded-full 2 hover:bg-primary-900 hover:text-white">Effacer</button>
+                        <button id="resetFiltersButton" class="text-3xl lg:text-base text-primary border border-primary px-4 py-1 rounded-full 2 hover:bg-primary-900 hover:text-white">Reset</button>
                     </div>
 
                     
@@ -103,14 +103,14 @@ if ($banner->bannerStatus == "active"){ ?>
             <div class="w-full lg:overflow-y-auto no-scrollbar">
                 <div class="bg-primary rounded-lg h-20vh p-4 text-white">
                     <p class="text-3xl lg:text-lg font-bold">Hello, <?=$user->userFirstName?></p>
-                    <p class="text-3xl lg:text-base font-normal mt-2 mb-2">Découvrez les entreprises</p>
+                    <p class="text-3xl lg:text-base font-normal mt-2 mb-2">Discover the companies</p>
 
                     <div class="flex w-full">
-                        <input type="text" id="search-input" class="text-3xl lg:text-base w-full bg-white bg-opacity-20 rounded-lg p-2 placeholder-white mr-2 text-center" placeholder="Ecrivez le nom de l'entreprise que vous recherchez..." />
+                        <input type="text" id="search-input" class="text-3xl lg:text-base w-full bg-white bg-opacity-20 rounded-lg p-2 placeholder-white mr-2 text-center" placeholder="Enter the name of the company you are looking for..." />
                         <!-- <button class="w-1/5 bg-white text-primary rounded-lg px-4 py-2">Rechercher</button> -->
                     </div>
                 </div>
-                <h3 class="text-5xl lg:text-2xl font-medium mt-4 mb-4" id="result-section">Pour vous :</h3>
+                <h3 class="text-5xl lg:text-2xl font-medium mt-4 mb-4" id="result-section">For you:</h3>
                 <div class="flex flex-wrap" id="companies-section">
                     <?php foreach($companies as $company): ?>
                         <a href="<?=base_url('user/companyView/'.$company->idCompany)?>" 
@@ -260,7 +260,7 @@ if ($banner->bannerStatus == "active"){ ?>
         removeItemButton: true,
         itemSelectText: '',
         placeholder: true, // Ajoutez cette ligne pour activer le placeholder
-        placeholderValue: 'Sélectionnez des secteurs', // Texte du placeholder
+        placeholderValue: 'Selectsecteurs', // Texte du placeholder
 
     });
     

@@ -31,7 +31,7 @@ include(APPPATH . 'views/layouts/user/header.php');
             <div class="bg-white rounded-lg w-full mb-4 dark:text-white dark:bg-gray-800 relative">
                 <div class="bg-white dark:bg-gray-800 relative rounded-lg w-full h-auto mb-8">
                     <div class="bg-white dark:bg-gray-800 rounded-lg w-full h-48 flex items-center justify-center">
-                        <div class="bg-white dark:bg-gray-800 w-full h-full flex items-center justify-center">
+                        <div class="bg-white dark:bg-gray-800 rounded-lg w-full h-full flex items-center justify-center">
                             <img src="<?=base_url($company->companyBannerPath)?>" class="object-cover w-full h-full rounded-lg dark:bg-gray-800" alt="Image de l'entreprise">
                         </div>
                     </div>
@@ -60,7 +60,7 @@ include(APPPATH . 'views/layouts/user/header.php');
                         <?php
                         if (isset($company->companyWebsite) && !empty($company->companyWebsite)){
                             ?>
-                                <a href="<?=$company->companyWebsite?>" title="Visiter le site" class="flex-shrink-0 mr-4" target="_blank">
+                                <a href="<?=$company->companyWebsite?>" title="Visit website" class="flex-shrink-0 mr-4" target="_blank">
                                     <div>
                                         <img src="<?=base_url('assets/img/logo-link/portfolio.png')?>" alt="Logo Website" class="h-10 transition-transform transform hover:scale-110">
                                     </div>
@@ -90,7 +90,7 @@ include(APPPATH . 'views/layouts/user/header.php');
                 </div>
                 <ul class="flex flex-wrap mt-10 -mb-px px-4 pb-4 text-primary text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
                     <li class="mr-4" role="presentation">
-                        <button class="text-3xl lg:text-base inline-block border-b-2 font-normal text-black hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="myCompanyProfile-tab" data-tabs-target="#myCompanyProfile" type="button" role="tab" aria-controls="myCompanyProfile" aria-selected="false">À propos</button>
+                        <button class="text-3xl lg:text-base inline-block border-b-2 font-normal text-black hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="myCompanyProfile-tab" data-tabs-target="#myCompanyProfile" type="button" role="tab" aria-controls="myCompanyProfile" aria-selected="false">About us</button>
                     </li>
                     <li class="mr-4" role="presentation">
                         <button class="text-3xl lg:text-base inline-block border-b-2 font-normal hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="myCompanyMissions-tab" data-tabs-target="#myCompanyMissions" type="button" role="tab" aria-controls="myCompanyMissions" aria-selected="false">Missions</button>
@@ -102,7 +102,7 @@ include(APPPATH . 'views/layouts/user/header.php');
                 <div class="hidden" id="myCompanyProfile" role="tabpanel" aria-labelledby="myCompanyProfile-tab">
                     <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                         <h2 class="text-4xl lg:text-xl font-bold mb-4 flex items-center">
-                            Description de l'entreprise
+                            Company description
                         </h2>
                         <div class="text-3xl lg:text-base items-center justify-between">
                             <p class="text-3xl lg:text-base font-normal mb-4">
@@ -113,7 +113,7 @@ include(APPPATH . 'views/layouts/user/header.php');
                     </div>
                     <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                         <h2 class="text-4xl lg:text-xl font-bold mb-4 flex items-center">
-                            Les avantages de l'entreprise
+                            Company advantages
                         </h2>
                         <div class="text-3xl lg:text-base items-center justify-between">
                             <p class="text-3xl lg:text-base font-normal mb-4">
@@ -125,7 +125,7 @@ include(APPPATH . 'views/layouts/user/header.php');
 		<?php if($companyPhotos != null) { ?>
                     <div class="relative bg-white rounded-lg mt-4 mb-4 py-4 dark:bg-gray-800 dark:text-white">
                         <h2 class="text-4xl lg:text-xl font-bold mb-4 pl-4 flex items-center">
-                            Photos de l'entreprise
+                            Company pictures
                         </h2>
                         <div class="overflow-x-auto flex pb-4 px-4 gap-4 no-scrollbar">
                             <?php $imageCount = 0; ?>
@@ -144,7 +144,7 @@ include(APPPATH . 'views/layouts/user/header.php');
                 <div class="hidden" id="myCompanyMissions" role="tabpanel" aria-labelledby="myCompanyMissions-tab">  
                     <div class="flex flex-wrap w-full pb-4 mb-12 mt-4" id="missions-section">
                         <div class="w-full flex flex-wrap justify-between items-center">
-                            <h1 class="text-4xl lg:text-xl font-bold mb-4 mt-4">Nos missions</h1>
+                            <h1 class="text-4xl lg:text-xl font-bold mb-4 mt-4">Our missions</h1>
                         </div>
                         <div class="grid lg:grid-cols-2 gap-4">
                             
@@ -168,18 +168,18 @@ include(APPPATH . 'views/layouts/user/header.php');
                                                         <span class="mr-2"> 
                                                             •   <?= $mission->jobName?>
                                                         </span>
-                                                        <span class="mr-2 font-medium"> • TJM : <?=$mission->missionTJM?> AED</span>
+                                                        <span class="mr-2 font-medium"> • Daily rate: <?=$mission->missionTJM?> AED</span>
                                                         
                                                         <span class="mr-2"> •
                                                         <?php
                                                         if ($mission->missionDuration == "courte"){
-                                                            $mission->missionDuration = "Courte durée";
+                                                            $mission->missionDuration = "Short-term";
                                                         }
                                                         elseif ($mission->missionDuration == "longue"){
-                                                            $mission->missionDuration = "Longue durée";
+                                                            $mission->missionDuration = "Long-term";
                                                         }
                                                         elseif ($mission->missionDuration == "indefinie"){
-                                                            $mission->missionDuration = "Durée indéfinie";
+                                                            $mission->missionDuration = "Indefinite duration";
                                                         }                                            
                                                         ?>
                                                         <?=$mission->missionDuration?> 
@@ -188,10 +188,10 @@ include(APPPATH . 'views/layouts/user/header.php');
                                                         <span class="mr-2"> •
                                                         <?php
                                                         if ($mission->missionType == "temps-plein"){
-                                                            $mission->missionType = "Temps Plein";
+                                                            $mission->missionType = "Full-time";
                                                         }
                                                         elseif ($mission->missionType == "temps-partiel"){
-                                                            $mission->missionType = "Temps Partiel";
+                                                            $mission->missionType = "Part-time";
                                                         }
                                                         elseif ($mission->missionType == "remote"){
                                                             $mission->missionType = "Remote";
@@ -204,10 +204,10 @@ include(APPPATH . 'views/layouts/user/header.php');
                                                         <?php
 
                                                         if ($mission->missionDeroulement == "teletravail"){
-                                                            $mission->missionDeroulement = "Télétravail";
+                                                            $mission->missionDeroulement = "Full remote";
                                                         }
                                                         elseif ($mission->missionDeroulement == "site"){
-                                                            $mission->missionDeroulement = "Sur site";
+                                                            $mission->missionDeroulement = "On site";
                                                         }
                                                         elseif ($mission->missionDeroulement == "hybride"){
                                                             $mission->missionDeroulement = "Hybride";
@@ -224,7 +224,7 @@ include(APPPATH . 'views/layouts/user/header.php');
                                                             $mission->missionExpertise = "Junior";
                                                         }
                                                         elseif ($mission->missionExpertise == "intermediaire"){
-                                                            $mission->missionExpertise = "Intermédiaire";
+                                                            $mission->missionExpertise = "Intermediate";
                                                         }
                                                         elseif ($mission->missionExpertise == "expert"){
                                                             $mission->missionExpertise = "Expert";
@@ -341,7 +341,7 @@ include(APPPATH . 'views/layouts/user/header.php');
             removeItemButton: true,
             itemSelectText: '',
             placeholder: true,
-            placeholderValue: 'Sélectionnez un secteur',
+            placeholderValue: 'Select a sector',
         });
     });
     

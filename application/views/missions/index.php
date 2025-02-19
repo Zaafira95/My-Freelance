@@ -96,8 +96,8 @@ include(APPPATH . 'views/layouts/user/header.php' );
                     <div class="mt-2 mr-3">
                         <div id="tjm-slider" class="w-full mt-2"></div>
                         <div class="flex justify-between mt-2">
-                            <span id="tjm-min" class="text-3xl lg:text-base">300AED</span>
-                            <span id="tjm-max" class="text-3xl lg:text-base">1200AED</span>
+                            <span id="tjm-min" class="text-3xl lg:text-base">300 AED</span>
+                            <span id="tjm-max" class="text-3xl lg:text-base">1200 AED</span>
                         </div>
                     </div>
                 
@@ -125,7 +125,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                         </select>
                     </div>
                     <div class="flex justify-between mt-6">
-                        <button id="resetFiltersButton" class="text-3xl lg:text-base text-primary border border-primary px-4 py-1 rounded-full 2 hover:bg-primary-900 hover:text-white">Effacer</button>
+                        <button id="resetFiltersButton" class="text-3xl lg:text-base text-primary border border-primary px-4 py-1 rounded-full 2 hover:bg-primary-900 hover:text-white">Reset</button>
                     </div>
 
                     
@@ -255,7 +255,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                                 $mission->missionExpertise = "Junior";
                                             }
                                             elseif ($mission->missionExpertise == "intermediaire"){
-                                                $mission->missionExpertise = "Intermédiaire";
+                                                $mission->missionExpertise = "Intermediate";
                                             }
                                             elseif ($mission->missionExpertise == "expert"){
                                                 $mission->missionExpertise = "Expert";
@@ -617,17 +617,17 @@ include(APPPATH . 'views/layouts/user/header.php' );
         removeItemButton: true,
         itemSelectText: '',
         placeholder: true, // Ajoutez cette ligne pour activer le placeholder
-        placeholderValue: 'Sélectionnez des compétences', // Texte du placeholder
+        placeholderValue: 'Select Skills', // Texte du placeholder
 
     });
 
-    //Script selection des métiers
+    //Script selection des Jobs
         const jobsChoices = new Choices('#jobsAll', {
         searchEnabled: true,
         removeItemButton: true,
         itemSelectText: '',
         placeholder: true, // Ajoutez cette ligne pour activer le placeholder
-        placeholderValue: 'Sélectionnez des métiers', // Texte du placeholder
+        placeholderValue: 'Select Jobs', // Texte du placeholder
 
     });
     
@@ -674,10 +674,10 @@ include(APPPATH . 'views/layouts/user/header.php' );
         step: 10, // Ajout de la propriété step pour les tranches de 10
         format: {
         to: function(value) {
-            return parseInt(value) + 'AED';
+            return parseInt(value) + ' AED';
         },
         from: function(value) {
-            return value.replace('AED', '');
+            return value.replace(' AED', '');
         }
         }
     });

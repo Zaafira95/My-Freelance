@@ -96,7 +96,7 @@ if($totalInfos == 1 ){
                         <i class="fas fa-sliders-h"></i>
                     </button>
                 </div>
-                <div class="hidden lg:block bg-white rounded-lg sticky top-0 lg:h-full overflow-y-auto no-scrollbar lg:no-shadow shadow-lg mb-8 lg:mb-4 p-4 dark:bg-gray-800 dark:text-white" id="FilterMission">
+                <div class="hidden lg:block bg-white rounded-lg lg:h-full overflow-y-auto no-scrollbar lg:no-shadow shadow-lg mb-8 lg:mb-4 p-4 dark:bg-gray-800 dark:text-white" id="FilterMission">
                     <h3 class="text-3xl lg:text-lg font-medium mt-2">Filters</h3>
                     <h4 class="text-3xl lg:text-lg font-medium mt-4">Location</h4>
                         <div class="flex items-center mt-2">
@@ -926,10 +926,10 @@ if($totalInfos == 1 ){
         step: 10, // Ajout de la propriété step pour les tranches de 10
         format: {
         to: function(value) {
-            return parseInt(value) + 'AED';
+            return parseInt(value) + ' AED';
         },
         from: function(value) {
-            return value.replace('AED', '');
+            return value.replace(' AED', '');
         }
         }
     });

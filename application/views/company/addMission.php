@@ -28,7 +28,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
                     <form id="missionForm" action="<?=base_url("company/addMission")?>" method="post" enctype="multipart/form-data">
                         <div class="flex flex-1 mt-4">
                             <input type="text" name="missionName" placeholder= "Titre de la mission" class="text-3xl lg:text-base mr-3 w-full block  mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
-                            <input type="number" name="missionTJM" placeholder="TJM €" class="text-3xl lg:text-base block mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
+                            <input type="number" name="missionTJM" placeholder="TJM AED" min="100" class="text-3xl lg:text-base block mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
                         </div>
 
                         <div class="w-full text-black">
@@ -96,11 +96,11 @@ include(APPPATH . 'views/layouts/company/header.php' );
                             <div class="flex flex-1">
                                 <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700 w-full mr-4">
                                     <input id="temps-plein" type="radio" value="temps-plein" name="missionType" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" required>
-                                    <label for="temps-plein" class="text-3xl lg:text-base py-4 ml-2  font-medium text-gray-900 dark:text-white">Temps plein</label>
+                                    <label for="temps-plein" class="text-3xl lg:text-base py-4 ml-2  font-medium text-gray-900 dark:text-white">Full-time</label>
                                 </div>
                                 <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700 w-full mr-4">
                                     <input id="temps-partiel" type="radio" value="temps-partiel" name="missionType" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="temps-partiel" class="text-3xl lg:text-base py-4 ml-2  font-medium text-gray-900 dark:text-white">Temps partiel</label>
+                                    <label for="temps-partiel" class="text-3xl lg:text-base py-4 ml-2  font-medium text-gray-900 dark:text-white">Part-time</label>
                                 </div>
                             </div>
                         </div>
@@ -109,7 +109,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
                             <p class="text-3xl lg:text-lg font-bold mt-4"> Expérience requise </p>
                             <select id="missionExperience" name="missionExperience" class="text-3xl lg:text-base w-full block mr-3 mb-4 border mt-2 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                                 <?php
-                                $missionExperienceOptions = ['Junior (1 à 2 ans) ', 'Intermédiaire (3 à 5 ans)', 'Expert (+ 5 ans)'];
+                                $missionExperienceOptions = ['Junior (1 to 2 years) ', 'Intermediate (3 to 5 years)', 'Expert (5+ years)'];
                                 $missionExperienceOptionsValues = ['junior', 'intermediaire', 'expert'];
                                 for ($i = 0; $i < count($missionExperienceOptions); $i++) {
                                     $missionExperience = $missionExperienceOptions[$i];
@@ -335,7 +335,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
             removeItemButton: true,
             itemSelectText: '',
             placeholder: true,
-            placeholderValue: 'Sélectionnez des compétences',
+            placeholderValue: 'Selectcompétences',
             allowHTML: true,
             /* options spécifiques à Choices */
         });
@@ -464,7 +464,7 @@ include(APPPATH . 'views/layouts/company/header.php' );
                 removeItemButton: true,
                 itemSelectText: '',
                 placeholder: true,
-                placeholderValue: 'Sélectionnez des compétences',
+                placeholderValue: 'Select compétences',
                 allowHTML: true,
             });
         });

@@ -31,7 +31,7 @@
     <nav class="bg-white py-6 px-12 lg:px-6 lg:py-6 dark:bg-gray-800">
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
             <a href="<?php echo base_url('/');?>" class="flex items-center">
-                <img src="<?php echo base_url('assets/img/logo.svg');?>" class="object-cover mr-3 h-16 lg:h-9" id="logo" alt="My Freelance"/>
+                <img src="<?php echo base_url('assets/img/logo.svg');?>" class="object-cover mr-3 h-10 lg:h-5" id="logo" alt="My Freelance"/>
                 <!-- <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span> -->
             </a>
             <div class="flex items-center lg:order-2">
@@ -58,16 +58,16 @@
                     <div id="dropdown" class=" absolute right-0 mt-2 w-64 lg:w-48 bg-white dark:bg-gray-800 rounded-md overflow-hidden shadow-xl z-10 hidden">
                         <a href="<?php echo base_url('company/my_company');?>" class="text-3xl lg:text-base items-center space-x-2 block rounded-md px-4 py-4 text-gray-400 dark:text-gray-400 hover:bg-secondary dark:hover:text-white hover:text-gray-900 dark:hover:bg-primary">
                             <i class="fas fa-user-circle"></i>
-                            <span>Mon entreprise</span>
+                            <span>My company</span>
                         </a>
                         <a href="<?php echo base_url('company/settings');?>" class="text-3xl lg:text-base items-center space-x-2 block rounded-md px-4 py-4 text-gray-400 dark:text-gray-400 hover:bg-secondary dark:hover:text-white hover:text-gray-900 dark:hover:bg-primary">
                             <i class="fas fa-cog"></i>
-                            <span>Paramètres</span>
+                            <span>Settings</span>
                         </a>
                        
                         <a href="<?php echo base_url('company/logout');?>" class="text-3xl lg:text-base items-center space-x-2 block rounded-md px-4 py-4 text-red-600 dark:text-red-900 dark:hover:text-white hover:text-white hover:bg-red-900">
                             <i class="fas fa-sign-out-alt"></i>
-                            <span>Déconnexion</span>
+                            <span>Logout</span>
                         </a>
                     </div>
 
@@ -116,11 +116,11 @@
                         <?php 
                             if ($currentPage == 'my_company'){
                         ?>
-                            <a href="<?php echo base_url('company/my_company');?>" class="text-3xl lg:text-base block py-2 pr-4 pl-3 text-primary  border-b lg:bg-transparent lg:text-primary lg:p-0 lg:border-b-2 border-primary dark:text-primary">Mon entreprise</a>
+                            <a href="<?php echo base_url('company/my_company');?>" class="text-3xl lg:text-base block py-2 pr-4 pl-3 text-primary  border-b lg:bg-transparent lg:text-primary lg:p-0 lg:border-b-2 border-primary dark:text-primary">My company</a>
                         <?php
                             } else {
                         ?>
-                            <a href="<?php echo base_url('company/my_company');?>" class="text-3xl lg:text-base block py-2 pr-4 pl-3 text-black border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-400 lg:p-0 dark:text-white">Mon entreprise</a>
+                            <a href="<?php echo base_url('company/my_company');?>" class="text-3xl lg:text-base block py-2 pr-4 pl-3 text-black border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-400 lg:p-0 dark:text-white">My company</a>
                         <?php
                             }
                         ?>
@@ -129,11 +129,11 @@
                         <?php 
                             if ($currentPage == 'whatsapp'){
                         ?>
-                            <a href="<?php echo base_url('company/whatsapp');?>" class="text-3xl lg:text-base block py-2 pr-4 pl-3 text-primary  border-b lg:bg-transparent lg:text-primary lg:p-0 lg:border-b-2 border-primary dark:text-primary">Communauté</a>
+                            <a href="<?php echo base_url('company/whatsapp');?>" class="text-3xl lg:text-base block py-2 pr-4 pl-3 text-primary  border-b lg:bg-transparent lg:text-primary lg:p-0 lg:border-b-2 border-primary dark:text-primary">Community</a>
                         <?php
                             } else {
                         ?>
-                            <a href="<?php echo base_url('company/whatsapp');?>" class="text-3xl lg:text-base block py-2 pr-4 pl-3 text-black border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-400 lg:p-0 dark:text-white">Communauté</a>
+                            <a href="<?php echo base_url('company/whatsapp');?>" class="text-3xl lg:text-base block py-2 pr-4 pl-3 text-black border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-400 lg:p-0 dark:text-white">Community</a>
                         <?php
                             }
                         ?>
@@ -142,11 +142,11 @@
                         <?php 
                             if ($currentPage == 'settings'){
                         ?>
-                            <a href="<?php echo base_url('company/settings');?>" class="text-3xl lg:text-base block py-2 pr-4 pl-3 text-primary  border-b lg:bg-transparent lg:text-primary lg:p-0 lg:border-b-2 border-primary dark:text-primary">Paramètres</a>
+                            <a href="<?php echo base_url('company/settings');?>" class="text-3xl lg:text-base block py-2 pr-4 pl-3 text-primary  border-b lg:bg-transparent lg:text-primary lg:p-0 lg:border-b-2 border-primary dark:text-primary">Settings</a>
                         <?php
                             } else {
                         ?>
-                            <a href="<?php echo base_url('company/settings');?>" class="text-3xl lg:text-base block py-2 pr-4 pl-3 text-black border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-400 lg:p-0 dark:text-white">Paramètres</a>
+                            <a href="<?php echo base_url('company/settings');?>" class="text-3xl lg:text-base block py-2 pr-4 pl-3 text-black border-b lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-400 lg:p-0 dark:text-white">Settings</a>
                         <?php
                             }
                         ?>

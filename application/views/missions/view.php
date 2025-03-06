@@ -55,15 +55,15 @@ else if ($user->userType == "sales"){
                 <div>
                     <label for="message" class="text-3xl lg:text-base block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Choose a predefined message</label>
                     <select id="message" name="message" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onchange="updateTextarea()">
-                        <option value="">Select a message</option>
+                        <option value="">Select un message</option>
                         <!-- <?php foreach ($messageExamples as $message) { ?>
                             <option value="<?php echo $message->messageExamplesContent; ?>"><?php echo $message->messageExamplesContent; ?></option>
                         <?php } ?> -->
-                        <option value="Hello, I am interested in your mission offer (<?=$mission->missionName?>) on My Freelance! I am available immediately.">
-                        Hello, I am interested in your mission offer (<?=$mission->missionName?>) on My Freelance! I am available immediately.
+                        <option value="Hello, I’m interested in your mission (<?=$mission->missionName?>) on My Freelance! I’m available right away.">
+                         Hello, I’m interested in your mission (<?=$mission->missionName?>) on My Freelance! I’m available right away.
                         </option>
-                        <option value="Hello, your mission (<?=$mission->missionName?>) interests me! I am available immediately.">
-                            Hello, your mission (<?=$mission->missionName?>) interests me! I am available immediately.
+                        <option value="Hello, your mission (<?=$mission->missionName?>) caught my interest!! I’m available immediately.">
+                            Hello, your mission (<?=$mission->missionName?>) caught my interest!! I’m available immediately.
                         </option>
                     </select>
                 </div>
@@ -107,7 +107,7 @@ else if ($user->userType == "sales"){
                                         <span class="font-bold text-2xl lg:text-lg"><?=$company->companyName?></span>
                                     </p>
                                     </a>
-                                    <p class="font-bold text-2xl lg:text-lg"><?=$mission->missionTJM.'€/day'?>
+                                    <p class="font-bold text-2xl lg:text-lg"><?=$mission->missionTJM.' AED/day'?>
                                     <p class="font-medium text-2xl lg:text-lg">
                                     <?php foreach ($jobsAll as $joba): ?>
                                         <?php if ($mission->missionJobId == $joba['jobId']): ?>
@@ -133,7 +133,7 @@ else if ($user->userType == "sales"){
                                             <span class="text-3xl lg:text-base text-md mr-2">Contact </span>
                                             
                                             <div class="text-3xl lg:text-base mr-2 flex p-1 text-primary border-primary border-1 rounded-full hover:bg-primary hover:text-white">
-                                            <a href="https://wa.me/<?=$companyContact->userTelephone?>?text=Bonjour%20<?=$companyContact->userFirstName?>%20!%20Je%20suis%20intéressé%20par%20votre%20offre%20de%20mission%20sur%20Café%20Crème%20Community%20!%20" target="_blank">
+                                            <a href="https://wa.me/<?=$companyContact->userTelephone?>?text=Hello%20<?=$companyContact->userFirstName?>%20!%20I%20am%20interested%20by%20your%20mission%20on%20My%20Freelance%20!%20" target="_blank">
                                                     <i class="fab fa-whatsapp"></i>
                                                 </a>
                                             </div>
@@ -193,7 +193,7 @@ else if ($user->userType == "sales"){
                         <div class="w-full lg:w-1/4 sticky top-0"  id="left-side-content">
                             <div class="w-full">
                                 <div class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                                    <h2 class="text-4xl lg:text-xl font-bold mb-4">Key Information</h2> 
+                                    <h2 class="text-4xl lg:text-xl font-bold mb-4">Key information</h2> 
 
                                         <div class="flex grid-cols-2 items-center mb-4">
                                             <?php
@@ -221,7 +221,7 @@ else if ($user->userType == "sales"){
                                             } }
                                             ?>
                                             <div>
-                                                <p class="text text-2xl lg:text-lg">Work mode</p>
+                                                <p class="text text-2xl lg:text-lg">Work Mode</p>
                                                 <?php
                                                     if($mission->missionDeroulement == "hybride"){
                                                     ?>
@@ -284,7 +284,7 @@ else if ($user->userType == "sales"){
                                                         $mission->missionDuration = "Long-term";
                                                     }
                                                     elseif ($mission->missionDuration == "indefinie"){
-                                                        $mission->missionDuration = "Infinite duration";
+                                                        $mission->missionDuration = "Indefinite duration";
                                                     }                                            
                                                 ?>
                                                 <p class="font-bold text-3xl lg:text-lg"><?=$mission->missionDuration?></p>
@@ -301,7 +301,7 @@ else if ($user->userType == "sales"){
                                                 <p class="font-semibold text-3xl lg:text-lg"><?=$mission->missionDateDebut = date('d/m/Y', strtotime($mission->missionDateDebut))?> - 
                                                 <?php
                                                 if($mission->missionDateFin == NULL){
-                                                    echo "Undefined end date";
+                                                    echo "Date de fin indéfinie";
                                                 }
                                                 else {
                                                     echo $mission->missionDateFin = date('d/m/Y', strtotime($mission->missionDateFin));
@@ -329,7 +329,7 @@ else if ($user->userType == "sales"){
                                                         $text = "text-black";
                                                         break;
                                                     case 2:
-                                                        $level = 'Intermédiaire';
+                                                        $level = 'Intermediate';
                                                         $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
                                                         $textdark = "text-white";
                                                         $text = "text-black";
@@ -462,7 +462,7 @@ else if ($user->userType == "sales"){
                                                         $mission->missionDuration = "Long-term";
                                                     }
                                                     elseif ($mission->missionDuration == "indefinie"){
-                                                        $mission->missionDuration = "Infinite duration";
+                                                        $mission->missionDuration = "Indefinite duration";
                                                     }                                            
                                                 ?>
                                                 <p class="font-bold text-base"><?=$mission->missionDuration?></p>
@@ -479,7 +479,7 @@ else if ($user->userType == "sales"){
                                                 <p class="font-semibold text-base"><?=$mission->missionDateDebut = date('d/m/Y', strtotime($mission->missionDateDebut))?> - 
                                                 <?php
                                                 if($mission->missionDateFin == NULL){
-                                                    echo "Undefined end date";
+                                                    echo "Date de fin indéfinie";
                                                 }
                                                 else {
                                                     echo $mission->missionDateFin = date('d/m/Y', strtotime($mission->missionDateFin));
@@ -494,7 +494,7 @@ else if ($user->userType == "sales"){
                                 
                                 </div>
                                 <div  id="mission-skills" class="hidden relative bg-white rounded-lg mb-4 p-4 text-black">
-                                    <h2 class="text-xl font-bold mb-4"> Required skills </h2> 
+                                    <h2 class="text-xl font-bold mb-4"> Skills requises </h2> 
                                     <div class="skills-container mb-4">
                                         <?php foreach ($missionSkills[$mission->idMission] as $skill) : ?>
                                             <?php
@@ -509,7 +509,7 @@ else if ($user->userType == "sales"){
                                                         $text = "text-black";
                                                         break;
                                                     case 2:
-                                                        $level = 'Intermédiaire';
+                                                        $level = 'Intermediate';
                                                         $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
                                                         $textdark = "text-white";
                                                         $text = "text-black";
@@ -553,7 +553,7 @@ else if ($user->userType == "sales"){
                                 }
                                 ?>
                                 <div id="company-description" class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                                    <h2 class="font-bold text-5xl lg:text-2xl">The company</h2>
+                                    <h2 class="font-bold text-5xl lg:text-2xl">Company</h2>
                                     <div class="richTextList text-3xl lg:text-base text-gray-500 mt-2 dark:text-white">
                                         <?=$company->companyDescription?>
                                     </div>
@@ -563,7 +563,7 @@ else if ($user->userType == "sales"){
                     </div> 
             </div>
             <?php if(count($companyMissions) >= 2) { ?>
-                <h2 class="font-bold text-4xl lg:text-xl mt-2 mb-4">Other offers proposed by <?=$company->companyName?></h2>
+                <h2 class="font-bold text-4xl lg:text-xl mt-2 mb-4">Other offers by <?=$company->companyName?></h2>
                 <div class="overflow-x-auto flex pb-4 no-scrollbar">
                 <?php foreach($companyMissions as $companyMission): ?>
                     <?php if ($companyMission->idMission !== $mission->idMission): ?>
@@ -580,7 +580,7 @@ else if ($user->userType == "sales"){
                                             <span class="mr-2"> 
                                                 •   <?= $companyMission->jobName?>
                                             </span>
-                                            <span class="mr-2"> • Daily Rate: <?=$companyMission->missionTJM?> €</span>
+                                            <span class="mr-2"> • Daily rate: <?=$companyMission->missionTJM?> AED</span>
                                             
                                             <span class="mr-2"> •
                                             <?php
@@ -591,7 +591,7 @@ else if ($user->userType == "sales"){
                                                 $companyMission->missionDuration = "Long-term";
                                             }
                                             elseif ($companyMission->missionDuration == "indefinie"){
-                                                $companyMission->missionDuration = "Infinite duration";
+                                                $companyMission->missionDuration = "Indefinite duration";
                                             }                                            
                                             ?>
                                             <?=$companyMission->missionDuration?> 
@@ -676,7 +676,7 @@ else if ($user->userType == "sales"){
                                                                 
                                                                 break;
                                                             case 2:
-                                                                $level = 'Intermédiaire';
+                                                                $level = 'Intermediate';
                                                                 $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
                                                                 $textdark = "text-white";
                                                                 $text = "text-black";

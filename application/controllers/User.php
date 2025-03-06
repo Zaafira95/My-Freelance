@@ -7,7 +7,6 @@ class User extends CI_Controller {
         if (!$this->session->userdata('userId')) {
             redirect('login');
         }
-
     }
 
     public function index() {
@@ -92,9 +91,9 @@ class User extends CI_Controller {
             if ($user->userLoginCount == 1 && $welcome_mail == "False") {
 
                 $this->load->library('email');
-                $this->email->from('no-reply@cafe-creme.agency', 'Café Crème Community');
+                $this->email->from('no-reply@cafe-creme.agency', 'My Freelance');
                 $this->email->to($user->userEmail); // Assurez-vous d'utiliser l'email de l'utilisateur
-                $this->email->subject('Bienvenue chez Café Crème Community 👋🏻');
+                $this->email->subject('Welcome to My Freelance 👋🏻');
                 $profileComplete = base_url();
                 $data['profileComplete'] = $profileComplete;
                 $data['userFirstName'] = $user->userFirstName;
@@ -171,7 +170,7 @@ class User extends CI_Controller {
 
         $this->load->model('User_model');
         $this->User_model->updateUserAvailability($userId, $userAvailability, $userJobTimePartielOrFullTime, $dateFinIndisponibilite);
-        $this->session->set_flashdata('message', 'Votre disponibilité a bien été mise à jour !');
+        $this->session->set_flashdata('message', 'Your availability has been successfully updated!');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
     }
@@ -321,7 +320,7 @@ class User extends CI_Controller {
         // Mettre à jour les autres données de l'utilisateur dans la base de données
         $this->User_model->updateUserData($userId, $userFirstName, $userLastName, $userTelephone, $jobId, $userExpertise, $userTJM);
     
-        $this->session->set_flashdata('message', 'Vos informations ont bien été mises à jour !');
+        $this->session->set_flashdata('message', 'Your information has been successfully updated!');
         $this->session->set_flashdata('status', 'success');
     
         // Recharger la page actuelle
@@ -334,7 +333,7 @@ class User extends CI_Controller {
         $userBio = $this->input->post('userBio');
 
         $this->User_model->updateUserBio($userId, $userBio);
-        $this->session->set_flashdata('message', 'Votre description a bien été mise à jour !');
+        $this->session->set_flashdata('message', 'Your description has been successfully updated!');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
        
@@ -364,7 +363,7 @@ class User extends CI_Controller {
         $dateFinIndisponibilite = $this->input->post('dateFinIndisponibilite');
 
         $this->User_model->updateUserPreference($userId, $userIsAvailable, $userJobType, $userVille, $userJobTime, $userJobTimePartielOrFullTime, $dateFinIndisponibilite);
-        $this->session->set_flashdata('message', 'Vos préférences ont bien été mises à jour !');
+        $this->session->set_flashdata('message', 'Your preferences have been successfully updated!');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
         
@@ -380,7 +379,7 @@ class User extends CI_Controller {
         $userBehanceLink = $this->input->post('userBehanceLink');
 
         $this->User_model->updateUserLinks($userId, $userPortfolioLink, $userLinkedinLink, $userGithubLink, $userDribbleLink, $userBehanceLink);
-        $this->session->set_flashdata('message', 'Vos liens ont bien été mis à jour !');
+        $this->session->set_flashdata('message', 'Your links have been successfully updated!');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
        
@@ -413,7 +412,7 @@ class User extends CI_Controller {
                 $this->User_model->updateUserExperienceSkills($experienceId, $skillId, $level);
             }
         }
-        $this->session->set_flashdata('message', 'Votre expérience a bien été mise à jour !');
+        $this->session->set_flashdata('message', 'Your experience has been successfully updated!');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
     }
@@ -442,7 +441,7 @@ class User extends CI_Controller {
                 $this->User_model->updateUserExperienceSkills($experienceId, $skillId, $level);
             }
         }
-        $this->session->set_flashdata('message', 'Votre expérience a bien été ajoutée !');
+        $this->session->set_flashdata('message', 'Your experience has been successfully added!');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
 
@@ -453,7 +452,7 @@ class User extends CI_Controller {
     public function deleteUserExperience($experienceId){
         $this->load->model('User_model');
         $this->User_model->deleteUserExperience($experienceId);
-        $this->session->set_flashdata('message', 'Votre expérience a bien été supprimée !');
+        $this->session->set_flashdata('message', 'Your experience has been successfully deleted!');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
     }
@@ -477,7 +476,7 @@ class User extends CI_Controller {
 
         if ($file_size > $max_file_size) {
             // Le fichier est trop lourd, afficher un message d'erreur
-            $this->session->set_flashdata('message', 'Le fichier est trop lourd. La taille maximale autorisée est de 2 Mo.');
+            $this->session->set_flashdata('message', 'The file is too large. The maximum allowed size is 2MB.');
             $this->session->set_flashdata('status', 'error');
             redirect($_SERVER['HTTP_REFERER']);
             return; // Arrêter l'exécution de la fonction
@@ -486,7 +485,7 @@ class User extends CI_Controller {
         if (!$this->upload->do_upload('userAttachmentFile')) {
             // Erreur lors du téléchargement du fichier
             $error = $this->upload->display_errors();
-            $this->session->set_flashdata('message', 'Erreur lors du téléchargement de la pièce jointe');
+            $this->session->set_flashdata('message', 'Error uploading the attachment.');
             $this->session->set_flashdata('status', 'error');
             redirect($_SERVER['HTTP_REFERER']);
             // Gérez l'erreur en conséquence
@@ -508,7 +507,7 @@ class User extends CI_Controller {
 
             $this->load->model('User_model');
             $this->User_model->addAttachment($attachmentData);
-            $this->session->set_flashdata('message', 'Votre pièce jointe a bien été ajoutée !');
+            $this->session->set_flashdata('message', 'Your attachment has been successfully added!');
             $this->session->set_flashdata('status', 'success');
             redirect($_SERVER['HTTP_REFERER']);
         }
@@ -526,7 +525,7 @@ class User extends CI_Controller {
         } 
 
         $this->User_model->deleteUserAttachment($attachmentId);
-        $this->session->set_flashdata('message', 'Votre pièce jointe a bien été supprimée !');
+        $this->session->set_flashdata('message', 'Your attachment has been successfully deleted!');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
     }
@@ -545,7 +544,7 @@ class User extends CI_Controller {
         // Mettre à jour le chemin de l'avatar de l'utilisateur dans la base de données
         $this->User_model->updateAvatarPath($userId, '');
 
-        $this->session->set_flashdata('message', 'Votre photo de profil a bien été supprimée !');
+        $this->session->set_flashdata('message', 'Your profile picture has been successfully deleted!');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
     }
@@ -790,7 +789,7 @@ class User extends CI_Controller {
         $this->load->model('User_model');
         $companyMissionId = $this->User_model->getCompanyMissionId($missionId);
         $this->User_model->addToFavorite($userId, $missionId, $companyMissionId);
-        $this->session->set_flashdata('message', 'La mission a bien été ajoutée à vos favoris !');
+        $this->session->set_flashdata('message', 'The mission has been successfully added to your favorites!');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);        
     }
@@ -799,7 +798,7 @@ class User extends CI_Controller {
         $userId = $this->session->userdata('userId');
         $this->load->model('User_model');
         $this->User_model->deleteFromFavorite($userId, $missionId);
-        $this->session->set_flashdata('message', 'La mission a bien été supprimée de vos favoris !');
+        $this->session->set_flashdata('message', 'The mission has been successfully removed from your favorites!');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);        
     }
@@ -896,13 +895,13 @@ class User extends CI_Controller {
                     $this->session->set_flashdata('message', $errorMsg);
                     $this->session->set_flashdata('status', 'error');
                 } else {
-                    $this->session->set_flashdata('message', 'Vos compétences ont bien été ajoutées !');
+                    $this->session->set_flashdata('message', 'Your skills have been successfully added!');
                     $this->session->set_flashdata('status', 'success');
                 }
     
                 redirect($_SERVER['HTTP_REFERER']);
             } else {
-                $this->session->set_flashdata('message', 'Une erreur est survenue !');
+                $this->session->set_flashdata('message', 'An error has occurred!');
                 $this->session->set_flashdata('status', 'error');
                 redirect($_SERVER['HTTP_REFERER']);
             }
@@ -913,7 +912,7 @@ class User extends CI_Controller {
         $userId = $this->session->userdata('userId');
         $this->load->model('User_model');
         $this->User_model->deleteUserSkill($id, $userId);
-        $this->session->set_flashdata('message', 'Votre compétence a bien été supprimée !');
+        $this->session->set_flashdata('message', 'Your skill has been successfully deleted!');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
     }
@@ -937,7 +936,7 @@ class User extends CI_Controller {
         }
 
     
-        $this->session->set_flashdata('message', 'Vos compétences ont bien été mises à jour !');
+        $this->session->set_flashdata('message', 'Your skills have been successfully updated!');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
     }
@@ -1038,7 +1037,7 @@ class User extends CI_Controller {
         $userTelephone = $this->input->post('userTelephone');
 
         $this->User_model->updateUserDataSettings($userId, $userFirstName, $userLastName, $userTelephone);
-        $this->session->set_flashdata('message', 'Vos informations personnelles ont bien été mises à jour !');
+        $this->session->set_flashdata('message', 'Your personal information has been successfully updated!');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
     }
@@ -1051,7 +1050,7 @@ class User extends CI_Controller {
         $userPassword = password_hash($userPassword, PASSWORD_DEFAULT);
 
         $this->User_model->updateUserPassword($userId, $userPassword);
-        $this->session->set_flashdata('message', 'Votre mot de passe a bien été mis à jour !');
+        $this->session->set_flashdata('message', 'Your password has been successfully updated!');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
     }
@@ -1064,7 +1063,7 @@ class User extends CI_Controller {
             echo json_encode(array('status' => 'success', 'message' => ''));
         } else {
             // Mot de passe incorrect
-            echo json_encode(array('status' => 'error', 'message' => 'Mot de passe incorrect'));
+            echo json_encode(array('status' => 'error', 'message' => 'Incorrect password'));
         }
     }
 
@@ -1096,9 +1095,9 @@ class User extends CI_Controller {
 
 
             $this->load->library('email');
-            $this->email->from('no-reply@cafe-creme.agency', 'Café Crème Community');
+            $this->email->from('no-reply@cafe-creme.agency', 'My Freelance');
             $this->email->to($memberEmail); // Assurez-vous d'utiliser l'email de l'utilisateur
-            $this->email->subject('Bienvenue chez Café Crème Community 👋🏻');
+            $this->email->subject('Bienvenue chez My Freelance 👋🏻');
             $mailLink = base_url();
             $data['mailLink'] = $mailLink;
             $data['memberFirstName'] = $memberFirstName;

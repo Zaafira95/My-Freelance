@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Inscription | Café Crème Community - Rejoignez la plus grande communauté de freelances</title>
+    <title>Sign up | My Freelance - Join the largest freelance community</title>
     <link href="<?php echo base_url('assets/css/app.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('/node_modules/choices.js/public/assets/styles/choices.min.css');?>" rel="stylesheet" type="text/css">
     <link rel="icon" href="<?php echo base_url('assets/img/Favicon.ico'); ?>" type="image/x-icon">
@@ -86,27 +86,27 @@
                 <div class="w-full lg:ml-6 lg:w-5/12">
                     <div class="flex flex-col justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                         <a href="<?php echo base_url('/')?>" class="flex mb-6 text-2xl font-semibold text-gray-900">
-                            <img class="w-60 lg:justify-start lg:m-0 lg:w-40 mr-2" src="<?php echo base_url('assets/img/logo.svg');?>" alt="Café Crème Community" id="logoLogin">
+                            <img class="w-60 lg:justify-start lg:m-0 lg:w-40 mr-2" src="<?php echo base_url('assets/img/logo.svg');?>" alt="My Freelance" id="logoLogin">
                         </a>
                         <div id="step1" style="display:block;">
                             <div class="w-full bg-white rounded-lg shadow md:mt-0 xl:p-0 dark:bg-gray-800 dark:text-white h-100 py-12 lg:py-1 overflow-y-auto no-scrollbar">
                                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                     <h1 class="text-5xl lg:text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 dark:text-white">
-                                        Créez votre compte
+                                    Create Your Account
                                     </h1>
                                     <p class="text-3xl lg:text-base text-dark mb-2 dark:text-white">
-                                        Inscrivez-vous maintenant et commencez à découvrir les opportunités qui vous attendent.
+                                    Sign up now and start exploring the opportunities waiting for you.
                                     </p>
                                     <form id="register-form" class="space-y-4 md:space-y-6" method="post" action="<?php echo base_url('register/registerUser'); ?>" onsubmit="showLoader();" enctype="multipart/form-data">
                                         <div>
-                                            <input type="email" name="userEmail" id="userEmail" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre email *" oninput="checkEmailAvailability(this.value)" required>
+                                            <input type="email" name="userEmail" id="userEmail" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Enter your email *" oninput="checkEmailAvailability(this.value)" required>
                                             <p id="emailError" class="text-3xl lg:text-base text-red-500"></p>
                                         </div>
                                         <div>
-                                            <input type="password" name="userPassword" id="userPassword" placeholder="Saisissez votre mot de passe *" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5" required oninput="checkPasswordStrength(this.value)">
+                                            <input type="password" name="userPassword" id="userPassword" placeholder="Enter your password *" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5" required oninput="checkPasswordStrength(this.value)">
                                         </div>
                                         <div>
-                                            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirmez votre mot de passe *" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5" required oninput="checkPasswordMatch()">
+                                            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm your password *" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5" required oninput="checkPasswordMatch()">
                                             <p id="confirmPasswordError" class="text-3xl lg:text-base text-red-500"></p>
                                         </div>
                                         <div class="password-strength-meter">
@@ -115,14 +115,14 @@
                                         <p id="passwordError" class="text-3xl lg:text-base text-red-500"></p>
                                         <div>
                                             <input type="checkbox" id="togglePasswordCheckbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox text-primary rounded">
-                                            <label for="togglePasswordCheckbox" class="text-3xl lg:text-base font-medium text-gray-900 dark:text-white">Afficher le mot de passe</label>
+                                            <label for="togglePasswordCheckbox" class="text-3xl lg:text-base font-medium text-gray-900 dark:text-white">Show password</label>
                                         </div>
                                         <!-- error message -->
-                                        <p id="errorMessage1" class="text-3xl lg:text-base text-red-500" style="display:none;">Un ou plusieurs champs non pas été remplies</p>
+                                        <p id="errorMessage1" class="text-3xl lg:text-base text-red-500" style="display:none;">One or more fields are incomplete</p>
                                         <!-- button for next step -->
-                                        <button type="button" class="text-3xl lg:text-base w-full text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep2()">Suivant</button>
+                                        <button type="button" class="text-3xl lg:text-base w-full text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep2()">Next</button>
                                         <p class="text-3xl lg:text-base font-light text-gray-500 dark:text-white">
-                                            Vous avez déjà un compte ? <a href="<?=base_url('login')?>" class="text-3xl lg:text-base font-medium text-primary hover:underline">Connectez-vous</a>
+                                        Already have an account? <a href="<?=base_url('login')?>" class="text-3xl lg:text-base font-medium text-primary hover:underline">Sign in</a>
                                         </p>
                                 </div>
                             </div>
@@ -132,7 +132,7 @@
                                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                     <div class="flex items-center">
                                         <h2 class="text-5xl lg:text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900  dark:text-white" style="width: 60%;">
-                                        Je suis un :
+                                        I am a :
                                         </h2>
                                         <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
                                             <div class="text-3xl lg:text-base font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4">
@@ -168,12 +168,12 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <p id="errorUserType" class="text-3xl lg:text-base text-red-500" style="display:none;">Veuillez choisir votre type de profil</p>
+                                    <p id="errorUserType" class="text-3xl lg:text-base text-red-500" style="display:none;">Please select your profile type</p>
                                     <div class="flex justify-between pl-4 pr-4">
                                         <!-- button for previous step -->
-                                        <button type="button" class="text-3xl lg:text-base w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep1()">Retour</button>
+                                        <button type="button" class="text-3xl lg:text-base w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep1()">Back</button>
                                         <!-- button for next step -->
-                                        <button type="button" class="text-3xl lg:text-base w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep3()">Suivant</button>
+                                        <button type="button" class="text-3xl lg:text-base w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep3()">Next</button>
                                     </div>
                                 </div>
                             </div>
@@ -183,7 +183,7 @@
                                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                     <div class="flex items-center">
                                         <h2 class="text-5xl lg:text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 dark:text-white" style="width: 60%;">
-                                        Présentes toi
+                                        Introduce yourself
                                         </h2>
                                         <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
                                             <div class="text-3xl lg:text-base font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4">
@@ -209,36 +209,36 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <p id="avatarErrorMessage" class="text-3xl lg:text-base text-red-500 mt-2 hidden">La taille de l'image doit être inférieur à 2048 Ko</p>
+                                        <p id="avatarErrorMessage" class="text-3xl lg:text-base text-red-500 mt-2 hidden">The image size must be less than 2048 KB</p>
                                         <span id="file-name" class="hidden text-lg text-gray-500 mt-4 dark:text-white"></span>
                                     </div>
                                     <div>
-                                        <input type="text" name="userFirstName" id="userFirstName" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre prénom *" >
+                                        <input type="text" name="userFirstName" id="userFirstName" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Enter your first name *" >
                                     </div>
                                     <div>
-                                        <input type="text" name="userLastName" id="userLastName" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre nom *" >
+                                        <input type="text" name="userLastName" id="userLastName" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Enter your last name *" >
                                     </div>
                                     <div>
 
-                                        <input type="tel" name="userTelephone" id="userTelephone" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre numéro Whatsapp *" >
-                                        <p id="errorUserTelephone" class="text-red-500 text-3xl lg:text-base mt-2 hidden">Veuillez renseigner un numéro de téléphone valide</p>
+                                        <input type="tel" name="userTelephone" id="userTelephone" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Enter your WhatsApp number *" >
+                                        <p id="errorUserTelephone" class="text-red-500 text-3xl lg:text-base mt-2 hidden">Please provide a valid phone number</p>
                                         <input type="hidden" id="userTelephone2" name="userTelephone2">
 
                                     </div>
                                     <div class="relative city-search-container w-full mr-4">
-                                        <input type="text" id="citySearch" name="userVille" placeholder="Cherchez votre ville" class="text-3xl lg:text-base citySearch bg-gray-50 border border-gray-300 text-gray-900  rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" >
+                                        <input type="text" id="citySearch" name="userVille" placeholder="Search for your city" class="text-3xl lg:text-base citySearch bg-gray-50 border border-gray-300 text-gray-900  rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Enter your location *" >
                                             <div id="cities-list" class="text-3xl lg:text-base cities-list absolute z-10 mt-2 w-full rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                                     </div>
                                     <div class="flex items-center mt-2">
                                         <input type="checkbox" id="userEtranger" name="userEtranger" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox text-primary rounded mr-2">
-                                        <label class="text-3xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Étranger</label>
+                                        <label class="text-3xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Foreigner</label>
                                     </div>
-                                    <p id="errorMessage-step3-freelance" class="text-3xl lg:text-base text-red-500 mt-2 hidden">Veuillez remplir tous les champs correctement</p>
+                                    <p id="errorMessage-step3-freelance" class="text-3xl lg:text-base text-red-500 mt-2 hidden">Please fill out all fields correctly</p>
                                     <div class="flex justify-between">
                                         <!-- button for previous step -->
-                                        <button type="button" class="text-3xl lg:text-base w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg  px-5 py-2.5 text-center" id="previousButton" onclick="goToStep2()">Retour</button>
+                                        <button type="button" class="text-3xl lg:text-base w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg  px-5 py-2.5 text-center" id="previousButton" onclick="goToStep2()">Back</button>
                                         <!-- button for next step -->
-                                        <button type="button" class="text-3xl lg:text-base w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg  px-5 py-2.5 text-center" id="nextButton" onclick="goToStep4_freelance()">Suivant</button>
+                                        <button type="button" class="text-3xl lg:text-base w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg  px-5 py-2.5 text-center" id="nextButton" onclick="goToStep4_freelance()">Next</button>
                                     </div>
                                 </div>
                             </div>
@@ -248,7 +248,7 @@
                                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                     <div class="flex items-center">
                                         <h2 class="text-5xl lg:text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 dark:text-white" style="width: 60%;">
-                                        Présentes toi
+                                        Introduce yourself
                                         </h2>
                                         <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
                                             <div class="text-3xl lg:text-base font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4">
@@ -259,21 +259,21 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <input type="text" name="companyUserFirstName" id="companyUserFirstName" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre prénom *" >
+                                        <input type="text" name="companyUserFirstName" id="companyUserFirstName" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Enter your first name *" >
                                     </div>
                                     <div>
-                                        <input type="text" name="companyUserLastName" id="companyUserLastName" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre nom *" >
+                                        <input type="text" name="companyUserLastName" id="companyUserLastName" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Enter your last name *" >
                                     </div>
                                    <div>
-                                        <input type="tel" name="companyUserTelephone" id="companyUserTelephone" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre numéro de téléphone *" >
+                                        <input type="tel" name="companyUserTelephone" id="companyUserTelephone" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Enter your WhatsApp number *" >
                                         <input type="hidden" id="companyUserTelephone2" name="companyUserTelephone2">
                                     </div>
-                                    <p id="errorMessage-step3-esn" class="text-3xl lg:text-base text-red-500  mt-2 hidden">Veuillez remplir tous les champs correctement</p>
+                                    <p id="errorMessage-step3-esn" class="text-3xl lg:text-base text-red-500  mt-2 hidden">Please fill out all fields correctly</p>
                                     <div class="flex justify-between">
                                         <!-- button for previous step -->
-                                        <button type="button" class="text-3xl lg:text-base w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep2()">Retour</button>
+                                        <button type="button" class="text-3xl lg:text-base w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep2()">Back</button>
                                         <!-- button for next step -->
-                                        <button type="button" class="text-3xl lg:text-base w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep4_esn()">Suivant</button>
+                                        <button type="button" class="text-3xl lg:text-base w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep4_esn()">Next</button>
                                     </div>
                                 </div>
                             </div>
@@ -283,7 +283,7 @@
                                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                     <div class="flex items-center">
                                         <h2 class="text-5xl lg:text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 dark:text-white" style="width: 60%;">
-                                        Tes Préférences
+                                        Your preferences
                                         </h2>
                                         <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
                                             <div class="text-3xl lg:text-base  font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4">
@@ -294,53 +294,53 @@
                                         </div>
                                     </div>
                                     <div class="relative job-search-container w-full">
-                                        <input type="text" id="jobSearch" name="userJob" placeholder="Cherchez votre métier" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500">
+                                        <input type="text" id="jobSearch" name="userJob" placeholder="Search your job" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500">
                                             <div id="jobs-list" class="text-3xl lg:text-base absolute z-10 mt-2 w-full rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                                     </div>
                                     <div>
-                                        <input type="number" name="userTJM" id="userTJM" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre TJM € *" min="100" >
+                                        <input type="number" name="userTJM" id="userTJM" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Enter your daily rate (AED) *" min="100" >
                                     </div>
                                     <div>
-                                        <label for="userJobType" class="text-3xl lg:text-base block mb-2 font-medium text-gray-900 dark:text-white">Type de poste</label>
+                                        <label for="userJobType" class="text-3xl lg:text-base block mb-2 font-medium text-gray-900 dark:text-white">Job type</label>
                                         <div class="flex flex-1 gap-2 mb-3">
                                             <div class="flex items-center px-2 border border-gray-200 rounded dark:border-gray-700 w-full">
                                                 <input id="teletravail" type="radio" value="Remote" name="userJobType" class="w-6 h-6 lg:w-3 lg:h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" >
-                                                <label for="teletravail" class="text-3xl lg:text-base py-4 ml-2  font-medium  text-gray-500 dark:text-white">Télétravail</label>
+                                                <label for="teletravail" class="text-3xl lg:text-base py-4 ml-2  font-medium  text-gray-500 dark:text-white">Full remote</label>
                                             </div>
                                             <div class="flex items-center px-2 border border-gray-200 rounded dark:border-gray-700 w-full">
                                                 <input id="hybride" type="radio" value="Hybride" name="userJobType" class="w-6 h-6 lg:w-3 lg:h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                                <label for="hybride" class="text-3xl lg:text-base py-4 ml-2  font-medium  text-gray-500 dark:text-white">Hybride</label>
+                                                <label for="hybride" class="text-3xl lg:text-base py-4 ml-2  font-medium  text-gray-500 dark:text-white">Hybrid</label>
                                             </div>
                                             <div class="flex items-center px-2 border border-gray-200 rounded dark:border-gray-700 w-full">
                                                 <input id="sur-site" type="radio" value="Physique" name="userJobType" class="w-6 h-6 lg:w-3 lg:h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                                <label for="sur-site" class="text-3xl lg:text-base py-4 ml-2  font-medium  text-gray-500 dark:text-white">Physique</label>
+                                                <label for="sur-site" class="text-3xl lg:text-base py-4 ml-2  font-medium  text-gray-500 dark:text-white">On-site</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div>
-                                        <label for="userExpertise" class="text-3xl lg:text-base block mb-2 font-medium text-gray-900 dark:text-white">Votre expertise *</label>
+                                        <label for="userExpertise" class="text-3xl lg:text-base block mb-2 font-medium text-gray-900 dark:text-white">Your expertise *</label>
                                         <select id="userExpertise" name="userExpertise" class="text-3xl lg:text-base font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
-                                            <option class="text-3xl lg:text-base dark:text-black" value="junior">Junior (1 à 2 ans)</option>
-                                            <option class="text-3xl lg:text-base dark:text-black" value="intermediaire">Intermédiaire (3 à 5 ans)</option>
-                                            <option class="text-3xl lg:text-base dark:text-black" value="expert">Expert (+ 5 ans)</option>
+                                            <option class="text-3xl lg:text-base dark:text-black" value="junior">Junior (1 to 2 years)</option>
+                                            <option class="text-3xl lg:text-base dark:text-black" value="intermediaire">Intermediate (3 to 5 years)</option>
+                                            <option class="text-3xl lg:text-base dark:text-black" value="expert">Expert (+5 years)</option>
                                         </select>
                                     </div>
                                     <div>
-                                        <label for="userJobTime" class="text-3xl lg:text-base block mb-2 font-medium text-gray-900 dark:text-white">Durée de la mission</label>
+                                        <label for="userJobTime" class="text-3xl lg:text-base block mb-2 font-medium text-gray-900 dark:text-white">Mission duration</label>
                                         <select id="userJobTime" name="userJobTime" class="text-3xl lg:text-base font-medium mb-2 bg-gray-50 border border-gray-300  text-gray-500 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
-                                            <option class="text-3xl lg:text-base dark:text-black" value="Courte Durée">Courte Durée</option>
-                                            <option class="text-3xl lg:text-base dark:text-black" value="Longue Durée">Longue Durée</option>
-                                            <option class="text-3xl lg:text-base dark:text-black" value="expert">Durée indéfinie</option>
+                                            <option class="text-3xl lg:text-base dark:text-black" value="Courte Durée">Short-term</option>
+                                            <option class="text-3xl lg:text-base dark:text-black" value="Longue Durée">Long-term</option>
+                                            <option class="text-3xl lg:text-base dark:text-black" value="expert">Undefined duration</option>
                                         </select>
                                     </div>
-                                    <p id="errorMessage-step4-freelance" class="text-red-500 text-3xl lg:text-base mt-2 hidden">Veuillez remplir tous les champs correctement</p>
-                                    <p id="tjmErrorMessage" class="text-red-500 text-3xl lg:text-base mt-2 hidden">Le TJM doit être supérieur à 100</p>
+                                    <p id="errorMessage-step4-freelance" class="text-red-500 text-3xl lg:text-base mt-2 hidden">Please fill out all fields correctly</p>
+                                    <p id="tjmErrorMessage" class="text-red-500 text-3xl lg:text-base mt-2 hidden">The daily rate must be greater than 100</p>
 
                                     <div class="flex justify-between">
                                         <!-- button for previous step -->
-                                        <button type="button" class="text-3xl lg:text-base w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg  px-5 py-2.5 text-center" id="previousButton" onclick="goToStep3()">Retour</button>
+                                        <button type="button" class="text-3xl lg:text-base w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg  px-5 py-2.5 text-center" id="previousButton" onclick="goToStep3()">Back</button>
                                         <!-- button for next step -->
-                                        <button type="button" class="text-3xl lg:text-base w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg  px-5 py-2.5 text-center" id="nextButton" onclick="goToStep5_freelance()">Suivant</button>
+                                        <button type="button" class="text-3xl lg:text-base w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg  px-5 py-2.5 text-center" id="nextButton" onclick="goToStep5_freelance()">Next</button>
                                     </div>
                                 </div>
                             </div>
@@ -350,7 +350,7 @@
                                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                     <div class="flex items-center">
                                         <h2 class="text-5xl lg:text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900  dark:text-white" style="width: 60%;">
-                                        Présentes ton ESN
+                                        Introduce your company
                                         </h2>
                                         <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
                                             <div class="text-3xl lg:text-base font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4">
@@ -363,7 +363,7 @@
                                     <div class="bg-white dark:bg-gray-800 relative rounded-lg w-full h-auto mb-8">
                                         <div class="bg-white dark:bg-gray-800 rounded-lg w-full h-40 lg:h-32 flex items-center justify-center">
                                             <div class="bg-white dark:bg-gray-800 w-full h-full flex items-center justify-center">
-                                                <img id="banner-image" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class="object-cover w-full h-full rounded-lg dark:bg-gray-800" alt="Image de l'entreprise">
+                                                <img id="banner-image" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class="object-cover w-full h-full rounded-lg dark:bg-gray-800" alt="Company image">
                                             </div>
                                             <div class="absolute w-10 h-10 text-center bottom-0 right-0 bg-white rounded-full">
                                                 <label for="banner-upload">
@@ -376,7 +376,7 @@
                                         </div>
                                         <div class="">
                                             <div class="relative rounded-full border-10 w-32 h-32 lg:w-20 lg:h-20 flex items-center justify-center" style="margin-top:-50px;">
-                                                <img id="logo-image" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class="object-cover w-full h-full rounded-full ring-8 ring-white dark:ring-gray-800" alt="Image de l'entreprise">
+                                                <img id="logo-image" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class="object-cover w-full h-full rounded-full ring-8 ring-white dark:ring-gray-800" alt="Company image">
                                                 <div class="absolute w-8 h-8 text-center bottom-0 right-0 bg-white rounded-full">
                                                     <label for="companyLogo">
                                                         <div class="rounded-full ring ring-primary h-full w-full flex items-center justify-center">
@@ -388,40 +388,40 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <p id="logoBannerErrorMessage" class="text-red-500 text-3xl lg:text-base mt-2 hidden">La taille de l'image doit être inférieur à 2048 Ko</p>
+                                    <p id="logoBannerErrorMessage" class="text-red-500 text-3xl lg:text-base mt-2 hidden">The image size must be less than 2048 KB</p>
                                     <div>
-                                        <input type="text" name="companyName" id="companyName" placeholder="Nom de votre entreprise *" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" >
+                                        <input type="text" name="companyName" id="companyName" placeholder="Your company name *" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" >
                                     </div>
                                     <div>
-                                        <input type="text" name="companySlogan" id="companySlogan" placeholder="Votre slogan *" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" >
+                                        <input type="text" name="companySlogan" id="companySlogan" placeholder="Your slogan *" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" >
                                     </div>
                                     <div>    
                                         <div class="relative city-search-container w-full mr-4">
-                                            <input type="text" id="companyCitySearch" name="companyVille" placeholder="Saisissez votre localisation *" class=" text-3xl lg:text-base citySearch bg-gray-50 border border-gray-300 text-gray-900  rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500">
+                                            <input type="text" id="companyCitySearch" name="companyVille" placeholder="Enter your location *" class=" text-3xl lg:text-base citySearch bg-gray-50 border border-gray-300 text-gray-900  rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500">
                                                 <div id="cities-list" class="text-3xl lg:text-base cities-list absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                                         </div>
                                         <div class="flex items-center mt-2">
                                             <input type="checkbox" id="companyEtranger" name="companyEtranger" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox text-primary rounded mr-2">
-                                            <label class="text-3xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Étranger</label>
+                                            <label class="text-3xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Foreign</label>
                                         </div>
                                     </div>
                                     <div class="relative secteur-search-container w-full">
 
                                         <select id="companySecteur" name="companySecteur" class="text-3xl lg:text-base font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                            <option value="">Sélectionnez un secteur</option>
+                                            <option value="">Select a sector</option>
                                             <?php foreach ($secteursAll as $secteur): ?>
                                                 <option class="text-3xl lg:text-base dark:text-black" value="<?= $secteur['secteurName'] ?>">
                                                 <?= $secteur['secteurName'] ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
-                                    <p id="errorMessage-step4-esn" class="text-3xl lg:text-base text-red-500  mt-2 hidden">Veuillez remplir tous les champs correctement</p>
-                                    <p id="logoErrorMessage" class="text-3xl lg:text-base text-red-500  mt-2 hidden">Veuillez fournir votre logo</p>
+                                    <p id="errorMessage-step4-esn" class="text-3xl lg:text-base text-red-500  mt-2 hidden">Please fill out all fields correctly</p>
+                                    <p id="logoErrorMessage" class="text-3xl lg:text-base text-red-500  mt-2 hidden">Please provide your logo</p>
                                     <div class="flex justify-between">
                                         <!-- button for previous step -->
-                                        <button type="button" class="text-3xl lg:text-base w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg  px-5 py-2.5 text-center" id="previousButton" onclick="goToStep3()">Retour</button>
+                                        <button type="button" class="text-3xl lg:text-base w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg  px-5 py-2.5 text-center" id="previousButton" onclick="goToStep3()">Back</button>
                                         <!-- button for next step -->
-                                        <button type="button" class="text-3xl lg:text-base w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep5_esn()">Suivant</button>
+                                        <button type="button" class="text-3xl lg:text-base w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep5_esn()">Next</button>
                                     </div>
                                 </div>
                             </div>
@@ -431,7 +431,7 @@
                                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                     <div class="flex items-center">
                                         <h2 class="text-5xl lg:text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900  dark:text-white" style="width: 60%;">
-                                        Tes Expertises
+                                        Your Expertise
                                         </h2>
                                         <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
                                             <div class="text-3xl lg:text-base font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4">
@@ -443,7 +443,7 @@
                                     </div>
                                     <!-- Début Bio -->
                                     <div>
-                                        <label for="userBio" class="text-3xl lg:text-base block mb-2 font-medium text-gray-900 dark:text-white">À propos de toi</label>
+                                        <label for="userBio" class="text-3xl lg:text-base block mb-2 font-medium text-gray-900 dark:text-white">About You</label>
                                         <div>
                                             <textarea id="userBio" name="userBio" rows="6" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-500  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
                                         </div>
@@ -454,36 +454,36 @@
                                     <!-- Début disponibilité -->
 
                                     <div>
-                                        <label for="name" class="text-3xl lg:text-base block mb-2 font-medium text-gray-900 dark:text-white">Êtes-vous disponible pour travailler dès maintenant ?</label>
-                                        <label class="text-3xl lg:text-base text-gray-500 mr-3 dark:text-gray-400">Non</label>
+                                        <label for="name" class="text-3xl lg:text-base block mb-2 font-medium text-gray-900 dark:text-white">Are you available to work right now</label>
+                                        <label class="text-3xl lg:text-base text-gray-500 mr-3 dark:text-gray-400">No</label>
                                         <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description"  onchange="displayAvailibilityOptions()" class="relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-green-200" checked>
-                                        <label class="text-3xl lg:text-base text-gray-500 ml-3 dark:text-gray-400">Oui</label>
+                                        <label class="text-3xl lg:text-base text-gray-500 ml-3 dark:text-gray-400">Yes</label>
                                         <div id="isAvailaibleOptions" style="display: block;">
-                                            <label for="name" class="text-3xl lg:text-base block mb-2 mt-6 font-medium text-gray-900 dark:text-white">Combien de jours par semaine êtes-vous disponible ?</label>
+                                            <label for="name" class="text-3xl lg:text-base block mb-2 mt-6 font-medium text-gray-900 dark:text-white">How many days per week are you available?</label>
                                             <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="text-3xl lg:text-base bg-gray-50 border mt-4 border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                                <option value="temps-plein"> Temps Plein  </option>
-                                                <option value="temps-partiel"> Temps Partiel  </option>
+                                                <option value="temps-plein"> Full-time </option>
+                                                <option value="temps-partiel"> Part-time </option>
                                             </select>
                                         </div>
                                         <div id="isNotAvailaibleOptions" style="display:none;">
-                                            <label for="dateFinIndisponibilite" class="text-3xl lg:text-base block mb-2 mt-6 font-medium text-gray-900 dark:text-white">Quand serez-vous à nouveau disponible ?</label>
+                                            <label for="dateFinIndisponibilite" class="text-3xl lg:text-base block mb-2 mt-6 font-medium text-gray-900 dark:text-white">When will you be available again?</label>
                                             <div class="flex flex-1 mt-4">
                                                 <div class="flex items-center mr-6">
                                                     <input type="radio" id="1mois" value="1" name="finIndisponibiliteDuree" class="text-3xl lg:text-base finIndisponibiliteBtn w-6 h-6 lg:w-4 lg:h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                                    <label for="1mois" class="text-3xl lg:text-base ml-2 font-medium text-gray-900 dark:text-white">Dans 1 mois</label>
+                                                    <label for="1mois" class="text-3xl lg:text-base ml-2 font-medium text-gray-900 dark:text-white">In 1 month</label>
                                                 </div>
                                                 <div class="flex items-center mr-6">
                                                     <input type="radio" id="3mois" value="3" name="finIndisponibiliteDuree" class="text-3xl lg:text-base finIndisponibiliteBtn w-6 h-6 lg:w-4 lg:h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                                    <label for="3mois" class="text-3xl lg:text-base ml-2 font-medium text-gray-900 dark:text-white">Dans 3 mois</label>
+                                                    <label for="3mois" class="text-3xl lg:text-base ml-2 font-medium text-gray-900 dark:text-white">In 3 months</label>
                                                 </div>
                                                 <div class="flex items-center">
                                                     <input type="radio" id="6mois" value="6" name="finIndisponibiliteDuree" class="text-3xl lg:text-base finIndisponibiliteBtn w-6 h-6 lg:w-4 lg:h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                                    <label for="6mois" class="text-3xl lg:text-base ml-2 font-medium text-gray-900 dark:text-white">Dans 6 mois</label>
+                                                    <label for="6mois" class="text-3xl lg:text-base ml-2 font-medium text-gray-900 dark:text-white">In 6 months</label>
                                                 </div>
                                             </div>
                                             <input type="date" id="dateFinIndisponibilite" value="" name="dateFinIndisponibilite" class="text-3xl lg:text-base w-full mt-4 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                             
-                                            <p id="errorDateFinIndisponibilite" class="text-3xl lg:text-base mt-2 text-red-500" style="display:none;">Veuilllez renseigner une date</p>
+                                            <p id="errorDateFinIndisponibilite" class="text-3xl lg:text-base mt-2 text-red-500" style="display:none;">Please provide a date</p>
                                         </div>
                                     </div>
 
@@ -504,14 +504,14 @@
 
 
                                     <!-- Message d'erreur -->
-                                    <p id="errorMessage-step5-freelance" class="text-3xl lg:text-base text-red-500  mt-2 hidden">Veuillez remplir tous les champs correctement</p>
+                                    <p id="errorMessage-step5-freelance" class="text-3xl lg:text-base text-red-500  mt-2 hidden">Please fill out all fields correctly</p>
 
                                     <!-- Div des boutons -->
                                     <div class="flex justify-between">
                                         <!-- button for previous step -->
-                                        <button type="button" class="text-3xl lg:text-base w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep4_freelance()">Retour</button>
+                                        <button type="button" class="text-3xl lg:text-base w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep4_freelance()">Back</button>
                                         <!-- button for next step -->
-                                        <button id="submitFreelanceBtn" type="button" class="text-3xl lg:text-base w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center" >S'inscrire</button>
+                                        <button id="submitFreelanceBtn" type="button" class="text-3xl lg:text-base w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center" >Sign up</button>
 
                                     </div>
                                     <!-- Fin div des boutons -->
@@ -523,7 +523,7 @@
                                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                     <div class="flex items-center">
                                         <h2 class="text-5xl lg:text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 dark:text-white" style="width: 60%;">
-                                        À propos de votre entreprise
+                                        About your company
                                         </h2>
                                         <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
                                             <div class="text-3xl lg:text-base font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4">
@@ -534,25 +534,25 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <label for="companyDescription" class="text-3xl lg:text-base block mb-2 font-medium text-gray-900 dark:text-white">Description de l'entreprise</label>
+                                        <label for="companyDescription" class="text-3xl lg:text-base block mb-2 font-medium text-gray-900 dark:text-white">Company description</label>
                                         <div>
                                             <textarea id="companyDescription" name="companyDescription" rows="4" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-500  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
 
                                         </div>
                                     </div>
                                     <div>
-                                        <label for="companyAvantages" class="text-3xl lg:text-base block mb-2 font-medium text-gray-900 dark:text-white">Vos avantages</label>
+                                        <label for="companyAvantages" class="text-3xl lg:text-base block mb-2 font-medium text-gray-900 dark:text-white">Your benefits</label>
                                         <div>
 
                                             <textarea id="companyAvantages" name="companyAvantages" rows="4" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-500  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
                                         </div>
                                     </div> 
-                                    <p id="errorMessage-step5-esn" class="text-red-500 text-3xl lg:text-base mt-2 hidden">Veuillez remplir tous les champs correctement</p>
+                                    <p id="errorMessage-step5-esn" class="text-red-500 text-3xl lg:text-base mt-2 hidden">Please fill out all fields correctly</p>
                                     <div class="flex justify-between">
                                         <!-- button for previous step -->
-                                        <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep4_esn()">Retour</button>
+                                        <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep4_esn()">Back</button>
                                         <!-- button for next step -->
-                                        <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep6_esn()">Suivant</button>
+                                        <button type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="nextButton" onclick="goToStep6_esn()">Next</button>
                                     </div>
                                 </div>
                             </div>
@@ -562,7 +562,7 @@
                                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                                     <div class="flex items-center">
                                         <h2 class="text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white" style="width: 60%;">
-                                        Photos de votre entreprise
+                                        Photos of your company
                                         </h2>
                                         <div class="relative flex flex-grow ml-4 items-center w-full h-2 bg-primary-light rounded-md" style="width: 40%;">
                                             <div class="font-bold absolute top-0 right-0 transform -translate-y-full text-primary rounded-md py-2 px-4 text-lg">
@@ -577,7 +577,7 @@
                                         <div class="photos-container w-full h-full  grid grid-cols-2 gap-2 items-center justify-center">
                                             <div class="new-photo-div relative flex justify-center">
 
-                                                <img id="company-image-1" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class=" h-32 rounded-lg" alt="Image de l'entreprise" style="max-width:100%;">
+                                                <img id="company-image-1" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class=" h-32 rounded-lg" alt="Company image" style="max-width:100%;">
                                                 <input type="file" id="photo-upload-1" name="photo-upload[]" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'company-image-1', 'photosErrorMessage')">
                                                 <div class="absolute right-0 top-0 flex text-gray-500 hover:text-gray-800 rounded-lg pt-2 pr-4">
                                                     <label for="photo-upload-1" class="cursor-pointer">
@@ -628,13 +628,13 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <p id="photosErrorMessage" class="text-red-500 text-3xl lg:text-base mt-2 hidden">La taille de l'image doit être inférieur à 2048 Ko</p>
+                                        <p id="photosErrorMessage" class="text-red-500 text-3xl lg:text-base mt-2 hidden">The image size must be less than 2048 KB</p>
                                     </div>
 
                                     <!-- submit -->                                        
                                     <div class="flex justify-between">
-                                        <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep5_esn()">Retour</button>
-                                        <button id="submitEsnBtn" type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center">S'inscrire</button>
+                                        <button type="button" class="w-1/2 mr-2 text-primary border border-primary hover:text-white hover:bg-primary focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center" id="previousButton" onclick="goToStep5_esn()">Back</button>
+                                        <button id="submitEsnBtn" type="button" class="w-1/2 ml-2 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center">Sign up</button>
                                     </div>
                                 </div>
                             </div>
@@ -752,7 +752,7 @@
             removeItemButton: true,
             itemSelectText: '',
             placeholder: true,
-            placeholderValue: 'Sélectionnez des compétences',
+            placeholderValue: 'Select skills',
             allowHTML: true,
         });
     }
@@ -1187,15 +1187,15 @@
             // Mettre à jour le texte de la force du mot de passe
             var passwordError = document.getElementById('passwordError');
             if (strength === 0) {
-                passwordError.textContent = 'Mot de passe faible';
+                passwordError.textContent = 'Weak password';
                 passwordError.classList.remove('password-strength-medium-text', 'password-strength-strong-text');
                 passwordError.classList.add('password-strength-weak-text');
             } else if (strength === 1 || strength === 2) {
-                passwordError.textContent = 'Mot de passe moyen';
+                passwordError.textContent = 'Medium password';
                 passwordError.classList.remove('password-strength-weak-text', 'password-strength-strong-text');
                 passwordError.classList.add('password-strength-medium-text');
             } else if (strength >= 3) {
-                passwordError.textContent = 'Mot de passe fort';
+                passwordError.textContent = 'Strong password';
                 passwordError.classList.remove('password-strength-weak-text', 'password-strength-medium-text');
                 passwordError.classList.add('password-strength-strong-text');
             }
@@ -1221,7 +1221,7 @@
                 return true;
             } else {
                 confirmPasswordInput.classList.add('border-red-500');
-                confirmPasswordError.textContent = "Les mots de passe ne correspondent pas";
+                confirmPasswordError.textContent = "Passwords do not match";
                 return false;
             }
         }

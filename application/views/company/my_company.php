@@ -29,11 +29,11 @@ include(APPPATH . 'views/layouts/company/header.php');
             <!-- Modal header -->
             <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                 <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
-                    Votre entreprise
+                    Your company
                 </h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateCompanyData">
                     <svg aria-hidden="true" class="w-8 h-8 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                    <span class="sr-only">Fermer</span>
+                    <span class="sr-only">Close</span>
                 </button>
             </div>
             <!-- Modal body -->
@@ -47,7 +47,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                                     $company->companyBannerPath = 'assets/img/default-image-input.jpg';
                                 }
                             ?>
-                            <img id="banner-image" src="<?=base_url($company->companyBannerPath)?>" class="object-cover w-full h-full rounded-lg dark:bg-gray-800" alt="Image de l'entreprise">
+                            <img id="banner-image" src="<?=base_url($company->companyBannerPath)?>" class="object-cover w-full h-full rounded-lg dark:bg-gray-800" alt="Company picture">
                         </div>
                         <div class="absolute bottom-0 right-0 bg-white rounded-full">
                             <label for="banner-upload">
@@ -60,7 +60,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                     </div>
                     <div class="">
                         <div class="relative rounded-full border-10 w-32 h-32 lg:w-20 lg:h-20 flex items-center justify-center" style="margin-top:-50px;">
-                            <img id="logo-image" src="<?=base_url($company->companyLogoPath)?>" class="object-cover w-full h-full rounded-full ring-8 ring-white dark:ring-gray-800" alt="Image de l'entreprise">
+                            <img id="logo-image" src="<?=base_url($company->companyLogoPath)?>" class="object-cover w-full h-full rounded-full ring-8 ring-white dark:ring-gray-800" alt="Company picture">
                             <div class="absolute bottom-0 right-0 bg-white rounded-full">
                                 <label for="logo-upload">
                                     <div class="text-3xl lg:text-base rounded-full p-2 ring ring-primary">
@@ -72,19 +72,19 @@ include(APPPATH . 'views/layouts/company/header.php');
                         </div>
                     </div>
                 </div>
-                <p id="logoBannerErrorMessage" class="text-red-500 text-base mb-4 hidden">La taille de l'image doit être inférieur à 2048 Ko</p>
+                <p id="logoBannerErrorMessage" class="text-red-500 text-base mb-4 hidden">The image size must be under 2048 Kb</p>
 
                 <div>
-                    <label for="companyName" class="text-3xl lg:text-base block mb-1 font-medium text-gray-900 dark:text-white">Nom *</label>
+                    <label for="companyName" class="text-3xl lg:text-base block mb-1 font-medium text-gray-900 dark:text-white">Name *</label>
                         <input type="text" name="companyName" id="companyName" value="<?=$company->companyName?>" class="text-3xl lg:text-base mb-4 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                     
                     <label for="companySlogan" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Slogan *</label>
                         <input type="text" name="companySlogan" id="companySlogan" value="<?=$company->companySlogan?>" class="text-3xl lg:text-base mb-4 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                     
-                    <label for="companySecteur" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Secteur d'activité *</label>
+                    <label for="companySecteur" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Sector *</label>
                     <div class="text-3xl lg:text-base w-full text-black mb-4">
                         <select id="secteursAll" name="secteursAll[]"  class="text-3xl lg:text-base  mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            <option value="">Sélectionnez un secteur</option>
+                            <option value="">Select a sector</option>
                             <?php foreach ($secteursAll as $secteur): ?>
                                 <option class="dark:text-black" value="<?= $secteur['secteurName'] ?>"
                                     <?= ($company->companySecteur == $secteur['secteurName']) ? 'selected' : '' ?>>
@@ -92,33 +92,33 @@ include(APPPATH . 'views/layouts/company/header.php');
                             <?php endforeach; ?>
                         </select> 
                     </div>                    
-                    <label for="companyCity" class="text-3xl lg:text-base block mb-1 font-medium text-gray-900 dark:text-white">Localisation *</label>
+                    <label for="companyCity" class="text-3xl lg:text-base block mb-1 font-medium text-gray-900 dark:text-white">Location *</label>
                     <div class="relative city-search-container w-full mb-4">
                         <input type="text" id="citySearch" name="companyLocalisation" value="<?=$company->companyLocalisation?>" placeholder="Cherchez votre ville" class="text-3xl lg:text-base border p-2 rounded-lg w-full text-black">
                             <div id="cities-list" class="text-3xl lg:text-base absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                     </div>
                     <div class="flex items-center mb-4">
                             <input type="checkbox" id="companyEtranger" name="companyEtranger" <?php echo $company->companyLocalisation === 'Etranger' ? 'checked' : "" ?>>
-                            <label class="text-3xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Étranger</label>
+                            <label class="text-3xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Abroad</label>
                      </div>
-                    <label for="userLinkedinLink" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Lien LinkedIn</label>
+                    <label for="userLinkedinLink" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">LinkedIn</label>
                         <input type="text" name="userLinkedinLink" id="userLinkedinLink" value="<?=$user->userLinkedinLink?>" class="text-3xl lg:text-base mb-4 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onblur="checkLinkedinLink()">
 
 
-                    <label for="companyWebsite" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Lien du site internet</label>
+                    <label for="companyWebsite" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Website link</label>
                         <input type="text" name="companyWebsite" id="companyWebsite" value="<?=$company->companyWebsite?>" class="text-3xl lg:text-base mb-4 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onblur="checkWebsiteLink()">
                     
-                                        <label for="userTelephone" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Votre numéro WhatsApp * </label>
+                                        <label for="userTelephone" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">WhatsApp number *</label>
                         <input type="tel" name="userTelephone" id="userTelephone" value="<?=$user->userTelephone?>" class="text-3xl lg:text-base mb-4 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                        <p id="errorUserTelephone" class="text-red-500 text-3xl lg:text-base mt-2 hidden">Veuillez renseigner un numéro de téléphone valide</p>
+                        <p id="errorUserTelephone" class="text-red-500 text-3xl lg:text-base mt-2 hidden">Please enter a valid phone number</p>
 
                 </div>
                 <div class="flex items-center space-x-4 mt-6">
                     <button type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                        Valider
+                        Save
                     </button>
                     <button type="button" data-modal-toggle="updateCompanyData" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
-                        Annuler
+                        Cancel
                     </button>
                 </div>
             </form>
@@ -134,11 +134,11 @@ include(APPPATH . 'views/layouts/company/header.php');
             <!-- Modal header -->
             <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                 <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
-                    Description de votre entreprise
+                    Description of your company
                 </h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateCompanyDescription">
                     <svg aria-hidden="true" class="w-8 h-8 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                    <span class="sr-only">Fermer</span>
+                    <span class="sr-only">Close</span>
                 </button>
             </div>
             <!-- Modal body -->
@@ -149,16 +149,15 @@ include(APPPATH . 'views/layouts/company/header.php');
                     </div>
                     <!--<label for="companyDescription" class="block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Description</label>-->
                     <textarea id="companyDescription" name="companyDescription" rows="6" class="text-3xl lg:text-base hidden bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required><?=$company->companyDescription?></textarea>
-                    <p id="descriptionErrorMessage" class="text-red-500 text-base mt-2 hidden">La description ne doit pas être vide</p>
-
+                    <p id="descriptionErrorMessage" class="text-red-500 text-base mt-2 hidden">Description cannot be empty</p>
 
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
                     <button type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                        Valider
+                        Save
                     </button>
                     <button type="button" data-modal-toggle="updateCompanyDescription" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
-                        Annuler
+                        Cancel
                     </button>
                 </div>
             </form>
@@ -174,11 +173,11 @@ include(APPPATH . 'views/layouts/company/header.php');
             <!-- Modal header -->
             <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                 <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
-                    Vos avantages
+                    Your advantages
                 </h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateCompanyAdvantages">
                     <svg aria-hidden="true" class="w-8 h-8 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                    <span class="sr-only">Fermer</span>
+                    <span class="sr-only">Close</span>
                 </button>
             </div>
             <!-- Modal body -->
@@ -189,15 +188,15 @@ include(APPPATH . 'views/layouts/company/header.php');
                     </div>
                     <!--<label for="companyDescription" class="block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Description</label>-->
                     <textarea id="companyAvantages" name="companyAvantages" rows="6" class="text-3xl lg:text-base hidden bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required><?=$company->companyAdvantages?></textarea>
-                    <p id="avantagesErrorMessage" class="text-red-500 text-base mt-2 hidden">Les avantages ne doivent pas être vide</p>
+                    <p id="avantagesErrorMessage" class="text-red-500 text-base mt-2 hidden">Advantages cannot be empty</p>
 
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
                     <button type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                        Valider
+                        Save
                     </button>
                     <button type="button" data-modal-toggle="updateCompanyAdvantages" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
-                        Annuler
+                        Cancel
                     </button>
                 </div>
             </form>
@@ -213,11 +212,11 @@ include(APPPATH . 'views/layouts/company/header.php');
             <!-- Modal header -->
             <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                 <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
-                    Photos de votre entreprise
+                    Pictures of your company
                 </h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateCompanyPhotos">
                     <svg aria-hidden="true" class="w-8 h-8 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                    <span class="sr-only">Fermer</span>
+                    <span class="sr-only">Close</span>
                 </button>
             </div>
             <!-- Modal body -->
@@ -242,8 +241,8 @@ include(APPPATH . 'views/layouts/company/header.php');
                                     <div id="deleteImageConfirmationModal-<?= $companyPhoto->idCompanyPhotos ?>" class="hidden fixed inset-0 flex items-center justify-center z-50">
                                         <div class="fixed inset-0 bg-black opacity-50"></div>
                                         <div class="relative bg-gray-50 rounded-lg shadow p-6 border border-gray-800 dark:bg-gray-800 sm:p-5">
-                                            <h3 class="text-2xl lg:text-lg font-semibold mb-4">Confirmation de suppression</h3>
-                                            <p class="text-3xl lg:text-base text-gray-700 dark:text-white mb-6">Êtes-vous sûr de vouloir supprimer cette image ?</p>
+                                            <h3 class="text-2xl lg:text-lg font-semibold mb-4">Deletion confirmation</h3>
+                                            <p class="text-3xl lg:text-base text-gray-700 dark:text-white mb-6">Are you sure you want to delete this image?</p>
                                             <div class="flex justify-end">
                                                 <button type="button" onclick="hideModal('deleteImageConfirmationModal-<?= $companyPhoto->idCompanyPhotos ?>');" class="text-3xl lg:text-base text-gray-600 inline-flex items-center hover:text-white hover:bg-gray-800 border-gray-600  focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500  dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">Annuler</button>
                                                 <a href="<?=base_url('company/deleteCompanyPhoto/'.$companyPhoto->idCompanyPhotos)?>" class="text-3xl lg:text-base text-red-800 inline-flex items-center hover:text-white hover:bg-red-900 border-red-900  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500  dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Supprimer</a>
@@ -255,13 +254,13 @@ include(APPPATH . 'views/layouts/company/header.php');
                         </div>
                     <?php endforeach; ?>
                 </div>
-                <p id="photosUpdateErrorMessage" class="text-red-500 text-base mt-2 hidden">La taille de l'image doit être inférieur à 2048 Ko</p>
+                <p id="photosUpdateErrorMessage" class="text-red-500 text-base mt-2 hidden">The image size must be less than 2048 Kb</p>
                 <div class="flex items-center space-x-4 mt-6">
                     <button type="submit" class="text-2xl lg:text-lg text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                        Valider
+                        Save
                     </button>
                     <button type="button" data-modal-toggle="updateCompanyPhotos" class="text-2xl lg:text-lg text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
-                        Annuler
+                        Cancel
                     </button>
                 </div>
             </form>
@@ -278,11 +277,11 @@ include(APPPATH . 'views/layouts/company/header.php');
             <!-- Modal header -->
             <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                 <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
-                    Photos de votre entreprise
+                    Pictures of your company
                 </h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="addCompanyPhotos">
                     <svg aria-hidden="true" class="w-8 h-8 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                    <span class="sr-only">Fermer</span>
+                    <span class="sr-only">Close</span>
                 </button>
             </div>
             <!-- Modal body -->
@@ -292,19 +291,19 @@ include(APPPATH . 'views/layouts/company/header.php');
                         <img id="company-image" src="<?php echo base_url('assets/img/default-image-input.jpg'); ?>" class=" max-h-64 max-w-xs rounded-lg" alt="Image de l'entreprise">
                     </div>
                     <div class="flex items-center justify-center w-full">
-                        <p id="photosAddErrorMessage" class="text-red-500 text-base mt-2 hidden">La taille de l'image doit être inférieur à 2048 Ko</p>
+                        <p id="photosAddErrorMessage" class="text-red-500 text-base mt-2 hidden">The image size must be less than 2048 Kb</p>
                     </div>
                     <label for="photo-upload" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 mt-4 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 cursor-pointer">
-                        <span class="filename">Choisir une image</span>
+                        <span class="filename">Choose a picture</span>
                     </label>
                     <input type="file" id="photo-upload" name="photo-upload" class="hidden" accept=".png, .jpeg, .jpg" onchange="showFileName(this, 'company-image', 'photosAddErrorMessage')">
                 </div>
                 <div class="flex items-center space-x-4 mt-10">
                     <button type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                        Valider
+                        Save
                     </button>
                     <button type="button" data-modal-toggle="addCompanyPhotos" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
-                        Annuler
+                        Cancel
                     </button>
                 </div>
             </form>
@@ -318,21 +317,21 @@ include(APPPATH . 'views/layouts/company/header.php');
             <div class="bg-white rounded-lg w-full mb-4 dark:text-white dark:bg-gray-800 relative">
                 <div class="bg-white dark:bg-gray-800 relative rounded-lg w-full h-auto mb-8">
                     <div class="bg-white dark:bg-gray-800 rounded-lg w-full h-48 flex items-center justify-center">
-                        <div class="bg-white dark:bg-gray-800 w-full h-full flex items-center justify-center">
+                        <div class="bg-white dark:bg-gray-800 rounded-lg w-full h-full flex items-center justify-center">
                             <?php 
                                 if($company->companyBannerPath == null){
                                     $company->companyBannerPath = 'assets/img/default-image-input.jpg';
                                 }
                             ?>
-                            <img src="<?=base_url($company->companyBannerPath)?>" class="object-cover w-full h-full rounded-lg dark:bg-gray-800" alt="Image de l'entreprise">
+                            <img src="<?=base_url($company->companyBannerPath)?>" class="object-cover w-full h-full rounded-lg dark:bg-gray-800" alt="Company picture">
                         </div>
                     </div>
                     <div class="w-full flex justify-between">
                         <div class="rounded-full border-10 w-40 h-40 flex items-center justify-center" style="margin-top:-50px;">
-                            <img src="<?=base_url($company->companyLogoPath)?>" class="ml-4 object-cover w-full h-full rounded-full ring-8 ring-white dark:ring-gray-800" alt="Image de l'entreprise">
+                            <img src="<?=base_url($company->companyLogoPath)?>" class="ml-4 object-cover w-full h-full rounded-full ring-8 ring-white dark:ring-gray-800" alt="Company picture">
                         </div> 
                         <button id="updateCompanyData" data-modal-toggle="updateCompanyData" class="text-3xl lg:text-base ml-4 mr-4 text-primary hover:text-blue-600" type="button">
-                            <p>Modifier mes informations</p>
+                            <p>Edit my informations</p>
                         </button>
                     </div>                   
                     <?php if($user->userType == 'sales') { ?>
@@ -346,7 +345,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                     <div>
                         <h2 class="text-5xl font-bold flex items-center"><?= $company->companyName ?></h2>
                         <h3 class="text-3xl lg:text-2xl font-medium"><?=$company->companySlogan?></h3>
-                        <h3 class="text-2xl lg:text-xl font-medium text-gray-400">Secteur d'activité : <?=$company->companySecteur?></h3>
+                        <h3 class="text-2xl lg:text-xl font-medium text-gray-400">Sector: <?=$company->companySecteur?></h3>
                         <h3 class="text-2xl lg:text-xl font-medium text-gray-400"><?=$company->companyLocalisation?></h3>
                     </div>
                     <div class="flex flex-wrap">
@@ -354,7 +353,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                             <button type="button" data-te-ripple-init data-te-ripple-color="light"
                             class="mr-4 h-10 inline-flex items-center rounded-full px-6 py-2.5 leading-normal text-white  transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
                                 style="background-color: #25D366">
-                                <span class="mr-2 text-3xl lg:text-base font-medium">Contacter</span>
+                                <span class="mr-2 text-3xl lg:text-base font-medium">Contact</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
                                 </svg>
@@ -363,7 +362,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                         <?php
                         if (isset($company->companyWebsite) && !empty($company->companyWebsite)){
                         ?>
-                            <a href="<?=$company->companyWebsite?>" title="Visiter le site" class="flex-shrink-0 mr-4" target="_blank">
+                            <a href="<?=$company->companyWebsite?>" title="Visit website" class="flex-shrink-0 mr-4" target="_blank">
                                 <div>
                                     <img src="<?=base_url('assets/img/logo-link/portfolio.png')?>" alt="Logo Website" class="h-10 transition-transform transform hover:scale-110">
                                 </div>
@@ -372,7 +371,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                         }
                         if (isset($user->userEmail) && !empty($user->userEmail)){
                         ?>
-                            <a href="mailto:<?=$user->userEmail?>" title="Envoyer un mail" class="flex-shrink-0 mr-4">
+                            <a href="mailto:<?=$user->userEmail?>" title="Send email" class="flex-shrink-0 mr-4">
                                 <div>
                                     <img src="<?=base_url('assets/img/logo-link/mail.png')?>" alt="Logo Mail" class="h-10 transition-transform transform hover:scale-110">
                                 </div>
@@ -381,7 +380,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                         }
                         if (isset($user->userLinkedinLink) && !empty($user->userLinkedinLink)){
                         ?>
-                            <a href="<?=$user->userLinkedinLink?>" title="Visiter le linkedin" class="flex-shrink-0 mr-2" target="_blank">
+                            <a href="<?=$user->userLinkedinLink?>" title="Visit LinkedIn" class="flex-shrink-0 mr-2" target="_blank">
                                 <div>
                                     <img src="<?=base_url('assets/img/logo-link/linkedin.png')?>" alt="Logo Linkedin" class="h-10 transition-transform transform hover:scale-110">
                                 </div>
@@ -393,7 +392,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                 </div>
                 <ul class="flex flex-wrap mt-10 -mb-px px-4 pb-4 text-primary text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
                     <li class="mr-4" role="presentation">
-                        <button class="text-3xl lg:text-base inline-block border-b-2 font-normal text-black hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="myCompanyProfile-tab" data-tabs-target="#myCompanyProfile" type="button" role="tab" aria-controls="myCompanyProfile" aria-selected="false">À propos</button>
+                        <button class="text-3xl lg:text-base inline-block border-b-2 font-normal text-black hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="myCompanyProfile-tab" data-tabs-target="#myCompanyProfile" type="button" role="tab" aria-controls="myCompanyProfile" aria-selected="false">About us</button>
                     </li>
                     <li class="mr-4" role="presentation">
                         <button class="text-3xl lg:text-base inline-block border-b-2 font-normal hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="myCompanyMissions-tab" data-tabs-target="#myCompanyMissions" type="button" role="tab" aria-controls="myCompanyMissions" aria-selected="false">Missions</button>
@@ -404,7 +403,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                 <div class="hidden" id="myCompanyProfile" role="tabpanel" aria-labelledby="myCompanyProfile-tab">
                     <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                         <h2 class="text-4xl lg:text-xl font-bold mb-4 flex items-center">
-                            Description de l'entreprise
+                        Company description
                         </h2>
                         <div class="text-3xl lg:text-base richTextList items-center justify-between">
                             <div class="text-3xl lg:text-base font-normal mb-4">
@@ -421,7 +420,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                     </div>
                     <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                         <h2 class="text-4xl lg:text-xl font-bold mb-4 flex items-center">
-                            Les avantages de l'entreprise
+                        Company Advantages
                         </h2>
                         <div class="text-3xl lg:text-base richTextList flex items-center justify-between">
                             <div class="text-3xl lg:text-base font-normal mb-4">
@@ -439,7 +438,7 @@ include(APPPATH . 'views/layouts/company/header.php');
 
                     <div class="relative bg-white rounded-lg mt-4 mb-4 py-4 dark:bg-gray-800 dark:text-white">
                         <h2 class="text-4xl lg:text-xl font-bold mb-4 pl-4 flex items-center">
-                            Photos de l'entreprise
+                        Company pictures
                         </h2>
                         <div class="overflow-x-auto flex pb-4 px-4 gap-4 no-scrollbar">
                             <?php $imageCount = 0; ?>
@@ -447,7 +446,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                                 $imageCount++; ?>
                                 <div class="rounded-lg flex items-center justify-center">
                                     <div class="w-full h-full flex items-center justify-center" style="width:500px; height:500px;">
-                                        <img src="<?=base_url($companyPhoto->companyPhotosPath)?>" class="object-cover w-full h-full rounded-lg" alt="Image de l'entreprise" style="width:100%;">
+                                        <img src="<?=base_url($companyPhoto->companyPhotosPath)?>" class="object-cover w-full h-full rounded-lg" alt="Company picture" style="width:100%;">
                                     </div>
                                 </div>
                             <?php endforeach; ?>
@@ -474,8 +473,8 @@ include(APPPATH . 'views/layouts/company/header.php');
                 <div class="hidden" id="myCompanyMissions" role="tabpanel" aria-labelledby="myCompanyMissions-tab">  
                     <div class="flex flex-wrap w-full pb-4 mb-12 mt-4" id="missions-section">
                         <div class="w-full flex flex-wrap justify-between items-center">
-                            <h1 class="text-4xl lg:text-2xl font-bold mb-4 mt-4">Nos missions</h1>
-                            <a href="<?php echo base_url('Company/missionAdd');?>" class="text-3xl lg:text-base px-4 py-1 rounded-full 2 hover:bg-primary-900 bg-primary text-white">Ajouter une offre</a>
+                            <h1 class="text-4xl lg:text-2xl font-bold mb-4 mt-4">Our missions</h1>
+                            <a href="<?php echo base_url('Company/missionAdd');?>" class="text-3xl lg:text-base px-4 py-1 rounded-full 2 hover:bg-primary-900 bg-primary text-white">Add a mission</a>
                         </div>
                         <div class="grid lg:grid-cols-2 gap-4">
                         <?php 
@@ -497,18 +496,18 @@ include(APPPATH . 'views/layouts/company/header.php');
                                                         <span class="mr-2"> 
                                                             •   <?= $mission->jobName?>
                                                         </span>
-                                                        <span class="mr-2 font-medium"> • TJM : <?=$mission->missionTJM?> €</span>
+                                                        <span class="mr-2 font-medium"> • Daily rate: <?=$mission->missionTJM?> AED</span>
                                                         
                                                         <span class="mr-2"> •
                                                         <?php
                                                         if ($mission->missionDuration == "courte"){
-                                                            $mission->missionDuration = "Courte durée";
+                                                            $mission->missionDuration = "Short-term";
                                                         }
                                                         elseif ($mission->missionDuration == "longue"){
-                                                            $mission->missionDuration = "Longue durée";
+                                                            $mission->missionDuration = "Long-term";
                                                         }
                                                         elseif ($mission->missionDuration == "indefinie"){
-                                                            $mission->missionDuration = "Durée indéfinie";
+                                                            $mission->missionDuration = "Indefinite duration";
                                                         }                                            
                                                         ?>
                                                         <?=$mission->missionDuration?> 
@@ -517,10 +516,10 @@ include(APPPATH . 'views/layouts/company/header.php');
                                                         <span class="mr-2"> •
                                                         <?php
                                                         if ($mission->missionType == "temps-plein"){
-                                                            $mission->missionType = "Temps Plein";
+                                                            $mission->missionType = "Full-time";
                                                         }
                                                         elseif ($mission->missionType == "temps-partiel"){
-                                                            $mission->missionType = "Temps Partiel";
+                                                            $mission->missionType = "Part-time";
                                                         }
                                                         elseif ($mission->missionType == "remote"){
                                                             $mission->missionType = "Remote";
@@ -533,13 +532,13 @@ include(APPPATH . 'views/layouts/company/header.php');
                                                         <?php
 
                                                         if ($mission->missionDeroulement == "teletravail"){
-                                                            $mission->missionDeroulement = "Télétravail";
+                                                            $mission->missionDeroulement = "Full remote";
                                                         }
                                                         elseif ($mission->missionDeroulement == "site"){
-                                                            $mission->missionDeroulement = "Sur site";
+                                                            $mission->missionDeroulement = "On site";
                                                         }
                                                         elseif ($mission->missionDeroulement == "hybride"){
-                                                            $mission->missionDeroulement = "Hybride";
+                                                            $mission->missionDeroulement = "Hybrid";
                                                         }                                            
                                                         ?>
                                                         <?=$mission->missionDeroulement?>
@@ -553,7 +552,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                                                             $mission->missionExpertise = "Junior";
                                                         }
                                                         elseif ($mission->missionExpertise == "intermediaire"){
-                                                            $mission->missionExpertise = "Intermédiaire";
+                                                            $mission->missionExpertise = "Intermediate";
                                                         }
                                                         elseif ($mission->missionExpertise == "expert"){
                                                             $mission->missionExpertise = "Expert";
@@ -595,7 +594,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                                                                         
                                                                         break;
                                                                     case 2:
-                                                                        $level = 'Intermédiaire';
+                                                                        $level = 'Intermediate';
                                                                         $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
                                                                         $textdark = "text-white";
                                                                         $text = "text-black";
@@ -662,11 +661,11 @@ include(APPPATH . 'views/layouts/company/header.php');
                                                     <div id="deleteMissionConfirmationModal-<?= $mission->idMission ?>" class="hidden fixed inset-0 flex items-center justify-center z-50">
                                                         <div class="fixed inset-0 bg-black opacity-50"></div>
                                                         <div class="relative bg-gray-50 rounded-lg shadow p-6 border border-gray-800 dark:bg-gray-800 sm:p-5">
-                                                            <h3 class="text-lg font-semibold mb-4">Confirmation de suppression</h3>
-                                                            <p class="text-gray-700 dark:text-white mb-6">Êtes-vous sûr de vouloir supprimer cette mission ?</p>
+                                                            <h3 class="text-lg font-semibold mb-4">Deletion confirmation</h3>
+                                                            <p class="text-gray-700 dark:text-white mb-6">Are you sure you want to delete this mission?</p>
                                                             <div class="flex justify-end">
-                                                                <button type="button" onclick="hideModal('deleteMissionConfirmationModal-<?= $mission->idMission ?>');" class="text-gray-600 inline-flex items-center hover:text-white hover:bg-gray-800 border-gray-600  focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500  dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">Annuler</button>
-                                                                <a href="<?=base_url('company/deleteMission/'.$mission->idMission)?>" class="text-red-800 inline-flex items-center hover:text-white hover:bg-red-900 border-red-900  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500  dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Supprimer</a>
+                                                                <button type="button" onclick="hideModal('deleteMissionConfirmationModal-<?= $mission->idMission ?>');" class="text-gray-600 inline-flex items-center hover:text-white hover:bg-gray-800 border-gray-600  focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500  dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">Cancel</button>
+                                                                <a href="<?=base_url('company/deleteMission/'.$mission->idMission)?>" class="text-red-800 inline-flex items-center hover:text-white hover:bg-red-900 border-red-900  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500  dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Delete</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -846,7 +845,7 @@ include(APPPATH . 'views/layouts/company/header.php');
             removeItemButton: true,
             itemSelectText: '',
             placeholder: true,
-            placeholderValue: 'Sélectionnez un secteur',
+            placeholderValue: 'Select a sector',
         });
     });
     

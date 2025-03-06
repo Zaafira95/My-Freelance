@@ -57,11 +57,11 @@ include(APPPATH . 'views/layouts/user/header.php' );
             <!-- Modal header -->
             <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                 <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
-                    Vos Coordonnées
+                    Your personal information
                 </h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateUserData">
                     <svg aria-hidden="true" class="w-8 h-8 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                    <span class="sr-only">Fermer</span>
+                    <span class="sr-only">Close</span>
                 </button>
             </div>
             <!-- Modal body -->
@@ -88,20 +88,20 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                     </div>
                                 </div>
                             </div>
-                            <p id="avatarErrorMessage" class="text-red-500 text-base mt-2 hidden">La taille de l'image doit être iinférieur à 2048 Ko</p>
+                            <p id="avatarErrorMessage" class="text-red-500 text-base mt-2 hidden">The image size must be less than 2048 KB</p>
                             <span id="file-name" class="hidden  text-gray-500 mt-4 dark:text-white"></span>
                             <!-- Delete user profile picture -->
                             <?php
                                 if ($user->userAvatarPath !=='assets/img/default-avatar.png') {
                                     ?>
                                     <a href="#" onclick="showModal('deleteAvatarConfirmationModal');" class="text-3xl lg:text-base text-red-600 hover:text-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:text-red-500 dark:hover:text-white dark:focus:ring-red-900" data-modal-toggle="deleteUserAvatar">
-                                        Supprimer l'avatar
+                                        Delete profile picture
                                     </a>
                                     <div id="deleteAvatarConfirmationModal" class="hidden fixed inset-0 flex items-center justify-center z-50">
                                         <div class="fixed inset-0 bg-black opacity-50"></div>
                                         <div class="relative bg-gray-50 rounded-lg shadow p-6 border border-gray-800 dark:bg-gray-800 sm:p-5">
-                                            <h3 class="text-3xl lg:text-lg font-semibold mb-4">Confirmation de suppression</h3>
-                                            <p class="text-3xl lg:text-base text-gray-700 dark:text-white mb-6">Êtes-vous sûr de vouloir supprimer votre photo de profil ?</p>
+                                            <h3 class="text-3xl lg:text-lg font-semibold mb-4">Deletion confirmation</h3>
+                                            <p class="text-3xl lg:text-base text-gray-700 dark:text-white mb-6">Are you sure you want to delete your profile picture?</p>
                                             <div class="flex justify-end">
                                                 <button type="button" onclick="hideModal('deleteAvatarConfirmationModal');" class="text-3xl lg:text-base text-gray-600 inline-flex items-center hover:text-white hover:bg-gray-800 border-gray-600  focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500  dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">Annuler</button>
                                                 <a href="<?php echo base_url('user/deleteProfilPicture/'.$user->userId);?>" class="text-3xl lg:text-base text-red-800 inline-flex items-center hover:text-white hover:bg-red-900 border-red-900  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500  dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Supprimer</a>
@@ -114,11 +114,11 @@ include(APPPATH . 'views/layouts/user/header.php' );
 
                         </div>
 
-                    <label for="userFirstName" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Votre prénom *</label>
+                    <label for="userFirstName" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Your first name *</label>
                         <input type="text" name="userFirstName" id="userFirstName" value="<?=$user->userFirstName?>" class="text-3xl lg:text-base mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                    <label for="userLastName" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Votre nom *</label>
+                    <label for="userLastName" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Your last name *</label>
                         <input type="text" name="userLastName" id="userLastName" value="<?=$user->userLastName?>" class="text-3xl lg:text-base mb-2 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                    <label for="userJobName" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Votre métier *</label>
+                    <label for="userJobName" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Your job *</label>
                         <div class="w-full text-black">    
                             <select id="jobsAll" name="jobsAll[]"  style="font-size:1rem;" class="text-3xl lg:text-base font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                                 <?php foreach ($jobsAll as $joba): ?>
@@ -128,28 +128,28 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                    <label for="userExpertise" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Votre expertise *</label>
+                    <label for="userExpertise" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Your expertise *</label>
                         <select id="userExpertise" name="userExpertise" class="text-3xl lg:text-base font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                            <option class="text-3xl lg:text-base dark:text-black" value="junior">Junior (1 à 2 ans)</option>
-                            <option class="text-3xl lg:text-base dark:text-black" value="intermediaire">Intermédiaire (3 à 5 ans)</option>
-                            <option class="text-3xl lg:text-base dark:text-black" value="expert">Expert (+ 5 ans)</option>
+                            <option class="text-3xl lg:text-base dark:text-black" value="junior">Junior (1 to 2 years)</option>
+                            <option class="text-3xl lg:text-base dark:text-black" value="intermediaire">Intermediate (3 to 5 years)</option>
+                            <option class="text-3xl lg:text-base dark:text-black" value="expert">Expert (5+ years)</option>
                         </select>
-                    <label for="userTJM" class="text-3xl lg:text-base block mb-1 mt-2 font-medium text-gray-900 dark:text-white">Votre TJM *</label>
+                    <label for="userTJM" class="text-3xl lg:text-base block mb-1 mt-2 font-medium text-gray-900 dark:text-white">Your daily rate *</label>
                         <input type="number" name="userTJM" id="userTJM" value="<?=$user->userTJM?>" class="text-3xl lg:text-base mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" min="100" required>
-                    <label for="userTelephone" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Votre numéro WhatsApp *</label>
+                    <label for="userTelephone" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">Your WhatsApp number *</label>
                         <input type="tel" name="userTelephone" id="userTelephone" value="<?=$user->userTelephone?>" class="text-3xl lg:text-base mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                        <p id="errorUserTelephone" class="text-red-500 text-3xl lg:text-base mt-2 hidden">Veuillez renseigner un numéro de téléphone valide</p>
+                        <p id="errorUserTelephone" class="text-red-500 text-3xl lg:text-base mt-2 hidden">Please enter a valid phone number</p>
 
 
-                        <p id="errorMessageUserData" class="text-3xl lg:text-base text-red-500  mt-2 hidden">Veuillez remplir tous les champs correctement</p>
-                        <p id="tjmErrorMessage" class="text-3xl lg:text-base text-red-500  mt-2 hidden">Le TJM doit être supérieur à 100</p>
+                        <p id="errorMessageUserData" class="text-3xl lg:text-base text-red-500  mt-2 hidden">Please fill in all fields correctly</p>
+                        <p id="tjmErrorMessage" class="text-3xl lg:text-base text-red-500  mt-2 hidden">The daily rate must be greater than 100</p>
                     </div>
                 <div class="flex items-center space-x-4 mt-4">
                     <button type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                        Valider
+                        Save
                     </button>
                     <button type="button" data-modal-toggle="updateUserData" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
-                        Annuler
+                        Cancel
                     </button>
                 </div>
             </form>
@@ -165,88 +165,88 @@ include(APPPATH . 'views/layouts/user/header.php' );
             <!-- Modal header -->
             <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                 <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
-                    Vos Préférences
+                Your Preferences
                 </h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateUserPreference">
                     <svg aria-hidden="true" class="w-8 h-8 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                    <span class="sr-only">Fermer</span>
+                    <span class="sr-only">Close</span>
                 </button>
             </div>
             <!-- Modal body -->
             <form action="<?=base_url("user/updateUserPreference")?>" method="post" id ="userPreferenceForm" enctype="multipart/form-data">
                 <div>
-                    <label for="name" class="text-3xl lg:text-base block mb-2  font-medium text-gray-900 dark:text-white">Êtes-vous disponible pour travailler dès maintenant ?</label>
-                    <label class="text-3xl lg:text-base text-gray-500 mr-3 dark:text-gray-400">Non</label>
+                    <label for="name" class="text-3xl lg:text-base block mb-2  font-medium text-gray-900 dark:text-white">Are you available to work right now?</label>
+                    <label class="text-3xl lg:text-base text-gray-500 mr-3 dark:text-gray-400">No</label>
                     <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description-preference" <?php echo $checkboxChecked; ?> onchange="displayAvailibilityOptionsPreference()" class="text-3xl lg:text-base relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-green-200">
-                    <label class="text-3xl lg:text-base text-gray-500 ml-3 dark:text-gray-400">Oui</label>
+                    <label class="text-3xl lg:text-base text-gray-500 ml-3 dark:text-gray-400">Yes</label>
                     <div id="isAvailaibleOptionsPreference" style="display: <?php echo $checkboxChecked == 'checked' ? "block" : "none" ?>" class=" mt-4 mb-2">
-                        <label for="name" class="block mb-2 font-medium text-gray-900 dark:text-white">Combien de jours par semaine êtes-vous disponible ?</label>
+                        <label for="name" class="block mb-2 font-medium text-gray-900 dark:text-white">How many days per week are you available?</label>
                         <select id="userJobTimePartielOrFullTime" name="userJobTimePartielOrFullTime" class="bg-gray-50 border mt-2 border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option value="temps-plein" 
                                 <?php if ($user->userJobTimePartielOrFullTime === "temps-plein") {
                                     echo ' selected';
-                                } ?>> Temps Plein 
+                                } ?>> Full-time
                             </option>
                             <option value="temps-partiel" 
                                 <?php if ($user->userJobTimePartielOrFullTime === "temps-partiel") {
                                     echo ' selected';
-                                } ?>> Temps Partiel 
+                                } ?>> Part-time
                             </option>
                         </select>
                     </div>
                     <div id="isNotAvailaibleOptionsPreference" style="display: <?php echo $checkboxChecked == '' ? "block" : "none" ?>" class="mt-4 mb-2">
-                        <label for="dateFinIndisponibilitePreference" class="block mb-2 font-medium text-gray-900 dark:text-white">Quand serez-vous à nouveau disponible ?</label>
+                        <label for="dateFinIndisponibilitePreference" class="block mb-2 font-medium text-gray-900 dark:text-white">When will you be available again?</label>
                         <div class="flex flex-1 mt-2">
                             <div class="flex items-center mr-6">
                                 <input type="radio" id="1mois" value="1" name="finIndisponibiliteDuree" class="finIndisponibiliteBtnPreference w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                <label for="1mois" class="ml-2 font-medium text-gray-900 dark:text-white">Dans 1 mois</label>
+                                <label for="1mois" class="ml-2 font-medium text-gray-900 dark:text-white">In 1 month</label>
                             </div>
                             <div class="flex items-center mr-6">
                                 <input type="radio" id="3mois" value="3" name="finIndisponibiliteDuree" class="finIndisponibiliteBtnPreference w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                <label for="3mois" class="ml-2 font-medium text-gray-900 dark:text-white">Dans 3 mois</label>
+                                <label for="3mois" class="ml-2 font-medium text-gray-900 dark:text-white">In 3 months</label>
                             </div>
                             <div class="flex items-center">
                                 <input type="radio" id="6mois" value="6" name="finIndisponibiliteDuree" class="finIndisponibiliteBtnPreference w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                <label for="6mois" class="ml-2 font-medium text-gray-900 dark:text-white">Dans 6 mois</label>
+                                <label for="6mois" class="ml-2 font-medium text-gray-900 dark:text-white">In 6 months</label>
                             </div>
                         </div>
                         <input type="date" id="dateFinIndisponibilitePreference" value="<?= $user->userDateFinIndisponibilite ?>" name="dateFinIndisponibilite" class="w-full mt-2 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <p id="errorDateFinIndisponibilitePreference" class="mt-2 text-red-500" style="display:none;">Veuilllez renseigner une date</p>
+                        <p id="errorDateFinIndisponibilitePreference" class="mt-2 text-red-500" style="display:none;">Please enter a date</p>
                     </div>
 
-                    <label for="userJobType" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Type de poste</label>
+                    <label for="userJobType" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Job type</label>
                     
                     <div class="flex flex-1 gap-6 mb-3">
                         <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700 w-full mr-4">
                             <input id="teletravail" type="radio" value="Remote" name="userJobType" class="text-3xl lg:text-base w-6 h-6 lg:w-4 lg:h-4  text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" <?php echo ($user->userJobType === 'Remote') ? 'checked' : ''; ?> required>
-                            <label for="teletravail" class="text-3xl lg:text-base py-4 ml-2  font-medium text-gray-900 dark:text-white">Télétravail</label>
+                            <label for="teletravail" class="text-3xl lg:text-base py-4 ml-2  font-medium text-gray-900 dark:text-white">Remote</label>
                         </div>
                         <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700 w-full mr-4">
                             <input id="hybride" type="radio" value="Hybride" name="userJobType" class="text-3xl lg:text-base w-6 h-6 lg:w-4 lg:h-4  text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" <?php echo ($user->userJobType === 'Hybride') ? 'checked' : ''; ?>>
-                            <label for="hybride" class="text-3xl lg:text-base py-4 ml-2  font-medium text-gray-900 dark:text-white">Hybride</label>
+                            <label for="hybride" class="text-3xl lg:text-base py-4 ml-2  font-medium text-gray-900 dark:text-white">Hybrid</label>
                         </div>
                         <div class="flex items-center pl-4 border  border-gray-200 rounded dark:border-gray-700 w-full mr-4">
                             <input id="sur-site" type="radio" value="Physique" name="userJobType" class="text-3xl lg:text-base w-6 h-6 lg:w-4 lg:h-4  text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" <?php echo ($user->userJobType === 'Physique') ? 'checked' : ''; ?>>
-                            <label for="sur-site" class="text-3xl lg:text-base py-4 ml-2  font-medium text-gray-900 dark:text-white">Physique</label>
+                            <label for="sur-site" class="text-3xl lg:text-base py-4 ml-2  font-medium text-gray-900 dark:text-white">On site</label>
                         </div>
                     </div>
-                    <p id="errorMessageJobType" class="text-3xl lg:text-base text-red-500" style="display:none;">Veuillez choisir un type de poste</p>
-                    <label for="userVille" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Localisation</label>
+                    <p id="errorMessageJobType" class="text-3xl lg:text-base text-red-500" style="display:none;">Please choose a job type</p>
+                    <label for="userVille" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Location</label>
                     <div>    
                         <div class="relative city-search-container w-full mr-4">
-                            <input type="text" id="citySearch" name="userVille" placeholder="Cherchez votre ville" value="<?php echo $user->userVille != 'Etranger' ? $user->userVille : "" ?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" >
+                            <input type="text" id="citySearch" name="userVille" placeholder="Search your city" value="<?php echo $user->userVille != 'Etranger' ? $user->userVille : "" ?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" >
                                 <div id="cities-list" class="text-3xl lg:text-base absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                         </div>
                         <div class="flex items-center mt-2">
                             <input type="checkbox" id="userEtranger" name="userEtranger" <?php echo $user->userVille === 'Etranger' ? 'checked' : "" ?>>
-                            <label class="text-3xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Étranger</label>
+                            <label class="text-3xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Abroad</label>
                         </div>
                     </div>
-                    <label for="userJobTime" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Durée de la mission</label>
+                    <label for="userJobTime" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Mission Duration</label>
                     <select id="userJobTime" name="userJobTime" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                         <?php
-                        $jobTimeOptions = ['Courte Durée', 'Longue Durée', 'Durée indéfinie'];
+                        $jobTimeOptions = ['Short-term', 'Long-term', 'Indefinite duration'];
                         foreach ($jobTimeOptions as $option) {
                             echo '<option value="' . $option . '"';
                             if ($user->userJobTime === $option) {
@@ -259,15 +259,15 @@ include(APPPATH . 'views/layouts/user/header.php' );
 
 
                 
-                    <p id="errorMessageUserData" class="text-3xl lg:text-base text-red-500  mt-2 hidden">Veuillez remplir tous les champs correctement</p>
-                    <p id="tjmErrorMessage" class="text-3xl lg:text-base text-red-500  mt-2 hidden">Le TJM doit être supérieur à 100</p>
+                    <p id="errorMessageUserData" class="text-3xl lg:text-base text-red-500  mt-2 hidden">Please fill in all fields correctly</p>
+                    <p id="tjmErrorMessage" class="text-3xl lg:text-base text-red-500  mt-2 hidden">The daily rate must be greater than 100</p>
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
                     <button type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                        Valider
+                        Save
                     </button>
                     <button type="button" data-modal-toggle="updateUserPreference" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
-                        Annuler
+                        Cancel
                     </button>
                 </div>
             </form>
@@ -283,11 +283,11 @@ include(APPPATH . 'views/layouts/user/header.php' );
             <!-- Modal header -->
             <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                 <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
-                    Vos Liens utiles
+                    Your useful links
                 </h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateUserLinks">
                     <svg aria-hidden="true" class="w-8 h-8 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                    <span class="sr-only">Fermer</span>
+                    <span class="sr-only">Close</span>
                 </button>
             </div>
             <!-- Modal body -->
@@ -314,10 +314,10 @@ include(APPPATH . 'views/layouts/user/header.php' );
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
                     <button type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                        Valider
+                        Save
                     </button>
                     <button type="button" data-modal-toggle="updateUserLinks" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
-                        Annuler
+                        Cancel
                     </button>
                 </div>
             </form>
@@ -336,46 +336,46 @@ foreach ($experiences as $index => $experience) {
                 <!-- Modal header -->
                 <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                     <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
-                        <?='Expérience : '.$experience->experienceJob?>
+                        <?='Experience: '.$experience->experienceJob?>
                     </h3>
                     <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateUserExperience<?=$index?>">
                         <svg aria-hidden="true" class="w-8 h-8 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                        <span class="sr-only">Fermer</span>
+                        <span class="sr-only">Close</span>
                     </button>
                 </div>
                 <!-- Modal body -->
                 <form id="updateUserExperience-form" action="<?=base_url("user/updateUserExperience/".$experience->idExperience)?>" method="post" enctype="multipart/form-data">
                     <div>
-                        <label for="userExperienceJob" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Nom de l'experience</label>
-                        <input type="text" id="userExperienceJob" name="userExperienceJob" value="<?=$experience->experienceJob?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Titre">
-                        <label for="userExperienceCompany" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Nom de l'entreprise</label>
-                        <input type="text" id="userExperienceCompany" name="userExperienceCompany" value="<?=$experience->experienceCompany?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Entreprise">
+                        <label for="userExperienceJob" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Experience name</label>
+                        <input type="text" id="userExperienceJob" name="userExperienceJob" value="<?=$experience->experienceJob?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Title">
+                        <label for="userExperienceCompany" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Company name</label>
+                        <input type="text" id="userExperienceCompany" name="userExperienceCompany" value="<?=$experience->experienceCompany?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Company">
 
-                        <label for="userExperienceDateDebut" class="w-full text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Date de début</label>
+                        <label for="userExperienceDateDebut" class="w-full text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Start date</label>
                         <input type="date" id="updateUserExperienceDateDebut<?=$index?>" name="userExperienceDateDebut" value="<?=$experience->experienceDateDebut?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" oninput="validateDates('updateUserExperienceDateDebut<?=$index?>', 'updateUserExperienceDateFin<?=$index?>', 'errorUpdateUserExperienceDate<?=$index?>', 'userExperienceSubmit<?=$index?>')">
 
-                        <label for="userExperienceDateFin" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Date de fin</label>
+                        <label for="userExperienceDateFin" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">End date</label>
                         <input type="date" id="updateUserExperienceDateFin<?=$index?>" name="userExperienceDateFin" value="<?=$experience->experienceDateFin?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" oninput="validateDates('updateUserExperienceDateDebut<?=$index?>', 'updateUserExperienceDateFin<?=$index?>', 'errorUpdateUserExperienceDate<?=$index?>', 'userExperienceSubmit<?=$index?>'), resetCheckbox('updateUserExperienceDateFinToday<?=$index?>')">
                                                 
                         <div class="flex items-center mt-2">
                             <input type="checkbox" id="updateUserExperienceDateFinToday<?=$index?>" name="updateUserExperienceDateFinToday" <?= ($experience->experienceDateFin == '0000-00-00') ? 'checked' : '' ?> onclick="resetDateFin('updateUserExperienceDateFin<?=$index?>', 'updateUserExperienceDateFinToday<?=$index?>', 'errorUpdateUserExperienceDate<?=$index?>', 'userExperienceSubmit<?=$index?>')">
-                            <label class="text-3xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Aujourd'hui</label>
+                            <label class="text-3xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Today</label>
                         </div>
-                        <p id="errorUpdateUserExperienceDate<?=$index?>" class="text-red-500" style="display:none;">La date de fin doit être postérieure à la date de début</p>
+                        <p id="errorUpdateUserExperienceDate<?=$index?>" class="text-red-500" style="display:none;">The end date must be later than the start date</p>
 
                         <label for="userExperienceDescription" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Description</label>
                         <textarea id="userExperienceDescription" name="userExperienceDescription" rows="3" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"><?=$experience->experienceDescription?></textarea>
                     </div>
                     <!-- Rest of the form fields for the experience -->
                     <div class="mt-6 mb-6 bg-white rounded-lg dark:bg-gray-800 text-black">
-                        <label for="userExperienceSkills" class="text-2xl lg:text-lg block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Vos compétences</label>
+                        <label for="userExperienceSkills" class="text-2xl lg:text-lg block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Your Skills</label>
                         <div id="experience-skills-container-<?=$index?>">
                         <?php foreach ($experienceSkills[$experience->idExperience] as $experienceSkill): ?>
                             <div class="flex flex-1 mb-4 skill-row">
                                 <div class="text-3xl lg:text-base w-3/4 mr-2 text-black">
                                     <!--<select id="skillsAll" name="skillsAll[]"  class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>-->
                                     <select id="skillsAll2" name="skillsAll[]"  class="text-3xl lg:text-base new-skill-select bg-white border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                                        <option value="">Sélectionnez une compétence</option>
+                                        <option value="">Select a skill</option>
                                         <?php foreach ($skillsAll as $skill): ?>
                                             <option value="<?= $skill['skillId'] ?>" <?= ($experienceSkill->experienceSkills_skillId == $skill['skillId']) ? 'selected' : '' ?>><?= $skill['skillName'] ?></option>
                                         <?php endforeach; ?>
@@ -384,7 +384,7 @@ foreach ($experiences as $index => $experience) {
                                 <div class="w-1/4">
                                     <select name="skillsLevel[]" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                                         <option value="1" <?= ($experienceSkill->experienceSkillsExpertise == 1) ? 'selected' : '' ?>>Junior</option>
-                                        <option value="2" <?= ($experienceSkill->experienceSkillsExpertise == 2) ? 'selected' : '' ?>>Intermédiaire</option>
+                                        <option value="2" <?= ($experienceSkill->experienceSkillsExpertise == 2) ? 'selected' : '' ?>>Intermediate</option>
                                         <option value="3" <?= ($experienceSkill->experienceSkillsExpertise == 3) ? 'selected' : '' ?>>Expert</option>
                                     </select>
                                 </div>
@@ -394,27 +394,27 @@ foreach ($experiences as $index => $experience) {
                             </div>
                         <?php endforeach; ?>
                         </div>
-                        <button id="add-experience-skill-btn" type="button" class="text-3xl lg:text-base add-experience-skill-btn py-2 px-4 bg-primary text-white rounded-lg" data-container="experience-skills-container-<?=$index?>">Ajouter une compétence</button>
+                        <button id="add-experience-skill-btn" type="button" class="text-3xl lg:text-base add-experience-skill-btn py-2 px-4 bg-primary text-white rounded-lg" data-container="experience-skills-container-<?=$index?>">Add a skill</button>
                     </div>
 
                     <div class="flex items-center justify-between mt-4">
                         <div>
                             <button type="submit" id="userExperienceSubmit<?=$index?>" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                                Valider
+                                Save
                             </button>
                             <button type="button" data-modal-toggle="updateUserExperience<?=$index?>" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
-                                Annuler
+                                Cancel
                             </button>
                         </div>
                         <a href="#" onclick="showModal('deleteConfirmationModal<?=$index?>');" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
-                            <i class="fa fa-trash mr-2"></i> Supprimer
+                            <i class="fa fa-trash mr-2"></i> Delete
                         </a>
                     </div>
                     <div id="deleteConfirmationModal<?=$index?>" class="hidden fixed inset-0 flex items-center justify-center z-50">
                         <div class="fixed inset-0 bg-black opacity-50"></div>
                         <div class="relative bg-gray-50 rounded-lg shadow p-6 border border-gray-800 dark:bg-gray-800 sm:p-5">
-                            <h3 class="text-2xl lg:text-lg font-semibold mb-4">Confirmation de suppression</h3>
-                            <p class="text-3xl lg:text-base text-gray-700 dark:text-white mb-6">Êtes-vous sûr de vouloir supprimer cette expérience ?</p>
+                            <h3 class="text-2xl lg:text-lg font-semibold mb-4">Deletion confirmation</h3>
+                            <p class="text-3xl lg:text-base text-gray-700 dark:text-white mb-6">Are you sure you want to delete this experience?</p>
                             <div class="flex justify-end">
                                 <button type="button" onclick="hideModal('deleteConfirmationModal<?=$index?>');" class="text-gray-600 inline-flex items-center hover:text-white hover:bg-gray-800 border-gray-600  focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500  dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">Annuler</button>
                                 <a href="<?= base_url("user/deleteUserExperience/".$experience->idExperience) ?>" class="text-red-800 inline-flex items-center hover:text-white hover:bg-red-900 border-red-900  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500  dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Supprimer</a>
@@ -439,51 +439,51 @@ foreach ($experiences as $index => $experience) {
             <!-- Modal header -->
             <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                 <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
-                    Ajouter une expérience
+                Add an Experience
                 </h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="addUserExperience">
                     <svg aria-hidden="true" class="w-8 h-8 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                    <span class="sr-only">Fermer</span>
+                    <span class="sr-only">Close</span>
                 </button>
             </div>
             <!-- Modal body -->
             <form id="addUserExperience-form" action="<?=base_url("user/addUserExperience")?>" method="post" enctype="multipart/form-data">
                 <div>
-                    <label for="userExperienceJob" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Nom de l'experience</label>
-                    <input type="text" id="userExperienceJob" name="userExperienceJob" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Titre" required>
-                    <label for="userExperienceCompany" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Nom de l'entreprise</label>
-                    <input type="text" id="userExperienceCompany" name="userExperienceCompany" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Entreprise" required>
+                    <label for="userExperienceJob" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Experience Name</label>
+                    <input type="text" id="userExperienceJob" name="userExperienceJob" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Title" required>
+                    <label for="userExperienceCompany" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Company Name</label>
+                    <input type="text" id="userExperienceCompany" name="userExperienceCompany" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Company" required>
 
-                    <label for="userExperienceDateDebut" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Date de début</label>
+                    <label for="userExperienceDateDebut" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Start Date</label>
                     <input type="date" id="addUserExperienceDateDebut" name="userExperienceDateDebut" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
 
-                    <label for="userExperienceDateFin" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Date de fin</label>
+                    <label for="userExperienceDateFin" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">End Date</label>
                     <input type="date" id="addUserExperienceDateFin" name="userExperienceDateFin" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
                                                                    
                     <div class="flex items-center mt-2">
                         <input type="checkbox" id="addUserExperienceDateFinToday" name="addUserExperienceDateFinToday">
-                        <label class="text-3xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Aujourd'hui</label>
+                        <label class="text-3xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Today</label>
                     </div>
-                    <p id="errorAddUserExperienceDate" class="mt-2 text-red-500" style="display:none;">La date de fin doit être postérieure à la date de début</p>
+                    <p id="errorAddUserExperienceDate" class="mt-2 text-red-500" style="display:none;">The end date must be later than the start date</p>
 
                     <label for="userExperienceDescription" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Description</label>
                     <textarea id="userExperienceDescription" name="userExperienceDescription" rows="3" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required></textarea>
 
                 </div>
                 <div class="mt-6 mb-6 bg-white rounded-lg dark:bg-gray-800 text-black">
-                    <label for="userExperienceSkills" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Vos compétences</label>
+                    <label for="userExperienceSkills" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Your Skills</label>
 
                     <div id="experience-skills-container">
 
                     </div>
-                    <button id="add-experience-skill-btn" type="button" class="text-3xl lg:text-base add-experience-skill-btn py-2 px-4 bg-primary text-white rounded-lg" data-container="experience-skills-container">Ajouter une compétence</button>
+                    <button id="add-experience-skill-btn" type="button" class="text-3xl lg:text-base add-experience-skill-btn py-2 px-4 bg-primary text-white rounded-lg" data-container="experience-skills-container">Add a skill</button>
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
                     <button type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                        Valider
+                        Save
                     </button>
                     <button type="button" data-modal-toggle="addUserExperience" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
-                        Annuler
+                        Cancel
                     </button>
                 </div>
             </form>
@@ -498,11 +498,11 @@ foreach ($experiences as $index => $experience) {
             <!-- Modal header -->
             <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                 <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
-                    Vos Compétences
+                   Your skills
                 </h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="updateUserSkills">
                     <svg aria-hidden="true" class="w-8 h-8 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                    <span class="sr-only">Fermer</span>
+                    <span class="sr-only">Close</span>
                 </button>
             </div>
             <!-- Modal body -->
@@ -512,17 +512,17 @@ foreach ($experiences as $index => $experience) {
                     foreach ($skills as $index => $skill) {
                     ?> 
 
-                    <label for="userSkill<?=$index?>" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Compétence</label>
-                    <input type="text" id="userSkill<?=$index?>" name="userSkill<?=$index?>" value="<?=$skill->skillName?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-3/4 p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Compétence">
+                    <label for="userSkill<?=$index?>" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Skill</label>
+                    <input type="text" id="userSkill<?=$index?>" name="userSkill<?=$index?>" value="<?=$skill->skillName?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-3/4 p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Skill">
 
                     <?php } ?>
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
                     <button type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                        Valider
+                        Save
                     </button>
                     <button type="button" data-modal-toggle="updateUserSkills" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
-                        Annuler
+                        Cancel
                     </button>
                 </div>
             </form>
@@ -538,30 +538,30 @@ foreach ($experiences as $index => $experience) {
             <!-- Modal header -->
             <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                 <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
-                    Ajouter une pièce jointe
+                Add an attachment
                 </h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="addUserAttachment">
                     <svg aria-hidden="true" class="w-8 h-8 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                    <span class="sr-only">Fermer</span>
+                    <span class="sr-only">Close</span>
                 </button>
             </div>
             <!-- Modal body -->
             <form action="<?= base_url("user/addUserAttachment") ?>" method="post" enctype="multipart/form-data">
                 <div>
-                    <label for="userAttachmentFile" class="text-3xl lg:text-base block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Pièce jointe (.pdf)</label>
+                    <label for="userAttachmentFile" class="text-3xl lg:text-base block mt-4 mb-2 font-medium text-gray-900 dark:text-white">Attachment (.pdf)</label>
                     <input type="file" id="userAttachmentFile" name="userAttachmentFile" accept=".pdf" class="hidden" data-max-size="2048">
                     <label for="userAttachmentFile" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 cursor-pointer">
-                        <span class="filename">Choisir un fichier </span>
+                        <span class="filename">Choose a file </span>
 
                     </label>
-                    <div id="fileSizeInfo" class="text-2xl lg:text-sm text-gray-500 mt-1">La taille maximale autorisée est 2 Mo.</div>
+                    <div id="fileSizeInfo" class="text-2xl lg:text-sm text-gray-500 mt-1">The maximum allowed size is 2 MB.</div>
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
                     <button type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                        Valider
+                        Save
                     </button>
                     <button type="button" data-modal-toggle="addUserAttachment" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
-                        Annuler
+                        Cancel
                     </button>
                 </div>
             </form>
@@ -579,11 +579,11 @@ foreach ($experiences as $index => $experience) {
             <!-- Modal header -->
             <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                 <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
-                    Ajouter vos compétences
+                    Add your skills
                 </h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="addUserSkills">
                     <svg aria-hidden="true" class="w-8 h-8 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                    <span class="sr-only">Fermer</span>
+                    <span class="sr-only">Close</span>
                 </button>
             </div>
             <!-- Modal body -->
@@ -593,7 +593,7 @@ foreach ($experiences as $index => $experience) {
                     <div class="flex flex-1 mb-4 skill-row">
                         <div class="w-3/4 mr-2">
                         <select id="skillsAll" name="skillsAll[]"  class="text-3xl lg:text-base new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                <option value="">Sélectionnez une compétence</option>
+                                <option value="">Select a skill</option>
                                 <?php foreach ($skillsAll as $skill): ?>
                                     <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
                                 <?php endforeach; ?>
@@ -602,7 +602,7 @@ foreach ($experiences as $index => $experience) {
                         <div class="w-1/4">
                             <select class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="skillsLevel[]" required>
                                 <option value="1">Junior</option>
-                                <option value="2">Intermédiaire</option>
+                                <option value="2">Intermediate</option>
                                 <option value="3">Expert</option>
                             </select>
                         </div>
@@ -611,14 +611,14 @@ foreach ($experiences as $index => $experience) {
                         </button>
                     </div>
                 </div>
-                <button id="add-skill-btn" type="button" class="text-3xl lg:text-base py-2 px-4 bg-primary text-white rounded-lg">Ajouter une compétence</button>
+                <button id="add-skill-btn" type="button" class="text-3xl lg:text-base py-2 px-4 bg-primary text-white rounded-lg">Add a skill</button>
             </div>
                 <div class="flex items-center space-x-4 mt-4">
                     <button type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                        Valider
+                        Save
                     </button>
                     <button type="button" data-modal-toggle="addUserSkills" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
-                        Annuler
+                        Cancel
                     </button>
                 </div>
             </form>
@@ -632,13 +632,13 @@ foreach ($experiences as $index => $experience) {
         <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
             <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                 <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
-                    Modifier vos compétences
+                Edit your Skills
                 </h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="editUserSkills">
                     <svg aria-hidden="true" class="w-8 h-8 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                     </svg>
-                    <span class="sr-only">Fermer</span>
+                    <span class="sr-only">Close</span>
                 </button>
             </div>
             <form action="<?= base_url("user/editUserSkills") ?>" method="post" enctype="multipart/form-data">
@@ -654,7 +654,7 @@ foreach ($experiences as $index => $experience) {
                             <div class="w-1/4 flex items-center justify-between">
                                 <select class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-4/5 p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="skillsLevel[]" id="skillLevel" required>
                                     <option value="1" <?= ($skill->userSkillsExperience == 1) ? 'selected' : '' ?>>Junior</option>
-                                    <option value="2" <?= ($skill->userSkillsExperience == 2) ? 'selected' : '' ?>>Intermédiaire</option>
+                                    <option value="2" <?= ($skill->userSkillsExperience == 2) ? 'selected' : '' ?>>Intermedite</option>
                                     <option value="3" <?= ($skill->userSkillsExperience == 3) ? 'selected' : '' ?>>Expert</option>
                                 </select>
                                 <a href="<?=base_url('user/deleteUserSkill/'.$skill->skillId)?>">
@@ -672,10 +672,10 @@ foreach ($experiences as $index => $experience) {
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
                     <button type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                        Valider
+                        Save
                     </button>
                     <button type="button" data-modal-toggle="editUserSkills" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
-                        Annuler
+                        Cancel
                     </button>
                 </div>
             </form>
@@ -691,11 +691,11 @@ foreach ($experiences as $index => $experience) {
             <!-- Modal header -->
             <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
                 <h3 class="text-3xl lg:text-lg font-semibold text-gray-900 dark:text-white">
-                    À propos de vous
+                About you
                 </h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg  p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="editUserBio">
                     <svg aria-hidden="true" class="w-8 h-8 lg:w-5 lg:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                    <span class="sr-only">Fermer</span>
+                    <span class="sr-only">Close</span>
                 </button>
             </div>
             <!-- Modal body -->
@@ -708,10 +708,10 @@ foreach ($experiences as $index => $experience) {
                 </div>
                 <div class="flex items-center space-x-4 mt-4">
                     <button type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                        Valider
+                        Save
                     </button>
                     <button type="button" data-modal-toggle="editUserBio" class="text-3xl lg:text-base text-red-600 inline-flex items-center hover:text-white border border-red-600 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg  px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">
-                        Annuler
+                        Cancel
                     </button>
                 </div>
             </form>
@@ -775,7 +775,7 @@ if($totalInfos == 1 ){
                 if ($tauxCompletion != 100){
                 ?>
                 <div class="relative py-4 mb-4">
-                    <p class="text-2xl lg:text-lg mb-2">Votre profil est complété à <?=$tauxCompletion?>% </p>
+                    <p class="text-2xl lg:text-lg mb-2">Your profile is completed at <?=$tauxCompletion?>% </p>
                     <div class="relative flex flex-grow items-center w-full h-4 bg-primary-light rounded-md" style="width: 100%;">
                         <div class="absolute inset-0 bg-secondary rounded-lg" style="width: 100%;"></div>
                         <div class="absolute inset-0 bg-primary rounded-lg" style="width: <?=$tauxCompletion?>%;"></div>
@@ -788,7 +788,7 @@ if($totalInfos == 1 ){
                 <div class="relative flex grid-cols-2 items-center overflow-hidden bg-white rounded-lg mb-4 dark:bg-gray-800 py-4 px-4">
                     <div class="flex flex-1">
                         <div>
-                            <img src="<?php echo base_url($user->userAvatarPath); ?>" class="object-cover w-40 h-40 rounded-full" alt="Photo de profil">
+                            <img src="<?php echo base_url($user->userAvatarPath); ?>" class="object-cover w-40 h-40 rounded-full" alt="Profile photo">
                         </div>
                         <div class="ml-4">
                             <div class="flex" id="user-data">
@@ -807,7 +807,7 @@ if($totalInfos == 1 ){
                                         $user->userExperienceYear = "Junior";
                                     }
                                     elseif ($user->userExperienceYear == "intermediaire"){
-                                        $user->userExperienceYear = "Intermédiaire";
+                                        $user->userExperienceYear = "Intermediate";
                                     }
                                     elseif ($user->userExperienceYear == "expert"){
                                         $user->userExperienceYear = "Expert";
@@ -824,7 +824,7 @@ if($totalInfos == 1 ){
                                 <?php } ?>
                                 <?php } ?>
                                 <a href="#rating">
-                                    <p class="ml-2 text-3xl lg:text-base"><?=round($averageStars, 1).' ( '.$ratingCount.' avis )'?></p>
+                                    <p class="ml-2 text-3xl lg:text-base"><?=round($averageStars, 1).' ( '.$ratingCount.' reviews )'?></p>
                                 </a>
                             </div>
                         <!-- Whatsapp -->
@@ -832,15 +832,15 @@ if($totalInfos == 1 ){
                         <div class="flex flex-wrap items-center">
                                 <!-- Whatsapp -->
                             <?php
-                            // if not user
-                                if($user->userId != $this->session->userdata('userId')){
+                            // if user
+                                if($user->userId = $this->session->userdata('userId')){
                             ?>
-                                <a href="https://wa.me/<?=$user->userTelephone?>?text=Bonjour%20<?=$user->userFirstName?>%20!%20Je%20suis%20intéressé%20par%20votre%20profil%20sur%20Café%20Crème%20Community%20!%20" target="_blank">
+                                <a href="https://wa.me/<?=$user->userTelephone?>?text=Hello%20<?=$user->userFirstName?>%20!%20I%20am%20interested%20by%20your%20profile%20on%20My%20Freelance%20!%20" target="_blank">
                                 
                                 <button type="button" data-te-ripple-init data-te-ripple-color="light"
                                     class="font-medium text-3xl lg:text-base mb-2 mr-4 inline-flex items-center rounded-full px-6 py-2.5 leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
                                     style="background-color: #25D366">
-                                    <span class="mr-2">Contacter</span>
+                                    <span class="mr-2">Contact</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
                                     </svg>
@@ -850,7 +850,7 @@ if($totalInfos == 1 ){
                                 }
                             ?>
 
-                                <p class="font-medium text-3xl lg:text-base mb-2 mt-2 inline-block px-4 py-2.5 rounded-full bg-primary text-white"><?=$user->userTJM?> € / Jour</p>
+                                <p class="font-medium text-3xl lg:text-base mb-2 mt-2 inline-block px-4 py-2.5 rounded-full bg-primary text-white"><?=$user->userTJM?> AED / day</p>
                             </div>
                         </div>
                     </div>
@@ -864,7 +864,7 @@ if($totalInfos == 1 ){
                     <div class="w-full lg:w-1/4 lg:sticky lg:top-0">
                         <div class="lg:w-full">
                             <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                                <h2 class="text-4xl lg:text-xl font-bold mb-4"> Préférences </h2> 
+                                <h2 class="text-4xl lg:text-xl font-bold mb-4"> Preferences </h2> 
                                     <div class="flex grid-cols-2 items-center mb-4">
                                         <?php
                                         // user is available or not
@@ -884,21 +884,21 @@ if($totalInfos == 1 ){
                                         }
                                         ?>
                                         <div>
-                                            <p class="text text-2xl lg:text-lg">Disponibilité</p>
+                                            <p class="text text-2xl lg:text-lg">Availibility</p>
                                             <?php
                                             if($user->userIsAvailable == 1){
                                             ?>
-                                                <p class="font-bold text-4xl lg:text-xl">Dispo. 
+                                                <p class="font-bold text-4xl lg:text-xl">Available 
                                                     
                                                 <?php
                                                     if($user->userJobTimePartielOrFullTime == "temps-plein"){
                                                 ?>
-                                                    Temps Plein
+                                                    Full time
                                                 <?php
                                                     }
                                                     else{
                                                 ?> 
-                                                    Temps Partiel
+                                                    Part time
                                                 <?php
                                                     }
                                                 }else{
@@ -907,7 +907,7 @@ if($totalInfos == 1 ){
                                                    
                                                     $dateFinIndisponibilite = $dateFinIndisponibilite->format('d/m/Y');
                                             ?>
-                                                <p class="font-bold text-4xl lg:text-xl">Indispo. jusqu'au <?=$dateFinIndisponibilite?> </p>
+                                                <p class="font-bold text-4xl lg:text-xl">Not available until <?=$dateFinIndisponibilite?> </p>
                                             <?php
                                                 }
                                             ?>
@@ -939,19 +939,19 @@ if($totalInfos == 1 ){
                                         } }
                                         ?>
                                         <div>
-                                            <p class="text text-2xl lg:text-lg">Type de poste</p>
+                                            <p class="text text-2xl lg:text-lg">Job type</p>
                                             <?php
                                                 if($user->userJobType == "Hybride"){
                                                 ?>
-                                                    <p class="font-bold text-4xl lg:text-xl">Hybride</p>
+                                                    <p class="font-bold text-4xl lg:text-xl">Hybrid</p>
                                                 <?php
                                                     }else if($user->userJobType == "Remote"){
                                                 ?>
-                                                    <p class="font-bold text-4xl lg:text-xl">Télétravail</p>
+                                                    <p class="font-bold text-4xl lg:text-xl">Full remote</p>
                                                 <?php
                                                     }else if($user->userJobType == "Physique"){
                                                 ?>
-                                                    <p class="font-bold text-4xl lg:text-xl">Physique</p>
+                                                    <p class="font-bold text-4xl lg:text-xl">On site</p>
                                                 <?php
                                                     }
                                                 ?>
@@ -964,7 +964,7 @@ if($totalInfos == 1 ){
                                         </div>
                                         
                                         <div>
-                                            <p class="text text-2xl lg:text-lg">Localisation</p>
+                                            <p class="text text-2xl lg:text-lg">Location</p>
                                             
                                                 <p class="font-bold text-4xl lg:text-xl"><?=$user->userVille?></p>
                                             
@@ -976,8 +976,18 @@ if($totalInfos == 1 ){
                                         </div>
                                         
                                         <div>
-                                            <p class="text text-2xl lg:text-lg">Durée de la mission</p>
-                                            
+                                            <p class="text text-2xl lg:text-lg">Mission duration</p>
+                                                <?php
+                                                if ($user->userJobTime == "Courte Durée"){ 
+                                                    $user->userJobTime = "Short-term";
+                                                }
+                                                elseif ($user->userJobTime == "Longue Durée"){
+                                                    $user->userJobTime = "Long-term";
+                                                }
+                                                elseif ($user->userJobTime == "Durée indéfinie"){
+                                                    $user->userJobTime = "Indefinite duration";
+                                                }                                            
+                                                ?>
                                             <p class="font-bold text-4xl lg:text-xl"><?=$user->userJobTime?></p>
                                             
                                         </div>
@@ -989,7 +999,7 @@ if($totalInfos == 1 ){
                                     </div>
                             </div>
                             <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                                <h2 class="text-4xl lg:text-xl font-bold mb-4"> Liens utiles </h2> 
+                                <h2 class="text-4xl lg:text-xl font-bold mb-4"> Useful links </h2> 
                                 <div class="flex flex-col mt-2 mb-2 w-full">
                                     <?php
                                     // mail link
@@ -1086,7 +1096,7 @@ if($totalInfos == 1 ){
                                     </div>
                             </div>
                             <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white" id="rating">
-                                <h2 class="text-4xl lg:text-xl font-bold mb-4"> Avis </h2> 
+                                <h2 class="text-4xl lg:text-xl font-bold mb-4"> Reviews </h2> 
                                     <div class="flex flex-col mt-2 mb-2 w-full">
                                     <div class="flex-1"></div>
                                     <?php
@@ -1118,10 +1128,14 @@ if($totalInfos == 1 ){
                                                                 </div>
                                                                 <p class="text text-3xl lg:text-base text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
 
-                                                            </div>  
-                                                            <div>
-                                                                <p class="text-3xl lg:text-base"><?= '"'.$rating->ratingComment.'"'?></p>
-                                                            </div>
+                                                            </div> 
+                                                            <?php 
+                                                            if (isset($rating->ratingComment) && ($rating->ratingComment != " ")): 
+                                                            ?>
+                                                                <div>
+                                                                    <p class="text-3xl lg:text-base"><?= '"'.$rating->ratingComment.'"'?></p>
+                                                                </div>
+                                                            <?php endif; ?>
                                                         </div>
                                                     </a>
                                                     <?php
@@ -1155,17 +1169,21 @@ if($totalInfos == 1 ){
                                                                     <p class="text text-3xl lg:text-base text-gray-400 ml-4"><?=$rating->ratingDate = date('d/m/Y', strtotime($rating->ratingDate))?></p>
 
                                                                 </div>  
-                                                                <div>
-                                                                    <p class="text text-3xl lg:text-base"><?= '"'.$rating->ratingComment.'"'?></p>
-                                                                </div>
+                                                                <?php 
+                                                                if (isset($rating->ratingComment) && ($rating->ratingComment != " ")): 
+                                                                ?>
+                                                                    <div>
+                                                                        <p class="text-3xl lg:text-base"><?= '"'.$rating->ratingComment.'"'?></p>
+                                                                    </div>
+                                                                <?php endif; ?>
                                                             </div>
                                                         </a>
                                                     </div>
                                                         <button id="more-avis-button" class="text-primary text-3xl lg:text-base mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">
-                                                            Voir plus
+                                                            See more
                                                         </button>
                                                         <button id="less-avis-button" class="hidden text-primary text-3xl lg:text-base mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">
-                                                            Voir moins
+                                                            See less
                                                         </button>
                                                 <?php 
                                                     }
@@ -1176,7 +1194,7 @@ if($totalInfos == 1 ){
                                         }
                                         else {
                                             ?>
-                                                <p class="mt-2 mb-2 text-3xl lg:text-base"> Aucun avis pour le moment. </p>
+                                                <p class="mt-2 mb-2 text-3xl lg:text-base"> No reviews for now. </p>
                                              <?php
                                         }
                                         ?>
@@ -1188,7 +1206,7 @@ if($totalInfos == 1 ){
                     </div>
                     <div class="w-full lg:w-3/4 sticky top-0">
                         <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                            <h2 class="text-4xl lg:text-xl font-bold mb-4">À propos de moi</h2>
+                            <h2 class="text-4xl lg:text-xl font-bold mb-4">About me</h2>
                             <p class="text-3xl lg:text-base text-gray-500 mb-4 mt-4 dark:text-white"><?= $user->userBio ?></p>
                             <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
                                 <button id="editUserBio" data-modal-toggle="editUserBio" class="text-3xl lg:text-base py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white ml-2" type="button">
@@ -1198,7 +1216,7 @@ if($totalInfos == 1 ){
                         </div>
                         <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                             <h2 class="text-4xl lg:text-xl font-bold mb-4 flex items-center cursor-pointer" id="skillsTitle">
-                                Compétences
+                                Skills
                                 <i class="fas fa-chevron-down ml-2" id="skillsArrow" style='font-size:0.75rem;' data-order="asc"></i>
                             </h2>
 
@@ -1216,7 +1234,7 @@ if($totalInfos == 1 ){
                                             $textdark = "text-black";
                                             break;
                                         case 2:
-                                            $level = 'Intermédiaire';
+                                            $level = 'Intermediate';
                                             $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
                                             $text = "text-black";
                                             $textdark = "text-white";
@@ -1253,8 +1271,8 @@ if($totalInfos == 1 ){
                                     </button>
                                 </div>
                                 <div class="display inline">
-                                    <p class="mt-2 mb-2 text-3xl lg:text-base">Aucune compétences et expertises renseignées.</p>
-                                    <button id="addUserSkills" data-modal-toggle="addUserSkills" class="text-3xl lg:text-base py-2 px-4 bg-primary text-white rounded-full">Ajouter vos compétences</button>
+                                    <p class="mt-2 mb-2 text-3xl lg:text-base">No skills and expertise provided.</p>
+                                    <button id="addUserSkills" data-modal-toggle="addUserSkills" class="text-3xl lg:text-base py-2 px-4 bg-primary text-white rounded-full">Add yous skills</button>
                                 </div>
                                 <?php } ?>
                                 
@@ -1282,7 +1300,7 @@ if($totalInfos == 1 ){
                                 </div>
                                 <div class="flex items-center gap-2">
                                     <div class="w-3 h-3 mr-1 rounded-full" style="background-color: #63B3ED;"></div>
-                                    <span class="text-gray-600 mr-2 text-3xl lg:text-base dark:text-white">Intermédiaire</span>
+                                    <span class="text-gray-600 mr-2 text-3xl lg:text-base dark:text-white">Intermediate </span>
                                 </div>
                                 <div class="flex items-center gap-2">
                                     <div class="w-3 h-3 mr-1 rounded-full" style="background-color: #2C5282;"></div>
@@ -1291,7 +1309,7 @@ if($totalInfos == 1 ){
                             </div>
                         </div>
                         <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                            <h2 class="text-4xl lg:text-xl font-bold mb-4">Expériences</h2>
+                            <h2 class="text-4xl lg:text-xl font-bold mb-4">Experiences</h2>
                             <?php
                             if (is_array($experiences) && !empty($experiences)) {
                                 $experienceCount = 0;
@@ -1311,23 +1329,23 @@ if($totalInfos == 1 ){
                                                     $dateDebut = strftime('%d %B %Y', strtotime($experience->experienceDateDebut));
                                                     $dateFin = strftime('%d %B %Y', strtotime($experience->experienceDateFin));
                                                     $months = array(
-                                                        'January' => 'Janvier',
-                                                        'February' => 'Février',
-                                                        'March' => 'Mars',
-                                                        'April' => 'Avril',
-                                                        'May' => 'Mai',
-                                                        'June' => 'Juin',
-                                                        'July' => 'Juillet',
-                                                        'August' => 'Août',
-                                                        'September' => 'Septembre',
-                                                        'October' => 'Octobre',
-                                                        'November' => 'Novembre',
-                                                        'December' => 'Décembre'
+                                                        'January' => 'January',
+                                                        'February' => 'February',
+                                                        'March' => 'March',
+                                                        'April' => 'April',
+                                                        'May' => 'May',
+                                                        'June' => 'June',
+                                                        'July' => 'July',
+                                                        'August' => 'August',
+                                                        'September' => 'September',
+                                                        'October' => 'October',
+                                                        'November' => 'November',
+                                                        'December' => 'December'
                                                     );
 
                                                     $dateDebut = strtr($dateDebut, $months);
                                                     if($experience->experienceDateFin == NULL || $experience->experienceDateFin == "0000-00-00") {
-                                                        $dateFin = "Aujourd'hui";
+                                                        $dateFin = "Today";
                                                     }
                                                     else {
                                                         $dateFin = strtr($dateFin, $months);
@@ -1344,7 +1362,7 @@ if($totalInfos == 1 ){
                                                 </div>
                                             </div>
                                             <div class="mb-6 mt-4 ml-2 mr-4">
-                                                <p class="experience-description text-3xl lg:text-base text-gray-500dark:text-white"><?= $experience->experienceDescription ?> <span class="see-more hidden ml-1 cursor-pointer text-primary-500 hover:underline">voir plus</span></p>
+                                                <p class="experience-description text-3xl lg:text-base text-gray-500dark:text-white"><?= $experience->experienceDescription ?> <span class="see-more hidden ml-1 cursor-pointer text-primary-500 hover:underline">see more</span></p>
                                             </div>
                                             <div class="skills-container mb-4">
                                             <?php
@@ -1365,7 +1383,7 @@ if($totalInfos == 1 ){
                                                             
                                                             break;
                                                         case 2:
-                                                            $level = 'Intermédiaire';
+                                                            $level = 'Intermediate';
                                                             $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
                                                             $textdark = "text-white";
                                                             $text = "text-black";
@@ -1414,8 +1432,8 @@ if($totalInfos == 1 ){
                             <?php 
                                 }
                             } else { ?>
-                                <p class="mt-2 mb-2 text-3xl lg:text-base">Aucune expérience disponible.</p>
-                                <button id="addUserExperience" data-modal-toggle="addUserExperience" class="text-3xl lg:text-base py-2 px-4 bg-primary text-white rounded-full">Ajouter une expérience</button>
+                                <p class="mt-2 mb-2 text-3xl lg:text-base">No experience available.</p>
+                                <button id="addUserExperience" data-modal-toggle="addUserExperience" class="text-3xl lg:text-base py-2 px-4 bg-primary text-white rounded-full">Add experience</button>
                                 <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
                                     <button id="addUserExperience" data-modal-toggle="addUserExperience" class="text-3xl lg:text-base py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
                                         <i class="fas fa-plus"></i>
@@ -1424,7 +1442,7 @@ if($totalInfos == 1 ){
                             <?php } ?>
                         </div> 
                         <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                            <h2 class="text-4xl lg:text-xl font-bold mb-4">Portfolio & Réalisations </h2>
+                            <h2 class="text-4xl lg:text-xl font-bold mb-4">Portfolio & Achievements </h2>
                             <?php if (is_array($attachments) && !empty($attachments)) { ?>
                                 <div class="grid grid-cols-4 gap-8">
                                     <?php foreach ($attachments as $index => $attachment) { ?>
@@ -1445,11 +1463,11 @@ if($totalInfos == 1 ){
                                         <div id="deleteAttachmentConfirmationModal<?=$index?>" class="hidden fixed flex inset-0 items-center justify-center z-50">
                                             <div class="fixed inset-0 bg-black opacity-50"></div>
                                             <div class="relative bg-gray-50 rounded-lg shadow p-6 border border-gray-800 dark:bg-gray-800 sm:p-5">
-                                                <h3 class="text-3xl lg:text-lg font-semibold mb-4">Confirmation de suppression</h3>
-                                                <p class="text-3xl lg:text-base text-gray-700 dark:text-white mb-6">Êtes-vous sûr de vouloir supprimer cette pièce jointe ?</p>
+                                                <h3 class="text-3xl lg:text-lg font-semibold mb-4">Deletion Confirmation</h3>
+                                                <p class="text-3xl lg:text-base text-gray-700 dark:text-white mb-6">Are you sure you want to delete this attachment?</p>
                                                 <div class="flex justify-end">
-                                                    <button type="button" onclick="hideModal('deleteAttachmentConfirmationModal<?=$index?>');" class="text-3xl lg:text-base text-gray-600 inline-flex items-center hover:text-white hover:bg-gray-800 border-gray-600  focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500  dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">Annuler</button>
-                                                    <a href="<?=base_url("user/deleteUserAttachment/".$attachment->idAttachment)?>" class="text-3xl lg:text-base text-red-800 inline-flex items-center hover:text-white hover:bg-red-900 border-red-900  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500  dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Supprimer</a>
+                                                    <button type="button" onclick="hideModal('deleteAttachmentConfirmationModal<?=$index?>');" class="text-3xl lg:text-base text-gray-600 inline-flex items-center hover:text-white hover:bg-gray-800 border-gray-600  focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500  dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">Cancel</button>
+                                                    <a href="<?=base_url("user/deleteUserAttachment/".$attachment->idAttachment)?>" class="text-3xl lg:text-base text-red-800 inline-flex items-center hover:text-white hover:bg-red-900 border-red-900  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500  dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Delete</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -1459,7 +1477,7 @@ if($totalInfos == 1 ){
 
 
                             <?php } else { ?>
-                                <p class="text-3xl lg:text-base mt-2 mb-2">Aucune pièce jointe disponible.</p>
+                                <p class="text-3xl lg:text-base mt-2 mb-2">No attachment available.</p>
                             <?php } ?>
                             <div class="absolute top-0 right-0 mt-4 mr-4 flex hover:text-gray-800">
                                 <button id="addUserAttachment" data-modal-toggle="addUserAttachment" class="text-3xl lg:text-base py-2.5 px-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" type="button">
@@ -1565,7 +1583,7 @@ if($totalInfos == 1 ){
             removeItemButton: true,
             itemSelectText: '',
             placeholder: true, // Ajoutez cette ligne pour activer le placeholder
-            placeholderValue: 'Select your job', // Texte du placeholder
+            placeholderValue: 'Sélectionnez votre métier', // Texte du placeholder
 
         });
 
@@ -1654,7 +1672,7 @@ if($totalInfos == 1 ){
                 <div class="flex flex-1 mb-4 skill-row">
                     <div class="w-3/4 mr-2">
                         <select class="p-2 border rounded-lg w-full new-skill-select" name="skillsAll[]" id="skillsAll" required>
-                            <option value="">Select skill</option>
+                            <option value="">Sélectionnez une compétence</option>
                             <?php foreach ($skillsAll as $skill): ?>
                                 <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
                             <?php endforeach; ?>
@@ -1697,7 +1715,7 @@ if($totalInfos == 1 ){
                 <div class="flex flex-1 mb-4 skill-row">
                     <div class="w-3/4 mr-2 text-black">
                         <select name="skillsAll[]" class="new-skill-select mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-                            <option value="">Select skill</option>
+                            <option value="">Sélectionnez une compétence</option>
                             <?php foreach ($skillsAll as $skill): ?>
                                 <option value="<?= $skill['skillId'] ?>"><?= $skill['skillName'] ?></option>
                             <?php endforeach; ?>
@@ -1744,7 +1762,7 @@ if($totalInfos == 1 ){
             removeItemButton: true,
             itemSelectText: '',
             placeholder: true,
-            placeholderValue: 'Select your skills',
+            placeholderValue: 'Select Skills',
         });
 
         const skillsChoices2 = new Choices('#skillsAll2', {
@@ -1752,7 +1770,7 @@ if($totalInfos == 1 ){
             removeItemButton: true,
             itemSelectText: '',
             placeholder: true,
-            placeholderValue: 'Select your skills',
+            placeholderValue: 'Select Skills',
         });
 
         $('#search-input-skill').on('keyup', function(){

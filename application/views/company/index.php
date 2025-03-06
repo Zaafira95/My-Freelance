@@ -199,7 +199,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                                                         $freelancer->userExperienceYear = "Junior";
                                                     }
                                                     elseif ($freelancer->userExperienceYear == "intermediaire"){
-                                                        $freelancer->userExperienceYear = "Intermediatee";
+                                                        $freelancer->userExperienceYear = "Intermediate";
                                                     }
                                                     elseif ($freelancer->userExperienceYear == "expert"){
                                                         $freelancer->userExperienceYear = "Expert";

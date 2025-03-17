@@ -331,7 +331,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                             <img src="<?=base_url($company->companyLogoPath)?>" class="ml-4 object-cover w-full h-full rounded-full ring-8 ring-white dark:ring-gray-800" alt="Company picture">
                         </div> 
                         <button id="updateCompanyData" data-modal-toggle="updateCompanyData" class="text-3xl lg:text-base ml-4 mr-4 text-primary hover:text-blue-600" type="button">
-                            <p>Edit my informations</p>
+                            <p>Edit my information</p>
                         </button>
                     </div>                   
                     <?php if($user->userType == 'sales') { ?>
@@ -339,7 +339,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                         
                     </div>
                     <?php } ?>
-                    
+                              
                 </div>
                 <div class="relative px-4 flex flex-wrap justify-between mt-4">
                     <div>

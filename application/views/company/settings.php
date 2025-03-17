@@ -96,7 +96,7 @@ foreach ($ratedUsers as $rating) {
                                 <h1 class="text-5xl font-bold"><?=$company->companyName?></h1>
                             </div>
                             <p class="text-3xl lg:text-2xl text-black-500 font-bold"><?=$company->companySlogan?></p>
-                            <h3 class="text-2xl lg:text-xl font-medium text-gray-400">Secteur d'activité : <?=$company->companySecteur?></h3>
+                            <h3 class="text-2xl lg:text-xl font-medium text-gray-400">Sector: <?=$company->companySecteur?></h3>
                             <!-- Whatsapp -->
                             <div class="flex flex-wrap items-center">
                                     <!-- Whatsapp -->
@@ -120,13 +120,13 @@ foreach ($ratedUsers as $rating) {
                     <div class="rounded-lg lg:h-full lg:w-1/2 mb-4 lg:mr-4 dark:text-white">
                         <div class="relative lg:flex grid-cols-2 items-center overflow-hidden bg-white lg:h-full w-full rounded-lg mb-4 dark:bg-gray-800 py-8 px-4">
                             <ul class="w-full">
-                                <li class="tab-item mb-8 w-full flex"> <a href="#user-data" class="tab-link px-2 text-3xl lg:text-lg font-bold text-primary w-full"><i class="far fa-user mr-4"></i>Informations personnelles</a></li>
+                                <li class="tab-item mb-8 w-full flex"> <a href="#user-data" class="tab-link px-2 text-3xl lg:text-lg font-bold text-primary w-full"><i class="far fa-user mr-4"></i>Personal information</a></li>
 
-                                <li class="tab-item mb-8 w-full flex"> <a href="#company-data" class="tab-link px-2 text-3xl lg:text-lg w-full"><i class="far fa-building mr-4"></i>Informations professionnelles</a></li>
+                                <li class="tab-item mb-8 w-full flex"> <a href="#company-data" class="tab-link px-2 text-3xl lg:text-lg w-full"><i class="far fa-building mr-4"></i>Professional information</a></li>
 
-                                <li class="tab-item mb-8 w-full flex"> <a href="#user-password" class="tab-link px-2 text-3xl lg:text-lg w-full"><i class="far fa-eye mr-4"></i>Mot de passe</a></li>
+                                <li class="tab-item mb-8 w-full flex"> <a href="#user-password" class="tab-link px-2 text-3xl lg:text-lg w-full"><i class="far fa-eye mr-4"></i>Password</a></li>
                                 
-                                <li class="tab-item"> <a href="#rating" class="tab-link px-2 text-3xl lg:text-lg w-full"><i class="far fa-star mr-4"></i>Avis</a></li>
+                                <li class="tab-item"> <a href="#rating" class="tab-link px-2 text-3xl lg:text-lg w-full"><i class="far fa-star mr-4"></i>Reviews</a></li>
                             </ul>
                         </div>
                     </div>
@@ -135,34 +135,34 @@ foreach ($ratedUsers as $rating) {
                         <div class="form-container h-full relative flex grid-cols-2 items-center overflow-hidden bg-white rounded-lg mb-4 dark:bg-gray-800 py-4 px-4">
                             <div id="user-data" class="px-6 space-y-4 md:space-y-6 w-full h-full">
                                 <form method="post" action="<?php echo base_url('company/updateUserData'); ?>" id="updateUserDataForm" enctype="multipart/form-data">
-                                    <label for="userFirstName" class="text-3xl lg:text-base block font-medium text-gray-900 dark:text-white">Votre prénom *</label>
+                                    <label for="userFirstName" class="text-3xl lg:text-base block font-medium text-gray-900 dark:text-white">Your first name *</label>
                                     <input type="text" name="userFirstName" id="userFirstName" value="<?=$user->userFirstName?>" class="text-3xl lg:text-base  w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>
 
-                                    <label for="userLastName" class="text-3xl lg:text-base  block font-medium text-gray-900 dark:text-white">Votre nom *</label>
+                                    <label for="userLastName" class="text-3xl lg:text-base  block font-medium text-gray-900 dark:text-white">Your last name *</label>
                                     <input type="text" name="userLastName" id="userLastName" value="<?=$user->userLastName?>" class="text-3xl lg:text-base  w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>
 
-                                    <label for="userTelephone" class="text-3xl lg:text-base  block font-medium text-gray-900 dark:text-white">Votre numéro WhatsApp *</label>
+                                    <label for="userTelephone" class="text-3xl lg:text-base  block font-medium text-gray-900 dark:text-white">Your WhatsApp number *</label>
                                     <input type="tel" name="userTelephone" id="userTelephone" value="<?=$user->userTelephone?>" class="text-3xl lg:text-base  w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>    
-                                    <p id="errorUserTelephone" class="text-red-500 text-3xl lg:text-base mt-2 hidden">Veuillez renseigner un numéro de téléphone valide</p>
+                                    <p id="errorUserTelephone" class="text-red-500 text-3xl lg:text-base mt-2 hidden">Please enter a valid mobile number</p>
 
-                                    <label for="userEmail" class="text-3xl lg:text-base mt-4 block font-medium text-gray-900 dark:text-white">Votre email *</label>
+                                    <label for="userEmail" class="text-3xl lg:text-base mt-4 block font-medium text-gray-900 dark:text-white">Your email *</label>
                                     <input type="email" name="userEmail" id="userEmail" value="<?=$user->userEmail?>" class="text-3xl lg:text-base  w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" disabled>    
 
                                     <button type="submit" class="text-3xl lg:text-base  text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 mt-4 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                                        Valider
+                                        Save
                                     </button>
                                 </form>
                             </div>
                             <div id="company-data" class="px-6 space-y-4 md:space-y-6 w-full hidden h-full">
                             <form method="post" action="<?php echo base_url('company/updateCompanyData'); ?>" enctype="multipart/form-data">
-                                <label for="companyName" class="text-3xl lg:text-base  block font-medium text-gray-900 dark:text-white">Nom *</label>
+                                <label for="companyName" class="text-3xl lg:text-base  block font-medium text-gray-900 dark:text-white">Name *</label>
                                 <input type="text" name="companyName" id="companyName" value="<?=$company->companyName?>" class="text-3xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>    
                                 <label for="companySlogan" class="text-3xl lg:text-base  block font-medium text-gray-900 dark:text-white">Slogan *</label>
                                 <input type="text" name="companySlogan" id="companySlogan" value="<?=$company->companySlogan?>" class="text-3xl lg:text-base  w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>    
-                                <label for="companySecteur" class="text-3xl lg:text-base  block font-medium text-gray-900 dark:text-white">Secteur *</label>
+                                <label for="companySecteur" class="text-3xl lg:text-base  block font-medium text-gray-900 dark:text-white">Sector *</label>
                                 <div class="w-full text-black text-3xl lg:text-base  ">
                                     <select id="secteursAll" name="secteursAll[]"  class="z-10 text-3xl lg:text-base mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
-                                        <option value="">Sélectionnez un secteur</option>
+                                        <option value="">Select a sector</option>
                                         <?php foreach ($secteursAll as $secteur): ?>
                                             <option class="text-3xl lg:text-base  dark:text-black" value="<?= $secteur['secteurName'] ?>"
                                                 <?= ($company->companySecteur == $secteur['secteurName']) ? 'selected' : '' ?>>
@@ -173,19 +173,19 @@ foreach ($ratedUsers as $rating) {
                                     <input type="text" name="userLinkedinLink" id="userLinkedinLink" value="<?=$user->userLinkedinLink?>" class="text-3xl lg:text-base  hidden mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                 
                                     <button type="submit" class="text-3xl lg:text-base  text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 mt-4 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                                        Valider
+                                        Save
                                     </button>
                                 </form>
                             </div>
                             <div id="user-password" class="px-6 space-y-4 md:space-y-6 hidden w-full h-full">
                                 <form method="post" action="<?php echo base_url('company/updateUserPassword'); ?>" enctype="multipart/form-data">
 
-                                <label for="userCurrentPassword" class="text-3xl lg:text-base block font-medium text-gray-900 dark:text-white">Saisissez votre mot de passe actuel *</label>
+                                <label for="userCurrentPassword" class="text-3xl lg:text-base block font-medium text-gray-900 dark:text-white">Enter your current password *</label>
                                 <input type="password" name="userCurrentPassword" id="userCurrentPassword" class="text-3xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" oninput="checkCurrentPassword(this.value)" required> 
                                 <p id="currentPasswordError" class="text-3xl lg:text-base text-red-500"></p>
-                                <label for="userPassword" class="text-3xl lg:text-base block font-medium text-gray-900 dark:text-white">Saisissez votre nouveau mot de passe *</label>
+                                <label for="userPassword" class="text-3xl lg:text-base block font-medium text-gray-900 dark:text-white">Enter your new password *</label>
                                 <input type="password" name="userPassword" id="userPassword" class="text-3xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required oninput="checkPasswordStrength(this.value)"> 
-                                <label for="confirmPassword" class="text-3xl lg:text-base block font-medium text-gray-900 dark:text-white">Confirmez votre nouveau mot de passe *</label>
+                                <label for="confirmPassword" class="text-3xl lg:text-base block font-medium text-gray-900 dark:text-white">Confirm your new password *</label>
                                 <input type="password" name="confirmPassword" id="confirmPassword" class="text-3xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required  oninput="checkPasswordMatch()"> 
 
                                 <div>
@@ -198,12 +198,12 @@ foreach ($ratedUsers as $rating) {
                                 <p id="passwordError" class="text-3xl lg:text-base text-red-500"></p>
                                 <div>
                                     <input type="checkbox" id="togglePasswordCheckbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox text-primary rounded mr-2">
-                                    <label for="togglePasswordCheckbox" class="text-3xl lg:text-base font-medium text-gray-900 dark:text-white">Afficher le mot de passe</label>
+                                    <label for="togglePasswordCheckbox" class="text-3xl lg:text-base font-medium text-gray-900 dark:text-white">Show password</label>
                                 </div>
                                     <!-- Autres champs d'informations personnelles -->
                                     
                                     <button id="passwordSubmit" type="submit" class="text-3xl lg:text-base text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-5 py-2.5 mt-4 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                                        Valider
+                                        Save
                                     </button>
                                 </form>
                             </div>
@@ -239,17 +239,17 @@ foreach ($ratedUsers as $rating) {
                                                     <div class="absolute bottom-0 right-0">
                                                         <a onclick="showModal('deleteRatingConfirmationModal-<?= $rating->idRating ?>');">
                                                             <button type="button" class="mb-4 text-3xl lg:text-base text-red-600 hover:text-red-900 focus:outline-none ml-2">
-                                                            <span>Supprimer l'avis</span>
+                                                            <span>Delete review</span>
                                                             </button>
                                                         </a>
                                                         <div id="deleteRatingConfirmationModal-<?= $rating->idRating ?>" class="hidden fixed inset-0 flex items-center justify-center z-50">
                                                             <div class="fixed inset-0 bg-black opacity-50"></div>
                                                             <div class="relative bg-gray-50 rounded-lg shadow p-6 border border-gray-800 dark:bg-gray-800 sm:p-5">
-                                                                <h3 class="text-3xl lg:text-lg font-semibold mb-4">Confirmation de suppression</h3>
-                                                                <p class="text-3xl lg:text-base text-gray-700 dark:text-white mb-6">Êtes-vous sûr de vouloir supprimer cet avis ?</p>
+                                                                <h3 class="text-3xl lg:text-lg font-semibold mb-4">Deletion confirmation</h3>
+                                                                <p class="text-3xl lg:text-base text-gray-700 dark:text-white mb-6">Are you sure you want to delete this review?</p>
                                                                 <div class="flex justify-end">
-                                                                    <button type="button" onclick="hideModal('deleteRatingConfirmationModal-<?= $rating->idRating ?>');" class="text-3xl lg:text-base text-gray-600 inline-flex items-center hover:text-white hover:bg-gray-800 border-gray-600  focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500  dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">Annuler</button>
-                                                                    <a href="<?=base_url('company/deleteRating/'.$rating->idRating)?>" class="text-3xl lg:text-base text-red-800 inline-flex items-center hover:text-white hover:bg-red-900 border-red-900  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500  dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Supprimer</a>
+                                                                    <button type="button" onclick="hideModal('deleteRatingConfirmationModal-<?= $rating->idRating ?>');" class="text-3xl lg:text-base text-gray-600 inline-flex items-center hover:text-white hover:bg-gray-800 border-gray-600  focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500  dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">Cancel</button>
+                                                                    <a href="<?=base_url('company/deleteRating/'.$rating->idRating)?>" class="text-3xl lg:text-base text-red-800 inline-flex items-center hover:text-white hover:bg-red-900 border-red-900  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500  dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Delete</a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -284,7 +284,7 @@ foreach ($ratedUsers as $rating) {
                                                                 <?php } ?>
                                                             <?php } ?>
                                                         </div>
-                                                        <p class="text text-sm text-gray-400 mt-2 ml-4" style="font-style: italic">En attente</p>
+                                                        <p class="text text-sm text-gray-400 mt-2 ml-4" style="font-style: italic">Pending validation</p>
                                                     </div>
                                                 </div>
                                                 <div class="absolute bottom-0 right-0">
@@ -296,8 +296,8 @@ foreach ($ratedUsers as $rating) {
                                                     <div id="deleteRatingConfirmationModal-<?= $rating->idRating ?>" class="hidden fixed inset-0 flex items-center justify-center z-50">
                                                         <div class="fixed inset-0 bg-black opacity-50"></div>
                                                         <div class="relative bg-gray-50 rounded-lg shadow p-6 border border-gray-800 dark:bg-gray-800 sm:p-5">
-                                                            <h3 class="text-lg font-semibold mb-4">Confirmation de suppression</h3>
-                                                            <p class="text-gray-700 dark:text-white mb-6">Êtes-vous sûr de vouloir supprimer cet avis ?</p>
+                                                            <h3 class="text-lg font-semibold mb-4">Deletion confirmation</h3>
+                                                            <p class="text-gray-700 dark:text-white mb-6">Are you sure you want to delete this review?</p>
                                                             <div class="flex justify-end">
                                                                 <button type="button" onclick="hideModal('deleteRatingConfirmationModal-<?= $rating->idRating ?>');" class="text-gray-600 inline-flex items-center hover:text-white hover:bg-gray-800 border-gray-600  focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-500 dark:text-gray-500  dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-900">Annuler</button>
                                                                 <a href="<?=base_url('company/deleteRating/'.$rating->idRating)?>" class="text-red-800 inline-flex items-center hover:text-white hover:bg-red-900 border-red-900  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500  dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Supprimer</a>
@@ -315,7 +315,7 @@ foreach ($ratedUsers as $rating) {
                                 }
                                 else {
                                     ?>
-                                        <p class="mt-2 mb-2"> Vous n'avez donné aucun avis pour le moment. </p>
+                                        <p class="mt-2 mb-2"> You haven't left any reviews yet. </p>
                                         <?php
                                 }
                                 ?>
@@ -376,7 +376,7 @@ $(document).ready(function () {
         removeItemButton: true,
         itemSelectText: '',
         placeholder: true,
-        placeholderValue: 'Sélectionnez un secteur',
+        placeholderValue: 'Select a sector',
     });
 
     // Cacher tous les formulaires sauf le premier au chargement de la page
@@ -455,15 +455,15 @@ function checkPasswordStrength(userPassword) {
     // Mettre à jour le texte de la force du mot de passe
     var passwordError = document.getElementById('passwordError');
     if (strength === 0) {
-        passwordError.textContent = 'Mot de passe faible';
+        passwordError.textContent = 'Weak password';
         passwordError.classList.remove('password-strength-medium-text', 'password-strength-strong-text');
         passwordError.classList.add('password-strength-weak-text');
     } else if (strength === 1 || strength === 2) {
-        passwordError.textContent = 'Mot de passe moyen';
+        passwordError.textContent = 'Medium password';
         passwordError.classList.remove('password-strength-weak-text', 'password-strength-strong-text');
         passwordError.classList.add('password-strength-medium-text');
     } else if (strength >= 3) {
-        passwordError.textContent = 'Mot de passe fort';
+        passwordError.textContent = 'Strong password';
         passwordError.classList.remove('password-strength-weak-text', 'password-strength-medium-text');
         passwordError.classList.add('password-strength-strong-text');
     }
@@ -484,14 +484,21 @@ function checkPasswordMatch() {
     var confirmPassword = confirmPasswordInput.value;
 
     if (password === confirmPassword) {
-        document.getElementById("passwordSubmit").removeAttribute("disabled");
+        // document.getElementById("passwordSubmit").removeAttribute("disabled");
         confirmPasswordInput.classList.remove('border-red-500');
         confirmPasswordError.textContent = '';
-        return true;
+        
+        // Vérifier si l'élément confirmPasswordError a la classe 'border-red-500'
+        var currentPasswordInput = document.getElementById("userCurrentPassword");
+        if (!currentPasswordInput.classList.contains('border-red-500')) {
+            document.getElementById("passwordSubmit").removeAttribute("disabled");
+            return true;
+        }
+        return false;
     } else {
         document.getElementById("passwordSubmit").setAttribute("disabled", "true");
         confirmPasswordInput.classList.add('border-red-500');
-        confirmPasswordError.textContent = "Les mots de passe ne correspondent pas";
+        confirmPasswordError.textContent = "The passwords do not match";
         return false;
     }
 }
@@ -547,9 +554,16 @@ function checkCurrentPassword(password) {
                 if (response.status === 'error') {
                     passwordInput.classList.add('border-red-500');
                     passwordError.textContent = response.message;
+                    document.getElementById("passwordSubmit").setAttribute("disabled", "true");
                 } else {
                     passwordInput.classList.remove('border-red-500');
                     passwordError.textContent = '';
+
+                    // Vérifier si l'élément confirmPasswordError a la classe 'border-red-500'
+                    var confirmPasswordInput = document.getElementById("confirmPassword");
+                    if (!confirmPasswordInput.classList.contains('border-red-500')) {
+                        document.getElementById("passwordSubmit").removeAttribute("disabled");
+                    }
                 }
             }
         }

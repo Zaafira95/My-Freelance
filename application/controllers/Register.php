@@ -271,9 +271,9 @@ class Register extends CI_Controller {
             // Enregistrement réussi
 
             $this->load->library('email');
-            $this->email->from('no-reply@cafe-creme.agency', 'Café Crème Community');
+            $this->email->from('no-reply@cafe-creme.agency', 'My Freelance');
             $this->email->to($userEmail); // Assurez-vous d'utiliser l'email de l'utilisateur
-            $this->email->subject('Activation de votre compte Café Crème Community');
+            $this->email->subject('Activation de votre compte My Freelance');
 
             // Lien d'activation
             $activationLink = base_url() . 'login?token=' . $activationToken;
@@ -294,7 +294,7 @@ class Register extends CI_Controller {
                 //$this->session->set_flashdata('message', 'Vous êtes bien enregistré. Connectez-vous pour accéder à votre compte.');
                 $this->session->set_flashdata('message', 'Un mail vous a été envoyé pour activer votre compte.');
                 $this->session->set_flashdata('status', 'success');
-                $this->load->view('login_view');
+                redirect('login');
             } else {
                 // Erreur lors de l'enregistrement
                 $this->session->set_flashdata('message', 'Erreur lors de l\'envoi du mail. Veuillez réessayer.');

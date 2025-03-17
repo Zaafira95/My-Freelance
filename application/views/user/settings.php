@@ -5,7 +5,7 @@ $currentPage = 'settings';
 include(APPPATH . 'views/layouts/user/header.php' );
 ?>
 <head>
-    <title><?='Paramètres '.$user->userFirstName.' '.$user->userLastName.' '.ucfirst($user->userType)?>  - My Freelance </title>
+    <title><?='Settings '.$user->userFirstName.' '.$user->userLastName.' '.ucfirst($user->userType)?>  - My Freelance </title>
 
 <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
 <link href="<?php echo base_url('assets/css/app.css');?>" rel="stylesheet">
@@ -95,7 +95,7 @@ if ($totalCount > 0) {
                 <div class="relative flex grid-cols-2 items-center overflow-hidden bg-white rounded-lg mb-4 dark:bg-gray-800 py-4 px-4">
                 <div class="flex flex-1">
                         <div>
-                            <img src="<?php echo base_url($user->userAvatarPath); ?>" class="object-cover w-40 h-40 rounded-full" alt="Profile picture">
+                            <img src="<?php echo base_url($user->userAvatarPath); ?>" class="object-cover w-40 h-40 rounded-full" alt="Profile photo">
                         </div>
                         <div class="ml-4">
                             <div class="flex">
@@ -116,12 +116,12 @@ if ($totalCount > 0) {
                                     <img src="<?php echo base_url('assets/img/light-star.svg'); ?>" class="w-6 h-6">
                                 <?php } ?>
                                 <?php } ?>
-                                    <p class="ml-2 text-3xl lg:text-base"><?=round($averageStars, 1).' ( '.$ratingCount.' reviews )'?></p>
+                                    <p class="ml-2 text-3xl lg:text-base"><?=round($averageStars, 1).' ( '.$ratingCount.' avis )'?></p>
                             </div>
                         <!-- Whatsapp -->
                         <div class="flex flex-wrap items-center">
                                 <!-- Whatsapp -->
-                            <a href="https://wa.me/<?=$user->userTelephone?>?text=Hello%20<?=$user->userFirstName?>%20!%20I%20am%20interested%20by%20your%20profile%20on%20My%20Freelance%20!%20" target="_blank">
+                            <a href="https://wa.me/<?=$user->userTelephone?>?text=Bonjour%20<?=$user->userFirstName?>%20!%20Je%20suis%20intéressé%20par%20votre%20profil%20sur%20Café%20Crème%20Community%20!%20" target="_blank">
                             
                             <button type="button" data-te-ripple-init data-te-ripple-color="light"
                                 class="mb-2 mr-4 inline-flex items-center rounded-full px-6 py-2.5 leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
@@ -132,7 +132,7 @@ if ($totalCount > 0) {
                                 </svg>
                                 </button>
                             </a>
-                                <p class="mb-2 mt-2 inline-block px-4 py-2.5 rounded-full bg-primary text-white"><?=$user->userTJM?> € / day</p>
+                                <p class="mb-2 mt-2 inline-block px-4 py-2.5 rounded-full bg-primary text-white"><?=$user->userTJM?> AED / Day</p>
                             </div>
                         </div>
                     </div>
@@ -157,7 +157,7 @@ if ($totalCount > 0) {
                                 <label for="userLastName" class="text-3xl lg:text-base block font-medium text-gray-900 dark:text-white">Your last name *</label>
                                 <input type="text" name="userLastName" id="userLastName" value="<?=$user->userLastName?>" class="text-3xl lg:text-base w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>
 
-                                <label for="userTelephone" class="text-3xl lg:text-base  block font-medium text-gray-900 dark:text-white"> Your WhatsApp number *</label>
+                                <label for="userTelephone" class="text-3xl lg:text-base  block font-medium text-gray-900 dark:text-white"> Yous WhatsApp number *</label>
                                 <input type="tel" name="userTelephone" id="userTelephone" value="<?=$user->userTelephone?>" class="text-3xl lg:text-base  w-full mb-4 bg-gray-50 border border-gray-300 text-gray-900 sm: rounded-lg block p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" required>    
                                 <p id="errorUserTelephone" class="text-red-500 text-3xl lg:text-base mt-2 hidden mb-4 ">Please enter a valid phone number</p>
 
@@ -191,7 +191,7 @@ if ($totalCount > 0) {
                             <p id="passwordError" class="text-3xl lg:text-base text-red-500"></p>
                             <div>
                                 <input type="checkbox" id="togglePasswordCheckbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox text-primary rounded mr-2">
-                                <label for="togglePasswordCheckbox" class="text-3xl lg:text-base font-medium text-gray-900 dark:text-white">Show Password</label>
+                                <label for="togglePasswordCheckbox" class="text-3xl lg:text-base font-medium text-gray-900 dark:text-white">Show password</label>
                             </div>
                                 <!-- Autres champs d'informations personnelles -->
                                 
@@ -329,7 +329,7 @@ function checkPasswordStrength(userPassword) {
         passwordError.classList.remove('password-strength-medium-text', 'password-strength-strong-text');
         passwordError.classList.add('password-strength-weak-text');
     } else if (strength === 1 || strength === 2) {
-        passwordError.textContent = 'Moderate password';
+        passwordError.textContent = 'Medium password';
         passwordError.classList.remove('password-strength-weak-text', 'password-strength-strong-text');
         passwordError.classList.add('password-strength-medium-text');
     } else if (strength >= 3) {
@@ -354,14 +354,21 @@ function checkPasswordMatch() {
     var confirmPassword = confirmPasswordInput.value;
 
     if (password === confirmPassword) {
-        document.getElementById("passwordSubmit").removeAttribute("disabled");
+        // document.getElementById("passwordSubmit").removeAttribute("disabled");
         confirmPasswordInput.classList.remove('border-red-500');
         confirmPasswordError.textContent = '';
-        return true;
+        
+        // Vérifier si l'élément confirmPasswordError a la classe 'border-red-500'
+        var currentPasswordInput = document.getElementById("userCurrentPassword");
+        if (!currentPasswordInput.classList.contains('border-red-500')) {
+            document.getElementById("passwordSubmit").removeAttribute("disabled");
+            return true;
+        }
+        return false;
     } else {
         document.getElementById("passwordSubmit").setAttribute("disabled", "true");
         confirmPasswordInput.classList.add('border-red-500');
-        confirmPasswordError.textContent = "Passwords do not match";
+        confirmPasswordError.textContent = "The passwords do not match";
         return false;
     }
 }
@@ -417,9 +424,16 @@ function checkCurrentPassword(password) {
                 if (response.status === 'error') {
                     passwordInput.classList.add('border-red-500');
                     passwordError.textContent = response.message;
+                    document.getElementById("passwordSubmit").setAttribute("disabled", "true");
                 } else {
                     passwordInput.classList.remove('border-red-500');
                     passwordError.textContent = '';
+
+                    // Vérifier si l'élément confirmPasswordError a la classe 'border-red-500'
+                    var confirmPasswordInput = document.getElementById("confirmPassword");
+                    if (!confirmPasswordInput.classList.contains('border-red-500')) {
+                        document.getElementById("passwordSubmit").removeAttribute("disabled");
+                    }
                 }
             }
         }

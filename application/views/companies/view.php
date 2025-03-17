@@ -31,8 +31,8 @@ include(APPPATH . 'views/layouts/user/header.php');
             <div class="bg-white rounded-lg w-full mb-4 dark:text-white dark:bg-gray-800 relative">
                 <div class="bg-white dark:bg-gray-800 relative rounded-lg w-full h-auto mb-8">
                     <div class="bg-white dark:bg-gray-800 rounded-lg w-full h-48 flex items-center justify-center">
-                        <div class="bg-white dark:bg-gray-800 w-full h-full flex items-center justify-center">
-                            <img src="<?=base_url($company->companyBannerPath)?>" class="object-cover w-full h-full rounded-lg dark:bg-gray-800" alt="Company Banner">
+                        <div class="bg-white dark:bg-gray-800 rounded-lg w-full h-full flex items-center justify-center">
+                            <img src="<?=base_url($company->companyBannerPath)?>" class="object-cover w-full h-full rounded-lg dark:bg-gray-800" alt="Image de l'entreprise">
                         </div>
                     </div>
                     <div class="rounded-full border-10 w-40 h-40 flex items-center justify-center" style="margin-top:-50px;">
@@ -47,7 +47,7 @@ include(APPPATH . 'views/layouts/user/header.php');
                         <h3 class="text-2xl lg:text-xl font-medium text-gray-400"><?=$company->companyLocalisation?></h3>
                     </div>
                     <div class="flex flex-wrap lg:mt-0 mt-4">
-                        <a href="https://wa.me/<?=$company->userTelephone?>?text=Hello%20<?=$company->userFirstName?>%20!%20I%20am%20interested%20by%20your%20company%20profile%20on%20My%20Freelance%20!%20" target="_blank">
+                        <a href="https://wa.me/<?=$company->userTelephone?>?text=Bonjour%20<?=$company->userFirstName?>%20!%20Je%20suis%20intéressé%20par%20votre%20entreprise%20sur%20Café%20Crème%20Community%20!%20" target="_blank">
                             <button type="button" data-te-ripple-init data-te-ripple-color="light"
                                 class="mr-4 h-10 inline-flex items-center rounded-full px-6 lg:py-2.5 py-4 leading-normal text-white  transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg"
                                 style="background-color: #25D366">
@@ -102,7 +102,7 @@ include(APPPATH . 'views/layouts/user/header.php');
                 <div class="hidden" id="myCompanyProfile" role="tabpanel" aria-labelledby="myCompanyProfile-tab">
                     <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                         <h2 class="text-4xl lg:text-xl font-bold mb-4 flex items-center">
-                        Company description
+                            Company description
                         </h2>
                         <div class="text-3xl lg:text-base items-center justify-between">
                             <p class="text-3xl lg:text-base font-normal mb-4">
@@ -113,7 +113,7 @@ include(APPPATH . 'views/layouts/user/header.php');
                     </div>
                     <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                         <h2 class="text-4xl lg:text-xl font-bold mb-4 flex items-center">
-                        Company benefits
+                            Company advantages
                         </h2>
                         <div class="text-3xl lg:text-base items-center justify-between">
                             <p class="text-3xl lg:text-base font-normal mb-4">
@@ -125,7 +125,7 @@ include(APPPATH . 'views/layouts/user/header.php');
 		<?php if($companyPhotos != null) { ?>
                     <div class="relative bg-white rounded-lg mt-4 mb-4 py-4 dark:bg-gray-800 dark:text-white">
                         <h2 class="text-4xl lg:text-xl font-bold mb-4 pl-4 flex items-center">
-                        Company photos
+                            Company pictures
                         </h2>
                         <div class="overflow-x-auto flex pb-4 px-4 gap-4 no-scrollbar">
                             <?php $imageCount = 0; ?>
@@ -150,7 +150,7 @@ include(APPPATH . 'views/layouts/user/header.php');
                             
                             <?php 
                             if (empty($missions)) {
-                                echo '<p class="text-center">No missions available at the moment</p>';
+                                echo '<p class="text-center">Aucune mission disponible pour le moment</p>';
                             }
                             else {
                             foreach($missions as $mission): ?>
@@ -168,7 +168,7 @@ include(APPPATH . 'views/layouts/user/header.php');
                                                         <span class="mr-2"> 
                                                             •   <?= $mission->jobName?>
                                                         </span>
-                                                        <span class="mr-2 font-medium"> • Daily rate: <?=$mission->missionTJM?> €</span>
+                                                        <span class="mr-2 font-medium"> • Daily rate: <?=$mission->missionTJM?> AED</span>
                                                         
                                                         <span class="mr-2"> •
                                                         <?php
@@ -179,7 +179,7 @@ include(APPPATH . 'views/layouts/user/header.php');
                                                             $mission->missionDuration = "Long-term";
                                                         }
                                                         elseif ($mission->missionDuration == "indefinie"){
-                                                            $mission->missionDuration = "Infinite duration";
+                                                            $mission->missionDuration = "Indefinite duration";
                                                         }                                            
                                                         ?>
                                                         <?=$mission->missionDuration?> 
@@ -207,10 +207,10 @@ include(APPPATH . 'views/layouts/user/header.php');
                                                             $mission->missionDeroulement = "Full remote";
                                                         }
                                                         elseif ($mission->missionDeroulement == "site"){
-                                                            $mission->missionDeroulement = "On-site";
+                                                            $mission->missionDeroulement = "On site";
                                                         }
                                                         elseif ($mission->missionDeroulement == "hybride"){
-                                                            $mission->missionDeroulement = "Hybrid";
+                                                            $mission->missionDeroulement = "Hybride";
                                                         }                                            
                                                         ?>
                                                         <?=$mission->missionDeroulement?>
@@ -224,7 +224,7 @@ include(APPPATH . 'views/layouts/user/header.php');
                                                             $mission->missionExpertise = "Junior";
                                                         }
                                                         elseif ($mission->missionExpertise == "intermediaire"){
-                                                            $mission->missionExpertise = "Intermédiaire";
+                                                            $mission->missionExpertise = "Intermediate";
                                                         }
                                                         elseif ($mission->missionExpertise == "expert"){
                                                             $mission->missionExpertise = "Expert";
@@ -263,7 +263,7 @@ include(APPPATH . 'views/layouts/user/header.php');
                                                                         
                                                                         break;
                                                                     case 2:
-                                                                        $level = 'Intermédiaire';
+                                                                        $level = 'Intermediate';
                                                                         $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
                                                                         $textdark = "text-white";
                                                                         $text = "text-black";
@@ -341,7 +341,7 @@ include(APPPATH . 'views/layouts/user/header.php');
             removeItemButton: true,
             itemSelectText: '',
             placeholder: true,
-            placeholderValue: 'Sélectionnez un secteur',
+            placeholderValue: 'Select a sector',
         });
     });
     

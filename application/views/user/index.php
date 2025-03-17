@@ -6,7 +6,7 @@ $currentPage = 'dashboard';
 include(APPPATH . 'views/layouts/user/header.php');
 ?>
 <head>
-    <title> My Freelance </title>
+    <title> My Freelances </title>
 
 <style>
     html,
@@ -47,7 +47,7 @@ if ($banner->bannerStatus == "active"){ ?>
             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
             </svg>
-            <span class="sr-only">Close</span>
+            <span class="sr-only">Fermer</span>
         </button>
     </div>
 </div>
@@ -96,9 +96,9 @@ if($totalInfos == 1 ){
                         <i class="fas fa-sliders-h"></i>
                     </button>
                 </div>
-                <div class="hidden lg:block bg-white rounded-lg lg:h-full lg:overflow-y-auto no-scrollbar lg:no-shadow shadow-lg mb-8 lg:mb-4 p-4 dark:bg-gray-800 dark:text-white" id="FilterMission">
-                    <h3 class="text-3xl lg:text-lg font-medium mt-2">Filtre</h3>
-                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Localisation</h4>
+                <div class="hidden lg:block bg-white rounded-lg lg:h-full overflow-y-auto no-scrollbar lg:no-shadow shadow-lg mb-8 lg:mb-4 p-4 dark:bg-gray-800 dark:text-white" id="FilterMission">
+                    <h3 class="text-3xl lg:text-lg font-medium mt-2">Filters</h3>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Location</h4>
                         <div class="flex items-center mt-2">
                             <i class="text-3xl lg:text-base fa fa-map-marker-alt mr-3"></i>    
                             <div class="relative city-search-container w-full">
@@ -106,72 +106,72 @@ if($totalInfos == 1 ){
                                 <div id="cities-list" class="text-3xl lg:text-lg absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                             </div>
                         </div>
-                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Type de poste</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Job Type</h4>
                     <div class="mt-2">
                         <label class="flex items-center ">
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="temps-plein" <?= ($user->userJobTimePartielOrFullTime == 'temps-plein') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-3xl lg:text-base">Temps plein</span>
+                            <span class="ml-2 text-3xl lg:text-base">Full-time</span>
                         </label>
                         <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="temps-partiel" <?= ($user->userJobTimePartielOrFullTime == 'temps-partiel') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-3xl lg:text-base">Temps partiel</span>
+                            <span class="ml-2 text-3xl lg:text-base">Part-time</span>
                         </label>
                     </div>
-                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Durée de la mission</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Mission Duration</h4>
                     <div class="mt-2">
                         <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="courte" <?= ($user->userJobTime == 'Courte Durée') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-3xl lg:text-base">Courte durée</span>
+                            <span class="ml-2 text-3xl lg:text-base">Short-term</span>
                         </label>
                         <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="longue" <?= ($user->userJobTime == 'Longue Durée') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-3xl lg:text-base">Longue durée</span>
+                            <span class="ml-2 text-3xl lg:text-base">Long-term</span>
                         </label>
                         <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="indefinie" <?= ($user->userJobTime == 'Durée indéfinie') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-3xl lg:text-base">Durée indéfinie</span>
+                            <span class="ml-2 text-3xl lg:text-base">Indefinite duration</span>
                         </label>
                     </div>
-                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Mode de déroulement</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Work Mode</h4>
                     <div class="mt-2">
                         <label class="flex items-center">
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="site" <?= ($user->userJobType === 'Physique') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-3xl lg:text-base">Sur site</span>
+                            <span class="ml-2 text-3xl lg:text-base">On-site</span>
                         </label>
                         <label class="flex items-center">
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="teletravail" <?= ($user->userJobType === 'Remote') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-3xl lg:text-base">Télétravail</span>
+                            <span class="ml-2 text-3xl lg:text-base">Remote</span>
                         </label>
                         <label class="flex items-center">
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="hybride" <?= ($user->userJobType === 'Hybride') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-3xl lg:text-base">Hybride</span>
+                            <span class="ml-2 text-3xl lg:text-base">Hybrid</span>
                         </label>
                     </div>
-                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Niveau d'expérience</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Experience Level</h4>
                     <div class="mt-2">
                         <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="junior" <?= ($user->userExperienceYear === 'junior') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-3xl lg:text-base">Junior (1 à 2 ans)</span>
+                            <span class="ml-2 text-3xl lg:text-base">Junior (1 to 2 years)</span>
                         </label>
                         <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="intermediaire" <?= ($user->userExperienceYear === 'intermediaire') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-3xl lg:text-base">Intermédiaire (3 à 5 ans)</span>
+                            <span class="ml-2 text-3xl lg:text-base">Intermediate (3 to 5 years)</span>
                         </label>
                         <label class="flex items-center text-xl lg:text-base">
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="expert" <?= ($user->userExperienceYear === 'expert') ? 'checked' : '' ?>>
-                            <span class="ml-2 text-3xl lg:text-base">Expert (+ 5 ans)</span>
+                            <span class="ml-2 text-3xl lg:text-base">Expert (5+ years)</span>
                         </label>
                     </div>
-                    <h4 class="text-3xl lg:text-lg font-medium mt-4">TJM</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Daily rate</h4>
                     <div class="mt-2 mr-3">
                         <div id="tjm-slider" class="w-full mt-2"></div>
                         <div class="flex justify-between mt-2">
-                            <span id="tjm-min" class="text-3xl lg:text-base">300€</span>
-                            <span id="tjm-max" class="text-3xl lg:text-base">1200€</span>
+                            <span id="tjm-min" class="text-3xl lg:text-base">300AED</span>
+                            <span id="tjm-max" class="text-3xl lg:text-base">1200AED</span>
                         </div>
                     </div>
                 
-                    <h4 class="text-3xl lg:text-base font-medium mt-4">Compétences</h4>
+                    <h4 class="text-3xl lg:text-base font-medium mt-4">Skills</h4>
                     <div class="w-full mx-auto mt-5 text-black">
                         <!-- <label for="skillsAll" class="block text-sm font-medium text-gray-700">Sélectionnez vos compétences</label> -->
                         <select id="skillsAll" name="skillsAll[]" multiple class="text-3xl lg:text-base mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
@@ -186,7 +186,7 @@ if($totalInfos == 1 ){
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Métiers</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Jobs</h4>
                     <div class="w-full mx-auto mt-5 text-black">
                         <select id="jobsAll" name="jobsAll[]" multiple class="text-3xl lg:text-base mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             <?php foreach ($jobsAll as $job): ?>
@@ -195,7 +195,7 @@ if($totalInfos == 1 ){
                         </select>
                     </div>
                     <div class="flex justify-between mt-6">
-                        <button id="resetFiltersButton" class="text-3xl lg:text-base text-primary border border-primary px-4 py-1 rounded-full 2 hover:bg-primary-900 hover:text-white">Effacer</button>
+                        <button id="resetFiltersButton" class="text-3xl lg:text-base text-primary border border-primary px-4 py-1 rounded-full 2 hover:bg-primary-900 hover:text-white">Cancel</button>
                     </div>
 
                     
@@ -211,19 +211,19 @@ if($totalInfos == 1 ){
             <!-- Fin Bloc Filtre -->
 
             <!-- Début Mission -->
-            <div class="w-full lg:w-6/12 h-full lg:overflow-y-auto no-scrollbar">
+            <div class="w-full lg:w-6/12 lg:sticky lg:top-0 h-full overflow-y-auto no-scrollbar">
                 <!-- Barre de recherche -->
                 <div class="bg-primary rounded-lg h-20vh p-4 text-white">
                     <p class="text-3xl lg:text-lg font-bold">Hello, <?=$user->userFirstName?></p>
-                    <p class="text-3xl lg:text-base mt-2 mb-2">Découvrez la manière la plus rapide et efficace de décrocher une mission.</p>
+                    <p class="text-3xl lg:text-base mt-2 mb-2">Discover the fastest and most effective way to land a mission.</p>
                     <div class="flex w-full">
-                        <input type="text" id="search-input" class="text-3xl lg:text-base w-full bg-white bg-opacity-20 rounded-lg p-2 placeholder-white mr-2 text-center" placeholder="Ecrivez le nom du poste que vous recherchez..." />
+                        <input type="text" id="search-input" class="text-3xl lg:text-base w-full bg-white bg-opacity-20 rounded-lg p-2 placeholder-white mr-2 text-center" placeholder="Type the job title you are looking for..." />
                         <!-- <button class="w-1/5 bg-white text-primary rounded-lg px-4 py-2">Rechercher</button> -->
                     </div>
                 </div>
                 <!-- Fin Barre de recherche -->
                 <!-- Début section pour vous -->
-                <h3 class="text-5xl lg:text-2xl font-medium mt-4 mb-4" id="result-section">Pour vous :</h3> 
+                <h3 class="text-5xl lg:text-2xl font-medium mt-4 mb-4" id="result-section">For you:</h3> 
                 <!-- Début section contenant toutes les missions -->
                 <div class="flex flex-wrap" id="missions-section">
                     <!-- Fonction ajouter favoris -->
@@ -299,19 +299,19 @@ if($totalInfos == 1 ){
                                             </span>
 
                                             <span class="mr-2"> 
-                                                • TJM : <?=$mission->missionTJM?> €
+                                                • Daily rate : <?=$mission->missionTJM?> AED
                                             </span>
                                             
                                             <span class="mr-2"> •
                                                 <?php
                                                 if ($mission->missionDuration == "courte"){
-                                                    $mission->missionDuration = "Courte durée";
+                                                    $mission->missionDuration = "Short-term";
                                                 }
                                                 elseif ($mission->missionDuration == "longue"){
-                                                    $mission->missionDuration = "Longue durée";
+                                                    $mission->missionDuration = "Long-term";
                                                 }
                                                 elseif ($mission->missionDuration == "indefinie"){
-                                                    $mission->missionDuration = "Durée indéfinie";
+                                                    $mission->missionDuration = "Indefinite duration";
                                                 }                                            
                                                 ?>
                                                 <?=$mission->missionDuration?> 
@@ -320,10 +320,10 @@ if($totalInfos == 1 ){
                                             <span class="mr-2"> •
                                                 <?php
                                                 if ($mission->missionType == "temps-plein"){
-                                                    $mission->missionType = "Temps Plein";
+                                                    $mission->missionType = "Full-time";
                                                 }
                                                 elseif ($mission->missionType == "temps-partiel"){
-                                                    $mission->missionType = "Temps Partiel";
+                                                    $mission->missionType = "Part-time";
                                                 }
                                                 elseif ($mission->missionType == "remote"){
                                                     $mission->missionType = "Remote";
@@ -336,13 +336,13 @@ if($totalInfos == 1 ){
                                                 <?php
 
                                                 if ($mission->missionDeroulement == "teletravail"){
-                                                    $mission->missionDeroulement = "Télétravail";
+                                                    $mission->missionDeroulement = "Full remote";
                                                 }
                                                 elseif ($mission->missionDeroulement == "site"){
-                                                    $mission->missionDeroulement = "Sur site";
+                                                    $mission->missionDeroulement = "On site";
                                                 }
                                                 elseif ($mission->missionDeroulement == "hybride"){
-                                                    $mission->missionDeroulement = "Hybride";
+                                                    $mission->missionDeroulement = "Hybrid";
                                                 }                                            
                                                 ?>
                                                 <?=$mission->missionDeroulement?>
@@ -358,7 +358,7 @@ if($totalInfos == 1 ){
                                                     $mission->missionExpertise = "Junior";
                                                 }
                                                 elseif ($mission->missionExpertise == "intermediaire"){
-                                                    $mission->missionExpertise = "Intermédiaire";
+                                                    $mission->missionExpertise = "Intermediate";
                                                 }
                                                 elseif ($mission->missionExpertise == "expert"){
                                                     $mission->missionExpertise = "Expert";
@@ -412,7 +412,7 @@ if($totalInfos == 1 ){
                                                             
                                                             break;
                                                         case 2:
-                                                            $level = 'Intermédiaire';
+                                                            $level = 'Intermediate';
                                                             $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
                                                             $textdark = "text-white";
                                                             $text = "text-black";
@@ -479,8 +479,8 @@ if($totalInfos == 1 ){
                 <!-- Fin section contenant toutes les missions -->
                 <!-- Début section aucune mission trouvée -->
                 <div id="no-mission-found">
-                    <p class="text-3xl lg:text-lg mt-6 text-left">Aucune mission n'a été trouvée.</p>
-                    <h3 class="text-5xl lg:text-2xl font-medium mt-10" id="result-section">Autres missions :</h3>
+                    <p class="text-3xl lg:text-lg mt-6 text-left">No missions found.</p>
+                    <h3 class="text-5xl lg:text-2xl font-medium mt-10" id="result-section">Other missions:</h3>
                     <?php 
                         foreach($missionsPerso as $mission):
                             $dataMissionSkills = [];
@@ -517,19 +517,19 @@ if($totalInfos == 1 ){
                                         </span>
                                         
                                         <span class="mr-2">
-                                            • TJM : <?=$mission->missionTJM?> €
+                                            • Daily rate: <?=$mission->missionTJM?> AED
                                         </span>
                                         
                                         <span class="mr-2"> •
                                             <?php
                                             if ($mission->missionDuration == "courte"){
-                                                $mission->missionDuration = "Courte durée";
+                                                $mission->missionDuration = "Short-term";
                                             }
                                             elseif ($mission->missionDuration == "longue"){
-                                                $mission->missionDuration = "Longue durée";
+                                                $mission->missionDuration = "Long-term";
                                             }
                                             elseif ($mission->missionDuration == "indefinie"){
-                                                $mission->missionDuration = "Durée indéfinie";
+                                                $mission->missionDuration = "Indefinite duration";
                                             }                                            
                                             ?>
                                             <?=$mission->missionDuration?> 
@@ -538,10 +538,10 @@ if($totalInfos == 1 ){
                                         <span class="mr-2"> •
                                             <?php
                                             if ($mission->missionType == "temps-plein"){
-                                                $mission->missionType = "Temps Plein";
+                                                $mission->missionType = "Full-time";
                                             }
                                             elseif ($mission->missionType == "temps-partiel"){
-                                                $mission->missionType = "Temps Partiel";
+                                                $mission->missionType = "Part-time";
                                             }
                                             elseif ($mission->missionType == "remote"){
                                                 $mission->missionType = "Remote";
@@ -554,13 +554,13 @@ if($totalInfos == 1 ){
                                             <?php
 
                                             if ($mission->missionDeroulement == "teletravail"){
-                                                $mission->missionDeroulement = "Télétravail";
+                                                $mission->missionDeroulement = "Full remote";
                                             }
                                             elseif ($mission->missionDeroulement == "site"){
-                                                $mission->missionDeroulement = "Sur site";
+                                                $mission->missionDeroulement = "On site";
                                             }
                                             elseif ($mission->missionDeroulement == "hybride"){
-                                                $mission->missionDeroulement = "Hybride";
+                                                $mission->missionDeroulement = "Hybrid";
                                             }                                            
                                             ?>
                                             <?=$mission->missionDeroulement?>
@@ -576,7 +576,7 @@ if($totalInfos == 1 ){
                                                 $mission->missionExpertise = "Junior";
                                             }
                                             elseif ($mission->missionExpertise == "intermediaire"){
-                                                $mission->missionExpertise = "Intermédiaire";
+                                                $mission->missionExpertise = "Intermediate";
                                             }
                                             elseif ($mission->missionExpertise == "expert"){
                                                 $mission->missionExpertise = "Expert";
@@ -621,7 +621,7 @@ if($totalInfos == 1 ){
                                                         
                                                         break;
                                                     case 2:
-                                                        $level = 'Intermédiaire';
+                                                        $level = 'Intermediate';
                                                         $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
                                                         $textdark = "text-white";
                                                         $text = "text-black";
@@ -702,27 +702,27 @@ if($totalInfos == 1 ){
                     </a>
                         <div class="items-center mt-1">
                             <p class="font-light text-center"><?=$jobUser->jobName?></p>
-                            <p class="font-light text-center"><?=$user->userTJM . ' €'?></p>
+                            <p class="font-light text-center"><?=$user->userTJM . ' AED'?></p>
                         </div>
                       <?php
                         if ($tauxCompletion != 100){
                         ?>
                             <div class="flex items-center mt-1">
-                                <p class="text-xl lg:text-base italic font-light">Profil complété à <?= $tauxCompletion?>%</p>
+                                <p class="text-xl lg:text-base italic font-light">Profile completed at <?= $tauxCompletion?>%</p>
                             </div>
                         <?php 
                         }
                       ?>
-                        <a href="<?php echo base_url('User/profil');?>" class="text-primary mt-2 border border-primary px-4 py-1 rounded-full hover:bg-primary-900 hover:text-white">Modifier mon profil</a>
+                        <a href="<?php echo base_url('User/profil');?>" class="text-primary mt-2 border border-primary px-4 py-1 rounded-full hover:bg-primary-900 hover:text-white">Edit my profile</a>
                     <!-- missions favorites -->
-                        <a href="<?php echo base_url('User/favoriteMission');?>" class="text-primary mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">Mes missions favorites</a>
-                        <a href="<?php echo base_url('user/logout');?>" class="text-red-800 mt-2 hover:text-red-900">Déconnexion</a>
+                        <a href="<?php echo base_url('User/favoriteMission');?>" class="text-primary mt-2  px-4 py-1 rounded 2 hover:bg-primary-900 hover:text-white">My favorite missions</a>
+                        <a href="<?php echo base_url('user/logout');?>" class="text-red-800 mt-2 hover:text-red-900">Logout</a>
 
                     </div>
                 </div>
 
                 <div class="bg-white rounded-lg mt-4 p-4 text-left dark:bg-gray-800 dark:text-white">
-                    <h3 class="text-xl font-medium mt-2">Expériences</h3>
+                    <h3 class="text-xl font-medium mt-2">Experiences</h3>
                     <?php if (is_array($experiences) && !empty($experiences)) {
                         $experienceCount = 0;
                         foreach ($experiences as $experience) {
@@ -746,14 +746,14 @@ if($totalInfos == 1 ){
                         }
                         ?>
                     <?php } else { ?>
-                        <p class="mt-2 mb-4"> Aucune expérience disponible. </p>
-                        <a href="<?php echo base_url('User/profil');?>" class="text-3xl lg:text-base py-2 px-4 bg-primary text-white rounded-full">Ajouter une expérience</a>
+                        <p class="mt-2 mb-4"> No experience available. </p>
+                        <a href="<?php echo base_url('User/profil');?>" class="text-3xl lg:text-base py-2 px-4 bg-primary text-white rounded-full">Add an experience</a>
                     <?php } ?>
                 </div>
 
 
                 <div class="bg-white rounded-lg mt-4 p-4 text-left dark:bg-gray-800 dark:text-white">
-                    <h3 class="text-xl font-medium mt-2 mb-4">Compétences et expertises</h3>
+                    <h3 class="text-xl font-medium mt-2 mb-4">Skills and expertise</h3>
                     <?php if (is_array($skills) && !empty($skills)) {
                         foreach ($skills as $skill) {
                             $level = '';
@@ -765,7 +765,7 @@ if($totalInfos == 1 ){
                                     $text = "text-black";
                                     break;
                                 case 2:
-                                    $level = 'Intermédiaire';
+                                    $level = 'Intermediate';
                                     $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
                                     $text = "text-black";
                                     break;
@@ -785,8 +785,8 @@ if($totalInfos == 1 ){
                     } else {
 
                     ?>
-                        <p class="mt-2 mb-4"> Aucune compétences et expertises renseignées. </p>
-                        <a href="<?php echo base_url('User/profil');?>" class="text-3xl lg:text-base py-2 px-4 bg-primary text-white rounded-full">Ajouter une compétence</a>
+                        <p class="mt-2 mb-4"> No skills and expertise provided. </p>
+                        <a href="<?php echo base_url('User/profil');?>" class="text-3xl lg:text-base py-2 px-4 bg-primary text-white rounded-full">Add a skill</a>
                     <?php } ?>
                 </div>
 
@@ -869,7 +869,7 @@ if($totalInfos == 1 ){
         removeItemButton: true,
         itemSelectText: '',
         placeholder: true, // Ajoutez cette ligne pour activer le placeholder
-        placeholderValue: 'Sélectionnez des compétences', // Texte du placeholder
+        placeholderValue: 'Select skills', // Texte du placeholder
 
     });
 
@@ -879,7 +879,7 @@ if($totalInfos == 1 ){
         removeItemButton: true,
         itemSelectText: '',
         placeholder: true, // Ajoutez cette ligne pour activer le placeholder
-        placeholderValue: 'Sélectionnez des métiers', // Texte du placeholder
+        placeholderValue: 'Select jobs', // Texte du placeholder
 
     });
 
@@ -926,10 +926,10 @@ if($totalInfos == 1 ){
         step: 10, // Ajout de la propriété step pour les tranches de 10
         format: {
         to: function(value) {
-            return parseInt(value) + '€';
+            return parseInt(value) + ' AED';
         },
         from: function(value) {
-            return value.replace('€', '');
+            return value.replace(' AED', '');
         }
         }
     });

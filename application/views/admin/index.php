@@ -110,13 +110,13 @@ if ($banner->bannerStatus == "active"){ ?>
                                 <h5 class="inline-flex items-center text-gray-500 dark:text-gray-400 leading-none font-normal mb-2">ESN
                             
                                 </h5>
-                                <p class="text-gray-900 dark:text-white text-2xl leading-none font-bold">42,3k €</p>
+                                <p class="text-gray-900 dark:text-white text-2xl leading-none font-bold">42,3k AED</p>
                             </div>
                             <div>
                                 <h5 class="inline-flex items-center text-gray-500 dark:text-gray-400 leading-none font-normal mb-2">Freelances
                              
                                 </h5>
-                                <p class="text-gray-900 dark:text-white text-2xl leading-none font-bold">12,7k €</p>
+                                <p class="text-gray-900 dark:text-white text-2xl leading-none font-bold">12,7k AED</p>
                             </div>
                             </div>
                             <div>                            
@@ -151,14 +151,14 @@ if ($banner->bannerStatus == "active"){ ?>
                                                         ?>
                                                         <div class="flex items-center space-x-1 bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-300 dark:text-green-900">
                                                             <div style="width: 0.5rem; height: 0.5rem" class="bg-green-500 rounded-full dark:bg-green-700"></div>
-                                                            <div>Disponible</div>
+                                                            <div>Available</div>
                                                         </div>
                                                         <?php
                                                             } else {
                                                         ?>
                                                             <div class="flex items-center space-x-1 bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-300 dark:text-red-900">
                                                                 <div style="width: 0.5rem; height: 0.5rem" class="bg-red-500 rounded-full dark:bg-red-700"></div>
-                                                                <div>Non Disponible</div>
+                                                                <div>Unvailable</div>
                                                             </div>
                                                         <?php
                                                             }
@@ -174,7 +174,7 @@ if ($banner->bannerStatus == "active"){ ?>
                                             </div>
                                             
                                             <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                <?= $freelancer->userTJM?> €/j
+                                                <?= $freelancer->userTJM?> AED/j
                                             </div>
                                         </div>
                                     </li>
@@ -270,7 +270,7 @@ if ($banner->bannerStatus == "active"){ ?>
                                             </div>
                                             
                                             <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                <?= $freelancer->userTJM?> €/j
+                                                <?= $freelancer->userTJM?> AED/j
                                             </div>
                                         </div>
                                     </li>
@@ -331,7 +331,7 @@ if ($banner->bannerStatus == "active"){ ?>
                                             </div>
                                             
                                             <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                <?= $freelancer->userTJM?> €/j
+                                                <?= $freelancer->userTJM?> AED/j
                                             </div>
                                         </div>
                                     </li>

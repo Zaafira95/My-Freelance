@@ -61,9 +61,9 @@ class Company extends CI_Controller {
             if ($user->userLoginCount == 1 && $welcome_mail == "False") {
 
                 $this->load->library('email');
-                $this->email->from('no-reply@cafe-creme.agency', 'Café Crème Community');
+                $this->email->from('no-reply@cafe-creme.agency', 'My Freelance');
                 $this->email->to($user->userEmail); // Assurez-vous d'utiliser l'email de l'utilisateur
-                $this->email->subject('Bienvenue chez Café Crème Community 👋🏻');
+                $this->email->subject('Welcome to My Freelance 👋🏻');
                 $mailLink = base_url();
                 $data['mailLink'] = $mailLink;
                 // $data['userFirstName'] = $user->userFirstName;
@@ -203,9 +203,9 @@ class Company extends CI_Controller {
 
 
         if ($contactOrNot == 'on') {
-            $outputMessage = $companyMessage . "\n\n Nom de la mission : " . $job->missionName .  "\n\n TJM : " . $missionTjm . "€ \n\n Nom de l'entreprise : " .$company->companyName ;
+            $outputMessage = $companyMessage . "\n\n Mission name : " . $job->missionName .  "\n\n Daily rate : " . $missionTjm . "AED \n\n Company name : " .$company->companyName ;
         } else {
-            $outputMessage = $companyMessageDefault . "\n\n Nom de l'entreprise : " .$company->companyName ;
+            $outputMessage = $companyMessageDefault . "\n\n Company name : " .$company->companyName ;
         }
 
       
@@ -369,7 +369,7 @@ class Company extends CI_Controller {
             }
         }
 
-        $this->session->set_flashdata('message', 'Votre mission a bien été ajoutée !');
+        $this->session->set_flashdata('message', 'Your mission has been successfully added!');
         $this->session->set_flashdata('status', 'success');
         redirect('company/missionView/' . $missionId); 
     }
@@ -409,7 +409,7 @@ class Company extends CI_Controller {
                 }
             }
 
-            $this->session->set_flashdata('message', 'Votre mission a bien été modifiée !');
+            $this->session->set_flashdata('message', 'Your mission has been successfully updated!');
             $this->session->set_flashdata('status', 'success');
             redirect('company/missionView/' . $missionId); 
         } else {
@@ -440,7 +440,7 @@ class Company extends CI_Controller {
             }
 
             $this->Company_model->deleteMission($missionId);
-            $this->session->set_flashdata('message', 'Votre mission a bien été supprimée !');
+            $this->session->set_flashdata('message', 'Your mission has been successfully deleted!');
             $this->session->set_flashdata('status', 'success');
             redirect('company/my_company');
 
@@ -612,7 +612,7 @@ class Company extends CI_Controller {
         $companyId = $company->idCompany;
 
         $this->Company_model->updateCompanyDescription($companyId, $companyDescription);
-        $this->session->set_flashdata('message', 'Votre description a bien été mise à jour !');
+        $this->session->set_flashdata('message', 'Your description has been successfully updated!');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
        
@@ -626,7 +626,7 @@ class Company extends CI_Controller {
         $companyId = $company->idCompany;
 
         $this->Company_model->updateCompanyAdvantages($companyId, $companyAvantages);
-        $this->session->set_flashdata('message', 'Vos avantages ont bien été mis à jour !');
+        $this->session->set_flashdata('message', 'Your advantages have been successfully updated!');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
        
@@ -752,7 +752,7 @@ class Company extends CI_Controller {
         }
 
         $this->Company_model->updateCompanyData($companyId, $companyName, $companySlogan, $companySecteur, $companyLocalisation, $userId, $userLinkedinLink, $userTelephone, $companyWebsite);
-        $this->session->set_flashdata('message', 'Vos informations ont bien été mises à jour !');
+        $this->session->set_flashdata('message', 'Your information have been successfully updated!');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
     }
@@ -802,7 +802,7 @@ class Company extends CI_Controller {
             }
         }
     
-        $this->session->set_flashdata('message', 'Vos photos ont bien été mises à jour !');
+        $this->session->set_flashdata('message', 'Your pictures have been successfully updated!');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
     }
@@ -823,7 +823,7 @@ class Company extends CI_Controller {
 
         $this->Company_model->deletePhotoPath($id);
 
-        $this->session->set_flashdata('message', 'Votre photo a bien été supprimée !');
+        $this->session->set_flashdata('message', 'Your picture has been successfully deleted!');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
     }
@@ -869,7 +869,7 @@ class Company extends CI_Controller {
             }
         }
     
-        $this->session->set_flashdata('message', 'Votre photo a bien été ajoutée !');
+        $this->session->set_flashdata('message', 'Your picture has been successfully added!');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
     }
@@ -927,7 +927,7 @@ class Company extends CI_Controller {
         $userTelephone = $this->input->post('userTelephone');
 
         $this->Company_model->updateUserData($userId, $userFirstName, $userLastName, $userTelephone);
-        $this->session->set_flashdata('message', 'Vos informations personnelles ont bien été mises à jour !');
+        $this->session->set_flashdata('message', 'Your personal information have been successfully updated!');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
     }
@@ -940,7 +940,7 @@ class Company extends CI_Controller {
         $userPassword = password_hash($userPassword, PASSWORD_DEFAULT);
 
         $this->Company_model->updateUserPassword($userId, $userPassword);
-        $this->session->set_flashdata('message', 'Votre mot de passe a bien été mis à jour !');
+        $this->session->set_flashdata('message', 'Your password has been successfully updated!');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
     }
@@ -957,7 +957,7 @@ class Company extends CI_Controller {
         $ratingStatus = 1;
 
         $this->Company_model->addRating($userId, $ratedUserId, $ratingComment, $ratingStars, $ratingDate, $ratingStatus);
-        $this->session->set_flashdata('message', "Votre avis a été ajouté avec succès !");
+        $this->session->set_flashdata('message', "Your review has been successfully added!");
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
     }
@@ -966,7 +966,7 @@ class Company extends CI_Controller {
         $this->load->model('Company_model');
 
         $this->Company_model->deleteRating($ratingId);
-        $this->session->set_flashdata('message', 'Votre avis a bien été supprimé !');
+        $this->session->set_flashdata('message', 'Your review has been successfully deleted!');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);
     }
@@ -1003,7 +1003,7 @@ class Company extends CI_Controller {
             echo json_encode(array('status' => 'success', 'message' => ''));
         } else {
             // Mot de passe incorrect
-            echo json_encode(array('status' => 'error', 'message' => 'Mot de passe incorrect'));
+            echo json_encode(array('status' => 'error', 'message' => 'Incorrect password'));
         }
     }
     

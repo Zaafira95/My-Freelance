@@ -22,8 +22,8 @@ include(APPPATH . 'views/layouts/company/header.php');
                     </button>
                 </div>
                 <div class="hidden lg:block bg-white rounded-lg lg:h-full lg:overflow-y-auto no-scrollbar lg:no-shadow shadow-lg mb-8 lg:mb-4 p-4 dark:bg-gray-800 dark:text-white" id="FilterMission">
-                <h3 class="text-3xl lg:text-lg font-medium mt-2">Filtre</h3>
-                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Localisation</h4>
+                    <h3 class="text-3xl lg:text-lg font-medium mt-2">Filters</h3>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Location</h4>
                         <div class="flex items-center mt-2">
                             <i class="text-3xl lg:text-base fa fa-map-marker-alt mr-3"></i>    
                             <div class="relative city-search-container w-full">
@@ -31,57 +31,57 @@ include(APPPATH . 'views/layouts/company/header.php');
                                 <div id="cities-list" class="text-3xl lg:text-lg absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                             </div>
                         </div>
-                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Type de poste</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Job type</h4>
                     <div class="mt-2">
                         <label class="flex items-center">
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="temps-plein">
-                            <span class="ml-2 text-3xl lg:text-base">Temps plein</span>
+                            <span class="ml-2 text-3xl lg:text-base">Full-time</span>
                         </label>
                         <label class="flex items-center">
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="temps-partiel">
-                            <span class="ml-2 text-3xl lg:text-base">Temps partiel</span>
+                            <span class="ml-2 text-3xl lg:text-base">Part-time</span>
                         </label>
                         <label class="flex items-center">
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="remote">
                             <span class="ml-2 text-3xl lg:text-base">Remote</span>
                         </label>
                     </div>
-                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Niveau d'expérience</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Experience level</h4>
                     <div class="mt-2">
                         <label class="flex items-center">
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="junior">
-                            <span class="ml-2 text-3xl lg:text-base">Junior (1 à 2 ans)</span>
+                            <span class="ml-2 text-3xl lg:text-base">Junior (1 to 2 years)</span>
                         </label>
                         <label class="flex items-center">
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="intermediaire">
-                            <span class="ml-2 text-3xl lg:text-base">Intermédiaire (3 à 5 ans)</span>
+                            <span class="ml-2 text-3xl lg:text-base">Intermediate (3 to 5 years)</span>
                         </label>
                         <label class="flex items-center">
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="expert">
-                            <span class="ml-2 text-3xl lg:text-base">Expert (+ 5 ans)</span>
+                            <span class="ml-2 text-3xl lg:text-base">Expert (5+ years)</span>
                         </label>
                     </div>
-                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Disponibilité</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Availability</h4>
                     <div class="mt-2">
                         <label class="flex items-center">
                         <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="available">
-                            <span class="ml-2 text-3xl lg:text-base">Disponible</span>
+                            <span class="ml-2 text-3xl lg:text-base">Available</span>
                         </label>
                         <label class="flex items-center">
                         <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="unavailable">
-                            <span class="ml-2 text-3xl lg:text-base">Non disponible</span>
+                            <span class="ml-2 text-3xl lg:text-base">Unvailable</span>
                         </label>
                     </div>
                     <h4 class="text-3xl lg:text-lg font-medium mt-4">TJM</h4>
                     <div class="mt-2 mr-3">
                         <div id="tjm-slider" class="w-full mt-2"></div>
                         <div class="flex justify-between mt-2">
-                            <span id="tjm-min" class="text-3xl lg:text-base">300€</span>
-                            <span id="tjm-max" class="text-3xl lg:text-base">1200€</span>
+                            <span id="tjm-min" class="text-3xl lg:text-base">300AED</span>
+                            <span id="tjm-max" class="text-3xl lg:text-base">1200AED</span>
                         </div>
                     </div>
                 
-                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Compétences</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Skills</h4>
                     <div class="w-full mx-auto mt-5 text-black">
                         <select id="skillsAll" name="skillsAll[]" multiple class="text-3xl lg:text-base mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             <?php foreach ($skillsAll as $skill): ?>
@@ -89,7 +89,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Métiers</h4>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Jobs</h4>
                     <div class="w-full mx-auto mt-5 text-black">
                         <select id="jobsAll" name="jobsAll[]" multiple class="text-3xl lg:text-base mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             <?php foreach ($jobsAll as $job): ?>
@@ -98,7 +98,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                         </select>
                     </div>
                     <div class="flex justify-between mt-6">
-                        <button id="resetFiltersButton" class="text-3xl lg:text-base text-primary border border-primary px-4 py-1 rounded-full 2 hover:bg-primary-900 hover:text-white">Effacer</button>
+                        <button id="resetFiltersButton" class="text-3xl lg:text-base text-primary border border-primary px-4 py-1 rounded-full 2 hover:bg-primary-900 hover:text-white">Reset</button>
                     </div>
                 </div>
                 
@@ -106,13 +106,13 @@ include(APPPATH . 'views/layouts/company/header.php');
             <div class="w-full h-full lg:overflow-y-auto no-scrollbar">
                 <div class="bg-primary rounded-lg h-20vh p-4 text-white">
                     <p class="text-3xl lg:text-lg font-bold">Hello, <?=$user->userFirstName?></p>
-                    <p class="text-3xl lg:text-base mt-2 mb-2">Découvrez la manière la plus rapide et efficace de trouver votre freelance.</p>
+                    <p class="text-3xl lg:text-base mt-2 mb-2">Discover the fastest and most efficient way to find your freelancer.</p>
                     <div class="flex w-full">
-                        <input type="text" id="search-input" class="text-3xl lg:text-base w-full bg-white bg-opacity-20 rounded-lg p-2 placeholder-white mr-2 text-center" placeholder="Ecrivez le nom du freelance que vous recherchez..." />
+                        <input type="text" id="search-input" class="text-3xl lg:text-base w-full bg-white bg-opacity-20 rounded-lg p-2 placeholder-white mr-2 text-center" placeholder="Enter the name of the freelancer you are looking for..." />
                         <!-- <button class="w-1/5 bg-white text-primary rounded-lg px-4 py-2">Rechercher</button> -->
                     </div>
                 </div>
-                <h3 class="text-5xl lg:text-2xl font-medium mt-4" id="result-section">Pour vous :</h3>
+                <h3 class="text-5xl lg:text-2xl font-medium mt-4" id="result-section">For you:</h3>
                 <div class="flex flex-wrap" id="freelancers-section">
 
                     <?php foreach($freelancers as $freelancer): ?>
@@ -151,14 +151,14 @@ include(APPPATH . 'views/layouts/company/header.php');
                                             ?>
                                             <div class="flex items-center space-x-1 bg-green-100 text-green-800 text-xl lg:text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-300 dark:text-green-900">
                                                 <div class="w-2 h-2 lg:h-2 lg:w-2 bg-green-500 rounded-full dark:bg-green-700"></div>
-                                                <div>Disponible</div>
+                                                <div>Available</div>
                                             </div>
                                             <?php
                                                 } else {
                                             ?>
                                                 <div class="flex items-center space-x-1 bg-red-100 text-red-800 text-xl lg:text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-300 dark:text-red-900">
                                                     <div class="w-2 h-2 lg:h-2 lg:w-2 bg-red-500 rounded-full dark:bg-red-700"></div>
-                                                    <div>Non Disponible</div>
+                                                    <div>Unvailable</div>
                                                 </div>
                                             <?php
                                                 }
@@ -169,14 +169,14 @@ include(APPPATH . 'views/layouts/company/header.php');
                                             <?php foreach ($freelancer_job[$freelancer->userId] as $job): ?>
                                                 <span class="mr-2"><?=$job->jobName?></span>
                                             <?php endforeach; ?>
-                                                <span class="mr-2"> • TJM : <?=$freelancer->userTJM?> €</span>
+                                                <span class="mr-2"> • Daily rate: <?=$freelancer->userTJM?> AED</span>
                                                 <span class="mr-2"> •
                                                 <?php
                                                 if ($freelancer->userJobTimePartielOrFullTime == "temps-plein"){
-                                                    $freelancer->userJobTimePartielOrFullTime = "Temps Plein";
+                                                    $freelancer->userJobTimePartielOrFullTime = "Full-time";
                                                 }
                                                 elseif ($freelancer->userJobTimePartielOrFullTime == "temps-partiel"){
-                                                    $freelancer->userJobTimePartielOrFullTime = "Temps Partiel";
+                                                    $freelancer->userJobTimePartielOrFullTime = "Part-time";
                                                 }
                                                 elseif ($freelancer->userJobTimePartielOrFullTime == "remote"){
                                                     $freelancer->userJobTimePartielOrFullTime = "Remote";
@@ -199,7 +199,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                                                         $freelancer->userExperienceYear = "Junior";
                                                     }
                                                     elseif ($freelancer->userExperienceYear == "intermediaire"){
-                                                        $freelancer->userExperienceYear = "Intermédiaire";
+                                                        $freelancer->userExperienceYear = "Intermediate";
                                                     }
                                                     elseif ($freelancer->userExperienceYear == "expert"){
                                                         $freelancer->userExperienceYear = "Expert";
@@ -237,7 +237,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                                                 $textdark = "text-black";
                                                 break;
                                             case 2:
-                                                $level = 'Intermédiaire';
+                                                $level = 'Intermediate';
                                                 $color = '#63B3ED'; // Couleur pour le niveau intermédiaire
                                                 $text = "text-black";
                                                 $textdark = "text-white";
@@ -352,7 +352,7 @@ include(APPPATH . 'views/layouts/company/header.php');
         removeItemButton: true,
         itemSelectText: '',
         placeholder: true, // Ajoutez cette ligne pour activer le placeholder
-        placeholderValue: 'Sélectionnez des métiers', // Texte du placeholder
+        placeholderValue: 'Select Jobs', // Texte du placeholder
 
     });
 
@@ -362,7 +362,7 @@ include(APPPATH . 'views/layouts/company/header.php');
         removeItemButton: true,
         itemSelectText: '',
         placeholder: true, // Ajoutez cette ligne pour activer le placeholder
-        placeholderValue: 'Sélectionnez des compétences', // Texte du placeholder
+        placeholderValue: 'Select Skills', // Texte du placeholder
 
     });
 
@@ -408,10 +408,10 @@ include(APPPATH . 'views/layouts/company/header.php');
             step: 10, // Ajout de la propriété step pour les tranches de 10
             format: {
             to: function(value) {
-                return parseInt(value) + '€';
+                return parseInt(value) + ' AED';
             },
             from: function(value) {
-                return value.replace('€', '');
+                return value.replace(' AED', '');
             }
             }
         });

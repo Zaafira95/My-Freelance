@@ -78,9 +78,9 @@ class Login extends CI_Controller {
         if($this->Login_model->savePasswordToken($userEmail, $resetPasswordToken, $expirationDate)) {
             //send email
             $this->load->library('email');
-            $this->email->from('no-reply@cafe-creme.agency', 'Café Crème Community');
+            $this->email->from('no-reply@cafe-creme.agency', 'My Freelance');
             $this->email->to($userEmail); // Assurez-vous d'utiliser l'email de l'utilisateur
-            $this->email->subject('Réinitialisation de votre mot de passe Café Crème Community');
+            $this->email->subject('Réinitialisation de votre mot de passe My Freelance');
             $resetPasswordLink = base_url() . 'login/reset_password?token=' . $resetPasswordToken;
             $data['resetPasswordLink'] = $resetPasswordLink;
             $body = $this->load->view('email/reset_password', $data, TRUE);

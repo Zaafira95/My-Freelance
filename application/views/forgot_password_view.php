@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mot de passe oublié | Café Crème Community</title>
+    <title>Mot de passe oublié | My Freelance</title>
     <link href="<?php echo base_url('assets/css/app.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
     <link rel="icon" href="<?php echo base_url('assets/img/Favicon.ico'); ?>" type="image/x-icon">
@@ -51,15 +51,15 @@
     <div class="w-full lg:ml-6 lg:w-5/12">
         <div class="flex flex-col justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
             <a href="<?php echo base_url('/')?>" class="flex mb-6 text-2xl font-semibold text-gray-900">
-                <img class="w-60 lg:justify-start lg:m-0 lg:w-40 mr-2" src="<?php echo base_url('assets/img/logo.svg');?>" alt="Café Crème Community" id="logoLogin">
+                <img class="w-60 lg:justify-start lg:m-0 lg:w-40 mr-2" src="<?php echo base_url('assets/img/logo.svg');?>" alt="My Freelance" id="logoLogin">
             </a>
             <div class="p-6 w-full bg-white rounded-lg shadow md:mt-0 xl:p-0 dark:bg-gray-800 dark:text-white lg:p-0">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <h1 class="text-5xl lg:text-2xl font-bold mb-2 leading-tight tracking-tight text-gray-900 dark:text-white">
-                        Mot de passe oublié ?
+                        Forgot password?
                     </h1>
                     <p class="text-3xl lg:text-base text-dark mb-2 dark:text-white">
-                    Saississez l'adresse e-mail utilisée lors de votre inscription, et nous vous enverrons un lien pour réinitialiser votre mot de passe.
+                        Enter the email address you used to sign up, and we'll send you a link to reset your password.
                     </p>
                     <form class="space-y-4 md:space-y-6" method="post" action="<?php echo base_url('login/forgotPassword'); ?>" onsubmit="showLoader();">
                         <div>
@@ -68,7 +68,7 @@
                         <button type="submit" class="text-3xl lg:text-base w-full text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center">Envoyer le lien</button>
                     </form>
                     <div class="flex items-center justify-end">
-                        <a href="<?php echo base_url('login'); ?>" class="text-3xl lg:text-base font-medium text-primary hover:underline">Finalement je m'en souviens !</a>
+                        <a href="<?php echo base_url('login'); ?>" class="text-3xl lg:text-base font-medium text-primary hover:underline">Never mind, I remember it!</a>
                     </div>
                 </div>
             </div>

@@ -6,7 +6,7 @@ $currentPage = 'dashboard';
 include(APPPATH . 'views/layouts/user/header.php');
 ?>
 <head>
-    <title> My Freelance </title>
+    <title> My Freelances </title>
 
 <style>
     html,

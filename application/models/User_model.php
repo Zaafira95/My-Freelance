@@ -21,6 +21,15 @@ class User_model extends CI_Model {
         return $query->row();
     }
 
+    // Récupérer le pays de l'utilisateur connecté avec le country id
+    public function getUserCountry($userCountryId){
+        $this->db->select('*');
+        $this->db->from('Countries');
+        $this->db->where('idCountry', $userCountryId);
+        $query = $this->db->get();
+        return $query->row();
+    }
+
     
     // Recupérer toutes les expériences avec le user id
     public function getUserExperience($userId){
@@ -49,7 +58,7 @@ class User_model extends CI_Model {
         $this->db->update('Users');
     }
 
-    //Zaafira 25/07/2024
+    
     public function updateUserAvailability($userId, $userAvailability, $userJobTimePartielOrFullTime, $dateFinIndisponibilite){
         $this->db->set('userIsAvailable', $userAvailability);
         $this->db->set('userJobTimePartielOrFullTime', $userJobTimePartielOrFullTime);
@@ -460,6 +469,10 @@ class User_model extends CI_Model {
 
         public function get_all_cities(){
             $query = $this->db->get('Geonames_cities');
+            return $query->result_array();
+        }
+        public function get_all_countries(){
+            $query = $this->db->get('Countries');
             return $query->result_array();
         }
 

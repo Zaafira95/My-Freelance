@@ -71,6 +71,8 @@ class User extends CI_Controller {
         $data['skillsAll'] = $this->User_model->get_all_skills();
 
         $data['jobsAll'] = $this->User_model->get_all_jobs();
+
+        $data['countriesAll'] = $this->User_model->get_all_countries();
         
         $userData = $this->User_model->getUserData($user->userId);
 

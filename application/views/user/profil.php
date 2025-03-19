@@ -1970,7 +1970,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (fileInput.files.length > 0) {
             filenameSpan.textContent = fileInput.files[0].name;
         } else {
-            filenameSpan.textContent = 'Choisir un fichier';
+            filenameSpan.textContent = 'select a file';
         }
     });
     

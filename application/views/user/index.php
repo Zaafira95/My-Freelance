@@ -110,7 +110,14 @@ if($totalInfos == 1 ){
                     <div class="w-full mx-auto mt-5 text-black">
                         <select id="countriesAll" name="countriesAll[]" multiple class="text-3xl lg:text-base mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             <?php foreach ($countriesAll as $country): ?>
-                                <option class="text-black" value="<?= $country['idCountry'] ?>"><?= $country['countryName'] ?></option>
+                                <!-- <option class="text-black" value="<?= $country['idCountry'] ?>" 
+                                    <?php if (!empty($userCountry)): ?>
+                                            <?= ($userCountry->$userCoutryId == $country['idCountry']) ? 'selected' : '' ?>
+                                    <?php endif; ?>> -->
+                                    <option class="text-black" value="<?= $country['idCountry'] ?>">
+                                    <?= $country['countryName'] ?>
+                                    </option>
+                                    
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -966,7 +973,7 @@ if($totalInfos == 1 ){
     });
 
     // JS POUR LOCALISATION PAR RECHERCHE
-    
+
     // $(document).ready(function() {
     //     // Écouteur d'événement pour détecter les changements dans la barre de recherche
     //     $('#search-input').on('input', function() {
@@ -1037,15 +1044,12 @@ document.addEventListener("DOMContentLoaded", function() {
             // Réinitialisez les filtres en décochant toutes les cases à cocher
             $('.form-checkbox').prop('checked', false);
 
-            // POUR RECHERCHE LOCALISATION --> $('#citySearch').val('');
-            $('#jobsAll').val(null);
-            $('#countriesAll').val(null);
-
-            document.querySelector('#skillsAll').parentNode.querySelector('.choices__input--cloned').value = '';
-            document.querySelector('#jobsAll').parentNode.querySelector('.choices__input--cloned').value = '';
-            document.querySelector('#countriesAll').parentNode.querySelector('.choices__input--cloned').value = '';
+            // document.querySelector('#skillsAll').parentNode.querySelector('.choices__input--cloned').value = '';
+            // document.querySelector('#jobsAll').parentNode.querySelector('.choices__input--cloned').value = '';
 
             skillsChoices.removeActiveItems();
+            jobsChoices.removeActiveItems();
+            countriesChoices.removeActiveItems();
             
             var slider = document.getElementById('tjm-slider');
             var defaultTJMValues = [300, 1200]; // Valeurs par défaut

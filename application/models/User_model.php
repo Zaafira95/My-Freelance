@@ -21,6 +21,15 @@ class User_model extends CI_Model {
         return $query->row();
     }
 
+    // Récupérer le pays de l'utilisateur connecté avec le country id
+    public function getUserCountry($userCountryId){
+        $this->db->select('*');
+        $this->db->from('Countries');
+        $this->db->where('idCountry', $userCountryId);
+        $query = $this->db->get();
+        return $query->row();
+    }
+
     
     // Recupérer toutes les expériences avec le user id
     public function getUserExperience($userId){

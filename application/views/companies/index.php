@@ -56,26 +56,41 @@ if ($banner->bannerStatus == "active"){ ?>
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.879c-2.484-4.375-12-1.82-12 4.879 0 5.572 5.126 7.664 12 14.121 6.874-6.457 12-8.549 12-14.121 0-6.699-9.516-9.254-12-4.879z"/>
     </svg>
 </div> -->
-<div class="px-8 py-6 lg:px-4 lg:py-6 lg:h-90 lg:overflow-y-auto no-scrollbar ">
-    <div class="justify-between items-center mx-auto max-w-screen-xl">
-        <div class="lg:flex gap-6 mb-3">
-            <div class="w-full lg:w-1/4 md:block md:top-0">
+<div class="px-8 py-6 lg:px-4 lg:py-6 h-90 lg:overflow-y-auto no-scrollbar ">
+    <div class="justify-between items-center mx-auto max-w-screen-xl h-full">
+        <div class="lg:flex gap-6 h-full mb-3">
+            <div class=" w-full lg:w-1/4 md:block">
             <!-- Button to show the filter block on mobile -->
                 <div class="relative text-right mb-4 lg:hidden">
                     <button id="showFilterButton" class="relative text-4xl text-primary border p-2 border-primary  rounded-lg 2 hover:bg-primary-900 hover:text-white">
                         <i class="fas fa-sliders-h"></i>
                     </button>
                 </div>
-                <div class="hidden lg:block bg-white rounded-lg lg:h-full lg:overflow-y-auto no-scrollbar lg:no-shadow shadow-lg mb-8 lg:mb-4 p-4 dark:bg-gray-800 dark:text-white" id="FilterMission">
+                <div class="hidden lg:block bg-white rounded-lg lg:h-full overflow-y-auto no-scrollbar lg:no-shadow shadow-lg mb-8 lg:mb-4 p-4 dark:bg-gray-800 dark:text-white" id="FilterMission">
                     <h3 class="text-3xl lg:text-lg font-medium mt-2">Filters</h3>
-                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Location</h4>
-                        <div class="flex items-center mt-2">
-                            <i class="fa fa-map-marker-alt mr-3"></i>    
-                            <div class="relative city-search-container w-full">
-                                <input type="text" id="citySearch" value="<?=$user->userVille?>" placeholder="Cherchez votre ville" class="text-3xl lg:text-lg border p-2 rounded-lg w-full text-black">
-                                    <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
-                            </div>
+                    <!-- <h4 class="text-3xl lg:text-lg font-medium mt-4">Location</h4>
+                    <div class="flex items-center mt-2">
+                        <i class="fa fa-map-marker-alt mr-3"></i>    
+                        <div class="relative city-search-container w-full">
+                            <input type="text" id="citySearch" value="<?=$user->userVille?>" placeholder="Cherchez votre ville" class="text-3xl lg:text-lg border p-2 rounded-lg w-full text-black">
+                                <div id="cities-list" class="absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
                         </div>
+                    </div> -->
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Location</h4>
+                    <div class="w-full mx-auto mt-2 text-black">
+                        <select id="countriesAll" name="countriesAll[]" multiple class="text-3xl lg:text-base mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <?php foreach ($countriesAll as $country): ?>
+                                <!-- <option class="text-black" value="<?= $country['idCountry'] ?>" 
+                                    <?php if (!empty($userCountry)): ?>
+                                            <?= ($userCountry->$userCoutryId == $country['idCountry']) ? 'selected' : '' ?>
+                                    <?php endif; ?>> -->
+                                    <option class="text-black" value="<?= $country['idCountry'] ?>">
+                                    <?= $country['countryName'] ?>
+                                    </option>
+                                    
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
                     <h4 class="text-3xl lg:text-lg font-medium mt-4">Sectors</h4>
                     <div class="w-full mx-auto mt-5 text-black">
                         <!-- <label for="skillsAll" class="block text-sm font-medium text-gray-700">Sélectionnez vos compétences</label> -->
@@ -100,7 +115,7 @@ if ($banner->bannerStatus == "active"){ ?>
                 </div>
                 
             </div>
-            <div class="w-full lg:overflow-y-auto no-scrollbar">
+            <div class="w-full lg:sticky lg:top-0 h-full overflow-y-auto no-scrollbar">
                 <div class="bg-primary rounded-lg h-20vh p-4 text-white">
                     <p class="text-3xl lg:text-lg font-bold">Hello, <?=$user->userFirstName?></p>
                     <p class="text-3xl lg:text-base font-normal mt-2 mb-2">Discover the companies</p>
@@ -114,11 +129,11 @@ if ($banner->bannerStatus == "active"){ ?>
                 <div class="flex flex-wrap" id="companies-section">
                     <?php foreach($companies as $company): ?>
                         <a href="<?=base_url('user/companyView/'.$company->idCompany)?>" 
-                            class="company-item" 
+                            class="company-item w-full" 
                             data-company-name="<?=strtolower($company->companyName)?>"
-                            data-company-localisation="<?=strtolower($company->companyLocalisation)?>"
+                            data-company-localisation="<?=strtolower($company->companyCountryId)?>"
                             data-company-secteur="<?=$company->secteurId?>"> 
-                            <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative company-item" data-company-name="<?=strtolower($company->companyName)?>" data-company-localisation="<?=$company->companyLocalisation?>" data-company-secteur="<?=$company->secteurId?>">
+                            <div class="bg-white rounded-lg h-20vh mt-4 p-4 dark:bg-gray-800 dark:text-white relative company-item" data-company-name="<?=strtolower($company->companyName)?>" data-company-localisation="<?=$company->companyCountryId?>" data-company-secteur="<?=$company->secteurId?>">
                                 <div class="flex items-center">
                                     <div class="mr-4">
                                         <img src="<?=base_url($company->companyLogoPath)?>" alt="Logo de l'entreprise" class="object-cover w-16 h-16 lg:w-10 rounded-full">
@@ -126,7 +141,14 @@ if ($banner->bannerStatus == "active"){ ?>
                                     <div class="w-3/4 mr-4">
                                         <h2 class="text-3xl lg:text-lg font-bold"><?=$company->companyName?></h2>
                                         <p class="text-3xl lg:text-base">
-                                            <span class="mr-2"> • <?=$company->companyLocalisation?></span>
+                                            
+                                        <span class="mr-2"> 
+                                        •   <?php foreach ($countriesAll as $country): ?>
+                                                <?php if ($company->companyCountryId == $country['idCountry']): ?>
+                                                    <?= $country['countryName'] ?>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
+                                        </span>
                                             
                                             <span class="mr-2"> • <?=$company->secteurName?></span>
 
@@ -163,7 +185,14 @@ if ($banner->bannerStatus == "active"){ ?>
                                         <div class="w-3/4 mr-4">
                                             <h2 class="text-3xl lg:text-lg font-bold"><?=$company->companyName?></h2>
                                             <p class="text-3xl lg:text-base">
-                                                <span class="mr-2"> • <?=$company->companyLocalisation?></span>
+                                            
+                                                <span class="mr-2"> 
+                                                •   <?php foreach ($countriesAll as $country): ?>
+                                                        <?php if ($company->companyCountryId == $country['idCountry']): ?>
+                                                            <?= $country['countryName'] ?>
+                                                        <?php endif; ?>
+                                                    <?php endforeach; ?>
+                                                </span>
                                                 
                                                 <span class="mr-2"> • <?=$company->companySecteur?></span>
 
@@ -208,47 +237,51 @@ if ($banner->bannerStatus == "active"){ ?>
 
 
     $(document).ready(function() {
-    
-        $('#citySearch').on('keyup', function() {
-            let term = $(this).val();
-            if(term.length > 2) { // Recherche après 2 caractères
-                $.post('search_cities', { term: term }, function(data) {
-                    let cities = JSON.parse(data);
-                    if(cities.length > 0) {
-                        // Ajoutez la classe .has-border si des résultats sont retournés
-                        $('#cities-list').addClass('has-border');
-                    } else {
-                        // Supprimez la classe .has-border si aucun résultat n'est retourné
-                        $('#cities-list').removeClass('has-border');
-                    }
-                    $('#cities-list').empty();
-                    cities.forEach(function(city) {
-                        $('#cities-list').append(`<div class="city-item p-2 hover:bg-gray-200 cursor-pointer" data-id="${city.geoname_id}">${city.name}</div>`);
-                    });
-                });
-            }
-            else {
-                // Supprimez la classe .has-border si l'input est trop court
-                $('#cities-list').removeClass('has-border').empty();
-            }
-        });
 
-        $(document).on('click', '.city-item', function() {
-            let cityName = $(this).text();
-            $('#citySearch').val(cityName);  // Mettez à jour le champ de saisie avec le nom de la ville sélectionnée
-            $('#cities-list').empty(); // Videz la liste
-            $('#cities-list').removeClass('has-border').empty();
-        });
+    // JS POUR RECHERCHE LOCALISATION
 
-        // Pour fermer la liste lorsque vous cliquez en dehors
-        $(document).on('click', function(event) {
-            // Si le clic n'est pas sur le champ de saisie (#citySearch)
-            // et n'est pas sur un élément à l'intérieur de la liste (#cities-list)...
-            if (!$(event.target).closest('#citySearch, #cities-list').length) {
-                // ... alors videz et fermez la liste.
-                $('#cities-list').empty().removeClass('has-border');
-            }
-        });
+        // $('#citySearch').on('keyup', function() {
+        //     let term = $(this).val();
+        //     if(term.length > 2) { // Recherche après 2 caractères
+        //         $.post('search_cities', { term: term }, function(data) {
+        //             let cities = JSON.parse(data);
+        //             if(cities.length > 0) {
+        //                 // Ajoutez la classe .has-border si des résultats sont retournés
+        //                 $('#cities-list').addClass('has-border');
+        //             } else {
+        //                 // Supprimez la classe .has-border si aucun résultat n'est retourné
+        //                 $('#cities-list').removeClass('has-border');
+        //             }
+        //             $('#cities-list').empty();
+        //             cities.forEach(function(city) {
+        //                 $('#cities-list').append(`<div class="city-item p-2 hover:bg-gray-200 cursor-pointer" data-id="${city.geoname_id}">${city.name}</div>`);
+        //             });
+        //         });
+        //     }
+        //     else {
+        //         // Supprimez la classe .has-border si l'input est trop court
+        //         $('#cities-list').removeClass('has-border').empty();
+        //     }
+        // });
+
+        // $(document).on('click', '.city-item', function() {
+        //     let cityName = $(this).text();
+        //     $('#citySearch').val(cityName);  // Mettez à jour le champ de saisie avec le nom de la ville sélectionnée
+        //     $('#cities-list').empty(); // Videz la liste
+        //     $('#cities-list').removeClass('has-border').empty();
+        // });
+
+        // // Pour fermer la liste lorsque vous cliquez en dehors
+        // $(document).on('click', function(event) {
+        //     // Si le clic n'est pas sur le champ de saisie (#citySearch)
+        //     // et n'est pas sur un élément à l'intérieur de la liste (#cities-list)...
+        //     if (!$(event.target).closest('#citySearch, #cities-list').length) {
+        //         // ... alors videz et fermez la liste.
+        //         $('#cities-list').empty().removeClass('has-border');
+        //     }
+        // });
+
+// FIN JS
 
     });
 
@@ -260,34 +293,19 @@ if ($banner->bannerStatus == "active"){ ?>
         removeItemButton: true,
         itemSelectText: '',
         placeholder: true, // Ajoutez cette ligne pour activer le placeholder
-        placeholderValue: 'Selectsecteurs', // Texte du placeholder
+        placeholderValue: 'Select sectors', // Texte du placeholder
 
     });
-    
-    $(document).ready(function(){
-        $('#search-input-skill').on('keyup', function(){
-            let term = $(this).val();
-            $.post('user/search_skills', { term: term }, function(data){
-                let skills = JSON.parse(data);
-                $('#skills-list').empty();
-                skills.forEach(function(skill){
-                    $('#skills-list').append(`<div class="skill-item" data-id="${skill.skillId}">${skill.skillName}</div>`);
-                });
-            });
-        });
 
-        $(document).on('click', '.skill-item', function(){
-            let skillId = $(this).data('id');
-            let skillName = $(this).text();
-            // Vérifiez si la compétence est déjà sélectionnée
-            if (!$(`#selected-skills .selected-skill[data-id="${skillId}"]`).length) {
-                $('#selected-skills').append(`<div class="selected-skill" data-id="${skillId}">${skillName}</div>`);
-            }
-        });
+    //Script selection des pays
+    const countriesChoices = new Choices('#countriesAll', {
+        searchEnabled: true,
+        removeItemButton: true,
+        itemSelectText: '',
+        placeholder: true, // Ajoutez cette ligne pour activer le placeholder
+        placeholderValue: 'Select country', // Texte du placeholder
+
     });
-
-    
-
 
     var base_url = '<?php echo base_url(); ?>';
 
@@ -338,40 +356,44 @@ document.addEventListener("DOMContentLoaded", function() {
         filterCompanies();
     });
 
-    document.getElementById("citySearch").addEventListener("keyup", filterCompanies);
+    $('#countriesAll').on('change', function() {
+        filterCompanies();
+    });
 
+    // POUR RECHERCHE LOCALISATION --> document.getElementById("citySearch").addEventListener("keyup", filterCompanies);
 
     $(document).ready(function() {
         $('#resetFiltersButton').on('click', function() {
             // Réinitialisez les filtres en décochant toutes les cases à cocher
 
-            $('#citySearch').val('');
+            //$('#citySearch').val('');
 
             secteursChoices.removeActiveItems();
+            countriesChoices.removeActiveItems();
             filterCompanies();
         });
     });
 
     function filterCompanies() {
         const missions = document.querySelectorAll(".company-item");
-        const cityInput = document.getElementById("citySearch");
-        const cityFilter = cityInput.value.toLowerCase();
+        // const cityInput = document.getElementById("citySearch");
+        // const cityFilter = cityInput.value.toLowerCase();
         const selectedSkills = $('#secteursAll').val();
+        const selectedCountry = $('#countriesAll').val();
         
         let visibleMissionsCount = 0;
 
         missions.forEach(function(mission) {
-            const missionName = mission.getAttribute("data-mission-name");
-            const missionLocalisation = mission.getAttribute("data-company-localisation").toLowerCase();
+            const missionName = mission.getAttribute("data-company-name");
+            const missionLocalisation = mission.getAttribute("data-company-localisation");
             const missionSkillsAttr = mission.getAttribute("data-company-secteur");
-            // console.log("secteur :",missionSkillsAttr);
 
             let showMission = true;
 
             // Filtre par ville
-            if (cityFilter && !missionLocalisation.includes(cityFilter)) {
-                showMission = false;
-            }
+            // if (cityFilter && !missionLocalisation.includes(cityFilter)) {
+            //     showMission = false;
+            // }
 
             // Filtre par compétences
             if (selectedSkills.length > 0) {
@@ -382,6 +404,16 @@ document.addEventListener("DOMContentLoaded", function() {
                     return missionSkillsAttr.includes(selectedSkill);
                 });
                 if (!matchesSkills) {
+                    showMission = false;
+                }
+            }
+                                            
+            // Filtre par pays
+            if (selectedCountry.length > 0) {
+                const matchesCountry = selectedCountry.some(function(selectedCountry) {
+                    return missionLocalisation.includes(selectedCountry);
+                });
+                if (!matchesCountry) {
                     showMission = false;
                 }
             }

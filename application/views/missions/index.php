@@ -29,7 +29,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                 <div class="hidden lg:block bg-white rounded-lg lg:h-full overflow-y-auto no-scrollbar lg:no-shadow shadow-lg mb-8 lg:mb-4 p-4 dark:bg-gray-800 dark:text-white" id="FilterMission">
                     <h3 class="text-3xl lg:text-lg font-medium mt-2">Filters</h3>
                     <h4 class="text-3xl lg:text-lg font-medium mt-4">Location</h4>
-                    <div class="w-full mx-auto mt-5 text-black">
+                    <div class="w-full mx-auto mt-2 text-black">
                         <select id="countriesAll" name="countriesAll[]" multiple class="text-3xl lg:text-base mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             <?php foreach ($countriesAll as $country): ?>
                                 <!-- <option class="text-black" value="<?= $country['idCountry'] ?>" 
@@ -109,7 +109,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                     </div>
                 
                     <h4 class="text-3xl lg:text-base font-medium mt-4">Skills</h4>
-                    <div class="w-full mx-auto mt-5 text-black">
+                    <div class="w-full mx-auto mt-2 text-black">
                         <!-- <label for="skillsAll" class="block text-sm font-medium text-gray-700">Sélectionnez vos compétences</label> -->
                         <select id="skillsAll" name="skillsAll[]" multiple class="text-3xl lg:text-base mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
                             <?php foreach ($skillsAll as $skill): ?>
@@ -124,7 +124,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                         </select>
                     </div>
                     <h4 class="text-3xl lg:text-lg font-medium mt-4">Jobs</h4>
-                    <div class="w-full mx-auto mt-5 text-black">
+                    <div class="w-full mx-auto mt-2 text-black">
                         <select id="jobsAll" name="jobsAll[]" multiple class="text-3xl lg:text-base mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             <?php foreach ($jobsAll as $job): ?>
                                 <option class="text-black" value="<?= $job['jobId'] ?>"><?= $job['jobName'] ?></option>

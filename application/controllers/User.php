@@ -987,6 +987,8 @@ class User extends CI_Controller {
         $data['companies'] = $companies;
         $data['secteursAll'] = $this->User_model->get_all_secteurs();
 
+        $data['countriesAll'] = $this->User_model->get_all_countries();
+
         $this->load->view('companies/index', $data);
     }
 

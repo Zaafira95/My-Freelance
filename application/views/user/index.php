@@ -107,7 +107,7 @@ if($totalInfos == 1 ){
                             </div>
                         </div> -->
                     <h4 class="text-3xl lg:text-lg font-medium mt-4">Location</h4>
-                    <div class="w-full mx-auto mt-5 text-black">
+                    <div class="w-full mx-auto mt-2 text-black">
                         <select id="countriesAll" name="countriesAll[]" multiple class="text-3xl lg:text-base mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             <?php foreach ($countriesAll as $country): ?>
                                 <!-- <option class="text-black" value="<?= $country['idCountry'] ?>" 
@@ -187,7 +187,7 @@ if($totalInfos == 1 ){
                     </div>
                 
                     <h4 class="text-3xl lg:text-base font-medium mt-4">Skills</h4>
-                    <div class="w-full mx-auto mt-5 text-black">
+                    <div class="w-full mx-auto mt-2 text-black">
                         <!-- <label for="skillsAll" class="block text-sm font-medium text-gray-700">Sélectionnez vos compétences</label> -->
                         <select id="skillsAll" name="skillsAll[]" multiple class="text-3xl lg:text-base mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
                             <?php foreach ($skillsAll as $skill): ?>
@@ -203,7 +203,7 @@ if($totalInfos == 1 ){
                         </select>
                     </div>
                     <h4 class="text-3xl lg:text-lg font-medium mt-4">Jobs</h4>
-                    <div class="w-full mx-auto mt-5 text-black">
+                    <div class="w-full mx-auto mt-2 text-black">
                         <select id="jobsAll" name="jobsAll[]" multiple class="text-3xl lg:text-base mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             <?php foreach ($jobsAll as $job): ?>
                                 <option class="text-black" value="<?= $job['jobId'] ?>"
@@ -844,6 +844,7 @@ if($totalInfos == 1 ){
 
     $(document).ready(function() {
     
+// JS POUR RECHERCHE LOCALISATION
 
         // $('#citySearch').on('keyup', function() {
         //     let term = $(this).val();
@@ -886,6 +887,8 @@ if($totalInfos == 1 ){
         //     }
         // });
 
+// FIN JS 
+
     });
 
     //Script selection des compétences
@@ -908,7 +911,7 @@ if($totalInfos == 1 ){
 
     });
 
-        //Script selection des métiers
+        //Script selection des pays
         const countriesChoices = new Choices('#countriesAll', {
         searchEnabled: true,
         removeItemButton: true,

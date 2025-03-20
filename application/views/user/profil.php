@@ -232,7 +232,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                     </div>
                     <p id="errorMessageJobType" class="text-3xl lg:text-base text-red-500" style="display:none;">Please choose a job type</p>
                     <label for="userVille" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Location</label>
-                    <div>    
+                    <!-- <div>    
                         <div class="relative city-search-container w-full mr-4">
                             <input type="text" id="citySearch" name="userVille" placeholder="Search your city" value="<?php echo $user->userVille != 'Etranger' ? $user->userVille : "" ?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" >
                                 <div id="cities-list" class="text-3xl lg:text-base absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
@@ -241,6 +241,17 @@ include(APPPATH . 'views/layouts/user/header.php' );
                             <input type="checkbox" id="userEtranger" name="userEtranger" <?php echo $user->userVille === 'Etranger' ? 'checked' : "" ?>>
                             <label class="text-3xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Abroad</label>
                         </div>
+                    </div> -->
+                    
+                    <div class="w-full mx-auto mt-2 text-black">
+                           
+                        <select id="countriesAll" name="userCountry"  style="font-size:1rem;" class="text-3xl lg:text-base font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <?php foreach ($countriesAll as $country): ?>
+                                <option class="text-3xl lg:text-base dark:text-black" value="<?= $country['idCountry']?>"
+                                    <?= ($userCountry->idCountry == $country['idCountry']) ? 'selected' : '' ?>>
+                                <?= $country['countryName'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     <label for="userJobTime" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Mission Duration</label>
                     <select id="userJobTime" name="userJobTime" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -256,8 +267,6 @@ include(APPPATH . 'views/layouts/user/header.php' );
                         }
                         ?>
                     </select>
-
-
                 
                     <p id="errorMessageUserData" class="text-3xl lg:text-base text-red-500  mt-2 hidden">Please fill in all fields correctly</p>
                     <p id="tjmErrorMessage" class="text-3xl lg:text-base text-red-500  mt-2 hidden">The daily rate must be greater than 100</p>
@@ -966,7 +975,7 @@ if($totalInfos == 1 ){
                                         <div>
                                             <p class="text text-2xl lg:text-lg">Location</p>
                                             
-                                                <p class="font-bold text-4xl lg:text-xl"><?=$user->userVille?></p>
+                                                <p class="font-bold text-4xl lg:text-xl"><?=$userCountry->countryName?></p>
                                             
                                         </div>
                                     </div>
@@ -1584,6 +1593,16 @@ if($totalInfos == 1 ){
             itemSelectText: '',
             placeholder: true, // Ajoutez cette ligne pour activer le placeholder
             placeholderValue: 'Sélectionnez votre métier', // Texte du placeholder
+
+        });
+
+        //Script selection des pays
+        const countriesChoices = new Choices('#countriesAll', {
+            searchEnabled: true,
+            removeItemButton: true,
+            itemSelectText: '',
+            placeholder: true, // Ajoutez cette ligne pour activer le placeholder
+            placeholderValue: 'Select country', // Texte du placeholder
 
         });
 

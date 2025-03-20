@@ -197,10 +197,10 @@ class User_model extends CI_Model {
         }
 
         //Zaafira 25/01/2024
-        public function updateUserPreference($userId, $userIsAvailable, $jobTypeString, $userVille, $userJobTime, $userJobTimePartielOrFullTime, $dateFinIndisponibilite){
+        public function updateUserPreference($userId, $userIsAvailable, $jobTypeString, $userCountryId, $userJobTime, $userJobTimePartielOrFullTime, $dateFinIndisponibilite){
             $this->db->set('userIsAvailable', $userIsAvailable);
             $this->db->set('userJobType', $jobTypeString);
-            $this->db->set('userVille', $userVille);
+            $this->db->set('userCountryId', $userCountryId);
             $this->db->set('userJobTime', $userJobTime);
             $this->db->set('userJobTimePartielOrFullTime', $userJobTimePartielOrFullTime);
             $this->db->set('userDateFinIndisponibilite', $dateFinIndisponibilite);

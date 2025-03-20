@@ -196,8 +196,8 @@ class User extends CI_Controller {
          $data['job'] = $job;
 
         //  // Récupérer le pays de l'utilisateur connecté avec le job id
-        //  $country = $this->User_model->getUserCountry($userId->userCountryId);
-        //  $data['userCountry'] = $country;
+         $userCountry = $this->User_model->getUserCountry($user->userCountryId);
+         $data['userCountry'] = $userCountry;
  
          // Récupérer l'expérience de l'utilisateur connecté avec l'expérience id
          $experiences = $this->User_model->getUserExperience($userId);
@@ -265,6 +265,7 @@ class User extends CI_Controller {
         $data['skillsAll'] = $this->User_model->get_all_skills();
 
         $data['jobsAll'] = $this->User_model->get_all_jobs();
+        $data['countriesAll'] = $this->User_model->get_all_countries();
 
         $this->load->view('user/profil', $data);
     }
@@ -363,17 +364,17 @@ class User extends CI_Controller {
         if (is_array($userJobType) && in_array('Physique', $userJobType)) {
         }*/
         //$jobTypeString = implode(',', $userJobType);
-        $userVille = $this->input->post('userVille');
+        $userCountryId = $this->input->post('userCountry');
         
         $userEtranger = $this->input->post('userEtranger');
-        $userVille = $userEtranger == 'on' ? "Etranger" : $userVille;
+        //$userVille = $userEtranger == 'on' ? "Etranger" : $userVille;
 
         $userJobTime = $this->input->post('userJobTime');
 
         $userJobTimePartielOrFullTime = $this->input->post('userJobTimePartielOrFullTime');
         $dateFinIndisponibilite = $this->input->post('dateFinIndisponibilite');
 
-        $this->User_model->updateUserPreference($userId, $userIsAvailable, $userJobType, $userVille, $userJobTime, $userJobTimePartielOrFullTime, $dateFinIndisponibilite);
+        $this->User_model->updateUserPreference($userId, $userIsAvailable, $userJobType, $userCountryId, $userJobTime, $userJobTimePartielOrFullTime, $dateFinIndisponibilite);
         $this->session->set_flashdata('message', 'Your preferences have been successfully updated!');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);

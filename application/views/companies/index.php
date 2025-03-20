@@ -172,7 +172,7 @@ if ($banner->bannerStatus == "active"){ ?>
                     <?php endforeach; ?>
                     </div>
                     <div id="no-company-found">
-                        <p class="text-3xl lg:text-lg mt-6 text-left">No companies found.</p>
+                        <p class="text-3xl lg:text-lg mt-6 text-left">No companies found</p>
                         <h3 class="text-5xl lg:text-2xl font-medium mt-10" id="result-section">Other companies:</h3>
                         <?php foreach($companies as $company): ?>
                             <a href="<?=base_url('user/companyView/'.$company->idCompany)?>" 

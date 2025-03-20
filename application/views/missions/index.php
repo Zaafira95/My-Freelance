@@ -29,17 +29,24 @@ include(APPPATH . 'views/layouts/user/header.php' );
                 <div class="hidden lg:block bg-white rounded-lg lg:h-full overflow-y-auto no-scrollbar lg:no-shadow shadow-lg mb-8 lg:mb-4 p-4 dark:bg-gray-800 dark:text-white" id="FilterMission">
                     <h3 class="text-3xl lg:text-lg font-medium mt-2">Filters</h3>
                     <h4 class="text-3xl lg:text-lg font-medium mt-4">Location</h4>
-                        <div class="flex items-center mt-2">
-                            <i class="text-3xl lg:text-base fa fa-map-marker-alt mr-3"></i>    
-                            <div class="relative city-search-container w-full">
-                                <input type="text" id="citySearch" value="<?=$user->userVille?>" placeholder="Search your city" class="text-3xl lg:text-lg border p-2 rounded-lg w-full text-black">
-                                <div id="cities-list" class="text-3xl lg:text-lg absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
-                            </div>
-                        </div>
+                    <div class="w-full mx-auto mt-5 text-black">
+                        <select id="countriesAll" name="countriesAll[]" multiple class="text-3xl lg:text-base mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <?php foreach ($countriesAll as $country): ?>
+                                <!-- <option class="text-black" value="<?= $country['idCountry'] ?>" 
+                                    <?php if (!empty($userCountry)): ?>
+                                            <?= ($userCountry->$userCoutryId == $country['idCountry']) ? 'selected' : '' ?>
+                                    <?php endif; ?>> -->
+                                    <option class="text-black" value="<?= $country['idCountry'] ?>">
+                                    <?= $country['countryName'] ?>
+                                    </option>
+                                    
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
                     <h4 class="text-3xl lg:text-lg font-medium mt-4">Job Type</h4>
                     <div class="mt-2">
                         <label class="flex items-center ">
-                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="temps-plein" <?= ($user->userJobTimePartielOrFullTime == 'temps-plein') ? 'checked' : '' ?>>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="temps-plein">
                             <span class="ml-2 text-3xl lg:text-base">Full-time</span>
                         </label>
                         <label class="flex items-center text-xl lg:text-base">
@@ -50,45 +57,45 @@ include(APPPATH . 'views/layouts/user/header.php' );
                     <h4 class="text-3xl lg:text-lg font-medium mt-4">Mission Duration</h4>
                     <div class="mt-2">
                         <label class="flex items-center text-xl lg:text-base">
-                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="courte" <?= ($user->userJobTime == 'Courte Durée') ? 'checked' : '' ?>>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="courte">
                             <span class="ml-2 text-3xl lg:text-base">Short-term</span>
                         </label>
                         <label class="flex items-center text-xl lg:text-base">
-                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="longue" <?= ($user->userJobTime == 'Longue Durée') ? 'checked' : '' ?>>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="longue">
                             <span class="ml-2 text-3xl lg:text-base">Long-term</span>
                         </label>
                         <label class="flex items-center text-xl lg:text-base">
-                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="indefinie" <?= ($user->userJobTime == 'Durée indéfinie') ? 'checked' : '' ?>>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="indefinie">
                             <span class="ml-2 text-3xl lg:text-base">Indefinite duration</span>
                         </label>
                     </div>
                     <h4 class="text-3xl lg:text-lg font-medium mt-4">Work Mode</h4>
                     <div class="mt-2">
                         <label class="flex items-center">
-                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="site" <?= ($user->userJobType === 'Physique') ? 'checked' : '' ?>>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="site">
                             <span class="ml-2 text-3xl lg:text-base">On-site</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="teletravail" <?= ($user->userJobType === 'Remote') ? 'checked' : '' ?>>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="teletravail">
                             <span class="ml-2 text-3xl lg:text-base">Remote</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="hybride" <?= ($user->userJobType === 'Hybride') ? 'checked' : '' ?>>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="hybride">
                             <span class="ml-2 text-3xl lg:text-base">Hybrid</span>
                         </label>
                     </div>
                     <h4 class="text-3xl lg:text-lg font-medium mt-4">Experience Level</h4>
                     <div class="mt-2">
                         <label class="flex items-center text-xl lg:text-base">
-                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="junior" <?= ($user->userExperienceYear === 'junior') ? 'checked' : '' ?>>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="junior">
                             <span class="ml-2 text-3xl lg:text-base">Junior (1 to 2 years)</span>
                         </label>
                         <label class="flex items-center text-xl lg:text-base">
-                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="intermediaire" <?= ($user->userExperienceYear === 'intermediaire') ? 'checked' : '' ?>>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="intermediaire">
                             <span class="ml-2 text-3xl lg:text-base">Intermediate (3 to 5 years)</span>
                         </label>
                         <label class="flex items-center text-xl lg:text-base">
-                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="expert" <?= ($user->userExperienceYear === 'expert') ? 'checked' : '' ?>>
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="expert">
                             <span class="ml-2 text-3xl lg:text-base">Expert (5+ years)</span>
                         </label>
                     </div>
@@ -177,9 +184,9 @@ include(APPPATH . 'views/layouts/user/header.php' );
                             data-mission-duree="<?=strtolower($mission->missionDuration)?>" 
                             data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" 
                             data-mission-tjm="<?=$mission->missionTJM?>" 
-                            data-mission-localisation="<?=strtolower($mission->missionLocalisation)?>"
+                            data-mission-localisation="<?=strtolower($mission->missionCountryId)?>"
                             data-mission-skills="<?=$dataMissionSkillsString?>"> <!-- Utilisez implode pour combiner les compétences en une chaîne -->
-                            <div class="bg-white rounded-lg h-20vh mt-4 p-4 w-full dark:bg-gray-800 dark:text-white relative mission-item" data-mission-name="<?=strtolower($mission->missionName)?>" data-mission-job="<?=strtolower($mission->missionJobId)?>" data-mission-type="<?=strtolower($mission->missionType)?>" data-mission-deroulement="<?=strtolower($mission->missionDeroulement)?>" data-mission-duree="<?=strtolower($mission->missionDuration)?>" data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" data-mission-tjm="<?=$mission->missionTJM?>" data-mission-localisation="<?=$mission->missionLocalisation?>" data-mission-skills="<?=$dataMissionSkillsString?>">
+                            <div class="bg-white rounded-lg h-20vh mt-4 p-4 w-full dark:bg-gray-800 dark:text-white relative mission-item" data-mission-name="<?=strtolower($mission->missionName)?>" data-mission-job="<?=strtolower($mission->missionJobId)?>" data-mission-type="<?=strtolower($mission->missionType)?>" data-mission-deroulement="<?=strtolower($mission->missionDeroulement)?>" data-mission-duree="<?=strtolower($mission->missionDuration)?>" data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" data-mission-tjm="<?=$mission->missionTJM?>" data-mission-localisation="<?=$mission->missionCountryId?>" data-mission-skills="<?=$dataMissionSkillsString?>">
                                 <div class="flex items-center">
                                     <div class="mr-4">
                                     <?php foreach ($missionCompany[$mission->idMission] as $company) : ?>
@@ -247,7 +254,13 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                             <?=$mission->missionDeroulement?>
                                             </span>
 
-                                            <span class="mr-2"> • <?=$mission->missionLocalisation?></span>
+                                            <span class="mr-2"> 
+                                                •   <?php foreach ($countriesAll as $country): ?>
+                                                        <?php if ($mission->missionCountryId == $country['idCountry']): ?>
+                                                            <?= $country['countryName'] ?>
+                                                        <?php endif; ?>
+                                                    <?php endforeach; ?>
+                                            </span>
 
                                             <span class="mr-2"> •
                                             <?php
@@ -372,9 +385,9 @@ include(APPPATH . 'views/layouts/user/header.php' );
                             data-mission-duree="<?=strtolower($mission->missionDuration)?>" 
                             data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" 
                             data-mission-tjm="<?=$mission->missionTJM?>" 
-                            data-mission-localisation="<?=strtolower($mission->missionLocalisation)?>"
+                            data-mission-localisation="<?=strtolower($mission->missionCountryId)?>"
                             data-mission-skills="<?=$dataMissionSkillsString?>"> <!-- Utilisez implode pour combiner les compétences en une chaîne -->
-                            <div class="mb-12 bg-white rounded-lg h-20vh mt-4 p-4 w-full dark:bg-gray-800 dark:text-white relative " data-mission-name="<?=strtolower($mission->missionName)?>" data-mission-job="<?=strtolower($mission->missionJobId)?>" data-mission-type="<?=strtolower($mission->missionType)?>" data-mission-deroulement="<?=strtolower($mission->missionDeroulement)?>" data-mission-duree="<?=strtolower($mission->missionDuration)?>" data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" data-mission-tjm="<?=$mission->missionTJM?>" data-mission-localisation="<?=$mission->missionLocalisation?>" data-mission-skills="<?=$dataMissionSkillsString?>">
+                            <div class="mb-12 bg-white rounded-lg h-20vh mt-4 p-4 w-full dark:bg-gray-800 dark:text-white relative " data-mission-name="<?=strtolower($mission->missionName)?>" data-mission-job="<?=strtolower($mission->missionJobId)?>" data-mission-type="<?=strtolower($mission->missionType)?>" data-mission-deroulement="<?=strtolower($mission->missionDeroulement)?>" data-mission-duree="<?=strtolower($mission->missionDuration)?>" data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" data-mission-tjm="<?=$mission->missionTJM?>" data-mission-localisation="<?=$mission->missionCountryId?>" data-mission-skills="<?=$dataMissionSkillsString?>">
                                 <div class="flex items-center">
                                     <div class="mr-4">
                                         <?php foreach ($missionCompany[$mission->idMission] as $company) : ?>
@@ -442,7 +455,15 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                             <?=$mission->missionDeroulement?>
                                             </span>
 
-                                            <span class="mr-2"> • <?=$mission->missionLocalisation?></span>
+                                            
+
+                                            <span class="mr-2"> 
+                                                •   <?php foreach ($countriesAll as $country): ?>
+                                                        <?php if ($mission->missionCountryId == $country['idCountry']): ?>
+                                                            <?= $country['countryName'] ?>
+                                                        <?php endif; ?>
+                                                    <?php endforeach; ?>
+                                            </span>
 
                                             <span class="mr-2"> •
                                             <?php
@@ -566,50 +587,52 @@ include(APPPATH . 'views/layouts/user/header.php' );
     });
     $(document).ready(function() {
     
-        $('#citySearch').on('keyup', function() {
-            let term = $(this).val();
-            if(term.length > 2) { // Recherche après 2 caractères
-                $.post('search_cities', { term: term }, function(data) {
-                    let cities = JSON.parse(data);
-                    if(cities.length > 0) {
-                        // Ajoutez la classe .has-border si des résultats sont retournés
-                        $('#cities-list').addClass('has-border');
-                    } else {
-                        // Supprimez la classe .has-border si aucun résultat n'est retourné
-                        $('#cities-list').removeClass('has-border');
-                    }
-                    $('#cities-list').empty();
-                    cities.forEach(function(city) {
-                        $('#cities-list').append(`<div class="city-item p-2 hover:bg-gray-200 cursor-pointer" data-id="${city.geoname_id}">${city.name}</div>`);
-                    });
-                });
-            }
-            else {
-                // Supprimez la classe .has-border si l'input est trop court
-                $('#cities-list').removeClass('has-border').empty();
-            }
-        });
+// JS POUR LOCALISATION PAR RECHERCHE
 
-        $(document).on('click', '.city-item', function() {
-            let cityName = $(this).text();
-            $('#citySearch').val(cityName);  // Mettez à jour le champ de saisie avec le nom de la ville sélectionnée
-            $('#cities-list').empty(); // Videz la liste
-            $('#cities-list').removeClass('has-border').empty();
-        });
+        // $('#citySearch').on('keyup', function() {
+        //     let term = $(this).val();
+        //     if(term.length > 2) { // Recherche après 2 caractères
+        //         $.post('search_cities', { term: term }, function(data) {
+        //             let cities = JSON.parse(data);
+        //             if(cities.length > 0) {
+        //                 // Ajoutez la classe .has-border si des résultats sont retournés
+        //                 $('#cities-list').addClass('has-border');
+        //             } else {
+        //                 // Supprimez la classe .has-border si aucun résultat n'est retourné
+        //                 $('#cities-list').removeClass('has-border');
+        //             }
+        //             $('#cities-list').empty();
+        //             cities.forEach(function(city) {
+        //                 $('#cities-list').append(`<div class="city-item p-2 hover:bg-gray-200 cursor-pointer" data-id="${city.geoname_id}">${city.name}</div>`);
+        //             });
+        //         });
+        //     }
+        //     else {
+        //         // Supprimez la classe .has-border si l'input est trop court
+        //         $('#cities-list').removeClass('has-border').empty();
+        //     }
+        // });
 
-        // Pour fermer la liste lorsque vous cliquez en dehors
-        $(document).on('click', function(event) {
-            // Si le clic n'est pas sur le champ de saisie (#citySearch)
-            // et n'est pas sur un élément à l'intérieur de la liste (#cities-list)...
-            if (!$(event.target).closest('#citySearch, #cities-list').length) {
-                // ... alors videz et fermez la liste.
-                $('#cities-list').empty().removeClass('has-border');
-            }
-        });
+        // $(document).on('click', '.city-item', function() {
+        //     let cityName = $(this).text();
+        //     $('#citySearch').val(cityName);  // Mettez à jour le champ de saisie avec le nom de la ville sélectionnée
+        //     $('#cities-list').empty(); // Videz la liste
+        //     $('#cities-list').removeClass('has-border').empty();
+        // });
+
+        // // Pour fermer la liste lorsque vous cliquez en dehors
+        // $(document).on('click', function(event) {
+        //     // Si le clic n'est pas sur le champ de saisie (#citySearch)
+        //     // et n'est pas sur un élément à l'intérieur de la liste (#cities-list)...
+        //     if (!$(event.target).closest('#citySearch, #cities-list').length) {
+        //         // ... alors videz et fermez la liste.
+        //         $('#cities-list').empty().removeClass('has-border');
+        //     }
+        // });
+
+        // FIN JS POUR LOCALISATION PR RECHERCHE ///////////////////////////////////////////////////////////////////////
 
     });
-
-
 
     //Script selection des compétences
     const skillsChoices = new Choices('#skillsAll', {
@@ -631,6 +654,16 @@ include(APPPATH . 'views/layouts/user/header.php' );
 
     });
     
+        //Script selection des métiers
+        const countriesChoices = new Choices('#countriesAll', {
+        searchEnabled: true,
+        removeItemButton: true,
+        itemSelectText: '',
+        placeholder: true, // Ajoutez cette ligne pour activer le placeholder
+        placeholderValue: 'Select country', // Texte du placeholder
+
+    });
+
     $(document).ready(function(){
         $('#search-input-skill').on('keyup', function(){
             let term = $(this).val();
@@ -653,11 +686,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
         });
     });
 
-    
-
-
     var base_url = '<?php echo base_url(); ?>';
-
 
     document.addEventListener('DOMContentLoaded', function() {
     var slider = document.getElementById('tjm-slider');
@@ -665,7 +694,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
     var max = document.getElementById('tjm-max');
     var userTJM = <?=$user->userTJM?>;
     noUiSlider.create(slider, {
-        start: [userTJM, userTJM + 400],
+        start: [300, 1200],
         connect: true,
         range: {
         'min': 300,
@@ -690,10 +719,8 @@ include(APPPATH . 'views/layouts/user/header.php' );
         }
     });
     });
+    
 
-    document.addEventListener("DOMContentLoaded", function(event) {
-        document.getElementById('updateProductButton').click();
-    });
     $(document).ready(function() {
         // Écouteur d'événement pour détecter les changements dans la barre de recherche
         $('#search-input').on('input', function() {
@@ -724,8 +751,8 @@ include(APPPATH . 'views/layouts/user/header.php' );
             }
         });
 
-        
     });
+
 
     // Fonction pour supprimer les accents d'une chaîne de caractères
     function removeAccents(str) {
@@ -748,25 +775,26 @@ document.addEventListener("DOMContentLoaded", function() {
     $('#jobsAll').on('change', function() {
         filterMissions();
     });
+    
+    $('#countriesAll').on('change', function() {
+        filterMissions();
+    });
 
     slider.noUiSlider.on("change", filterMissions);
 
-    document.getElementById("citySearch").addEventListener("keyup", filterMissions);
-
+    // POUR RECHERCHE LOCALISATION --> document.getElementById("citySearch").addEventListener("keyup", filterMissions);
 
     $(document).ready(function() {
         $('#resetFiltersButton').on('click', function() {
             // Réinitialisez les filtres en décochant toutes les cases à cocher
             $('.form-checkbox').prop('checked', false);
 
-            $('#citySearch').val('');
-            document.querySelector('#skillsAll').parentNode.querySelector('.choices__input--cloned').value = '';
-            document.querySelector('#jobsAll').parentNode.querySelector('.choices__input--cloned').value = '';
+            // document.querySelector('#skillsAll').parentNode.querySelector('.choices__input--cloned').value = '';
+            // document.querySelector('#jobsAll').parentNode.querySelector('.choices__input--cloned').value = '';
 
             skillsChoices.removeActiveItems();
             jobsChoices.removeActiveItems();
-            
-            $('#jobsAll').val(null);
+            countriesChoices.removeActiveItems();
             
             var slider = document.getElementById('tjm-slider');
             var defaultTJMValues = [300, 1200]; // Valeurs par défaut
@@ -779,13 +807,14 @@ document.addEventListener("DOMContentLoaded", function() {
     function filterMissions() {
         const missions = document.querySelectorAll(".mission-item");
         const activeFilters = [];
-        const cityInput = document.getElementById("citySearch");
-        const cityFilter = cityInput.value.toLowerCase();
+        // POUR RECHERCHE LOCALISATION --> const cityInput = document.getElementById("citySearch");
+        // POUR RECHERCHE LOCALISATION --> const cityFilter = cityInput.value.toLowerCase();
         const tjmValues = slider.noUiSlider.get();
         const tjmMin = parseInt(tjmValues[0]);
         const tjmMax = parseInt(tjmValues[1]);
         const selectedSkills = $('#skillsAll').val();
         const selectedJobs = $('#jobsAll').val();
+        const selectedCountry = $('#countriesAll').val();
         
 
         checkboxes.forEach(function(checkbox) {
@@ -836,7 +865,9 @@ document.addEventListener("DOMContentLoaded", function() {
             const missionDeroulement = mission.getAttribute("data-mission-deroulement");
             const missionDuration = mission.getAttribute("data-mission-duree");
             const missionExpertise = mission.getAttribute("data-mission-expertise");
-            const missionLocalisation = mission.getAttribute("data-mission-localisation").toLowerCase();
+            //const missionLocalisation = mission.getAttribute("data-mission-localisation").toLowerCase();
+            const missionLocalisationAttr = mission.getAttribute("data-mission-localisation").toLowerCase();
+            const missionLocalisation = missionLocalisationAttr;
             const missionSkillsAttr = mission.getAttribute("data-mission-skills");
             const missionTJM = parseInt(mission.getAttribute("data-mission-tjm"));
 /*
@@ -893,8 +924,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // Filtre par mode de deroulement
             let matchesDeroulement = true;
-            // console.log("1", deroulementFilters);
-            // console.log("1", deroulementFilters);
             if (deroulementFilters.length > 0) {
                 matchesDeroulement = deroulementFilters.some(function(filter) {
                     return (
@@ -911,16 +940,14 @@ document.addEventListener("DOMContentLoaded", function() {
                     showMission = false;
             }
 
-            // Filtre par ville
-            if (cityFilter && !missionLocalisation.includes(cityFilter)) {
-                showMission = false;
-            }
+            // FILTRE LOCALISATION 
+            // if (cityFilter && !missionLocalisation.includes(cityFilter)) {
+            //     showMission = false;
+            // }
 
             // Filtre par compétences
             if (selectedSkills.length > 0) {
                 const missionSkills = missionSkillsAttr.split(','); // Divise la chaîne en un tableau d'IDs de compétences
-                // console.log("1 :",missionSkills);
-                // console.log("2 :",selectedSkills);
                 const matchesSkills = selectedSkills.some(function(selectedSkill) {
                     return missionSkills.includes(selectedSkill);
                 });
@@ -935,6 +962,16 @@ document.addEventListener("DOMContentLoaded", function() {
                     return missionJob.includes(selectedJob);
                 });
                 if (!matchesJob) {
+                    showMission = false;
+                }
+            }
+                                            
+            // Filtre par pays
+            if (selectedCountry.length > 0) {
+                const matchesCountry = selectedCountry.some(function(selectedCountry) {
+                    return missionLocalisation.includes(selectedCountry);
+                });
+                if (!matchesCountry) {
                     showMission = false;
                 }
             }

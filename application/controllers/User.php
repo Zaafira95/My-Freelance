@@ -17,6 +17,11 @@ class User extends CI_Controller {
         // Récupérer le job de l'utilisateur connecté avec le job id
         $jobUser = $this->User_model->getUserJob($userId);
         $data['jobUser'] = $jobUser;
+
+        // // Récupérer le pays de l'utilisateur connecté avec le job id
+        // $country = $this->User_model->getUserCountry($userId->userCountryId);
+        // $data['userCountry'] = $country;
+
         // Récupérer l'expérience de l'utilisateur connecté avec l'expérience id
         $experiences = $this->User_model->getUserExperience($userId);
         $data['experiences'] = $experiences;
@@ -190,9 +195,9 @@ class User extends CI_Controller {
          $job = $this->User_model->getUserJob($userId);
          $data['job'] = $job;
 
-         // Récupérer le pays de l'utilisateur connecté avec le job id
-         $country = $this->User_model->getUserCountry($userId->userCountryId);
-         $data['userCountry'] = $country;
+        //  // Récupérer le pays de l'utilisateur connecté avec le job id
+        //  $country = $this->User_model->getUserCountry($userId->userCountryId);
+        //  $data['userCountry'] = $country;
  
          // Récupérer l'expérience de l'utilisateur connecté avec l'expérience id
          $experiences = $this->User_model->getUserExperience($userId);
@@ -725,6 +730,8 @@ class User extends CI_Controller {
         $data['skillsAll'] = $this->User_model->get_all_skills();
         
         $data['jobsAll'] = $this->User_model->get_all_jobs();
+
+        $data['countriesAll'] = $this->User_model->get_all_countries();
 
 
 

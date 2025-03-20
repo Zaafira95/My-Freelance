@@ -519,7 +519,7 @@ if($totalInfos == 1 ){
                         data-mission-localisation="<?=strtolower($mission->missionLocalisation)?>"
                         data-mission-skills="<?=$dataMissionSkillsString?>"> 
                         <!-- Début carte mission -->
-                        <div class="mb-12 bg-white w-full rounded-lg h-20vh mt-4 p-8 lg:p-4 dark:bg-gray-800 dark:text-white relative lg:mb-2" data-mission-name="<?=strtolower($mission->missionName)?>" data-mission-job="<?=strtolower($mission->missionJobId)?>" data-mission-type="<?=strtolower($mission->missionType)?>" data-mission-deroulement="<?=strtolower($mission->missionDeroulement)?>" data-mission-duree="<?=strtolower($mission->missionDuration)?>" data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" data-mission-tjm="<?=$mission->missionTJM?>" data-mission-localisation="<?=$mission->missionLocalisation?>" data-mission-skills="<?=$dataMissionSkillsString?>">
+                        <div class="mb-12 bg-white w-full rounded-lg h-20vh mt-4 p-8 lg:p-4 dark:bg-gray-800 dark:text-white relative lg:mb-2" data-mission-name="<?=strtolower($mission->missionName)?>" data-mission-job="<?=strtolower($mission->missionJobId)?>" data-mission-type="<?=strtolower($mission->missionType)?>" data-mission-deroulement="<?=strtolower($mission->missionDeroulement)?>" data-mission-duree="<?=strtolower($mission->missionDuration)?>" data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" data-mission-tjm="<?=$mission->missionTJM?>" data-mission-localisation="<?=$mission->missionCountryId?>" data-mission-skills="<?=$dataMissionSkillsString?>">
                             <!-- Début div en tête -->
                             <div class="flex items-center">
                                 <div class="mr-4">
@@ -586,8 +586,12 @@ if($totalInfos == 1 ){
                                             <?=$mission->missionDeroulement?>
                                         </span>
 
-                                        <span class="mr-2"> • 
-                                            <?=$mission->missionLocalisation?>
+                                        <span class="mr-2"> 
+                                        •   <?php foreach ($countriesAll as $country): ?>
+                                                <?php if ($mission->missionCountryId == $country['idCountry']): ?>
+                                                    <?= $country['countryName'] ?>
+                                                <?php endif; ?>
+                                            <?php endforeach; ?>
                                         </span>
 
                                         <span class="mr-2"> •
@@ -840,7 +844,6 @@ if($totalInfos == 1 ){
 
     $(document).ready(function() {
     
-// JS POUR LOCALISATION PAR RECHERCHE
 
         // $('#citySearch').on('keyup', function() {
         //     let term = $(this).val();
@@ -883,7 +886,6 @@ if($totalInfos == 1 ){
         //     }
         // });
 
-        // FIN JS POUR LOCALISATION PR RECHERCHE ///////////////////////////////////////////////////////////////////////
     });
 
     //Script selection des compétences
@@ -972,41 +974,39 @@ if($totalInfos == 1 ){
     });
     });
 
-    // JS POUR LOCALISATION PAR RECHERCHE
 
-    // $(document).ready(function() {
-    //     // Écouteur d'événement pour détecter les changements dans la barre de recherche
-    //     $('#search-input').on('input', function() {
-    //         // Masquer la section "Pour vous" par défaut
-    //         $('#result-section').hide();
+    $(document).ready(function() {
+        // Écouteur d'événement pour détecter les changements dans la barre de recherche
+        $('#search-input').on('input', function() {
+            // Masquer la section "Pour vous" par défaut
+            $('#result-section').hide();
 
-    //         var searchText = removeAccents($(this).val().trim().toLowerCase());
+            var searchText = removeAccents($(this).val().trim().toLowerCase());
 
-    //         // Parcours de chaque mission pour filtrer celles qui correspondent à la recherche
-    //         var anyMissionFound = false;
-    //         $('.mission-item').each(function() {
-    //             var missionName = removeAccents($(this).data('mission-name').toLowerCase());
-    //             if (missionName.includes(searchText)) {
-    //                 $(this).show(); // Affiche la mission si elle correspond à la recherche
-    //                 anyMissionFound = true;
-    //             } else {
-    //                 $(this).hide(); // Masque la mission si elle ne correspond pas à la recherche
-    //             }
-    //         });
+            // Parcours de chaque mission pour filtrer celles qui correspondent à la recherche
+            var anyMissionFound = false;
+            $('.mission-item').each(function() {
+                var missionName = removeAccents($(this).data('mission-name').toLowerCase());
+                if (missionName.includes(searchText)) {
+                    $(this).show(); // Affiche la mission si elle correspond à la recherche
+                    anyMissionFound = true;
+                } else {
+                    $(this).hide(); // Masque la mission si elle ne correspond pas à la recherche
+                }
+            });
 
-    //         // Afficher ou masquer la section "Aucune mission n'a été trouvée" en fonction des résultats de la recherche
-    //         if (anyMissionFound) {
-    //             $('#no-mission-found').hide();
-    //             $('#result-section').show();
-    //         } else {
-    //             $('#no-mission-found').show();
-    //             $('#result-section').hide();
-    //         }
-    //     });
+            // Afficher ou masquer la section "Aucune mission n'a été trouvée" en fonction des résultats de la recherche
+            if (anyMissionFound) {
+                $('#no-mission-found').hide();
+                $('#result-section').show();
+            } else {
+                $('#no-mission-found').show();
+                $('#result-section').hide();
+            }
+        });
 
-    // });
+    });
 
-    // FIN LOCALISATION PAR RECHERCHE //////////////////////////////////////////
 
     // Fonction pour supprimer les accents d'une chaîne de caractères
     function removeAccents(str) {
@@ -1037,7 +1037,6 @@ document.addEventListener("DOMContentLoaded", function() {
     slider.noUiSlider.on("change", filterMissions);
 
     // POUR RECHERCHE LOCALISATION --> document.getElementById("citySearch").addEventListener("keyup", filterMissions);
-
 
     $(document).ready(function() {
         $('#resetFiltersButton').on('click', function() {
@@ -1219,7 +1218,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (!matchesJob) {
                     showMission = false;
                 }
-            }                                
+            }
+                                            
             // Filtre par pays
             if (selectedCountry.length > 0) {
                 const matchesCountry = selectedCountry.some(function(selectedCountry) {

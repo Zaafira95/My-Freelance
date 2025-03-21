@@ -29,6 +29,9 @@ class User extends CI_Controller {
         // Récupérer les compétences de l'utilisateur connecté avec les compétences id
         $skills = $this->User_model->getUserSkillsAll($user->userId);
         $data['skills'] = $skills;
+        
+        $userCountry = $this->User_model->getUserCountry($user->userCountryId);
+        $data['userCountry'] = $userCountry;
 
         // Récupérer toutes les missions
         $missions = $this->User_model->getAllMission();

@@ -110,13 +110,10 @@ if($totalInfos == 1 ){
                     <div class="w-full mx-auto mt-2 text-black">
                         <select id="countriesAll" name="countriesAll[]" multiple class="text-3xl lg:text-base mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             <?php foreach ($countriesAll as $country): ?>
-                                <!-- <option class="text-black" value="<?= $country['idCountry'] ?>" 
-                                    <?php if (!empty($userCountry)): ?>
-                                            <?= ($userCountry->$userCoutryId == $country['idCountry']) ? 'selected' : '' ?>
-                                    <?php endif; ?>> -->
-                                    <option class="text-black" value="<?= $country['idCountry'] ?>">
+                                <option class="text-black" value="<?= $country['idCountry'] ?>" 
+                                    <?= ($userCountry->idCountry == $country['idCountry']) ? 'selected' : '' ?>>
                                     <?= $country['countryName'] ?>
-                                    </option>
+                                </option>
                                     
                             <?php endforeach; ?>
                         </select>

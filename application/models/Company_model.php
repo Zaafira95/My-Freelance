@@ -46,6 +46,7 @@ class Company_model extends CI_Model {
     public function getCompanyData($userId) {
         $this->db->select('*');
         $this->db->from('Company');
+        $this->db->join('Countries', 'Countries.idCountry = Company.companyCountryId');
         $this->db->where('companyUserID', $userId);
         $query = $this->db->get();
         return $query->row();
@@ -55,6 +56,7 @@ class Company_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('Mission');
         $this->db->join('Job', 'Job.jobId = Mission.missionJobId');
+        $this->db->join('Countries', 'Countries.idCountry = Mission.missionCountryId');
         $this->db->where('missionCompanyId', $companyId);
         $this->db->order_by('idMission', 'DESC');
         $query = $this->db->get();
@@ -215,14 +217,14 @@ class Company_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
-    public function addMission($missionName, $missionTJM, $missionJobId, $missionExperience, $missionSkills, $missionLocation, $missionDescription, $missionAvantages, $missionType, $missionDeroulement, $missionDuration, $missionDateDebut, $missionDateFin, $missionCompanyId) {
+    public function addMission($missionName, $missionTJM, $missionJobId, $missionExperience, $missionSkills, $missioncountryId, $missionDescription, $missionAvantages, $missionType, $missionDeroulement, $missionDuration, $missionDateDebut, $missionDateFin, $missionCompanyId) {
         $data = array(
             'missionName' => $missionName,
             'missionTJM' => $missionTJM,
             'missionJobId' => $missionJobId,
             'missionExpertise' => $missionExperience,
             'missionSkills' => $missionSkills,
-            'missionLocalisation' => $missionLocation,
+            'missioncountryId' => $missioncountryId,
             'missionDescription' => $missionDescription,
             'missionAvantage' => $missionAvantages,
             'missionType' => $missionType,
@@ -290,6 +292,7 @@ class Company_model extends CI_Model {
     public function getMissionById($missionId){
         $this->db->select('*');
         $this->db->from('Mission');
+        $this->db->join('Countries', 'Mission.missionCountryId = Countries.idCountry');
         $this->db->where('idMission', $missionId);
         $query = $this->db->get();
         return $query->row();
@@ -308,6 +311,7 @@ class Company_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('Mission');
         $this->db->join('Job', 'Job.jobId = Mission.missionJobId');
+        $this->db->join('Countries', 'Countries.idCountry = Mission.missionCountryId');
         $this->db->where('missionCompanyId', $companyId);
         $query = $this->db->get();
         return $query->result();
@@ -374,7 +378,7 @@ class Company_model extends CI_Model {
     }
 
 
-    public function editMission($missionId, $missionName, $missionTJM, $missionJobId, $missionExperience, $missionSkills, $missionLocation, $missionDescription, $missionAvantages, $missionType, $missionDeroulement, $missionDuration, $missionDateDebut, $missionDateFin) {
+    public function editMission($missionId, $missionName, $missionTJM, $missionJobId, $missionExperience, $missionSkills, $missionCountryId, $missionDescription, $missionAvantages, $missionType, $missionDeroulement, $missionDuration, $missionDateDebut, $missionDateFin) {
         // Mettez à jour les données de mission
         $data = array(
             'missionName' => $missionName,
@@ -382,7 +386,7 @@ class Company_model extends CI_Model {
             'missionJobId' => $missionJobId,
             'missionExpertise' => $missionExperience,
             'missionSkills' => $missionSkills,
-            'missionLocalisation' => $missionLocation,
+            'missionCountryId' => $missionCountryId,
             'missionDescription' => $missionDescription,
             'missionAvantage' => $missionAvantages,
             'missionType' => $missionType,
@@ -420,11 +424,11 @@ class Company_model extends CI_Model {
         $this->db->update('Company');
     }    
 
-    public function updateCompanyData($companyId, $companyName, $companySlogan, $companySecteur, $companyLocalisation, $userId, $userLinkedinLink, $userTelephone, $companyWebsite){
+    public function updateCompanyData($companyId, $companyName, $companySlogan, $companySecteur, $companyCountryId, $userId, $userLinkedinLink, $userTelephone, $companyWebsite){
         $this->db->set('companyName', $companyName);
         $this->db->set('companySlogan', $companySlogan);
         $this->db->set('companySecteur', $companySecteur);
-        $this->db->set('companyLocalisation', $companyLocalisation);
+        $this->db->set('companyCountryId', $companyCountryId);
         $this->db->set('companyWebsite', $companyWebsite);
         $this->db->where('idCompany', $companyId);
         $this->db->update('Company');

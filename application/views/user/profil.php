@@ -247,7 +247,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                            
                         <select id="countriesAll" name="userCountry"  style="font-size:1rem;" class="text-3xl lg:text-base font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                             <?php foreach ($countriesAll as $country): ?>
-                                <option class="text-3xl lg:text-base dark:text-black" value="<?= $country['idCountry']?>"
+                                <option class="text-3xl lg:text-base dark:text-white" value="<?= $country['idCountry']?>"
                                     <?= ($userCountry->idCountry == $country['idCountry']) ? 'selected' : '' ?>>
                                 <?= $country['countryName'] ?></option>
                             <?php endforeach; ?>

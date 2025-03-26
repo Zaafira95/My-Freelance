@@ -249,6 +249,7 @@ class Company extends CI_Controller {
         $data['citiesAll'] = $this->Company_model->get_all_cities();
 
         $data['skillsAll'] = $this->Company_model->get_all_skills();
+        $data['countriesAll'] = $this->Company_model->get_all_countries();
 
         $this->load->view('company/addMission', $data);
     }
@@ -281,6 +282,7 @@ class Company extends CI_Controller {
         $data['citiesAll'] = $this->Company_model->get_all_cities();
 
         $data['skillsAll'] = $this->Company_model->get_all_skills();
+        $data['countriesAll'] = $this->Company_model->get_all_countries();
 
         if ($user->userCompanyId != $mission->missionCompanyId) {
             redirect('login'); 
@@ -339,7 +341,7 @@ class Company extends CI_Controller {
         $missionType = $this->input->post('missionType');
         $missionDeroulement = $this->input->post('missionDeroulement');
         $missionDuration = $this->input->post('missionDuration');
-        $missionLocation = $this->input->post('missionLocation');
+        $missionCountryId = $this->input->post('missionCountryId');
         $missionDescription = $this->input->post('missionDescription');
         $missionDateDebut = $this->input->post('missionDateDebut');
         $missionDateFin = $this->input->post('missionDateFin');
@@ -355,7 +357,7 @@ class Company extends CI_Controller {
         $skills = $this->input->post("skillsAll");
         $levels = $this->input->post("skillsLevel");
 
-        $missionId = $this->Company_model->addMission($missionName, $missionTJM, $missionJobId, $missionExperience, $missionSkills, $missionLocation, $missionDescription, $missionAvantages, $missionType, $missionDeroulement, $missionDuration, $missionDateDebut, $missionDateFin, $missionCompanyId);
+        $missionId = $this->Company_model->addMission($missionName, $missionTJM, $missionJobId, $missionExperience, $missionSkills, $missionCountryId, $missionDescription, $missionAvantages, $missionType, $missionDeroulement, $missionDuration, $missionDateDebut, $missionDateFin, $missionCompanyId);
 
         // Vérifiez si la mission a été ajoutée avec succès et qu'un ID a été généré
         if ($missionId) {
@@ -390,7 +392,7 @@ class Company extends CI_Controller {
             $missionType = $this->input->post('missionType');
             $missionDeroulement = $this->input->post('missionDeroulement');
             $missionDuration = $this->input->post('missionDuration');
-            $missionLocation = $this->input->post('missionLocation');
+            $missionCountryId = $this->input->post('missionCountryId');
             $missionDescription = $this->input->post('missionDescription');
             $missionDateDebut = $this->input->post('missionDateDebut');
             $missionDateFin = $this->input->post('missionDateFin');
@@ -399,7 +401,7 @@ class Company extends CI_Controller {
             $skills = $this->input->post("skillsAll");
             $levels = $this->input->post("skillsLevel");
 
-            $this->Company_model->editMission($missionId, $missionName, $missionTJM, $missionJobId, $missionExperience, $missionSkills, $missionLocation, $missionDescription, $missionAvantages, $missionType, $missionDeroulement, $missionDuration, $missionDateDebut, $missionDateFin);
+            $this->Company_model->editMission($missionId, $missionName, $missionTJM, $missionJobId, $missionExperience, $missionSkills, $missionCountryId, $missionDescription, $missionAvantages, $missionType, $missionDeroulement, $missionDuration, $missionDateDebut, $missionDateFin);
             if (!empty($skills)) {
             // Bouclez à travers les compétences et les niveaux associés
                 for ($i = 0; $i < count($skills); $i++) {
@@ -489,6 +491,7 @@ class Company extends CI_Controller {
 
         $data['secteursAll'] = $this->Company_model->get_all_secteurs();
         $data['citiesAll'] = $this->Company_model->get_all_cities();
+        $data['countriesAll'] = $this->Company_model->get_all_countries();
         
         $this->load->view('company/my_company', $data);
     }
@@ -501,9 +504,6 @@ class Company extends CI_Controller {
         $this->load->model('Company_model');
         $user = $this->Company_model->get_UserData($userId);
         $data['user'] = $user;
-       
-        
-        
 
         $mission = $this->Company_model->getMissionById($missionId);
         $data['mission'] = $mission;
@@ -642,9 +642,8 @@ class Company extends CI_Controller {
         $companySlogan = $this->input->post('companySlogan');
         $companySecteur = $this->input->post('secteursAll');
 
-        $companyLocalisation = $this->input->post('companyLocalisation');
+        $companyCountryId = $this->input->post('companyLocalisation');
         $companyEtranger = $this->input->post('companyEtranger');
-        $companyLocalisation = $companyEtranger == 'on' ? "Etranger" : $companyLocalisation;
 
         $userLinkedinLink = $this->input->post('userLinkedinLink');
         $companyWebsite = $this->input->post('companyWebsite');
@@ -754,7 +753,7 @@ class Company extends CI_Controller {
             }
         }
 
-        $this->Company_model->updateCompanyData($companyId, $companyName, $companySlogan, $companySecteur, $companyLocalisation, $userId, $userLinkedinLink, $userTelephone, $companyWebsite);
+        $this->Company_model->updateCompanyData($companyId, $companyName, $companySlogan, $companySecteur, $companyCountryId, $userId, $userLinkedinLink, $userTelephone, $companyWebsite);
         $this->session->set_flashdata('message', 'Your information have been successfully updated!');
         $this->session->set_flashdata('status', 'success');
         redirect($_SERVER['HTTP_REFERER']);

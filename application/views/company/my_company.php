@@ -93,14 +93,15 @@ include(APPPATH . 'views/layouts/company/header.php');
                         </select> 
                     </div>                    
                     <label for="companyCity" class="text-3xl lg:text-base block mb-1 font-medium text-gray-900 dark:text-white">Location *</label>
-                    <div class="relative city-search-container w-full mb-4">
-                        <input type="text" id="citySearch" name="companyLocalisation" value="<?=$company->companyLocalisation?>" placeholder="Cherchez votre ville" class="text-3xl lg:text-base border p-2 rounded-lg w-full text-black">
-                            <div id="cities-list" class="text-3xl lg:text-base absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
+                    <div class="w-full mx-auto mt-2 text-black">
+                        <select id="countriesAll" name="companyLocalisation"  style="font-size:1rem;" class="text-3xl lg:text-base font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <?php foreach ($countriesAll as $country): ?>
+                                <option class="text-3xl lg:text-base dark:text-white" value="<?= $country['idCountry']?>"
+                                    <?= ($company->idCountry == $country['idCountry']) ? 'selected' : '' ?>>
+                                <?= $country['countryName'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
-                    <div class="flex items-center mb-4">
-                            <input type="checkbox" id="companyEtranger" name="companyEtranger" <?php echo $company->companyLocalisation === 'Etranger' ? 'checked' : "" ?>>
-                            <label class="text-3xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Abroad</label>
-                     </div>
                     <label for="userLinkedinLink" class="text-3xl lg:text-base block mb-1  font-medium text-gray-900 dark:text-white">LinkedIn</label>
                         <input type="text" name="userLinkedinLink" id="userLinkedinLink" value="<?=$user->userLinkedinLink?>" class="text-3xl lg:text-base mb-4 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onblur="checkLinkedinLink()">
 
@@ -346,7 +347,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                         <h2 class="text-5xl font-bold flex items-center"><?= $company->companyName ?></h2>
                         <h3 class="text-3xl lg:text-2xl font-medium"><?=$company->companySlogan?></h3>
                         <h3 class="text-2xl lg:text-xl font-medium text-gray-400">Sector: <?=$company->companySecteur?></h3>
-                        <h3 class="text-2xl lg:text-xl font-medium text-gray-400"><?=$company->companyLocalisation?></h3>
+                        <h3 class="text-2xl lg:text-xl font-medium text-gray-400"><?=$company->countryName?></h3>
                     </div>
                     <div class="flex flex-wrap">
                         <a href="https://wa.me/<?=$user->userTelephone?>?text=Bonjour%20<?=$user->userFirstName?>%20!%20Je%20suis%20intéressé%20par%20votre%20entreprise%20sur%20Café%20Crème%20Community%20!%20" target="_blank">
@@ -544,7 +545,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                                                         <?=$mission->missionDeroulement?>
                                                         </span>
 
-                                                        <span class="mr-2"> • <?=$mission->missionLocalisation?></span>
+                                                        <span class="mr-2"> • <?=$mission->countryName?></span>
 
                                                         <span class="mr-2"> •
                                                         <?php
@@ -832,6 +833,16 @@ include(APPPATH . 'views/layouts/company/header.php');
         
         $('#citySearch').on('input', function() {
             $('#companyEtranger').prop('checked', false);
+        });
+
+        //Script selection des pays
+        const countriesChoices = new Choices('#countriesAll', {
+            searchEnabled: true,
+            removeItemButton: true,
+            itemSelectText: '',
+            placeholder: true, // Ajoutez cette ligne pour activer le placeholder
+            placeholderValue: 'Select country', // Texte du placeholder
+
         });
 
     });

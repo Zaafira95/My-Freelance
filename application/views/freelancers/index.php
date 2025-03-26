@@ -314,7 +314,6 @@ include(APPPATH . 'views/layouts/company/header.php');
                         // Ajoutez la classe .has-border si des résultats sont retournés
                         $('#cities-list').addClass('has-border');
                     } else {
-                        // Supprimez la classe .has-border si aucun résultat n'est retourné
                         $('#cities-list').removeClass('has-border');
                     }
                     $('#cities-list').empty();

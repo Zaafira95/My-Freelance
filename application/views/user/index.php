@@ -310,7 +310,7 @@ if($totalInfos == 1 ){
                                                     <?php endforeach; ?>
                                             </span>
 
-                                            <span class="mr-2"> 
+                                            <span class="mr-2 font-medium"> 
                                                 • Daily rate : <?=$mission->missionTJM?> AED
                                             </span>
                                             
@@ -361,11 +361,7 @@ if($totalInfos == 1 ){
                                             </span>
 
                                             <span class="mr-2"> 
-                                                •   <?php foreach ($countriesAll as $country): ?>
-                                                        <?php if ($mission->missionCountryId == $country['idCountry']): ?>
-                                                            <?= $country['countryName'] ?>
-                                                        <?php endif; ?>
-                                                    <?php endforeach; ?>
+                                                •   <?=$mission->countryName?>
                                             </span>
 
                                             <span class="mr-2"> •
@@ -513,7 +509,7 @@ if($totalInfos == 1 ){
                         data-mission-duree="<?=strtolower($mission->missionDuration)?>" 
                         data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" 
                         data-mission-tjm="<?=$mission->missionTJM?>" 
-                        data-mission-localisation="<?=strtolower($mission->missionLocalisation)?>"
+                        data-mission-localisation="<?=strtolower($mission->missionCountryId)?>"
                         data-mission-skills="<?=$dataMissionSkillsString?>"> 
                         <!-- Début carte mission -->
                         <div class="mb-12 bg-white w-full rounded-lg h-20vh mt-4 p-8 lg:p-4 dark:bg-gray-800 dark:text-white relative lg:mb-2" data-mission-name="<?=strtolower($mission->missionName)?>" data-mission-job="<?=strtolower($mission->missionJobId)?>" data-mission-type="<?=strtolower($mission->missionType)?>" data-mission-deroulement="<?=strtolower($mission->missionDeroulement)?>" data-mission-duree="<?=strtolower($mission->missionDuration)?>" data-mission-expertise="<?=strtolower($mission->missionExpertise)?>" data-mission-tjm="<?=$mission->missionTJM?>" data-mission-localisation="<?=$mission->missionCountryId?>" data-mission-skills="<?=$dataMissionSkillsString?>">
@@ -533,7 +529,7 @@ if($totalInfos == 1 ){
                                             •   <?= $mission->jobName?>
                                         </span>
                                         
-                                        <span class="mr-2">
+                                        <span class="mr-2 font-medium">
                                             • Daily rate: <?=$mission->missionTJM?> AED
                                         </span>
                                         
@@ -584,11 +580,7 @@ if($totalInfos == 1 ){
                                         </span>
 
                                         <span class="mr-2"> 
-                                        •   <?php foreach ($countriesAll as $country): ?>
-                                                <?php if ($mission->missionCountryId == $country['idCountry']): ?>
-                                                    <?= $country['countryName'] ?>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
+                                        •   <?=$mission->countryName?>
                                         </span>
 
                                         <span class="mr-2"> •

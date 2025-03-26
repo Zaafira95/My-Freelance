@@ -265,8 +265,7 @@ else if ($user->userType == "sales"){
                                             
                                             <div>
                                                 <p class="text text-2xl lg:text-lg">Location</p>
-                                                <p class="font-bold text-3xl lg:text-lg"><?=$mission->missionLocalisation?></p>
-
+                                                <p class="font-bold text-3xl lg:text-lg"><?=$mission->countryName?></p>
                                             </div>
                                         </div>
                                         <div class="flex grid-cols-2 items-center mb-4">
@@ -443,7 +442,7 @@ else if ($user->userType == "sales"){
                                             
                                             <div>
                                                 <p class="text">Location</p>
-                                                <p class="font-bold text-base"><?=$mission->missionLocalisation?></p>
+                                                <p class="font-bold text-base"><?=$mission->countryName?></p>
 
                                             </div>
                                         </div>
@@ -629,7 +628,7 @@ else if ($user->userType == "sales"){
                                                 <?=$companyMission->missionDeroulement?>
                                                 </span>
 
-                                                <span class="mr-2"> • <?=$companyMission->missionLocalisation?></span>
+                                                <span class="mr-2"> • <?=$companyMission->countryName?></span>
 
                                                 <span class="mr-2"> •
                                                 <?php

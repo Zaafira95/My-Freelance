@@ -206,7 +206,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                             <span class="mr-2"> 
                                                 •   <?= $mission->jobName?>
                                             </span>
-                                            <span class="mr-2"> • Daily rate: <?=$mission->missionTJM?> AED</span>
+                                            <span class="mr-2 font-medium"> • Daily rate: <?=$mission->missionTJM?> AED</span>
                                             
                                             <span class="mr-2"> •
                                             <?php
@@ -255,11 +255,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                             </span>
 
                                             <span class="mr-2"> 
-                                                •   <?php foreach ($countriesAll as $country): ?>
-                                                        <?php if ($mission->missionCountryId == $country['idCountry']): ?>
-                                                            <?= $country['countryName'] ?>
-                                                        <?php endif; ?>
-                                                    <?php endforeach; ?>
+                                                •   <?=$mission->countryName?>
                                             </span>
 
                                             <span class="mr-2"> •
@@ -407,7 +403,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                             <span class="mr-2"> 
                                                 •   <?= $mission->jobName?>
                                             </span>
-                                            <span class="mr-2"> • Daily rate: <?=$mission->missionTJM?> AED</span>
+                                            <span class="mr-2 font-medium"> • Daily rate: <?=$mission->missionTJM?> AED</span>
                                             
                                             <span class="mr-2"> •
                                             <?php
@@ -458,11 +454,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                                             
 
                                             <span class="mr-2"> 
-                                                •   <?php foreach ($countriesAll as $country): ?>
-                                                        <?php if ($mission->missionCountryId == $country['idCountry']): ?>
-                                                            <?= $country['countryName'] ?>
-                                                        <?php endif; ?>
-                                                    <?php endforeach; ?>
+                                                •   <?=$mission->countryName?>
                                             </span>
 
                                             <span class="mr-2"> •

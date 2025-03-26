@@ -71,6 +71,7 @@ class User_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('Mission');
         $this->db->join('Job', 'Mission.missionJobId = Job.jobId');
+        $this->db->join('Countries', 'Mission.missionCountryId = Countries.idCountry');
         $query = $this->db->get();
         return $query->result();
     }
@@ -79,6 +80,7 @@ class User_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('Company');
         $this->db->join('Secteurs', 'Company.companySecteur = Secteurs.secteurName');
+        $this->db->join('Countries', 'Company.companyCountryId = Countries.idCountry');
         $query = $this->db->get();
         return $query->result();
     }
@@ -122,6 +124,16 @@ class User_model extends CI_Model {
         $this->db->where('Mission.idMission', $idMissions);
         $query = $this->db->get();
         return $query->result();
+    }
+
+    
+    // Récupérer le pays de l'ESN connecté avec le country id
+    public function getCompanyCountry($companyCountryId){
+        $this->db->select('*');
+        $this->db->from('Countries');
+        $this->db->where('idCountry', $companyCountryId);
+        $query = $this->db->get();
+        return $query->row();
     }
 
     public function addToFavorite($userId, $missionId, $companyMissionId){
@@ -327,6 +339,7 @@ class User_model extends CI_Model {
         public function getMissionById($missionId){
             $this->db->select('*');
             $this->db->from('Mission');
+            $this->db->join('Countries', 'Mission.missionCountryId = Countries.idCountry');
             $this->db->where('idMission', $missionId);
             $query = $this->db->get();
             return $query->row();
@@ -345,6 +358,7 @@ class User_model extends CI_Model {
             $this->db->select('*');
             $this->db->from('Mission');
             $this->db->join('Job', 'Job.jobId = Mission.missionJobId');
+            $this->db->join('Countries', 'Countries.idCountry = Mission.missionCountryId');
             $this->db->where('missionCompanyId', $companyId);
             $query = $this->db->get();
             return $query->result();
@@ -411,6 +425,7 @@ class User_model extends CI_Model {
             $this->db->from('Mission');
             $this->db->join('SavedMission', 'SavedMission.idMissionsavedMission = Mission.idMission');
             $this->db->join('Job', 'Job.jobId = Mission.missionJobId');
+            $this->db->join('Countries', 'Countries.idCountry = Mission.missionCountryId');
             $this->db->where('SavedMission.idUsersavedMission', $userId);
             $query = $this->db->get();
             return $query->result();
@@ -430,6 +445,7 @@ class User_model extends CI_Model {
             $this->db->select('*');
             $this->db->from('Mission');
             $this->db->join('Job', 'Job.jobId = Mission.missionJobId');
+            $this->db->join('Countries', 'Countries.idCountry = Mission.missionCountryId');
             $this->db->where('missionCompanyId', $companyId);
             $this->db->order_by('idMission', 'DESC');
             $query = $this->db->get();
@@ -501,25 +517,27 @@ class User_model extends CI_Model {
             return $query->result_array();
         }
 
+
         public function getRelevantMissions($userId) {
             $subQuerySkillMatch = "(SELECT COUNT(*) FROM UserSkills US 
                                     JOIN MissionSkills MS ON MS.missionSkills_skillId = US.userSkills_skillId 
                                     WHERE US.userSkills_userId = $userId 
                                     AND MS.missionSkills_missionId = M.idMission)";
-            
-            // Ajout de J.jobName, J.jobDescription à la sélection
-            $this->db->select('M.*, J.jobName, ' . $subQuerySkillMatch . ' AS skillMatches, 
-                             (100 * ' . $subQuerySkillMatch . ' + 
-                             CASE WHEN M.missionTJM >= U.userTJM THEN 50 ELSE 0 END + 
-                             CASE WHEN M.missionType = U.userJobType THEN 30 ELSE 0 END + 
-                             CASE WHEN M.missionLocalisation = U.userVille THEN 20 ELSE 0 END + 
-                             CASE WHEN M.missionExpertise = U.userSeniorite THEN 10 ELSE 0 END) AS RelevanceScore');
-            
+        
+            // Ajout de J.jobName, J.jobDescription et Countries.countryName à la sélection
+            $this->db->select('M.*, J.jobName, C.*, ' . $subQuerySkillMatch . ' AS skillMatches, 
+                               (100 * ' . $subQuerySkillMatch . ' + 
+                               CASE WHEN M.missionTJM >= U.userTJM THEN 50 ELSE 0 END + 
+                               CASE WHEN M.missionType = U.userJobType THEN 30 ELSE 0 END + 
+                               CASE WHEN M.missionCountryId = C.idCountry THEN 20 ELSE 0 END + 
+                               CASE WHEN M.missionExpertise = U.userSeniorite THEN 10 ELSE 0 END) AS RelevanceScore');
+        
             $this->db->from('Mission M');
             
-            // Jointure à gauche avec Users et Job
+            // Jointure à gauche avec Users, Job et Countries
             $this->db->join('Users U', 'U.userId = ' . $userId, 'left');
-            $this->db->join('Job J', 'M.missionJobId = J.jobId', 'left'); // Assurez-vous que cette jointure correspond à votre logique d'application.
+            $this->db->join('Job J', 'M.missionJobId = J.jobId', 'left');
+            $this->db->join('Countries C', 'M.missionCountryId = C.idCountry');  // Jointure avec la table Countries
             
             $this->db->group_by('M.idMission');
             
@@ -529,6 +547,7 @@ class User_model extends CI_Model {
             
             return $query->result();
         }
+        
         
 
         public function userHasSkill($userId, $skillId) {

@@ -143,15 +143,10 @@ if ($banner->bannerStatus == "active"){ ?>
                                         <p class="text-3xl lg:text-base">
                                             
                                         <span class="mr-2"> 
-                                        •   <?php foreach ($countriesAll as $country): ?>
-                                                <?php if ($company->companyCountryId == $country['idCountry']): ?>
-                                                    <?= $country['countryName'] ?>
-                                                <?php endif; ?>
-                                            <?php endforeach; ?>
+                                        •   <?=$company->countryName?>
                                         </span>
                                             
                                             <span class="mr-2"> • <?=$company->secteurName?></span>
-
                                         </p>
                                     </div>
                                 </div>
@@ -187,11 +182,7 @@ if ($banner->bannerStatus == "active"){ ?>
                                             <p class="text-3xl lg:text-base">
                                             
                                                 <span class="mr-2"> 
-                                                •   <?php foreach ($countriesAll as $country): ?>
-                                                        <?php if ($company->companyCountryId == $country['idCountry']): ?>
-                                                            <?= $country['countryName'] ?>
-                                                        <?php endif; ?>
-                                                    <?php endforeach; ?>
+                                                •   <?=$company->countryName?>
                                                 </span>
                                                 
                                                 <span class="mr-2"> • <?=$company->companySecteur?></span>

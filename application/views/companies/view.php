@@ -44,7 +44,7 @@ include(APPPATH . 'views/layouts/user/header.php');
                         <h2 class="text-5xl font-bold flex items-center"><?= $company->companyName ?></h2>
                         <h3 class="text-3xl lg:text-2xl font-medium"><?=$company->companySlogan?></h3>
                         <h3 class="text-2xl lg:text-xl font-medium text-gray-400">Sector: <?=$company->companySecteur?></h3>
-                        <h3 class="text-2xl lg:text-xl font-medium text-gray-400"><?=$company->companyLocalisation?></h3>
+                        <h3 class="text-2xl lg:text-xl font-medium text-gray-400"><i class="fa fa-map-marker-alt mr-1"></i> <?=$companyCountry->countryName?></h3>
                     </div>
                     <div class="flex flex-wrap lg:mt-0 mt-4">
                         <a href="https://wa.me/<?=$company->userTelephone?>?text=Bonjour%20<?=$company->userFirstName?>%20!%20Je%20suis%20intéressé%20par%20votre%20entreprise%20sur%20Café%20Crème%20Community%20!%20" target="_blank">
@@ -216,7 +216,7 @@ include(APPPATH . 'views/layouts/user/header.php');
                                                         <?=$mission->missionDeroulement?>
                                                         </span>
 
-                                                        <span class="mr-2"> • <?=$mission->missionLocalisation?></span>
+                                                        <span class="mr-2"> • <?=$mission->countryName?></span>
 
                                                         <span class="mr-2"> •
                                                         <?php

@@ -15,22 +15,24 @@ include(APPPATH . 'views/layouts/company/header.php');
 <div class="px-8 py-6 lg:px-4 lg:py-6 h-90 lg:overflow-y-auto no-scrollbar ">
     <div class="justify-between items-center mx-auto max-w-screen-xl h-full">
         <div class="lg:flex gap-6 h-full mb-3">
-            <div class="w-full lg:w-1/4 md:block md:top-0">
+            <div class="w-full lg:w-1/4 md:block">
                 <div class="relative text-right mb-4 lg:hidden">
                     <button id="showFilterButton" class="relative text-4xl text-primary border p-2 border-primary  rounded-lg 2 hover:bg-primary-900 hover:text-white">
                         <i class="fas fa-sliders-h"></i>
                     </button>
                 </div>
-                <div class="hidden lg:block bg-white rounded-lg lg:h-full lg:overflow-y-auto no-scrollbar lg:no-shadow shadow-lg mb-8 lg:mb-4 p-4 dark:bg-gray-800 dark:text-white" id="FilterMission">
+                <div class="hidden lg:block bg-white rounded-lg lg:h-full overflow-y-auto no-scrollbar lg:no-shadow shadow-lg mb-8 lg:mb-4 p-4 dark:bg-gray-800 dark:text-white" id="FilterMission">
                     <h3 class="text-3xl lg:text-lg font-medium mt-2">Filters</h3>
                     <h4 class="text-3xl lg:text-lg font-medium mt-4">Location</h4>
-                        <div class="flex items-center mt-2">
-                            <i class="text-3xl lg:text-base fa fa-map-marker-alt mr-3"></i>    
-                            <div class="relative city-search-container w-full">
-                                <input type="text" id="citySearch" placeholder="Cherchez votre ville" class="text-3xl lg:text-lg border p-2 rounded-lg w-full text-black" onkeypress="return preventNumberInput(event)">
-                                <div id="cities-list" class="text-3xl lg:text-lg absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
-                            </div>
-                        </div>
+                    <div class="w-full mx-auto mt-2 text-black">
+                        <select id="countriesAll" name="countriesAll[]" multiple class="text-3xl lg:text-base mt-1 block w-full py-2 px-3 border border-gray-300 bg-white text-black rounded-full shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <?php foreach ($countriesAll as $country): ?>
+                                <option class="text-black" value="<?= $country['idCountry'] ?>">
+                                    <?= $country['countryName'] ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
                     <h4 class="text-3xl lg:text-lg font-medium mt-4">Job type</h4>
                     <div class="mt-2">
                         <label class="flex items-center">
@@ -103,7 +105,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                 </div>
                 
             </div>
-            <div class="w-full h-full lg:overflow-y-auto no-scrollbar">
+            <div class="w-full h-full overflow-y-auto no-scrollbar">
                 <div class="bg-primary rounded-lg h-20vh p-4 text-white">
                     <p class="text-3xl lg:text-lg font-bold">Hello, <?=$user->userFirstName?></p>
                     <p class="text-3xl lg:text-base mt-2 mb-2">Discover the fastest and most efficient way to find your freelancer.</p>
@@ -124,8 +126,8 @@ include(APPPATH . 'views/layouts/company/header.php');
                             class="w-full">                            
                             <div class="bg-white rounded-lg h-20vh mt-4 p-4 w-full dark:bg-gray-800 dark:text-white relative freelancer-item" 
                             data-freelancer-firstname="<?=strtolower($freelancer->userFirstName)?>" 
-                            data-freelancer-lastname="<?=strtolower($freelancer->userLastName)?>" 
-                            data-freelancer-city="<?=strtolower($freelancer->userVille)?>" 
+                            data-freelancer-lastname="<?=strtolower($freelancer->userLastName)?>"
+                            data-freelancer-localisation="<?=$freelancer->userCountryId?>"
                             data-freelancer-time="<?=strtolower($freelancer->userJobTimePartielOrFullTime)?>" 
                             data-freelancer-remote="<?=strtolower($freelancer->userRemote)?>" 
                             data-freelancer-expertise="<?=strtolower($freelancer->userExperienceYear)?>" 
@@ -192,7 +194,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                                                 <?php
                                                 }
                                                 ?>
-                                                <span class="mr-2"> • <?=$freelancer->userVille?></span>
+                                                <span class="mr-2"> • <?=$freelancer->countryName?></span>
                                                 <span class="mr-2"> •
                                                 <?php
                                                     if ($freelancer->userExperienceYear == "junior"){
@@ -274,7 +276,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                         </a>
                     <?php endforeach; ?>
                     </div>
-                        <p class="text-4xl lg:text-xl mt-10 hidden text-left" id="no-freelancer-found">Aucun freelance n'a été trouvée.</p>
+                        <p class="text-4xl lg:text-xl mt-10 hidden text-left" id="no-freelancer-found">No freelancers were found.</p>
                     </div>
                 </div>
             </div>
@@ -312,7 +314,6 @@ include(APPPATH . 'views/layouts/company/header.php');
                         // Ajoutez la classe .has-border si des résultats sont retournés
                         $('#cities-list').addClass('has-border');
                     } else {
-                        // Supprimez la classe .has-border si aucun résultat n'est retourné
                         $('#cities-list').removeClass('has-border');
                     }
                     $('#cities-list').empty();
@@ -322,7 +323,6 @@ include(APPPATH . 'views/layouts/company/header.php');
                 });
             }
             else {
-                // Supprimez la classe .has-border si l'input est trop court
                 $('#cities-list').removeClass('has-border').empty();
             }
         });
@@ -353,6 +353,16 @@ include(APPPATH . 'views/layouts/company/header.php');
         itemSelectText: '',
         placeholder: true, // Ajoutez cette ligne pour activer le placeholder
         placeholderValue: 'Select Jobs', // Texte du placeholder
+
+    });
+
+    //Script selection des pays
+    const countriesChoices = new Choices('#countriesAll', {
+        searchEnabled: true,
+        removeItemButton: true,
+        itemSelectText: '',
+        placeholder: true, // Ajoutez cette ligne pour activer le placeholder
+        placeholderValue: 'Select country', // Texte du placeholder
 
     });
 
@@ -480,25 +490,21 @@ include(APPPATH . 'views/layouts/company/header.php');
     $('#jobsAll').on('change', function() {
         filterFreelancers();
     });
+    
+    $('#countriesAll').on('change', function() {
+        filterFreelancers();
+    });
 
     slider.noUiSlider.on("change", filterFreelancers);
-
-    document.getElementById("citySearch").addEventListener("keyup", filterFreelancers);
 
     $(document).ready(function() {
         $('#resetFiltersButton').on('click', function() {
             // Réinitialisez les filtres en décochant toutes les cases à cocher
             $('.form-checkbox').prop('checked', false);
 
-            $('#citySearch').val('');
-            document.querySelector('#skillsAll').parentNode.querySelector('.choices__input--cloned').value = '';
-            document.querySelector('#jobsAll').parentNode.querySelector('.choices__input--cloned').value = '';
-
             skillsChoices.removeActiveItems();
             jobsChoices.removeActiveItems();
-
-            $('#jobsAll').val(null);
-
+            countriesChoices.removeActiveItems();
 
             var slider = document.getElementById('tjm-slider');
             var defaultTJMValues = [300, 1200]; // Valeurs par défaut
@@ -510,13 +516,12 @@ include(APPPATH . 'views/layouts/company/header.php');
     function filterFreelancers() {
         const freelancers = document.querySelectorAll(".freelancer-item");
         const activeFilters = [];
-        const cityInput = document.getElementById("citySearch");
-        const cityFilter = cityInput.value.toLowerCase();
         const tjmValues = slider.noUiSlider.get();
         const tjmMin = parseInt(tjmValues[0]);
         const tjmMax = parseInt(tjmValues[1]);
         const selectedSkills = $('#skillsAll').val();
         const selectedJobs = $('#jobsAll').val();
+        const selectedCountry = $('#countriesAll').val();
     
 
         checkboxes.forEach(function(checkbox) {
@@ -553,11 +558,10 @@ include(APPPATH . 'views/layouts/company/header.php');
         let visibleFreelancersCount = 0;
 
         freelancers.forEach(function(freelancer) {
-            //const missionName = mission.getAttribute("data-mission-name");
             const freelancerTime = freelancer.getAttribute("data-freelancer-time");
             const freelancerRemote = freelancer.getAttribute("data-freelancer-remote");
             const freelancerExpertise = freelancer.getAttribute("data-freelancer-expertise");
-            const freelancerCity = freelancer.getAttribute("data-freelancer-city").toLowerCase();
+            const freelancerLocalisation = freelancer.getAttribute("data-freelancer-localisation").toLowerCase();
             const freelancerIsAvailable = freelancer.getAttribute("data-freelancer-isavailable");
             const freelancerJobAttr = freelancer.getAttribute("data-freelancer-job");
             const freelancerJob = freelancerJobAttr.split(',');
@@ -575,7 +579,7 @@ include(APPPATH . 'views/layouts/company/header.php');
             });
 
            
-            // Filtre par expertise
+            // Filtre par disponibilité
             let matchesAvailable = true;
             if (availableFilters.length > 0) {
                 matchesAvailable = availableFilters.some(function(filter) {
@@ -587,7 +591,7 @@ include(APPPATH . 'views/layouts/company/header.php');
             }
             showFreelancer = showFreelancer && matchesAvailable; 
            
-            // Filtre par expertise
+            // Filtre par temps de travail
             let matchesType = true;
             if (typeFilters.length > 0) {
                 matchesType = typeFilters.some(function(filter) {
@@ -611,11 +615,6 @@ include(APPPATH . 'views/layouts/company/header.php');
                 });
             }
             showFreelancer = showFreelancer && matchesExpertise;
-
-            // Filtre par ville
-            if (cityFilter && !freelancerCity.includes(cityFilter)) {
-                showFreelancer = false;
-            }
                     
             // Filtre par métier
             if (selectedJobs.length > 0) {
@@ -637,7 +636,16 @@ include(APPPATH . 'views/layouts/company/header.php');
                     showFreelancer = false;
                 }
             }
-
+                                            
+            // Filtre par pays
+            if (selectedCountry.length > 0) {
+                const matchesCountry = selectedCountry.some(function(selectedCountry) {
+                    return freelancerLocalisation.includes(selectedCountry);
+                });
+                if (!matchesCountry) {
+                    showFreelancer = false;
+                }
+            }
 
             if (freelancerTJM < tjmMin || freelancerTJM > tjmMax) {
                 showFreelancer = false;

@@ -13,6 +13,7 @@ class Company_model extends CI_Model {
     public function get_freelancers(){
         $this->db->select('*');
         $this->db->from('Users');
+        $this->db->join('Countries', 'Countries.idCountry = Users.userCountryId');
         $this->db->where('userCompanyId', 0);
         $this->db->where('userType', 'freelance');
         // trier par disponibilité (userIsAvailable = 1 pour les freelances disponibles)
@@ -267,6 +268,11 @@ class Company_model extends CI_Model {
 
     public function get_all_cities(){
         $query = $this->db->get('Geonames_cities');
+        return $query->result_array();
+    }
+
+    public function get_all_countries(){
+        $query = $this->db->get('Countries');
         return $query->result_array();
     }
 

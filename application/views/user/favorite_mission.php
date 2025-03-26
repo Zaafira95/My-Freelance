@@ -195,6 +195,7 @@ include(APPPATH . 'views/layouts/user/header.php');
 
 <script>
 
+//test 
 $(document).ready(function(){ 
 
     $(document).on('change', 'input[name="finIndisponibiliteDuree"]', function() {

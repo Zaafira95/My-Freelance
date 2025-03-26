@@ -601,6 +601,7 @@ class Company extends CI_Controller {
 
         $data['skillsAll'] = $this->Company_model->get_all_skills();
         $data['jobsAll'] = $this->Company_model->get_all_jobs();
+        $data['countriesAll'] = $this->Company_model->get_all_countries();
         $data['user'] = $user;
 
         $this->load->view('freelancers/index', $data);

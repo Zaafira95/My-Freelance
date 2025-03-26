@@ -418,11 +418,11 @@ include(APPPATH . 'views/layouts/company/header.php');
 
     //Script selection des pays
     const countriesChoices = new Choices('#countriesAll', {
-    searchEnabled: true,
-    removeItemButton: true,
-    itemSelectText: '',
-    placeholder: true, // Ajoutez cette ligne pour activer le placeholder
-    placeholderValue: 'Select country', // Texte du placeholder
+        searchEnabled: true,
+        removeItemButton: true,
+        itemSelectText: '',
+        placeholder: true, // Ajoutez cette ligne pour activer le placeholder
+        placeholderValue: 'Select country', // Texte du placeholder
 
     });
 
@@ -618,7 +618,6 @@ include(APPPATH . 'views/layouts/company/header.php');
         let visibleFreelancersCount = 0;
 
         freelancers.forEach(function(freelancer) {
-            //const missionName = mission.getAttribute("data-mission-name");
             const freelancerTime = freelancer.getAttribute("data-freelancer-time");
             const freelancerRemote = freelancer.getAttribute("data-freelancer-remote");
             const freelancerExpertise = freelancer.getAttribute("data-freelancer-expertise");
@@ -712,7 +711,6 @@ include(APPPATH . 'views/layouts/company/header.php');
                     showFreelancer = false;
                 }
             }
-
 
             if (freelancerTJM < tjmMin || freelancerTJM > tjmMax) {
                 showFreelancer = false;

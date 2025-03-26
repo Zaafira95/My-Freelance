@@ -39,7 +39,7 @@ include(APPPATH . 'views/layouts/user/header.php');
                 <div class="flex flex-wrap justify-start">
                     <?php if(empty($missions)): ?>
                         <div class="flex flex-col items-start">
-                            <p class="text-gray-500 dark:text-gray-400">You don't have any favorite missions yet.</p>
+                            <p class="text-gray-500 dark:text-gray-400">You don't have any favorite mission yet.</p>
                             <a href="<?=base_url('user/mission')?>" class="bg-primary text-white px-4 py-2 mt-2 rounded-full">Browse missions</a>
                         </div>
                     <?php else: ?>

@@ -425,6 +425,7 @@ class User_model extends CI_Model {
             $this->db->from('Mission');
             $this->db->join('SavedMission', 'SavedMission.idMissionsavedMission = Mission.idMission');
             $this->db->join('Job', 'Job.jobId = Mission.missionJobId');
+            $this->db->join('Countries', 'Countries.idCountry = Mission.missionCountryId');
             $this->db->where('SavedMission.idUsersavedMission', $userId);
             $query = $this->db->get();
             return $query->result();

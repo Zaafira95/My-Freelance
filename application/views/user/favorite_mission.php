@@ -5,7 +5,7 @@ $currentPage = 'missions';
 include(APPPATH . 'views/layouts/user/header.php');
 
 ?>
-    <title> Vos missions favorites - My Freelance </title>
+    <title> Your favorite missions - My Freelance </title>
 <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
 <link href="<?php echo base_url('assets/css/app.css');?>" rel="stylesheet">
 
@@ -80,7 +80,7 @@ include(APPPATH . 'views/layouts/user/header.php');
                                                 <?=$mission->missionType?>
                                             
                                                 </span>
-                                                <span class="mr-2"> • <?=$mission->missionLocalisation?></span>
+                                                <span class="mr-2"> • <?=$mission->countryName?></span>
                                                 <span class="mr-2"> •
                                                 
                                                 <?php

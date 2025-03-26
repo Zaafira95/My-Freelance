@@ -324,7 +324,6 @@ include(APPPATH . 'views/layouts/company/header.php');
                 });
             }
             else {
-                // Supprimez la classe .has-border si l'input est trop court
                 $('#cities-list').removeClass('has-border').empty();
             }
         });

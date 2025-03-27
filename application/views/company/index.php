@@ -1,6 +1,5 @@
 <?php
 $currentPage = 'dashboard';
-//company/inex
 
 // Header Call
 include(APPPATH . 'views/layouts/company/header.php');

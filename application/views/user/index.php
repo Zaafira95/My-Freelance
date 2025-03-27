@@ -1,6 +1,6 @@
 <?php
 $currentPage = 'dashboard';
-
+//user/index
 
 // Header Call
 include(APPPATH . 'views/layouts/user/header.php');

@@ -1,7 +1,7 @@
 <?php
 // Header Call
 $currentPage = 'freelancers';
-
+//freelancers/view
 include(APPPATH . 'views/layouts/company/header.php' );
 ?>
 <head>

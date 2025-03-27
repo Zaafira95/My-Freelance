@@ -2,6 +2,7 @@
 // Header Call
 $currentPage = 'profil';
 
+//user/profil
 include(APPPATH . 'views/layouts/user/header.php' );
 ?>
 <head>

@@ -387,7 +387,7 @@ if ($totalCount > 0) {
                                     <div>
                                         <p class="text text-2xl lg:text-lg">Location</p>
                                         
-                                            <p class="font-bold text-4xl lg:text-xl"><?=$freelancer->userVille?></p>
+                                            <p class="font-bold text-4xl lg:text-xl"><?=$freelancer->countryName?></p>
                                         
 
                                     </div>

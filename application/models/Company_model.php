@@ -80,6 +80,7 @@ class Company_model extends CI_Model {
     public function get_freelancer($id){
         $this->db->select('*');
         $this->db->from('Users');
+        $this->db->join('Countries', 'Countries.idCountry = Users.userCountryId');
         $this->db->where('userId', $id);
         $query = $this->db->get();
         return $query->row();
@@ -217,14 +218,14 @@ class Company_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
-    public function addMission($missionName, $missionTJM, $missionJobId, $missionExperience, $missionSkills, $missioncountryId, $missionDescription, $missionAvantages, $missionType, $missionDeroulement, $missionDuration, $missionDateDebut, $missionDateFin, $missionCompanyId) {
+    public function addMission($missionName, $missionTJM, $missionJobId, $missionExperience, $missionSkills, $missionCountryId, $missionDescription, $missionAvantages, $missionType, $missionDeroulement, $missionDuration, $missionDateDebut, $missionDateFin, $missionCompanyId) {
         $data = array(
             'missionName' => $missionName,
             'missionTJM' => $missionTJM,
             'missionJobId' => $missionJobId,
             'missionExpertise' => $missionExperience,
             'missionSkills' => $missionSkills,
-            'missioncountryId' => $missioncountryId,
+            'missioncountryId' => $missionCountryId,
             'missionDescription' => $missionDescription,
             'missionAvantage' => $missionAvantages,
             'missionType' => $missionType,

@@ -2,6 +2,7 @@
 // Header Call
 $currentPage = 'profil';
 
+//user/profil
 include(APPPATH . 'views/layouts/user/header.php' );
 ?>
 <head>
@@ -227,7 +228,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                         </div>
                         <div class="flex items-center pl-4 border  border-gray-200 rounded dark:border-gray-700 w-full mr-4">
                             <input id="sur-site" type="radio" value="Physique" name="userJobType" class="text-3xl lg:text-base w-6 h-6 lg:w-4 lg:h-4  text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" <?php echo ($user->userJobType === 'Physique') ? 'checked' : ''; ?>>
-                            <label for="sur-site" class="text-3xl lg:text-base py-4 ml-2  font-medium text-gray-900 dark:text-white">On site</label>
+                            <label for="sur-site" class="text-3xl lg:text-base py-4 ml-2  font-medium text-gray-900 dark:text-white">On-site</label>
                         </div>
                     </div>
                     <p id="errorMessageJobType" class="text-3xl lg:text-base text-red-500" style="display:none;">Please choose a job type</p>
@@ -948,7 +949,7 @@ if($totalInfos == 1 ){
                                         } }
                                         ?>
                                         <div>
-                                            <p class="text text-2xl lg:text-lg">Job type</p>
+                                            <p class="text text-2xl lg:text-lg">Work mode</p>
                                             <?php
                                                 if($user->userJobType == "Hybride"){
                                                 ?>
@@ -960,7 +961,7 @@ if($totalInfos == 1 ){
                                                 <?php
                                                     }else if($user->userJobType == "Physique"){
                                                 ?>
-                                                    <p class="font-bold text-4xl lg:text-xl">On site</p>
+                                                    <p class="font-bold text-4xl lg:text-xl">On-site</p>
                                                 <?php
                                                     }
                                                 ?>

@@ -1,6 +1,6 @@
 <?php
 $currentPage = 'dashboard';
-
+//company/inex
 
 // Header Call
 include(APPPATH . 'views/layouts/company/header.php');
@@ -43,9 +43,20 @@ include(APPPATH . 'views/layouts/company/header.php');
                             <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="temps-partiel">
                             <span class="ml-2 text-3xl lg:text-base">Part-time</span>
                         </label>
+                    </div>
+                    <h4 class="text-3xl lg:text-lg font-medium mt-4">Work mode</h4>
+                    <div class="mt-2">
                         <label class="flex items-center">
-                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="remote">
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="site">
+                            <span class="ml-2 text-3xl lg:text-base">On-site</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="teletravail">
                             <span class="ml-2 text-3xl lg:text-base">Remote</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" class="w-6 h-6 lg:w-3 lg:h-3 form-checkbox mr-2" id="hybride">
+                            <span class="ml-2 text-3xl lg:text-base">Hybrid</span>
                         </label>
                     </div>
                     <h4 class="text-3xl lg:text-lg font-medium mt-4">Experience level</h4>
@@ -129,7 +140,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                             data-freelancer-lastname="<?=strtolower($freelancer->userLastName)?>" 
                             data-freelancer-localisation="<?=$freelancer->userCountryId?>" 
                             data-freelancer-time="<?=strtolower($freelancer->userJobTimePartielOrFullTime)?>" 
-                            data-freelancer-remote="<?=strtolower($freelancer->userRemote)?>" 
+                            data-freelancer-mode="<?=strtolower($freelancer->userJobType)?>" 
                             data-freelancer-expertise="<?=strtolower($freelancer->userExperienceYear)?>" 
                             data-freelancer-isavailable="<?=$freelancer->userIsAvailable?>"
                             data-freelancer-tjm="<?=$freelancer->userTJM?>" 
@@ -187,13 +198,21 @@ include(APPPATH . 'views/layouts/company/header.php');
                                                 <?=$freelancer->userJobTimePartielOrFullTime?> 
                                                 </span>
 
+                                                <span class="mr-2"> •
                                                 <?php
-                                                if($freelancer->userRemote == 1){
-                                                ?>
-                                                <span class="mr-2"> • Remote </span>
-                                                <?php
+                                                if ($freelancer->userJobType == "Physique"){
+                                                    $freelancer->userJobType = "On-site";
                                                 }
+                                                elseif ($freelancer->userJobType == "Remote"){
+                                                    $freelancer->userJobType = "Remote";
+                                                }
+                                                elseif ($freelancer->userJobType == "Hybride"){
+                                                    $freelancer->userJobType = "Hybrid";
+                                                }                                            
                                                 ?>
+                                                <?=$freelancer->userJobType?> 
+                                                </span>
+
                                                 <span class="mr-2"> • <?=$freelancer->countryName?></span>
                                                 <span class="mr-2"> •
                                                 <?php
@@ -607,6 +626,14 @@ include(APPPATH . 'views/layouts/company/header.php');
             }
         });
 
+        const modeFilters = []; // Tableau pour stocker les filtres d'expertise sélectionnés
+
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked && (checkbox.id === "site" || checkbox.id === "teletravail" || checkbox.id === "hybride")) {
+                modeFilters.push(checkbox.id);
+            }
+        });
+
         const availableFilters = []; // Tableau pour stocker les filtres d'expertise sélectionnés
 
         checkboxes.forEach(function(checkbox) {
@@ -619,7 +646,7 @@ include(APPPATH . 'views/layouts/company/header.php');
 
         freelancers.forEach(function(freelancer) {
             const freelancerTime = freelancer.getAttribute("data-freelancer-time");
-            const freelancerRemote = freelancer.getAttribute("data-freelancer-remote");
+            const freelancerMode = freelancer.getAttribute("data-freelancer-mode");
             const freelancerExpertise = freelancer.getAttribute("data-freelancer-expertise");
             // const freelancerCity = freelancer.getAttribute("data-freelancer-city").toLowerCase();
             const freelancerLocalisation = freelancer.getAttribute("data-freelancer-localisation").toLowerCase();
@@ -630,14 +657,14 @@ include(APPPATH . 'views/layouts/company/header.php');
             const freelancerTJM = parseInt(freelancer.getAttribute("data-freelancer-tjm"));
 
             let showFreelancer = true;  
-            activeFilters.every(function(filter) {
-                //if (filter === "temps-plein" && freelancerTime !== "temps-plein") showFreelancer = false;
-                if (filter === "remote" && freelancerRemote !== "1") showFreelancer = false;
-                //if (filter === "temps-partiel" && freelancerTime !== "temps-partiel") showFreelancer = false;
-                //if (filter === "available" && freelancerIsAvailable !== "1") showFreelancer = false;
-                //if (filter === "unavailable" && freelancerIsAvailable !== "0") showFreelancer = false;
-                return true;
-            });
+            // activeFilters.every(function(filter) {
+            //     //if (filter === "temps-plein" && freelancerTime !== "temps-plein") showFreelancer = false;
+            //     if (filter === "remote" && freelancerRemote !== "1") showFreelancer = false;
+            //     //if (filter === "temps-partiel" && freelancerTime !== "temps-partiel") showFreelancer = false;
+            //     //if (filter === "available" && freelancerIsAvailable !== "1") showFreelancer = false;
+            //     //if (filter === "unavailable" && freelancerIsAvailable !== "0") showFreelancer = false;
+            //     return true;
+            // });
            
             // Filtre par disponibilité
             let matchesAvailable = true;
@@ -662,6 +689,21 @@ include(APPPATH . 'views/layouts/company/header.php');
                 });
             }
             showFreelancer = showFreelancer && matchesType; 
+
+            // Filtre par mode de travail
+            let matchesMode = true;
+            if (modeFilters.length > 0) {
+                console.log(modeFilters);
+                console.log(freelancerMode);
+                matchesMode = modeFilters.some(function(filter) {
+                    return (
+                        (filter === "site" && freelancerMode === "physique") ||
+                        (filter === "teletravail" && freelancerMode === "remote") ||
+                        (filter === "hybride" && freelancerMode === "hybride")
+                    );
+                });
+            }
+            showFreelancer = showFreelancer && matchesMode; 
 
             // Filtre par expertise
             let matchesExpertise = true;

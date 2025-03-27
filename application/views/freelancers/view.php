@@ -1,7 +1,7 @@
 <?php
 // Header Call
 $currentPage = 'freelancers';
-
+//freelancers/view
 include(APPPATH . 'views/layouts/company/header.php' );
 ?>
 <head>
@@ -359,7 +359,7 @@ if ($totalCount > 0) {
                                     } }
                                     ?>
                                     <div>
-                                        <p class="text text-2xl lg:text-lg">Job type</p>
+                                        <p class="text text-2xl lg:text-lg">Work mode</p>
                                         <?php
                                             if($freelancer->userJobType == "Hybride"){
                                             ?>
@@ -371,7 +371,7 @@ if ($totalCount > 0) {
                                             <?php
                                                 }else if($freelancer->userJobType == "Physique"){
                                             ?>
-                                                <p class="font-bold text-4xl lg:text-xl">On site</p>
+                                                <p class="font-bold text-4xl lg:text-xl">On-site</p>
 
                                             <?php
                                                 }
@@ -399,8 +399,18 @@ if ($totalCount > 0) {
                                     
                                     <div>
                                         <p class="text text-2xl lg:text-lg">Mission duration</p>
-                                        
-                                        <p class="font-bold text-4xl lg:text-xl"><?=$freelancer->userJobTime?></p>
+                                                <?php
+                                                if ($freelancer->userJobTime == "Courte Durée"){ 
+                                                    $freelancer->userJobTime = "Short-term";
+                                                }
+                                                elseif ($freelancer->userJobTime == "Longue Durée"){
+                                                    $freelancer->userJobTime = "Long-term";
+                                                }
+                                                elseif ($freelancer->userJobTime == "Durée indéfinie"){
+                                                    $freelancer->userJobTime = "Indefinite duration";
+                                                }                                            
+                                                ?>
+                                            <p class="font-bold text-4xl lg:text-xl"><?=$freelancer->userJobTime?></p>
                                         
 
                                     </div>

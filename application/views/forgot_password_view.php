@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mot de passe oublié | My Freelance</title>
+    <title>Forgot password | My Freelance</title>
     <link href="<?php echo base_url('assets/css/app.css');?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css');?>" rel="stylesheet" type="text/css">
     <link rel="icon" href="<?php echo base_url('assets/img/Favicon.ico'); ?>" type="image/x-icon">
@@ -65,7 +65,7 @@
                         <div>
                             <input type="email" name="userEmail" id="userEmail" class="rounded-lg p-4 text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 block w-full lg:p-2.5" placeholder="name@company.com" required="">
                         </div>
-                        <button type="submit" class="text-3xl lg:text-base w-full text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center">Envoyer le lien</button>
+                        <button type="submit" class="text-3xl lg:text-base w-full text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg px-5 py-2.5 text-center">Send link</button>
                     </form>
                     <div class="flex items-center justify-end">
                         <a href="<?php echo base_url('login'); ?>" class="text-3xl lg:text-base font-medium text-primary hover:underline">Never mind, I remember it!</a>

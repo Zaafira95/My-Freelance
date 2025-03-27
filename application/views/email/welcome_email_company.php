@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title> Bienvenue chez My Freelance </title>
+    <title> Welcome to My Freelance </title>
 
 
 <style>
@@ -31,28 +31,28 @@
 
         <img src="https://uploads-ssl.webflow.com/636a2ecc04b5b050d3f252f9/65b920d2b1180ca9828c6e9c_CC-Logo-Prod.png" alt="My Freelance" width="600" style="width:200px;margin-top:20px; margin-bottom:40px;display:block; margin-left:0px; margin-right:auto;">
 
-        <h1 style="font-size: 24px; font-weight: 600; color: #000000; margin-top: 20px; margin-bottom: 20px; padding: 0; text-align: left;">Bienvenue chez My Freelance 👋🏻 </h1>
+        <h1 style="font-size: 24px; font-weight: 600; color: #000000; margin-top: 20px; margin-bottom: 20px; padding: 0; text-align: left;">Welcome to My Freelance 👋🏻 </h1>
 
-        <p style="font-size: 14px; font-weight: 400; color: #000000; margin-top: 20px; padding: 0; text-align: left;">Hello <?php echo $companyName?>, nous sommes ravis de vous accueillir parmi nous !</p>
+        <p style="font-size: 14px; font-weight: 400; color: #000000; margin-top: 20px; padding: 0; text-align: left;">Hello <?php echo $companyName?>, we are excited to welcome you aboard!</p>
         
-        <p style="font-size: 14px; font-weight: 400; color: #000000; margin-top: 20px; padding: 0; text-align: left;">Prêt à propulser le potentiel de votre entreprise ? Découvrez nos talents IT, et trouvez les compétences qui feront la différence pour vos projets 🚀</p>
+        <p style="font-size: 14px; font-weight: 400; color: #000000; margin-top: 20px; padding: 0; text-align: left;">Ready to unlock your business's potential? Explore our IT talents and find the skills that will make a difference for your projects. 🚀</p>
 
         <!-- Activate your account text -->
 
 
         <!-- Activate your account button -->
-        <a href="<?php echo $mailLink; ?>" style="background-color: #3971FA; border-radius:40px; color: #ffffff; display: block; font-size: 16px; font-weight: 600; line-height: 1.5; margin-bottom:24px; margin-top: 24px; margin-left:auto; margin-right:auto; max-width: 320px; padding: 12px 24px; text-align: center; text-decoration: none; width: 100%;">Découvrir</a>
+        <a href="<?php echo $mailLink; ?>" style="background-color: #3971FA; border-radius:40px; color: #ffffff; display: block; font-size: 16px; font-weight: 600; line-height: 1.5; margin-bottom:24px; margin-top: 24px; margin-left:auto; margin-right:auto; max-width: 320px; padding: 12px 24px; text-align: center; text-decoration: none; width: 100%;">Discover</a>
 
 
 
-        <p style="font-size: 14px; font-weight: 200; color: #000000; margin-top: 20px; padding: 0; text-align: left;">A bientôt, <br> L'équipe My Freelance ☕️</p>
+        <p style="font-size: 14px; font-weight: 200; color: #000000; margin-top: 20px; padding: 0; text-align: left;">See you soon, <br> My Freelance Team ☕️</p>
 
 
     </div>  
     <!-- Footer -->
     <div style="border-top: 1px solid #E5E5E5; margin-top: 40px; padding-top:20px;">
         <p style="font-size: 14px; font-weight: 100; color: #000000; margin: 0; padding: 0; text-align: center;">My Freelance</p>
-        <p style="font-size: 14px; font-weight: 100; color: #000000; margin: 0; padding: 0; text-align: center;">© 2024 My Freelance. Tous droits réservés.</p>
+        <p style="font-size: 14px; font-weight: 100; color: #000000; margin: 0; padding: 0; text-align: center;">© 2024 My Freelance. All rights reserved.</p>
         <!-- Logo instagram, youtube and linkedin -->
         <div style="text-align:center; margin-top:20px;">
             <a href="https://www.instagram.com/cafecreme_agency" style="margin-right: 10px;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1200px-Instagram_icon.png" alt="Instagram" width="30" style="width:30px;"></a>

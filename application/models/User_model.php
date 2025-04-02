@@ -5,6 +5,8 @@ class User_model extends CI_Model {
     public function get_UserData($userId){
         $this->db->select('*');
         $this->db->from('Users');
+        // $this->db->join('Countries', 'Countries.idCountry = Users.userCountryId');
+        // $this->db->join('Nationalities', 'Nationalities.idNationality = Users.userNationalityId');
         $this->db->where('userId', $userId);
         $query = $this->db->get();
         return $query->row();
@@ -26,6 +28,15 @@ class User_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('Countries');
         $this->db->where('idCountry', $userCountryId);
+        $query = $this->db->get();
+        return $query->row();
+    }
+    
+    // Récupérer le pays de l'utilisateur connecté avec le country id
+    public function getUserNationality($userNationalityId){
+        $this->db->select('*');
+        $this->db->from('Nationalities');
+        $this->db->where('idNationality', $userNationalityId);
         $query = $this->db->get();
         return $query->row();
     }
@@ -209,10 +220,11 @@ class User_model extends CI_Model {
         }
 
         //Zaafira 25/01/2024
-        public function updateUserPreference($userId, $userIsAvailable, $jobTypeString, $userCountryId, $userJobTime, $userJobTimePartielOrFullTime, $dateFinIndisponibilite){
+        public function updateUserPreference($userId, $userIsAvailable, $jobTypeString, $userCountryId, $userNationalityId, $userJobTime, $userJobTimePartielOrFullTime, $dateFinIndisponibilite){
             $this->db->set('userIsAvailable', $userIsAvailable);
             $this->db->set('userJobType', $jobTypeString);
             $this->db->set('userCountryId', $userCountryId);
+            $this->db->set('userNationalityId', $userNationalityId);
             $this->db->set('userJobTime', $userJobTime);
             $this->db->set('userJobTimePartielOrFullTime', $userJobTimePartielOrFullTime);
             $this->db->set('userDateFinIndisponibilite', $dateFinIndisponibilite);
@@ -487,8 +499,14 @@ class User_model extends CI_Model {
             $query = $this->db->get('Geonames_cities');
             return $query->result_array();
         }
+
         public function get_all_countries(){
             $query = $this->db->get('Countries');
+            return $query->result_array();
+        }
+        
+        public function get_all_nationalities(){
+            $query = $this->db->get('Nationalities');
             return $query->result_array();
         }
 

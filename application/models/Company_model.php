@@ -81,6 +81,7 @@ class Company_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('Users');
         $this->db->join('Countries', 'Countries.idCountry = Users.userCountryId');
+        $this->db->join('Nationalities', 'Nationalities.idNationality = Users.userNationalityId');
         $this->db->where('userId', $id);
         $query = $this->db->get();
         return $query->row();

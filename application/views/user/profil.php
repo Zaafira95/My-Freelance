@@ -176,6 +176,39 @@ include(APPPATH . 'views/layouts/user/header.php' );
             <!-- Modal body -->
             <form action="<?=base_url("user/updateUserPreference")?>" method="post" id ="userPreferenceForm" enctype="multipart/form-data">
                 <div>
+                    <label for="userNationality" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Nationality</label>
+                    <div class="w-full mx-auto mt-2 mb-4 text-black">
+                           
+                        <select id="nationalitiesAll" name="userNationality"  style="font-size:1rem;" class="text-3xl lg:text-base font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <?php foreach ($nationalitiesAll as $nationality): ?>
+                                <option class="text-3xl lg:text-base dark:text-white" value="<?= $nationality['idNationality']?>"
+                                    <?= ($userNationality->idNationality == $nationality['idNationality']) ? 'selected' : '' ?>>
+                                <?= $nationality['nationalityName'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <label for="userCountry" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Location</label>
+                    <!-- <div>    
+                        <div class="relative city-search-container w-full mr-4">
+                            <input type="text" id="citySearch" name="userVille" placeholder="Search your city" value="<?php echo $user->userVille != 'Etranger' ? $user->userVille : "" ?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" >
+                                <div id="cities-list" class="text-3xl lg:text-base absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
+                        </div>
+                        <div class="flex items-center mt-2">
+                            <input type="checkbox" id="userEtranger" name="userEtranger" <?php echo $user->userVille === 'Etranger' ? 'checked' : "" ?>>
+                            <label class="text-3xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Abroad</label>
+                        </div>
+                    </div> -->
+                    
+                    <div class="w-full mx-auto mt-2 mb-4 text-black">
+                           
+                        <select id="countriesAll" name="userCountry"  style="font-size:1rem;" class="text-3xl lg:text-base font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                            <?php foreach ($countriesAll as $country): ?>
+                                <option class="text-3xl lg:text-base dark:text-white" value="<?= $country['idCountry']?>"
+                                    <?= ($userCountry->idCountry == $country['idCountry']) ? 'selected' : '' ?>>
+                                <?= $country['countryName'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
                     <label for="name" class="text-3xl lg:text-base block mb-2  font-medium text-gray-900 dark:text-white">Are you available to work right now?</label>
                     <label class="text-3xl lg:text-base text-gray-500 mr-3 dark:text-gray-400">No</label>
                     <input type="checkbox" name="userIsAvailable" id="hs-basic-with-description-preference" <?php echo $checkboxChecked; ?> onchange="displayAvailibilityOptionsPreference()" class="text-3xl lg:text-base relative shrink-0 w-[3.25rem] h-7 bg-gray-100 checked:bg-gray-100 rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800 before:inline-block before:w-6 before:h-6 before:bg-white checked:before:bg-green-500 before:translate-x-0 checked:before:translate-x-full before:shadow before:rounded-full before:transform before:ring-0 before:transition before:ease-in-out before:duration-200 dark:before:bg-gray-400 dark:checked:before:bg-green-200">
@@ -232,28 +265,6 @@ include(APPPATH . 'views/layouts/user/header.php' );
                         </div>
                     </div>
                     <p id="errorMessageJobType" class="text-3xl lg:text-base text-red-500" style="display:none;">Please choose a job type</p>
-                    <label for="userVille" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Location</label>
-                    <!-- <div>    
-                        <div class="relative city-search-container w-full mr-4">
-                            <input type="text" id="citySearch" name="userVille" placeholder="Search your city" value="<?php echo $user->userVille != 'Etranger' ? $user->userVille : "" ?>" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900 sm:text-lg rounded-lg block w-full p-2.5 placeholder-gray-500 focus:ring-primary-500 focus:border-primary-500" placeholder="Saisissez votre localisation *" >
-                                <div id="cities-list" class="text-3xl lg:text-base absolute z-10 mt-2 w-full  rounded bg-white max-h-64 overflow-y-auto text-black"></div>
-                        </div>
-                        <div class="flex items-center mt-2">
-                            <input type="checkbox" id="userEtranger" name="userEtranger" <?php echo $user->userVille === 'Etranger' ? 'checked' : "" ?>>
-                            <label class="text-3xl lg:text-base ml-2 text-gray-500 dark:text-gray-400">Abroad</label>
-                        </div>
-                    </div> -->
-                    
-                    <div class="w-full mx-auto mt-2 text-black">
-                           
-                        <select id="countriesAll" name="userCountry"  style="font-size:1rem;" class="text-3xl lg:text-base font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
-                            <?php foreach ($countriesAll as $country): ?>
-                                <option class="text-3xl lg:text-base dark:text-white" value="<?= $country['idCountry']?>"
-                                    <?= ($userCountry->idCountry == $country['idCountry']) ? 'selected' : '' ?>>
-                                <?= $country['countryName'] ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
                     <label for="userJobTime" class="text-3xl lg:text-base block mt-4 mb-2  font-medium text-gray-900 dark:text-white">Mission Duration</label>
                     <select id="userJobTime" name="userJobTime" class="text-3xl lg:text-base bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
@@ -874,7 +885,31 @@ if($totalInfos == 1 ){
                     <div class="w-full lg:w-1/4 lg:sticky lg:top-0">
                         <div class="lg:w-full">
                             <div class="relative bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
-                                <h2 class="text-4xl lg:text-xl font-bold mb-4"> Preferences </h2> 
+                                <h2 class="text-4xl lg:text-xl font-bold mb-4"> Profile and work preferences </h2> 
+                                    <div class="flex grid-cols-2 items-center mb-4">
+                                        <div>
+                                            <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-secondary text-white text-center text-4xl lg:text-xl flex items-center justify-center mr-4 pt-2">🌍</p>
+                                        </div>
+                                        
+                                        <div>
+                                            <p class="text text-2xl lg:text-lg">Nationality</p>
+                                            
+                                                <p class="font-bold text-4xl lg:text-xl"><?=$userNationality->nationalityName?></p>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="flex grid-cols-2 items-center mb-4">
+                                        <div>
+                                            <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-orange-400 text-white text-center text-4xl lg:text-xl flex items-center justify-center mr-4 pt-2">📍</p>
+                                        </div>
+                                        
+                                        <div>
+                                            <p class="text text-2xl lg:text-lg">Location</p>
+                                            
+                                                <p class="font-bold text-4xl lg:text-xl"><?=$userCountry->countryName?></p>
+                                            
+                                        </div>
+                                    </div>
                                     <div class="flex grid-cols-2 items-center mb-4">
                                         <?php
                                         // user is available or not
@@ -903,12 +938,12 @@ if($totalInfos == 1 ){
                                                 <?php
                                                     if($user->userJobTimePartielOrFullTime == "temps-plein"){
                                                 ?>
-                                                    Full time
+                                                    Full-time
                                                 <?php
                                                     }
                                                     else{
                                                 ?> 
-                                                    Part time
+                                                    Part-time
                                                 <?php
                                                     }
                                                 }else{
@@ -966,18 +1001,6 @@ if($totalInfos == 1 ){
                                                     }
                                                 ?>
                                             <!-- error message -->
-                                        </div>
-                                    </div>
-                                    <div class="flex grid-cols-2 items-center mb-4">
-                                        <div>
-                                            <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-orange-400 text-white text-center text-4xl lg:text-xl flex items-center justify-center mr-4 pt-2">📍</p>
-                                        </div>
-                                        
-                                        <div>
-                                            <p class="text text-2xl lg:text-lg">Location</p>
-                                            
-                                                <p class="font-bold text-4xl lg:text-xl"><?=$userCountry->countryName?></p>
-                                            
                                         </div>
                                     </div>
                                     <div class="flex grid-cols-2 items-center mb-4">
@@ -1604,6 +1627,16 @@ if($totalInfos == 1 ){
             itemSelectText: '',
             placeholder: true, // Ajoutez cette ligne pour activer le placeholder
             placeholderValue: 'Select country', // Texte du placeholder
+
+        });
+
+        //Script selection des nationalités
+        const nationalitiesChoices = new Choices('#nationalitiesAll', {
+            searchEnabled: true,
+            removeItemButton: true,
+            itemSelectText: '',
+            placeholder: true, // Ajoutez cette ligne pour activer le placeholder
+            placeholderValue: 'Select nationality', // Texte du placeholder
 
         });
 

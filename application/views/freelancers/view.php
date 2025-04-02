@@ -277,7 +277,32 @@ if ($totalCount > 0) {
                         <div class="lg:w-full">
                             <div class="bg-white rounded-lg mb-4 p-4 dark:bg-gray-800 dark:text-white">
                                 <h2 class="text-4xl lg:text-xl font-bold mb-4"> Preferences </h2> 
+                                <div class="flex grid-cols-2 items-center mb-4">
+                                    <div>
+                                        <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-secondary text-white text-center text-4xl lg:text-xl flex items-center justify-center mr-4 pt-2">🌍</p>
+                                    </div>
+                                    
+                                    <div>
+                                        <p class="text text-2xl lg:text-lg">Nationality</p>
+                                        
+                                            <p class="font-bold text-4xl lg:text-xl"><?=$freelancer->nationalityName?></p>
+                                        
+                                    </div>
+                                </div> 
 
+                                <div class="flex grid-cols-2 items-center mb-4">
+                                    <div>
+                                        <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-orange-400 text-white text-center text-4xl lg:text-xl flex items-center justify-center mr-4 pt-2">📍</p>
+                                    </div>
+                                    
+                                    <div>
+                                        <p class="text text-2xl lg:text-lg">Location</p>
+                                        
+                                            <p class="font-bold text-4xl lg:text-xl"><?=$freelancer->countryName?></p>
+                                        
+
+                                    </div>
+                                </div>
                                 <div class="flex grid-cols-2 items-center mb-4">
                                     <?php
                                     // user is available or not
@@ -377,19 +402,6 @@ if ($totalCount > 0) {
                                                 }
                                             ?>
                                         <!-- error message -->
-                                    </div>
-                                </div>
-                                <div class="flex grid-cols-2 items-center mb-4">
-                                    <div>
-                                        <p class="w-16 h-16 lg:w-9 lg:h-9 rounded-full bg-orange-400 text-white text-center text-4xl lg:text-xl flex items-center justify-center mr-4 pt-2">📍</p>
-                                    </div>
-                                    
-                                    <div>
-                                        <p class="text text-2xl lg:text-lg">Location</p>
-                                        
-                                            <p class="font-bold text-4xl lg:text-xl"><?=$freelancer->countryName?></p>
-                                        
-
                                     </div>
                                 </div>
                                 <div class="flex grid-cols-2 items-center mb-4">

@@ -5,8 +5,8 @@ class User_model extends CI_Model {
     public function get_UserData($userId){
         $this->db->select('*');
         $this->db->from('Users');
-        $this->db->join('Countries', 'Countries.idCountry = Users.userCountryId');
-        $this->db->join('Nationalities', 'Nationalities.idNationality = Users.userNationalityId');
+        // $this->db->join('Countries', 'Countries.idCountry = Users.userCountryId');
+        // $this->db->join('Nationalities', 'Nationalities.idNationality = Users.userNationalityId');
         $this->db->where('userId', $userId);
         $query = $this->db->get();
         return $query->row();
@@ -28,6 +28,15 @@ class User_model extends CI_Model {
         $this->db->select('*');
         $this->db->from('Countries');
         $this->db->where('idCountry', $userCountryId);
+        $query = $this->db->get();
+        return $query->row();
+    }
+    
+    // Récupérer le pays de l'utilisateur connecté avec le country id
+    public function getUserNationality($userNationalityId){
+        $this->db->select('*');
+        $this->db->from('Nationalities');
+        $this->db->where('idNationality', $userNationalityId);
         $query = $this->db->get();
         return $query->row();
     }

@@ -182,7 +182,7 @@ include(APPPATH . 'views/layouts/user/header.php' );
                         <select id="nationalitiesAll" name="userNationality"  style="font-size:1rem;" class="text-3xl lg:text-base font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                             <?php foreach ($nationalitiesAll as $nationality): ?>
                                 <option class="text-3xl lg:text-base dark:text-white" value="<?= $nationality['idNationality']?>"
-                                    <?= ($user->idNationality == $nationality['idNationality']) ? 'selected' : '' ?>>
+                                    <?= ($userNationality->idNationality == $nationality['idNationality']) ? 'selected' : '' ?>>
                                 <?= $nationality['nationalityName'] ?></option>
                             <?php endforeach; ?>
                         </select>
@@ -894,7 +894,7 @@ if($totalInfos == 1 ){
                                         <div>
                                             <p class="text text-2xl lg:text-lg">Nationality</p>
                                             
-                                                <p class="font-bold text-4xl lg:text-xl"><?=$user->nationalityName?></p>
+                                                <p class="font-bold text-4xl lg:text-xl"><?=$userNationality->nationalityName?></p>
                                             
                                         </div>
                                     </div>
@@ -906,7 +906,7 @@ if($totalInfos == 1 ){
                                         <div>
                                             <p class="text text-2xl lg:text-lg">Location</p>
                                             
-                                                <p class="font-bold text-4xl lg:text-xl"><?=$user->countryName?></p>
+                                                <p class="font-bold text-4xl lg:text-xl"><?=$userCountry->countryName?></p>
                                             
                                         </div>
                                     </div>

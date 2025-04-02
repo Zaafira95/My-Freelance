@@ -194,9 +194,12 @@ class User extends CI_Controller {
          $job = $this->User_model->getUserJob($userId);
          $data['job'] = $job;
 
-        //  // Récupérer le pays de l'utilisateur connecté avec le job id
+        // Récupérer le pays de l'utilisateur connecté avec le job id
          $userCountry = $this->User_model->getUserCountry($user->userCountryId);
          $data['userCountry'] = $userCountry;
+         
+         $userNationality = $this->User_model->getUserNationality($user->userNationalityId);
+         $data['userNationality'] = $userNationality;
  
          // Récupérer l'expérience de l'utilisateur connecté avec l'expérience id
          $experiences = $this->User_model->getUserExperience($userId);

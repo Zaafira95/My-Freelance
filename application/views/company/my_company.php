@@ -93,7 +93,7 @@ include(APPPATH . 'views/layouts/company/header.php');
                         </select> 
                     </div>                    
                     <label for="companyCity" class="text-3xl lg:text-base block mb-1 font-medium text-gray-900 dark:text-white">Location *</label>
-                    <div class="w-full mx-auto mt-2 text-black">
+                    <div class="w-full mx-auto mt-2 text-black mb-4">
                         <select id="countriesAll" name="companyLocalisation"  style="font-size:1rem;" class="text-3xl lg:text-base font-medium mb-2 bg-gray-50 border border-gray-300 text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                             <?php foreach ($countriesAll as $country): ?>
                                 <option class="text-3xl lg:text-base dark:text-white" value="<?= $country['idCountry']?>"

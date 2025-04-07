@@ -1561,55 +1561,55 @@ if($totalInfos == 1 ){
     $(document).ready(function() {
 
     
-        $('#citySearch').on('keyup', function() {
-            let term = $(this).val();
-            if(term.length > 2) { // Recherche après 2 caractères
-                $.post('search_cities', { term: term }, function(data) {
-                    let cities = JSON.parse(data);
-                    if(cities.length > 0) {
-                        // Ajoutez la classe .has-border si des résultats sont retournés
-                        $('#cities-list').addClass('has-border');
-                    } else {
-                        // Supprimez la classe .has-border si aucun résultat n'est retourné
-                        $('#cities-list').removeClass('has-border');
-                    }
-                    $('#cities-list').empty();
-                    cities.forEach(function(city) {
-                        $('#cities-list').append(`<div class="city-item p-2 hover:bg-gray-200 cursor-pointer" data-id="${city.geoname_id}">${city.name}</div>`);
-                    });
-                });
-            }
-            else {
-                // Supprimez la classe .has-border si l'input est trop court
-                $('#cities-list').removeClass('has-border').empty();
-            }
-        });
+        // $('#citySearch').on('keyup', function() {
+        //     let term = $(this).val();
+        //     if(term.length > 2) { // Recherche après 2 caractères
+        //         $.post('search_cities', { term: term }, function(data) {
+        //             let cities = JSON.parse(data);
+        //             if(cities.length > 0) {
+        //                 // Ajoutez la classe .has-border si des résultats sont retournés
+        //                 $('#cities-list').addClass('has-border');
+        //             } else {
+        //                 // Supprimez la classe .has-border si aucun résultat n'est retourné
+        //                 $('#cities-list').removeClass('has-border');
+        //             }
+        //             $('#cities-list').empty();
+        //             cities.forEach(function(city) {
+        //                 $('#cities-list').append(`<div class="city-item p-2 hover:bg-gray-200 cursor-pointer" data-id="${city.geoname_id}">${city.name}</div>`);
+        //             });
+        //         });
+        //     }
+        //     else {
+        //         // Supprimez la classe .has-border si l'input est trop court
+        //         $('#cities-list').removeClass('has-border').empty();
+        //     }
+        // });
 
-        $(document).on('click', '.city-item', function() {
-            let cityName = $(this).text();
-            $('#citySearch').val(cityName);  // Mettez à jour le champ de saisie avec le nom de la ville sélectionnée
-            $('#cities-list').empty(); // Videz la liste
-            $('#cities-list').removeClass('has-border').empty();
-        });
+        // $(document).on('click', '.city-item', function() {
+        //     let cityName = $(this).text();
+        //     $('#citySearch').val(cityName);  // Mettez à jour le champ de saisie avec le nom de la ville sélectionnée
+        //     $('#cities-list').empty(); // Videz la liste
+        //     $('#cities-list').removeClass('has-border').empty();
+        // });
 
-        // Pour fermer la liste lorsque vous cliquez en dehors
-        $(document).on('click', function(event) {
-            // et n'est pas sur un élément à l'intérieur de la liste (#cities-list)...
-            if (!$(event.target).closest('#citySearch, #cities-list').length) {
-                // ... alors videz et fermez la liste.
-                $('#cities-list').empty().removeClass('has-border');
-            }
-        });
+        // // Pour fermer la liste lorsque vous cliquez en dehors
+        // $(document).on('click', function(event) {
+        //     // et n'est pas sur un élément à l'intérieur de la liste (#cities-list)...
+        //     if (!$(event.target).closest('#citySearch, #cities-list').length) {
+        //         // ... alors videz et fermez la liste.
+        //         $('#cities-list').empty().removeClass('has-border');
+        //     }
+        // });
 
-        $('#userEtranger').change(function() {
-            if ($(this).is(':checked')) {
-                $('#citySearch').val('');
-            }
-        });
+        // $('#userEtranger').change(function() {
+        //     if ($(this).is(':checked')) {
+        //         $('#citySearch').val('');
+        //     }
+        // });
         
-        $('#citySearch').on('input', function() {
-            $('#userEtranger').prop('checked', false);
-        });
+        // $('#citySearch').on('input', function() {
+        //     $('#userEtranger').prop('checked', false);
+        // });
 
         const jobsChoices = new Choices('#jobsAll', {
             searchEnabled: true,
